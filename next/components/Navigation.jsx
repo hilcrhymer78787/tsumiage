@@ -29,6 +29,10 @@ export default function Navigation() {
                 label="about"
                 value="/about"
                 icon={<RestoreIcon />} />
+            <BottomNavigationAction
+                label="task"
+                value="/task"
+                icon={<RestoreIcon />} />
         </BottomNavigation>
     )
 }
