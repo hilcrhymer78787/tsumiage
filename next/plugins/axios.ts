@@ -2,7 +2,7 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import axios from 'axios'
 
 export const api = axios.create({
-    // baseURL: 'https://app.rakuten.co.jp/',
+    baseURL: 'http://localhost:8000/',
 })
 
 api.interceptors.request.use(

@@ -6,7 +6,7 @@ import { api } from '../plugins/axios';
 function Test() {
     const testAuthentication = async () => {
         const requestConfig: AxiosRequestConfig = {
-            url: `http://localhost:8000/api/user/test_authentication`,
+            url: `/api/user/test_authentication`,
             method: "GET",
         };
         await api(requestConfig)

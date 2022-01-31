@@ -12,7 +12,7 @@ import MuiPagination from '@material-ui/lab/Pagination';
 import HotelDetail from "../components/HotelDetail";
 import { ApiResType, ApiErrType } from "../types/res"
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from '../plugins/axios';
+import axios from 'axios';
 export default function Home() {
     const [isLoading, setIsLoading] = useState(false as boolean)
     const [focusHotel, setFocusHotel] = useState(null)
@@ -27,7 +27,7 @@ export default function Home() {
             url: `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${encodeURIComponent(keyword)}&applicationId=${applicationId}&page=${toPage}&hits=10`,
             method: "GET",
         };
-        await api(requestConfig)
+        await axios(requestConfig)
             .then((res: AxiosResponse<ApiResType>) => {
                 setdata(res.data)
             })
