@@ -4,10 +4,11 @@ import Button from '@material-ui/core/Button';
 import { api } from '../plugins/axios';
 import TextField from '@material-ui/core/TextField';
 import { apiTaskReadResponseType } from '../types/api/task/read/response'
-import { apiTaskCreateRequestType } from '../types/api/task/create/request'
+import { apiTaskReadResponseTaskType } from '../types/api/task/read/response'
 
 function Test() {
     const [keyword, setKeyword] = useState("東京" as string)
+    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[])
     const keywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value)
     }
@@ -28,6 +29,7 @@ function Test() {
         };
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
+                setTasks(res.data.tasks)
             })
             .catch((err: AxiosError) => {
             })
@@ -35,11 +37,24 @@ function Test() {
     useEffect(() => {
         taskRead()
     }, [])
-    
+
     return (
         <>
             <TextField value={keyword} onChange={keywordChange} id="outlined-basic" variant="outlined" color="primary" />
             <Button onClick={taskCreate} variant="contained" color="primary">追加</Button>
+            {
+                tasks.length &&
+                <ul>
+                    {tasks.map((task, index) => (
+                        <li key={index.toString()}>
+                            <strong>{task.id}</strong>
+                            <span>{task.name}</span>
+                            <hr />
+                        </li>
+                    ))}
+                </ul>
+            }
+            {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
     )
 }
