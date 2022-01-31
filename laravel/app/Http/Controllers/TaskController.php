@@ -16,18 +16,18 @@ class TaskController extends Controller
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
 
-        $tasks = (new TaskService())->getTasksByRoomId($loginInfo['user_room_id']);
+        $tasks = (new TaskService())->getTasksByUserId($loginInfo['id']);
 
-        foreach ($tasks as $task) {
-            $query = Work::where('work_task_id', $task['task_id'])
-                ->whereYear('work_date', $request['year'])
-                ->whereMonth('work_date', $request['month'])
-                ->whereDay('work_date', $request['day']);
-            $task['minute'] = (int)$query->sum('work_minute');
-            $task['works'] = $query->leftjoin('users', 'works.work_user_id', '=', 'users.id')
-                ->select('work_id', 'work_date', 'work_minute', 'work_user_id', 'name as work_user_name', 'user_img as work_user_img')
-                ->get();
-        }
+        // foreach ($tasks as $task) {
+        //     $query = Work::where('work_task_id', $task['task_id'])
+        //         ->whereYear('work_date', $request['year'])
+        //         ->whereMonth('work_date', $request['month'])
+        //         ->whereDay('work_date', $request['day']);
+        //     $task['minute'] = (int)$query->sum('work_minute');
+        //     $task['works'] = $query->leftjoin('users', 'works.work_user_id', '=', 'users.id')
+        //         ->select('work_id', 'work_date', 'work_minute', 'work_user_id', 'name as work_user_name', 'user_img as work_user_img')
+        //         ->get();
+        // }
         
         $return['tasks'] = $tasks;
         return $return;

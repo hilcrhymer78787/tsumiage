@@ -15,11 +15,12 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id('task_id');
-            $table->integer('task_room_id');
+            $table->integer('task_user_id');
             $table->string('task_name');
-            $table->integer('task_status')->nullable();
+            $table->integer('task_status');
+            $table->integer('task_sort_key');
             $table->integer('task_default_minute');
-            $table->boolean('task_is_everyday')->nullable();
+            $table->integer('task_point_per_minute');
             $table->timestamps();
         });
     }

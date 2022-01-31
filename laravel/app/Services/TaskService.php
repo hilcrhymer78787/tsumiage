@@ -6,11 +6,16 @@ use App\Models\Task;
 
 class TaskService
 {
-    public function getTasksByRoomId($roomId)
+    public function getTasksByUserId($roomId)
     {
-        $tasks = Task::where('task_room_id', $roomId)
-            ->where('task_is_everyday', 1)
-            ->select('task_id','task_name as name', 'task_default_minute', 'task_is_everyday', 'task_sort_key')
+        $tasks = Task::where('task_user_id', $roomId)
+            ->select(
+                'task_id as id',
+                'task_name as name',
+                'task_default_minute as default_minute',
+                'task_point_per_minute as point_per_minute',
+                'task_sort_key as sort_key'
+            )
             ->orderBy('task_sort_key')
             ->get();
         return $tasks;
@@ -20,20 +25,17 @@ class TaskService
         Task::create([
             'task_name' => '洗い物',
             'task_default_minute' => 15,
-            'task_is_everyday' => 1,
-            'task_room_id' => $roomId,
+            'task_user_id' => $roomId,
         ]);
         Task::create([
             'task_name' => '料理',
             'task_default_minute' => 30,
-            'task_is_everyday' => 1,
-            'task_room_id' => $roomId,
+            'task_user_id' => $roomId,
         ]);
         Task::create([
             'task_name' => '洗濯',
             'task_default_minute' => 15,
-            'task_is_everyday' => 1,
-            'task_room_id' => $roomId,
+            'task_user_id' => $roomId,
         ]);
     }
 }

@@ -2,11 +2,11 @@ export interface apiTaskReadResponseType {
     tasks: apiTaskReadResponseTaskType[]
 }
 export interface apiTaskReadResponseTaskType {
-    task_id: number;
+    id: number;
     name: string;
-    task_default_minute: number;
-    task_is_everyday: number;
-    task_sort_key: number;
+    default_minute: number;
+    point_per_minute: number;
+    sort_key: number;
     minute: number;
     works: apiTaskReadResponseTaskWorkType[];
 }
