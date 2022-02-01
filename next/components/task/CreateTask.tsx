@@ -3,7 +3,9 @@ import { api } from '../../plugins/axios';
 import { apiTaskReadResponseType } from '../../types/api/task/read/response'
 import { apiTaskReadResponseTaskType } from '../../types/api/task/read/response'
 import { apiTaskCreateRequestType } from '../../types/api/task/create/request'
+import { apiTaskDeleteRequestType } from '../../types/api/task/delete/request'
 import SendIcon from '@material-ui/icons/Send';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, CircularProgress } from '@material-ui/core';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import TextField from '@material-ui/core/TextField';
@@ -14,6 +16,7 @@ type Props = {
 }
 export default function CreateTask(props: Props) {
     const [taskCreateLoading, setTaskCreateLoading] = useState(false as boolean)
+    const [taskDeleteLoading, setTaskDeleteLoading] = useState(false as boolean)
     const [formTask, setFormTask] = useState({
         id: 0 as number,
         name: '' as string,
@@ -22,6 +25,30 @@ export default function CreateTask(props: Props) {
         status: 1 as string | number,
         sort_key: null as number | null,
     })
+    const taskDelete = () => {
+        if (!confirm(`「${props.focusTask.name}」を削除しますか？`)) {
+            return;
+        }
+        const apiParam: apiTaskDeleteRequestType = {
+            task_id: formTask.id
+        }
+        const requestConfig: AxiosRequestConfig = {
+            url: `/api/task/delete`,
+            method: "DELETE",
+            data: apiParam
+        };
+        setTaskDeleteLoading(true)
+        api(requestConfig)
+            .then((res: AxiosResponse<apiTaskReadResponseType>) => {
+                props.taskRead()
+                props.onCloseMyself()
+            })
+            .catch((err: AxiosError) => {
+            })
+            .finally(() => {
+                setTaskDeleteLoading(false)
+            })
+    }
     const taskCreate = () => {
         const apiParam: apiTaskCreateRequestType = {
             task_id: formTask.id,
@@ -47,22 +74,6 @@ export default function CreateTask(props: Props) {
                 setTaskCreateLoading(false)
             })
     }
-    const onChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
-        switch (e.currentTarget.id) {
-            case 'name':
-                setFormTask({ ...formTask, name: e.currentTarget.value });
-                break;
-            case 'point_per_minute':
-                setFormTask({ ...formTask, point_per_minute: e.currentTarget.value });
-                break;
-            case 'default_minute':
-                setFormTask({ ...formTask, default_minute: e.currentTarget.value });
-                break;
-            case 'status':
-                setFormTask({ ...formTask, status: e.currentTarget.value });
-                break;
-        }
-    }
     useEffect(() => {
         if (props.focusTask) {
             setFormTask({
@@ -84,25 +95,43 @@ export default function CreateTask(props: Props) {
                 <div className="card_body">
                     <ul>
                         <li className='mb-3'>
-                            <TextField value={formTask.name} onChange={onChangeForm} label="name" id="name" variant="outlined" color="primary" />
+                            <TextField
+                                value={formTask.name}
+                                onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }) }}
+                                label="name" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
-                            <TextField value={formTask.point_per_minute} onChange={onChangeForm} label="point_per_minute" id="point_per_minute" variant="outlined" color="primary" />
+                            <TextField
+                                value={formTask.point_per_minute}
+                                onChange={(e) => { setFormTask({ ...formTask, point_per_minute: e.currentTarget.value }) }}
+                                label="point_per_minute" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
-                            <TextField value={formTask.default_minute} onChange={onChangeForm} label="default_minute" id="default_minute" variant="outlined" color="primary" />
+                            <TextField
+                                value={formTask.default_minute}
+                                onChange={(e) => { setFormTask({ ...formTask, default_minute: e.currentTarget.value }) }}
+                                label="default_minute" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
-                            <TextField value={formTask.status} onChange={onChangeForm} label="status" id="status" variant="outlined" color="primary" />
+                            <TextField
+                                value={formTask.status}
+                                onChange={(e) => { setFormTask({ ...formTask, status: e.currentTarget.value }) }}
+                                label="status" variant="outlined" color="primary" />
                         </li>
                     </ul>
                 </div>
-                <div className="card_footer">
+                <div className="card_footer justify-space-between">
+                    <Button color="secondary"
+                        onClick={taskDelete}
+                        variant="contained"
+                        endIcon={taskDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
+                        disabled={taskCreateLoading || taskDeleteLoading}
+                    >削除</Button>
                     <Button color="primary"
                         onClick={taskCreate}
                         variant="contained"
                         endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                        disabled={taskCreateLoading}
+                        disabled={taskCreateLoading || taskDeleteLoading}
                     >登録</Button>
                 </div>
             </>}
