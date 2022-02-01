@@ -44,14 +44,36 @@ main {
     justify-content: flex-end;
 }
 
-
-.card_header{
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: .0125em;
-    line-height: 2rem;
-    word-break: break-all;
+.card {
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    overflow: hidden;
+    border: none;
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #3f51b5;
+        color: #fff;
+        padding: 16px;
+        &_ttl {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.0125em;
+            line-height: 2rem;
+            word-break: break-all;
+        }
+        &_btn {
+            background-color: white !important;
+        }
+    }
+    &_body {
+        padding: 16px;
+    }
+    &_footer {
+        display: flex;
+        padding: 8px;
+        align-items: center;
+        border-top: 1px solid #e0e0e0;
+        justify-content: flex-end;
+    }
 }

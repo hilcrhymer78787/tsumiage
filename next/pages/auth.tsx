@@ -3,7 +3,7 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import Button from '@material-ui/core/Button';
 import { api } from '../plugins/axios';
 
-function Test() {
+function Auth() {
     const testAuthentication = async () => {
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/test_authentication`,
@@ -25,4 +25,4 @@ function Test() {
         </>
     )
 }
-export default Test;
+export default Auth;

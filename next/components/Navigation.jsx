@@ -22,8 +22,8 @@ export default function Navigation() {
                 value="/"
                 icon={<LocationOnIcon />} />
             <BottomNavigationAction
-                label="test"
-                value="/test"
+                label="auth"
+                value="/auth"
                 icon={<FavoriteIcon />} />
             <BottomNavigationAction
                 label="about"

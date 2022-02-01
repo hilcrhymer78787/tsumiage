@@ -5,7 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Card, CardHeader, Box } from '@material-ui/core';
+import { Card, CardHeader, CardActionArea, IconButton, Dialog } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import { api } from '../plugins/axios';
 import TextField from '@material-ui/core/TextField';
@@ -13,13 +14,23 @@ import { apiTaskReadResponseType } from '../types/api/task/read/response'
 import { apiTaskReadResponseTaskType } from '../types/api/task/read/response'
 import { apiTaskCreateRequestType } from '../types/api/task/create/request'
 import { apiTaskCreateRequestTaskType } from '../types/api/task/create/request'
+import CreateTask from '../components/task/CreateTask'
 
 function Task() {
     const [keyword, setKeyword] = useState("東京" as string)
+    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean)
+    const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null)
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[])
     const keywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKeyword(e.target.value)
     }
+
+    const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
+        var clickedIndex = e.currentTarget.dataset.index
+        setFocusTask(tasks[clickedIndex])
+        setCreateTaskDialog(true)
+    }
+
     const taskRead = () => {
         const today = new Date();
         const params = {
@@ -72,23 +83,31 @@ function Task() {
             <Button onClick={taskCreate} variant="contained" color="primary" className="ms-2">追加</Button>
             {
                 tasks &&
-                    <Card className="mt-3">
-                        <CardHeader
-                            avatar={<Avatar>P</Avatar>}
-                            title="Profile"
-                            subheader="プロフィール"
-                        />
-                        <hr />
-                        {tasks.map((task, index) => (
-                            <ListItem key={index.toString()}>
+                <div className="card mt-3">
+                    <div className="card_header">
+                        <span className="card_header_ttl">タイトル</span>
+                        <IconButton color="primary" className='card_header_btn' component="span">
+                            <AddIcon />
+                        </IconButton>
+                    </div>
+                    {tasks.map((task, index) => (
+                        <CardActionArea onClick={onFocusTask} data-index={index} key={index.toString()}>
+                            <ListItem>
                                 <ListItemAvatar>
                                     <Avatar src="https://i.picsum.photos/id/30/500/300.jpg?hmac=p1-iOhnRmBgus54WChFXINxaQuqvFO-q0wegbZjjLo0" />
                                 </ListItemAvatar>
                                 <ListItemText>{task.name}</ListItemText>
                             </ListItem>
-                        ))}
-                    </Card>
+                        </CardActionArea>
+                    ))}
+                </div>
             }
+
+            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false) }}>
+                {focusTask &&
+                    <CreateTask onCloseMyself={() => { setCreateTaskDialog(false) }} focusTask={focusTask} />
+                }
+            </Dialog>
             {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
     )
