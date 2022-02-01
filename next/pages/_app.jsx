@@ -1,8 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import Navigation from "/components/Navigation";
-import '../styles/reset.css'
-import '../styles/frame.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css'
 import store from "/store/index";
 

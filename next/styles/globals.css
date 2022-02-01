@@ -7,6 +7,8 @@ a {
 }
 hr {
     color: #e0e0e0;
+    margin: 0;
+    opacity: 1;
 }
 header {
     z-index: 1;
@@ -40,4 +42,16 @@ main {
 .MuiCardActions-root {
     border-top: 1px solid #e0e0e0;
     justify-content: flex-end;
+}
+
+
+.card_header{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: .0125em;
+    line-height: 2rem;
+    word-break: break-all;
 }

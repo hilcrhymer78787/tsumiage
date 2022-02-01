@@ -69,11 +69,10 @@ function Task() {
     return (
         <>
             <TextField value={keyword} onChange={keywordChange} id="outlined-basic" variant="outlined" color="primary" />
-            <Button onClick={taskCreate} variant="contained" color="primary">追加</Button>
+            <Button onClick={taskCreate} variant="contained" color="primary" className="ms-2">追加</Button>
             {
                 tasks &&
-                <Box mt={2}>
-                    <Card>
+                    <Card className="mt-3">
                         <CardHeader
                             avatar={<Avatar>P</Avatar>}
                             title="Profile"
@@ -89,7 +88,6 @@ function Task() {
                             </ListItem>
                         ))}
                     </Card>
-                </Box>
             }
             {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
