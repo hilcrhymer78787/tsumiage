@@ -19,6 +19,9 @@ api.interceptors.response.use(
     },
     (err: AxiosError) => {
         console.error(err.response)
+        if(err.response.data.message){
+            console.error(err.response.data.message)
+        }
         return err.response
     }
 )
