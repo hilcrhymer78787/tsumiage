@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import { Card, CardHeader, Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { api } from '../plugins/axios';
 import TextField from '@material-ui/core/TextField';
@@ -66,15 +72,24 @@ function Task() {
             <Button onClick={taskCreate} variant="contained" color="primary">追加</Button>
             {
                 tasks &&
-                <ul>
-                    {tasks.map((task, index) => (
-                        <li key={index.toString()}>
-                            <strong>{task.id}</strong>
-                            <span>{task.name}</span>
-                            <hr />
-                        </li>
-                    ))}
-                </ul>
+                <Box mt={2}>
+                    <Card>
+                        <CardHeader
+                            avatar={<Avatar>P</Avatar>}
+                            title="Profile"
+                            subheader="プロフィール"
+                        />
+                        <hr />
+                        {tasks.map((task, index) => (
+                            <ListItem key={index.toString()}>
+                                <ListItemAvatar>
+                                    <Avatar src="https://i.picsum.photos/id/30/500/300.jpg?hmac=p1-iOhnRmBgus54WChFXINxaQuqvFO-q0wegbZjjLo0" />
+                                </ListItemAvatar>
+                                <ListItemText>{task.name}</ListItemText>
+                            </ListItem>
+                        ))}
+                    </Card>
+                </Box>
             }
             {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
