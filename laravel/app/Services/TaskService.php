@@ -14,7 +14,8 @@ class TaskService
                 'task_name as name',
                 'task_default_minute as default_minute',
                 'task_point_per_minute as point_per_minute',
-                'task_sort_key as sort_key'
+                'task_sort_key as sort_key',
+                'task_status as status',
             )
             ->orderBy('task_sort_key')
             ->get();

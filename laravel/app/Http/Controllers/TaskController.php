@@ -28,17 +28,29 @@ class TaskController extends Controller
         //         ->select('work_id', 'work_date', 'work_minute', 'work_user_id', 'name as work_user_name', 'user_img as work_user_img')
         //         ->get();
         // }
-        
+
         $return['tasks'] = $tasks;
         return $return;
     }
     public function create(Request $request)
     {
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         if ($request['task']['task_id']) {
-            Task::where('task_id', $request['task']['task_id'])
-                ->update($request['task']);
+            Task::where('task_id', $request['task']['task_id'])->update([
+                'task_name' => $request['task']['task_name'],
+                'task_status' => $request['task']['task_status'],
+                'task_default_minute' => $request['task']['task_default_minute'],
+                'task_point_per_minute' => $request['task']['task_point_per_minute'],
+                'task_user_id' => $loginInfo['id'],
+            ]);
         } else {
-            Task::create($request['task']);
+            Task::create([
+                'task_name' => $request['task']['task_name'],
+                'task_status' => $request['task']['task_status'],
+                'task_default_minute' => $request['task']['task_default_minute'],
+                'task_point_per_minute' => $request['task']['task_point_per_minute'],
+                'task_user_id' => $loginInfo['id'],
+            ]);
         }
     }
     public function delete(Request $request)

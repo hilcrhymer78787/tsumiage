@@ -7,5 +7,4 @@ export interface apiTaskCreateRequestTaskType {
     task_name: string,
     task_default_minute: number,
     task_point_per_minute: number,
-    task_user_id: number,
 }
