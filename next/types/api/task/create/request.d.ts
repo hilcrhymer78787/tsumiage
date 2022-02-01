@@ -1,7 +1,4 @@
 export interface apiTaskCreateRequestType {
-    task: apiTaskCreateRequestTaskType
-}
-export interface apiTaskCreateRequestTaskType {
     task_status: number,
     task_id: number,
     task_name: string,

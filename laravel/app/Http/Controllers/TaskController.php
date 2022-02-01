@@ -35,20 +35,20 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        if ($request['task']['task_id']) {
-            Task::where('task_id', $request['task']['task_id'])->update([
-                'task_name' => $request['task']['task_name'],
-                'task_status' => $request['task']['task_status'],
-                'task_default_minute' => $request['task']['task_default_minute'],
-                'task_point_per_minute' => $request['task']['task_point_per_minute'],
+        if ($request['task_id']) {
+            Task::where('task_id', $request['task_id'])->update([
+                'task_name' => $request['task_name'],
+                'task_status' => $request['task_status'],
+                'task_default_minute' => $request['task_default_minute'],
+                'task_point_per_minute' => $request['task_point_per_minute'],
                 'task_user_id' => $loginInfo['id'],
             ]);
         } else {
             Task::create([
-                'task_name' => $request['task']['task_name'],
-                'task_status' => $request['task']['task_status'],
-                'task_default_minute' => $request['task']['task_default_minute'],
-                'task_point_per_minute' => $request['task']['task_point_per_minute'],
+                'task_name' => $request['task_name'],
+                'task_status' => $request['task_status'],
+                'task_default_minute' => $request['task_default_minute'],
+                'task_point_per_minute' => $request['task_point_per_minute'],
                 'task_user_id' => $loginInfo['id'],
             ]);
         }

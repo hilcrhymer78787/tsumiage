@@ -3,7 +3,6 @@ import { api } from '../../plugins/axios';
 import { apiTaskReadResponseType } from '../../types/api/task/read/response'
 import { apiTaskReadResponseTaskType } from '../../types/api/task/read/response'
 import { apiTaskCreateRequestType } from '../../types/api/task/create/request'
-import { apiTaskCreateRequestTaskType } from '../../types/api/task/create/request'
 import SendIcon from '@material-ui/icons/Send';
 import { Button, CircularProgress } from '@material-ui/core';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
@@ -25,13 +24,11 @@ export default function CreateTask(props: Props) {
     })
     const taskCreate = () => {
         const apiParam: apiTaskCreateRequestType = {
-            task: {
-                task_id: formTask.id,
-                task_name: formTask.name,
-                task_point_per_minute: Number(formTask.point_per_minute),
-                task_status: Number(formTask.status),
-                task_default_minute: Number(formTask.default_minute),
-            }
+            task_id: formTask.id,
+            task_name: formTask.name,
+            task_point_per_minute: Number(formTask.point_per_minute),
+            task_status: Number(formTask.status),
+            task_default_minute: Number(formTask.default_minute),
         }
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/create`,
