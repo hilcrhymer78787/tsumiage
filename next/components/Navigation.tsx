@@ -23,7 +23,7 @@ export default function Navigation() {
                 icon={<FavoriteIcon />} />
             <BottomNavigationAction
                 label="calendar"
-                value="/calendar"
+                value="/calendar?year=2022&month=2"
                 icon={<RestoreIcon />} />
             <BottomNavigationAction
                 label="mypage"

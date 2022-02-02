@@ -26,6 +26,9 @@ const mapStateToProps = (state: any) => {
 };
 function Mypage({ dispatch, loginInfo }) {
     const logout = () => {
+        if (!confirm(`ログアウトしますか？`)) {
+            return;
+        }
         localStorage.removeItem("token")
         Router.push("/login")
         dispatch({ type: "setLoginInfo", value: false })
