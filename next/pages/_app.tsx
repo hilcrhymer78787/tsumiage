@@ -43,11 +43,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                     store.dispatch({ type: "setLoginInfo", value: res.data })
                 }
             })
-            .catch((err: AxiosError) => {
-                if (err.response) {
-                    localStorage.removeItem("token")
-                }
-            })
     }
     useEffect(() => {
         bearerAuthentication()
