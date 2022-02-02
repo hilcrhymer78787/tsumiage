@@ -6,8 +6,13 @@ import { api } from '../plugins/axios';
 import { apiTaskReadResponseType } from '../types/api/task/read/response'
 import { apiTaskReadResponseTaskType } from '../types/api/task/read/response'
 import CreateTask from '../components/task/CreateTask'
-
-function Task() {
+import Layout from '../layouts/default'
+Task.getLayout = function getLayout(page) {
+    return (
+        <Layout>{page}</Layout>
+    )
+}
+export default function Task() {
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean)
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null)
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[])
@@ -90,4 +95,3 @@ function Task() {
         </>
     )
 }
-export default Task;

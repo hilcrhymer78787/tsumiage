@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         if (!$loginInfo) {
-            return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 500);
+            return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 401);
         }
         // 参加しているユーザー
         $loginInfo['room_joined_users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['room_id']);

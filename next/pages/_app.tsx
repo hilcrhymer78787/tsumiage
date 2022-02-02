@@ -1,3 +1,6 @@
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
 import React, { useState, useEffect } from 'react';
 import { Provider } from "react-redux";
 import Navigation from "../components/Navigation";
@@ -10,23 +13,18 @@ import '../styles/globals.scss'
 import store from "../store/index";
 import axios from 'axios'
 import { apiUserBearerAuthenticationResponseType } from "../types/api/user/bearerAuthentication/response"
+type NextPageWithLayout = NextPage & {
+    getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout
+}
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: any = null;
-function MyApp({ Component, pageProps }) {
-    const testAuthentication = async () => {
-        const requestConfig: AxiosRequestConfig = {
-            url: `/api/user/test_authentication`,
-            method: "GET",
-        };
-        await api(requestConfig)
-            .then((res: AxiosResponse) => {
-                localStorage.setItem('token', res.data.token);
-                bearerAuthentication()
-            })
-    }
-    const logout = () => {
-        localStorage.removeItem("token")
-    }
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    const getLayout = Component.getLayout ?? ((page) => page)
+
     const bearerAuthentication = async () => {
         if (setLoginInfoByTokenCancel) {
             setLoginInfoByTokenCancel()
@@ -58,33 +56,9 @@ function MyApp({ Component, pageProps }) {
         bearerAuthentication()
     }, [])
     return (
-        <div>
-            <Provider store={store}>
-                <header>
-                    {!store.getState().loginInfo &&
-                        <>
-                            <div>ログインしていません</div>
-                            <Button onClick={testAuthentication} variant="contained" color="primary">ログイン</Button>
-                        </>
-                    }
-                    {store.getState().loginInfo &&
-                        <>
-                            <div>{store.getState().loginInfo.name}</div>
-                            <Button onClick={logout} variant="contained" color="primary">ログアウト</Button>
-                        </>
-                    }
-                </header>
-                {true &&
-                    <>
-                        <main>
-                            <Component {...pageProps} />
-                        </main>
-                        <Navigation />
-                    </>
-                }
-                <pre className='pt-5 mt-5'>{JSON.stringify(store.getState(), null, 2)}</pre>
-            </Provider>
-        </div>
+        <Provider store={store}>
+            {getLayout(<Component {...pageProps} />)}
+        </Provider>
     )
 }
 

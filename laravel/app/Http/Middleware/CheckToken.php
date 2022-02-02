@@ -19,7 +19,7 @@ class CheckToken
     {
       $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
       if(!$loginInfo){
-          return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 500);
+          return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 401);
       }
       return $next($request);
     }

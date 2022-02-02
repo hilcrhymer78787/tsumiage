@@ -13,6 +13,12 @@ import HotelDetail from "../components/HotelDetail";
 import { ApiResType, ApiErrType } from "../types/res"
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import axios from 'axios';
+import Layout from '../layouts/default'
+Home.getLayout = function getLayout(page) {
+    return (
+        <Layout>{page}</Layout>
+    )
+}
 export default function Home() {
     const [isLoading, setIsLoading] = useState(false as boolean)
     const [focusHotel, setFocusHotel] = useState(null)
