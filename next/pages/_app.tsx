@@ -10,40 +10,17 @@ import { api } from '../plugins/axios';
 import '../styles/reset.css'
 import '../styles/frame.scss'
 import '../styles/globals.scss'
-import store from "../store/index";
+import store, { bearerAuthentication } from "../store/index";
 import axios from 'axios'
 import { apiUserBearerAuthenticationResponseType } from "../types/api/user/bearerAuthentication/response"
 type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode
 }
-
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout
 }
-const CancelToken = axios.CancelToken;
-let setLoginInfoByTokenCancel: any = null;
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
-
-    const bearerAuthentication = async () => {
-        if (setLoginInfoByTokenCancel) {
-            setLoginInfoByTokenCancel()
-        }
-        const requestConfig: AxiosRequestConfig = {
-            url: `/api/user/bearer_authentication`,
-            method: "GET",
-            cancelToken: new CancelToken(c => {
-                setLoginInfoByTokenCancel = c
-            }),
-        };
-        api(requestConfig)
-            .then((res: AxiosResponse<apiUserBearerAuthenticationResponseType>) => {
-                // トークンが有効
-                if (localStorage.getItem("token")) {
-                    store.dispatch({ type: "setLoginInfo", value: res.data })
-                }
-            })
-    }
     useEffect(() => {
         bearerAuthentication()
     }, [])
