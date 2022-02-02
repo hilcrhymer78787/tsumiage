@@ -13,7 +13,6 @@ import { apiUserBearerAuthenticationResponseType } from "../types/api/user/beare
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: any = null;
 function MyApp({ Component, pageProps }) {
-    const [loginInfo, setLoginInfo] = useState(null)
     const testAuthentication = async () => {
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/test_authentication`,
@@ -27,7 +26,6 @@ function MyApp({ Component, pageProps }) {
     }
     const logout = () => {
         localStorage.removeItem("token")
-        setLoginInfo(null)
     }
     const bearerAuthentication = async () => {
         if (setLoginInfoByTokenCancel) {
@@ -47,12 +45,12 @@ function MyApp({ Component, pageProps }) {
                     // if ((this.$router.currentRoute.name == 'login' || this.$router.currentRoute.name == 'login-newUser')) {
                     //     this.$router.push("/");
                     // }
-                    setLoginInfo(res.data)
+                    store.dispatch({ type: "setLoginInfo", value: res.data })
                 }
             })
             .catch((err: AxiosError) => {
                 if (err.response) {
-                    logout()
+                    localStorage.removeItem("token")
                 }
             })
     }
@@ -63,20 +61,20 @@ function MyApp({ Component, pageProps }) {
         <div>
             <Provider store={store}>
                 <header>
-                    {!loginInfo &&
+                    {!store.getState().loginInfo &&
                         <>
                             <div>ログインしていません</div>
                             <Button onClick={testAuthentication} variant="contained" color="primary">ログイン</Button>
                         </>
                     }
-                    {loginInfo &&
+                    {store.getState().loginInfo &&
                         <>
-                            <div>{loginInfo.name}</div>
+                            <div>{store.getState().loginInfo.name}</div>
                             <Button onClick={logout} variant="contained" color="primary">ログアウト</Button>
                         </>
                     }
                 </header>
-                {loginInfo &&
+                {true &&
                     <>
                         <main>
                             <Component {...pageProps} />
@@ -84,6 +82,7 @@ function MyApp({ Component, pageProps }) {
                         <Navigation />
                     </>
                 }
+                <pre className='pt-5 mt-5'>{JSON.stringify(store.getState(), null, 2)}</pre>
             </Provider>
         </div>
     )
