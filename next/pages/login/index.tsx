@@ -7,6 +7,7 @@ import { apiUserBasicAuthenticationRequestType } from "../../types/api/user/basi
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '../../plugins/axios';
 import store from "../../store/index";
+import { errorType } from "../../types/error"
 
 const mapStateToProps = (state: any) => {
     return {
@@ -53,6 +54,11 @@ function Login({ dispatch, count, post, loginInfo }) {
                 localStorage.setItem('token', res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data })
             })
+            .catch((err: AxiosError<errorType>) => {
+                if (err.response?.data.errorMessage) {
+                    alert(err.response.data.errorMessage)
+                }
+            })
             .finally(() => {
                 setBasicAuthenticationLoading(false)
             })
@@ -78,7 +84,9 @@ function Login({ dispatch, count, post, loginInfo }) {
                                 label="password" variant="outlined" color="primary" />
                         </li>
                     </ul>
-                    <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
+                    <div className='d-flex justify-end'>
+                        <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
+                    </div>
                 </div>
                 <div className="card_footer justify-space-between">
                     <Button

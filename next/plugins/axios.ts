@@ -24,9 +24,6 @@ api.interceptors.response.use(
     },
     (err: AxiosError) => {
         console.error(err.response)
-        if (err.response.data.message) {
-            console.error(err.response.data.message)
-        }
         if (err.response.status == 401) {
             localStorage.removeItem("token")
             store.dispatch({ type: "setLoginInfo", value: false })
@@ -34,6 +31,6 @@ api.interceptors.response.use(
                 Router.push('/login');
             }
         }
-        return err.response
+        throw { response: err.response }
     }
 )

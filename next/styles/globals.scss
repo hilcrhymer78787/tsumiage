@@ -34,9 +34,12 @@ main {
     width: 100%;
     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
 }
+.MuiFormControl-root {
+    width: 100%;
+}
 .MuiListItem-root.MuiListItem-gutters {
     border-bottom: 1px solid #e0e0e0;
-    &:last-child{
+    &:last-child {
         border-bottom: none;
     }
 }
