@@ -1,16 +1,21 @@
 export interface apiUserBearerAuthenticationResponseType {
-    email: string
     id: number
+    email: string
     name: string
-    room_id: number
-    room_img: string
-    room_name: string
+    token: string
     user_img: string
-    user_room_id: number
-    room_inviting_users: apiUserBearerAuthenticationResponseUserType[]
-    room_joined_users: apiUserBearerAuthenticationResponseUserType[]
-    rooms: apiUserBearerAuthenticationResponseRoomType[]
-    invited_rooms: apiUserBearerAuthenticationResponseInvitedRoomType[]
+    // email: string
+    // id: number
+    // name: string
+    // room_id: number
+    // room_img: string
+    // room_name: string
+    // user_img: string
+    // user_room_id: number
+    // room_inviting_users: apiUserBearerAuthenticationResponseUserType[]
+    // room_joined_users: apiUserBearerAuthenticationResponseUserType[]
+    // rooms: apiUserBearerAuthenticationResponseRoomType[]
+    // invited_rooms: apiUserBearerAuthenticationResponseInvitedRoomType[]
 }
 export interface apiUserBearerAuthenticationResponseInvitedRoomType {
     invitation_id: number
