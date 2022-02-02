@@ -17,7 +17,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (res: AxiosResponse) => {
         console.log(res)
-        if (Router.pathname == '/login' || Router.pathname == 'login/newUser') {
+        if (Router.pathname == '/login' || Router.pathname == '/login/new') {
             Router.push('/');
         }
         return res
@@ -27,7 +27,7 @@ api.interceptors.response.use(
         if (err.response.status == 401) {
             localStorage.removeItem("token")
             store.dispatch({ type: "setLoginInfo", value: false })
-            if (!(Router.pathname == '/login' || Router.pathname == 'login/newUser')) {
+            if (!(Router.pathname == '/login' || Router.pathname == '/login/new')) {
                 Router.push('/login');
             }
         }

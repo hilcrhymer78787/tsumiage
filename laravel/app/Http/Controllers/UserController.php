@@ -66,14 +66,8 @@ class UserController extends Controller
             if ($existEmail) {
                 return response()->json(['errorMessage' => 'このメールアドレスは既に登録されています',], 500);
             }
-            // 部屋を作成
-            $room = Room::create([
-                'room_name' => 'マイルーム',
-                'room_img' => 'https://picsum.photos/500/300?image=40',
-                'room_token' => date('Y-m-d H:i:s') . Str::random(100),
-            ]);
             // ダミータスクを作成
-            (new TaskService())->createcDummyTask($room['id']);
+            // (new TaskService())->createcDummyTask($room['id']);
             // 新規ユーザー登録
             $user = User::create([
                 'name' => $request['name'],
@@ -85,8 +79,6 @@ class UserController extends Controller
             if ($request['file']) {
                 $request['file']->storeAs('public/', $request['user_img']);
             }
-            // 自分自身をルームに招待し入室
-            (new InvitationService())->invitateMySelf($room['id'], $user['id']);
             return $user;
         }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from "react-redux";
+import Router from 'next/router'
 import { Button, CircularProgress, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import LoginLayout from '../../layouts/login'
@@ -8,20 +8,12 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '../../plugins/axios';
 import store from "../../store/index";
 import { errorType } from "../../types/error"
-
-const mapStateToProps = (state: any) => {
-    return {
-        loginInfo: state.loginInfo,
-        count: state.count,
-        post: state.post
-    };
-};
 Login.getLayout = function getLayout(page) {
     return (
         <LoginLayout>{page}</LoginLayout>
     )
 }
-function Login({ dispatch, count, post, loginInfo }) {
+function Login() {
     const [formUser, setFormUser] = useState({
         email: "" as string,
         password: "" as string,
@@ -90,7 +82,7 @@ function Login({ dispatch, count, post, loginInfo }) {
                 </div>
                 <div className="card_footer justify-space-between">
                     <Button
-                        onClick={() => { alert('新規登録') }}
+                        onClick={() => { Router.push("/login/new") }}
                         variant="contained">新規登録</Button>
                     <Button color="primary"
                         onClick={basicAuthentication}
@@ -103,5 +95,4 @@ function Login({ dispatch, count, post, loginInfo }) {
         </div>
     );
 }
-
-export default connect(mapStateToProps)(Login);
+export default Login;

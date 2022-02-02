@@ -3,7 +3,6 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import React, { useState, useEffect } from 'react';
 import { Provider } from "react-redux";
-import Navigation from "../components/Navigation";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import Button from '@material-ui/core/Button';
 import { api } from '../plugins/axios';

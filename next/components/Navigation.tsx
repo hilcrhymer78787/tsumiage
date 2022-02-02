@@ -18,17 +18,17 @@ export default function Navigation() {
             }}
         >
             <BottomNavigationAction
-                label="index"
-                value="/"
+                label="task"
+                value="/task"
+                icon={<FavoriteIcon />} />
+            <BottomNavigationAction
+                label="mypage"
+                value="/mypage"
                 icon={<LocationOnIcon />} />
             <BottomNavigationAction
                 label="about"
                 value="/about"
                 icon={<RestoreIcon />} />
-            <BottomNavigationAction
-                label="task"
-                value="/task"
-                icon={<FavoriteIcon />} />
         </BottomNavigation>
     )
 }
