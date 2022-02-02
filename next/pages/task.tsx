@@ -58,7 +58,7 @@ export default function Task() {
 
     return (
         <>
-            <div className="card mt-3">
+            <div className="card">
                 <div className="card_header">
                     <span className="card_header_ttl">タイトル</span>
                     <IconButton onClick={onNewTask} color="primary" className='card_header_btn' component="span">

@@ -24,7 +24,7 @@ header {
     padding: 0 10px;
 }
 main {
-    padding: 60px 10px 70px;
+    padding: 10px 10px 70px;
     min-height: 100vh;
 }
 .MuiBottomNavigation-root {
@@ -47,6 +47,7 @@ main {
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
     overflow: hidden;
     border: none;
+    border-radius: 4px;
     &_header {
         display: flex;
         justify-content: space-between;
@@ -74,5 +75,16 @@ main {
         align-items: center;
         border-top: 1px solid #e0e0e0;
         justify-content: flex-end;
+    }
+}
+#mypage {
+    .MuiAvatar-root.MuiAvatar-circular {
+        width: 70px;
+        height: 70px;
+    }
+    .MuiCardHeader-content {
+        .MuiTypography-body2 {
+            font-size: 18px !important;
+        }
     }
 }

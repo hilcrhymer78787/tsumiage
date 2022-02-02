@@ -22,13 +22,13 @@ export default function Navigation() {
                 value="/task"
                 icon={<FavoriteIcon />} />
             <BottomNavigationAction
+                label="calendar"
+                value="/calendar"
+                icon={<RestoreIcon />} />
+            <BottomNavigationAction
                 label="mypage"
                 value="/mypage"
                 icon={<LocationOnIcon />} />
-            <BottomNavigationAction
-                label="about"
-                value="/about"
-                icon={<RestoreIcon />} />
         </BottomNavigation>
     )
 }
