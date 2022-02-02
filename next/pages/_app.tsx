@@ -24,11 +24,6 @@ function MyApp({ Component, pageProps }) {
                 localStorage.setItem('token', res.data.token);
                 bearerAuthentication()
             })
-            .catch((err: AxiosError) => {
-                console.log(err.response)
-            })
-            .finally(() => {
-            });
     }
     const logout = () => {
         localStorage.removeItem("token")
@@ -53,13 +48,11 @@ function MyApp({ Component, pageProps }) {
                     //     this.$router.push("/");
                     // }
                     setLoginInfo(res.data)
-                    // commit('setLoginInfo', res.data)
                 }
             })
             .catch((err: AxiosError) => {
                 if (err.response) {
-                    localStorage.removeItem("token")
-                    //     dispatch('logout')
+                    logout()
                 }
             })
     }
