@@ -40,9 +40,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             .then((res: AxiosResponse<apiUserBearerAuthenticationResponseType>) => {
                 // トークンが有効
                 if (localStorage.getItem("token")) {
-                    // if ((this.$router.currentRoute.name == 'login' || this.$router.currentRoute.name == 'login-newUser')) {
-                    //     this.$router.push("/");
-                    // }
                     store.dispatch({ type: "setLoginInfo", value: res.data })
                 }
             })

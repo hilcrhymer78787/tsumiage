@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -33,26 +34,19 @@ function Layout({ dispatch, children, loginInfo }) {
     }
     const logout = () => {
         localStorage.removeItem("token")
-        dispatch({ type: "setLoginInfo", value: null })
+        Router.push("/login")
+        dispatch({ type: "setLoginInfo", value: false })
     }
     return (
         <>
-            <header>
-                {!loginInfo &&
-                    <>
-                        <div>ログインしていません</div>
-                        <Button onClick={testAuthentication} variant="contained" color="primary">ログイン</Button>
-                    </>
-                }
-                {loginInfo &&
-                    <>
-                        <div>{loginInfo.name}</div>
-                        <Button onClick={logout} variant="contained" color="primary">ログアウト</Button>
-                    </>
-                }
-            </header>
-            <main>{children}</main>
-            <Navigation />
+            {loginInfo && <>
+                <header>
+                    <div>{loginInfo.name}</div>
+                    <Button onClick={logout} variant="contained" color="primary">ログアウト</Button>
+                </header>
+                <main>{children}</main>
+                <Navigation />
+            </>}
         </>
     )
 }
