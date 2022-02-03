@@ -69,6 +69,7 @@ export default function CreateTask(props: Props) {
                 props.onCloseMyself()
             })
             .catch((err: AxiosError) => {
+                alert('登録に失敗しました')
             })
             .finally(() => {
                 setTaskCreateLoading(false)

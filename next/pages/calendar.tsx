@@ -24,7 +24,7 @@ function About({ dispatch, calendars, loginInfo }) {
     const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     const router = useRouter()
     useEffect(() => {
-        setCalendars()
+        setCalendars(year(), month())
     }, [])
 
     const year = (): number => {

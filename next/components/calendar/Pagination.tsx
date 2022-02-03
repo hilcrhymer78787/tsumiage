@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styles/calendar/Pagination.module.scss'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
+import store, { setCalendars } from "../../store/index"
 import moment from "moment";
 export default function Pagination() {
     const router = useRouter()
@@ -19,80 +23,41 @@ export default function Pagination() {
     const nowMonth = (): number => {
         return Number(moment().format("M"));
     }
+    const onClickPrevMonth = () => {
+        if (Number(router.query.month) == 1) {
+            router.push(
+                `/calendar?year=${Number(router.query.year) - 1
+                }&month=12`
+            );
+            setCalendars(Number(router.query.year) - 1, 12)
+        } else {
+            router.push(
+                `/calendar?year=${router.query.year}&month=${Number(router.query.month) - 1
+                }`
+            );
+            setCalendars(Number(router.query.year), Number(router.query.month) - 1)
+        }
+    }
+    const onClickNextMonth = () => {
+        if (Number(router.query.month) == 12) {
+            router.push(
+                `/calendar?year=${Number(router.query.year) + 1
+                }&month=1`
+            );
+            setCalendars(Number(router.query.year) + 1, 1)
+        } else {
+            router.push(
+                `/calendar?year=${router.query.year}&month=${Number(router.query.month) + 1
+                }`
+            );
+            setCalendars(Number(router.query.year) - 1, Number(router.query.month) + 1)
+        }
+    }
     return (
-        <div className={styles.icn}>
-            hoge
+        <div className={styles.Pagination}>
+            <NavigateBeforeIcon className={styles.icon} onClick={onClickPrevMonth} />
+            <h1>{router.query.year}年 {router.query.month}月</h1>
+            <NavigateNextIcon className={styles.icon} onClick={onClickNextMonth} />
         </div>
     )
 }
-{/* <template>
-    <v-card-title class="Pagination">
-        <v-spacer></v-spacer>
-        <div class="d-flex">
-            <v-btn @click="onClickPrevMonth()" icon>
-                <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
-            <h1>{{ $route.query.year }}年 {{ $route.query.month }}月</h1>
-            <v-btn @click="onClickNextMonth()" icon>
-                <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
-        </div>
-        <v-spacer></v-spacer>
-    </v-card-title>
-</template>
-
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-    methods: {
-        onClickPrevMonth() {
-            if (Number(this.$route.query.month) == 1) {
-                this.$router.push(
-                    `/calendar?year=${
-                        Number(this.$route.query.year) - 1
-                    }&month=12`
-                );
-            } else {
-                this.$router.push(
-                    `/calendar?year=${this.$route.query.year}&month=${
-                        Number(this.$route.query.month) - 1
-                    }`
-                );
-            }
-        },
-        onClickNextMonth() {
-            if (Number(this.$route.query.month) == 12) {
-                this.$router.push(
-                    `/calendar?year=${
-                        Number(this.$route.query.year) + 1
-                    }&month=1`
-                );
-            } else {
-                this.$router.push(
-                    `/calendar?year=${this.$route.query.year}&month=${
-                        Number(this.$route.query.month) + 1
-                    }`
-                );
-            }
-        },
-    },
-});
-</script>
-
-<style lang="scss" scoped>
-.Pagination {
-    font-size: 15px;
-    h1 {
-        width: 183px;
-        text-align: center;
-    }
-    ::v-deep{
-        .v-icon{
-            color: white;
-            font-size: 30px;
-            position: relative;
-            bottom: 1.5px;
-        }
-    }
-}
-</style> */}

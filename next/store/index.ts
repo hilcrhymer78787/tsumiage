@@ -52,14 +52,14 @@ export const bearerAuthentication = async () => {
             }
         })
 }
-export const setCalendars = async () => {
+export const setCalendars = async (year: number, month: number) => {
 
     if (setCalendarsCancel) {
         setCalendarsCancel()
     }
     let apiParam: apiWorkReadCalendarRequestType = {
-        year: Number(Router.router.query.year),
-        month: Number(Router.router.query.month)
+        year: year,
+        month: month
     }
     const requestConfig: AxiosRequestConfig = {
         url: `/api/work/read/calendar`,
