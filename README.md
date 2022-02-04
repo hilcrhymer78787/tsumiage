@@ -21,3 +21,5 @@ cp .env.example .env
 npm install
 
 npm run dev
+
+<!-- node v16.13.2 -->
