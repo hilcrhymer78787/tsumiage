@@ -4,7 +4,7 @@ import axios from 'axios'
 import store from "../store/index";
 
 export const api = axios.create({
-    baseURL: 'http://localhost:8000/',
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 })
 
 api.interceptors.request.use(
@@ -16,7 +16,6 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
     (res: AxiosResponse) => {
-        console.log(res)
         if (Router.pathname == '/login' || Router.pathname == '/login/new') {
             Router.push('/');
         }

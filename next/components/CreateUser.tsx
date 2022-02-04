@@ -50,6 +50,8 @@ function CreateUser({ dispatch, count, post, loginInfo }: any) {
             .catch((err: AxiosError<errorType>) => {
                 if (err.response?.data.errorMessage) {
                     alert(err.response.data.errorMessage)
+                }else{
+                    alert('登録に失敗しました')
                 }
             })
             .finally(() => {

@@ -76,9 +76,11 @@ function Login() {
                                 label="password" variant="outlined" color="primary" />
                         </li>
                     </ul>
-                    <div className='d-flex justify-end'>
-                        <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
-                    </div>
+                    {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
+                        <div className='d-flex justify-end'>
+                            <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
+                        </div>
+                    }
                 </div>
                 <div className="card_footer justify-space-between">
                     <Button
