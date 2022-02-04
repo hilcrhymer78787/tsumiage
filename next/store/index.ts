@@ -73,8 +73,5 @@ export const setCalendars = async (year: number, month: number) => {
         .then((res: AxiosResponse<apiWorkReadCalendarResponseType>) => {
             store.dispatch({ type: "setCalendars", value: res.data.calendars })
         })
-        .catch((err: AxiosError) => {
-            console.error(err.response)
-        })
 }
 export default store;
