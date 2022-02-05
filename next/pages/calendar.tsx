@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { connect } from "react-redux";
-import Button from '@material-ui/core/Button';
+import { Button, CardActionArea } from '@material-ui/core';
 import Layout from '../layouts/default'
 import styles from '../styles/Calendar.module.scss'
 import store, { setCalendars } from "../store/index"
@@ -74,12 +74,12 @@ function About({ dispatch, calendars, loginInfo }) {
                     ))}
                     {calendars.map((calendar, index) => (
                         <li key={calendar.date} className={styles.content_item + ' main'}>
-                            <div onClick={() => {
+                            <CardActionArea onClick={() => {
                                 Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`)
                             }} className={styles.content_item_inner}>
                                 <DayIcon day={index + 1} />
                                 <div>{calendar.minute}</div>
-                            </div>
+                            </CardActionArea>
                         </li>
                     ))}
                     {[...Array(lastDayCount())].map((n, index) => (
