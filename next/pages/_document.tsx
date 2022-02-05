@@ -52,11 +52,11 @@ import Document, {
             <link rel="icon" sizes="192x192" href="/icon-192x192.png" />
             <link rel="icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
-            <script src="https://unpkg.com/pwacompat"></script>
           </Head>
           <body>
             <Main />
             <NextScript />
+            <script src="https://unpkg.com/pwacompat"></script>
           </body>
         </Html>
       );
