@@ -56,7 +56,6 @@ import Document, {
           <body>
             <Main />
             <NextScript />
-            <script src="https://unpkg.com/pwacompat"></script>
           </body>
         </Html>
       );
