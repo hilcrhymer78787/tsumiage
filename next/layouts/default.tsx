@@ -12,7 +12,11 @@ function Layout({ dispatch, children, loginInfo }) {
     return (
         <>
             {loginInfo && <>
-                <main>{children}</main>
+                <main>
+                    <div className="container">
+                        {children}
+                    </div>
+                </main>
                 <Navigation />
             </>}
         </>

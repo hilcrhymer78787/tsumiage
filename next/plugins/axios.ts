@@ -23,7 +23,7 @@ api.interceptors.response.use(
     },
     (err: AxiosError) => {
         console.error(err.response)
-        if (err.response.status == 401) {
+        if (err.response?.status == 401) {
             localStorage.removeItem("token")
             store.dispatch({ type: "setLoginInfo", value: false })
             if (!(Router.pathname == '/login' || Router.pathname == '/login/new')) {

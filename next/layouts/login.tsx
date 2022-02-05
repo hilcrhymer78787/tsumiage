@@ -10,7 +10,11 @@ function LoginLayout({ children, loginInfo }) {
     return (
         <>
             {loginInfo === false && <>
-                <main>{children}</main>
+                <main>
+                    <div className="container">
+                        {children}
+                    </div>
+                </main>
             </>}
         </>
     )
