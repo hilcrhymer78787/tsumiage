@@ -3,7 +3,7 @@ services:
   web:
     image: nginx:1.15.6
     ports:
-      - "8000:80"
+      - "8001:80"
     depends_on:
       - app
     volumes:
@@ -15,12 +15,11 @@ services:
       - mysql
     volumes:
       - .:/var/www/html
-    # command: "php artisan migrate:refresh --seed"
   next:
+    tty: true
     build: ./docker/next
     volumes:
       - ./:/usr/src/app
-    command: sh -c "cd next && cp .env.example .env && npm install && npm run dev"
     ports:
       - "3000:3000"
   mysql:
