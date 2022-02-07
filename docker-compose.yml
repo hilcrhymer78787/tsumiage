@@ -20,7 +20,7 @@ services:
     build: ./docker/next
     volumes:
       - ./:/usr/src/app
-    command: sh -c "cd next && npm run dev"
+    command: sh -c "cd next && cp .env.example .env && npm install && npm run dev"
     ports:
       - "3000:3000"
   mysql:
