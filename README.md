@@ -14,11 +14,9 @@ php artisan key:generate
 
 php artisan migrate:refresh --seed
 
-exit
+もう一つターミナルを開く
 
 docker-compose exec next bash
-
-cd ../next
 
 cp .env.example .env
 
