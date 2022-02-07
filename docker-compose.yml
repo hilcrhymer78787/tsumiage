@@ -22,7 +22,6 @@ services:
       - ./:/usr/src/app
     ports:
       - "3000:3000"
-    command: sh -c "npm run install"
   mysql:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
