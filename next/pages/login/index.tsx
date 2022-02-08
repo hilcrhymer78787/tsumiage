@@ -14,10 +14,10 @@ Login.getLayout = function getLayout(page) {
     )
 }
 function Login() {
-    const [formUser, setFormUser] = useState({
-        email: "" as string,
-        password: "" as string,
-    })
+    const [email, setEmail] = useState("" as string)
+    const [emailError, setEmailError] = useState("" as string)
+    const [password, setPassword] = useState("" as string)
+    const [passwordError, setPasswordError] = useState("" as string)
     const [basicAuthenticationLoading, setBasicAuthenticationLoading] = useState(false as boolean)
     const testAuthentication = async () => {
         const requestConfig: AxiosRequestConfig = {
@@ -31,10 +31,13 @@ function Login() {
             })
     }
     const basicAuthentication = async () => {
+        if (validation()) {
+            return
+        }
         setBasicAuthenticationLoading(true)
         const apiParam: apiUserBasicAuthenticationRequestType = {
-            email: formUser.email,
-            password: formUser.password
+            email: email,
+            password: password
         }
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/basic_authentication`,
@@ -55,45 +58,61 @@ function Login() {
                 setBasicAuthenticationLoading(false)
             })
     }
+    const validation = (): boolean => {
+        let isError: boolean = false
+        setEmailError("")
+        setPasswordError("")
+        if (!(/.+@.+\..+/.test(email))) {
+            setEmailError("正しい形式で入力してください")
+            isError = true
+        }
+        if (password.length < 8) {
+            setPasswordError("パスワードは8桁以上で設定してください")
+            isError = true
+        }
+        return isError
+    }
     return (
         <div className='card'>
-            {formUser && <>
-                <div className="card_header">
-                    <span className="card_header_ttl">ログイン</span>
-                </div>
-                <div className="card_body">
-                    <ul>
-                        <li className='mb-3'>
-                            <TextField
-                                value={formUser.email}
-                                onChange={(e) => { setFormUser({ ...formUser, email: e.currentTarget.value }) }}
-                                label="email" variant="outlined" color="primary" />
-                        </li>
-                        <li className='mb-3'>
-                            <TextField
-                                value={formUser.password}
-                                onChange={(e) => { setFormUser({ ...formUser, password: e.currentTarget.value }) }}
-                                label="password" variant="outlined" color="primary" />
-                        </li>
-                    </ul>
-                    {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
-                        <div className='d-flex justify-end'>
-                            <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
-                        </div>
-                    }
-                </div>
-                <div className="card_footer justify-space-between">
-                    <Button
-                        onClick={() => { Router.push("/login/new") }}
-                        variant="contained">新規登録</Button>
-                    <Button color="primary"
-                        onClick={basicAuthentication}
-                        variant="contained"
-                        endIcon={basicAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                        disabled={basicAuthenticationLoading}
-                    >ログイン</Button>
-                </div>
-            </>}
+            <div className="card_header">
+                <span className="card_header_ttl">ログイン</span>
+            </div>
+            <div className="card_body">
+                <ul>
+                    <li className='mb-3'>
+                        <TextField
+                            error={Boolean(emailError)}
+                            helperText={emailError}
+                            value={email}
+                            onChange={(e) => { setEmail(e.currentTarget.value) }}
+                            label="email" variant="outlined" color="primary" />
+                    </li>
+                    <li className='mb-3'>
+                        <TextField
+                            error={Boolean(passwordError)}
+                            helperText={passwordError}
+                            value={password}
+                            onChange={(e) => { setPassword(e.currentTarget.value) }}
+                            label="password" variant="outlined" color="primary" />
+                    </li>
+                </ul>
+                {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
+                    <div className='d-flex justify-end'>
+                        <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
+                    </div>
+                }
+            </div>
+            <div className="card_footer justify-space-between">
+                <Button
+                    onClick={() => { Router.push("/login/new") }}
+                    variant="contained">新規登録</Button>
+                <Button color="primary"
+                    onClick={basicAuthentication}
+                    variant="contained"
+                    endIcon={basicAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
+                    disabled={basicAuthenticationLoading}
+                >ログイン</Button>
+            </div>
         </div>
     );
 }
