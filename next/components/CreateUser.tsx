@@ -9,33 +9,39 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '../plugins/axios';
 import store from "../store/index";
 import { errorType } from "../types/error"
+import { apiUserBearerAuthenticationResponseType } from "../types/api/user/bearerAuthentication/response"
 
-const mapStateToProps = (state: any) => {
-    return {
-        loginInfo: state.loginInfo,
-        count: state.count,
-        post: state.post
-    };
-};
-CreateUser.getLayout = function getLayout(page) {
+
+type Props = {
+    onCloseMyself: any
+    loginInfo: apiUserBearerAuthenticationResponseType | null
+}
+CreateUser.getLayout = function getLayout(page: any) {
     return (
         <LoginLayout>{page}</LoginLayout>
     )
 }
-function CreateUser({ dispatch, count, post, loginInfo }: any) {
-    const [formUser, setFormUser] = useState({
-        name: "" as string,
-        email: "" as string,
-        password: "" as string,
-        user_img: "https://i.picsum.photos/id/30/500/300.jpg?hmac=p1-iOhnRmBgus54WChFXINxaQuqvFO-q0wegbZjjLo0" as string,
-    })
+function CreateUser(props: Props) {
+    const [passwordEditMode, setPasswordEditMode] = useState(true as boolean)
+    const [id, setId] = useState(0 as number)
+    const [name, setName] = useState("" as string)
+    const [nameError, setNameError] = useState("" as string)
+    const [email, setEmail] = useState("" as string)
+    const [emailError, setEmailError] = useState("" as string)
+    const [password, setPassword] = useState("" as string)
+    const [passwordError, setPasswordError] = useState("" as string)
+    const [passwordAgain, setPasswordAgain] = useState("" as string)
     const [createUserLoading, setCreateUserLoading] = useState(false as boolean)
     const createUser = async () => {
+        if (validation()) {
+            return
+        }
         setCreateUserLoading(true)
         const apiParam = {
-            name: formUser.name,
-            email: formUser.email,
-            password: formUser.password
+            id: id,
+            name: name,
+            email: email,
+            password: password
         }
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/create`,
@@ -44,13 +50,15 @@ function CreateUser({ dispatch, count, post, loginInfo }: any) {
         };
         await api(requestConfig)
             .then((res: AxiosResponse<apiUserCreateResponseType>) => {
+                console.log(res)
                 localStorage.setItem('token', res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data })
+                props.onCloseMyself()
             })
             .catch((err: AxiosError<errorType>) => {
                 if (err.response?.data.errorMessage) {
                     alert(err.response.data.errorMessage)
-                }else{
+                } else {
                     alert('登録に失敗しました')
                 }
             })
@@ -58,6 +66,39 @@ function CreateUser({ dispatch, count, post, loginInfo }: any) {
                 setCreateUserLoading(false)
             })
     }
+    const validation = (): boolean => {
+        let isError: boolean = false
+        setEmailError("")
+        setPasswordError("")
+        setNameError("")
+        if (name == "") {
+            setNameError("名前は必須です")
+            isError = true
+        }
+        if (!(/.+@.+\..+/.test(email))) {
+            setEmailError("正しい形式で入力してください")
+            isError = true
+        }
+        if (passwordEditMode) {
+            if (password.length < 8) {
+                setPasswordError("パスワードは8桁以上で設定してください")
+                isError = true
+            }
+            if (password != passwordAgain) {
+                setPasswordError("パスワードが一致しません")
+                isError = true
+            }
+        }
+        return isError
+    }
+    useEffect(() => {
+        if (props.loginInfo) {
+            setId(props.loginInfo.id)
+            setName(props.loginInfo.name)
+            setEmail(props.loginInfo.email)
+            setPasswordEditMode(false)
+        }
+    }, [])
     return (
         <div className='card'>
             <div className="card_header">
@@ -67,22 +108,48 @@ function CreateUser({ dispatch, count, post, loginInfo }: any) {
                 <ul>
                     <li className='mb-3'>
                         <TextField
-                            value={formUser.name}
-                            onChange={(e) => { setFormUser({ ...formUser, name: e.currentTarget.value }) }}
-                            label="name" variant="outlined" color="primary" />
+                            onKeyPress={e => { if (e.key === 'Enter') { createUser() } }}
+                            error={Boolean(nameError)}
+                            helperText={nameError}
+                            value={name}
+                            onChange={(e) => { setName(e.currentTarget.value) }}
+                            label="名前" variant="outlined" color="primary" />
                     </li>
                     <li className='mb-3'>
                         <TextField
-                            value={formUser.email}
-                            onChange={(e) => { setFormUser({ ...formUser, email: e.currentTarget.value }) }}
-                            label="email" variant="outlined" color="primary" />
+                            onKeyPress={e => { if (e.key === 'Enter') { createUser() } }}
+                            error={Boolean(emailError)}
+                            helperText={emailError}
+                            value={email}
+                            onChange={(e) => { setEmail(e.currentTarget.value) }}
+                            label="メールアドレス" variant="outlined" color="primary" />
                     </li>
-                    <li className='mb-3'>
-                        <TextField
-                            value={formUser.password}
-                            onChange={(e) => { setFormUser({ ...formUser, password: e.currentTarget.value }) }}
-                            label="password" variant="outlined" color="primary" />
-                    </li>
+                    {passwordEditMode && <>
+                        <li className='mb-3'>
+                            <TextField
+                                onKeyPress={e => { if (e.key === 'Enter') { createUser() } }}
+                                error={Boolean(passwordError)}
+                                helperText={passwordError}
+                                value={password}
+                                onChange={(e) => { setPassword(e.currentTarget.value) }}
+                                label="パスワード" variant="outlined" color="primary" />
+                        </li>
+                        <li className='mb-3'>
+                            <TextField
+                                onKeyPress={e => { if (e.key === 'Enter') { createUser() } }}
+                                value={passwordAgain}
+                                onChange={(e) => { setPasswordAgain(e.currentTarget.value) }}
+                                label="パスワード確認" variant="outlined" color="primary" />
+                        </li>
+                    </>}
+                    {!passwordEditMode && <>
+                        <li className='mb-3 d-flex justify-end'>
+                            <Button
+                                onClick={() => { setPasswordEditMode(true) }}
+                                variant="contained"
+                            >パスワードを編集</Button>
+                        </li>
+                    </>}
                 </ul>
             </div>
             <div className="card_footer justify-space-between">

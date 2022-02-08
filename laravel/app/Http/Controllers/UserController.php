@@ -84,7 +84,7 @@ class UserController extends Controller
 
         // 編集の場合
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        if(!$loginInfo){
+        if (!$loginInfo) {
             return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 500);
         }
         // 重複確認
@@ -93,7 +93,7 @@ class UserController extends Controller
             return response()->json(['errorMessage' => 'このメールアドレスは既に登録されています',], 404);
         }
         // ユーザー情報編集
-        User::where('id', $loginInfo['id'])->update([
+        $user = User::where('id', $loginInfo['id'])->update([
             'name' => $request['name'],
             'email' => $request['email'],
             'user_img' => $request['user_img'],
@@ -109,7 +109,8 @@ class UserController extends Controller
         if ($request['user_img'] != $request['img_oldname']) {
             Storage::delete('public/' . $request['img_oldname']);
         }
-        return;
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        return $loginInfo;
     }
     public function updateRoomId(Request $request)
     {

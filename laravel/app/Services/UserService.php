@@ -11,7 +11,7 @@ class UserService
     {
         $loginInfo = User::where('token', $token)
             ->leftjoin('rooms', 'users.user_room_id', '=', 'rooms.room_id')
-            ->select('id', 'email', 'name', 'user_img', 'room_id', 'user_room_id', 'room_name', 'room_img')
+            ->select('id', 'token', 'email', 'name', 'user_img', 'room_id', 'user_room_id', 'room_name', 'room_img')
             ->first();
         return $loginInfo;
     }

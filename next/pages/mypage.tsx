@@ -6,6 +6,7 @@ import { api } from '../plugins/axios';
 import { apiTaskReadResponseType } from '../types/api/task/read/response'
 import { apiTaskReadResponseTaskType } from '../types/api/task/read/response'
 import CreateTask from '../components/task/CreateTask'
+import CreateUser from "../components/CreateUser"
 import Layout from '../layouts/default'
 import { Button, TextField } from '@material-ui/core';
 import { orange } from "@material-ui/core/colors";
@@ -25,6 +26,7 @@ const mapStateToProps = (state: any) => {
     };
 };
 function Mypage({ dispatch, loginInfo }) {
+    const [createUserDialog, setCreateUserDialog] = useState(false as boolean)
     const logout = () => {
         if (!confirm(`ログアウトしますか？`)) {
             return;
@@ -57,12 +59,15 @@ function Mypage({ dispatch, loginInfo }) {
                     onClick={logout}
                     variant="contained">ログアウト</Button>
                 <Button color="primary"
-                    // onClick={createUser}
+                    onClick={()=>{setCreateUserDialog(true)}}
                     variant="contained"
-                // endIcon={createUserLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                // disabled={createUserLoading}
                 >編集</Button>
             </div>
+            <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false) }}>
+                {createUserDialog &&
+                    <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false) }}/>
+                }
+            </Dialog>
         </div>
     )
 }

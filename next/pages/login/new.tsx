@@ -9,7 +9,7 @@ Login.getLayout = function getLayout(page) {
 function Login() {
     return (
         <>
-            <CreateUser />
+            <CreateUser onCloseMyself={()=>{}} loginInfo={null} />
         </>
     );
 }

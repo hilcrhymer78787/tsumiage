@@ -81,6 +81,7 @@ function Login() {
                 <ul>
                     <li className='mb-3'>
                         <TextField
+                            onKeyPress={e => { if (e.key === 'Enter') { basicAuthentication() } }}
                             error={Boolean(emailError)}
                             helperText={emailError}
                             value={email}
@@ -89,6 +90,7 @@ function Login() {
                     </li>
                     <li className='mb-3'>
                         <TextField
+                            onKeyPress={e => { if (e.key === 'Enter') { basicAuthentication() } }}
                             error={Boolean(passwordError)}
                             helperText={passwordError}
                             value={password}
