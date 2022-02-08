@@ -19,15 +19,20 @@ function Login() {
     const [password, setPassword] = useState("" as string)
     const [passwordError, setPasswordError] = useState("" as string)
     const [basicAuthenticationLoading, setBasicAuthenticationLoading] = useState(false as boolean)
+    const [testAuthenticationLoading, setTestAuthenticationLoading] = useState(false as boolean)
     const testAuthentication = async () => {
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/test_authentication`,
             method: "GET",
         };
+        setTestAuthenticationLoading(true)
         await api(requestConfig)
             .then((res: AxiosResponse) => {
                 localStorage.setItem('token', res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data })
+            })
+            .finally(() => {
+                setTestAuthenticationLoading(false)
             })
     }
     const basicAuthentication = async () => {
@@ -100,7 +105,12 @@ function Login() {
                 </ul>
                 {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
                     <div className='d-flex justify-end'>
-                        <Button onClick={testAuthentication} variant="contained">テストユーザーでログイン</Button>
+                        <Button
+                            onClick={testAuthentication}
+                            variant="contained"
+                            endIcon={testAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
+                            disabled={testAuthenticationLoading || basicAuthenticationLoading}
+                        >テストユーザーでログイン</Button>
                     </div>
                 }
             </div>
@@ -112,7 +122,7 @@ function Login() {
                     onClick={basicAuthentication}
                     variant="contained"
                     endIcon={basicAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={basicAuthenticationLoading}
+                    disabled={testAuthenticationLoading || basicAuthenticationLoading}
                 >ログイン</Button>
             </div>
         </div>
