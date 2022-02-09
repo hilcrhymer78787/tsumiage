@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import AddIcon from '@material-ui/icons/Add';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { api } from '../../plugins/axios';
 import { apiTaskReadResponseType } from '../../types/api/task/read/response'
 import { apiTaskReadResponseTaskType } from '../../types/api/task/read/response'
@@ -92,6 +94,7 @@ export default function CreateTask(props: Props) {
             {formTask && <>
                 <div className="card_header">
                     <span className="card_header_ttl">{props.focusTask ? props.focusTask.name : '新規タスク登録'}</span>
+                    <SettingsIcon onClick={() => { alert() }} />
                 </div>
                 <div className="card_body">
                     <ul>

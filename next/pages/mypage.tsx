@@ -3,8 +3,6 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardHeader, CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { api } from '../plugins/axios';
-import { apiTaskReadResponseType } from '../types/api/task/read/response'
-import { apiTaskReadResponseTaskType } from '../types/api/task/read/response'
 import CreateTask from '../components/task/CreateTask'
 import CreateUser from "../components/CreateUser"
 import Layout from '../layouts/default'

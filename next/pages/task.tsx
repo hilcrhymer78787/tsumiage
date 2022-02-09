@@ -34,7 +34,7 @@ export default function Task() {
         const params = {
             year: today.getFullYear(),
             month: today.getMonth() + 1,
-            day: today.getDate() - 3
+            day: today.getDate()
         }
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/read`,
@@ -45,6 +45,7 @@ export default function Task() {
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
                 setTasks(res.data.tasks)
+                console.log(res)
             })
             .catch((err: AxiosError) => {
             })
