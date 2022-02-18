@@ -45,7 +45,6 @@ export default function Task() {
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
                 setTasks(res.data.tasks)
-                console.log(res)
             })
             .catch((err: AxiosError) => {
             })

@@ -50,7 +50,6 @@ function CreateUser(props: Props) {
         };
         await api(requestConfig)
             .then((res: AxiosResponse<apiUserCreateResponseType>) => {
-                console.log(res)
                 localStorage.setItem('token', res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data })
                 props.onCloseMyself()

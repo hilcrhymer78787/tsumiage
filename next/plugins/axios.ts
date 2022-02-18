@@ -16,6 +16,7 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
     (res: AxiosResponse) => {
+        console.log(res.config.baseURL + res.config.url, res)
         if (Router.pathname == '/login' || Router.pathname == '/login/new') {
             Router.push('/');
         }
