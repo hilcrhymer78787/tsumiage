@@ -3,31 +3,31 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { api } from '@/plugins/axios';
-import { apiTaskReadResponseType } from '@/types/api/task/read/response'
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response'
-import CreateTask from '@/components/task/CreateTask'
-import Layout from '@/layouts/default'
+import { apiTaskReadResponseType } from '@/types/api/task/read/response';
+import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
+import CreateTask from '@/components/task/CreateTask';
+import Layout from '@/layouts/default';
 Task.getLayout = function getLayout(page) {
     return (
         <Layout>{page}</Layout>
-    )
-}
+    );
+};
 export default function Task() {
-    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean)
-    const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null)
-    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[])
-    const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean)
+    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
+    const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
+    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
+    const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
 
     const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
-        var clickedIndex = e.currentTarget.dataset.index
-        setFocusTask(tasks[clickedIndex])
-        setCreateTaskDialog(true)
-    }
+        const clickedIndex = e.currentTarget.dataset.index;
+        setFocusTask(tasks[clickedIndex]);
+        setCreateTaskDialog(true);
+    };
 
     const onNewTask = () => {
-        setFocusTask(null)
-        setCreateTaskDialog(true)
-    }
+        setFocusTask(null);
+        setCreateTaskDialog(true);
+    };
 
     const taskRead = () => {
         const today = new Date();
@@ -35,27 +35,27 @@ export default function Task() {
             year: today.getFullYear(),
             month: today.getMonth() + 1,
             day: today.getDate()
-        }
+        };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/read`,
             method: "GET",
             params: params
         };
-        seTtaskReadLoading(true)
+        seTtaskReadLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                setTasks(res.data.tasks)
+                setTasks(res.data.tasks);
             })
             .catch((err: AxiosError) => {
             })
             .finally(() => {
-                seTtaskReadLoading(false)
-            })
-    }
+                seTtaskReadLoading(false);
+            });
+    };
     useEffect(() => {
-        taskRead()
-    }, [])
-
+        taskRead();
+    }, []);
+    
     return (
         <>
             <div className="card">
@@ -86,12 +86,12 @@ export default function Task() {
                 }
             </div>
 
-            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false) }}>
+            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
                 {createTaskDialog &&
-                    <CreateTask onCloseMyself={() => { setCreateTaskDialog(false) }} taskRead={taskRead} focusTask={focusTask} />
+                    <CreateTask onCloseMyself={() => { setCreateTaskDialog(false); }} taskRead={taskRead} focusTask={focusTask} />
                 }
             </Dialog>
             {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
-    )
+    );
 }
