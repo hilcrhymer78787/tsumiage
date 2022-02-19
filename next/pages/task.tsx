@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { api } from '../plugins/axios';
-import { apiTaskReadResponseType } from '../types/api/task/read/response'
-import { apiTaskReadResponseTaskType } from '../types/api/task/read/response'
-import CreateTask from '../components/task/CreateTask'
-import Layout from '../layouts/default'
+import { api } from '@/plugins/axios';
+import { apiTaskReadResponseType } from '@/types/api/task/read/response'
+import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response'
+import CreateTask from '@/components/task/CreateTask'
+import Layout from '@/layouts/default'
 Task.getLayout = function getLayout(page) {
     return (
         <Layout>{page}</Layout>

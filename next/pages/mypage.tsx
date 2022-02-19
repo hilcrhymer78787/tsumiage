@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardHeader, CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { api } from '../plugins/axios';
-import CreateTask from '../components/task/CreateTask'
-import CreateUser from "../components/CreateUser"
-import Layout from '../layouts/default'
+import { api } from '@/plugins/axios';
+import CreateTask from '@/components/task/CreateTask'
+import CreateUser from "@/components/CreateUser"
+import Layout from '@/layouts/default'
 import { Button, TextField } from '@material-ui/core';
 import { orange } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 import Router from 'next/router'
-import styles from '../styles/Mypage.module.scss'
+import styles from '@/styles/Mypage.module.scss'
 Mypage.getLayout = function getLayout(page) {
     return (
         <Layout>{page}</Layout>

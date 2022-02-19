@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl":"./",//追加
+    "paths": {
+        "@/*": ["./*"],
+    }, //追加
     "target": "es5",
     "lib": [
       "dom",

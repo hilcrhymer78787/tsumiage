@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Button from '@material-ui/core/Button';
-import Layout from '../layouts/default'
+import Layout from '@/layouts/default'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,

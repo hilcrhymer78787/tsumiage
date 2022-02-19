@@ -3,13 +3,13 @@ import Router from 'next/router'
 import { connect } from "react-redux";
 import { Button, CircularProgress, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
-import LoginLayout from '../layouts/login'
-import { apiUserCreateResponseType } from "../types/api/user/create/response"
+import LoginLayout from '@/layouts/login'
+import { apiUserCreateResponseType } from "@/types/api/user/create/response"
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from '../plugins/axios';
-import store from "../store/index";
-import { errorType } from "../types/error"
-import { apiUserBearerAuthenticationResponseType } from "../types/api/user/bearerAuthentication/response"
+import { api } from '@/plugins/axios';
+import store from "@/store/index";
+import { errorType } from "@/types/error"
+import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response"
 
 
 type Props = {

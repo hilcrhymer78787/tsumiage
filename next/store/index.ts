@@ -1,11 +1,11 @@
 import { createStore } from "redux";
 import Router from 'next/router'
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from '../plugins/axios';
+import { api } from '@/plugins/axios';
 import axios from 'axios'
-import { apiUserBearerAuthenticationResponseType } from "../types/api/user/bearerAuthentication/response"
-import { apiWorkReadCalendarResponseType } from '../types/api/work/read/calendar/response'
-import { apiWorkReadCalendarRequestType } from '../types/api/work/read/calendar/request'
+import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response"
+import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response'
+import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request'
 const CancelToken = axios.CancelToken;
 let setCalendarsCancel: any = null;
 let setLoginInfoByTokenCancel: any = null;

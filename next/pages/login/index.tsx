@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router'
 import { Button, CircularProgress, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
-import LoginLayout from '../../layouts/login'
-import { apiUserBasicAuthenticationRequestType } from "../../types/api/user/basicAuthentication/request"
+import LoginLayout from '@/layouts/login'
+import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request"
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from '../../plugins/axios';
-import store from "../../store/index";
-import { errorType } from "../../types/error"
+import { api } from '@/plugins/axios';
+import store from "@/store/index";
+import { errorType } from "@/types/error"
 Login.getLayout = function getLayout(page) {
     return (
         <LoginLayout>{page}</LoginLayout>

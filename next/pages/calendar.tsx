@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { connect } from "react-redux";
 import { Button, CardActionArea } from '@material-ui/core';
-import Layout from '../layouts/default'
-import styles from '../styles/Calendar.module.scss'
-import store, { setCalendars } from "../store/index"
-import DayIcon from "../components/calendar/DayIcon"
+import Layout from '@/layouts/default'
+import styles from '@/styles/Calendar.module.scss'
+import store, { setCalendars } from "@/store/index"
+import DayIcon from "@/components/calendar/DayIcon"
 import Router from 'next/router';
-import Pagination from "../components/calendar/Pagination"
+import Pagination from "@/components/calendar/Pagination"
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,

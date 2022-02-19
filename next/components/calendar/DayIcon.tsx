@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react';
-import styles from '../../styles/calendar/DayIcon.module.scss'
+import styles from '@/styles/calendar/DayIcon.module.scss'
 import moment from "moment";
 type Props = {
     day: number

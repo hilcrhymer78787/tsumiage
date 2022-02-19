@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react';
-import styles from '../../styles/calendar/Pagination.module.scss'
+import styles from '@/styles/calendar/Pagination.module.scss'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
-import store, { setCalendars } from "../../store/index"
+import store, { setCalendars } from "@/store/index"
 import moment from "moment";
 export default function Pagination() {
     const router = useRouter()

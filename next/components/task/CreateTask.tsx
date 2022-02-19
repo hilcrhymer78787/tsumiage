@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { api } from '../../plugins/axios';
-import { apiTaskReadResponseType } from '../../types/api/task/read/response'
-import { apiTaskReadResponseTaskType } from '../../types/api/task/read/response'
-import { apiTaskCreateRequestType } from '../../types/api/task/create/request'
-import { apiTaskDeleteRequestType } from '../../types/api/task/delete/request'
+import { api } from '@/plugins/axios';
+import { apiTaskReadResponseType } from '@/types/api/task/read/response'
+import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response'
+import { apiTaskCreateRequestType } from '@/types/api/task/create/request'
+import { apiTaskDeleteRequestType } from '@/types/api/task/delete/request'
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, CircularProgress } from '@material-ui/core';

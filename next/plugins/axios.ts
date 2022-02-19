@@ -1,7 +1,7 @@
 import Router from 'next/router'
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import axios from 'axios'
-import store from "../store/index";
+import store from "@/store/index";
 
 export const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
