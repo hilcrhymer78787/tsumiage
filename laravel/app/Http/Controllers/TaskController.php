@@ -40,7 +40,6 @@ class TaskController extends Controller
                 'task_name' => $request['task_name'],
                 'task_status' => $request['task_status'],
                 'task_default_minute' => $request['task_default_minute'],
-                'task_point_per_minute' => $request['task_point_per_minute'],
                 'task_user_id' => $loginInfo['id'],
             ]);
         } else {
@@ -48,7 +47,6 @@ class TaskController extends Controller
                 'task_name' => $request['task_name'],
                 'task_status' => $request['task_status'],
                 'task_default_minute' => $request['task_default_minute'],
-                'task_point_per_minute' => $request['task_point_per_minute'],
                 'task_user_id' => $loginInfo['id'],
             ]);
         }

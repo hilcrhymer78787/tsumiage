@@ -20,7 +20,6 @@ class CreateTasksTable extends Migration
             $table->integer('task_status');
             $table->integer('task_sort_key')->nullable();
             $table->integer('task_default_minute');
-            $table->integer('task_point_per_minute');
             $table->timestamps();
         });
     }

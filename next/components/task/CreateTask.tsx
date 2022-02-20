@@ -23,7 +23,6 @@ export default function CreateTask(props: Props) {
         id: 0 as number,
         name: '' as string,
         default_minute: 3 as string | number,
-        point_per_minute: 3 as string | number,
         status: 1 as string | number,
         sort_key: null as number | null,
     });
@@ -55,7 +54,6 @@ export default function CreateTask(props: Props) {
         const apiParam: apiTaskCreateRequestType = {
             task_id: formTask.id,
             task_name: formTask.name,
-            task_point_per_minute: Number(formTask.point_per_minute),
             task_status: Number(formTask.status),
             task_default_minute: Number(formTask.default_minute),
         };
@@ -83,7 +81,6 @@ export default function CreateTask(props: Props) {
                 id: props.focusTask.id,
                 name: props.focusTask.name,
                 default_minute: props.focusTask.default_minute,
-                point_per_minute: props.focusTask.point_per_minute,
                 status: props.focusTask.status,
                 sort_key: props.focusTask.sort_key,
             });
@@ -103,12 +100,6 @@ export default function CreateTask(props: Props) {
                                 value={formTask.name}
                                 onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
                                 label="name" variant="outlined" color="primary" />
-                        </li>
-                        <li className='mb-3'>
-                            <TextField
-                                value={formTask.point_per_minute}
-                                onChange={(e) => { setFormTask({ ...formTask, point_per_minute: e.currentTarget.value }); }}
-                                label="point_per_minute" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
                             <TextField

@@ -20,7 +20,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '洗い物',
                 'task_status' => 1,
                 'task_default_minute' => 15,
-                'task_point_per_minute' => 1,
                 'task_sort_key' => 1,
             ],
             [
@@ -28,7 +27,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '料理',
                 'task_status' => 1,
                 'task_default_minute' => 30,
-                'task_point_per_minute' => 3,
                 'task_sort_key' => 2,
             ],
             [
@@ -36,7 +34,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '洗濯',
                 'task_status' => 1,
                 'task_default_minute' => 15,
-                'task_point_per_minute' => 1,
                 'task_sort_key' => 3,
             ],
             [
@@ -44,7 +41,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '掃除',
                 'task_status' => 1,
                 'task_default_minute' => 20,
-                'task_point_per_minute' => 2,
                 'task_sort_key' => 4,
             ],
             [
@@ -52,7 +48,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => 'ゴミ出し',
                 'task_status' => 1,
                 'task_default_minute' => 10,
-                'task_point_per_minute' => 1,
                 'task_sort_key' => 5,
             ],
             [
@@ -60,7 +55,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '買い出し',
                 'task_status' => 1,
                 'task_default_minute' => 30,
-                'task_point_per_minute' => 3,
                 'task_sort_key' => 6,
             ],
             [
@@ -68,7 +62,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => 'その他',
                 'task_status' => 1,
                 'task_default_minute' => 5,
-                'task_point_per_minute' => 5,
                 'task_sort_key' => 7
             ],
             [
@@ -76,7 +69,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '掃除',
                 'task_status' => 1,
                 'task_default_minute' => 20,
-                'task_point_per_minute' => 2,
                 'task_sort_key' => 8,
             ],
             [
@@ -84,7 +76,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '洗濯',
                 'task_status' => 1,
                 'task_default_minute' => 5,
-                'task_point_per_minute' => 5,
                 'task_sort_key' => 9
             ],
             [
@@ -92,7 +83,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '料理',
                 'task_status' => 1,
                 'task_default_minute' => 30,
-                'task_point_per_minute' => 3,
                 'task_sort_key' => 10,
             ],
             [
@@ -100,7 +90,6 @@ class tasksTableSeeder extends Seeder
                 'task_name' => '買い出し',
                 'task_status' => 1,
                 'task_default_minute' => 30,
-                'task_point_per_minute' => 3,
                 'task_sort_key' => 11,
             ],
         ]);

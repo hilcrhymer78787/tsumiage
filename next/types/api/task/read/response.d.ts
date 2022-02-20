@@ -5,7 +5,6 @@ export interface apiTaskReadResponseTaskType {
     id: number;
     name: string;
     default_minute: number;
-    point_per_minute: number;
     sort_key: number;
     status: number;
     // works: apiTaskReadResponseTaskWorkType[];
