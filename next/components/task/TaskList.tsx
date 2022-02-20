@@ -6,13 +6,8 @@ import { api } from '@/plugins/axios';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import CreateTask from '@/components/task/CreateTask';
-import Layout from '@/layouts/default';
-Task.getLayout = function getLayout(page) {
-    return (
-        <Layout>{page}</Layout>
-    );
-};
-export default function Task() {
+import CreateWork from '@/components/task/CreateWork';
+export default function TaskList() {
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
@@ -88,9 +83,14 @@ export default function Task() {
 
             <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
                 {createTaskDialog &&
-                    <CreateTask onCloseMyself={() => { setCreateTaskDialog(false); }} taskRead={taskRead} focusTask={focusTask} />
+                    <CreateWork />
                 }
             </Dialog>
+            {/* <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
+                {createTaskDialog &&
+                    <CreateTask onCloseMyself={() => { setCreateTaskDialog(false); }} taskRead={taskRead} focusTask={focusTask} />
+                }
+            </Dialog> */}
             {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
     );
