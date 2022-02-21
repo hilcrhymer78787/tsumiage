@@ -27,7 +27,7 @@ main {
     padding: 10px 10px 70px;
     min-height: 100vh;
 }
-.container{
+.container {
     max-width: 476px;
     margin: 0 auto;
 }
@@ -47,8 +47,11 @@ main {
         border-bottom: none;
     }
 }
-.MuiDialog-paperWidthSm{
+.MuiDialog-paperWidthSm {
     width: 90%;
+}
+.MuiButtonBase-root.MuiIconButton-root {
+    padding: 7px;
 }
 .card {
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);

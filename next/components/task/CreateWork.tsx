@@ -11,10 +11,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, CircularProgress } from '@material-ui/core';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import TextField from '@material-ui/core/TextField';
+import CreateTask from '@/components/task/CreateTask';
+import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
+
 type Props = {
     date: string,
     focusTask: apiTaskReadResponseTaskType
     onCloseMyself: any
+    openCreateTaskDialog: any
     taskRead: any
 }
 export default function CreateWork(props: Props) {
@@ -63,22 +67,35 @@ export default function CreateWork(props: Props) {
                 setWorkCreateLoading(false);
             });
     };
+
+    const onChangeMinute = (event) => {
+        setFormMinute(Number(event.target.value));
+    };
+
     useEffect(() => {
         setFormMinute(props.focusTask.work.minute)
     }, []);
     return (
         <div className='card'>
             <div className="card_header">
-                <span className="card_header_ttl">クリエイトワーク</span>
-                <SettingsIcon onClick={() => { alert(); }} />
+                <span className="card_header_ttl">{props.focusTask.name}</span>
+                <SettingsIcon onClick={() => { props.openCreateTaskDialog() }} />
             </div>
             <div className="card_body">
                 <ul>
                     <li className='mb-3'>
-                        <TextField
-                            value={formMinute}
-                            onChange={(e) => { setFormMinute(Number(e.currentTarget.value)) }}
-                            label="実績時間" variant="outlined" color="primary" />
+                        <FormControl fullWidth>
+                            <InputLabel id="minute-label">実績時間</InputLabel>
+                            <Select
+                                labelId="minute-label"
+                                value={formMinute}
+                                onChange={onChangeMinute}
+                            >
+                                {[...Array(100 + 1)].map((n, index) => (
+                                    <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                     </li>
                 </ul>
             </div>

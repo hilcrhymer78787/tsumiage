@@ -87,7 +87,6 @@ export default function CreateTask(props: Props) {
             {formTask && <>
                 <div className="card_header">
                     <span className="card_header_ttl">{props.focusTask ? props.focusTask.name : '新規タスク登録'}</span>
-                    <SettingsIcon onClick={() => { alert(); }} />
                 </div>
                 <div className="card_body">
                     <ul>

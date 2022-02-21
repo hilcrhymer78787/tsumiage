@@ -6,11 +6,12 @@ import { api } from '@/plugins/axios';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import CreateTask from '@/components/task/CreateTask';
 import CreateWork from '@/components/task/CreateWork';
+import CreateTask from '@/components/task/CreateTask';
 import moment from 'moment'
 export default function TaskList() {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
+    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
     const [taskData, setTaskData] = useState({
         date: '',
@@ -26,7 +27,7 @@ export default function TaskList() {
 
     const onNewTask = () => {
         setFocusTask(null);
-        setCreateWorkDialog(true);
+        setCreateTaskDialog(true);
     };
 
     const taskRead = () => {
@@ -83,14 +84,28 @@ export default function TaskList() {
 
             <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
                 {createWorkDialog &&
-                    <CreateWork onCloseMyself={() => { setCreateWorkDialog(false); }} date={taskData.date} taskRead={taskRead} focusTask={focusTask} />
+                    <CreateWork
+                        onCloseMyself={() => { setCreateWorkDialog(false); }}
+                        openCreateTaskDialog={() => { setCreateTaskDialog(true); }}
+                        date={taskData.date}
+                        taskRead={taskRead}
+                        focusTask={focusTask}
+                    />
                 }
             </Dialog>
-            {/* <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
-                {createWorkDialog &&
-                    <CreateTask onCloseMyself={() => { setCreateWorkDialog(false); }} taskRead={taskRead} focusTask={focusTask} />
+
+            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
+                {createTaskDialog &&
+                    <CreateTask
+                        onCloseMyself={() => {
+                            setCreateTaskDialog(false);
+                            setCreateWorkDialog(false);
+                        }}
+                        taskRead={taskRead}
+                        focusTask={focusTask}
+                    />
                 }
-            </Dialog> */}
+            </Dialog>
             {/* <pre>{JSON.stringify(taskData, null, 2)}</pre> */}
         </>
     );
