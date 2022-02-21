@@ -5,7 +5,7 @@ import { api } from '@/plugins/axios';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
-import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request'
+import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, CircularProgress } from '@material-ui/core';
@@ -38,8 +38,8 @@ export default function CreateWork(props: Props) {
         setWorkDeleteLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead()
-                props.onCloseMyself()
+                props.taskRead();
+                props.onCloseMyself();
             })
             .finally(() => {
                 setWorkDeleteLoading(false);
@@ -60,8 +60,8 @@ export default function CreateWork(props: Props) {
         setWorkCreateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead()
-                props.onCloseMyself()
+                props.taskRead();
+                props.onCloseMyself();
             })
             .finally(() => {
                 setWorkCreateLoading(false);
@@ -73,13 +73,13 @@ export default function CreateWork(props: Props) {
     };
 
     useEffect(() => {
-        setFormMinute(props.focusTask.work.minute)
+        setFormMinute(props.focusTask.work.minute);
     }, []);
     return (
         <div className='card'>
             <div className="card_header">
                 <span className="card_header_ttl">{props.focusTask.name}</span>
-                <SettingsIcon onClick={() => { props.openCreateTaskDialog() }} />
+                <SettingsIcon onClick={() => { props.openCreateTaskDialog(); }} />
             </div>
             <div className="card_body">
                 <ul>

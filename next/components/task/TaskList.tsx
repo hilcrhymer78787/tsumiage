@@ -8,7 +8,7 @@ import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import CreateWork from '@/components/task/CreateWork';
 import CreateTask from '@/components/task/CreateTask';
-import moment from 'moment'
+import moment from 'moment';
 export default function TaskList() {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
