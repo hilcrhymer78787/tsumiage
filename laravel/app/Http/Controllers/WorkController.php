@@ -19,12 +19,12 @@ class WorkController extends Controller
         $return['calendars'] = [];
         for ($day = 1; $day <= $last_day; $day++) {
             $calendar['date'] = date('Y-m-d', strtotime($year_month . '-' . $day));
-            $calendar['minute'] = (int)Work::where('work_room_id', $loginInfo['user_room_id'])
+            $calendar['minute'] = (int)Work::where('work_user_id', $loginInfo['id'])
                 ->where('work_date', $calendar['date'])
                 ->sum('work_minute');
-            $calendar['users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['user_room_id']);
+            $calendar['users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['id']);
             foreach ($calendar['users'] as $user) {
-                $user['minute'] = (int)Work::where('work_room_id', $loginInfo['user_room_id'])
+                $user['minute'] = (int)Work::where('work_user_id', $loginInfo['id'])
                     ->where('work_date', $calendar['date'])
                     ->where('work_user_id', $user['id'])
                     ->sum('work_minute');
@@ -100,27 +100,40 @@ class WorkController extends Controller
     public function create(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        Work::where('work_date', $request['date'])
-            ->where('work_task_id', $request['task_id'])
-            ->delete();
 
-        foreach ($request['works'] as $work) {
-            Work::create([
-                'work_date' => $request['date'],
-                'work_room_id' => $loginInfo['user_room_id'],
-                'work_task_id' => $request['task_id'],
-                'work_user_id' => $work['work_user_id'],
-                'work_minute' => $work['work_minute'],
-            ]);
+        // 重複確認
+        $double = Work::where('work_date', $request['date'])
+            ->where('work_task_id', $request['task_id'])
+            ->first();
+
+        // 編集
+        if ($double) {
+            Work::where('work_user_id', $loginInfo['id'])
+                ->where('work_id', $request['id'])
+                ->update([
+                    'work_user_id' => $loginInfo['id'],
+                    'work_date' => $request['date'],
+                    'work_task_id' => $request['task_id'],
+                    'work_minute' => $request['minute'],
+                ]);
+            return;
         }
-        return $request;
+
+        // 新規登録
+        Work::create([
+            'work_user_id' => $loginInfo['id'],
+            'work_date' => $request['date'],
+            'work_task_id' => $request['task_id'],
+            'work_minute' => $request['minute'],
+        ]);
+        return;
     }
     public function delete(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        Work::where('work_date', $request['date'])
+        Work::where('work_user_id', $loginInfo['id'])
+            ->where('work_date', $request['date'])
             ->where('work_task_id', $request['task_id'])
-            ->where('work_room_id', $loginInfo['user_room_id'])
             ->delete();
     }
 }

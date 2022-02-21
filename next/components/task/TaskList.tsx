@@ -3,33 +3,35 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { api } from '@/plugins/axios';
+import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import CreateTask from '@/components/task/CreateTask';
 import CreateWork from '@/components/task/CreateWork';
+import moment from 'moment'
 export default function TaskList() {
-    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
+    const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
-    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
+    const [taskData, setTaskData] = useState({
+        date: '',
+        tasks: [],
+    } as apiTaskReadResponseType);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
 
     const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
         const clickedIndex = e.currentTarget.dataset.index;
-        setFocusTask(tasks[clickedIndex]);
-        setCreateTaskDialog(true);
+        setFocusTask(taskData.tasks[clickedIndex]);
+        setCreateWorkDialog(true);
     };
 
     const onNewTask = () => {
         setFocusTask(null);
-        setCreateTaskDialog(true);
+        setCreateWorkDialog(true);
     };
 
     const taskRead = () => {
-        const today = new Date();
-        const params = {
-            year: today.getFullYear(),
-            month: today.getMonth() + 1,
-            day: today.getDate()
+        const params: apiTaskReadRequestType = {
+            date: moment().format("YYYY-MM-DD"),
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/read`,
@@ -39,9 +41,7 @@ export default function TaskList() {
         seTtaskReadLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                setTasks(res.data.tasks);
-            })
-            .catch((err: AxiosError) => {
+                setTaskData(res.data);
             })
             .finally(() => {
                 seTtaskReadLoading(false);
@@ -50,7 +50,7 @@ export default function TaskList() {
     useEffect(() => {
         taskRead();
     }, []);
-    
+
     return (
         <>
             <div className="card">
@@ -60,20 +60,20 @@ export default function TaskList() {
                         <AddIcon />
                     </IconButton>
                 </div>
-                {taskReadLoading && !Boolean(tasks.length) &&
+                {taskReadLoading && !Boolean(taskData.tasks.length) &&
                     <div className='d-flex justify-center pa-5 ma-5'>
                         <CircularProgress />
                     </div>
                 }
-                {Boolean(tasks.length) &&
+                {Boolean(taskData.tasks.length) &&
                     <div>
-                        {tasks.map((task, index) => (
+                        {taskData.tasks.map((task, index) => (
                             <CardActionArea onClick={onFocusTask} data-index={index} key={index.toString()}>
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar src="https://i.picsum.photos/id/30/500/300.jpg?hmac=p1-iOhnRmBgus54WChFXINxaQuqvFO-q0wegbZjjLo0" />
                                     </ListItemAvatar>
-                                    <ListItemText>{task.name}</ListItemText>
+                                    <ListItemText primary={task.name} secondary={`想定:${task.default_minute}分` + ` 実績:${task.work?.minute}分`} />
                                 </ListItem>
                             </CardActionArea>
                         ))}
@@ -81,17 +81,17 @@ export default function TaskList() {
                 }
             </div>
 
-            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-                {createTaskDialog &&
-                    <CreateWork />
+            <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
+                {createWorkDialog &&
+                    <CreateWork onCloseMyself={() => { setCreateWorkDialog(false); }} date={taskData.date} taskRead={taskRead} focusTask={focusTask} />
                 }
             </Dialog>
-            {/* <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-                {createTaskDialog &&
-                    <CreateTask onCloseMyself={() => { setCreateTaskDialog(false); }} taskRead={taskRead} focusTask={focusTask} />
+            {/* <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
+                {createWorkDialog &&
+                    <CreateTask onCloseMyself={() => { setCreateWorkDialog(false); }} taskRead={taskRead} focusTask={focusTask} />
                 }
             </Dialog> */}
-            {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
+            {/* <pre>{JSON.stringify(taskData, null, 2)}</pre> */}
         </>
     );
 }

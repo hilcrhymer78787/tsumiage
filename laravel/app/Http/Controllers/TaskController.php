@@ -16,20 +16,24 @@ class TaskController extends Controller
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
 
-        $tasks = (new TaskService())->getTasksByUserId($loginInfo['id']);
+        $return['tasks'] = (new TaskService())->getTasksByUserId($loginInfo['id']);
 
-        // foreach ($tasks as $task) {
-        //     $query = Work::where('work_task_id', $task['task_id'])
-        //         ->whereYear('work_date', $request['year'])
-        //         ->whereMonth('work_date', $request['month'])
-        //         ->whereDay('work_date', $request['day']);
-        //     $task['minute'] = (int)$query->sum('work_minute');
-        //     $task['works'] = $query->leftjoin('users', 'works.work_user_id', '=', 'users.id')
-        //         ->select('work_id', 'work_date', 'work_minute', 'work_user_id', 'name as work_user_name', 'user_img as work_user_img')
-        //         ->get();
-        // }
+        $return['date'] = $request['date'];
 
-        $return['tasks'] = $tasks;
+        foreach ($return['tasks'] as $task) {
+            $work = Work::where('work_task_id', $task['id'])
+                ->where('work_date', $request['date'])
+                ->select('work_id as id', 'work_minute as minute')
+                ->first();
+            if ($work) {
+                $task['work'] = $work;
+            }else{
+                $obj['id'] = 0;
+                $obj['minute'] = 0;
+                $task['work'] = $obj;
+            }
+        }
+
         return $return;
     }
     public function create(Request $request)

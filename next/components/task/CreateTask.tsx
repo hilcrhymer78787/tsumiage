@@ -45,8 +45,6 @@ export default function CreateTask(props: Props) {
                 props.taskRead();
                 props.onCloseMyself();
             })
-            .catch((err: AxiosError) => {
-            })
             .finally(() => {
                 setTaskDeleteLoading(false);
             });
@@ -68,9 +66,6 @@ export default function CreateTask(props: Props) {
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
                 props.taskRead();
                 props.onCloseMyself();
-            })
-            .catch((err: AxiosError) => {
-                alert('登録に失敗しました');
             })
             .finally(() => {
                 setTaskCreateLoading(false);

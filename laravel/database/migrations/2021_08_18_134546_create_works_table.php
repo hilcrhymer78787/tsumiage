@@ -16,7 +16,6 @@ class CreateWorksTable extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id('work_id');
             $table->date('work_date');
-            $table->integer('work_room_id');
             $table->integer('work_task_id');
             $table->integer('work_user_id');
             $table->integer('work_minute');

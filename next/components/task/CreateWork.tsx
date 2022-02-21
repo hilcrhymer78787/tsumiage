@@ -4,65 +4,68 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { api } from '@/plugins/axios';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiTaskCreateRequestType } from '@/types/api/task/create/request';
-import { apiTaskDeleteRequestType } from '@/types/api/task/delete/request';
+import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
+import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request'
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, CircularProgress } from '@material-ui/core';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import TextField from '@material-ui/core/TextField';
-export default function CreateWork() {
-    const [taskCreateLoading, setTaskCreateLoading] = useState(false as boolean);
-    const [taskDeleteLoading, setTaskDeleteLoading] = useState(false as boolean);
-    const [formTask, setFormTask] = useState({
-        id: 0 as number,
-        name: '' as string,
-        default_minute: 3 as string | number,
-        status: 1 as string | number,
-        sort_key: null as number | null,
-    });
-    const taskDelete = () => {
-        const apiParam: apiTaskDeleteRequestType = {
-            task_id: formTask.id
+type Props = {
+    date: string,
+    focusTask: apiTaskReadResponseTaskType
+    onCloseMyself: any
+    taskRead: any
+}
+export default function CreateWork(props: Props) {
+    const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
+    const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
+    const [formMinute, setFormMinute] = useState(0);
+    const workDelete = () => {
+        const apiParam: apiWorkDeleteRequestType = {
+            date: props.date,
+            task_id: props.focusTask.id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/task/delete`,
+            url: `/api/work/delete`,
             method: "DELETE",
             data: apiParam
         };
-        setTaskDeleteLoading(true);
+        setWorkDeleteLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-            })
-            .catch((err: AxiosError) => {
+                props.taskRead()
+                props.onCloseMyself()
             })
             .finally(() => {
-                setTaskDeleteLoading(false);
+                setWorkDeleteLoading(false);
             });
     };
-    const taskCreate = () => {
-        const apiParam: apiTaskCreateRequestType = {
-            task_id: formTask.id,
-            task_name: formTask.name,
-            task_status: Number(formTask.status),
-            task_default_minute: Number(formTask.default_minute),
+    const workCreate = () => {
+        const apiParam: apiWorkCreateRequestType = {
+            id: props.focusTask.work.id,
+            date: props.date,
+            task_id: props.focusTask.id,
+            minute: formMinute,
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/task/create`,
+            url: `/api/work/create`,
             method: "POST",
             data: apiParam
         };
-        setTaskCreateLoading(true);
+        setWorkCreateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-            })
-            .catch((err: AxiosError) => {
-                alert('登録に失敗しました');
+                props.taskRead()
+                props.onCloseMyself()
             })
             .finally(() => {
-                setTaskCreateLoading(false);
+                setWorkCreateLoading(false);
             });
     };
+    useEffect(() => {
+        setFormMinute(props.focusTask.work.minute)
+    }, []);
     return (
         <div className='card'>
             <div className="card_header">
@@ -73,24 +76,24 @@ export default function CreateWork() {
                 <ul>
                     <li className='mb-3'>
                         <TextField
-                            value="hogehoge"
-                            // onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
-                            label="name" variant="outlined" color="primary" />
+                            value={formMinute}
+                            onChange={(e) => { setFormMinute(Number(e.currentTarget.value)) }}
+                            label="実績時間" variant="outlined" color="primary" />
                     </li>
                 </ul>
             </div>
             <div className="card_footer justify-space-between">
                 <Button color="secondary"
-                    onClick={taskDelete}
+                    onClick={workDelete}
                     variant="contained"
-                    endIcon={taskDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
-                    disabled={taskCreateLoading || taskDeleteLoading}
+                    endIcon={workDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
+                    disabled={workCreateLoading || workDeleteLoading}
                 >削除</Button>
                 <Button color="primary"
-                    onClick={taskCreate}
+                    onClick={workCreate}
                     variant="contained"
-                    endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={taskCreateLoading || taskDeleteLoading}
+                    endIcon={workCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
+                    disabled={workCreateLoading || workDeleteLoading}
                 >登録</Button>
             </div>
         </div>
