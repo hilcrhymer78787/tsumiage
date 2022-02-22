@@ -12,6 +12,9 @@ import { Button, CircularProgress } from '@material-ui/core';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import TextField from '@material-ui/core/TextField';
 import CreateWork from '@/components/task/CreateWork';
+import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
+
 type Props = {
     focusTask: apiTaskReadResponseTaskType
     onCloseMyself: any
@@ -71,6 +74,7 @@ export default function CreateTask(props: Props) {
                 setTaskCreateLoading(false);
             });
     };
+
     useEffect(() => {
         if (props.focusTask) {
             setFormTask({
@@ -99,16 +103,32 @@ export default function CreateTask(props: Props) {
                                 label="name" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
-                            <TextField
-                                value={formTask.default_minute}
-                                onChange={(e) => { setFormTask({ ...formTask, default_minute: e.currentTarget.value }); }}
-                                label="default_minute" variant="outlined" color="primary" />
+                            <FormControl fullWidth>
+                                <InputLabel id="defaultーminute-label">想定時間</InputLabel>
+                                <Select
+                                    labelId="defaultーminute-label"
+                                    value={formTask.default_minute}
+                                    onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
+                                >
+                                    {[...Array(100 + 1)].map((n, index) => (
+                                        <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
                         </li>
                         <li className='mb-3'>
-                            <TextField
-                                value={formTask.status}
-                                onChange={(e) => { setFormTask({ ...formTask, status: e.currentTarget.value }); }}
-                                label="status" variant="outlined" color="primary" />
+                            <FormControl fullWidth>
+                                <InputLabel id="defaultーminute-label">ステータス</InputLabel>
+                                <Select
+                                    labelId="defaultーminute-label"
+                                    value={formTask.status}
+                                    onChange={(e) => { setFormTask({ ...formTask, status: Number(e.target.value) }); }}
+                                >
+                                    {[...Array(10 + 1)].map((n, index) => (
+                                        <MenuItem key={index.toString()} value={index}>{index}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
                         </li>
                     </ul>
                 </div>
