@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
-import AddIcon from '@material-ui/icons/Add';
+import { CardActionArea, IconButton, Dialog, ListItem, Checkbox, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import AddIcon from '@mui/icons-material/Add';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import { api } from '@/plugins/axios';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
@@ -9,6 +11,8 @@ import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import CreateWork from '@/components/task/CreateWork';
 import CreateTask from '@/components/task/CreateTask';
+import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
+import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import moment from 'moment';
 type Props = {
     date: string,
@@ -19,6 +23,8 @@ export default function TaskList(props: Props) {
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
+    const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
+    const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
 
     const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
         const clickedIndex = e.currentTarget.dataset.index;
@@ -49,6 +55,55 @@ export default function TaskList(props: Props) {
                 seTtaskReadLoading(false);
             });
     };
+
+    const workDelete = (e) => {
+        const task = tasks[e.currentTarget.dataset.index];
+        if (!confirm(`${props.date}、「${task.name}」の実績を削除しますか？`)) {
+            return;
+        }
+        const apiParam: apiWorkDeleteRequestType = {
+            date: props.date,
+            task_id: task.id
+        };
+        const requestConfig: AxiosRequestConfig = {
+            url: `/api/work/delete`,
+            method: "DELETE",
+            data: apiParam
+        };
+        setWorkDeleteLoading(true);
+        api(requestConfig)
+            .then((res: AxiosResponse<apiTaskReadResponseType>) => {
+                taskRead();
+            })
+            .finally(() => {
+                setWorkDeleteLoading(false);
+            });
+    };
+
+    const workCreate = (e) => {
+        const task = tasks[e.currentTarget.dataset.index];
+        const apiParam: apiWorkCreateRequestType = {
+            id: task.work.id,
+            date: props.date,
+            task_id: task.id,
+            minute: task.default_minute,
+            memo: '',
+        };
+        const requestConfig: AxiosRequestConfig = {
+            url: `/api/work/create`,
+            method: "POST",
+            data: apiParam
+        };
+        setWorkCreateLoading(true);
+        api(requestConfig)
+            .then((res) => {
+                taskRead();
+            })
+            .finally(() => {
+                setWorkCreateLoading(false);
+            });
+    };
+
     useEffect(() => {
         taskRead();
     }, []);
@@ -62,8 +117,8 @@ export default function TaskList(props: Props) {
                         <h3 className='card_header_left_sub'>{props.date}</h3>
                     </div>
                     <div className="card_header_right">
-                        <IconButton onClick={onNewTask} color="primary" className='card_header_right_btn' component="span">
-                            <AddIcon />
+                        <IconButton onClick={onNewTask} className='card_header_right_btn' component="span">
+                            <AddIcon color="primary" />
                         </IconButton>
                     </div>
                 </div>
@@ -75,14 +130,30 @@ export default function TaskList(props: Props) {
                 {Boolean(tasks.length) &&
                     <div>
                         {tasks.map((task, index) => (
-                            <CardActionArea onClick={onFocusTask} data-index={index} key={index.toString()}>
-                                <ListItem>
-                                    <ListItemAvatar>
+                            <CardActionArea key={index.toString()}>
+                                <ListItem
+                                    secondaryAction={task.work.id ?
+                                        <CheckBoxIcon
+                                            data-index={index}
+                                            onClick={workDelete}
+                                            color="primary"
+                                        />
+                                        :
+                                        <CheckBoxOutlineBlankIcon
+                                            data-index={index}
+                                            onClick={workCreate}
+                                            color="primary"
+                                        />
+                                    }>
+                                    <ListItemAvatar onClick={onFocusTask} data-index={index}>
                                         <Avatar sx={{ bgcolor: task.work.id ? '#3f51b5' : '' }}>
                                             <TaskOutlinedIcon />
                                         </Avatar>
                                     </ListItemAvatar>
-                                    <ListItemText primary={task.name} secondary={`想定:${task.default_minute}分` + ` 実績:${task.work?.minute}分`} />
+                                    <ListItemText
+                                        onClick={onFocusTask} data-index={index}
+                                        primary={task.name} secondary={`想定:${task.default_minute}分` + ` 実績:${task.work?.minute}分`}
+                                    />
                                 </ListItem>
                             </CardActionArea>
                         ))}
