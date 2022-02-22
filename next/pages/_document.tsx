@@ -67,9 +67,9 @@ class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-    const materialUISheets = new MaterialUIStyleSheets()
-    const styledComponentsSheets = new StyledComponentsStyleSheets()
-    const originalRenderPage = ctx.renderPage
+    const materialUISheets = new MaterialUIStyleSheets();
+    const styledComponentsSheets = new StyledComponentsStyleSheets();
+    const originalRenderPage = ctx.renderPage;
 
     try {
         ctx.renderPage = () =>
@@ -77,7 +77,7 @@ MyDocument.getInitialProps = async (ctx) => {
                 enhanceApp: (App) => (props) => styledComponentsSheets.collectStyles(
                     materialUISheets.collect(<App {...props} />)
                 ),
-            })
+            });
 
         const initialProps = await Document.getInitialProps(ctx);
 
@@ -89,9 +89,9 @@ MyDocument.getInitialProps = async (ctx) => {
                     {styledComponentsSheets.getStyleElement()}
                 </>
             ),
-        }
+        };
     } finally {
-        styledComponentsSheets.seal()
+        styledComponentsSheets.seal();
     }
 };
 

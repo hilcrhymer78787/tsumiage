@@ -15,7 +15,6 @@ import CreateTask from '@/components/task/CreateTask';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
 import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
 
-
 type Props = {
     date: string,
     focusTask: apiTaskReadResponseTaskType
