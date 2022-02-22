@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
+import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
 import AddIcon from '@material-ui/icons/Add';
+import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import { api } from '@/plugins/axios';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
@@ -77,7 +78,9 @@ export default function TaskList(props: Props) {
                             <CardActionArea onClick={onFocusTask} data-index={index} key={index.toString()}>
                                 <ListItem>
                                     <ListItemAvatar>
-                                        <Avatar src="https://i.picsum.photos/id/30/500/300.jpg?hmac=p1-iOhnRmBgus54WChFXINxaQuqvFO-q0wegbZjjLo0" />
+                                        <Avatar sx={{ bgcolor: task.work.id ? '#3f51b5' : '' }}>
+                                            <TaskOutlinedIcon />
+                                        </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText primary={task.name} secondary={`想定:${task.default_minute}分` + ` 実績:${task.work?.minute}分`} />
                                 </ListItem>
