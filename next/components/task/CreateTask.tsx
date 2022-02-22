@@ -30,6 +30,7 @@ export default function CreateTask(props: Props) {
         status: 1 as string | number,
         sort_key: null as number | null,
     });
+    const [nameError, setNameError] = useState("" as string);
     const taskDelete = () => {
         if (!confirm(`「${props.focusTask.name}」を削除しますか？`)) {
             return;
@@ -53,6 +54,9 @@ export default function CreateTask(props: Props) {
             });
     };
     const taskCreate = () => {
+        if (validation()) {
+            return;
+        }
         const apiParam: apiTaskCreateRequestType = {
             task_id: formTask.id,
             task_name: formTask.name,
@@ -74,7 +78,15 @@ export default function CreateTask(props: Props) {
                 setTaskCreateLoading(false);
             });
     };
-
+    const validation = (): boolean => {
+        let isError: boolean = false;
+        setNameError("");
+        if (formTask.name == "") {
+            setNameError("名前は必須です");
+            isError = true;
+        }
+        return isError;
+    };
     useEffect(() => {
         if (props.focusTask) {
             setFormTask({
@@ -98,6 +110,8 @@ export default function CreateTask(props: Props) {
                     <ul>
                         <li className='mb-3'>
                             <TextField
+                                error={Boolean(nameError)}
+                                helperText={nameError}
                                 value={formTask.name}
                                 onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
                                 label="name" variant="outlined" color="primary" />

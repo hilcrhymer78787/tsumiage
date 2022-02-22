@@ -10,6 +10,7 @@ import Router from 'next/router';
 import Pagination from "@/components/calendar/Pagination";
 import moment from 'moment';
 import TaskList from '@/components/task/TaskList';
+import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -75,13 +76,15 @@ function About({ dispatch, calendars, loginInfo }) {
                         {[...Array(firstDay())].map((n, index) => (
                             <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
                         ))}
-                        {calendars.map((calendar, index) => (
+                        {calendars.map((calendar: apiWorkReadCalendarResponseCalendarType, index: number) => (
                             <li key={calendar.date} className={styles.content_item + ' main'}>
                                 <CardActionArea onClick={() => {
                                     Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
                                 }} className={styles.content_item_inner}>
                                     <DayIcon day={index + 1} />
-                                    <div className={styles.content_item_inner_main}>{calendar.minute}分</div>
+                                    {Boolean(calendar.minute) &&
+                                        <div className={styles.content_item_inner_main}>{calendar.minute}分</div>
+                                    }
                                 </CardActionArea>
                             </li>
                         ))}
