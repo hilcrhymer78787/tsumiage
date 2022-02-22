@@ -101,7 +101,7 @@ function CreateUser(props: Props) {
         <div className='card'>
             <div className="card_header">
                 <div className="card_header_left">
-                    <h2 className="card_header_left_main">新規ユーザー登録</h2>
+                    <h2 className="card_header_left_main">{props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'}</h2>
                 </div>
             </div>
             <div className="card_body">
@@ -153,15 +153,19 @@ function CreateUser(props: Props) {
                 </ul>
             </div>
             <div className="card_footer justify-space-between">
-                <Button
-                    onClick={() => { Router.push("/login"); }}
-                    variant="contained">ログイン画面へ</Button>
+                {!props.loginInfo &&
+                    <Button
+                        onClick={() => { Router.push("/login"); }}
+                        variant="contained">ログイン画面へ
+                    </Button>
+                }
+                <div></div>
                 <Button color="primary"
                     onClick={createUser}
                     variant="contained"
                     endIcon={createUserLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={createUserLoading}
-                >登録</Button>
+                    disabled={createUserLoading}>登録
+                </Button>
             </div>
         </div>
     );

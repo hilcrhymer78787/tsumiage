@@ -46,7 +46,7 @@ export default function Pagination() {
             router.push(
                 `/calendar?year=${router.query.year}&month=${Number(router.query.month) + 1}`
             );
-            setCalendars(Number(router.query.year) - 1, Number(router.query.month) + 1);
+            setCalendars(Number(router.query.year), Number(router.query.month) + 1);
         }
     };
     return (
