@@ -24,35 +24,27 @@ export default function Pagination() {
         return Number(moment().format("M"));
     };
     const onClickPrevMonth = () => {
-        if (Number(router.query.month) == 1) {
-            router.push(
-                `/calendar?year=${Number(router.query.year) - 1}&month=12`
-            );
-            setCalendars(Number(router.query.year) - 1, 12);
+        if (month() == 1) {
+            router.push(`/calendar?year=${year() - 1}&month=12`);
+            setCalendars(year() - 1, 12);
         } else {
-            router.push(
-                `/calendar?year=${router.query.year}&month=${Number(router.query.month) - 1}`
-            );
-            setCalendars(Number(router.query.year), Number(router.query.month) - 1);
+            router.push(`/calendar?year=${year()}&month=${month() - 1}`);
+            setCalendars(year(), month() - 1);
         }
     };
     const onClickNextMonth = () => {
-        if (Number(router.query.month) == 12) {
-            router.push(
-                `/calendar?year=${Number(router.query.year) + 1}&month=1`
-            );
-            setCalendars(Number(router.query.year) + 1, 1);
+        if (month() == 12) {
+            router.push(`/calendar?year=${year() + 1}&month=1`);
+            setCalendars(year() + 1, 1);
         } else {
-            router.push(
-                `/calendar?year=${router.query.year}&month=${Number(router.query.month) + 1}`
-            );
-            setCalendars(Number(router.query.year), Number(router.query.month) + 1);
+            router.push(`/calendar?year=${year()}&month=${month() + 1}`);
+            setCalendars(year(), month() + 1);
         }
     };
     return (
         <div className={styles.Pagination}>
             <NavigateBeforeIcon className={styles.icon} onClick={onClickPrevMonth} />
-            <h1>{router.query.year}年 {router.query.month}月</h1>
+            <h1>{year()}年 {month()}月</h1>
             <NavigateNextIcon className={styles.icon} onClick={onClickNextMonth} />
         </div>
     );
