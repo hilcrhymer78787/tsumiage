@@ -10,7 +10,6 @@ import { Button, TextField } from '@material-ui/core';
 import { orange } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 import Router from 'next/router';
-import styles from '@/styles/Mypage.module.scss';
 Mypage.getLayout = function getLayout(page) {
     return (
         <Layout>{page}</Layout>

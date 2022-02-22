@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import styles from '@/styles/calendar/DayIcon.module.scss';
 import moment from "moment";
+import styled from "styled-components";
 type Props = {
     day: number
 }
@@ -9,7 +9,7 @@ export default function DayIcon(props: Props) {
     const router = useRouter();
     const isToday = (): boolean => {
         return (
-            props.day == nowDay() && 
+            props.day == nowDay() &&
             year() == nowYear() &&
             month() == nowMonth()
         );
@@ -30,10 +30,30 @@ export default function DayIcon(props: Props) {
         return Number(moment().format("M"));
     };
     return (
-        <div className={styles.icn}>
-            <div className={isToday() ? styles.isToday + " " + styles.icn_num : styles.icn_num}>
+        <Icn>
+            <IcnNum className={isToday() ? "icn_num isToday" : "icn_num"}>
                 {props.day}
-            </div>
-        </div>
+            </IcnNum>
+        </Icn>
     );
 }
+const Icn = styled.div`
+padding-top: 5px;
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+const IcnNum = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 20px;
+height: 20px;
+font-size: 14px;
+border-radius: 50%;
+&.isToday {
+    background-color: #3f51b5;
+    color: white;
+    font-size: 12px;
+}
+`;
