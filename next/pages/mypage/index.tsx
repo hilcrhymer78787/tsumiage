@@ -44,7 +44,6 @@ function Mypage({ dispatch, loginInfo }) {
             <div className="card_body py-5">
                 <div className='myinfo'>
                     <CardHeader
-                        className={styles.myinfo}
                         avatar={
                             <Avatar src={loginInfo.user_img}></Avatar>
                         }
