@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-import styles from '@/styles/calendar/Pagination.module.scss';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
 import store, { setCalendars } from "@/store/index";
 import moment from "moment";
+import styled from "styled-components";
+
 export default function Pagination() {
     const router = useRouter();
     const year = (): number => {
@@ -42,10 +43,30 @@ export default function Pagination() {
         }
     };
     return (
-        <div className={styles.Pagination}>
-            <NavigateBeforeIcon className={styles.icon} onClick={onClickPrevMonth} />
-            <h1>{year()}年 {month()}月</h1>
-            <NavigateNextIcon className={styles.icon} onClick={onClickNextMonth} />
-        </div>
+        <PaginationDiv>
+            <StyledNavigateBeforeIcon onClick={onClickPrevMonth} />
+            <H1>{year()}年 {month()}月</H1>
+            <StyledNavigateNextIcon onClick={onClickNextMonth} />
+        </PaginationDiv>
     );
 }
+const H1 = styled.h1`
+font-size: 25px;
+width: 183px;
+text-align: center;
+`;
+const PaginationDiv = styled.div`
+width: 100%;
+font-size: 15px;
+display: flex;
+justify-content: center;
+align-items:center;
+`;
+const StyledNavigateBeforeIcon = styled(NavigateBeforeIcon)`
+color: white;
+font-size: 30px;
+`;
+const StyledNavigateNextIcon = styled(NavigateNextIcon)`
+color: white;
+font-size: 30px;
+`;
