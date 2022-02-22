@@ -9,19 +9,19 @@ import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import CreateWork from '@/components/task/CreateWork';
 import CreateTask from '@/components/task/CreateTask';
 import moment from 'moment';
-export default function TaskList() {
+type Props = {
+    date: string,
+}
+export default function TaskList(props: Props) {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
-    const [taskData, setTaskData] = useState({
-        date: '',
-        tasks: [],
-    } as apiTaskReadResponseType);
+    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
 
     const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
         const clickedIndex = e.currentTarget.dataset.index;
-        setFocusTask(taskData.tasks[clickedIndex]);
+        setFocusTask(tasks[clickedIndex]);
         setCreateWorkDialog(true);
     };
 
@@ -32,7 +32,7 @@ export default function TaskList() {
 
     const taskRead = () => {
         const params: apiTaskReadRequestType = {
-            date: moment().format("YYYY-MM-DD"),
+            date: props.date,
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/read`,
@@ -42,7 +42,7 @@ export default function TaskList() {
         seTtaskReadLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                setTaskData(res.data);
+                setTasks(res.data.tasks);
             })
             .finally(() => {
                 seTtaskReadLoading(false);
@@ -58,7 +58,7 @@ export default function TaskList() {
                 <div className="card_header">
                     <div className="card_header_left">
                         <h2 className="card_header_left_main">タスク</h2>
-                        <h3 className='card_header_left_sub'>{taskData.date}</h3>
+                        <h3 className='card_header_left_sub'>{props.date}</h3>
                     </div>
                     <div className="card_header_right">
                         <IconButton onClick={onNewTask} color="primary" className='card_header_right_btn' component="span">
@@ -66,14 +66,14 @@ export default function TaskList() {
                         </IconButton>
                     </div>
                 </div>
-                {taskReadLoading && !Boolean(taskData.tasks.length) &&
+                {taskReadLoading && !Boolean(tasks.length) &&
                     <div className='d-flex justify-center pa-5 ma-5'>
                         <CircularProgress />
                     </div>
                 }
-                {Boolean(taskData.tasks.length) &&
+                {Boolean(tasks.length) &&
                     <div>
-                        {taskData.tasks.map((task, index) => (
+                        {tasks.map((task, index) => (
                             <CardActionArea onClick={onFocusTask} data-index={index} key={index.toString()}>
                                 <ListItem>
                                     <ListItemAvatar>
@@ -92,7 +92,7 @@ export default function TaskList() {
                     <CreateWork
                         onCloseMyself={() => { setCreateWorkDialog(false); }}
                         openCreateTaskDialog={() => { setCreateTaskDialog(true); }}
-                        date={taskData.date}
+                        date={props.date}
                         taskRead={taskRead}
                         focusTask={focusTask}
                     />
@@ -111,7 +111,7 @@ export default function TaskList() {
                     />
                 }
             </Dialog>
-            {/* <pre>{JSON.stringify(taskData, null, 2)}</pre> */}
+            {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
     );
 }

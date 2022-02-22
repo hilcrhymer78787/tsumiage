@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { connect } from "react-redux";
-import { Button, CardActionArea } from '@material-ui/core';
+import { Button, CardActionArea, Dialog } from '@material-ui/core';
 import Layout from '@/layouts/default';
 import styles from '@/styles/Calendar.module.scss';
 import store, { setCalendars } from "@/store/index";
 import DayIcon from "@/components/calendar/DayIcon";
 import Router from 'next/router';
 import Pagination from "@/components/calendar/Pagination";
+import moment from 'moment';
+import TaskList from '@/components/task/TaskList';
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -58,36 +60,48 @@ function About({ dispatch, calendars, loginInfo }) {
     };
 
     return (
-        <div className='card'>
-            <div className="card_header">
-                <Pagination />
+        <>
+            <div className='card'>
+                <div className="card_header">
+                    <Pagination />
+                </div>
+                <div className="card_body pa-0">
+                    <ul className={styles.indent + " pa-0"}>
+                        {week.map((day, index) => (
+                            <li className={styles.indent_item} key={index.toString()}>{day}</li>
+                        ))}
+                    </ul>
+                    <ul className={styles.content}>
+                        {[...Array(firstDay())].map((n, index) => (
+                            <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
+                        ))}
+                        {calendars.map((calendar, index) => (
+                            <li key={calendar.date} className={styles.content_item + ' main'}>
+                                <CardActionArea onClick={() => {
+                                    Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
+                                }} className={styles.content_item_inner}>
+                                    <DayIcon day={index + 1} />
+                                    <div className={styles.content_item_inner_main}>{calendar.minute}分</div>
+                                </CardActionArea>
+                            </li>
+                        ))}
+                        {[...Array(lastDayCount())].map((n, index) => (
+                            <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <div className="card_body pa-0">
-                <ul className={styles.indent + " pa-0"}>
-                    {week.map((day, index) => (
-                        <li className={styles.indent_item} key={index.toString()}>{day}</li>
-                    ))}
-                </ul>
-                <ul className={styles.content}>
-                    {[...Array(firstDay())].map((n, index) => (
-                        <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
-                    ))}
-                    {calendars.map((calendar, index) => (
-                        <li key={calendar.date} className={styles.content_item + ' main'}>
-                            <CardActionArea onClick={() => {
-                                Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
-                            }} className={styles.content_item_inner}>
-                                <DayIcon day={index + 1} />
-                                <div>{calendar.minute}</div>
-                            </CardActionArea>
-                        </li>
-                    ))}
-                    {[...Array(lastDayCount())].map((n, index) => (
-                        <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
-                    ))}
-                </ul >
-            </div >
-        </div >
+            <Dialog
+                open={Boolean(router.query.day)}
+                onClose={() => {
+                    setCalendars(year(), month());
+                    Router.push(`/calendar?year=${year()}&month=${month()}`);
+                }}>
+                {Boolean(router.query.day) &&
+                    <TaskList date={moment(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")} />
+                }
+            </Dialog>
+        </>
     );
 }
 
