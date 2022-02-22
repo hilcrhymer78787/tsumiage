@@ -56,10 +56,15 @@ export default function TaskList() {
         <>
             <div className="card">
                 <div className="card_header">
-                    <span className="card_header_ttl">タイトル</span>
-                    <IconButton onClick={onNewTask} color="primary" className='card_header_btn' component="span">
-                        <AddIcon />
-                    </IconButton>
+                    <div className="card_header_left">
+                        <h2 className="card_header_left_main">タスク</h2>
+                        <h3 className='card_header_left_sub'>{taskData.date}</h3>
+                    </div>
+                    <div className="card_header_right">
+                        <IconButton onClick={onNewTask} color="primary" className='card_header_right_btn' component="span">
+                            <AddIcon />
+                        </IconButton>
+                    </div>
                 </div>
                 {taskReadLoading && !Boolean(taskData.tasks.length) &&
                     <div className='d-flex justify-center pa-5 ma-5'>

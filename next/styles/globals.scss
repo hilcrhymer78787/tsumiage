@@ -68,15 +68,22 @@ main {
         background-color: #3f51b5;
         color: #fff;
         padding: 16px;
-        &_ttl {
-            font-size: 1.25rem;
-            font-weight: 500;
-            letter-spacing: 0.0125em;
-            line-height: 2rem;
-            word-break: break-all;
+        &_left {
+            &_main {
+                font-size: 1.25rem;
+                font-weight: 500;
+                letter-spacing: 0.0125em;
+                line-height: 2rem;
+                word-break: break-all;
+            }
+            &_sub {
+                font-size: 15px;
+            }
         }
-        &_btn {
-            background-color: white !important;
+        &_right {
+            &_btn {
+                background-color: white !important;
+            }
         }
     }
     &_body {

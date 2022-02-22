@@ -80,7 +80,9 @@ function Login() {
     return (
         <div className='card'>
             <div className="card_header">
-                <span className="card_header_ttl">ログイン</span>
+                <div className="card_header_left">
+                    <h2 className="card_header_left_main">ログイン</h2>
+                </div>
             </div>
             <div className="card_body">
                 <ul>

@@ -86,7 +86,9 @@ export default function CreateTask(props: Props) {
         <div className='card'>
             {formTask && <>
                 <div className="card_header">
-                    <span className="card_header_ttl">{props.focusTask ? props.focusTask.name : '新規タスク登録'}</span>
+                    <div className="card_header_left">
+                        <h2 className="card_header_left_main">{props.focusTask ? props.focusTask.name : '新規タスク登録'}</h2>
+                    </div>
                 </div>
                 <div className="card_body">
                     <ul>

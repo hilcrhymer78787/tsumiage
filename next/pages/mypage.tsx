@@ -38,7 +38,9 @@ function Mypage({ dispatch, loginInfo }) {
     return (
         <div id='mypage' className='card'>
             <div className="card_header">
-                <span className="card_header_ttl">マイページ</span>
+                <div className="card_header_left">
+                    <h2 className="card_header_left_main">マイページ</h2>
+                </div>
             </div>
             <div className="card_body py-5">
                 <div className='myinfo'>
@@ -57,13 +59,13 @@ function Mypage({ dispatch, loginInfo }) {
                     onClick={logout}
                     variant="contained">ログアウト</Button>
                 <Button color="primary"
-                    onClick={()=>{setCreateUserDialog(true);}}
+                    onClick={() => { setCreateUserDialog(true); }}
                     variant="contained"
                 >編集</Button>
             </div>
             <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false); }}>
                 {createUserDialog &&
-                    <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }}/>
+                    <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }} />
                 }
             </Dialog>
         </div>

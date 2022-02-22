@@ -13,6 +13,8 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import TextField from '@material-ui/core/TextField';
 import CreateTask from '@/components/task/CreateTask';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
+import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+
 
 type Props = {
     date: string,
@@ -78,8 +80,15 @@ export default function CreateWork(props: Props) {
     return (
         <div className='card'>
             <div className="card_header">
-                <span className="card_header_ttl">{props.focusTask.name}</span>
-                <SettingsIcon onClick={() => { props.openCreateTaskDialog(); }} />
+                <div className="card_header_left">
+                    <h2 className="card_header_left_main">{props.focusTask.name}</h2>
+                    <h3 className='card_header_left_sub'>{props.date}</h3>
+                </div>
+                <div className="card_header_right">
+                    <IconButton onClick={() => { props.openCreateTaskDialog(); }} color="primary" className='card_header_right_btn' component="span">
+                        <SettingsIcon />
+                    </IconButton>
+                </div>
             </div>
             <div className="card_body">
                 <ul>
