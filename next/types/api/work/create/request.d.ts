@@ -3,4 +3,5 @@ export interface apiWorkCreateRequestType {
     task_id: number,
     id: number,
     minute: number,
+    memo: string,
 }

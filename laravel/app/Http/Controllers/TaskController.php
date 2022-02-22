@@ -23,7 +23,7 @@ class TaskController extends Controller
         foreach ($return['tasks'] as $task) {
             $work = Work::where('work_task_id', $task['id'])
                 ->where('work_date', $request['date'])
-                ->select('work_id as id', 'work_minute as minute')
+                ->select('work_id as id', 'work_minute as minute', 'work_memo as memo')
                 ->first();
             if ($work) {
                 $task['work'] = $work;

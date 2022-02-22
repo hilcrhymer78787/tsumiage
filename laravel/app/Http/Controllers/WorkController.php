@@ -115,6 +115,7 @@ class WorkController extends Controller
                     'work_date' => $request['date'],
                     'work_task_id' => $request['task_id'],
                     'work_minute' => $request['minute'],
+                    'work_memo' => $request['memo'],
                 ]);
             return;
         }
@@ -125,6 +126,7 @@ class WorkController extends Controller
             'work_date' => $request['date'],
             'work_task_id' => $request['task_id'],
             'work_minute' => $request['minute'],
+            'work_memo' => $request['memo'],
         ]);
         return;
     }

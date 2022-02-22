@@ -13,4 +13,5 @@ export interface apiTaskReadResponseTaskType {
 export interface apiTaskReadResponseTaskWorkType {
     id: number;
     minute: number;
+    memo: string;
 }

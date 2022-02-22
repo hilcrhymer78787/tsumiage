@@ -13,7 +13,8 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import TextField from '@material-ui/core/TextField';
 import CreateTask from '@/components/task/CreateTask';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
-import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+// import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 type Props = {
     date: string,
@@ -26,6 +27,7 @@ export default function CreateWork(props: Props) {
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [formMinute, setFormMinute] = useState(0);
+    const [formMemo, setFormMemo] = useState('');
     const workDelete = () => {
         const apiParam: apiWorkDeleteRequestType = {
             date: props.date,
@@ -52,6 +54,7 @@ export default function CreateWork(props: Props) {
             date: props.date,
             task_id: props.focusTask.id,
             minute: formMinute,
+            memo: formMemo,
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/work/create`,
@@ -73,8 +76,13 @@ export default function CreateWork(props: Props) {
         setFormMinute(Number(event.target.value));
     };
 
+    const onChangeMemo = (event) => {
+        setFormMemo(event.target.value);
+    };
+
     useEffect(() => {
         setFormMinute(props.focusTask.work.minute);
+        setFormMemo(props.focusTask.work.memo);
     }, []);
     return (
         <div className='card'>
@@ -91,7 +99,7 @@ export default function CreateWork(props: Props) {
             </div>
             <div className="card_body">
                 <ul>
-                    <li className='mb-3'>
+                    <li className='mb-5'>
                         <FormControl fullWidth>
                             <InputLabel id="minute-label">実績時間</InputLabel>
                             <Select
@@ -104,6 +112,16 @@ export default function CreateWork(props: Props) {
                                 ))}
                             </Select>
                         </FormControl>
+                    </li>
+                    <li className='mb-5'>
+                        <h4>メモ</h4>
+                        <TextareaAutosize
+                            onChange={onChangeMemo}
+                            value={formMemo}
+                            minRows={6}
+                            placeholder="memo"
+                            style={{ width: '100%' }}
+                        />
                     </li>
                 </ul>
             </div>
