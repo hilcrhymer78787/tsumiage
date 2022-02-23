@@ -14,6 +14,7 @@ import CreateTask from '@/components/task/CreateTask';
 import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import moment from 'moment';
+import { MINUTE } from '@/static/const'
 type Props = {
     date: string,
 }
@@ -146,7 +147,7 @@ export default function TaskList(props: Props) {
                                         />
                                     }>
                                     <ListItemAvatar onClick={onFocusTask} data-index={index}>
-                                        <Avatar sx={{ bgcolor: task.work.id ? '#3f51b5' : '' }}>
+                                        <Avatar sx={{ bgcolor: Boolean(task.work.id) ? '#3f51b5' : '' }}>
                                             <TaskOutlinedIcon />
                                         </Avatar>
                                     </ListItemAvatar>

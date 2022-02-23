@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import CreateWork from '@/components/task/CreateWork';
 import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
+import { MINUTE } from '@/static/const'
 
 type Props = {
     focusTask: apiTaskReadResponseTaskType
@@ -82,7 +83,7 @@ export default function CreateTask(props: Props) {
         let isError: boolean = false;
         setNameError("");
         if (formTask.name == "") {
-            setNameError("名前は必須です");
+            setNameError("タスクの名前は必須です");
             isError = true;
         }
         return isError;
@@ -114,7 +115,7 @@ export default function CreateTask(props: Props) {
                                 helperText={nameError}
                                 value={formTask.name}
                                 onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
-                                label="name" variant="outlined" color="primary" />
+                                label="タスクの名前" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
                             <FormControl fullWidth>
@@ -124,8 +125,8 @@ export default function CreateTask(props: Props) {
                                     value={formTask.default_minute}
                                     onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
                                 >
-                                    {[...Array(100 + 1)].map((n, index) => (
-                                        <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                    {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
+                                        <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
                                     ))}
                                 </Select>
                             </FormControl>

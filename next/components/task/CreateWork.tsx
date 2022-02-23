@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import CreateTask from '@/components/task/CreateTask';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
 import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { MINUTE } from '@/static/const'
 // import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 type Props = {
@@ -81,7 +82,11 @@ export default function CreateWork(props: Props) {
     };
 
     useEffect(() => {
-        setFormMinute(props.focusTask.work.minute);
+        if (props.focusTask.work.minute) {
+            setFormMinute(props.focusTask.work.minute);
+        } else {
+            setFormMinute(props.focusTask.default_minute);
+        }
         setFormMemo(props.focusTask.work.memo);
     }, []);
     return (
@@ -107,8 +112,8 @@ export default function CreateWork(props: Props) {
                                 value={formMinute}
                                 onChange={onChangeMinute}
                             >
-                                {[...Array(100 + 1)].map((n, index) => (
-                                    <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
+                                    <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>

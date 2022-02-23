@@ -82,9 +82,7 @@ function About({ dispatch, calendars, loginInfo }) {
                                     Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
                                 }} className={styles.content_item_inner}>
                                     <DayIcon day={index + 1} />
-                                    {Boolean(calendar.minute) &&
-                                        <div className={styles.content_item_inner_main}>{calendar.minute}分</div>
-                                    }
+                                    <div className={styles.content_item_inner_main}>{Boolean(calendar.minute) ? `${calendar.minute}分` : ''}</div>
                                 </CardActionArea>
                             </li>
                         ))}
