@@ -2,6 +2,6 @@ export interface apiUserCreateRequestType {
     id: number
     email: string
     name: string
-    token: string
+    password: password,
     user_img: string
 }
