@@ -1,10 +1,12 @@
+import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { connect } from "react-redux";
 import { Button, CardActionArea, Dialog } from '@material-ui/core';
 import Layout from '@/layouts/default';
 import styles from '@/styles/Calendar.module.scss';
-import store, { setCalendarData } from "@/store/index";
+import store from "@/store/index";
+import { api } from '@/plugins/axios';
 import DayIcon from "@/components/calendar/DayIcon";
 import Router from 'next/router';
 import Pagination from "@/components/calendar/Pagination";
@@ -12,10 +14,14 @@ import moment from 'moment';
 import TaskList from '@/components/task/TaskList';
 import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response'
 import LinePlot from '@/components/calendar/LinePlot'
+import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response'
+import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request'
+import axios from 'axios'
+const CancelToken = axios.CancelToken;
+let getCalendarDataCancel: any = null;
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
-        calendars: state.calendarData.calendars,
     };
 };
 About.getLayout = function getLayout(page) {
@@ -24,11 +30,15 @@ About.getLayout = function getLayout(page) {
     );
 };
 
-function About({ dispatch, calendars, loginInfo }) {
+function About({ dispatch, loginInfo }) {
+    const [calendarData, setCalendarData] = useState({
+        calendars: [],
+        analytics: {}
+    } as apiWorkReadCalendarResponseType);
     const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const router = useRouter();
     useEffect(() => {
-        setCalendarData(year(), month());
+        getCalendarData(year(), month());
     }, []);
 
     const year = (): number => {
@@ -61,11 +71,36 @@ function About({ dispatch, calendars, loginInfo }) {
         );
     };
 
+    const getCalendarData = async (year: number, month: number) => {
+
+        if (getCalendarDataCancel) {
+            getCalendarDataCancel()
+        }
+        let apiParam: apiWorkReadCalendarRequestType = {
+            year: year,
+            month: month
+        }
+        const requestConfig: AxiosRequestConfig = {
+            url: `/api/work/read/calendar`,
+            method: "GET",
+            params: apiParam,
+            cancelToken: new CancelToken(c => {
+                getCalendarDataCancel = c
+            }),
+        };
+        await api(requestConfig)
+            .then((res: AxiosResponse<apiWorkReadCalendarResponseType>) => {
+                setCalendarData(res.data)
+            })
+    }
+
     return (
         <>
             <div className='card mb-5'>
                 <div className="card_header">
-                    <Pagination />
+                    <Pagination setCalendarData={(date: { year: number, month: number }) => {
+                        getCalendarData(date.year, date.month)
+                    }} />
                 </div>
                 <div className="card_body pa-0">
                     <ul className={styles.indent + " pa-0"}>
@@ -77,7 +112,7 @@ function About({ dispatch, calendars, loginInfo }) {
                         {[...Array(firstDay())].map((n, index) => (
                             <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
                         ))}
-                        {calendars.map((calendar: apiWorkReadCalendarResponseCalendarType, index: number) => (
+                        {calendarData.calendars.map((calendar: apiWorkReadCalendarResponseCalendarType, index: number) => (
                             <li key={calendar.date} className={styles.content_item + ' main'}>
                                 <CardActionArea onClick={() => {
                                     Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
@@ -115,7 +150,7 @@ function About({ dispatch, calendars, loginInfo }) {
             <Dialog
                 open={Boolean(router.query.day)}
                 onClose={() => {
-                    setCalendarData(year(), month());
+                    getCalendarData(year(), month());
                     Router.push(`/calendar?year=${year()}&month=${month()}`);
                 }}>
                 {Boolean(router.query.day) &&

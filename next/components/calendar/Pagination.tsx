@@ -2,12 +2,12 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
-import store, { setCalendarData } from "@/store/index";
 import moment from "moment";
 import styled from "styled-components";
-
-export default function Pagination() {
+type Props = {
+    setCalendarData: any
+}
+export default function Pagination(props: Props) {
     const router = useRouter();
     const year = (): number => {
         return Number(router.query.year);
@@ -27,19 +27,19 @@ export default function Pagination() {
     const onClickPrevMonth = () => {
         if (month() == 1) {
             router.push(`/calendar?year=${year() - 1}&month=12`);
-            setCalendarData(year() - 1, 12);
+            props.setCalendarData({ year: year() - 1, month: 12 });
         } else {
             router.push(`/calendar?year=${year()}&month=${month() - 1}`);
-            setCalendarData(year(), month() - 1);
-        }
-    };
+            props.setCalendarData({ year: year(), month: month() - 1 })
+        };
+    }
     const onClickNextMonth = () => {
         if (month() == 12) {
             router.push(`/calendar?year=${year() + 1}&month=1`);
-            setCalendarData(year() + 1, 1);
+            props.setCalendarData({ year: year() + 1, month: 1 });
         } else {
             router.push(`/calendar?year=${year()}&month=${month() + 1}`);
-            setCalendarData(year(), month() + 1);
+            props.setCalendarData({ year: year(), month: month() + 1 });
         }
     };
     return (
@@ -49,7 +49,7 @@ export default function Pagination() {
             <StyledNavigateNextIcon onClick={onClickNextMonth} />
         </PaginationDiv>
     );
-}
+};
 const H1 = styled.h1`
 font-size: 25px;
 width: 183px;
