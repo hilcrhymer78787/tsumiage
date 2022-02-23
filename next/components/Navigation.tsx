@@ -4,8 +4,9 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import TaskIcon from '@mui/icons-material/Task';
 import TodayIcon from '@mui/icons-material/Today';
-import PersonIcon from '@mui/icons-material/Person';
+import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import moment from 'moment';
+import GroupIcon from '@mui/icons-material/Group';
 export default function Navigation() {
     const router = useRouter();
     const [value, setValue] = useState(router.pathname);
@@ -32,6 +33,14 @@ export default function Navigation() {
                 label="calendar"
                 value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
                 icon={<TodayIcon />} />
+            <BottomNavigationAction
+                label="goal"
+                value="/goal"
+                icon={<SportsScoreIcon />} />
+            <BottomNavigationAction
+                label="friend"
+                value="/friend"
+                icon={<GroupIcon />} />
         </BottomNavigation>
     );
 }
