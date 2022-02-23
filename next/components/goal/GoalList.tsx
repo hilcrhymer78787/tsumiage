@@ -22,14 +22,14 @@ export default function GoalList(props: Props) {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
-    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
+    const [goal, setGoals] = useState(null);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
 
     const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
         const clickedIndex = e.currentTarget.dataset.index;
-        setFocusTask(tasks[clickedIndex]);
+        setFocusTask(goal[clickedIndex]);
         setCreateWorkDialog(true);
     };
 
@@ -38,19 +38,19 @@ export default function GoalList(props: Props) {
         setCreateTaskDialog(true);
     };
 
-    const taskRead = () => {
+    const goalRead = () => {
         const params: apiTaskReadRequestType = {
-            date: props.date,
+            date: '',
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/task/read`,
+            url: `/api/goal/read`,
             method: "GET",
             params: params
         };
         seTtaskReadLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                setTasks(res.data.tasks);
+                setGoals(res.data);
             })
             .finally(() => {
                 seTtaskReadLoading(false);
@@ -58,7 +58,7 @@ export default function GoalList(props: Props) {
     };
 
     const workDelete = (e) => {
-        const task = tasks[e.currentTarget.dataset.index];
+        const task = goal[e.currentTarget.dataset.index];
         if (!confirm(`${props.date}、「${task.name}」の実績を削除しますか？`)) {
             return;
         }
@@ -82,7 +82,7 @@ export default function GoalList(props: Props) {
     };
 
     const workCreate = (e) => {
-        const task = tasks[e.currentTarget.dataset.index];
+        const task = goal[e.currentTarget.dataset.index];
         const apiParam: apiWorkCreateRequestType = {
             id: task.work.id,
             date: props.date,
@@ -106,12 +106,12 @@ export default function GoalList(props: Props) {
     };
 
     useEffect(() => {
-        // taskRead();
+        goalRead();
     }, []);
 
     return (
         <>
-            <div className="card">
+            {/* <div className="card">
                 <div className="card_header">
                     <div className="card_header_left">
                         <h2 className="card_header_left_main">目標</h2>
@@ -122,14 +122,14 @@ export default function GoalList(props: Props) {
                         </IconButton>
                     </div>
                 </div>
-                {taskReadLoading && !Boolean(tasks.length) &&
+                {taskReadLoading && !Boolean(goal.length) &&
                     <div className='d-flex justify-center pa-5 ma-5'>
                         <CircularProgress />
                     </div>
                 }
-                {Boolean(tasks.length) &&
+                {Boolean(goal.length) &&
                     <div>
-                        {/* {tasks.map((task, index) => (
+                        {goal.map((task, index) => (
                             <CardActionArea key={index.toString()}>
                                 <ListItem
                                     secondaryAction={task.work.id ?
@@ -156,10 +156,10 @@ export default function GoalList(props: Props) {
                                     />
                                 </ListItem>
                             </CardActionArea>
-                        ))} */}
+                        ))}
                     </div>
                 }
-            </div>
+            </div> */}
 
             <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
                 {createWorkDialog &&
@@ -185,7 +185,7 @@ export default function GoalList(props: Props) {
                     />
                 }
             </Dialog>
-            {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
+            <pre>{JSON.stringify(goal, null, 2)}</pre>
         </>
     );
 }
