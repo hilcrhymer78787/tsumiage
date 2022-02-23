@@ -27,6 +27,35 @@ class WorkController extends Controller
             array_push($return['calendars'], $calendar);
             array_push($analytics['labels'], $day);
         }
+
+        // データ
+        $GRAPH_COLORS = [
+            "#2196f390",
+            "#ff525290",
+            "#fff9b1",
+            "#d7e7af",
+            "#a5d4ad",
+            "#a3bce2",
+            "#a59aca",
+            "#cfa7cd",
+            "#f4b4d0",
+            "#f5b2b2",
+        ];
+        $analytics['datasets'] = [];
+        $tasks = (new TaskService())->getTasksByUserId($loginInfo['id']);
+        foreach ($tasks as $index => $task) {
+            $dataset['label'] = $task['name'];
+            $dataset['borderColor'] = $GRAPH_COLORS[$index];
+            $dataset['data'] = [];
+            for ($day = 1; $day <= $last_day; $day++) {
+                $sum_minute = (int)Work::where('work_task_id', $task['id'])
+                    ->where("work_date", ">=", date('Y-m-d', strtotime($year_month . '-1')))
+                    ->where("work_date", "<=", date('Y-m-d', strtotime($year_month . '-' . $day)))
+                    ->sum('work_minute');
+                array_push($dataset['data'], $sum_minute);
+            }
+            array_push($analytics['datasets'], $dataset);
+        }
         $return['analytics'] = $analytics;
 
         return $return;

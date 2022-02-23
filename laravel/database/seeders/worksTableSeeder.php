@@ -16,13 +16,13 @@ class worksTableSeeder extends Seeder
     {
         //  \App\Models\Work::factory(100)->create();
         for($day = 1; $day <= 28; $day++){
-            for($taskId = 1; $taskId <=3; $taskId++){
+            for($taskId = 1; $taskId <=4; $taskId++){
                 DB::table('works')->insert([
                     [
                         'work_user_id' => 1,
                         'work_task_id' => $taskId,
                         'work_date' => date("Y-m-${day}"),
-                        'work_minute' => $taskId * 5,
+                        'work_minute' => rand(5,50),
                     ],
                 ]);
             }

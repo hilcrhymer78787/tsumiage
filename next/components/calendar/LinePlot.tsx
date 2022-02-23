@@ -24,33 +24,22 @@ type Props = {
     data: apiWorkReadCalendarResponseAnalyticsType
 }
 function LinePlot(props: Props) {
-    let graphData = {
-        labels: props.data.labels,
-        datasets: [
-            {
-                label: "A社",
-                data: [65, 59, 60, 81, 56, 55],
-                borderColor: "rgb(75, 192, 192)",
-            },
-            {
-                label: "B社",
-                data: [60, 55, 57, 61, 75, 50],
-                borderColor: "rgb(75, 100, 192)",
-            },
-        ],
-    };
 
     const options: {} = {
         maintainAspectRatio: false,
     };
 
     return (
-        <Line
-            height={300}
-            data={graphData}
-            options={options}
-            id="chart-key"
-        />
+        <>
+            {props.data.datasets.length &&
+                <Line
+                    height={300}
+                    data={props.data}
+                    options={options}
+                    id="chart-key"
+                />
+            }
+        </>
     );
 }
 
