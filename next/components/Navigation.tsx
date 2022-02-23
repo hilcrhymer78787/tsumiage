@@ -2,12 +2,19 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import TaskIcon from '@mui/icons-material/Task';
+import TodayIcon from '@mui/icons-material/Today';
+import PersonIcon from '@mui/icons-material/Person';
+import moment from 'moment'
 export default function Navigation() {
     const router = useRouter();
     const [value, setValue] = useState(router.pathname);
+    const nowYear = (): number => {
+        return Number(moment().format("Y"));
+    };
+    const nowMonth = (): number => {
+        return Number(moment().format("M"));
+    };
     return (
         <BottomNavigation
             showLabels
@@ -20,15 +27,15 @@ export default function Navigation() {
             <BottomNavigationAction
                 label="task"
                 value="/task"
-                icon={<FavoriteIcon />} />
+                icon={<TaskIcon />} />
             <BottomNavigationAction
                 label="calendar"
-                value="/calendar?year=2022&month=2"
-                icon={<RestoreIcon />} />
+                value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
+                icon={<TodayIcon />} />
             <BottomNavigationAction
                 label="mypage"
                 value="/mypage"
-                icon={<LocationOnIcon />} />
+                icon={<PersonIcon />} />
         </BottomNavigation>
     );
 }

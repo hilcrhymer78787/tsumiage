@@ -44,6 +44,13 @@ class tasksTableSeeder extends Seeder
                 'task_sort_key' => 4,
             ],
             [
+                'task_user_id' => 1,
+                'task_name' => 'その他',
+                'task_status' => 1,
+                'task_default_minute' => 20,
+                'task_sort_key' => 5,
+            ],
+            [
                 'task_user_id' => 2,
                 'task_name' => '掃除',
                 'task_status' => 1,
