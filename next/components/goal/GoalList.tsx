@@ -115,7 +115,6 @@ export default function GoalList(props: Props) {
                 <div className="card_header">
                     <div className="card_header_left">
                         <h2 className="card_header_left_main">目標</h2>
-                        <h3 className='card_header_left_sub'>{props.date}</h3>
                     </div>
                     <div className="card_header_right">
                         <IconButton onClick={onNewTask} className='card_header_right_btn' component="span">
