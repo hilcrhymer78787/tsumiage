@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Button, CardActionArea, Dialog } from '@material-ui/core';
 import Layout from '@/layouts/default';
 import styles from '@/styles/Calendar.module.scss';
-import store, { setCalendars } from "@/store/index";
+import store, { setCalendarData } from "@/store/index";
 import DayIcon from "@/components/calendar/DayIcon";
 import Router from 'next/router';
 import Pagination from "@/components/calendar/Pagination";
@@ -15,7 +15,7 @@ import LinePlot from '@/components/calendar/LinePlot'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
-        calendars: state.calendars,
+        calendars: state.calendarData.calendars,
     };
 };
 About.getLayout = function getLayout(page) {
@@ -28,7 +28,7 @@ function About({ dispatch, calendars, loginInfo }) {
     const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const router = useRouter();
     useEffect(() => {
-        setCalendars(year(), month());
+        setCalendarData(year(), month());
     }, []);
 
     const year = (): number => {
@@ -115,7 +115,7 @@ function About({ dispatch, calendars, loginInfo }) {
             <Dialog
                 open={Boolean(router.query.day)}
                 onClose={() => {
-                    setCalendars(year(), month());
+                    setCalendarData(year(), month());
                     Router.push(`/calendar?year=${year()}&month=${month()}`);
                 }}>
                 {Boolean(router.query.day) &&

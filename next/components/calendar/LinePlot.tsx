@@ -21,9 +21,8 @@ ChartJS.register(
 );
 
 function LinePlot() {
-    const labels = ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月"];
     const graphData = {
-        labels: labels,
+        labels: ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月"],
         datasets: [
             {
                 label: "A社",

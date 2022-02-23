@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import { CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@material-ui/core';
-import store, { setCalendars } from "@/store/index";
+import store, { setCalendarData } from "@/store/index";
 import moment from "moment";
 import styled from "styled-components";
 
@@ -27,19 +27,19 @@ export default function Pagination() {
     const onClickPrevMonth = () => {
         if (month() == 1) {
             router.push(`/calendar?year=${year() - 1}&month=12`);
-            setCalendars(year() - 1, 12);
+            setCalendarData(year() - 1, 12);
         } else {
             router.push(`/calendar?year=${year()}&month=${month() - 1}`);
-            setCalendars(year(), month() - 1);
+            setCalendarData(year(), month() - 1);
         }
     };
     const onClickNextMonth = () => {
         if (month() == 12) {
             router.push(`/calendar?year=${year() + 1}&month=1`);
-            setCalendars(year() + 1, 1);
+            setCalendarData(year() + 1, 1);
         } else {
             router.push(`/calendar?year=${year()}&month=${month() + 1}`);
-            setCalendars(year(), month() + 1);
+            setCalendarData(year(), month() + 1);
         }
     };
     return (

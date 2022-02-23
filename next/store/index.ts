@@ -7,26 +7,23 @@ import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearer
 import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response'
 import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request'
 const CancelToken = axios.CancelToken;
-let setCalendarsCancel: any = null;
+let setCalendarDataCancel: any = null;
 let setLoginInfoByTokenCancel: any = null;
 
 const initialState = {
     loginInfo: null,
-    calendars: [],
-    count: 1,
-    post: 100,
+    calendarData: {
+        calendars:[],
+        analytics:{},
+    },
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'setLoginInfo':
             return { ...state, loginInfo: action.value, };
-        case 'setCalendars':
-            return { ...state, calendars: action.value, };
-        case 'setCount':
-            return { ...state, count: action.value, };
-        case 'setPost':
-            return { ...state, post: action.value, };
+        case 'setCalendarData':
+            return { ...state, calendarData: action.value, };
         default:
             return state;
     }
@@ -52,10 +49,10 @@ export const bearerAuthentication = async () => {
             }
         })
 }
-export const setCalendars = async (year: number, month: number) => {
+export const setCalendarData = async (year: number, month: number) => {
 
-    if (setCalendarsCancel) {
-        setCalendarsCancel()
+    if (setCalendarDataCancel) {
+        setCalendarDataCancel()
     }
     let apiParam: apiWorkReadCalendarRequestType = {
         year: year,
@@ -66,12 +63,12 @@ export const setCalendars = async (year: number, month: number) => {
         method: "GET",
         params: apiParam,
         cancelToken: new CancelToken(c => {
-            setCalendarsCancel = c
+            setCalendarDataCancel = c
         }),
     };
     await api(requestConfig)
         .then((res: AxiosResponse<apiWorkReadCalendarResponseType>) => {
-            store.dispatch({ type: "setCalendars", value: res.data.calendars })
+            store.dispatch({ type: "setCalendarData", value: res.data })
         })
 }
 export default store;
