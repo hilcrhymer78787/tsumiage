@@ -143,7 +143,7 @@ export default function TaskList(props: Props) {
                                         <CheckBoxOutlineBlankIcon
                                             data-index={index}
                                             onClick={workCreate}
-                                            color="primary"
+                                            color="disabled"
                                         />
                                     }>
                                     <ListItemAvatar onClick={onFocusTask} data-index={index}>
