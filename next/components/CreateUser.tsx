@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { connect } from "react-redux";
-import { Button, CircularProgress, TextField } from '@material-ui/core';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import SendIcon from '@material-ui/icons/Send';
 import LoginLayout from '@/layouts/login';
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
@@ -147,6 +147,7 @@ function CreateUser(props: Props) {
                             <Button
                                 onClick={() => { setPasswordEditMode(true); }}
                                 variant="contained"
+                                color="inherit"
                             >パスワードを編集</Button>
                         </li>
                     </>}

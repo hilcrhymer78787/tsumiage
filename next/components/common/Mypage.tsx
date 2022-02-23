@@ -10,16 +10,9 @@ import { Button, TextField } from '@mui/material';
 import { orange } from "@mui/material/colors";
 import { connect } from "react-redux";
 import Router from 'next/router';
-Mypage.getLayout = function getLayout(page) {
-    return (
-        <Layout>{page}</Layout>
-    );
-};
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
-        count: state.count,
-        post: state.post
     };
 };
 function Mypage({ dispatch, loginInfo }) {

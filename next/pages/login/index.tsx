@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { Button, CircularProgress, TextField } from '@material-ui/core';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import SendIcon from '@material-ui/icons/Send';
 import LoginLayout from '@/layouts/login';
 import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";

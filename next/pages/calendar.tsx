@@ -2,7 +2,7 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { connect } from "react-redux";
-import { Button, CardActionArea, Dialog } from '@material-ui/core';
+import { Button, CardActionArea, Dialog } from '@mui/material';
 import Layout from '@/layouts/default';
 import styles from '@/styles/Calendar.module.scss';
 import store from "@/store/index";

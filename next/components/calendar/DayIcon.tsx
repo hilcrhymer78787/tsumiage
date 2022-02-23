@@ -52,7 +52,7 @@ height: 20px;
 font-size: 14px;
 border-radius: 50%;
 &.isToday {
-    background-color: #3f51b5;
+    background-color: #1976d2;
     color: white;
     font-size: 12px;
 }

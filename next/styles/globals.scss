@@ -23,6 +23,11 @@ hr {
     margin: 0;
     opacity: 1;
 }
+header{
+    .MuiAvatar-circular{
+        border: 2px solid #1976d2 !important;
+    }
+}
 main {
     padding: 70px 10px 70px;
     min-height: 100vh;
@@ -62,7 +67,7 @@ main {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #3f51b5;
+        background-color: #1976d2;
         color: #fff;
         padding: 12px;
         &_left {

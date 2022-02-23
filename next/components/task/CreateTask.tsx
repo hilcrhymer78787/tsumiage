@@ -8,12 +8,12 @@ import { apiTaskCreateRequestType } from '@/types/api/task/create/request';
 import { apiTaskDeleteRequestType } from '@/types/api/task/delete/request';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Button, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress } from '@mui/material';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import CreateWork from '@/components/task/CreateWork';
-import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
-import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
+import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
+import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
 import { MINUTE } from '@/static/const';
 
 type Props = {
@@ -148,13 +148,13 @@ export default function CreateTask(props: Props) {
                     </ul>
                 </div>
                 <div className="card_footer justify-space-between">
-                    <Button color="secondary"
+                    <Button color="error"
                         onClick={taskDelete}
                         variant="contained"
                         endIcon={taskDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
                         disabled={taskCreateLoading || taskDeleteLoading}
                     >削除</Button>
-                    <Button color="primary"
+                    <Button color="inherit"
                         onClick={taskCreate}
                         variant="contained"
                         endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}

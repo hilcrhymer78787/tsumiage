@@ -2,7 +2,6 @@ import React from 'react';
 import Navigation from "@/components/Navigation";
 import Header from "@/components/common/Header";
 import { connect } from "react-redux";
-import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state: any) => {
     return {

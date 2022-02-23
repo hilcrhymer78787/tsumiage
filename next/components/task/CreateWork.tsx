@@ -8,14 +8,14 @@ import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Button, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress } from '@mui/material';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import CreateTask from '@/components/task/CreateTask';
-import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
-import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
+import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
 import { MINUTE } from '@/static/const';
-// import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+// import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 type Props = {
     date: string,

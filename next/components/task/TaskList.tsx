@@ -147,7 +147,7 @@ export default function TaskList(props: Props) {
                                         />
                                     }>
                                     <ListItemAvatar onClick={onFocusTask} data-index={index}>
-                                        <Avatar sx={{ bgcolor: Boolean(task.work.id) ? '#3f51b5' : '' }}>
+                                        <Avatar sx={{ bgcolor: Boolean(task.work.id) ? '#1976d2' : '' }}>
                                             <TaskOutlinedIcon />
                                         </Avatar>
                                     </ListItemAvatar>
