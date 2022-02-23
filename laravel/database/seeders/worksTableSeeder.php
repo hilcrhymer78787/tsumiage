@@ -15,31 +15,17 @@ class worksTableSeeder extends Seeder
     public function run()
     {
         //  \App\Models\Work::factory(100)->create();
-        DB::table('works')->insert([
-            // [
-            //     'work_user_id' => 1,
-            //     'work_task_id' => 1,
-            //     'work_date' => date('Y-m-d'),
-            //     'work_minute' => 5,
-            // ],
-            [
-                'work_user_id' => 1,
-                'work_task_id' => 2,
-                'work_date' => date('Y-m-d'),
-                'work_minute' => 10,
-            ],
-            [
-                'work_user_id' => 1,
-                'work_task_id' => 3,
-                'work_date' => date('Y-m-d'),
-                'work_minute' => 15,
-            ],
-            [
-                'work_user_id' => 1,
-                'work_task_id' => 4,
-                'work_date' => date('Y-m-d'),
-                'work_minute' => 20,
-            ],
-        ]);
+        for($day = 1; $day <= 28; $day++){
+            for($taskId = 1; $taskId <=3; $taskId++){
+                DB::table('works')->insert([
+                    [
+                        'work_user_id' => 1,
+                        'work_task_id' => $taskId,
+                        'work_date' => date("Y-m-${day}"),
+                        'work_minute' => $taskId * 5,
+                    ],
+                ]);
+            }
+        }
     }
 }
