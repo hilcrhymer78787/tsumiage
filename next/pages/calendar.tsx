@@ -11,6 +11,7 @@ import Pagination from "@/components/calendar/Pagination";
 import moment from 'moment';
 import TaskList from '@/components/task/TaskList';
 import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response'
+import LinePlot from '@/components/calendar/LinePlot'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -62,7 +63,7 @@ function About({ dispatch, calendars, loginInfo }) {
 
     return (
         <>
-            <div className='card'>
+            <div className='card mb-5'>
                 <div className="card_header">
                     <Pagination />
                 </div>
@@ -92,6 +93,25 @@ function About({ dispatch, calendars, loginInfo }) {
                     </ul>
                 </div>
             </div>
+
+
+
+
+
+            <div className="card">
+                <div className="card_header">
+                    <div className="card_header_left">
+                        <h2 className="card_header_left_main">データ</h2>
+                    </div>
+                </div>
+                <div className="card_body">
+                    <LinePlot />
+                </div>
+            </div>
+
+
+
+
             <Dialog
                 open={Boolean(router.query.day)}
                 onClose={() => {
