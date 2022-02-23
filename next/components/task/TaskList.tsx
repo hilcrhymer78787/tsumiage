@@ -14,7 +14,7 @@ import CreateTask from '@/components/task/CreateTask';
 import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import moment from 'moment';
-import { MINUTE } from '@/static/const'
+import { MINUTE } from '@/static/const';
 type Props = {
     date: string,
 }

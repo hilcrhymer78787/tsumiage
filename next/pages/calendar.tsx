@@ -12,11 +12,11 @@ import Router from 'next/router';
 import Pagination from "@/components/calendar/Pagination";
 import moment from 'moment';
 import TaskList from '@/components/task/TaskList';
-import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response'
-import LinePlot from '@/components/calendar/LinePlot'
-import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response'
-import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request'
-import axios from 'axios'
+import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response';
+import LinePlot from '@/components/calendar/LinePlot';
+import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response';
+import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request';
+import axios from 'axios';
 const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
 const mapStateToProps = (state: any) => {
@@ -81,32 +81,32 @@ function About({ dispatch, loginInfo }) {
     const getCalendarData = async (year: number, month: number) => {
 
         if (getCalendarDataCancel) {
-            getCalendarDataCancel()
+            getCalendarDataCancel();
         }
-        let apiParam: apiWorkReadCalendarRequestType = {
+        const apiParam: apiWorkReadCalendarRequestType = {
             year: year,
             month: month
-        }
+        };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/work/read/calendar`,
             method: "GET",
             params: apiParam,
             cancelToken: new CancelToken(c => {
-                getCalendarDataCancel = c
+                getCalendarDataCancel = c;
             }),
         };
         await api(requestConfig)
             .then((res: AxiosResponse<apiWorkReadCalendarResponseType>) => {
-                setCalendarData(res.data)
-            })
-    }
+                setCalendarData(res.data);
+            });
+    };
 
     return (
         <>
             <div className='card mb-5'>
                 <div className="card_header">
                     <Pagination setCalendarData={(date: { year: number, month: number }) => {
-                        getCalendarData(date.year, date.month)
+                        getCalendarData(date.year, date.month);
                     }} />
                 </div>
                 <div className="card_body pa-0">
@@ -136,10 +136,6 @@ function About({ dispatch, loginInfo }) {
                 </div>
             </div>
 
-
-
-
-
             <div className="card">
                 <div className="card_header">
                     <div className="card_header_left">
@@ -150,9 +146,6 @@ function About({ dispatch, loginInfo }) {
                     <LinePlot data={calendarData.analytics}/>
                 </div>
             </div>
-
-
-
 
             <Dialog
                 open={Boolean(router.query.day)}

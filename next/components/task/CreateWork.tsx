@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import CreateTask from '@/components/task/CreateTask';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
 import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
-import { MINUTE } from '@/static/const'
+import { MINUTE } from '@/static/const';
 // import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 type Props = {

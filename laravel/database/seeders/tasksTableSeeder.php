@@ -24,7 +24,7 @@ class tasksTableSeeder extends Seeder
             ],
             [
                 'task_user_id' => 1,
-                'task_name' => 'プログラミングの勉強',
+                'task_name' => 'ITの勉強',
                 'task_status' => 1,
                 'task_default_minute' => 30,
                 'task_sort_key' => 2,

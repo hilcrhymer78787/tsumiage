@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import CreateWork from '@/components/task/CreateWork';
 import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@material-ui/core';
-import { MINUTE } from '@/static/const'
+import { MINUTE } from '@/static/const';
 
 type Props = {
     focusTask: apiTaskReadResponseTaskType

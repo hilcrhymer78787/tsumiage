@@ -5,7 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import TaskIcon from '@mui/icons-material/Task';
 import TodayIcon from '@mui/icons-material/Today';
 import PersonIcon from '@mui/icons-material/Person';
-import moment from 'moment'
+import moment from 'moment';
 export default function Navigation() {
     const router = useRouter();
     const [value, setValue] = useState(router.pathname);

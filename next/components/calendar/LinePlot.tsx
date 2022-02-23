@@ -1,6 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { apiWorkReadCalendarResponseAnalyticsType } from '@/types/api/work/read/calendar/response'
+import { apiWorkReadCalendarResponseAnalyticsType } from '@/types/api/work/read/calendar/response';
 import {
     Chart as ChartJS,
     CategoryScale,
