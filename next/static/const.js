@@ -1,4 +1,5 @@
 export const MINUTE = [
+    { txt: "0分", val: 0 },
     { txt: "1分", val: 1 },
     { txt: "2分", val: 2 },
     { txt: "3分", val: 3 },

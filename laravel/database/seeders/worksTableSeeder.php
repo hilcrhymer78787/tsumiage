@@ -22,7 +22,7 @@ class worksTableSeeder extends Seeder
                         'work_user_id' => 1,
                         'work_task_id' => $taskId,
                         'work_date' => date("Y-m-${day}"),
-                        'work_minute' => rand(5,50),
+                        'work_minute' => rand(1,10)*5,
                     ],
                 ]);
             }

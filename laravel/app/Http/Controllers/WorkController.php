@@ -25,7 +25,7 @@ class WorkController extends Controller
                 ->sum('work_minute');
             $calendar['users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['id']);
             array_push($return['calendars'], $calendar);
-            array_push($analytics['labels'], $day);
+            array_push($analytics['labels'], $day . '日');
         }
 
         // データ
