@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from "@/components/Navigation";
+import Header from "@/components/common/Header";
 import { connect } from "react-redux";
 import Button from '@material-ui/core/Button';
 
@@ -12,6 +13,7 @@ function Layout({ dispatch, children, loginInfo }) {
     return (
         <>
             {loginInfo && <>
+                <Header />
                 <main>
                     <div className="container">
                         {children}
