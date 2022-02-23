@@ -1,4 +1,4 @@
-export interface apiUserCreateResponseType {
+export interface apiUserCreateRequestType {
     id: number
     email: string
     name: string

@@ -5,6 +5,7 @@ import { Button, CircularProgress, TextField } from '@mui/material';
 import SendIcon from '@material-ui/icons/Send';
 import LoginLayout from '@/layouts/login';
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
+import { apiUserCreateRequestType } from "@/types/api/user/create/request";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
 import store from "@/store/index";
@@ -36,12 +37,12 @@ function CreateUser(props: Props) {
             return;
         }
         setCreateUserLoading(true);
-        const apiParam = {
+        const apiParam: apiUserCreateRequestType = {
             id: id,
             name: name,
             email: email,
             password: password,
-            user_img:'https://picsum.photos/500/300?image=30'
+            user_img: 'https://picsum.photos/500/300?image=30'
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/create`,
