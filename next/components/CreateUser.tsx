@@ -157,6 +157,7 @@ function CreateUser(props: Props) {
                 {!props.loginInfo &&
                     <Button
                         onClick={() => { Router.push("/login"); }}
+                        color="inherit"
                         variant="contained">ログイン画面へ
                     </Button>
                 }

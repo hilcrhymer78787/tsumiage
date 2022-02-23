@@ -110,6 +110,7 @@ function Login() {
                         <Button
                             onClick={testAuthentication}
                             variant="contained"
+                            color="inherit"
                             endIcon={testAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
                             disabled={testAuthenticationLoading || basicAuthenticationLoading}
                         >テストユーザーでログイン</Button>
@@ -119,6 +120,7 @@ function Login() {
             <div className="card_footer justify-space-between">
                 <Button
                     onClick={() => { Router.push("/login/new"); }}
+                    color="inherit"
                     variant="contained">新規登録</Button>
                 <Button color="primary"
                     onClick={basicAuthentication}
