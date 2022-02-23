@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Mypage from '@/components/common/Mypage'
+import Mypage from '@/components/common/Mypage';
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -27,7 +27,7 @@ function Header({ loginInfo }) {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
-                    <IconButton onClick={()=>{setMypageDialog(true)}} sx={{ p: 0 }}>
+                    <IconButton onClick={()=>{setMypageDialog(true);}} sx={{ p: 0 }}>
                         <Avatar src={loginInfo.user_img} />
                     </IconButton>
                 </Toolbar>

@@ -32,10 +32,6 @@ export default function Navigation() {
                 label="calendar"
                 value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
                 icon={<TodayIcon />} />
-            <BottomNavigationAction
-                label="mypage"
-                value="/mypage"
-                icon={<PersonIcon />} />
         </BottomNavigation>
     );
 }
