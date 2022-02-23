@@ -40,7 +40,8 @@ function CreateUser(props: Props) {
             id: id,
             name: name,
             email: email,
-            password: password
+            password: password,
+            user_img:'https://picsum.photos/500/300?image=30'
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/create`,
