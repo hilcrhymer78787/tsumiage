@@ -33,7 +33,14 @@ About.getLayout = function getLayout(page) {
 function About({ dispatch, loginInfo }) {
     const [calendarData, setCalendarData] = useState({
         calendars: [],
-        analytics: {}
+        analytics: {
+            labels: [] as string[],
+            datasets: {
+                label: '' as string,
+                data: [] as number[],
+                borderColor: '' as string,
+            } as any,
+        }
     } as apiWorkReadCalendarResponseType);
     const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const router = useRouter();
@@ -140,7 +147,7 @@ function About({ dispatch, loginInfo }) {
                     </div>
                 </div>
                 <div className="card_body">
-                    <LinePlot />
+                    <LinePlot data={calendarData.analytics}/>
                 </div>
             </div>
 

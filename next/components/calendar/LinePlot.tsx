@@ -1,5 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { apiWorkReadCalendarResponseAnalyticsType } from '@/types/api/work/read/calendar/response'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -19,10 +20,12 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-
-function LinePlot() {
-    const graphData = {
-        labels: ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月"],
+type Props = {
+    data: apiWorkReadCalendarResponseAnalyticsType
+}
+function LinePlot(props: Props) {
+    let graphData = {
+        labels: props.data.labels,
         datasets: [
             {
                 label: "A社",
