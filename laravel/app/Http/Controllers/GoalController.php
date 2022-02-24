@@ -63,8 +63,10 @@ class GoalController extends Controller
             $goal['sum_minute'] = $sum_minute;
 
             // データ
-            // "#2196f390",
-            // "#ff525290",
+            $analytics['labels'] = $dataset = (new WorkService())->getLabels([
+                'start_date' => $goal['start_date'],
+                'end_date' => $goal['end_date'],
+            ]);
             $analytics['datasets'] = [];
             $dataset = (new WorkService())->getDataset([
                 'task_id' => $goal['task_id'],
@@ -74,10 +76,13 @@ class GoalController extends Controller
                 'color' => '#2196f390'
             ]);
             array_push($analytics['datasets'], $dataset);
-            $analytics['labels'] = $dataset = (new WorkService())->getLabels([
+            $dataset = (new WorkService())->getGoalLine([
+                'minute' => $goal['minute'],
                 'start_date' => $goal['start_date'],
                 'end_date' => $goal['end_date'],
+                'color' => '#ff525290'
             ]);
+            array_push($analytics['datasets'], $dataset);
 
 
             $goal['analytics'] = $analytics;

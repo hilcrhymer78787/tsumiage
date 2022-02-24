@@ -28,4 +28,14 @@ class WorkService
         }
         return $labels;
     }
+    public function getGoalLine($param)
+    {
+        $dataset['label'] = '目標';
+        $dataset['borderColor'] = $param['color'];
+        $dataset['data'] = [];
+        for ($date = $param['start_date']; $date <= $param['end_date']; $date = date('Y-m-d', strtotime($date . '+1 day'))) {
+            array_push($dataset['data'], $param['minute']);
+        }
+        return $dataset;
+    }
 }
