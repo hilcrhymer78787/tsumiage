@@ -17,7 +17,7 @@ import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Ava
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
 import { MINUTE } from '@/static/const';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
-import moment from 'moment'
+import moment from 'moment';
 
 type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
@@ -83,7 +83,7 @@ export default function Creategoal(props: Props) {
             });
     };
     const validation = (): boolean => {
-        let isError: boolean = false;
+        const isError: boolean = false;
         setNameError("");
         // if (name == "") {
         //     setNameError("目標の名前は必須です");
@@ -118,7 +118,7 @@ export default function Creategoal(props: Props) {
                                 <Select
                                     labelId="defaultーminute-label"
                                     value={minute}
-                                    onChange={(e) => { setMinute(Number(e.target.value)) }}
+                                    onChange={(e) => { setMinute(Number(e.target.value)); }}
                                 >
                                     {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
                                         <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
@@ -136,7 +136,7 @@ export default function Creategoal(props: Props) {
                                         label="いつから"
                                         value={startDate}
                                         onChange={(v) => {
-                                            setStartDate(v)
+                                            setStartDate(v);
                                         }}
                                         renderInput={(params) => <TextField {...params} />}
                                     />
@@ -150,13 +150,12 @@ export default function Creategoal(props: Props) {
                                         label="いつまで"
                                         value={endDate}
                                         onChange={(v) => {
-                                            setEndDate(v)
+                                            setEndDate(v);
                                         }}
                                         renderInput={(params) => <TextField {...params} />}
                                     />
                                 </Box>
                             </Box>
-
 
                         </li>
                     </ul>

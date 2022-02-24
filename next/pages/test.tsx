@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Layout from '@/layouts/default';
-import BasicSelect from '@/components/Test'
+import BasicSelect from '@/components/Test';
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
