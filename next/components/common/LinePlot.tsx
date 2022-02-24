@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { apiWorkReadCalendarResponseAnalyticsType } from '@/types/api/work/read/calendar/response';
 import styled from "styled-components";
+import {analyticsType} from '@/types/common/analyticsType';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -22,7 +22,7 @@ ChartJS.register(
     Legend
 );
 type Props = {
-    data: apiWorkReadCalendarResponseAnalyticsType
+    data: analyticsType
 }
 function LinePlot(props: Props) {
 

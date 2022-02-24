@@ -13,7 +13,7 @@ import Pagination from "@/components/calendar/Pagination";
 import moment from 'moment';
 import TaskList from '@/components/task/TaskList';
 import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response';
-import LinePlot from '@/components/calendar/LinePlot';
+import LinePlot from '@/components/common/LinePlot';
 import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response';
 import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request';
 import axios from 'axios';

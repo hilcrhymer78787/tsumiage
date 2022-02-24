@@ -27,6 +27,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
+import {apiGoalReadResponseType} from '@/types/api/goal/read/response';
+import {apiGoalReadResponseGoalsType} from '@/types/api/goal/read/response';
 type Props = {
     // date: string,
 }
@@ -34,7 +36,7 @@ export default function GoalList(props: Props) {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
-    const [goals, setGoals] = useState([]);
+    const [goals, setGoals] = useState([] as apiGoalReadResponseGoalsType[]);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
@@ -61,7 +63,7 @@ export default function GoalList(props: Props) {
         };
         seTtaskReadLoading(true);
         api(requestConfig)
-            .then((res: AxiosResponse<any>) => {
+            .then((res: AxiosResponse<apiGoalReadResponseType>) => {
                 setGoals(res.data.goals);
             })
             .finally(() => {
@@ -211,7 +213,7 @@ export default function GoalList(props: Props) {
                     />
                 } */}
             </Dialog>
-            <pre>{JSON.stringify(goals, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(goals, null, 2)}</pre> */}
         </>
     );
 }

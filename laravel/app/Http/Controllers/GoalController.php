@@ -46,6 +46,10 @@ class GoalController extends Controller
             ->get();
 
         foreach ($goals as $goal) {
+            $today = strtotime(date('Y-m-d'));
+            $end_date = strtotime($goal['end_date']);
+            $goal['deadline_day_count'] = ($end_date - $today) / (60 * 60 * 24);
+
             // 1:未達成,2:達成,3:失敗
             $sum_minute = (int)Work::where('work_task_id', $goal['task_id'])
                 ->where("work_date", ">=", $goal['start_date'])
@@ -53,11 +57,11 @@ class GoalController extends Controller
                 ->sum('work_minute');
 
             if ($sum_minute >= $goal['minute']) {
-                $goal['state'] = '達成';
+                $goal['state'] = 2;
             } else if (date('Y-m-d') >= $goal['end_date']) {
-                $goal['state'] = '失敗';
+                $goal['state'] = 3;
             } else {
-                $goal['state'] = '未達成';
+                $goal['state'] = 1;
             }
 
             $goal['sum_minute'] = $sum_minute;
@@ -83,12 +87,10 @@ class GoalController extends Controller
                 'color' => '#ff525290'
             ]);
             array_push($analytics['datasets'], $dataset);
-
-
             $goal['analytics'] = $analytics;
         }
-
         $return['goals'] = $goals;
+
         return $return;
     }
 }
