@@ -62,7 +62,12 @@ export default function GoalItem(props: Props) {
         >
             <CardHeader
                 avatar={
-                    <Avatar>{Math.floor(props.goal.sum_minute * 100 / props.goal.minute)}%</Avatar>
+                    <Avatar
+                        sx={{
+                            fontSize: '13px',
+                            bgcolor: props.goal.sum_minute >= props.goal.minute ? '#1976d2' : ''
+                        }}
+                    >{Math.floor(props.goal.sum_minute * 100 / props.goal.minute)}%</Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">

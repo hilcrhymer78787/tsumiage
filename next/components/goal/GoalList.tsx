@@ -134,7 +134,7 @@ export default function GoalList(props: Props) {
                     title={`目標` + (goals.length ? `（${goals.length}件）` : '')}
                 />
                 {goals.length && goals.map((goal, index) => (
-                    <GoalItem goal={goal}/>
+                    <GoalItem key={index.toString()} goal={goal}/>
                 ))}
             </Card>
             {/* <div className="card">
