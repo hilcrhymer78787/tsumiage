@@ -28,6 +28,7 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::delete('/work/delete', 'WorkController@delete');
     
     Route::get('/goal/read', 'GoalController@read');
+    Route::post('/goal/create', 'GoalController@create');
     
     Route::post('/room/create', 'RoomController@create');
 

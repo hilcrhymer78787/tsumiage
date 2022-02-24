@@ -142,7 +142,7 @@ export default function GoalList(props: Props) {
                     <CreateGoal
                         onCloseMyself={() => {
                             setCreateGoalDialog(false);
-                            setCreateWorkDialog(false);
+                            goalRead()
                         }}
                         goalRead={goalRead}
                         focusGoal={null}

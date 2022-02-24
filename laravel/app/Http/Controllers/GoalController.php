@@ -16,10 +16,23 @@ class GoalController extends Controller
 {
     public function create(Request $request)
     {
-        // メールアドレスが存在するか確認
-        $toUserData = User::where('email', $request['email'])->first();
-        if (!$toUserData) {
-            return response()->json(['errorMessage' => 'このメールアドレスは登録されていません'], 500);
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        if ($request['id']) {
+            return '編集';
+            // Goal::where('goal_id', $request['id'])->update([
+            //     'goal_name' => $request['goal_name'],
+            //     'goal_status' => $request['goal_status'],
+            //     'goal_default_minute' => $request['goal_default_minute'],
+            //     'goal_user_id' => $loginInfo['id'],
+            // ]);
+        } else {
+            Goal::create([
+                'goal_minute' => $request['minute'],
+                'goal_task_id' => $request['task_id'],
+                'goal_user_id' => $loginInfo['id'],
+                'goal_start_date' => $request['start_date'],
+                'goal_end_date' => $request['end_date'],
+            ]);
         }
     }
     public function read(Request $request)

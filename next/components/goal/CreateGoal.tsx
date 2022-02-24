@@ -18,6 +18,9 @@ import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/mat
 import { MINUTE } from '@/static/const';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import moment from 'moment';
+import { apiTaskReadRequestType } from '@/types/api/task/read/request'
+import { apiTaskReadResponseType } from '@/types/api/task/read/response'
+import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response'
 
 type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
@@ -27,11 +30,12 @@ type Props = {
 export default function Creategoal(props: Props) {
     const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
     const [goalDeleteLoading, setgoalDeleteLoading] = useState(false as boolean);
+    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
     const [id, setId] = useState(0 as number);
     const [minute, setMinute] = useState(0 as number);
     const [taskId, setTaskId] = useState(0 as number);
     const [startDate, setStartDate] = useState(moment().format('Y-M-D') as string);
-    const [endDate, setEndDate] = useState('2022-02-20' as string);
+    const [endDate, setEndDate] = useState(moment().format('Y-M-D') as string);
 
     const [nameError, setNameError] = useState("" as string);
     const goalDelete = () => {
@@ -49,7 +53,6 @@ export default function Creategoal(props: Props) {
         setgoalDeleteLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiGoalReadResponseType>) => {
-                props.goalRead();
                 props.onCloseMyself();
             })
             .finally(() => {
@@ -91,7 +94,27 @@ export default function Creategoal(props: Props) {
         // }
         return isError;
     };
+
+    const taskRead = () => {
+        const params: apiTaskReadRequestType = {
+            date: moment().format('YYYY-MM-DD'),
+        };
+        const requestConfig: AxiosRequestConfig = {
+            url: `/api/task/read`,
+            method: "GET",
+            params: params
+        };
+        api(requestConfig)
+            .then((res: AxiosResponse<apiTaskReadResponseType>) => {
+                setTasks(res.data.tasks);
+                if (!props.focusGoal) {
+                    setTaskId(res.data.tasks[0].id)
+                }
+            })
+    };
+
     useEffect(() => {
+        taskRead()
         if (props.focusGoal) {
             // setFormGoal({
             //     id: props.focusGoal.id,
@@ -112,6 +135,22 @@ export default function Creategoal(props: Props) {
                 </div>
                 <div className="card_body">
                     <ul>
+                        {Boolean(tasks.length) &&
+                            <li className='mb-4'>
+                                <FormControl fullWidth>
+                                    <InputLabel id="task-id">タスク</InputLabel>
+                                    <Select
+                                        labelId="task-id"
+                                        value={taskId}
+                                        onChange={(e) => { setTaskId(Number(e.target.value)); }}
+                                    >
+                                        {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
+                                            <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </li>
+                        }
                         <li className='mb-4'>
                             <FormControl fullWidth>
                                 <InputLabel id="defaultーminute-label">目標時間</InputLabel>
@@ -136,7 +175,7 @@ export default function Creategoal(props: Props) {
                                         label="いつから"
                                         value={startDate}
                                         onChange={(v) => {
-                                            setStartDate(v);
+                                            setStartDate(moment(v).format('YYYY-MM-DD'));
                                         }}
                                         renderInput={(params) => <TextField {...params} />}
                                     />
@@ -150,16 +189,18 @@ export default function Creategoal(props: Props) {
                                         label="いつまで"
                                         value={endDate}
                                         onChange={(v) => {
-                                            setEndDate(v);
+                                            setEndDate(moment(v).format('YYYY-MM-DD'));
                                         }}
                                         renderInput={(params) => <TextField {...params} />}
                                     />
                                 </Box>
                             </Box>
-
                         </li>
                     </ul>
+                    <pre>{JSON.stringify(taskId, null, 2)}</pre>
+                    <pre>{JSON.stringify(minute, null, 2)}</pre>
                     <pre>{JSON.stringify(startDate, null, 2)}</pre>
+                    <pre>{JSON.stringify(endDate, null, 2)}</pre>
                 </div>
                 <div className="card_footer justify-space-between">
                     <Button color="error"
@@ -168,7 +209,8 @@ export default function Creategoal(props: Props) {
                         endIcon={goalDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
                         disabled={goalCreateLoading || goalDeleteLoading}
                     >削除</Button>
-                    <Button color="inherit"
+                    <Button
+                        color="primary"
                         onClick={goalCreate}
                         variant="contained"
                         endIcon={goalCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
