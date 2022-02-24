@@ -132,6 +132,7 @@ export default function GoalList(props: Props) {
                 />
                 {Boolean(goals.length) && goals.map((goal, index) => (
                     <GoalItem
+                        goalRead={goalRead}
                         goal={goal}
                         key={index.toString()}
                     />
@@ -142,9 +143,8 @@ export default function GoalList(props: Props) {
                     <CreateGoal
                         onCloseMyself={() => {
                             setCreateGoalDialog(false);
-                            goalRead()
+                            goalRead();
                         }}
-                        goalRead={goalRead}
                         focusGoal={null}
                     />
                 }

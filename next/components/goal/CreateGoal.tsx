@@ -18,14 +18,13 @@ import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/mat
 import { MINUTE } from '@/static/const';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import moment from 'moment';
-import { apiTaskReadRequestType } from '@/types/api/task/read/request'
-import { apiTaskReadResponseType } from '@/types/api/task/read/response'
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response'
+import { apiTaskReadRequestType } from '@/types/api/task/read/request';
+import { apiTaskReadResponseType } from '@/types/api/task/read/response';
+import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 
 type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
     onCloseMyself: any
-    goalRead: any
 }
 export default function Creategoal(props: Props) {
     const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
@@ -78,7 +77,6 @@ export default function Creategoal(props: Props) {
         setGoalCreateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiGoalReadResponseType>) => {
-                props.goalRead();
                 props.onCloseMyself();
             })
             .finally(() => {
@@ -108,21 +106,19 @@ export default function Creategoal(props: Props) {
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
                 setTasks(res.data.tasks);
                 if (!props.focusGoal) {
-                    setTaskId(res.data.tasks[0].id)
+                    setTaskId(res.data.tasks[0].id);
                 }
-            })
+            });
     };
 
     useEffect(() => {
-        taskRead()
+        taskRead();
         if (props.focusGoal) {
-            // setFormGoal({
-            //     id: props.focusGoal.id,
-            //     name: props.focusGoal.name,
-            //     default_minute: props.focusGoal.default_minute,
-            //     status: props.focusGoal.status,
-            //     sort_key: props.focusGoal.sort_key,
-            // });
+            setId(props.focusGoal.id);
+            setMinute(props.focusGoal.minute);
+            setTaskId(props.focusGoal.task_id);
+            setStartDate(props.focusGoal.start_date);
+            setEndDate(props.focusGoal.end_date);
         }
     }, []);
     return (
@@ -197,10 +193,6 @@ export default function Creategoal(props: Props) {
                             </Box>
                         </li>
                     </ul>
-                    <pre>{JSON.stringify(taskId, null, 2)}</pre>
-                    <pre>{JSON.stringify(minute, null, 2)}</pre>
-                    <pre>{JSON.stringify(startDate, null, 2)}</pre>
-                    <pre>{JSON.stringify(endDate, null, 2)}</pre>
                 </div>
                 <div className="card_footer justify-space-between">
                     <Button color="error"
