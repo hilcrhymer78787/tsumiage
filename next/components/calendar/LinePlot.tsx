@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { apiWorkReadCalendarResponseAnalyticsType } from '@/types/api/work/read/calendar/response';
+import styled from "styled-components";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -31,16 +32,21 @@ function LinePlot(props: Props) {
 
     return (
         <>
-            {props.data.datasets.length &&
-                <Line
-                    height={300}
-                    data={props.data}
-                    options={options}
-                    id="chart-key"
-                />
-            }
+            <Wrap>
+                {props.data.datasets.length &&
+                    <Line
+                        data={props.data}
+                        options={options}
+                        id="chart-key"
+                    />
+                }
+            </Wrap>
         </>
     );
 }
+
+const Wrap = styled.div`
+height: 300px;
+`;
 
 export default LinePlot;

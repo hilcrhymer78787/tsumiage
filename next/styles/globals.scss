@@ -23,8 +23,8 @@ hr {
     margin: 0;
     opacity: 1;
 }
-header{
-    .MuiAvatar-circular{
+header {
+    .MuiAvatar-circular {
         border: 2px solid #1976d2 !important;
     }
 }
@@ -43,6 +43,10 @@ main {
     width: 100%;
     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
 }
+.MuiCardActions-root {
+    border-top: 1px solid #e0e0e0 !important;
+    justify-content: space-between;
+}
 .MuiFormControl-root {
     width: 100%;
 }
@@ -57,6 +61,9 @@ main {
 }
 .MuiButtonBase-root.MuiIconButton-root {
     padding: 7px;
+}
+.MuiCardHeader-subheader {
+    font-size: 13px !important;
 }
 .card {
     box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);

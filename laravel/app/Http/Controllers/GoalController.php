@@ -29,7 +29,8 @@ class GoalController extends Controller
         // 'goal_start_date',
         // 'goal_end_date',
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        $goals = Goal::where('goal_task_id', $loginInfo['id'])
+        $goals = Goal::where('goal_user_id', $loginInfo['id'])
+            ->leftjoin('tasks', 'goals.goal_task_id', '=', 'tasks.task_id')
             // ->where('goal_task_id', $loginInfo['id'])
             ->select(
                 'goal_id as id',
@@ -38,13 +39,12 @@ class GoalController extends Controller
                 'goal_user_id as user_id',
                 'goal_start_date as start_date',
                 'goal_end_date as end_date',
+                'task_name',
             )
             ->get();
 
         foreach ($goals as $goal) {
             // 1:未達成,2:達成,3:失敗
-            $goal['state'] = $goal;
-
             $sum_minute = (int)Work::where('work_task_id', $goal['task_id'])
                 ->where("work_date", ">=", $goal['start_date'])
                 ->where("work_date", "<=", $goal['end_date'])

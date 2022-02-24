@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardActionArea, IconButton, Dialog, ListItem, Checkbox, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import AddIcon from '@mui/icons-material/Add';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import { api } from '@/plugins/axios';
@@ -15,6 +14,19 @@ import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import moment from 'moment';
 import { MINUTE } from '@/static/const';
+import GoalItem from '@/components/goal/GoalItem';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import { red, blue } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AddIcon from '@mui/icons-material/Add';
 type Props = {
     // date: string,
 }
@@ -22,14 +34,14 @@ export default function GoalList(props: Props) {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
-    const [goal, setGoals] = useState(null);
+    const [goals, setGoals] = useState([]);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
 
     const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
         const clickedIndex = e.currentTarget.dataset.index;
-        setFocusTask(goal[clickedIndex]);
+        setFocusTask(goals[clickedIndex]);
         setCreateWorkDialog(true);
     };
 
@@ -49,61 +61,61 @@ export default function GoalList(props: Props) {
         };
         seTtaskReadLoading(true);
         api(requestConfig)
-            .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                setGoals(res.data);
+            .then((res: AxiosResponse<any>) => {
+                setGoals(res.data.goals);
             })
             .finally(() => {
                 seTtaskReadLoading(false);
             });
     };
 
-    const workDelete = (e) => {
-        const task = goal[e.currentTarget.dataset.index];
-        if (!confirm(`${props.date}、「${task.name}」の実績を削除しますか？`)) {
-            return;
-        }
-        const apiParam: apiWorkDeleteRequestType = {
-            date: props.date,
-            task_id: task.id
-        };
-        const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/delete`,
-            method: "DELETE",
-            data: apiParam
-        };
-        setWorkDeleteLoading(true);
-        api(requestConfig)
-            .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                taskRead();
-            })
-            .finally(() => {
-                setWorkDeleteLoading(false);
-            });
-    };
+    // const workDelete = (e) => {
+    //     const task = goal[e.currentTarget.dataset.index];
+    //     if (!confirm(`${props.date}、「${task.name}」の実績を削除しますか？`)) {
+    //         return;
+    //     }
+    //     const apiParam: apiWorkDeleteRequestType = {
+    //         date: props.date,
+    //         task_id: task.id
+    //     };
+    //     const requestConfig: AxiosRequestConfig = {
+    //         url: `/api/work/delete`,
+    //         method: "DELETE",
+    //         data: apiParam
+    //     };
+    //     setWorkDeleteLoading(true);
+    //     api(requestConfig)
+    //         .then((res: AxiosResponse<apiTaskReadResponseType>) => {
+    //             taskRead();
+    //         })
+    //         .finally(() => {
+    //             setWorkDeleteLoading(false);
+    //         });
+    // };
 
-    const workCreate = (e) => {
-        const task = goal[e.currentTarget.dataset.index];
-        const apiParam: apiWorkCreateRequestType = {
-            id: task.work.id,
-            date: props.date,
-            task_id: task.id,
-            minute: task.default_minute,
-            memo: '',
-        };
-        const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/create`,
-            method: "POST",
-            data: apiParam
-        };
-        setWorkCreateLoading(true);
-        api(requestConfig)
-            .then((res) => {
-                taskRead();
-            })
-            .finally(() => {
-                setWorkCreateLoading(false);
-            });
-    };
+    // const workCreate = (e) => {
+    //     const task = goal[e.currentTarget.dataset.index];
+    //     const apiParam: apiWorkCreateRequestType = {
+    //         id: task.work.id,
+    //         // date: props.date,
+    //         task_id: task.id,
+    //         minute: task.default_minute,
+    //         memo: '',
+    //     };
+    //     const requestConfig: AxiosRequestConfig = {
+    //         url: `/api/work/create`,
+    //         method: "POST",
+    //         data: apiParam
+    //     };
+    //     setWorkCreateLoading(true);
+    //     api(requestConfig)
+    //         .then((res) => {
+    //             taskRead();
+    //         })
+    //         .finally(() => {
+    //             setWorkCreateLoading(false);
+    //         });
+    // };
 
     useEffect(() => {
         goalRead();
@@ -111,6 +123,20 @@ export default function GoalList(props: Props) {
 
     return (
         <>
+            <Card>
+                <CardHeader
+                    action={
+                        <IconButton>
+                            <AddIcon sx={{ bgcolor: 'white', color: '#1976d2' }} />
+                        </IconButton>
+                    }
+                    sx={{ bgcolor: '#1976d2', color: 'white' }}
+                    title={`目標` + (goals.length ? `（${goals.length}件）` : '')}
+                />
+                {goals.length && goals.map((goal, index) => (
+                    <GoalItem goal={goal}/>
+                ))}
+            </Card>
             {/* <div className="card">
                 <div className="card_header">
                     <div className="card_header_left">
@@ -162,7 +188,7 @@ export default function GoalList(props: Props) {
             </div> */}
 
             <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
-                {createWorkDialog &&
+                {/* {createWorkDialog &&
                     <CreateWork
                         onCloseMyself={() => { setCreateWorkDialog(false); }}
                         openCreateTaskDialog={() => { setCreateTaskDialog(true); }}
@@ -170,11 +196,11 @@ export default function GoalList(props: Props) {
                         taskRead={taskRead}
                         focusTask={focusTask}
                     />
-                }
+                } */}
             </Dialog>
 
             <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-                {createTaskDialog &&
+                {/* {createTaskDialog &&
                     <CreateTask
                         onCloseMyself={() => {
                             setCreateTaskDialog(false);
@@ -183,9 +209,9 @@ export default function GoalList(props: Props) {
                         taskRead={taskRead}
                         focusTask={focusTask}
                     />
-                }
+                } */}
             </Dialog>
-            <pre>{JSON.stringify(goal, null, 2)}</pre>
+            <pre>{JSON.stringify(goals, null, 2)}</pre>
         </>
     );
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardHeader, CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
-import AddIcon from '@material-ui/icons/Add';
 import { api } from '@/plugins/axios';
 import CreateTask from '@/components/task/CreateTask';
 import CreateUser from "@/components/CreateUser";

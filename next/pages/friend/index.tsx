@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import TaskList from '@/components/task/TaskList';
+import { connect } from "react-redux";
 import Layout from '@/layouts/default';
-import moment from 'moment';
-Task.getLayout = function getLayout(page: any) {
+const mapStateToProps = (state: any) => {
+    return {
+        loginInfo: state.loginInfo,
+        count: state.count,
+        post: state.post
+    };
+};
+About.getLayout = function getLayout(page) {
     return (
         <Layout>{page}</Layout>
     );
 };
-export default function Task() {
+function About({ dispatch, count, post, loginInfo }) {
     return (
-        <TaskList date={moment().format("YYYY-MM-DD")} />
+        <div>
+            <pre>{JSON.stringify(loginInfo, null, 2)}</pre>
+        </div>
     );
 }
+
+export default connect(mapStateToProps)(About);
