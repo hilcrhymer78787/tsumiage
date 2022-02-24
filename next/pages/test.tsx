@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Layout from '@/layouts/default';
+import BasicSelect from '@/components/Test'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -15,6 +16,7 @@ About.getLayout = function getLayout(page) {
 function About({ dispatch, count, post, loginInfo }) {
     return (
         <div>
+            <BasicSelect />
             <pre>{JSON.stringify(loginInfo, null, 2)}</pre>
         </div>
     );

@@ -9,7 +9,7 @@ import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import CreateWork from '@/components/task/CreateWork';
-import CreateTask from '@/components/task/CreateTask';
+import CreateGoal from '@/components/goal/CreateGoal';
 import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import moment from 'moment';
@@ -27,29 +27,24 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
-import {apiGoalReadResponseType} from '@/types/api/goal/read/response';
-import {apiGoalReadResponseGoalsType} from '@/types/api/goal/read/response';
+import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
+import { apiGoalReadResponseGoalsType } from '@/types/api/goal/read/response';
 type Props = {
     // date: string,
 }
 export default function GoalList(props: Props) {
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
-    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
-    const [focusTask, setFocusTask] = useState(null as apiTaskReadResponseTaskType | null);
+    const [createGoalDialog, setCreateGoalDialog] = useState(false as boolean);
+    const [focusGoal, setFocusGoal] = useState(null as apiGoalReadResponseGoalsType | null);
     const [goals, setGoals] = useState([] as apiGoalReadResponseGoalsType[]);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
 
-    const onFocusTask = (e: React.MouseEvent<HTMLElement>) => {
+    const onFocusGoal = (e: React.MouseEvent<HTMLElement>) => {
         const clickedIndex = e.currentTarget.dataset.index;
-        setFocusTask(goals[clickedIndex]);
+        setFocusGoal(goals[clickedIndex]);
         setCreateWorkDialog(true);
-    };
-
-    const onNewTask = () => {
-        setFocusTask(null);
-        setCreateTaskDialog(true);
     };
 
     const goalRead = () => {
@@ -128,90 +123,32 @@ export default function GoalList(props: Props) {
             <Card>
                 <CardHeader
                     action={
-                        <IconButton>
+                        <IconButton onClick={() => { setCreateGoalDialog(true); }}>
                             <AddIcon sx={{ bgcolor: 'white', color: '#1976d2' }} />
                         </IconButton>
                     }
                     sx={{ bgcolor: '#1976d2', color: 'white' }}
                     title={`目標` + (goals.length ? `（${goals.length}件）` : '')}
                 />
-                {goals.length && goals.map((goal, index) => (
-                    <GoalItem key={index.toString()} goal={goal}/>
+                {Boolean(goals.length) && goals.map((goal, index) => (
+                    <GoalItem
+                        goal={goal}
+                        key={index.toString()}
+                    />
                 ))}
             </Card>
-            {/* <div className="card">
-                <div className="card_header">
-                    <div className="card_header_left">
-                        <h2 className="card_header_left_main">目標</h2>
-                    </div>
-                    <div className="card_header_right">
-                        <IconButton onClick={onNewTask} className='card_header_right_btn' component="span">
-                            <AddIcon color="primary" />
-                        </IconButton>
-                    </div>
-                </div>
-                {taskReadLoading && !Boolean(goal.length) &&
-                    <div className='d-flex justify-center pa-5 ma-5'>
-                        <CircularProgress />
-                    </div>
-                }
-                {Boolean(goal.length) &&
-                    <div>
-                        {goal.map((task, index) => (
-                            <CardActionArea key={index.toString()}>
-                                <ListItem
-                                    secondaryAction={task.work.id ?
-                                        <CheckBoxIcon
-                                            data-index={index}
-                                            onClick={workDelete}
-                                            color="primary"
-                                        />
-                                        :
-                                        <CheckBoxOutlineBlankIcon
-                                            data-index={index}
-                                            onClick={workCreate}
-                                            color="disabled"
-                                        />
-                                    }>
-                                    <ListItemAvatar onClick={onFocusTask} data-index={index}>
-                                        <Avatar sx={{ bgcolor: Boolean(task.work.id) ? '#1976d2' : '' }}>
-                                            <TaskOutlinedIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        onClick={onFocusTask} data-index={index}
-                                        primary={task.name} secondary={`想定:${task.default_minute}分` + ` 実績:${task.work?.minute}分`}
-                                    />
-                                </ListItem>
-                            </CardActionArea>
-                        ))}
-                    </div>
-                }
-            </div> */}
 
-            <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
-                {/* {createWorkDialog &&
-                    <CreateWork
-                        onCloseMyself={() => { setCreateWorkDialog(false); }}
-                        openCreateTaskDialog={() => { setCreateTaskDialog(true); }}
-                        date={props.date}
-                        taskRead={taskRead}
-                        focusTask={focusTask}
-                    />
-                } */}
-            </Dialog>
-
-            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-                {/* {createTaskDialog &&
-                    <CreateTask
+            <Dialog open={createGoalDialog} onClose={() => { setCreateGoalDialog(false); }}>
+                {createGoalDialog &&
+                    <CreateGoal
                         onCloseMyself={() => {
-                            setCreateTaskDialog(false);
+                            setCreateGoalDialog(false);
                             setCreateWorkDialog(false);
                         }}
-                        taskRead={taskRead}
-                        focusTask={focusTask}
+                        goalRead={goalRead}
+                        focusGoal={null}
                     />
-                } */}
+                }
             </Dialog>
             {/* <pre>{JSON.stringify(goals, null, 2)}</pre> */}
         </>
