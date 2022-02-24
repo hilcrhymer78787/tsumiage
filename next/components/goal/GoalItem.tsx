@@ -42,58 +42,54 @@ export default function GoalItem(props: Props) {
     const [expanded, setExpanded] = React.useState(false);
 
     return (
-        <>
-            <Card
-                sx={{
-                    m: expanded ? '20px' : '0',
-                    borderRadius: expanded ? '4px' : '0'
-                }}
-            >
-                <CardHeader
-                    avatar={
-                        <Avatar
-                            sx={{
-                                fontSize: '13px',
-                                bgcolor: props.goal.sum_minute >= props.goal.minute ? '#1976d2' : ''
-                            }}
-                        >{Math.floor(props.goal.sum_minute * 100 / props.goal.minute)}%</Avatar>
-                    }
-                    action={
-                        <IconButton>
-                            <ExpandMore
-                                sx={{ color: '1976d2' }}
-                                expand={expanded}
-                                aria-expanded={expanded}
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </IconButton>
-                    }
-                    onClick={() => { setExpanded(!expanded); }}
-                    title={`${props.goal.task_name}（目標:${props.goal.minute}分）`}
-                    subheader={`実績:${props.goal.sum_minute}分、期限:残り${props.goal.deadline_day_count}日`}
-                />
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                        <LinePlot data={props.goal.analytics} />
-                        <SimpleTable datas={[
-                            { key: 'ペース', value: `あと${props.goal.deadline_day_count}日で${props.goal.minute - props.goal.sum_minute}分` },
-                            { key: '開始日', value: moment(props.goal.start_date).format('Y年M月D日') },
-                            { key: '期限日', value: moment(props.goal.end_date).format('Y年M月D日') },
-                        ]} />
-                    </CardContent>
-                    <CardActions disableSpacing>
-                        <div></div>
-                        <Button
-                            color="primary"
-                            variant="contained"
-                        // onClick={taskCreate}
-                        // endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                        // disabled={taskCreateLoading || taskDeleteLoading}
-                        >編集</Button>
-                    </CardActions>
-                </Collapse>
-            </Card>
-        </>
+        <Card
+            sx={{
+                m: expanded ? '20px' : '0',
+                borderRadius: expanded ? '4px' : '0'
+            }}
+        >
+            <CardHeader
+                avatar={
+                    <Avatar
+                        sx={{
+                            fontSize: '13px',
+                            bgcolor: props.goal.sum_minute >= props.goal.minute ? '#1976d2' : ''
+                        }}
+                    >{Math.floor(props.goal.sum_minute * 100 / props.goal.minute)}%</Avatar>
+                }
+                action={
+                    <ExpandMore
+                        sx={{ color: '1976d2' }}
+                        expand={expanded}
+                        aria-expanded={expanded}
+                    >
+                        <ExpandMoreIcon />
+                    </ExpandMore>
+                }
+                onClick={() => { setExpanded(!expanded); }}
+                title={`${props.goal.task_name}（目標:${props.goal.minute}分）`}
+                subheader={`実績:${props.goal.sum_minute}分、期限:残り${props.goal.deadline_day_count}日`}
+            />
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                    <LinePlot data={props.goal.analytics} />
+                    <SimpleTable datas={[
+                        { key: 'ペース', value: `あと${props.goal.deadline_day_count}日で${props.goal.minute - props.goal.sum_minute}分` },
+                        { key: '開始日', value: moment(props.goal.start_date).format('Y年M月D日') },
+                        { key: '期限日', value: moment(props.goal.end_date).format('Y年M月D日') },
+                    ]} />
+                </CardContent>
+                <CardActions disableSpacing>
+                    <div></div>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                    // onClick={taskCreate}
+                    // endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
+                    // disabled={taskCreateLoading || taskDeleteLoading}
+                    >編集</Button>
+                </CardActions>
+            </Collapse>
+        </Card>
     );
 }

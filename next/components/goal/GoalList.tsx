@@ -137,7 +137,6 @@ export default function GoalList(props: Props) {
                     />
                 ))}
             </Card>
-
             <Dialog open={createGoalDialog} onClose={() => { setCreateGoalDialog(false); }}>
                 {createGoalDialog &&
                     <CreateGoal
