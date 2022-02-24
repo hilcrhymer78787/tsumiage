@@ -87,7 +87,7 @@ export default function GoalItem(props: Props) {
             />
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <LinePlot data={dummyData} />
+                    <LinePlot data={props.goal.analytics} />
                 </CardContent>
                 <CardActions disableSpacing>
                     <div></div>

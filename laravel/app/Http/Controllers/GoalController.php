@@ -9,6 +9,8 @@ use App\Models\Goal;
 use App\Models\Work;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use App\Services\WorkService;
+
 
 class GoalController extends Controller
 {
@@ -59,6 +61,26 @@ class GoalController extends Controller
             }
 
             $goal['sum_minute'] = $sum_minute;
+
+            // データ
+            // "#2196f390",
+            // "#ff525290",
+            $analytics['datasets'] = [];
+            $dataset = (new WorkService())->getDataset([
+                'task_id' => $goal['task_id'],
+                'task_name' => $goal['task_name'],
+                'start_date' => $goal['start_date'],
+                'end_date' => $goal['end_date'],
+                'color' => '#2196f390'
+            ]);
+            array_push($analytics['datasets'], $dataset);
+            $analytics['labels'] = $dataset = (new WorkService())->getLabels([
+                'start_date' => $goal['start_date'],
+                'end_date' => $goal['end_date'],
+            ]);
+
+
+            $goal['analytics'] = $analytics;
         }
 
         $return['goals'] = $goals;

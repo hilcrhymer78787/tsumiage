@@ -14,15 +14,26 @@ class GoalSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
-            $end = $i + 5;
-            Goal::create([
-                'goal_minute' => 500,
-                'goal_task_id' => $i % 4 + 1,
-                'goal_user_id' => 1,
-                'goal_start_date' => date("Y-m-${i}"),
-                'goal_end_date' => date("Y-m-${end}"),
-            ]);
-        }
+        Goal::create([
+            'goal_minute' => 500,
+            'goal_task_id' => 1,
+            'goal_user_id' => 1,
+            'goal_start_date' => date("Y-m-1"),
+            'goal_end_date' => date("Y-m-28"),
+        ]);
+        Goal::create([
+            'goal_minute' => 400,
+            'goal_task_id' => 2,
+            'goal_user_id' => 1,
+            'goal_start_date' => date("Y-m-1"),
+            'goal_end_date' => date("Y-m-28"),
+        ]);
+        Goal::create([
+            'goal_minute' => 300,
+            'goal_task_id' => 3,
+            'goal_user_id' => 1,
+            'goal_start_date' => date("Y-m-1"),
+            'goal_end_date' => date("Y-m-28"),
+        ]);
     }
 }

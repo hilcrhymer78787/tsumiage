@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\TaskService;
+use App\Services\WorkService;
 use App\Models\Work;
 
 class WorkController extends Controller
@@ -17,7 +18,6 @@ class WorkController extends Controller
         $last_day = date('d', strtotime("last day of " . $year_month));
 
         $return['calendars'] = [];
-        $analytics['labels'] = [];
         for ($day = 1; $day <= $last_day; $day++) {
             $calendar['date'] = date('Y-m-d', strtotime($year_month . '-' . $day));
             $calendar['minute'] = (int)Work::where('work_user_id', $loginInfo['id'])
@@ -25,7 +25,6 @@ class WorkController extends Controller
                 ->sum('work_minute');
             $calendar['users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['id']);
             array_push($return['calendars'], $calendar);
-            array_push($analytics['labels'], $day . '日');
         }
 
         // データ
@@ -44,18 +43,19 @@ class WorkController extends Controller
         $analytics['datasets'] = [];
         $tasks = (new TaskService())->getTasksByUserId($loginInfo['id']);
         foreach ($tasks as $index => $task) {
-            $dataset['label'] = $task['name'];
-            $dataset['borderColor'] = $GRAPH_COLORS[$index];
-            $dataset['data'] = [];
-            for ($day = 1; $day <= $last_day; $day++) {
-                $sum_minute = (int)Work::where('work_task_id', $task['id'])
-                    ->where("work_date", ">=", date('Y-m-d', strtotime($year_month . '-1')))
-                    ->where("work_date", "<=", date('Y-m-d', strtotime($year_month . '-' . $day)))
-                    ->sum('work_minute');
-                array_push($dataset['data'], $sum_minute);
-            }
+            $dataset = (new WorkService())->getDataset([
+                'task_id' => $task['id'],
+                'task_name' => $task['name'],
+                'start_date' => date('Y-m-d', strtotime($year_month . '-1')),
+                'end_date' => date('Y-m-d', strtotime($year_month . '-' . $last_day)),
+                'color' => $GRAPH_COLORS[$index]
+            ]);
             array_push($analytics['datasets'], $dataset);
         }
+        $analytics['labels'] = (new WorkService())->getLabels([
+            'start_date' => date('Y-m-d', strtotime($year_month . '-1')),
+            'end_date' => date('Y-m-d', strtotime($year_month . '-' . $last_day)),
+        ]);
         $return['analytics'] = $analytics;
 
         return $return;
