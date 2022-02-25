@@ -28,6 +28,7 @@ export default function CreateWork(props: Props) {
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [formMinute, setFormMinute] = useState(0);
+    const [formHour, setFormHour] = useState(0);
     const [formMemo, setFormMemo] = useState('');
     const workDelete = () => {
         const apiParam: apiWorkDeleteRequestType = {
@@ -54,7 +55,7 @@ export default function CreateWork(props: Props) {
             id: props.focusTask.work.id,
             date: props.date,
             task_id: props.focusTask.id,
-            minute: formMinute,
+            minute: formHour * 60 + formMinute,
             memo: formMemo,
         };
         const requestConfig: AxiosRequestConfig = {
@@ -72,18 +73,14 @@ export default function CreateWork(props: Props) {
                 setWorkCreateLoading(false);
             });
     };
-
-    const onChangeMinute = (event) => {
-        setFormMinute(Number(event.target.value));
-    };
-
     const onChangeMemo = (event) => {
         setFormMemo(event.target.value);
     };
 
     useEffect(() => {
         if (props.focusTask.work.minute) {
-            setFormMinute(props.focusTask.work.minute);
+            setFormHour(Math.floor(Number(props.focusTask.work.minute) / 60));
+            setFormMinute(Number(props.focusTask.work.minute) % 60);
         } else {
             setFormMinute(props.focusTask.default_minute);
         }
@@ -105,18 +102,35 @@ export default function CreateWork(props: Props) {
             <div className="card_body">
                 <ul>
                     <li className='mb-5'>
-                        <FormControl fullWidth>
-                            <InputLabel id="minute-label">実績時間</InputLabel>
-                            <Select
-                                labelId="minute-label"
-                                value={formMinute}
-                                onChange={onChangeMinute}
-                            >
-                                {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
-                                    <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
+                        <h4>実績時間</h4>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Box sx={{ width: '48%', }}>
+                                <Select
+                                    sx={{ width: '100%', }}
+                                    value={formHour}
+                                    onChange={(e) => {
+                                        setFormHour(Number(e.target.value));
+                                    }}
+                                >
+                                    {[...Array(24 + 1)].map((n, index) => (
+                                        <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
+                                    ))}
+                                </Select>
+                            </Box>
+                            <Box sx={{ width: '48%', }}>
+                                <Select
+                                    sx={{ width: '100%', }}
+                                    value={formMinute}
+                                    onChange={(e) => {
+                                        setFormMinute(Number(e.target.value));
+                                    }}
+                                >
+                                    {[...Array(59 + 1)].map((n, index) => (
+                                        <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                    ))}
+                                </Select>
+                            </Box>
+                        </Box>
                     </li>
                     <li className='mb-5'>
                         <h4>メモ</h4>

@@ -31,11 +31,13 @@ export default function Creategoal(props: Props) {
     const [goalDeleteLoading, setGoalDeleteLoading] = useState(false as boolean);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
     const [id, setId] = useState(0 as number);
+    const [hour, setHour] = useState('' as number | string);
     const [minute, setMinute] = useState(0 as number);
     const [taskId, setTaskId] = useState(0 as number);
-    const [startDate, setStartDate] = useState(moment().format('Y-M-D') as string);
-    const [endDate, setEndDate] = useState(moment().format('Y-M-D') as string);
+    const [startDate, setStartDate] = useState(moment().format('Y/M/D') as string);
+    const [endDate, setEndDate] = useState(moment().format('Y/M/D') as string);
 
+    const [hourError, setHourError] = useState("" as string);
     const [nameError, setNameError] = useState("" as string);
     const goalDelete = () => {
         if (!confirm(`「${props.focusGoal.task_name}」を削除しますか？`)) {
@@ -64,7 +66,7 @@ export default function Creategoal(props: Props) {
         }
         const apiParam: apiGoalCreateRequestType = {
             id: id,
-            minute: minute,
+            minute: Number(hour) * 60 + minute,
             task_id: taskId,
             start_date: startDate,
             end_date: endDate,
@@ -84,12 +86,12 @@ export default function Creategoal(props: Props) {
             });
     };
     const validation = (): boolean => {
-        const isError: boolean = false;
-        setNameError("");
-        // if (name == "") {
-        //     setNameError("目標の名前は必須です");
-        //     isError = true;
-        // }
+        let isError: boolean = false;
+        setHourError("");
+        if (!(/^[0-9]*$/.test(hour.toString()))) {
+            setHourError("半角数値で入力してください");
+            isError = true;
+        }
         return isError;
     };
 
@@ -114,8 +116,11 @@ export default function Creategoal(props: Props) {
     useEffect(() => {
         taskRead();
         if (props.focusGoal) {
+            if (Math.floor(props.focusGoal.minute / 60)) {
+                setHour(Math.floor(props.focusGoal.minute / 60));
+            }
             setId(props.focusGoal.id);
-            setMinute(props.focusGoal.minute);
+            setMinute(props.focusGoal.minute % 60);
             setTaskId(props.focusGoal.task_id);
             setStartDate(props.focusGoal.start_date);
             setEndDate(props.focusGoal.end_date);
@@ -148,7 +153,7 @@ export default function Creategoal(props: Props) {
                             </li>
                         }
                         <li className='mb-4'>
-                            <FormControl fullWidth>
+                            {/* <FormControl fullWidth>
                                 <InputLabel id="defaultーminute-label">目標時間</InputLabel>
                                 <Select
                                     labelId="defaultーminute-label"
@@ -159,14 +164,38 @@ export default function Creategoal(props: Props) {
                                         <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
                                     ))}
                                 </Select>
-                            </FormControl>
+                            </FormControl> */}
+                            <h4>目標合計時間</h4>
+                            <Box sx={{ display: 'flex' }}>
+                                <Box sx={{ width: '42%', }}>
+                                    <TextField
+                                        error={Boolean(hourError)}
+                                        helperText={hourError}
+                                        value={hour}
+                                        onChange={(e) => { setHour(e.currentTarget.value); }}
+                                        variant="outlined" color="primary"
+                                    />
+                                </Box>
+                                <Box sx={{ width: '16%', p: '20px 0 0 1%' }}>時間</Box>
+                                <Box sx={{ width: '42%', }}>
+                                    <Select
+                                        sx={{ width: '100%', }}
+                                        value={minute}
+                                        onChange={(e) => { setMinute(Number(e.target.value)); }}
+                                    >
+                                        {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
+                                            <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
+                                        ))}
+                                    </Select>
+                                </Box>
+                            </Box>
                         </li>
                         <li className='mb-4'>
                             <Box sx={{
                                 display: 'flex',
                                 alignItems: 'center'
                             }}>
-                                <Box sx={{ width: '45%', }}>
+                                <Box sx={{ width: '42%', }}>
                                     <MobileDatePicker
                                         label="いつから"
                                         value={startDate}
@@ -177,10 +206,10 @@ export default function Creategoal(props: Props) {
                                     />
                                 </Box>
                                 <Box sx={{
-                                    width: '10%',
+                                    width: '16%',
                                     textAlign: 'center'
                                 }}>~</Box>
-                                <Box sx={{ width: '45%', }}>
+                                <Box sx={{ width: '42%', }}>
                                     <MobileDatePicker
                                         label="いつまで"
                                         value={endDate}

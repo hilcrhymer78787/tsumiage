@@ -15,15 +15,6 @@ export default function Pagination(props: Props) {
     const month = (): number => {
         return Number(router.query.month);
     };
-    const nowDay = (): number => {
-        return Number(moment().format("D"));
-    };
-    const nowYear = (): number => {
-        return Number(moment().format("Y"));
-    };
-    const nowMonth = (): number => {
-        return Number(moment().format("M"));
-    };
     const onClickPrevMonth = () => {
         if (month() == 1) {
             router.push(`/calendar?year=${year() - 1}&month=12`);
