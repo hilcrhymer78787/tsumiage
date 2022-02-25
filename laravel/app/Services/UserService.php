@@ -53,7 +53,7 @@ class UserService
         return Invitation::where('invitation_from_user_id', $userId)
             ->where('invitation_status', 1)
             ->leftjoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
-            ->select('id', 'email', 'name', 'user_img')
+            ->select('id', 'email', 'name', 'user_img', 'invitation_id')
             ->get();
     }
 }

@@ -94,7 +94,7 @@ export default function GoalList(props: Props) {
                         title={`友達申請中`}
                     />
                     {friendData.toFriends.map((friend, index) => (
-                        <FriendItemNow
+                        <FriendItemTo
                             friendRead={friendRead}
                             friend={friend}
                             key={index.toString()}

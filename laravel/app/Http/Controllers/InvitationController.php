@@ -56,7 +56,7 @@ class InvitationController extends Controller
         $judge = Invitation::where('invitation_id', $request['invitation_id'])
             ->where('invitation_to_user_id', $loginInfo['id'])
             ->first();
-        if(!$judge){
+        if (!$judge) {
             return response()->json(['errorMessage' => '招待されていません'], 500);
         }
         Invitation::where('invitation_id', $request['invitation_id'])->update([
@@ -67,6 +67,9 @@ class InvitationController extends Controller
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         Invitation::where('invitation_to_user_id', $loginInfo['id'])
+            ->where('invitation_id', $request['invitation_id'])
+            ->delete();
+        Invitation::where('invitation_from_user_id', $loginInfo['id'])
             ->where('invitation_id', $request['invitation_id'])
             ->delete();
     }
