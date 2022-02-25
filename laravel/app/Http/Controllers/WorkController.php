@@ -23,7 +23,6 @@ class WorkController extends Controller
             $calendar['minute'] = (int)Work::where('work_user_id', $loginInfo['id'])
                 ->where('work_date', $calendar['date'])
                 ->sum('work_minute');
-            $calendar['users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['id']);
             array_push($return['calendars'], $calendar);
         }
 

@@ -52,6 +52,15 @@ class usersTableSeeder extends Seeder
             'token' => 'user4@gmail.com'.Str::random(100),
             'user_room_id' => 2,
           ],
+          [
+            'id' => 5,
+            'name' => 'user5',
+            'email' => 'user5@gmail.com',
+            'password' => 'password',
+            'user_img' => 'https://picsum.photos/500/300?image=11',
+            'token' => 'user5@gmail.com'.Str::random(100),
+            'user_room_id' => 2,
+          ],
       ]);
     }
 }

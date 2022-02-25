@@ -12,7 +12,6 @@ class Invitation extends Model
     protected $fillable = [
         'invitation_id',
         'invitation_from_user_id',
-        'invitation_room_id',
         'invitation_to_user_id',
         'invitation_status',
     ];
@@ -20,7 +19,6 @@ class Invitation extends Model
     protected $casts = [
         'invitation_id'=>'integer',
         'invitation_from_user_id'=>'integer',
-        'invitation_room_id'=>'integer',
         'invitation_to_user_id'=>'integer',
         'invitation_status'=>'integer',
       ];

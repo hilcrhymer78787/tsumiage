@@ -40,22 +40,7 @@ class UserController extends Controller
         if (!$loginInfo) {
             return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 401);
         }
-        // 参加しているユーザー
-        $loginInfo['room_joined_users'] = (new UserService())->getJoinedUsersByRoomId($loginInfo['room_id']);
-        // 招待中のユーザー
-        $loginInfo['room_inviting_users'] = (new UserService())->getInvitingUsersByRoomId($loginInfo['room_id']);
-        // 参加しているルーム
-        $loginInfo['rooms'] = (new RoomService())->getJoinedRooms($loginInfo['id']);
-
-        // 招待されている部屋
-        $loginInfo['invited_rooms'] = (new RoomService())->getInvitedRooms($loginInfo['id']);
-
-        foreach ($loginInfo['invited_rooms'] as $room) {
-            // 参加しているユーザー
-            $room['joined_users'] = (new UserService())->getJoinedUsersByRoomId($room['room_id']);
-            // 招待中のユーザー
-            $room['inviting_users'] = (new UserService())->getInvitingUsersByRoomId($room['room_id']);
-        }
+        
         return $loginInfo;
     }
     public function create(Request $request)

@@ -11,28 +11,49 @@ class UserService
     {
         $loginInfo = User::where('token', $token)
             ->leftjoin('rooms', 'users.user_room_id', '=', 'rooms.room_id')
-            ->select('id', 'token', 'email', 'name', 'user_img', 'room_id', 'user_room_id', 'room_name', 'room_img')
+            ->select('id', 'email', 'name', 'user_img')
             ->first();
         return $loginInfo;
     }
-    public function getJoinedUsersByRoomId($roomId)
+    public function getFromFriends($userId)
     {
-        $users = Invitation::where('invitation_room_id', $roomId)
+        return Invitation::where('invitation_to_user_id', $userId)
+            ->where('invitation_status', 1)
+            ->leftjoin('users', 'invitations.invitation_from_user_id', '=', 'users.id')
+            ->select('id', 'email', 'name', 'user_img')
+            ->get();
+    }
+    public function getNowFriends($userId)
+    {
+        $users = [];
+
+        $usersArray1 = Invitation::where('invitation_to_user_id', $userId)
+            ->where('invitation_status', 2)
+            ->leftjoin('users', 'invitations.invitation_from_user_id', '=', 'users.id')
+            ->select('id', 'email', 'name', 'user_img')
+            ->get();
+
+        $usersArray2 = Invitation::where('invitation_from_user_id', $userId)
             ->where('invitation_status', 2)
             ->leftjoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
-            ->select('id', 'name')
+            ->select('id', 'email', 'name', 'user_img')
             ->get();
+
+        foreach ($usersArray1 as $user) {
+            array_push($users, $user);
+        }
+        foreach ($usersArray2 as $user) {
+            array_push($users, $user);
+        }
 
         return $users;
     }
-    public function getInvitingUsersByRoomId($roomId)
+    public function getToFriends($userId)
     {
-        $users = Invitation::where('invitation_room_id', $roomId)
-            ->where('invitation_status', '<', 2)
+        return Invitation::where('invitation_from_user_id', $userId)
+            ->where('invitation_status', 1)
             ->leftjoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
-            ->select('id', 'name')
+            ->select('id', 'email', 'name', 'user_img')
             ->get();
-
-        return $users;
     }
 }
