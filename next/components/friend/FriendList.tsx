@@ -1,39 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { CardActionArea, IconButton, Dialog, ListItem, Checkbox, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import { api } from '@/plugins/axios';
-import { apiTaskReadRequestType } from '@/types/api/task/read/request';
-import { apiTaskReadResponseType } from '@/types/api/task/read/response';
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import CreateWork from '@/components/task/CreateWork';
-import CreateGoal from '@/components/goal/CreateGoal';
-import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
-import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
-import moment from 'moment';
-import { MINUTE } from '@/static/const';
-import GoalItem from '@/components/goal/GoalItem';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import { red, blue } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
 import { apiGoalReadResponseGoalsType } from '@/types/api/goal/read/response';
 import FriendItemTo from '@/components/friend/FriendItemTo';
 import FriendItemNow from '@/components/friend/FriendItemNow';
 import FriendItemFrom from '@/components/friend/FriendItemFrom';
-import { apiFriendReadResponseType } from '@/types/api/friend/read/response';
-import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response';
+import { apiInvitationResponseType } from '@/types/api/invitation/read/response';
+import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
 type Props = {
     // date: string,
 }
@@ -47,7 +26,7 @@ export default function GoalList(props: Props) {
         fromFriends: [],
         nowFriends: [],
         toFriends: [],
-    } as apiFriendReadResponseType);
+    } as apiInvitationResponseType);
     const [friendReadLoading, setFriendReadLoading] = useState(false as boolean);
 
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
@@ -56,12 +35,12 @@ export default function GoalList(props: Props) {
 
     const friendRead = () => {
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/friend/read`,
+            url: `/api/invitation/read`,
             method: "GET",
         };
         setFriendReadLoading(true);
         api(requestConfig)
-            .then((res: AxiosResponse<apiFriendReadResponseType>) => {
+            .then((res: AxiosResponse<apiInvitationResponseType>) => {
                 setFriendData(res.data);
             })
             .finally(() => {
@@ -83,6 +62,7 @@ export default function GoalList(props: Props) {
                     />
                     {friendData.fromFriends.map((friend, index) => (
                         <FriendItemFrom
+                            friendRead={friendRead}
                             friend={friend}
                             key={index.toString()}
                         />
@@ -101,6 +81,7 @@ export default function GoalList(props: Props) {
                 />
                 {Boolean(friendData.nowFriends.length) && friendData.nowFriends.map((friend, index) => (
                     <FriendItemNow
+                        friendRead={friendRead}
                         friend={friend}
                         key={index.toString()}
                     />
@@ -114,6 +95,7 @@ export default function GoalList(props: Props) {
                     />
                     {friendData.toFriends.map((friend, index) => (
                         <FriendItemNow
+                            friendRead={friendRead}
                             friend={friend}
                             key={index.toString()}
                         />

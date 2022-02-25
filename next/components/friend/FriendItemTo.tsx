@@ -21,10 +21,11 @@ import moment from 'moment';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response';
+import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
 
 type Props = {
-    friend: apiFriendReadResponseFriendType
+    friend: apiInvitationResponseFriendType
+    friendRead: any
 }
 export default function FriendItemTo(props: Props) {
     const [value, setValue] = React.useState<number>(5);

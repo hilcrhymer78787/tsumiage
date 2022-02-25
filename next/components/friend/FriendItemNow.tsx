@@ -21,16 +21,31 @@ import moment from 'moment';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response';
+import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Card from '@mui/material/Card';
 
 type Props = {
-    friend: apiFriendReadResponseFriendType
+    friend: apiInvitationResponseFriendType
+    friendRead: any
 }
 export default function FriendItemNow(props: Props) {
     const [value, setValue] = React.useState<number>(5);
     return (
-        <>
-            <pre>{JSON.stringify(props.friend, null, 2)}</pre>
-        </>
+        <Card sx={{ borderRadius: '0' }}>
+            <CardHeader
+                avatar={
+                    <Avatar src={props.friend.user_img} />
+                }
+                onClick={() => { alert(); }}
+                title={props.friend.name}
+                subheader={props.friend.email}
+            />
+        </Card>
     );
 }

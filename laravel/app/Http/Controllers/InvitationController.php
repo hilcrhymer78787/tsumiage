@@ -11,6 +11,14 @@ use App\Services\UserService;
 
 class InvitationController extends Controller
 {
+    public function read(Request $request)
+    {
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        $return['fromFriends'] = (new UserService())->getFromFriends($loginInfo['id']);
+        $return['nowFriends'] = (new UserService())->getNowFriends($loginInfo['id']);
+        $return['toFriends'] = (new UserService())->getToFriends($loginInfo['id']);
+        return $return;
+    }
     public function create(Request $request)
     {
         // メールアドレスが存在するか確認
@@ -57,7 +65,9 @@ class InvitationController extends Controller
     }
     public function delete(Request $request)
     {
-        Invitation::where('invitation_id', $request['invitation_id'])
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        Invitation::where('invitation_to_user_id', $loginInfo['id'])
+            ->where('invitation_id', $request['invitation_id'])
             ->delete();
     }
 }

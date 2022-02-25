@@ -1,3 +1,3 @@
 export interface apiInvitationDeleteRequestType {
-    invitation_id: number,
+    invitation_id: number
 }
