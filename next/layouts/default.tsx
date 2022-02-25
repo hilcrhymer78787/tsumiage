@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/common/Navigation";
 import Header from "@/components/common/Header";
 import { connect } from "react-redux";
 
