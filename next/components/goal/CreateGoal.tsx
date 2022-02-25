@@ -34,8 +34,8 @@ export default function Creategoal(props: Props) {
     const [hour, setHour] = useState('' as number | string);
     const [minute, setMinute] = useState(0 as number);
     const [taskId, setTaskId] = useState(0 as number);
-    const [startDate, setStartDate] = useState(moment().format('Y/M/D') as string);
-    const [endDate, setEndDate] = useState(moment().format('Y/M/D') as string);
+    const [startDate, setStartDate] = useState(moment(new Date()).format('YYYY/MM/DD') as string);
+    const [endDate, setEndDate] = useState(moment(new Date()).format('YYYY/MM/DD') as string);
 
     const [hourError, setHourError] = useState("" as string);
     const [nameError, setNameError] = useState("" as string);
