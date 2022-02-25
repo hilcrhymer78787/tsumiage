@@ -3,7 +3,7 @@ import { Button, CircularProgress, TextField } from '@mui/material';
 import Router from 'next/router';
 import { connect } from "react-redux";
 import Layout from '@/layouts/default';
-import FriendList from '@/components/friend/FriendList'
+import FriendList from '@/components/friend/FriendList';
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -19,7 +19,7 @@ function FriendId({ dispatch, count, post, loginInfo }) {
         <div>
             <div>
                 <Button onClick={() => {
-                    console.log(Router)
+                    console.log(Router);
                 }}>test</Button>
                 {Router.router.query.id}
             </div>

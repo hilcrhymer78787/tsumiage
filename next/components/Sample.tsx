@@ -22,7 +22,6 @@ import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 
-
 export default function Sample() {
     const [value, setValue] = React.useState<number>(5);
     return (

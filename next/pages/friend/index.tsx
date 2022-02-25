@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Layout from '@/layouts/default';
-import FriendList from '@/components/friend/FriendList'
+import FriendList from '@/components/friend/FriendList';
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,

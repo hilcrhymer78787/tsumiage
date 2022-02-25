@@ -80,10 +80,10 @@ export default function GoalItem(props: Props) {
                         <LinePlot height="200px" data={props.goal.analytics} />
                     </CardContent>
                     <SimpleTable datas={[
-                            { key: 'ペース', value: `あと${props.goal.deadline_day_count}日で${props.goal.minute - props.goal.sum_minute}分` },
-                            { key: '開始日', value: moment(props.goal.start_date).format('Y年M月D日') },
-                            { key: '期限日', value: moment(props.goal.end_date).format('Y年M月D日') },
-                        ]} />
+                        { key: 'ペース', value: `あと${props.goal.deadline_day_count}日で${props.goal.minute - props.goal.sum_minute}分` },
+                        { key: '開始日', value: moment(props.goal.start_date).format('Y年M月D日') },
+                        { key: '期限日', value: moment(props.goal.end_date).format('Y年M月D日') },
+                    ]} />
                     <CardActions disableSpacing>
                         <div></div>
                         <Button

@@ -21,7 +21,7 @@ import moment from 'moment';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response'
+import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response';
 
 type Props = {
     friend: apiFriendReadResponseFriendType

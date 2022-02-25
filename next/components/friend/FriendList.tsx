@@ -29,11 +29,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
 import { apiGoalReadResponseGoalsType } from '@/types/api/goal/read/response';
-import FriendItemTo from '@/components/friend/FriendItemTo'
-import FriendItemNow from '@/components/friend/FriendItemNow'
-import FriendItemFrom from '@/components/friend/FriendItemFrom'
-import { apiFriendReadResponseType } from '@/types/api/friend/read/response'
-import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response'
+import FriendItemTo from '@/components/friend/FriendItemTo';
+import FriendItemNow from '@/components/friend/FriendItemNow';
+import FriendItemFrom from '@/components/friend/FriendItemFrom';
+import { apiFriendReadResponseType } from '@/types/api/friend/read/response';
+import { apiFriendReadResponseFriendType } from '@/types/api/friend/read/response';
 type Props = {
     // date: string,
 }
