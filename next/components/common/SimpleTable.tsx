@@ -13,9 +13,14 @@ type Props = {
         value: string,
     }[]
 }
-export default function SimpleTable(props:Props) {
+export default function SimpleTable(props: Props) {
     return (
-        <TableContainer component={Paper}>
+        <TableContainer
+            sx={{
+                borderRadius: '0',
+                borderTop: '1px solid #e0e0e0',
+            }}
+            component={Paper}>
             <Table>
                 <TableBody>
                     {props.datas.map((data) => (
