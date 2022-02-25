@@ -52,8 +52,7 @@ export default function FriendItemTo(props: Props) {
                     color="error"
                     variant="contained"
                     loading={invitationDeleteLoading}
-                    children={<>中止<DeleteIcon /></>}
-                />
+                >中止<DeleteIcon /></LoadingButton>
             </CardActions>
         </Card>
     );

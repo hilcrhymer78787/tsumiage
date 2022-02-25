@@ -73,8 +73,7 @@ export default function FriendItemFrom(props: Props) {
                     variant="contained"
                     loading={invitationDeleteLoading}
                     disabled={invitationUpdateLoading}
-                    children={<>拒否<DeleteIcon /></>}
-                />
+                >拒否<DeleteIcon /></LoadingButton>
                 <div></div>
                 <LoadingButton
                     onClick={invitationUpdate}
@@ -82,8 +81,7 @@ export default function FriendItemFrom(props: Props) {
                     variant="contained"
                     loading={invitationUpdateLoading}
                     disabled={invitationDeleteLoading}
-                    children={<>許可<SendIcon /></>}
-                />
+                >許可<SendIcon /></LoadingButton>
             </CardActions>
         </Card>
     );
