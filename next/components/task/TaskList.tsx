@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { CardActionArea, IconButton, Dialog, ListItem, Checkbox, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import AddIcon from '@mui/icons-material/Add';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import { api } from '@/plugins/axios';
+import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import CreateWork from '@/components/task/CreateWork';
+import CreateTask from '@/components/task/CreateTask';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import CreateWork from '@/components/task/CreateWork';
-import CreateTask from '@/components/task/CreateTask';
 import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
-import moment from 'moment';
-import { MINUTE } from '@/static/const';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import AddIcon from '@mui/icons-material/Add';
+import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import {
+    Card,
+    CardHeader,
+    CardContent,
+    CardActionArea,
+    IconButton,
+    Dialog,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    Avatar,
+    CircularProgress
+} from '@mui/material';
 type Props = {
     date: string,
 }
@@ -111,25 +121,29 @@ export default function TaskList(props: Props) {
 
     return (
         <>
-            <div className="card">
-                <div className="card_header">
-                    <div className="card_header_left">
-                        <h2 className="card_header_left_main">タスク</h2>
-                        <h3 className='card_header_left_sub'>{props.date}</h3>
-                    </div>
-                    <div className="card_header_right">
-                        <IconButton onClick={onNewTask} className='card_header_right_btn' component="span">
+            <Card>
+                <CardHeader
+                    action={
+                        <IconButton onClick={onNewTask} component="span">
                             <AddIcon color="primary" />
                         </IconButton>
-                    </div>
-                </div>
+                    }
+                    sx={{ bgcolor: '#1976d2', color: 'white' }}
+                    title="タスク"
+                    subheader={props.date}
+                />
                 {taskReadLoading && !Boolean(tasks.length) &&
-                    <div className='d-flex justify-center pa-5 ma-5'>
+                    <CardContent
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            p: '30px'
+                        }}>
                         <CircularProgress />
-                    </div>
+                    </CardContent>
                 }
                 {Boolean(tasks.length) &&
-                    <div>
+                    <CardContent sx={{ p: '0 !important' }}>
                         {tasks.map((task, index) => (
                             <CardActionArea key={index.toString()}>
                                 <ListItem
@@ -158,9 +172,9 @@ export default function TaskList(props: Props) {
                                 </ListItem>
                             </CardActionArea>
                         ))}
-                    </div>
+                    </CardContent>
                 }
-            </div>
+            </Card>
 
             <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
                 {createWorkDialog &&
