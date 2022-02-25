@@ -72,8 +72,8 @@ export default function GoalItem(props: Props) {
                         </ExpandMore>
                     }
                     onClick={() => { setExpanded(!expanded); }}
-                    title={`${props.goal.task_name}（目標:${props.goal.minute}分）`}
-                    subheader={`実績:${props.goal.sum_minute}分、期限:残り${props.goal.deadline_day_count}日`}
+                    title={`${props.goal.task_name}（残り${props.goal.deadline_day_count}日）`}
+                    subheader={`目標:${props.goal.minute}分、実績:${props.goal.sum_minute}分`}
                 />
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
