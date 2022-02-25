@@ -195,7 +195,8 @@ export default function Creategoal(props: Props) {
                     </ul>
                 </div>
                 <div className="card_footer justify-space-between">
-                    <Button color="error"
+                    <Button
+                        color="error"
                         onClick={goalDelete}
                         variant="contained"
                         endIcon={goalDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}

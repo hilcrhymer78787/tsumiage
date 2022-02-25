@@ -131,13 +131,15 @@ export default function CreateWork(props: Props) {
                 </ul>
             </div>
             <div className="card_footer justify-space-between">
-                <Button color="secondary"
+                <Button
+                    color="error"
                     onClick={workDelete}
                     variant="contained"
                     endIcon={workDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
                     disabled={workCreateLoading || workDeleteLoading}
                 >削除</Button>
-                <Button color="primary"
+                <Button
+                    color="primary"
                     onClick={workCreate}
                     variant="contained"
                     endIcon={workCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}

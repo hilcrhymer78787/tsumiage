@@ -148,13 +148,15 @@ export default function CreateTask(props: Props) {
                     </ul>
                 </div>
                 <div className="card_footer justify-space-between">
-                    <Button color="error"
+                    <Button
+                        color="error"
                         onClick={taskDelete}
                         variant="contained"
                         endIcon={taskDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
                         disabled={taskCreateLoading || taskDeleteLoading}
                     >削除</Button>
-                    <Button color="inherit"
+                    <Button
+                        color="primary"
                         onClick={taskCreate}
                         variant="contained"
                         endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
