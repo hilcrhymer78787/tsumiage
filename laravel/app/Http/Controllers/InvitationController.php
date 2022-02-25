@@ -28,25 +28,60 @@ class InvitationController extends Controller
         }
 
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        $roomData = Room::where('room_id', $loginInfo['user_room_id'])->first();
+
+        // 自分自身でないか確認
+        if ($toUserData['id'] == $loginInfo['id']) {
+            $errorMessage = '自分自身に友達申請することはできません';
+            return response()->json(['errorMessage' => $errorMessage], 500);
+        }
 
         // 重複判定
-        $duplicateJudgment = Invitation::where('invitation_room_id', $loginInfo['user_room_id'])
+        $nowJudgment = Invitation::where('invitation_from_user_id', $loginInfo['id'])
             ->where('invitation_to_user_id', $toUserData['id'])
+            ->where('invitation_status', 2)
             ->first();
-        if ($duplicateJudgment) {
-            $errorMessage = $toUserData['name'] . 'さんはすでに' . $roomData['room_name'] . 'へ招待されています';
+        if ($nowJudgment) {
+            $errorMessage = $toUserData['name'] . 'さんにはすでに友達です';
+            return response()->json(['errorMessage' => $errorMessage], 500);
+        }
+
+        // 重複判定
+        $nowJudgment = Invitation::where('invitation_to_user_id', $loginInfo['id'])
+            ->where('invitation_from_user_id', $toUserData['id'])
+            ->where('invitation_status', 2)
+            ->first();
+        if ($nowJudgment) {
+            $errorMessage = $toUserData['name'] . 'さんにはすでに友達です';
+            return response()->json(['errorMessage' => $errorMessage], 500);
+        }
+
+        // 重複判定
+        $toJudgment = Invitation::where('invitation_from_user_id', $loginInfo['id'])
+            ->where('invitation_to_user_id', $toUserData['id'])
+            ->where('invitation_status', 1)
+            ->first();
+        if ($toJudgment) {
+            $errorMessage = $toUserData['name'] . 'さんにはすでに友達申請をしています';
+            return response()->json(['errorMessage' => $errorMessage], 500);
+        }
+
+        // 重複判定
+        $fromJudgment = Invitation::where('invitation_to_user_id', $loginInfo['id'])
+            ->where('invitation_from_user_id', $toUserData['id'])
+            ->where('invitation_status', 1)
+            ->first();
+        if ($fromJudgment) {
+            $errorMessage = $toUserData['name'] . 'さんからの友達申請が来ているため許可してください';
             return response()->json(['errorMessage' => $errorMessage], 500);
         }
 
         Invitation::create([
-            'invitation_room_id' => $loginInfo['user_room_id'],
             'invitation_from_user_id' => $loginInfo['id'],
             'invitation_to_user_id' => $toUserData['id'],
-            'invitation_status' => 0,
+            'invitation_status' => 1,
         ]);
 
-        $return['successMessage'] = $toUserData['name'] . 'さんを' . $roomData['room_name'] . 'へ招待しました';
+        $return['successMessage'] = $toUserData['name'] . 'さんに友達申請しました';
         return $return;
     }
     public function update(Request $request)

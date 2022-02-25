@@ -12,15 +12,12 @@ import FriendItemTo from '@/components/friend/FriendItemTo';
 import FriendItemNow from '@/components/friend/FriendItemNow';
 import FriendItemFrom from '@/components/friend/FriendItemFrom';
 import { apiInvitationResponseType } from '@/types/api/invitation/read/response';
-import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
+import CreateFriend from '@/components/friend/CreateFriend'
 type Props = {
     // date: string,
 }
 export default function GoalList(props: Props) {
-    const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
-    const [createGoalDialog, setCreateGoalDialog] = useState(false as boolean);
-    const [focusGoal, setFocusGoal] = useState(null as apiGoalReadResponseGoalsType | null);
-    const [goals, setGoals] = useState([] as apiGoalReadResponseGoalsType[]);
+    const [createInvitationDialog, setCreateInvitationDialog] = useState(false as boolean);
 
     const [friendData, setFriendData] = useState({
         fromFriends: [],
@@ -28,10 +25,6 @@ export default function GoalList(props: Props) {
         toFriends: [],
     } as apiInvitationResponseType);
     const [friendReadLoading, setFriendReadLoading] = useState(false as boolean);
-
-    const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
-    const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
-    const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
 
     const friendRead = () => {
         const requestConfig: AxiosRequestConfig = {
@@ -54,6 +47,24 @@ export default function GoalList(props: Props) {
 
     return (
         <>
+            <Card sx={{ mb: '20px' }}>
+                <CardHeader
+                    action={
+                        <IconButton onClick={() => { setCreateInvitationDialog(true); }}>
+                            <AddIcon sx={{ bgcolor: 'white', color: '#1976d2' }} />
+                        </IconButton>
+                    }
+                    sx={{ bgcolor: '#1976d2', color: 'white' }}
+                    title={`友達`}
+                />
+                {Boolean(friendData.nowFriends.length) && friendData.nowFriends.map((friend, index) => (
+                    <FriendItemNow
+                        friendRead={friendRead}
+                        friend={friend}
+                        key={index.toString()}
+                    />
+                ))}
+            </Card>
             {Boolean(friendData.fromFriends.length) &&
                 <Card sx={{ mb: '20px' }}>
                     <CardHeader
@@ -69,24 +80,6 @@ export default function GoalList(props: Props) {
                     ))}
                 </Card>
             }
-            <Card sx={{ mb: '20px' }}>
-                <CardHeader
-                    action={
-                        <IconButton onClick={() => { setCreateGoalDialog(true); }}>
-                            <AddIcon sx={{ bgcolor: 'white', color: '#1976d2' }} />
-                        </IconButton>
-                    }
-                    sx={{ bgcolor: '#1976d2', color: 'white' }}
-                    title={`友達`}
-                />
-                {Boolean(friendData.nowFriends.length) && friendData.nowFriends.map((friend, index) => (
-                    <FriendItemNow
-                        friendRead={friendRead}
-                        friend={friend}
-                        key={index.toString()}
-                    />
-                ))}
-            </Card>
             {Boolean(friendData.toFriends.length) &&
                 <Card sx={{ mb: '20px' }}>
                     <CardHeader
@@ -102,17 +95,15 @@ export default function GoalList(props: Props) {
                     ))}
                 </Card>
             }
-            {/* <Dialog open={createGoalDialog} onClose={() => { setCreateGoalDialog(false); }}>
-                {createGoalDialog &&
-                    <CreateGoal
-                        onCloseMyself={() => {
-                            setCreateGoalDialog(false);
-                            goalRead();
-                        }}
-                        focusGoal={null}
-                    />
+            <Dialog open={createInvitationDialog}
+                onClose={() => {
+                    setCreateInvitationDialog(false);
+                    friendRead()
+                }}>
+                {createInvitationDialog &&
+                    <CreateFriend />
                 }
-            </Dialog> */}
+            </Dialog>
         </>
     );
 }

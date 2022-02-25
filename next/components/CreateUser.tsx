@@ -9,7 +9,7 @@ import { apiUserCreateRequestType } from "@/types/api/user/create/request";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
 import store from "@/store/index";
-import { errorType } from "@/types/error";
+import { errorType } from "@/types/api/error";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 
 type Props = {

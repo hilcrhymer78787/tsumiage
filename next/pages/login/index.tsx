@@ -7,7 +7,7 @@ import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAut
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
 import store from "@/store/index";
-import { errorType } from "@/types/error";
+import { errorType } from "@/types/api/error";
 Login.getLayout = function getLayout(page) {
     return (
         <LoginLayout>{page}</LoginLayout>

@@ -63,7 +63,6 @@ export default function FriendItemFrom(props: Props) {
                 avatar={
                     <Avatar src={props.friend.user_img} />
                 }
-                onClick={() => { alert(); }}
                 title={props.friend.name}
                 subheader={props.friend.email}
             />
