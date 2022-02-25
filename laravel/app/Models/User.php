@@ -22,7 +22,6 @@ class User extends Authenticatable
         'password',
         'user_img',
         'token',
-        'user_room_id',
         'remember_token',
     ];
 
@@ -42,7 +41,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'user_room_id'=>'integer',
         'email_verified_at' => 'datetime',
     ];
 }

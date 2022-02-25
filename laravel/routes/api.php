@@ -19,7 +19,6 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::get('/task/read', 'TaskController@read');
     Route::delete('/task/delete', 'TaskController@delete');
 
-    Route::put('/user/update/room_id', 'UserController@updateRoomId');
     Route::delete('/user/delete', 'UserController@delete');
 
     Route::post('/work/create', 'WorkController@create');

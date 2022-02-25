@@ -18,6 +18,7 @@ class CreateInvitationsTable extends Migration
             $table->integer('invitation_from_user_id');
             $table->integer('invitation_to_user_id');
             $table->integer('invitation_status');
+            $table->integer('invitation_sort_key')->nullable();
             $table->timestamps();
         });
     }

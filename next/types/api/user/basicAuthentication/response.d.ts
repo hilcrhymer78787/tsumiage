@@ -4,5 +4,4 @@ export interface apiUserBasicAuthenticationResponseType {
     name: string
     token: string
     user_img: string
-    user_room_id: number
 }

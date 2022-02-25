@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Room;
 use App\Services\UserService;
-use App\Services\TaskService;
-use App\Services\RoomService;
-use App\Services\InvitationService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,7 +48,7 @@ class UserController extends Controller
                 return response()->json(['errorMessage' => 'このメールアドレスは既に登録されています',], 500);
             }
             // ダミータスクを作成
-            // (new TaskService())->createcDummyTask($room['id']);
+            // (new TaskService())->createcDummyTask($user['id']);
             // 新規ユーザー登録
             $user = User::create([
                 'name' => $request['name'],
@@ -96,13 +92,6 @@ class UserController extends Controller
         }
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         return $loginInfo;
-    }
-    public function updateRoomId(Request $request)
-    {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        User::where('id', $loginInfo['id'])->update([
-            'user_room_id' => $request['room_id'],
-        ]);
     }
     public function delete(Request $request)
     {

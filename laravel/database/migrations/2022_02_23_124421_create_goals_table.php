@@ -20,6 +20,7 @@ class CreateGoalsTable extends Migration
             $table->integer('goal_user_id');
             $table->date('goal_start_date');
             $table->date('goal_end_date');
+            $table->integer('goal_sort_key')->nullable();
             $table->timestamps();
         });
     }

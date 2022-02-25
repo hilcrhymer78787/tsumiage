@@ -24,7 +24,6 @@ class usersTableSeeder extends Seeder
                     'password' => 'password',
                     'user_img' => "https://picsum.photos/500/300?image=${i}",
                     'token' => "user${i}@gmail.com" . Str::random(100),
-                    'user_room_id' => 1,
                 ],
             ]);
         }

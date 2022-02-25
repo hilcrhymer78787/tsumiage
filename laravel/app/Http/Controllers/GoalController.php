@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invitation;
-use App\Models\Room;
-use App\Models\User;
 use App\Models\Goal;
 use App\Models\Work;
 use App\Services\UserService;

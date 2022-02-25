@@ -6,9 +6,9 @@ use App\Models\Task;
 
 class TaskService
 {
-    public function getTasksByUserId($roomId)
+    public function getTasksByUserId($userId)
     {
-        $tasks = Task::where('task_user_id', $roomId)
+        $tasks = Task::where('task_user_id', $userId)
             ->select(
                 'task_id as id',
                 'task_name as name',
@@ -20,22 +20,22 @@ class TaskService
             ->get();
         return $tasks;
     }
-    public function createcDummyTask($roomId)
+    public function createcDummyTask($userId)
     {
         Task::create([
             'task_name' => '洗い物',
             'task_default_minute' => 15,
-            'task_user_id' => $roomId,
+            'task_user_id' => $userId,
         ]);
         Task::create([
             'task_name' => '料理',
             'task_default_minute' => 30,
-            'task_user_id' => $roomId,
+            'task_user_id' => $userId,
         ]);
         Task::create([
             'task_name' => '洗濯',
             'task_default_minute' => 15,
-            'task_user_id' => $roomId,
+            'task_user_id' => $userId,
         ]);
     }
 }

@@ -12,7 +12,7 @@ import FriendItemTo from '@/components/friend/FriendItemTo';
 import FriendItemNow from '@/components/friend/FriendItemNow';
 import FriendItemFrom from '@/components/friend/FriendItemFrom';
 import { apiInvitationResponseType } from '@/types/api/invitation/read/response';
-import CreateFriend from '@/components/friend/CreateFriend'
+import CreateFriend from '@/components/friend/CreateFriend';
 type Props = {
     // date: string,
 }
@@ -98,7 +98,7 @@ export default function GoalList(props: Props) {
             <Dialog open={createInvitationDialog}
                 onClose={() => {
                     setCreateInvitationDialog(false);
-                    friendRead()
+                    friendRead();
                 }}>
                 {createInvitationDialog &&
                     <CreateFriend />

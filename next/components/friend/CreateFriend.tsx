@@ -13,12 +13,12 @@ import DatePicker from '@mui/lab/DatePicker';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import { CardContent, CardActionArea, IconButton, Dialog, ListItem, Checkbox, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
-import { apiInvitationCreateRequestType } from '@/types/api/invitation/create/request'
-import { apiInvitationCreateResponseType } from '@/types/api/invitation/create/response'
+import { apiInvitationCreateRequestType } from '@/types/api/invitation/create/request';
+import { apiInvitationCreateResponseType } from '@/types/api/invitation/create/response';
 import SendIcon from '@material-ui/icons/Send';
 import { errorType } from "@/types/api/error";
 import { Button } from '@mui/material';
-export default function CreateFriend(props: Props) {
+export default function CreateFriend() {
     const [successMessage, setSuccessMessage] = React.useState<string>('');
     const [email, setEmail] = React.useState<string>('');
     const [emailError, setEmailError] = React.useState<string>('');
@@ -38,11 +38,11 @@ export default function CreateFriend(props: Props) {
         setInvitationCreateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiInvitationCreateResponseType>) => {
-                setSuccessMessage(res.data.successMessage)
+                setSuccessMessage(res.data.successMessage);
             })
             .catch((err: AxiosError<errorType>) => {
                 if (err.response?.data?.errorMessage) {
-                    setEmailError(err.response.data.errorMessage)
+                    setEmailError(err.response.data.errorMessage);
                 }
             })
             .finally(() => {
@@ -96,20 +96,18 @@ export default function CreateFriend(props: Props) {
                         color="primary"
                         variant="contained"
                         loading={invitationCreateLoading}
-                        children={<>申請<SendIcon /></>}
-                    />
+                    >申請<SendIcon /></LoadingButton>
                 }
                 {Boolean(successMessage) &&
                     <LoadingButton
                         onClick={() => {
-                            setEmail('')
-                            setSuccessMessage('')
+                            setEmail('');
+                            setSuccessMessage('');
                         }}
                         color="inherit"
                         variant="contained"
                         loading={invitationCreateLoading}
-                        children={<>続けて申請</>}
-                    />
+                    >続けて申請</LoadingButton>
                 }
             </CardActions>
         </Card>
