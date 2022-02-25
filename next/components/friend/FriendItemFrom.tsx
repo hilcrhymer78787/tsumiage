@@ -10,15 +10,16 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardActions from '@mui/material/CardActions';
 import { apiInvitationDeleteRequestType } from '@/types/api/invitation/delete/request';
+import { apiInvitationUpdateRequestType } from '@/types/api/invitation/update/request';
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any
 }
 export default function FriendItemFrom(props: Props) {
     const [invitationDeleteLoading, setinvitationDeleteLoading] = React.useState<boolean>(false);
-    const [invitationCreateLoading, setinvitationCreateLoading] = React.useState<boolean>(false);
+    const [invitationUpdateLoading, setInvitationUpdateLoading] = React.useState<boolean>(false);
     const invitationDelete = () => {
-        if (!confirm(`「」を削除しますか？`)) {
+        if (!confirm(`「${props.friend.name}」さんからの招待を拒否しますか？`)) {
             return;
         }
         const apiParam: apiInvitationDeleteRequestType = {
@@ -38,22 +39,22 @@ export default function FriendItemFrom(props: Props) {
                 setinvitationDeleteLoading(false);
             });
     };
-    const invitationCreate = () => {
-        const apiParam: apiInvitationCreateRequestType = {
+    const invitationUpdate = () => {
+        const apiParam: apiInvitationUpdateRequestType = {
             invitation_id: props.friend.invitation_id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/invitation/create`,
-            method: "POST",
+            url: `/api/invitation/update`,
+            method: "PUT",
             data: apiParam
         };
-        setinvitationCreateLoading(true);
+        setInvitationUpdateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse) => {
                 props.friendRead();
             })
             .finally(() => {
-                setinvitationCreateLoading(false);
+                setInvitationUpdateLoading(false);
             });
     };
     return (
@@ -72,15 +73,15 @@ export default function FriendItemFrom(props: Props) {
                     color="error"
                     variant="contained"
                     loading={invitationDeleteLoading}
-                    disabled={invitationCreateLoading}
+                    disabled={invitationUpdateLoading}
                     children={<>拒否<DeleteIcon /></>}
                 />
                 <div></div>
                 <LoadingButton
-                    onClick={() => { alert(); }}
+                    onClick={invitationUpdate}
                     color="primary"
                     variant="contained"
-                    loading={invitationCreateLoading}
+                    loading={invitationUpdateLoading}
                     disabled={invitationDeleteLoading}
                     children={<>許可<SendIcon /></>}
                 />

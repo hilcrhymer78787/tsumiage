@@ -35,6 +35,16 @@ class InvitationsTableSeeder extends Seeder
               'invitation_to_user_id' => 5,
               'invitation_status' => 2,
             ],
+            [
+              'invitation_from_user_id' => 1,
+              'invitation_to_user_id' => 6,
+              'invitation_status' => 1,
+            ],
+            [
+              'invitation_from_user_id' => 7,
+              'invitation_to_user_id' => 1,
+              'invitation_status' => 1,
+            ],
          ]);
     }
 }

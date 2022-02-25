@@ -51,16 +51,16 @@ class InvitationController extends Controller
     }
     public function update(Request $request)
     {
-        // ルームに参加
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        // 判定
+        $judge = Invitation::where('invitation_id', $request['invitation_id'])
+            ->where('invitation_to_user_id', $loginInfo['id'])
+            ->first();
+        if(!$judge){
+            return response()->json(['errorMessage' => '招待されていません'], 500);
+        }
         Invitation::where('invitation_id', $request['invitation_id'])->update([
             'invitation_status' => 2,
-        ]);
-
-        // ルームに入室
-        $invitation = Invitation::where('invitation_id', $request['invitation_id'])->first();
-        User::where('id', $loginInfo['id'])->update([
-            'user_room_id' => $invitation['invitation_room_id'],
         ]);
     }
     public function delete(Request $request)
