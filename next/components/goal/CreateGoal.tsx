@@ -220,6 +220,8 @@ export default function Creategoal(props: Props) {
                                     />
                                 </Box>
                             </Box>
+                            <div>startDate...{startDate}</div>
+                            <div>endDate...{endDate}</div>
                         </li>
                     </ul>
                 </div>
