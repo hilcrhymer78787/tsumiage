@@ -143,7 +143,7 @@ function About({ dispatch, loginInfo }) {
                     </div>
                 </div>
                 <div className="card_body">
-                    <LinePlot data={calendarData.analytics}/>
+                    <LinePlot height="300px" data={calendarData.analytics}/>
                 </div>
             </div>
 

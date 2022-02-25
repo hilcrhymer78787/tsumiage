@@ -106,4 +106,11 @@ class GoalController extends Controller
 
         return $return;
     }
+    public function delete(Request $request)
+    {
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        Goal::where('goal_user_id', $loginInfo['id'])
+            ->where('goal_id', $request['goal_id'])
+            ->delete();
+    }
 }

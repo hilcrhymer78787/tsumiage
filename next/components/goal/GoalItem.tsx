@@ -50,7 +50,7 @@ export default function GoalItem(props: Props) {
         <>
             <Card
                 sx={{
-                    m: expanded ? '20px' : '0',
+                    m: expanded ? '10px' : '0',
                     borderRadius: expanded ? '4px' : '0'
                 }}
             >
@@ -77,7 +77,7 @@ export default function GoalItem(props: Props) {
                 />
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <LinePlot data={props.goal.analytics} />
+                        <LinePlot height="200px" data={props.goal.analytics} />
                         <SimpleTable datas={[
                             { key: 'ペース', value: `あと${props.goal.deadline_day_count}日で${props.goal.minute - props.goal.sum_minute}分` },
                             { key: '開始日', value: moment(props.goal.start_date).format('Y年M月D日') },

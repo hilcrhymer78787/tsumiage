@@ -28,7 +28,7 @@ type Props = {
 }
 export default function Creategoal(props: Props) {
     const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
-    const [goalDeleteLoading, setgoalDeleteLoading] = useState(false as boolean);
+    const [goalDeleteLoading, setGoalDeleteLoading] = useState(false as boolean);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
     const [id, setId] = useState(0 as number);
     const [minute, setMinute] = useState(0 as number);
@@ -49,13 +49,13 @@ export default function Creategoal(props: Props) {
             method: "DELETE",
             data: apiParam
         };
-        setgoalDeleteLoading(true);
+        setGoalDeleteLoading(true);
         api(requestConfig)
-            .then((res: AxiosResponse<apiGoalReadResponseType>) => {
+            .then((res: AxiosResponse) => {
                 props.onCloseMyself();
             })
             .finally(() => {
-                setgoalDeleteLoading(false);
+                setGoalDeleteLoading(false);
             });
     };
     const goalCreate = () => {
