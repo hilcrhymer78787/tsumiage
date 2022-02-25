@@ -131,7 +131,7 @@ export default function CreateTask(props: Props) {
                                 </Select>
                             </FormControl>
                         </li>
-                        <li className='mb-3'>
+                        {/* <li className='mb-3'>
                             <FormControl fullWidth>
                                 <InputLabel id="defaultーminute-label">ステータス</InputLabel>
                                 <Select
@@ -144,7 +144,7 @@ export default function CreateTask(props: Props) {
                                     ))}
                                 </Select>
                             </FormControl>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <div className="card_footer justify-space-between">
