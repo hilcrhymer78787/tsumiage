@@ -17,13 +17,8 @@ import {
     Card,
     CardHeader,
     CardContent,
-    CardActionArea,
     IconButton,
     Dialog,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Avatar,
     CircularProgress
 } from '@mui/material';
 type Props = {
@@ -99,7 +94,7 @@ export default function TaskList(props: Props) {
                     <CreateTask
                         onCloseMyself={() => {
                             setCreateTaskDialog(false);
-                            taskRead()
+                            taskRead();
                         }}
                         task={null}
                     />

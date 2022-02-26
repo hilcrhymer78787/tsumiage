@@ -12,13 +12,14 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import {
     CardActionArea,
     Dialog,
+    List,
     ListItem,
+    ListItemButton,
     ListItemAvatar,
     ListItemText,
     Avatar,
     CircularProgress
 } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 type Props = {
     task: apiTaskReadResponseTaskType,
     date: string
@@ -72,44 +73,47 @@ export default function TaskItem(props: Props) {
                 setWorkCreateLoading(false);
             });
     };
+    const QuickIcon = () => {
+        if (workDeleteLoading || workCreateLoading) {
+            return <CircularProgress size={25} />;
+        } else if (props.task.work.id) {
+            return <CheckBoxIcon
+                onClick={workDelete}
+                color="primary"
+            />;
+        } else {
+            return <CheckBoxOutlineBlankIcon
+                onClick={workCreate}
+                color="disabled"
+            />;
+        }
+    };
     return (
-        <>
-            <CardActionArea >
-                <ListItem
-                    secondaryAction={props.task.work.id ?
-                        <CheckBoxIcon
-                            onClick={workDelete}
-                            color="primary"
-                        />
-                        :
-                        <CheckBoxOutlineBlankIcon
-                            onClick={workCreate}
-                            color="disabled"
-                        />
-                    }>
-                    <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
-                        <Avatar sx={{ bgcolor: Boolean(props.task.work.id) ? '#1976d2' : '' }}>
-                            <TaskOutlinedIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                        onClick={() => { setCreateWorkDialog(true); }}
-                        primary={props.task.name} secondary={`想定:${props.task.default_minute}分` + ` 実績:${props.task.work?.minute}分`}
-                    />
-                </ListItem>
-            </CardActionArea>
+        <ListItem sx={{ p: 0 }} secondaryAction={<QuickIcon />}>
+            <ListItemButton sx={{ p: '8px 48px 8px 16px' }}>
+                <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
+                    <Avatar sx={{ bgcolor: Boolean(props.task.work.id) ? '#1976d2' : '' }}>
+                        <TaskOutlinedIcon />
+                    </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                    onClick={() => { setCreateWorkDialog(true); }}
+                    primary={props.task.name}
+                    secondary={`想定:${props.task.default_minute}分` + ` 実績:${props.task.work?.minute}分`}
+                />
+            </ListItemButton>
             <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
                 {createWorkDialog &&
                     <CreateWork
-                        onCloseMyself={() => { 
-                            setCreateWorkDialog(false); 
-                            props.taskRead()
+                        onCloseMyself={() => {
+                            setCreateWorkDialog(false);
+                            props.taskRead();
                         }}
                         date={props.date}
                         task={props.task}
                     />
                 }
             </Dialog>
-        </>
+        </ListItem>
     );
 }
