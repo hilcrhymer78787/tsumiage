@@ -30,7 +30,7 @@ export default function GoalItem(props: Props) {
                     >{Math.floor(props.goal.sum_minute * 100 / props.goal.minute)}%</Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                    onClick={() => { setCreateGoalDialog(true) }}
+                    onClick={() => { setCreateGoalDialog(true); }}
                     primary={`${props.goal.task_name}（残り${props.goal.deadline_day_count}日）`}
                     secondary={`目標:${props.goal.minute}分、実績:${props.goal.sum_minute}分`}
                 />
