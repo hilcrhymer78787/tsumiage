@@ -8,9 +8,8 @@ import Document, {
 } from "next/document";
 
 import React from 'react';
-import {ServerStyleSheets as MaterialUIStyleSheets} from '@material-ui/core/styles';
-import {ServerStyleSheet as StyledComponentsStyleSheets} from "styled-components";
-
+import { ServerStyleSheets as MaterialUIStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheet as StyledComponentsStyleSheets } from "styled-components";
 class MyDocument extends Document {
     static async getInitialProps(
         ctx: DocumentContext
@@ -23,22 +22,10 @@ class MyDocument extends Document {
             <Html lang="ja-JP" dir="ltr">
                 <Head>
                     {/* windows */}
-                    <meta
-                        name="msapplication-square70x70logo"
-                        content="/site-tile-70x70.png"
-                    />
-                    <meta
-                        name="msapplication-square150x150logo"
-                        content="/site-tile-150x150.png"
-                    />
-                    <meta
-                        name="msapplication-wide310x150logo"
-                        content="/site-tile-310x150.png"
-                    />
-                    <meta
-                        name="msapplication-square310x310logo"
-                        content="/site-tile-310x310.png"
-                    />
+                    <meta name="msapplication-square70x70logo" content="/site-tile-70x70.png" />
+                    <meta name="msapplication-square150x150logo" content="/site-tile-150x150.png" />
+                    <meta name="msapplication-wide310x150logo" content="/site-tile-310x150.png" />
+                    <meta name="msapplication-square310x310logo" content="/site-tile-310x310.png" />
                     <meta name="msapplication-TileColor" content="#000" />
                     {/* safari */}
                     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,6 +36,19 @@ class MyDocument extends Document {
                         sizes="180x180"
                         href="/apple-touch-icon-180x180.png"
                     />
+
+                    {/* Add to splash screen for Safari on iOS */}
+                    <link href="/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+                    <link href="/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
                     {/* 一般 */}
                     <meta name="application-name" content="tsumiage" />
                     <meta name="theme-color" content="#000" />
