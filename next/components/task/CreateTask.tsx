@@ -17,7 +17,7 @@ import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/mat
 import { MINUTE } from '@/static/const';
 
 type Props = {
-    focusTask: apiTaskReadResponseTaskType
+    task: apiTaskReadResponseTaskType
     onCloseMyself: any
     taskRead: any
 }
@@ -27,13 +27,14 @@ export default function CreateTask(props: Props) {
     const [formTask, setFormTask] = useState({
         id: 0 as number,
         name: '' as string,
-        default_minute: 3 as string | number,
+        default_hour: 0 as number,
+        default_minute: 0 as number,
         status: 1 as string | number,
         sort_key: null as number | null,
     });
     const [nameError, setNameError] = useState("" as string);
     const taskDelete = () => {
-        if (!confirm(`「${props.focusTask.name}」を削除しますか？`)) {
+        if (!confirm(`「${props.task.name}」を削除しますか？`)) {
             return;
         }
         const apiParam: apiTaskDeleteRequestType = {
@@ -62,7 +63,7 @@ export default function CreateTask(props: Props) {
             task_id: formTask.id,
             task_name: formTask.name,
             task_status: Number(formTask.status),
-            task_default_minute: Number(formTask.default_minute),
+            task_default_minute: formTask.default_hour * 60 + formTask.default_minute
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/create`,
@@ -89,13 +90,14 @@ export default function CreateTask(props: Props) {
         return isError;
     };
     useEffect(() => {
-        if (props.focusTask) {
+        if (props.task) {
             setFormTask({
-                id: props.focusTask.id,
-                name: props.focusTask.name,
-                default_minute: props.focusTask.default_minute,
-                status: props.focusTask.status,
-                sort_key: props.focusTask.sort_key,
+                id: props.task.id,
+                name: props.task.name,
+                default_hour: Math.floor(props.task.default_minute / 60),
+                default_minute: props.task.default_minute % 60,
+                status: props.task.status,
+                sort_key: props.task.sort_key,
             });
         }
     }, []);
@@ -104,7 +106,7 @@ export default function CreateTask(props: Props) {
             {formTask && <>
                 <div className="card_header">
                     <div className="card_header_left">
-                        <h2 className="card_header_left_main">{props.focusTask ? props.focusTask.name : '新規タスク登録'}</h2>
+                        <h2 className="card_header_left_main">{props.task ? props.task.name : '新規タスク登録'}</h2>
                     </div>
                 </div>
                 <div className="card_body">
@@ -118,18 +120,31 @@ export default function CreateTask(props: Props) {
                                 label="タスクの名前" variant="outlined" color="primary" />
                         </li>
                         <li className='mb-3'>
-                            <FormControl fullWidth>
-                                <InputLabel id="defaultーminute-label">想定時間</InputLabel>
-                                <Select
-                                    labelId="defaultーminute-label"
-                                    value={formTask.default_minute}
-                                    onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
-                                >
-                                    {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
-                                        <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
+                            <h4>1日あたりの想定時間</h4>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Box sx={{ width: '48%', }}>
+                                    <Select
+                                        sx={{ width: '100%', }}
+                                        value={formTask.default_hour}
+                                        onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
+                                    >
+                                        {[...Array(24 + 1)].map((n, index) => (
+                                            <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
+                                        ))}
+                                    </Select>
+                                </Box>
+                                <Box sx={{ width: '48%', }}>
+                                    <Select
+                                        sx={{ width: '100%', }}
+                                        value={formTask.default_minute}
+                                        onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
+                                    >
+                                        {[...Array(59 + 1)].map((n, index) => (
+                                            <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                        ))}
+                                    </Select>
+                                </Box>
+                            </Box>
                         </li>
                         {/* <li className='mb-3'>
                             <FormControl fullWidth>

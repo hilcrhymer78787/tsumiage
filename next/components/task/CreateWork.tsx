@@ -14,26 +14,26 @@ import TextField from '@mui/material/TextField';
 import CreateTask from '@/components/task/CreateTask';
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
 import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
-import { MINUTE } from '@/static/const';
-// import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { LoadingButton } from '@mui/lab';
+
 
 type Props = {
     date: string,
-    focusTask: apiTaskReadResponseTaskType
+    task: apiTaskReadResponseTaskType
     onCloseMyself: any
-    openCreateTaskDialog: any
     taskRead: any
 }
 export default function CreateWork(props: Props) {
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
+    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [formMinute, setFormMinute] = useState(0);
     const [formHour, setFormHour] = useState(0);
     const [formMemo, setFormMemo] = useState('');
     const workDelete = () => {
         const apiParam: apiWorkDeleteRequestType = {
             date: props.date,
-            task_id: props.focusTask.id
+            task_id: props.task.id
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/work/delete`,
@@ -52,9 +52,9 @@ export default function CreateWork(props: Props) {
     };
     const workCreate = () => {
         const apiParam: apiWorkCreateRequestType = {
-            id: props.focusTask.work.id,
+            id: props.task.work.id,
             date: props.date,
-            task_id: props.focusTask.id,
+            task_id: props.task.id,
             minute: formHour * 60 + formMinute,
             memo: formMemo,
         };
@@ -78,23 +78,24 @@ export default function CreateWork(props: Props) {
     };
 
     useEffect(() => {
-        if (props.focusTask.work.minute) {
-            setFormHour(Math.floor(Number(props.focusTask.work.minute) / 60));
-            setFormMinute(Number(props.focusTask.work.minute) % 60);
+        if (props.task.work.minute) {
+            setFormHour(Math.floor(Number(props.task.work.minute) / 60));
+            setFormMinute(Number(props.task.work.minute) % 60);
         } else {
-            setFormMinute(props.focusTask.default_minute);
+            setFormHour(Math.floor(Number(props.task.default_minute) / 60));
+            setFormMinute(props.task.default_minute % 60);
         }
-        setFormMemo(props.focusTask.work.memo);
+        setFormMemo(props.task.work.memo);
     }, []);
     return (
         <div className='card'>
             <div className="card_header">
                 <div className="card_header_left">
-                    <h2 className="card_header_left_main">{props.focusTask.name}</h2>
+                    <h2 className="card_header_left_main">{props.task.name}</h2>
                     <h3 className='card_header_left_sub'>{props.date}</h3>
                 </div>
                 <div className="card_header_right">
-                    <IconButton onClick={() => { props.openCreateTaskDialog(); }} color="primary" className='card_header_right_btn' component="span">
+                    <IconButton onClick={() => { setCreateTaskDialog(true); }} color="primary" className='card_header_right_btn' component="span">
                         <SettingsIcon />
                     </IconButton>
                 </div>
@@ -108,9 +109,7 @@ export default function CreateWork(props: Props) {
                                 <Select
                                     sx={{ width: '100%', }}
                                     value={formHour}
-                                    onChange={(e) => {
-                                        setFormHour(Number(e.target.value));
-                                    }}
+                                    onChange={(e) => { setFormHour(Number(e.target.value)); }}
                                 >
                                     {[...Array(24 + 1)].map((n, index) => (
                                         <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
@@ -121,9 +120,7 @@ export default function CreateWork(props: Props) {
                                 <Select
                                     sx={{ width: '100%', }}
                                     value={formMinute}
-                                    onChange={(e) => {
-                                        setFormMinute(Number(e.target.value));
-                                    }}
+                                    onChange={(e) => { setFormMinute(Number(e.target.value)); }}
                                 >
                                     {[...Array(59 + 1)].map((n, index) => (
                                         <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
@@ -145,21 +142,33 @@ export default function CreateWork(props: Props) {
                 </ul>
             </div>
             <div className="card_footer justify-space-between">
-                <Button
-                    color="error"
+                <LoadingButton
                     onClick={workDelete}
+                    color="error"
                     variant="contained"
-                    endIcon={workDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
-                    disabled={workCreateLoading || workDeleteLoading}
-                >削除</Button>
-                <Button
-                    color="primary"
+                    loading={workDeleteLoading}
+                    disabled={workCreateLoading}
+                >削除<DeleteIcon /></LoadingButton>
+                <LoadingButton
                     onClick={workCreate}
+                    color="primary"
                     variant="contained"
-                    endIcon={workCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={workCreateLoading || workDeleteLoading}
-                >登録</Button>
+                    loading={workCreateLoading}
+                    disabled={workDeleteLoading}
+                >登録<SendIcon /></LoadingButton>
             </div>
+            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
+                {createTaskDialog &&
+                    <CreateTask
+                        onCloseMyself={() => {
+                            setCreateTaskDialog(false);
+                            props.onCloseMyself();
+                        }}
+                        taskRead={props.taskRead}
+                        task={props.task}
+                    />
+                }
+            </Dialog>
         </div>
     );
 }
