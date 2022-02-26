@@ -101,9 +101,11 @@ export default function TaskItem(props: Props) {
             <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
                 {createWorkDialog &&
                     <CreateWork
-                        onCloseMyself={() => { setCreateWorkDialog(false); }}
+                        onCloseMyself={() => { 
+                            setCreateWorkDialog(false); 
+                            props.taskRead()
+                        }}
                         date={props.date}
-                        taskRead={props.taskRead}
                         task={props.task}
                     />
                 }

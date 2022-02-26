@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
 import { api } from '@/plugins/axios';
+import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
 import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Button, CircularProgress } from '@mui/material';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import TextField from '@mui/material/TextField';
+import SettingsIcon from '@material-ui/icons/Settings';
 import CreateTask from '@/components/task/CreateTask';
-import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
-import { TextareaAutosize, CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
+import {
+    TextareaAutosize,
+    Select,
+    MenuItem,
+    Box,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    IconButton,
+    Dialog,
+} from '@mui/material';
 
 type Props = {
     date: string,
     task: apiTaskReadResponseTaskType
     onCloseMyself: any
-    taskRead: any
 }
 export default function CreateWork(props: Props) {
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
@@ -31,6 +36,9 @@ export default function CreateWork(props: Props) {
     const [formHour, setFormHour] = useState(0);
     const [formMemo, setFormMemo] = useState('');
     const workDelete = () => {
+        if (!confirm(`「${props.task.name}」の実績を削除しますか？`)) {
+            return;
+        }
         const apiParam: apiWorkDeleteRequestType = {
             date: props.date,
             task_id: props.task.id
@@ -43,7 +51,6 @@ export default function CreateWork(props: Props) {
         setWorkDeleteLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead();
                 props.onCloseMyself();
             })
             .finally(() => {
@@ -66,7 +73,6 @@ export default function CreateWork(props: Props) {
         setWorkCreateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead();
                 props.onCloseMyself();
             })
             .finally(() => {
@@ -88,19 +94,18 @@ export default function CreateWork(props: Props) {
         setFormMemo(props.task.work.memo);
     }, []);
     return (
-        <div className='card'>
-            <div className="card_header">
-                <div className="card_header_left">
-                    <h2 className="card_header_left_main">{props.task.name}</h2>
-                    <h3 className='card_header_left_sub'>{props.date}</h3>
-                </div>
-                <div className="card_header_right">
-                    <IconButton onClick={() => { setCreateTaskDialog(true); }} color="primary" className='card_header_right_btn' component="span">
+        <Card>
+            <CardHeader
+                action={
+                    <IconButton onClick={() => { setCreateTaskDialog(true); }} color="primary">
                         <SettingsIcon />
                     </IconButton>
-                </div>
-            </div>
-            <div className="card_body">
+                }
+                sx={{ bgcolor: '#1976d2', color: 'white' }}
+                title={props.task.name}
+                subheader={props.date}
+            />
+            <CardContent>
                 <ul>
                     <li className='mb-5'>
                         <h4>実績時間</h4>
@@ -140,8 +145,8 @@ export default function CreateWork(props: Props) {
                         />
                     </li>
                 </ul>
-            </div>
-            <div className="card_footer justify-space-between">
+            </CardContent>
+            <CardActions>
                 <LoadingButton
                     onClick={workDelete}
                     color="error"
@@ -158,7 +163,7 @@ export default function CreateWork(props: Props) {
                     disabled={workDeleteLoading}>
                     登録<SendIcon />
                 </LoadingButton>
-            </div>
+            </CardActions>
             <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
                 {createTaskDialog &&
                     <CreateTask
@@ -166,11 +171,10 @@ export default function CreateWork(props: Props) {
                             setCreateTaskDialog(false);
                             props.onCloseMyself();
                         }}
-                        taskRead={props.taskRead}
                         task={props.task}
                     />
                 }
             </Dialog>
-        </div>
+        </Card>
     );
 }

@@ -99,8 +99,8 @@ export default function TaskList(props: Props) {
                     <CreateTask
                         onCloseMyself={() => {
                             setCreateTaskDialog(false);
+                            taskRead()
                         }}
-                        taskRead={taskRead}
                         task={null}
                     />
                 }

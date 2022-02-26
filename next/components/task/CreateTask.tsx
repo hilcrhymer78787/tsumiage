@@ -11,14 +11,25 @@ import {
     TextField,
     Select,
     MenuItem,
-    Box
+    Box,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActionArea,
+    CardActions,
+    IconButton,
+    Dialog,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    Avatar,
+    CircularProgress
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 type Props = {
     task: apiTaskReadResponseTaskType
     onCloseMyself: any
-    taskRead: any
 }
 export default function CreateTask(props: Props) {
     const [taskCreateLoading, setTaskCreateLoading] = useState(false as boolean);
@@ -47,7 +58,6 @@ export default function CreateTask(props: Props) {
         setTaskDeleteLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead();
                 props.onCloseMyself();
             })
             .finally(() => {
@@ -72,7 +82,6 @@ export default function CreateTask(props: Props) {
         setTaskCreateLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead();
                 props.onCloseMyself();
             })
             .finally(() => {
@@ -101,51 +110,49 @@ export default function CreateTask(props: Props) {
         }
     }, []);
     return (
-        <div className='card'>
-            {formTask && <>
-                <div className="card_header">
-                    <div className="card_header_left">
-                        <h2 className="card_header_left_main">{props.task ? props.task.name : '新規タスク登録'}</h2>
-                    </div>
-                </div>
-                <div className="card_body">
-                    <ul>
-                        <li className='mb-3'>
-                            <TextField
-                                error={Boolean(nameError)}
-                                helperText={nameError}
-                                value={formTask.name}
-                                onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
-                                label="タスクの名前" variant="outlined" color="primary" />
-                        </li>
-                        <li className='mb-3'>
-                            <h4>1日あたりの想定時間</h4>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Box sx={{ width: '48%', }}>
-                                    <Select
-                                        sx={{ width: '100%', }}
-                                        value={formTask.default_hour}
-                                        onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
-                                    >
-                                        {[...Array(24 + 1)].map((n, index) => (
-                                            <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
-                                        ))}
-                                    </Select>
-                                </Box>
-                                <Box sx={{ width: '48%', }}>
-                                    <Select
-                                        sx={{ width: '100%', }}
-                                        value={formTask.default_minute}
-                                        onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
-                                    >
-                                        {[...Array(59 + 1)].map((n, index) => (
-                                            <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
-                                        ))}
-                                    </Select>
-                                </Box>
+        <Card>
+            <CardHeader
+                sx={{ bgcolor: '#1976d2', color: 'white' }}
+                title={props.task ? props.task.name : '新規タスク登録'}
+            />
+            <CardContent>
+                <ul>
+                    <li className='mb-3'>
+                        <TextField
+                            error={Boolean(nameError)}
+                            helperText={nameError}
+                            value={formTask.name}
+                            onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
+                            label="タスクの名前" variant="outlined" color="primary" />
+                    </li>
+                    <li className='mb-3'>
+                        <h4>1日あたりの想定時間</h4>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Box sx={{ width: '48%', }}>
+                                <Select
+                                    sx={{ width: '100%', }}
+                                    value={formTask.default_hour}
+                                    onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
+                                >
+                                    {[...Array(24 + 1)].map((n, index) => (
+                                        <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
+                                    ))}
+                                </Select>
                             </Box>
-                        </li>
-                        {/* <li className='mb-3'>
+                            <Box sx={{ width: '48%', }}>
+                                <Select
+                                    sx={{ width: '100%', }}
+                                    value={formTask.default_minute}
+                                    onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
+                                >
+                                    {[...Array(59 + 1)].map((n, index) => (
+                                        <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                    ))}
+                                </Select>
+                            </Box>
+                        </Box>
+                    </li>
+                    {/* <li className='mb-3'>
                             <FormControl fullWidth>
                                 <InputLabel id="defaultーminute-label">ステータス</InputLabel>
                                 <Select
@@ -159,27 +166,26 @@ export default function CreateTask(props: Props) {
                                 </Select>
                             </FormControl>
                         </li> */}
-                    </ul>
-                </div>
-                <div className="card_footer justify-space-between">
-                    <LoadingButton
-                        color="error"
-                        variant="contained"
-                        onClick={taskDelete}
-                        loading={taskDeleteLoading}
-                        disabled={taskCreateLoading}>
-                        削除<DeleteIcon />
-                    </LoadingButton>
-                    <LoadingButton
-                        color="primary"
-                        variant="contained"
-                        onClick={taskCreate}
-                        loading={taskCreateLoading}
-                        disabled={taskDeleteLoading}>
-                        登録<SendIcon />
-                    </LoadingButton>
-                </div>
-            </>}
-        </div>
+                </ul>
+            </CardContent>
+            <CardActions>
+                <LoadingButton
+                    color="error"
+                    variant="contained"
+                    onClick={taskDelete}
+                    loading={taskDeleteLoading}
+                    disabled={taskCreateLoading}>
+                    削除<DeleteIcon />
+                </LoadingButton>
+                <LoadingButton
+                    color="primary"
+                    variant="contained"
+                    onClick={taskCreate}
+                    loading={taskCreateLoading}
+                    disabled={taskDeleteLoading}>
+                    登録<SendIcon />
+                </LoadingButton>
+            </CardActions>
+        </Card>
     );
 }
