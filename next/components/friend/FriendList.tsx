@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { CardActionArea, IconButton, Dialog, ListItem, Checkbox, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
 import { api } from '@/plugins/axios';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import AddIcon from '@mui/icons-material/Add';
 import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
@@ -13,6 +10,26 @@ import FriendItemNow from '@/components/friend/FriendItemNow';
 import FriendItemFrom from '@/components/friend/FriendItemFrom';
 import { apiInvitationResponseType } from '@/types/api/invitation/read/response';
 import CreateFriend from '@/components/friend/CreateFriend';
+import {
+    IconButton,
+    Dialog,
+    Select,
+    FormControl,
+    MenuItem,
+    InputLabel,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemAvatar,
+    ListItemText,
+    Box,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    Button,
+    TextField,
+} from '@mui/material';
 type Props = {
     // date: string,
 }

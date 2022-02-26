@@ -1,38 +1,31 @@
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import React, { useState, useEffect } from 'react';
-import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
 import { api } from '@/plugins/axios';
+import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { MINUTE } from '@/static/const';
+import moment from 'moment';
+import LinePlot from '@/components/common/LinePlot';
+import SimpleTable from '@/components/common/SimpleTable';
 import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
 import { apiGoalReadResponseGoalsType } from '@/types/api/goal/read/response';
 import { apiGoalCreateRequestType } from '@/types/api/goal/create/request';
 import { apiGoalDeleteRequestType } from '@/types/api/goal/delete/request';
-import SendIcon from '@material-ui/icons/Send';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-
-import { MINUTE } from '@/static/const';
-import moment from 'moment';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import {
-    Dialog,
     Select,
-    FormControl,
     MenuItem,
-    InputLabel
-} from '@mui/material';
-import {
     Box,
     Card,
     CardHeader,
     CardContent,
     CardActions,
-    Button,
     TextField,
 } from '@mui/material';
+import SendIcon from '@material-ui/icons/Send';
+import DeleteIcon from '@material-ui/icons/Delete';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { LoadingButton } from '@mui/lab';
 type Props = {
@@ -145,35 +138,31 @@ export default function Creategoal(props: Props) {
                 <CardHeader title={props.focusGoal ? props.focusGoal.task_name : '新規目標登録'} />
                 <CardContent>
                     <ul>
+                        <li className='mb-4'>
+                            <LinePlot height="200px" data={props.focusGoal.analytics} />
+                        </li>
+                        <li className='mb-4'>
+                            <SimpleTable datas={[
+                                { key: 'ペース', value: `あと${props.focusGoal.deadline_day_count}日で${props.focusGoal.minute - props.focusGoal.sum_minute}分` },
+                                { key: '開始日', value: moment(props.focusGoal.start_date).format('Y年M月D日') },
+                                { key: '期限日', value: moment(props.focusGoal.end_date).format('Y年M月D日') },
+                            ]} />
+                        </li>
                         {Boolean(tasks.length) &&
                             <li className='mb-4'>
-                                <FormControl fullWidth>
-                                    <InputLabel id="task-id">タスク</InputLabel>
-                                    <Select
-                                        labelId="task-id"
-                                        value={taskId}
-                                        onChange={(e) => { setTaskId(Number(e.target.value)); }}
-                                    >
-                                        {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
-                                            <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
+                                <h4>タスク</h4>
+                                <Select
+                                    labelId="task-id"
+                                    value={taskId}
+                                    onChange={(e) => { setTaskId(Number(e.target.value)); }}
+                                >
+                                    {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
+                                        <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
+                                    ))}
+                                </Select>
                             </li>
                         }
                         <li className='mb-4'>
-                            {/* <FormControl fullWidth>
-                                <InputLabel id="defaultーminute-label">目標時間</InputLabel>
-                                <Select
-                                    labelId="defaultーminute-label"
-                                    value={minute}
-                                    onChange={(e) => { setMinute(Number(e.target.value)); }}
-                                >
-                                    {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
-                                        <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl> */}
                             <h4>目標合計時間</h4>
                             <Box sx={{ display: 'flex' }}>
                                 <Box sx={{ width: '42%', }}>
