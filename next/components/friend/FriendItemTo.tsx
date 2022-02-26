@@ -55,7 +55,7 @@ export default function FriendItemTo(props: Props) {
         >
             <ListItemButton>
                 <ListItemAvatar>
-                    <Avatar src={props.friend.user_img} />
+                    <Avatar src={props.friend.user_img} sx={{ border: '2px solid #1976d2' }} />
                 </ListItemAvatar>
                 <ListItemText
                     primary={props.friend.name}

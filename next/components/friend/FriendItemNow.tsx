@@ -17,7 +17,7 @@ export default function FriendItemNow(props: Props) {
         <ListItem sx={{ p: 0 }}>
             <ListItemButton onClick={() => { alert(); }}>
                 <ListItemAvatar>
-                    <Avatar src={props.friend.user_img} />
+                    <Avatar src={props.friend.user_img} sx={{ border: '2px solid #1976d2' }}/>
                 </ListItemAvatar>
                 <ListItemText
                     primary={props.friend.name}

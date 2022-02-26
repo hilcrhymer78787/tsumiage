@@ -13,22 +13,10 @@ import CreateFriend from '@/components/friend/CreateFriend';
 import {
     IconButton,
     Dialog,
-    Select,
-    FormControl,
-    MenuItem,
-    InputLabel,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemAvatar,
-    ListItemText,
-    Box,
     Card,
     CardHeader,
     CardContent,
-    CardActions,
-    Button,
-    TextField,
+    CircularProgress,
 } from '@mui/material';
 type Props = {
     // date: string,
@@ -73,6 +61,16 @@ export default function GoalList(props: Props) {
                     }
                     title={`友達`}
                 />
+                {friendReadLoading && !Boolean(friendData.nowFriends.length) &&
+                    <CardContent
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            p: '30px'
+                        }}>
+                        <CircularProgress />
+                    </CardContent>
+                }
                 {Boolean(friendData.nowFriends.length) && friendData.nowFriends.map((friend, index) => (
                     <FriendItemNow
                         friendRead={friendRead}

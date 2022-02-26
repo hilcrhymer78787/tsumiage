@@ -6,7 +6,6 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { MINUTE } from '@/static/const';
 import moment from 'moment';
 import LinePlot from '@/components/common/LinePlot';
-import SimpleTable from '@/components/common/SimpleTable';
 import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
 import { apiGoalReadResponseGoalsType } from '@/types/api/goal/read/response';
 import { apiGoalCreateRequestType } from '@/types/api/goal/create/request';
@@ -23,6 +22,7 @@ import {
     CardContent,
     CardActions,
     TextField,
+    Typography,
 } from '@mui/material';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -44,7 +44,7 @@ export default function Creategoal(props: Props) {
     const [endDate, setEndDate] = useState(moment().format('YYYY-MM-DD') as string);
 
     const [hourError, setHourError] = useState("" as string);
-    const [nameError, setNameError] = useState("" as string);
+    const [dateError, setDateError] = useState("" as string);
     const goalDelete = () => {
         if (!confirm(`「${props.focusGoal.task_name}」を削除しますか？`)) {
             return;
@@ -94,8 +94,22 @@ export default function Creategoal(props: Props) {
     const validation = (): boolean => {
         let isError: boolean = false;
         setHourError("");
+        setDateError("");
         if (!(/^[0-9]*$/.test(hour.toString()))) {
             setHourError("半角数値で入力してください");
+            isError = true;
+        }
+        if (Number(hour) * 60 + minute == 0) {
+            setHourError("目標合計時間が設定されていません");
+            isError = true;
+        }
+        if (moment(endDate).diff(moment(startDate), 'days') < 0) {
+            setDateError("開始日以降の期限日を設定してください");
+            isError = true;
+        }
+        if (moment(endDate).diff(moment(startDate), 'days') > 366) {
+            console.log(moment(endDate).diff(moment(startDate)));
+            setDateError("366日以上の範囲は設定できません");
             isError = true;
         }
         return isError;
@@ -138,14 +152,11 @@ export default function Creategoal(props: Props) {
                 <CardHeader title={props.focusGoal ? props.focusGoal.task_name : '新規目標登録'} />
                 <CardContent>
                     <ul>
-                        <li className='mb-4'>
-                            <LinePlot height="200px" data={props.focusGoal.analytics} />
-                        </li>
-                        <li className='mb-4'>
-                            <SimpleTable datas={[
-                                { key: 'ペース', value: `あと${props.focusGoal.deadline_day_count}日で${props.focusGoal.minute - props.focusGoal.sum_minute}分` },
-                            ]} />
-                        </li>
+                        {Boolean(props.focusGoal) && <>
+                            <li className='mb-4'>
+                                <LinePlot height="200px" data={props.focusGoal.analytics} />
+                            </li>
+                        </>}
                         {Boolean(tasks.length) &&
                             <li className='mb-4'>
                                 <h4>タスク</h4>
@@ -167,7 +178,6 @@ export default function Creategoal(props: Props) {
                                 <Box sx={{ width: '42%', }}>
                                     <TextField
                                         error={Boolean(hourError)}
-                                        helperText={hourError}
                                         value={hour}
                                         onChange={(e) => { setHour(e.currentTarget.value); }}
                                         variant="outlined" color="primary"
@@ -176,6 +186,7 @@ export default function Creategoal(props: Props) {
                                 <Box sx={{ width: '16%', p: '20px 0 0 1%' }}>時間</Box>
                                 <Box sx={{ width: '42%', }}>
                                     <Select
+                                        error={Boolean(hourError)}
                                         sx={{ width: '100%', }}
                                         value={minute}
                                         onChange={(e) => { setMinute(Number(e.target.value)); }}
@@ -186,15 +197,18 @@ export default function Creategoal(props: Props) {
                                     </Select>
                                 </Box>
                             </Box>
+                            {Boolean(hourError) &&
+                                <Typography sx={{ color: '#d32f2f', fontSize: '13px' }}>{hourError}</Typography>
+                            }
                         </li>
                         <li className='mb-4'>
+                            <h4>目標期間</h4>
                             <Box sx={{
                                 display: 'flex',
                                 alignItems: 'center'
                             }}>
                                 <Box sx={{ width: '42%', }}>
                                     <MobileDatePicker
-                                        label="いつから"
                                         value={startDate}
                                         onChange={(v) => {
                                             setStartDate(moment(v).format('YYYY-MM-DD'));
@@ -208,7 +222,6 @@ export default function Creategoal(props: Props) {
                                 }}>~</Box>
                                 <Box sx={{ width: '42%', }}>
                                     <MobileDatePicker
-                                        label="いつまで"
                                         value={endDate}
                                         onChange={(v) => {
                                             setEndDate(moment(v).format('YYYY-MM-DD'));
@@ -217,6 +230,9 @@ export default function Creategoal(props: Props) {
                                     />
                                 </Box>
                             </Box>
+                            {Boolean(dateError) &&
+                                <Typography sx={{ color: '#d32f2f', fontSize: '13px' }}>{dateError}</Typography>
+                            }
                         </li>
                     </ul>
                 </CardContent>
