@@ -4,13 +4,17 @@ import { api } from '@/plugins/axios';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { Avatar } from '@mui/material';
 import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardActions from '@mui/material/CardActions';
 import { apiInvitationDeleteRequestType } from '@/types/api/invitation/delete/request';
 import { apiInvitationUpdateRequestType } from '@/types/api/invitation/update/request';
+import {
+    Avatar,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    Card,
+    CardActions,
+} from '@mui/material';
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any
@@ -59,13 +63,15 @@ export default function FriendItemFrom(props: Props) {
     };
     return (
         <Card sx={{ m: '15px' }}>
-            <CardHeader
-                avatar={
+            <ListItem sx={{ border: 'none !important' }}>
+                <ListItemAvatar>
                     <Avatar src={props.friend.user_img} />
-                }
-                title={props.friend.name}
-                subheader={props.friend.email}
-            />
+                </ListItemAvatar>
+                <ListItemText
+                    primary={props.friend.name}
+                    secondary={props.friend.email}
+                />
+            </ListItem>
             <CardActions disableSpacing>
                 <LoadingButton
                     onClick={invitationDelete}

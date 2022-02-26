@@ -144,14 +144,13 @@ export default function Creategoal(props: Props) {
                         <li className='mb-4'>
                             <SimpleTable datas={[
                                 { key: 'ペース', value: `あと${props.focusGoal.deadline_day_count}日で${props.focusGoal.minute - props.focusGoal.sum_minute}分` },
-                                { key: '開始日', value: moment(props.focusGoal.start_date).format('Y年M月D日') },
-                                { key: '期限日', value: moment(props.focusGoal.end_date).format('Y年M月D日') },
                             ]} />
                         </li>
                         {Boolean(tasks.length) &&
                             <li className='mb-4'>
                                 <h4>タスク</h4>
                                 <Select
+                                    sx={{ width: '100%', }}
                                     labelId="task-id"
                                     value={taskId}
                                     onChange={(e) => { setTaskId(Number(e.target.value)); }}

@@ -16,10 +16,6 @@ type Props = {
 export default function SimpleTable(props: Props) {
     return (
         <TableContainer
-            sx={{
-                borderRadius: '0',
-                borderTop: '1px solid #e0e0e0',
-            }}
             component={Paper}>
             <Table>
                 <TableBody>
