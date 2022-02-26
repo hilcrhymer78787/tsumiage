@@ -10,7 +10,7 @@ import {
     ListItemAvatar,
     ListItemText,
 } from '@mui/material';
-import moment from 'moment'
+import moment from 'moment';
 type Props = {
     goalRead: any,
     goal: apiGoalReadResponseGoalsType
