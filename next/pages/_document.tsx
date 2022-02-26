@@ -29,7 +29,7 @@ class MyDocument extends Document {
                     <meta name="msapplication-TileColor" content="#000" />
                     {/* safari */}
                     <meta name="apple-mobile-web-app-capable" content="yes" />
-                    <meta name="apple-mobile-web-app-status-bar-style" content="#000" />
+                    <meta name="apple-mobile-web-app-status-bar-style" content="#222222" />
                     <meta name="apple-mobile-web-app-title" content="tsumiage" />
                     <link
                         rel="apple-touch-icon"
