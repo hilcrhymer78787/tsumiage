@@ -51,8 +51,9 @@ export default function FriendItemTo(props: Props) {
                     onClick={invitationDelete}
                     color="error"
                     variant="contained"
-                    loading={invitationDeleteLoading}
-                >中止<DeleteIcon /></LoadingButton>
+                    loading={invitationDeleteLoading}>
+                    中止<DeleteIcon />
+                </LoadingButton>
             </CardActions>
         </Card>
     );

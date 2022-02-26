@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import AddIcon from '@material-ui/icons/Add';
-import SettingsIcon from '@material-ui/icons/Settings';
 import { api } from '@/plugins/axios';
+import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
 import { apiTaskCreateRequestType } from '@/types/api/task/create/request';
 import { apiTaskDeleteRequestType } from '@/types/api/task/delete/request';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Button, CircularProgress } from '@mui/material';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import TextField from '@mui/material/TextField';
-import CreateWork from '@/components/task/CreateWork';
-import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
-import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
-import { MINUTE } from '@/static/const';
+import {
+    TextField,
+    Select,
+    MenuItem,
+    Box
+} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
 type Props = {
     task: apiTaskReadResponseTaskType
@@ -163,20 +162,22 @@ export default function CreateTask(props: Props) {
                     </ul>
                 </div>
                 <div className="card_footer justify-space-between">
-                    <Button
+                    <LoadingButton
                         color="error"
+                        variant="contained"
                         onClick={taskDelete}
-                        variant="contained"
-                        endIcon={taskDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
-                        disabled={taskCreateLoading || taskDeleteLoading}
-                    >削除</Button>
-                    <Button
+                        loading={taskDeleteLoading}
+                        disabled={taskCreateLoading}>
+                        削除<DeleteIcon />
+                    </LoadingButton>
+                    <LoadingButton
                         color="primary"
-                        onClick={taskCreate}
                         variant="contained"
-                        endIcon={taskCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                        disabled={taskCreateLoading || taskDeleteLoading}
-                    >登録</Button>
+                        onClick={taskCreate}
+                        loading={taskCreateLoading}
+                        disabled={taskDeleteLoading}>
+                        登録<SendIcon />
+                    </LoadingButton>
                 </div>
             </>}
         </div>

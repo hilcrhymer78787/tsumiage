@@ -95,8 +95,9 @@ export default function CreateFriend() {
                         onClick={invitationCreate}
                         color="primary"
                         variant="contained"
-                        loading={invitationCreateLoading}
-                    >申請<SendIcon /></LoadingButton>
+                        loading={invitationCreateLoading}>
+                        申請<SendIcon />
+                    </LoadingButton>
                 }
                 {Boolean(successMessage) &&
                     <LoadingButton
@@ -106,8 +107,9 @@ export default function CreateFriend() {
                         }}
                         color="inherit"
                         variant="contained"
-                        loading={invitationCreateLoading}
-                    >続けて申請</LoadingButton>
+                        loading={invitationCreateLoading}>
+                        続けて申請
+                    </LoadingButton>
                 }
             </CardActions>
         </Card>

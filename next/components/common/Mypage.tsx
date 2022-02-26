@@ -48,11 +48,13 @@ function Mypage({ dispatch, loginInfo }) {
                 <Button
                     onClick={logout}
                     color="inherit"
-                    variant="contained">ログアウト</Button>
-                <Button color="primary"
+                    variant="contained">ログアウト
+                </Button>
+                <Button
                     onClick={() => { setCreateUserDialog(true); }}
-                    variant="contained"
-                >編集</Button>
+                    color="primary"
+                    variant="contained">編集
+                </Button>
             </div>
             <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false); }}>
                 {createUserDialog &&

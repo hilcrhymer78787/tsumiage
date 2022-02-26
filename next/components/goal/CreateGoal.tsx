@@ -17,6 +17,7 @@ import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Ava
 import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
 import { MINUTE } from '@/static/const';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import { LoadingButton } from '@mui/lab';
 import moment from 'moment';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
@@ -224,20 +225,22 @@ export default function Creategoal(props: Props) {
                     </ul>
                 </div>
                 <div className="card_footer justify-space-between">
-                    <Button
+                    <LoadingButton
                         color="error"
+                        variant="contained"
                         onClick={goalDelete}
-                        variant="contained"
-                        endIcon={goalDeleteLoading ? <CircularProgress size={25} /> : <DeleteIcon />}
-                        disabled={goalCreateLoading || goalDeleteLoading}
-                    >削除</Button>
-                    <Button
+                        loading={goalDeleteLoading}
+                        disabled={goalCreateLoading}>
+                        削除<DeleteIcon />
+                    </LoadingButton>
+                    <LoadingButton
                         color="primary"
-                        onClick={goalCreate}
                         variant="contained"
-                        endIcon={goalCreateLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                        disabled={goalCreateLoading || goalDeleteLoading}
-                    >登録</Button>
+                        onClick={goalCreate}
+                        loading={goalCreateLoading}
+                        disabled={goalDeleteLoading}>
+                        登録<SendIcon />
+                    </LoadingButton>
                 </div>
             </div>
         </LocalizationProvider>

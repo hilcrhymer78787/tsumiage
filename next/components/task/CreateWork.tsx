@@ -147,15 +147,17 @@ export default function CreateWork(props: Props) {
                     color="error"
                     variant="contained"
                     loading={workDeleteLoading}
-                    disabled={workCreateLoading}
-                >削除<DeleteIcon /></LoadingButton>
+                    disabled={workCreateLoading}>
+                    削除<DeleteIcon />
+                </LoadingButton>
                 <LoadingButton
                     onClick={workCreate}
                     color="primary"
                     variant="contained"
                     loading={workCreateLoading}
-                    disabled={workDeleteLoading}
-                >登録<SendIcon /></LoadingButton>
+                    disabled={workDeleteLoading}>
+                    登録<SendIcon />
+                </LoadingButton>
             </div>
             <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
                 {createTaskDialog &&

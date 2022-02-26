@@ -7,6 +7,7 @@ import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAut
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
 import store from "@/store/index";
+import { LoadingButton } from '@mui/lab';
 import { errorType } from "@/types/api/error";
 Login.getLayout = function getLayout(page) {
     return (
@@ -112,8 +113,8 @@ function Login() {
                             variant="contained"
                             color="inherit"
                             endIcon={testAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                            disabled={testAuthenticationLoading || basicAuthenticationLoading}
-                        >テストユーザーでログイン</Button>
+                            disabled={testAuthenticationLoading || basicAuthenticationLoading}>テストユーザーでログイン
+                        </Button>
                     </div>
                 }
             </div>
@@ -121,13 +122,14 @@ function Login() {
                 <Button
                     onClick={() => { Router.push("/login/new"); }}
                     color="inherit"
-                    variant="contained">新規登録</Button>
+                    variant="contained">新規登録
+                </Button>
                 <Button color="primary"
                     onClick={basicAuthentication}
                     variant="contained"
                     endIcon={basicAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={testAuthenticationLoading || basicAuthenticationLoading}
-                >ログイン</Button>
+                    disabled={testAuthenticationLoading || basicAuthenticationLoading}>ログイン
+                </Button>
             </div>
         </div>
     );

@@ -89,8 +89,8 @@ export default function GoalItem(props: Props) {
                         <Button
                             color="primary"
                             variant="contained"
-                            onClick={() => { setCreateGoalDialog(true); }}
-                        >編集</Button>
+                            onClick={() => { setCreateGoalDialog(true); }}>編集
+                        </Button>
                     </CardActions>
                 </Collapse>
             </Card>

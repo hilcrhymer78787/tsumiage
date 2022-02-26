@@ -10,6 +10,7 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
 import store from "@/store/index";
 import { errorType } from "@/types/api/error";
+import { LoadingButton } from '@mui/lab';
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 
 type Props = {
@@ -149,8 +150,8 @@ function CreateUser(props: Props) {
                             <Button
                                 onClick={() => { setPasswordEditMode(true); }}
                                 variant="contained"
-                                color="inherit"
-                            >パスワードを編集</Button>
+                                color="inherit">パスワードを編集
+                            </Button>
                         </li>
                     </>}
                 </ul>
@@ -164,12 +165,13 @@ function CreateUser(props: Props) {
                     </Button>
                 }
                 <div></div>
-                <Button color="primary"
+                <LoadingButton
                     onClick={createUser}
+                    color="primary"
                     variant="contained"
-                    endIcon={createUserLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={createUserLoading}>登録
-                </Button>
+                    loading={createUserLoading}>
+                    登録<SendIcon />
+                </LoadingButton>
             </div>
         </div>
     );
