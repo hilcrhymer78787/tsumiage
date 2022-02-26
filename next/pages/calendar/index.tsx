@@ -1,22 +1,29 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { connect } from "react-redux";
-import { Button, CardActionArea, Dialog } from '@mui/material';
+import moment from 'moment';
 import Layout from '@/layouts/default';
 import styles from '@/styles/Calendar.module.scss';
-import store from "@/store/index";
 import { api } from '@/plugins/axios';
-import DayIcon from "@/components/calendar/DayIcon";
-import Router from 'next/router';
-import Pagination from "@/components/calendar/Pagination";
-import moment from 'moment';
-import TaskList from '@/components/task/TaskList';
-import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response';
-import LinePlot from '@/components/common/LinePlot';
-import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response';
-import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request';
 import axios from 'axios';
+import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response';
+import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request';
+import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response';
+import DayIcon from "@/components/calendar/DayIcon";
+import Pagination from "@/components/calendar/Pagination";
+import TaskList from '@/components/task/TaskList';
+import LinePlot from '@/components/common/LinePlot';
+import {
+    CardActionArea,
+    Dialog,
+    Card,
+    CardHeader,
+    CardContent,
+    IconButton,
+    CircularProgress
+} from '@mui/material';
 const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
 const mapStateToProps = (state: any) => {
@@ -24,13 +31,13 @@ const mapStateToProps = (state: any) => {
         loginInfo: state.loginInfo,
     };
 };
-About.getLayout = function getLayout(page) {
+Calendar.getLayout = function getLayout(page) {
     return (
         <Layout>{page}</Layout>
     );
 };
 
-function About({ dispatch, loginInfo }) {
+function Calendar() {
     const [calendarData, setCalendarData] = useState({
         calendars: [],
         analytics: {
@@ -79,7 +86,6 @@ function About({ dispatch, loginInfo }) {
     };
 
     const getCalendarData = async (year: number, month: number) => {
-
         if (getCalendarDataCancel) {
             getCalendarDataCancel();
         }
@@ -103,14 +109,16 @@ function About({ dispatch, loginInfo }) {
 
     return (
         <>
-            <div className='card mb-5'>
-                <div className="card_header">
-                    <Pagination setCalendarData={(date: { year: number, month: number }) => {
-                        getCalendarData(date.year, date.month);
-                    }} />
-                </div>
-                <div className="card_body pa-0">
-                    <ul className={styles.indent + " pa-0"}>
+            <Card sx={{ mb: '20px' }}>
+                <CardHeader
+                    title={
+                        <Pagination setCalendarData={(date: { year: number, month: number }) => {
+                            getCalendarData(date.year, date.month);
+                        }} />
+                    }
+                />
+                <CardContent sx={{ p: '0 !important' }}>
+                    <ul className={styles.indent}>
                         {week.map((day, index) => (
                             <li className={styles.indent_item} key={index.toString()}>{day}</li>
                         ))}
@@ -121,11 +129,16 @@ function About({ dispatch, loginInfo }) {
                         ))}
                         {calendarData.calendars.map((calendar: apiWorkReadCalendarResponseCalendarType, index: number) => (
                             <li key={calendar.date} className={styles.content_item + ' main'}>
-                                <CardActionArea onClick={() => {
-                                    Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
-                                }} className={styles.content_item_inner}>
+                                <CardActionArea
+                                    onClick={() => {
+                                        Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
+                                    }}
+                                    className={styles.content_item_inner}
+                                >
                                     <DayIcon day={index + 1} />
-                                    <div className={styles.content_item_inner_main}>{Boolean(calendar.minute) ? `${calendar.minute}分` : ''}</div>
+                                    <div className={styles.content_item_inner_main}>
+                                        {Boolean(calendar.minute) ? `${calendar.minute}分` : ''}
+                                    </div>
                                 </CardActionArea>
                             </li>
                         ))}
@@ -133,19 +146,15 @@ function About({ dispatch, loginInfo }) {
                             <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
                         ))}
                     </ul>
-                </div>
-            </div>
+                </CardContent>
+            </Card>
 
-            <div className="card">
-                <div className="card_header">
-                    <div className="card_header_left">
-                        <h2 className="card_header_left_main">データ</h2>
-                    </div>
-                </div>
-                <div className="card_body">
-                    <LinePlot height="300px" data={calendarData.analytics}/>
-                </div>
-            </div>
+            <Card>
+                <CardHeader title="データ"/>
+                <CardContent>
+                    <LinePlot height="300px" data={calendarData.analytics} />
+                </CardContent>
+            </Card>
 
             <Dialog
                 open={Boolean(router.query.day)}
@@ -161,4 +170,4 @@ function About({ dispatch, loginInfo }) {
     );
 }
 
-export default connect(mapStateToProps)(About);
+export default connect(mapStateToProps)(Calendar);

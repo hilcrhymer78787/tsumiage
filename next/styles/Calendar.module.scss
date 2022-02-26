@@ -1,5 +1,6 @@
 .indent {
     display: flex;
+    padding: 0;
     &_item {
         width: calc(100% / 7);
         text-align: center;

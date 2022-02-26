@@ -10,19 +10,31 @@ import { apiGoalCreateRequestType } from '@/types/api/goal/create/request';
 import { apiGoalDeleteRequestType } from '@/types/api/goal/delete/request';
 import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Button, CircularProgress } from '@mui/material';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import TextField from '@mui/material/TextField';
-import { CardActionArea, IconButton, ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
-import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
+
 import { MINUTE } from '@/static/const';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
-import { LoadingButton } from '@mui/lab';
 import moment from 'moment';
 import { apiTaskReadRequestType } from '@/types/api/task/read/request';
 import { apiTaskReadResponseType } from '@/types/api/task/read/response';
 import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-
+import {
+    Dialog,
+    Select,
+    FormControl,
+    MenuItem,
+    InputLabel
+} from '@mui/material';
+import {
+    Box,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    Button,
+    TextField,
+} from '@mui/material';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import { LoadingButton } from '@mui/lab';
 type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
     onCloseMyself: any
@@ -129,13 +141,9 @@ export default function Creategoal(props: Props) {
     }, []);
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div className='card'>
-                <div className="card_header">
-                    <div className="card_header_left">
-                        <h2 className="card_header_left_main">{props.focusGoal ? props.focusGoal.task_name : '新規目標登録'}</h2>
-                    </div>
-                </div>
-                <div className="card_body">
+            <Card>
+                <CardHeader title={props.focusGoal ? props.focusGoal.task_name : '新規目標登録'} />
+                <CardContent>
                     <ul>
                         {Boolean(tasks.length) &&
                             <li className='mb-4'>
@@ -223,8 +231,8 @@ export default function Creategoal(props: Props) {
                             </Box>
                         </li>
                     </ul>
-                </div>
-                <div className="card_footer justify-space-between">
+                </CardContent>
+                <CardActions>
                     <LoadingButton
                         color="error"
                         variant="contained"
@@ -241,8 +249,8 @@ export default function Creategoal(props: Props) {
                         disabled={goalDeleteLoading}>
                         登録<SendIcon />
                     </LoadingButton>
-                </div>
-            </div>
+                </CardActions>
+            </Card>
         </LocalizationProvider>
     );
 }

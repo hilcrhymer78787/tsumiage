@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
-import { Button, CircularProgress, TextField } from '@mui/material';
 import SendIcon from '@material-ui/icons/Send';
 import LoginLayout from '@/layouts/login';
 import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
 import store from "@/store/index";
-import { LoadingButton } from '@mui/lab';
 import { errorType } from "@/types/api/error";
-Login.getLayout = function getLayout(page) {
+import {
+    Box,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    Button,
+    TextField,
+} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+Login.getLayout = function getLayout(page: any) {
     return (
         <LoginLayout>{page}</LoginLayout>
     );
@@ -79,13 +87,9 @@ function Login() {
         return isError;
     };
     return (
-        <div className='card'>
-            <div className="card_header">
-                <div className="card_header_left">
-                    <h2 className="card_header_left_main">ログイン</h2>
-                </div>
-            </div>
-            <div className="card_body">
+        <Card>
+            <CardHeader title="ログイン" />
+            <CardContent>
                 <ul>
                     <li className='mb-3'>
                         <TextField
@@ -105,33 +109,39 @@ function Login() {
                             onChange={(e) => { setPassword(e.currentTarget.value); }}
                             label="password" variant="outlined" color="primary" />
                     </li>
+                    {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
+                        <li>
+                            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+                                <LoadingButton
+                                    color="inherit"
+                                    variant="contained"
+                                    onClick={testAuthentication}
+                                    loading={testAuthenticationLoading}
+                                    disabled={basicAuthenticationLoading}>
+                                    テストユーザーでログイン<SendIcon />
+                                </LoadingButton>
+                            </Box>
+                        </li>
+                    }
                 </ul>
-                {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
-                    <div className='d-flex justify-end'>
-                        <Button
-                            onClick={testAuthentication}
-                            variant="contained"
-                            color="inherit"
-                            endIcon={testAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                            disabled={testAuthenticationLoading || basicAuthenticationLoading}>テストユーザーでログイン
-                        </Button>
-                    </div>
-                }
-            </div>
-            <div className="card_footer justify-space-between">
+            </CardContent>
+            <CardActions>
                 <Button
                     onClick={() => { Router.push("/login/new"); }}
                     color="inherit"
-                    variant="contained">新規登録
+                    variant="contained">
+                    新規登録
                 </Button>
-                <Button color="primary"
-                    onClick={basicAuthentication}
+                <LoadingButton
+                    color="primary"
                     variant="contained"
-                    endIcon={basicAuthenticationLoading ? <CircularProgress size={25} /> : <SendIcon />}
-                    disabled={testAuthenticationLoading || basicAuthenticationLoading}>ログイン
-                </Button>
-            </div>
-        </div>
+                    onClick={basicAuthentication}
+                    loading={basicAuthenticationLoading}
+                    disabled={testAuthenticationLoading}>
+                    ログイン<SendIcon />
+                </LoadingButton>
+            </CardActions>
+        </Card>
     );
 }
 export default Login;

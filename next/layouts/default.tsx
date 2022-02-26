@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from "@/components/common/Navigation";
 import Header from "@/components/common/Header";
+import Container from '@mui/material/Container';
 import { connect } from "react-redux";
 
 const mapStateToProps = (state: any) => {
@@ -13,11 +14,9 @@ function Layout({ dispatch, children, loginInfo }) {
         <>
             {loginInfo && <>
                 <Header />
-                <main>
-                    <div className="container">
-                        {children}
-                    </div>
-                </main>
+                <Container sx={{ p: '70px 10px' }} maxWidth="xs">
+                    {children}
+                </Container>
                 <Navigation />
             </>}
         </>
