@@ -20,7 +20,6 @@ export default function FriendItemNow(props: Props) {
                     <Avatar src={props.friend.user_img} />
                 </ListItemAvatar>
                 <ListItemText
-                    onClick={() => { alert(); }}
                     primary={props.friend.name}
                     secondary={props.friend.email}
                 />

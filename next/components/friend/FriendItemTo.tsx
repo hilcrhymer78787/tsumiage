@@ -53,12 +53,11 @@ export default function FriendItemTo(props: Props) {
                 </IconButton>
             }
         >
-            <ListItemButton onClick={() => { alert(); }}>
+            <ListItemButton>
                 <ListItemAvatar>
                     <Avatar src={props.friend.user_img} />
                 </ListItemAvatar>
                 <ListItemText
-                    onClick={() => { alert(); }}
                     primary={props.friend.name}
                     secondary={props.friend.email}
                 />
