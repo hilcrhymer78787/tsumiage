@@ -127,7 +127,6 @@ export default function GoalList(props: Props) {
                             <AddIcon sx={{ bgcolor: 'white', color: '#1976d2' }} />
                         </IconButton>
                     }
-                    sx={{ bgcolor: '#1976d2', color: 'white' }}
                     title={`目標` + (goals.length ? `（${goals.length}件）` : '')}
                 />
                 {Boolean(goals.length) && goals.map((goal, index) => (

@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { CardHeader, CardActionArea, IconButton, Dialog, ListItem, ListItemAvatar, ListItemText, Avatar, CircularProgress } from '@mui/material';
-import { api } from '@/plugins/axios';
-import CreateTask from '@/components/task/CreateTask';
+import {
+    Avatar,
+    Button,
+    TextField,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    IconButton,
+    Dialog,
+    CircularProgress,
+    ListItem,
+    ListItemButton,
+    ListItemAvatar,
+    ListItemText,
+} from '@mui/material';
 import CreateUser from "@/components/CreateUser";
-import Layout from '@/layouts/default';
-import { Button, TextField } from '@mui/material';
-import { orange } from "@mui/material/colors";
 import { connect } from "react-redux";
 import Router from 'next/router';
 const mapStateToProps = (state: any) => {
@@ -27,24 +36,28 @@ function Mypage({ dispatch, loginInfo }) {
     useEffect(() => {
     }, []);
     return (
-        <div id='mypage' className='card'>
-            <div className="card_header">
-                <div className="card_header_left">
-                    <h2 className="card_header_left_main">マイページ</h2>
-                </div>
-            </div>
-            <div className="card_body py-5">
-                <div className='myinfo'>
-                    <CardHeader
-                        avatar={
-                            <Avatar src={loginInfo.user_img}></Avatar>
-                        }
-                        title={loginInfo.name}
-                        subheader={loginInfo.email}
+        <Card>
+            <CardHeader title="マイページ" />
+            <CardContent>
+                <ListItem sx={{ p: 0 }}>
+                    <ListItemAvatar>
+                        <Avatar
+                            src={loginInfo.user_img}
+                            sx={{
+                                height: '70px',
+                                width: '70px',
+                                mr: '15px',
+                                border: '2px solid #1976d2'
+                            }}
+                        ></Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary={loginInfo.name}
+                        secondary={loginInfo.email}
                     />
-                </div>
-            </div>
-            <div className="card_footer justify-space-between">
+                </ListItem>
+            </CardContent>
+            <CardActions>
                 <Button
                     onClick={logout}
                     color="inherit"
@@ -55,13 +68,13 @@ function Mypage({ dispatch, loginInfo }) {
                     color="primary"
                     variant="contained">編集
                 </Button>
-            </div>
+            </CardActions>
             <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false); }}>
                 {createUserDialog &&
                     <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }} />
                 }
             </Dialog>
-        </div>
+        </Card>
     );
 }
 export default connect(mapStateToProps)(Mypage);

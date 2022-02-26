@@ -27,8 +27,11 @@ function Header({ loginInfo }) {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
-                    <IconButton onClick={()=>{setMypageDialog(true);}} sx={{ p: 0 }}>
-                        <Avatar src={loginInfo.user_img} />
+                    <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
+                        <Avatar
+                            src={loginInfo.user_img}
+                            sx={{ border: '2px solid #1976d2' }}
+                        />
                     </IconButton>
                 </Toolbar>
             </Container>

@@ -1,12 +1,5 @@
-* {
-    box-sizing: border-box;
-}
 body {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-a {
-    color: inherit;
-    text-decoration: none;
 }
 textarea {
     border: 1px solid #e0e0e0;
@@ -17,16 +10,6 @@ h4 {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.54);
     margin-bottom: 5px;
-}
-hr {
-    color: #e0e0e0;
-    margin: 0;
-    opacity: 1;
-}
-header {
-    .MuiAvatar-circular {
-        border: 2px solid #1976d2 !important;
-    }
 }
 main {
     padding: 70px 10px 70px;
@@ -66,9 +49,6 @@ main {
 .MuiButtonBase-root.MuiIconButton-root {
     padding: 7px;
     background-color: white !important;
-}
-.MuiCardHeader-subheader {
-    font-size: 13px !important;
 }
 .MuiLoadingButton-root {
     .MuiSvgIcon-root {
@@ -117,14 +97,14 @@ main {
         justify-content: flex-end;
     }
 }
-#mypage {
-    .MuiAvatar-root.MuiAvatar-circular {
-        width: 70px;
-        height: 70px;
+
+.MuiCardHeader {
+    &-root {
+        background-color: #1976d2;
+        color: white;
     }
-    .MuiCardHeader-content {
-        .MuiTypography-body2 {
-            font-size: 18px !important;
-        }
+    &-subheader {
+        color: white !important;
+        font-size: 13px !important;
     }
 }

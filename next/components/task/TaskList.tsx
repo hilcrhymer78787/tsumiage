@@ -61,7 +61,6 @@ export default function TaskList(props: Props) {
                             <AddIcon color="primary" />
                         </IconButton>
                     }
-                    sx={{ bgcolor: '#1976d2', color: 'white' }}
                     title="タスク"
                     subheader={props.date}
                 />

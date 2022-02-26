@@ -111,10 +111,7 @@ export default function CreateTask(props: Props) {
     }, []);
     return (
         <Card>
-            <CardHeader
-                sx={{ bgcolor: '#1976d2', color: 'white' }}
-                title={props.task ? props.task.name : '新規タスク登録'}
-            />
+            <CardHeader title={props.task ? props.task.name : '新規タスク登録'}/>
             <CardContent>
                 <ul>
                     <li className='mb-3'>

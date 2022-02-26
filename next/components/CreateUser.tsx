@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { connect } from "react-redux";
-import { Button, CircularProgress, TextField } from '@mui/material';
-import SendIcon from '@material-ui/icons/Send';
 import LoginLayout from '@/layouts/login';
+import store from "@/store/index";
+import { api } from '@/plugins/axios';
+import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { errorType } from "@/types/api/error";
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { apiUserCreateRequestType } from "@/types/api/user/create/request";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from '@/plugins/axios';
-import store from "@/store/index";
-import { errorType } from "@/types/api/error";
-import { LoadingButton } from '@mui/lab';
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
-
+import SendIcon from '@material-ui/icons/Send';
+import {
+    Button,
+    TextField,
+    Card,
+    CardHeader,
+    CardContent,
+    CardActions,
+    IconButton,
+    Dialog,
+    CircularProgress
+} from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 type Props = {
     onCloseMyself: any
     loginInfo: apiUserBearerAuthenticationResponseType | null
@@ -101,13 +109,9 @@ function CreateUser(props: Props) {
         }
     }, []);
     return (
-        <div className='card'>
-            <div className="card_header">
-                <div className="card_header_left">
-                    <h2 className="card_header_left_main">{props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'}</h2>
-                </div>
-            </div>
-            <div className="card_body">
+        <Card>
+            <CardHeader title={props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'} />
+            <CardContent>
                 <ul>
                     <li className='mb-3'>
                         <TextField
@@ -155,13 +159,14 @@ function CreateUser(props: Props) {
                         </li>
                     </>}
                 </ul>
-            </div>
-            <div className="card_footer justify-space-between">
+            </CardContent>
+            <CardActions>
                 {!props.loginInfo &&
                     <Button
                         onClick={() => { Router.push("/login"); }}
                         color="inherit"
-                        variant="contained">ログイン画面へ
+                        variant="contained">
+                        ログイン画面へ
                     </Button>
                 }
                 <div></div>
@@ -172,8 +177,8 @@ function CreateUser(props: Props) {
                     loading={createUserLoading}>
                     登録<SendIcon />
                 </LoadingButton>
-            </div>
-        </div>
+            </CardActions>
+        </Card>
     );
 }
 

@@ -101,7 +101,6 @@ export default function CreateWork(props: Props) {
                         <SettingsIcon />
                     </IconButton>
                 }
-                sx={{ bgcolor: '#1976d2', color: 'white' }}
                 title={props.task.name}
                 subheader={props.date}
             />
