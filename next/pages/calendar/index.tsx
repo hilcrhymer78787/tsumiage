@@ -21,8 +21,6 @@ import {
     Card,
     CardHeader,
     CardContent,
-    IconButton,
-    CircularProgress
 } from '@mui/material';
 const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
@@ -149,12 +147,14 @@ function Calendar() {
                 </CardContent>
             </Card>
 
-            <Card>
-                <CardHeader title="データ"/>
-                <CardContent>
-                    <LinePlot height="300px" data={calendarData.analytics} />
-                </CardContent>
-            </Card>
+            {Boolean(calendarData.analytics.datasets.length) &&
+                <Card>
+                    <CardHeader title="データ" />
+                    <CardContent>
+                        <LinePlot height="300px" data={calendarData.analytics} />
+                    </CardContent>
+                </Card>
+            }
 
             <Dialog
                 open={Boolean(router.query.day)}

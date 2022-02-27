@@ -1,8 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import styled from "styled-components";
 import { analyticsType } from '@/types/common/analyticsType';
-import { Dialog, Select, FormControl, MenuItem, InputLabel, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -13,7 +12,6 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { AddBoxSharp } from "@mui/icons-material";
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -34,17 +32,15 @@ function LinePlot(props: Props) {
     };
 
     return (
-        <>
-            <Box sx={{ height: props.height }}>
-                {props.data.datasets.length &&
-                    <Line
-                        data={props.data}
-                        options={options}
-                        id="chart-key"
-                    />
-                }
-            </Box>
-        </>
+        <Box sx={{ height: props.height }}>
+            {Boolean(props.data.datasets.length) &&
+                <Line
+                    data={props.data}
+                    options={options}
+                    id="chart-key"
+                />
+            }
+        </Box>
     );
 }
 
