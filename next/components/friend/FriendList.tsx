@@ -71,6 +71,15 @@ export default function GoalList(props: Props) {
                         <CircularProgress />
                     </CardContent>
                 }
+                {!friendReadLoading && !Boolean(friendData.nowFriends.length) &&
+                    <CardContent
+                        sx={{
+                            textAlign: 'center',
+                            p: '20px !important'
+                        }}>
+                            登録されている友達はいません
+                    </CardContent>
+                }
                 {Boolean(friendData.nowFriends.length) && friendData.nowFriends.map((friend, index) => (
                     <FriendItemNow
                         friendRead={friendRead}

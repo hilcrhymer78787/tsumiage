@@ -66,6 +66,15 @@ export default function GoalList(props: Props) {
                         <CircularProgress />
                     </CardContent>
                 }
+                {!goalReadLoading && !Boolean(goals.length) &&
+                    <CardContent
+                        sx={{
+                            textAlign: 'center',
+                            p: '20px !important'
+                        }}>
+                            登録されている目標はありません
+                    </CardContent>
+                }
                 {Boolean(goals.length) && goals.map((goal, index) => (
                     <GoalItem
                         goalRead={goalRead}

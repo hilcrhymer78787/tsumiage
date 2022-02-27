@@ -21,6 +21,8 @@ import {
     Card,
     CardHeader,
     CardContent,
+    CircularProgress,
+    Box,
 } from '@mui/material';
 const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
@@ -47,6 +49,7 @@ function Calendar() {
             } as any,
         }
     } as apiWorkReadCalendarResponseType);
+    const [calendarLoading, setCalendarLoading] = useState(false as boolean);
     const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const router = useRouter();
     useEffect(() => {
@@ -82,7 +85,6 @@ function Calendar() {
             ).getDay()
         );
     };
-
     const getCalendarData = async (year: number, month: number) => {
         if (getCalendarDataCancel) {
             getCalendarDataCancel();
@@ -99,9 +101,13 @@ function Calendar() {
                 getCalendarDataCancel = c;
             }),
         };
+        setCalendarLoading(true);
         await api(requestConfig)
             .then((res: AxiosResponse<apiWorkReadCalendarResponseType>) => {
                 setCalendarData(res.data);
+            })
+            .finally(() => {
+                setCalendarLoading(false);
             });
     };
 
@@ -121,6 +127,15 @@ function Calendar() {
                             <li className={styles.indent_item} key={index.toString()}>{day}</li>
                         ))}
                     </ul>
+                    {calendarLoading && !Boolean(calendarData.calendars.length) &&
+                        <Box sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            p: '30px'
+                        }}>
+                            <CircularProgress />
+                        </Box>
+                    }
                     <ul className={styles.content}>
                         {[...Array(firstDay())].map((n, index) => (
                             <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>

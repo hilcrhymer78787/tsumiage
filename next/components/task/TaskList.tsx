@@ -74,6 +74,15 @@ export default function TaskList(props: Props) {
                         <CircularProgress />
                     </CardContent>
                 }
+                {!taskReadLoading && !Boolean(tasks.length) &&
+                    <CardContent
+                        sx={{
+                            textAlign: 'center',
+                            p: '20px !important'
+                        }}>
+                            登録されているタスクはありません
+                    </CardContent>
+                }
                 {Boolean(tasks.length) &&
                     <CardContent sx={{ p: '0 !important' }}>
                         {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (

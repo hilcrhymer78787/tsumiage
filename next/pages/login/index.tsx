@@ -111,7 +111,7 @@ function Login() {
                     </li>
                     {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
                         <li>
-                            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                 <LoadingButton
                                     color="inherit"
                                     variant="contained"

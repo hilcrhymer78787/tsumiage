@@ -41,6 +41,9 @@ h4 {
     }
 }
 .MuiCardHeader {
+    &-title{
+        font-size: 20px !important;
+    }
     &-root {
         background-color: #1976d2;
         color: white;
