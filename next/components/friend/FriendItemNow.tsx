@@ -7,6 +7,7 @@ import {
     ListItemAvatar,
     ListItemText,
 } from '@mui/material';
+import UserImg from '@/components/common/UserImg'
 
 type Props = {
     friend: apiInvitationResponseFriendType
@@ -17,7 +18,10 @@ export default function FriendItemNow(props: Props) {
         <ListItem sx={{ p: 0 }}>
             <ListItemButton onClick={() => { alert(); }}>
                 <ListItemAvatar>
-                    <Avatar src={props.friend.user_img} sx={{ border: '2px solid #1976d2' }}/>
+                    <UserImg
+                        fileName={props.friend.user_img}
+                        size="40"
+                    />
                 </ListItemAvatar>
                 <ListItemText
                     primary={props.friend.name}

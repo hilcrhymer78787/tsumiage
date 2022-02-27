@@ -13,6 +13,7 @@ import {
     CircularProgress,
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
+import UserImg from '@/components/common/UserImg'
 
 type Props = {
     friend: apiInvitationResponseFriendType
@@ -55,7 +56,10 @@ export default function FriendItemTo(props: Props) {
         >
             <ListItemButton>
                 <ListItemAvatar>
-                    <Avatar src={props.friend.user_img} sx={{ border: '2px solid #1976d2' }} />
+                    <UserImg
+                        fileName={props.friend.user_img}
+                        size="40"
+                    />
                 </ListItemAvatar>
                 <ListItemText
                     primary={props.friend.name}

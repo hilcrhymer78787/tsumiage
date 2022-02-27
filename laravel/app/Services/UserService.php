@@ -10,7 +10,7 @@ class UserService
     public function getLoginInfoByToken($token)
     {
         $loginInfo = User::where('token', $token)
-            ->select('id', 'email', 'name', 'user_img')
+            ->select('id', 'email', 'name', 'user_img','token')
             ->first();
         return $loginInfo;
     }

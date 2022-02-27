@@ -10,7 +10,7 @@ function LoginLayout({ children, loginInfo }) {
     return (
         <>
             {loginInfo === false && <>
-                <Container sx={{ p: '70px 10px' }} maxWidth="xs">
+                <Container sx={{ p: '10px' }} maxWidth="xs">
                     {children}
                 </Container>
             </>}

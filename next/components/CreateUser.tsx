@@ -9,8 +9,12 @@ import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { apiUserCreateRequestType } from "@/types/api/user/create/request";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 import SendIcon from '@material-ui/icons/Send';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import moment from 'moment';
 import {
+    Avatar,
     Button,
+    Box,
     TextField,
     Card,
     CardHeader,
@@ -18,6 +22,7 @@ import {
     CardActions,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import UserImg from '@/components/common/UserImg'
 type Props = {
     onCloseMyself: any
     loginInfo: apiUserBearerAuthenticationResponseType | null
@@ -27,7 +32,10 @@ CreateUser.getLayout = function getLayout(page: any) {
         <LoginLayout>{page}</LoginLayout>
     );
 };
+let inputRef: any = '';
+let file: any = '';
 function CreateUser(props: Props) {
+    const [uploadedImage, setUploadedImage] = useState('' as any);
     const [passwordEditMode, setPasswordEditMode] = useState(true as boolean);
     const [id, setId] = useState(0 as number);
     const [name, setName] = useState("" as string);
@@ -36,6 +44,7 @@ function CreateUser(props: Props) {
     const [emailError, setEmailError] = useState("" as string);
     const [password, setPassword] = useState("" as string);
     const [passwordError, setPasswordError] = useState("" as string);
+    const [user_img, setUserImg] = useState("" as string);
     const [passwordAgain, setPasswordAgain] = useState("" as string);
     const [createUserLoading, setCreateUserLoading] = useState(false as boolean);
     const createUser = async () => {
@@ -43,17 +52,20 @@ function CreateUser(props: Props) {
             return;
         }
         setCreateUserLoading(true);
-        const apiParam: apiUserCreateRequestType = {
-            id: id,
-            name: name,
-            email: email,
-            password: password,
-            user_img: 'https://picsum.photos/500/300?image=30'
-        };
+        const postData: FormData = new FormData();
+        if (file) {
+            postData.append("file", file);
+        }
+        postData.append('id', id.toString());
+        postData.append('name', name);
+        postData.append('email', email);
+        postData.append('password', password);
+        postData.append('user_img', user_img);
+        postData.append('img_oldname', props.loginInfo?.user_img);
         const requestConfig: AxiosRequestConfig = {
             url: `/api/user/create`,
             method: "POST",
-            data: apiParam
+            data: postData
         };
         await api(requestConfig)
             .then((res: AxiosResponse<apiUserCreateResponseType>) => {
@@ -97,12 +109,23 @@ function CreateUser(props: Props) {
         }
         return isError;
     };
+    const fileSelected = (e: any) => {
+        file = e.target.files[0];
+        setUserImg(moment().format("YYYYMMDDHHmmss") + file.name)
+        const reader: any = new FileReader();
+        reader.onload = (e: any) => {
+            setUploadedImage(e.target.result);
+        };
+        reader.readAsDataURL(file);
+    };
     useEffect(() => {
         if (props.loginInfo) {
             setId(props.loginInfo.id);
             setName(props.loginInfo.name);
             setEmail(props.loginInfo.email);
+            setUserImg(props.loginInfo.user_img);
             setPasswordEditMode(false);
+            // img_oldname
         }
     }, []);
     return (
@@ -110,6 +133,41 @@ function CreateUser(props: Props) {
             <CardHeader title={props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'} />
             <CardContent>
                 <ul>
+                    <li className='mb-3'>
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            {Boolean(uploadedImage) &&
+                                <Avatar
+                                    src={uploadedImage}
+                                    sx={{
+                                        width: '70px',
+                                        height: '70px',
+                                        border: '2px solid #1976d2'
+                                    }}
+                                />
+                            }
+                            {!Boolean(uploadedImage) &&
+                                <UserImg
+                                    fileName={props.loginInfo?.user_img}
+                                    size="70"
+                                />
+                            }
+                            <Button
+                                onClick={() => inputRef.click()}
+                                variant="contained"
+                                sx={{ ml: '20px' }}
+                                color="inherit">画像を選択<FileUploadIcon />
+                            </Button>
+                            <input
+                                onChange={fileSelected}
+                                type="file"
+                                hidden={true}
+                                ref={refParam => inputRef = refParam}
+                            />
+                        </Box>
+                    </li>
                     <li className='mb-3'>
                         <TextField
                             onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}

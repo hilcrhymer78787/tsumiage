@@ -14,6 +14,7 @@ import {
 import CreateUser from "@/components/CreateUser";
 import { connect } from "react-redux";
 import Router from 'next/router';
+import UserImg from '@/components/common/UserImg'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -37,17 +38,13 @@ function Mypage({ dispatch, loginInfo }) {
             <CardContent>
                 <ListItem sx={{ p: 0 }}>
                     <ListItemAvatar>
-                        <Avatar
-                            src={loginInfo.user_img}
-                            sx={{
-                                height: '70px',
-                                width: '70px',
-                                mr: '15px',
-                                border: '2px solid #1976d2'
-                            }}
-                        ></Avatar>
+                        <UserImg
+                            fileName={loginInfo.user_img}
+                            size="70"
+                        />
                     </ListItemAvatar>
                     <ListItemText
+                        sx={{ ml: '15px', }}
                         primary={loginInfo.name}
                         secondary={loginInfo.email}
                     />

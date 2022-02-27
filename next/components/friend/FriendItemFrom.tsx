@@ -7,6 +7,7 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
 import { apiInvitationDeleteRequestType } from '@/types/api/invitation/delete/request';
 import { apiInvitationUpdateRequestType } from '@/types/api/invitation/update/request';
+import UserImg from '@/components/common/UserImg'
 import {
     Avatar,
     ListItem,
@@ -65,7 +66,10 @@ export default function FriendItemFrom(props: Props) {
         <Card sx={{ m: '15px' }}>
             <ListItem sx={{ border: 'none !important' }}>
                 <ListItemAvatar>
-                    <Avatar src={props.friend.user_img} sx={{ border: '2px solid #1976d2' }}/>
+                    <UserImg
+                        fileName={props.friend.user_img}
+                        size="40"
+                    />
                 </ListItemAvatar>
                 <ListItemText
                     primary={props.friend.name}

@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import Dialog from '@mui/material/Dialog';
 import Avatar from '@mui/material/Avatar';
 import Mypage from '@/components/common/Mypage';
+import UserImg from '@/components/common/UserImg'
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
@@ -22,9 +23,9 @@ function Header({ loginInfo }) {
                 <Toolbar disableGutters>
                     <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
                     <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
-                        <Avatar
-                            src={loginInfo.user_img}
-                            sx={{ border: '2px solid #1976d2' }}
+                        <UserImg
+                            fileName={loginInfo.user_img}
+                            size="40"
                         />
                     </IconButton>
                 </Toolbar>
