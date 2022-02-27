@@ -133,7 +133,7 @@ function CreateUser(props: Props) {
             <CardHeader title={props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'} />
             <CardContent>
                 <ul>
-                    <li className='mb-3'>
+                    <li className='mb-5'>
                         <Box sx={{
                             display: 'flex',
                             alignItems: 'center'
