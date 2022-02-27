@@ -9,7 +9,7 @@ type Props = {
 export default function UserImg(props: Props) {
     const getUserImg = () => {
         if (!props.fileName) {
-            return ''
+            return '';
         } else if (props.fileName.slice(0, 4) == 'http') {
             return props.fileName;
         } else {

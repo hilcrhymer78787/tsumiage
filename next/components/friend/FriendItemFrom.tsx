@@ -7,7 +7,7 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
 import { apiInvitationDeleteRequestType } from '@/types/api/invitation/delete/request';
 import { apiInvitationUpdateRequestType } from '@/types/api/invitation/update/request';
-import UserImg from '@/components/common/UserImg'
+import UserImg from '@/components/common/UserImg';
 import {
     Avatar,
     ListItem,

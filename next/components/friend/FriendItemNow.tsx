@@ -7,7 +7,7 @@ import {
     ListItemAvatar,
     ListItemText,
 } from '@mui/material';
-import UserImg from '@/components/common/UserImg'
+import UserImg from '@/components/common/UserImg';
 
 type Props = {
     friend: apiInvitationResponseFriendType

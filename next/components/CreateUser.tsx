@@ -22,7 +22,7 @@ import {
     CardActions,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import UserImg from '@/components/common/UserImg'
+import UserImg from '@/components/common/UserImg';
 type Props = {
     onCloseMyself: any
     loginInfo: apiUserBearerAuthenticationResponseType | null
@@ -111,7 +111,7 @@ function CreateUser(props: Props) {
     };
     const fileSelected = (e: any) => {
         file = e.target.files[0];
-        setUserImg(moment().format("YYYYMMDDHHmmss") + file.name)
+        setUserImg(moment().format("YYYYMMDDHHmmss") + file.name);
         const reader: any = new FileReader();
         reader.onload = (e: any) => {
             setUploadedImage(e.target.result);

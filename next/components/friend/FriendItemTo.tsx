@@ -13,7 +13,7 @@ import {
     CircularProgress,
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
-import UserImg from '@/components/common/UserImg'
+import UserImg from '@/components/common/UserImg';
 
 type Props = {
     friend: apiInvitationResponseFriendType

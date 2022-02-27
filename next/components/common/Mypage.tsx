@@ -14,7 +14,7 @@ import {
 import CreateUser from "@/components/CreateUser";
 import { connect } from "react-redux";
 import Router from 'next/router';
-import UserImg from '@/components/common/UserImg'
+import UserImg from '@/components/common/UserImg';
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
