@@ -24,6 +24,9 @@ api.interceptors.response.use(
     },
     (err: AxiosError) => {
         console.error(err.response)
+        if (err.response?.status == 429) {
+            alert('一定時間にアクセスが集中したため、しばらくアクセスできません')
+        }
         if (err.response?.status == 401) {
             localStorage.removeItem("token")
             store.dispatch({ type: "setLoginInfo", value: false })
