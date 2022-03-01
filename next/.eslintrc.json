@@ -5,6 +5,7 @@
     "no-var": "error",
     "indent": ["error", 4],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
-    "semi": "error"
+    "semi": "error",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
