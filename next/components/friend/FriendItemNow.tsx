@@ -9,7 +9,7 @@ import {
     ListItemText,
 } from '@mui/material';
 import UserImg from '@/components/common/UserImg';
-import moment from 'moment'
+import moment from 'moment';
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any

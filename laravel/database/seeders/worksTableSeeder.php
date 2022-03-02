@@ -14,14 +14,13 @@ class worksTableSeeder extends Seeder
      */
     public function run()
     {
-        //  \App\Models\Work::factory(100)->create();
-        for ($day = 1; $day <= 28; $day++) {
+        for ($date = date("Y-m-d",strtotime("-3 month")); $date <= date('Y-m-d'); $date = date('Y-m-d', strtotime($date . '+1 day'))) {
             for ($taskId = 1; $taskId <= 4; $taskId++) {
                 DB::table('works')->insert([
                     [
                         'work_user_id' => 1,
                         'work_task_id' => $taskId,
-                        'work_date' => date("Y-m-${day}"),
+                        'work_date' => date($date),
                         'work_minute' => 10 + $taskId * 5,
                     ],
                 ]);
