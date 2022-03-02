@@ -15,7 +15,7 @@ export default function Pagination(props: Props) {
     const month = (): number => {
         return Number(router.query.month);
     };
-    const getPath = ()=>{
+    const getPath = () => {
         return router.asPath.substring(0, router.asPath.indexOf("?"));
     };
     const onClickPrevMonth = () => {
