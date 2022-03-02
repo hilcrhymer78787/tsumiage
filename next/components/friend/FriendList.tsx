@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { api } from '@/plugins/axios';
-import CardMedia from '@mui/material/CardMedia';
 import AddIcon from '@mui/icons-material/Add';
-import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
-import { apiGoalReadResponseGoalsType } from '@/types/api/goal/read/response';
 import FriendItemTo from '@/components/friend/FriendItemTo';
 import FriendItemNow from '@/components/friend/FriendItemNow';
 import FriendItemFrom from '@/components/friend/FriendItemFrom';
@@ -18,10 +15,7 @@ import {
     CardContent,
     CircularProgress,
 } from '@mui/material';
-type Props = {
-    // date: string,
-}
-export default function GoalList(props: Props) {
+export default function GoalList() {
     const [createInvitationDialog, setCreateInvitationDialog] = useState(false as boolean);
 
     const [friendData, setFriendData] = useState({

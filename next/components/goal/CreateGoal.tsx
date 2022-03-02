@@ -2,7 +2,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import React, { useState, useEffect } from 'react';
 import { api } from '@/plugins/axios';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { MINUTE } from '@/static/const';
 import moment from 'moment';
 import LinePlot from '@/components/common/LinePlot';

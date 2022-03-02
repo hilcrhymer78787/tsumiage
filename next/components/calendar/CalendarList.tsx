@@ -2,7 +2,6 @@ import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Router from 'next/router';
-import { connect } from "react-redux";
 import moment from 'moment';
 import styles from '@/styles/Calendar.module.scss';
 import { api } from '@/plugins/axios';
