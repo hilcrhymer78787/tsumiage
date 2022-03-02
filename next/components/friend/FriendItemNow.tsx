@@ -24,7 +24,7 @@ export default function FriendItemNow(props: Props) {
     return (
         <ListItem sx={{ p: 0 }}>
             <ListItemButton onClick={() => {
-                Router.push(`/friend/${props.friend.id}/?year=${nowYear()}&month=${nowMonth()}`);
+                Router.push(`/friend/${props.friend.id}/${props.friend.name}/?year=${nowYear()}&month=${nowMonth()}`);
             }}>
                 <ListItemAvatar>
                     <UserImg
