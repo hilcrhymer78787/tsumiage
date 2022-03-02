@@ -72,16 +72,20 @@ export default function GoalList(props: Props) {
                             textAlign: 'center',
                             p: '20px !important'
                         }}>
-                            登録されている目標はありません
+                        登録されている目標はありません
                     </CardContent>
                 }
-                {Boolean(goals.length) && goals.map((goal, index) => (
-                    <GoalItem
-                        goalRead={goalRead}
-                        goal={goal}
-                        key={index.toString()}
-                    />
-                ))}
+                {Boolean(goals.length) &&
+                    <CardContent sx={{ p: '0 !important' }}>
+                        {goals.map((goal, index) => (
+                            <GoalItem
+                                goalRead={goalRead}
+                                goal={goal}
+                                key={index.toString()}
+                            />
+                        ))}
+                    </CardContent>
+                }
             </Card>
             <Dialog open={createGoalDialog} onClose={() => { setCreateGoalDialog(false); }}>
                 {createGoalDialog &&

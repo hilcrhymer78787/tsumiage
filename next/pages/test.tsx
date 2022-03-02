@@ -13,10 +13,9 @@ About.getLayout = function getLayout(page) {
         <Layout>{page}</Layout>
     );
 };
-function About({ dispatch, count, post, loginInfo }) {
+function About({ loginInfo }) {
     return (
         <div>
-            <BasicSelect />
             <pre>{JSON.stringify(loginInfo, null, 2)}</pre>
         </div>
     );
