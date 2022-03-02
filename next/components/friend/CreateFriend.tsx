@@ -54,7 +54,7 @@ export default function CreateFriend() {
     };
     return (
         <Card>
-            <CardHeader title={`友達申請`}/>
+            <CardHeader title="友達申請"/>
             <CardContent sx={{ p: '30px 15px', }} >
                 {!Boolean(successMessage) &&
                     <TextField

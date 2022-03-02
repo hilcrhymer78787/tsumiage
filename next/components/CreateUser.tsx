@@ -163,7 +163,7 @@ function CreateUser(props: Props) {
                             <input
                                 onChange={fileSelected}
                                 type="file"
-                                hidden={true}
+                                hidden
                                 ref={refParam => inputRef = refParam}
                             />
                         </Box>

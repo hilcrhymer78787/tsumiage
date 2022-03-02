@@ -59,7 +59,7 @@ export default function GoalList(props: Props) {
                             <AddIcon sx={{ bgcolor: 'white', color: '#1976d2' }} />
                         </IconButton>
                     }
-                    title={`友達`}
+                    title="友達"
                 />
                 {friendReadLoading && !Boolean(friendData.nowFriends.length) &&
                     <CardContent
@@ -90,7 +90,7 @@ export default function GoalList(props: Props) {
             </Card>
             {Boolean(friendData.fromFriends.length) &&
                 <Card sx={{ mb: '20px' }}>
-                    <CardHeader title={`友達申請が来ています`}/>
+                    <CardHeader title="友達申請が来ています"/>
                     {friendData.fromFriends.map((friend, index) => (
                         <FriendItemFrom
                             friendRead={friendRead}
@@ -102,7 +102,7 @@ export default function GoalList(props: Props) {
             }
             {Boolean(friendData.toFriends.length) &&
                 <Card sx={{ mb: '20px' }}>
-                    <CardHeader title={`友達申請中`}/>
+                    <CardHeader title="友達申請中"/>
                     {friendData.toFriends.map((friend, index) => (
                         <FriendItemTo
                             friendRead={friendRead}
