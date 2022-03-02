@@ -10,7 +10,7 @@ import {
     ListItemAvatar,
     ListItemText,
 } from '@mui/material';
-import CreateUser from "@/components/CreateUser";
+import CreateUser from "@/components/user/CreateUser";
 import { connect } from "react-redux";
 import Router from 'next/router';
 import UserImg from '@/components/common/UserImg';
