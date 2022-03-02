@@ -19,21 +19,21 @@ class GoalSeeder extends Seeder
             'goal_task_id' => 1,
             'goal_user_id' => 1,
             'goal_start_date' => date("Y-m-1"),
-            'goal_end_date' => date("Y-m-28"),
+            'goal_end_date' => date('Y-m-t'),
         ]);
         Goal::create([
             'goal_minute' => 400,
             'goal_task_id' => 2,
             'goal_user_id' => 1,
             'goal_start_date' => date("Y-m-1"),
-            'goal_end_date' => date("Y-m-28"),
+            'goal_end_date' => date('Y-m-t'),
         ]);
         Goal::create([
             'goal_minute' => 300,
             'goal_task_id' => 3,
             'goal_user_id' => 1,
             'goal_start_date' => date("Y-m-1"),
-            'goal_end_date' => date("Y-m-28"),
+            'goal_end_date' => date('Y-m-t'),
         ]);
     }
 }
