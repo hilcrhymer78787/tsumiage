@@ -42,11 +42,14 @@ class WorkController extends Controller
         $analytics['datasets'] = [];
         $tasks = (new TaskService())->getTasksByUserId($loginInfo['id']);
         foreach ($tasks as $index => $task) {
+            $end_date = date('Y-m-d', strtotime($year_month . '-' . $last_day)) >= date('Y-m-d')
+                ? date('Y-m-d')
+                : date('Y-m-d', strtotime($year_month . '-' . $last_day));
             $dataset = (new WorkService())->getDataset([
                 'task_id' => $task['id'],
                 'task_name' => $task['name'],
                 'start_date' => date('Y-m-d', strtotime($year_month . '-1')),
-                'end_date' => date('Y-m-d', strtotime($year_month . '-' . $last_day)),
+                'end_date' => $end_date,
                 'color' => $GRAPH_COLORS[$index]
             ]);
             array_push($analytics['datasets'], $dataset);

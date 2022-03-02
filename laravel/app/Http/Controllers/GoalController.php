@@ -82,11 +82,12 @@ class GoalController extends Controller
                 'end_date' => $goal['end_date'],
             ]);
             $analytics['datasets'] = [];
+            $end_date = $goal['end_date'] >= date('Y-m-d') ? date('Y-m-d') : $goal['end_date'];
             $dataset = (new WorkService())->getDataset([
                 'task_id' => $goal['task_id'],
                 'task_name' => $goal['task_name'],
                 'start_date' => $goal['start_date'],
-                'end_date' => $goal['end_date'],
+                'end_date' => $end_date,
                 'color' => '#2196f390'
             ]);
             array_push($analytics['datasets'], $dataset);
