@@ -15,21 +15,26 @@ export default function Pagination(props: Props) {
     const month = (): number => {
         return Number(router.query.month);
     };
+    const getPath = ()=>{
+        return router.asPath.substring(0, router.asPath.indexOf("?"))
+    }
     const onClickPrevMonth = () => {
         if (month() == 1) {
-            router.push(`/calendar?year=${year() - 1}&month=12`);
+            router.push(`${getPath()}?year=${year() - 1}&month=12`);
             props.setCalendarData({ year: year() - 1, month: 12 });
         } else {
-            router.push(`/calendar?year=${year()}&month=${month() - 1}`);
+            router.push(`${getPath()}?year=${year()}&month=${month() - 1}`);
             props.setCalendarData({ year: year(), month: month() - 1 });
         };
     };
     const onClickNextMonth = () => {
+        console.log(router);
+
         if (month() == 12) {
-            router.push(`/calendar?year=${year() + 1}&month=1`);
+            router.push(`${getPath()}?year=${year() + 1}&month=1`);
             props.setCalendarData({ year: year() + 1, month: 1 });
         } else {
-            router.push(`/calendar?year=${year()}&month=${month() + 1}`);
+            router.push(`${getPath()}?year=${year()}&month=${month() + 1}`);
             props.setCalendarData({ year: year(), month: month() + 1 });
         }
     };

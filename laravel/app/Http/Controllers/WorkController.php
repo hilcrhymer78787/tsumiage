@@ -13,6 +13,14 @@ class WorkController extends Controller
     public function read_calendar(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        // 友達判定
+        if ($loginInfo['id'] != $request['user_id']) {
+            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'],$request['user_id']);
+            if(!$is_friends){
+                $errorMessage = 'このユーザは友達ではありません';
+                return response()->json(['errorMessage' => $errorMessage], 500);
+            }
+        }
         // 日別データ
         $year_month = $request['year'] . '-' . $request['month'];
         $last_day = date('d', strtotime("last day of " . $year_month));
@@ -20,7 +28,7 @@ class WorkController extends Controller
         $return['calendars'] = [];
         for ($day = 1; $day <= $last_day; $day++) {
             $calendar['date'] = date('Y-m-d', strtotime($year_month . '-' . $day));
-            $calendar['minute'] = (int)Work::where('work_user_id', $loginInfo['id'])
+            $calendar['minute'] = (int)Work::where('work_user_id', $request['user_id'])
                 ->where('work_date', $calendar['date'])
                 ->sum('work_minute');
             array_push($return['calendars'], $calendar);
@@ -40,7 +48,7 @@ class WorkController extends Controller
             "#f5b2b2",
         ];
         $analytics['datasets'] = [];
-        $tasks = (new TaskService())->getTasksByUserId($loginInfo['id']);
+        $tasks = (new TaskService())->getTasksByUserId($request['user_id']);
         foreach ($tasks as $index => $task) {
             $end_date = date('Y-m-d', strtotime($year_month . '-' . $last_day)) >= date('Y-m-d')
                 ? date('Y-m-d')

@@ -25,7 +25,10 @@ import {
 } from '@mui/material';
 const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
-export default function CalendarList() {
+type Props = {
+    userId: number,
+}
+export default function CalendarList(props: Props) {
     const [calendarData, setCalendarData] = useState({
         calendars: [],
         analytics: {
@@ -78,6 +81,7 @@ export default function CalendarList() {
             getCalendarDataCancel();
         }
         const apiParam: apiWorkReadCalendarRequestType = {
+            user_id: props.userId,
             year: year,
             month: month
         };

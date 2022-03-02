@@ -10,7 +10,7 @@ class UserService
     public function getLoginInfoByToken($token)
     {
         $loginInfo = User::where('token', $token)
-            ->select('id', 'email', 'name', 'user_img','token')
+            ->select('id', 'email', 'name', 'user_img', 'token')
             ->first();
         return $loginInfo;
     }
@@ -54,5 +54,23 @@ class UserService
             ->leftjoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
             ->select('id', 'email', 'name', 'user_img', 'invitation_id')
             ->get();
+    }
+    public function checkIsFriends($userId1, $userId2)
+    {
+        $bool = Invitation::where('invitation_from_user_id', $userId1)
+            ->where('invitation_to_user_id', $userId2)
+            ->where('invitation_status', 2)
+            ->first();
+        if ($bool) {
+            return true;
+        }
+        $bool2 = Invitation::where('invitation_to_user_id', $userId1)
+            ->where('invitation_from_user_id', $userId2)
+            ->where('invitation_status', 2)
+            ->first();
+        if ($bool2) {
+            return true;
+        }
+        return false;
     }
 }
