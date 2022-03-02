@@ -1,5 +1,5 @@
 import * as React from 'react';
-export default function Sample() {
+export default function Test() {
     const [value, setValue] = React.useState<number>(5);
     return (
         <>
