@@ -47,6 +47,9 @@ export default function CreateTask(props: Props) {
         if (!confirm(`「${props.task.name}」を削除しますか？`)) {
             return;
         }
+        if (!confirm(`このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？`)) {
+            return;
+        }
         const apiParam: apiTaskDeleteRequestType = {
             task_id: formTask.id
         };
@@ -111,7 +114,7 @@ export default function CreateTask(props: Props) {
     }, []);
     return (
         <Card>
-            <CardHeader title={props.task ? props.task.name : '新規タスク登録'}/>
+            <CardHeader title={props.task ? props.task.name : '新規タスク登録'} />
             <CardContent>
                 <ul>
                     <li className='mb-3'>
