@@ -147,7 +147,12 @@ export default function CreateWork(props: Props) {
                                 value={formMemo}
                                 minRows={6}
                                 placeholder="memo"
-                                style={{ width: '100%' }}
+                                style={{
+                                    width: '100%',
+                                    border: '1px solid #e0e0e0',
+                                    borderRadius: '5px',
+                                    padding: '5px',
+                                }}
                             />
                         </Box>
                     </li>
