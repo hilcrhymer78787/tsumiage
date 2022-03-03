@@ -38,7 +38,7 @@ type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
     onCloseMyself: any
 }
-function Creategoal({ loginInfo }, props: Props) {
+function Creategoal({ loginInfo }: any, props: Props) {
     const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
     const [goalDeleteLoading, setGoalDeleteLoading] = useState(false as boolean);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
