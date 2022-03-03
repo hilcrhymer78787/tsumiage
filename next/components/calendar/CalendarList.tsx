@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Router from 'next/router';
 import moment from 'moment';
-import styles from '@/styles/Calendar.module.scss';
 import { api } from '@/plugins/axios';
 import axios from 'axios';
 import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response';
@@ -13,6 +12,7 @@ import DayIcon from "@/components/calendar/DayIcon";
 import Pagination from "@/components/calendar/Pagination";
 import TaskList from '@/components/task/TaskList';
 import LinePlot from '@/components/common/LinePlot';
+import styled from "styled-components";
 import {
     CardActionArea,
     Dialog,
@@ -117,11 +117,11 @@ export default function CalendarList(props: Props) {
                     }
                 />
                 <CardContent sx={{ p: '0 !important' }}>
-                    <ul className={styles.indent}>
+                    <Indent >
                         {week.map((day, index) => (
-                            <li className={styles.indent_item} key={index.toString()}>{day}</li>
+                            <IndentItem key={index.toString()}>{day}</IndentItem>
                         ))}
-                    </ul>
+                    </Indent>
                     {calendarLoading && !Boolean(calendarData.calendars.length) &&
                         <Box sx={{
                             display: 'flex',
@@ -131,29 +131,29 @@ export default function CalendarList(props: Props) {
                             <CircularProgress />
                         </Box>
                     }
-                    <ul className={styles.content}>
+                    <Content>
                         {[...Array(firstDay())].map((n, index) => (
-                            <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
+                            <ContentItem key={index.toString()} className="blank"></ContentItem>
                         ))}
                         {calendarData.calendars.map((calendar: apiWorkReadCalendarResponseCalendarType, index: number) => (
-                            <li key={calendar.date} className={styles.content_item + ' main'}>
+                            <ContentItem key={calendar.date} className="main">
                                 <CardActionArea
                                     onClick={() => {
                                         Router.push(`${getPath()}?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
                                     }}
-                                    className={styles.content_item_inner}
+                                    sx={{ minHeight: '40px' }}
                                 >
                                     <DayIcon day={index + 1} />
-                                    <div className={styles.content_item_inner_main}>
+                                    <ContentItemText>
                                         {Boolean(calendar.minute) ? `${calendar.minute}分` : ''}
-                                    </div>
+                                    </ContentItemText>
                                 </CardActionArea>
-                            </li>
+                            </ContentItem>
                         ))}
                         {[...Array(lastDayCount())].map((n, index) => (
-                            <li key={index.toString()} className={styles.content_item + ' ' + styles.blank}></li>
+                            <ContentItem key={index.toString()} className="blank"></ContentItem>
                         ))}
-                    </ul>
+                    </Content>
                 </CardContent>
             </Card>
 
@@ -183,3 +183,53 @@ export default function CalendarList(props: Props) {
         </>
     );
 }
+const Indent = styled.div`
+display: flex;
+padding: 0;
+`;
+const IndentItem = styled.div`
+width: calc(100% / 7);
+text-align: center;
+padding: 5px 0;
+&:nth-child(1) {
+    color: #ff5252;
+}
+&:nth-child(7) {
+    color: #2196f3;
+}
+`;
+const Content = styled.div`
+display: flex;
+flex-wrap: wrap;
+padding: 0;
+background-color: white;
+`;
+const ContentItem = styled.div`
+width: calc(100% / 7);
+border-right: 1px solid #e0e0e0;
+border-top: 1px solid #e0e0e0;
+overflow: hidden;
+&:nth-child(7n) {
+    border-right: none;
+}
+&:nth-child(7n) .content_item_icn {
+    color: #2196f3;
+}
+&:nth-child(7n-6) .content_item_icn {
+    color: #ff5252;
+}
+&.blank {
+    background-color: #f7f7f7;
+}
+&.main:hover {
+    cursor: pointer;
+    background-color: #00968734;
+}
+`;
+const ContentItemText = styled.div`
+text-align: center;
+font-size: 13px;
+padding: 5px 2px;
+color: #1976d2b4;
+min-height: 25px;
+`;

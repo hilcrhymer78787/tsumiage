@@ -49,6 +49,7 @@ const H1 = styled.h1`
 font-size: 25px;
 width: 183px;
 text-align: center;
+margin: 0;
 `;
 const PaginationDiv = styled.div`
 width: 100%;
