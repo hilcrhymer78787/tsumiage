@@ -1,4 +1,8 @@
-export const MINUTE = [
+type minute = {
+    txt: string,
+    val: number
+}
+export const MINUTE: minute[] = [
     { txt: "0分", val: 0 },
     { txt: "1分", val: 1 },
     { txt: "2分", val: 2 },
