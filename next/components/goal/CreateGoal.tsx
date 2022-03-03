@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { api } from '@/plugins/axios';
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { MINUTE } from '@/static/const';
+import { connect } from "react-redux";
 import moment from 'moment';
 import LinePlot from '@/components/common/LinePlot';
 import { apiGoalReadResponseType } from '@/types/api/goal/read/response';
@@ -28,11 +29,16 @@ import SendIcon from '@material-ui/icons/Send';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { LoadingButton } from '@mui/lab';
+const mapStateToProps = (state: any) => {
+    return {
+        loginInfo: state.loginInfo,
+    };
+};
 type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
     onCloseMyself: any
 }
-export default function Creategoal(props: Props) {
+function Creategoal({ loginInfo }, props: Props) {
     const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
     const [goalDeleteLoading, setGoalDeleteLoading] = useState(false as boolean);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
@@ -118,6 +124,7 @@ export default function Creategoal(props: Props) {
     const taskRead = () => {
         const params: apiTaskReadRequestType = {
             date: moment().format('YYYY-MM-DD'),
+            user_id: loginInfo.id
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/read`,
@@ -258,3 +265,4 @@ export default function Creategoal(props: Props) {
         </LocalizationProvider>
     );
 }
+export default connect(mapStateToProps)(Creategoal);
