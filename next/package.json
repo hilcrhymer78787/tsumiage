@@ -1,5 +1,5 @@
 {
-  "name": "traveler",
+  "name": "next",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,8 +15,10 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^5.0.0-alpha.44",
     "@material-ui/pickers": "^3.3.10",
-    "@mui/icons-material": "^5.4.2",
+    "@mui/icons-material": "^5.4.4",
     "@mui/lab": "^5.0.0-alpha.70",
+    "@mui/material": "^5.4.4",
+    "@mui/styled-engine-sc": "^5.4.2",
     "@reduxjs/toolkit": "^1.7.1",
     "@types/styled-components": "^5.1.23",
     "axios": "^0.24.0",
