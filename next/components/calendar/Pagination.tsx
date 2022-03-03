@@ -27,8 +27,6 @@ export default function Pagination(props: Props) {
         };
     };
     const onClickNextMonth = () => {
-        console.log(router);
-
         if (month() == 12) {
             router.push(`${getPath()}?year=${year() + 1}&month=1`);
             props.setCalendarData({ year: year() + 1, month: 1 });

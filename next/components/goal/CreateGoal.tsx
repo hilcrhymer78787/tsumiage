@@ -114,7 +114,6 @@ function Creategoal({ loginInfo }: any, props: Props) {
             isError = true;
         }
         if (moment(endDate).diff(moment(startDate), 'days') > 366) {
-            console.log(moment(endDate).diff(moment(startDate)));
             setDateError("366日以上の範囲は設定できません");
             isError = true;
         }
