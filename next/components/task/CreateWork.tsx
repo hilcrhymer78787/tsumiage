@@ -92,7 +92,7 @@ export default function CreateWork(props: Props) {
             setFormHour(Math.floor(Number(props.task.default_minute) / 60));
             setFormMinute(props.task.default_minute % 60);
         }
-        setFormMemo(props.task.work.memo);
+        setFormMemo(props.task.work.memo ? props.task.work.memo : '');
     }, []);
     return (
         <Card>
