@@ -76,9 +76,6 @@ export default function CalendarList(props: Props) {
             ).getDay()
         );
     };
-    const getPath = () => {
-        return router.asPath.substring(0, router.asPath.indexOf("?"));
-    };
     const getCalendarData = async (year: number, month: number) => {
         if (getCalendarDataCancel) {
             getCalendarDataCancel();
@@ -139,7 +136,7 @@ export default function CalendarList(props: Props) {
                             <ContentItem key={calendar.date} className="main">
                                 <CardActionArea
                                     onClick={() => {
-                                        Router.push(`${getPath()}?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
+                                        Router.push(`${location.pathname}?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
                                     }}
                                     sx={{ minHeight: '40px' }}
                                 >
@@ -170,7 +167,7 @@ export default function CalendarList(props: Props) {
                 open={Boolean(router.query.day)}
                 onClose={() => {
                     getCalendarData(year(), month());
-                    Router.push(`${getPath()}?year=${year()}&month=${month()}`);
+                    Router.push(`${location.pathname}?year=${year()}&month=${month()}`);
                 }}>
                 {Boolean(router.query.day) &&
                     <TaskList
