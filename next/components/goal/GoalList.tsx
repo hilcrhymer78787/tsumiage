@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { api } from '@/plugins/axios';
-import { apiTaskReadRequestType } from '@/types/api/task/read/request';
+import { apiGoalReadRequestType } from '@/types/api/goal/read/request';
 import CreateGoal from '@/components/goal/CreateGoal';
 import GoalItem from '@/components/goal/GoalItem';
 import AddIcon from '@mui/icons-material/Add';
@@ -24,7 +24,7 @@ export default function GoalList(props: Props) {
     const [goalReadLoading, setGoalReadLoading] = useState(false as boolean);
 
     const goalRead = () => {
-        const params: apiTaskReadRequestType = {
+        const params: apiGoalReadRequestType = {
             date: '',
         };
         const requestConfig: AxiosRequestConfig = {

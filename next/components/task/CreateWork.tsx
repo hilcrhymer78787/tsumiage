@@ -27,6 +27,7 @@ type Props = {
     date: string,
     task: apiTaskReadResponseTaskType
     onCloseMyself: any
+    readonly: boolean
 }
 export default function CreateWork(props: Props) {
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
@@ -96,7 +97,7 @@ export default function CreateWork(props: Props) {
     return (
         <Card>
             <CardHeader
-                action={
+                action={!Boolean(props.readonly) &&
                     <IconButton onClick={() => { setCreateTaskDialog(true); }} color="primary">
                         <SettingsIcon />
                     </IconButton>
@@ -111,6 +112,7 @@ export default function CreateWork(props: Props) {
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Box sx={{ width: '48%', }}>
                                 <Select
+                                    readOnly={props.readonly}
                                     sx={{ width: '100%', }}
                                     value={formHour}
                                     onChange={(e) => { setFormHour(Number(e.target.value)); }}
@@ -122,6 +124,7 @@ export default function CreateWork(props: Props) {
                             </Box>
                             <Box sx={{ width: '48%', }}>
                                 <Select
+                                    readOnly={props.readonly}
                                     sx={{ width: '100%', }}
                                     value={formMinute}
                                     onChange={(e) => { setFormMinute(Number(e.target.value)); }}
@@ -136,6 +139,7 @@ export default function CreateWork(props: Props) {
                     <li className='mb-5'>
                         <h4>メモ</h4>
                         <TextareaAutosize
+                            readOnly={props.readonly}
                             onChange={onChangeMemo}
                             value={formMemo}
                             minRows={6}
@@ -145,24 +149,26 @@ export default function CreateWork(props: Props) {
                     </li>
                 </ul>
             </CardContent>
-            <CardActions>
-                <LoadingButton
-                    onClick={workDelete}
-                    color="error"
-                    variant="contained"
-                    loading={workDeleteLoading}
-                    disabled={workCreateLoading}>
-                    削除<DeleteIcon />
-                </LoadingButton>
-                <LoadingButton
-                    onClick={workCreate}
-                    color="primary"
-                    variant="contained"
-                    loading={workCreateLoading}
-                    disabled={workDeleteLoading}>
-                    登録<SendIcon />
-                </LoadingButton>
-            </CardActions>
+            {!Boolean(props.readonly) &&
+                <CardActions>
+                    <LoadingButton
+                        onClick={workDelete}
+                        color="error"
+                        variant="contained"
+                        loading={workDeleteLoading}
+                        disabled={workCreateLoading}>
+                        削除<DeleteIcon />
+                    </LoadingButton>
+                    <LoadingButton
+                        onClick={workCreate}
+                        color="primary"
+                        variant="contained"
+                        loading={workCreateLoading}
+                        disabled={workDeleteLoading}>
+                        登録<SendIcon />
+                    </LoadingButton>
+                </CardActions>
+            }
             <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
                 {createTaskDialog &&
                     <CreateTask

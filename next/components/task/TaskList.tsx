@@ -17,6 +17,8 @@ import {
 } from '@mui/material';
 type Props = {
     date: string,
+    userId: number,
+    readonly: boolean,
 }
 export default function TaskList(props: Props) {
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
@@ -26,6 +28,7 @@ export default function TaskList(props: Props) {
     const taskRead = () => {
         const params: apiTaskReadRequestType = {
             date: props.date,
+            user_id: props.userId
         };
         const requestConfig: AxiosRequestConfig = {
             url: `/api/task/read`,
@@ -50,7 +53,7 @@ export default function TaskList(props: Props) {
         <>
             <Card>
                 <CardHeader
-                    action={
+                    action={!Boolean(props.readonly) &&
                         <IconButton onClick={() => { setCreateTaskDialog(true); }} component="span">
                             <AddIcon color="primary" />
                         </IconButton>
@@ -74,7 +77,7 @@ export default function TaskList(props: Props) {
                             textAlign: 'center',
                             p: '20px !important'
                         }}>
-                            登録されているタスクはありません
+                        登録されているタスクはありません
                     </CardContent>
                 }
                 {Boolean(tasks.length) &&
@@ -85,6 +88,7 @@ export default function TaskList(props: Props) {
                                 date={props.date}
                                 taskRead={taskRead}
                                 key={index.toString()}
+                                readonly={props.readonly}
                             />
                         ))}
                     </CardContent>

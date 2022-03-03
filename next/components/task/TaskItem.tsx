@@ -24,6 +24,7 @@ type Props = {
     task: apiTaskReadResponseTaskType,
     date: string
     taskRead: any
+    readonly: boolean
 }
 export default function TaskItem(props: Props) {
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
@@ -89,7 +90,10 @@ export default function TaskItem(props: Props) {
         }
     };
     return (
-        <ListItem sx={{ p: 0 }} secondaryAction={<QuickIcon />}>
+        <ListItem sx={{ p: 0 }}
+            secondaryAction={!Boolean(props.readonly) &&
+                <QuickIcon />
+            }>
             <ListItemButton sx={{ p: '8px 48px 8px 16px' }}>
                 <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
                     <Avatar sx={{ bgcolor: Boolean(props.task.work.id) ? '#1976d2' : '' }}>
@@ -111,6 +115,7 @@ export default function TaskItem(props: Props) {
                         }}
                         date={props.date}
                         task={props.task}
+                        readonly={props.readonly}
                     />
                 }
             </Dialog>

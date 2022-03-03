@@ -26,6 +26,7 @@ const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
 type Props = {
     userId: number,
+    readonly: boolean,
 }
 export default function CalendarList(props: Props) {
     const [calendarData, setCalendarData] = useState({
@@ -74,6 +75,9 @@ export default function CalendarList(props: Props) {
                 Number(lastDay())
             ).getDay()
         );
+    };
+    const getPath = () => {
+        return router.asPath.substring(0, router.asPath.indexOf("?"));
     };
     const getCalendarData = async (year: number, month: number) => {
         if (getCalendarDataCancel) {
@@ -135,7 +139,7 @@ export default function CalendarList(props: Props) {
                             <li key={calendar.date} className={styles.content_item + ' main'}>
                                 <CardActionArea
                                     onClick={() => {
-                                        Router.push(`/calendar?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
+                                        Router.push(`${getPath()}?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
                                     }}
                                     className={styles.content_item_inner}
                                 >
@@ -166,10 +170,14 @@ export default function CalendarList(props: Props) {
                 open={Boolean(router.query.day)}
                 onClose={() => {
                     getCalendarData(year(), month());
-                    Router.push(`/calendar?year=${year()}&month=${month()}`);
+                    Router.push(`${getPath()}?year=${year()}&month=${month()}`);
                 }}>
                 {Boolean(router.query.day) &&
-                    <TaskList date={moment(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")} />
+                    <TaskList
+                        readonly={props.readonly}
+                        userId={props.userId}
+                        date={moment(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")}
+                    />
                 }
             </Dialog>
         </>

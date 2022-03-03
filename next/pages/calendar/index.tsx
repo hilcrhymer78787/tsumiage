@@ -15,7 +15,7 @@ Calendar.getLayout = function getLayout(page) {
 function Calendar({loginInfo}) {
 
     return (
-        <CalendarList userId={loginInfo.id}/>
+        <CalendarList readonly={false} userId={loginInfo.id}/>
     );
 }
 export default connect(mapStateToProps)(Calendar);

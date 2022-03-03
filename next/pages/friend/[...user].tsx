@@ -17,7 +17,7 @@ export default function FriendId() {
                     textAlign: 'center',
                     m: '15px 0'
                 }}>{Router.router.query.user[1]}さんの部屋</Typography>
-            <CalendarList userId={Number(Router.router.query.user[0])} />
+            <CalendarList readonly userId={Number(Router.router.query.user[0])} />
         </div>
     );
 }

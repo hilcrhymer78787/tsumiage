@@ -16,8 +16,16 @@ class TaskController extends Controller
     public function read(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        // 友達判定
+        if ($loginInfo['id'] != $request['user_id']) {
+            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'],$request['user_id']);
+            if(!$is_friends){
+                $errorMessage = 'このユーザは友達ではありません';
+                return response()->json(['errorMessage' => $errorMessage], 500);
+            }
+        }
 
-        $return['tasks'] = (new TaskService())->getTasksByUserId($loginInfo['id']);
+        $return['tasks'] = (new TaskService())->getTasksByUserId($request['user_id']);
 
         $return['date'] = $request['date'];
 

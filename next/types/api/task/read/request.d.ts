@@ -1,3 +1,4 @@
 export interface apiTaskReadRequestType {
-    date: string
+    date: string,
+    user_id: number,
 }
