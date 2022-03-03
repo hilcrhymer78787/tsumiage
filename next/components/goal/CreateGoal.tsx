@@ -160,86 +160,94 @@ function Creategoal({ loginInfo }: any, props: Props) {
                 <CardContent>
                     <ul>
                         {Boolean(props.focusGoal) && <>
-                            <li className='mb-4'>
-                                <LinePlot height="200px" data={props.focusGoal.analytics} />
+                            <li>
+                                <Box sx={{ mb: '16px' }}>
+                                    <LinePlot height="200px" data={props.focusGoal.analytics} />
+                                </Box>
                             </li>
                         </>}
                         {Boolean(tasks.length) &&
-                            <li className='mb-4'>
-                                <h4>タスク</h4>
-                                <Select
-                                    sx={{ width: '100%', }}
-                                    labelId="task-id"
-                                    value={taskId}
-                                    onChange={(e) => { setTaskId(Number(e.target.value)); }}
-                                >
-                                    {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
-                                        <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
-                                    ))}
-                                </Select>
-                            </li>
-                        }
-                        <li className='mb-4'>
-                            <h4>目標合計時間</h4>
-                            <Box sx={{ display: 'flex' }}>
-                                <Box sx={{ width: '42%', }}>
-                                    <TextField
-                                        error={Boolean(hourError)}
-                                        value={hour}
-                                        onChange={(e) => { setHour(e.currentTarget.value); }}
-                                        variant="outlined" color="primary"
-                                    />
-                                </Box>
-                                <Box sx={{ width: '16%', p: '20px 0 0 1%' }}>時間</Box>
-                                <Box sx={{ width: '42%', }}>
+                            <li>
+                                <Box sx={{ mb: '16px' }}>
+                                    <h4>タスク</h4>
                                     <Select
-                                        error={Boolean(hourError)}
                                         sx={{ width: '100%', }}
-                                        value={minute}
-                                        onChange={(e) => { setMinute(Number(e.target.value)); }}
+                                        labelId="task-id"
+                                        value={taskId}
+                                        onChange={(e) => { setTaskId(Number(e.target.value)); }}
                                     >
-                                        {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
-                                            <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
+                                        {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
+                                            <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
                                         ))}
                                     </Select>
+                                </Box>
+                            </li>
+                        }
+                        <li>
+                            <Box sx={{ mb: '16px' }}>
+                                <h4>目標合計時間</h4>
+                                <Box sx={{ display: 'flex' }}>
+                                    <Box sx={{ width: '42%', }}>
+                                        <TextField
+                                            error={Boolean(hourError)}
+                                            value={hour}
+                                            onChange={(e) => { setHour(e.currentTarget.value); }}
+                                            variant="outlined" color="primary"
+                                        />
+                                    </Box>
+                                    <Box sx={{ width: '16%', p: '20px 0 0 1%' }}>時間</Box>
+                                    <Box sx={{ width: '42%', }}>
+                                        <Select
+                                            error={Boolean(hourError)}
+                                            sx={{ width: '100%', }}
+                                            value={minute}
+                                            onChange={(e) => { setMinute(Number(e.target.value)); }}
+                                        >
+                                            {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
+                                                <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
+                                            ))}
+                                        </Select>
+                                    </Box>
                                 </Box>
                             </Box>
                             {Boolean(hourError) &&
                                 <Typography sx={{ color: '#d32f2f', fontSize: '13px' }}>{hourError}</Typography>
                             }
                         </li>
-                        <li className='mb-4'>
-                            <h4>目標期間</h4>
-                            <Box sx={{
-                                display: 'flex',
-                                alignItems: 'center'
-                            }}>
-                                <Box sx={{ width: '42%', }}>
-                                    <MobileDatePicker
-                                        value={startDate}
-                                        onChange={(v) => {
-                                            setStartDate(moment(v).format('YYYY-MM-DD'));
-                                        }}
-                                        renderInput={(params) => <TextField {...params} />}
-                                    />
-                                </Box>
+                        <li>
+                            <Box sx={{ mb: '16px' }}>
+                                <h4>目標期間</h4>
                                 <Box sx={{
-                                    width: '16%',
-                                    textAlign: 'center'
-                                }}>~</Box>
-                                <Box sx={{ width: '42%', }}>
-                                    <MobileDatePicker
-                                        value={endDate}
-                                        onChange={(v) => {
-                                            setEndDate(moment(v).format('YYYY-MM-DD'));
-                                        }}
-                                        renderInput={(params) => <TextField {...params} />}
-                                    />
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}>
+                                    <Box sx={{ width: '42%', }}>
+                                        <MobileDatePicker
+                                            value={startDate}
+                                            onChange={(v) => {
+                                                setStartDate(moment(v).format('YYYY-MM-DD'));
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </Box>
+                                    <Box sx={{
+                                        width: '16%',
+                                        textAlign: 'center'
+                                    }}>~</Box>
+                                    <Box sx={{ width: '42%', }}>
+                                        <MobileDatePicker
+                                            value={endDate}
+                                            onChange={(v) => {
+                                                setEndDate(moment(v).format('YYYY-MM-DD'));
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+                                    </Box>
                                 </Box>
+                                {Boolean(dateError) &&
+                                    <Typography sx={{ color: '#d32f2f', fontSize: '13px' }}>{dateError}</Typography>
+                                }
                             </Box>
-                            {Boolean(dateError) &&
-                                <Typography sx={{ color: '#d32f2f', fontSize: '13px' }}>{dateError}</Typography>
-                            }
                         </li>
                     </ul>
                 </CardContent>

@@ -107,45 +107,49 @@ export default function CreateWork(props: Props) {
             />
             <CardContent>
                 <ul>
-                    <li className='mb-5'>
-                        <h4>実績時間</h4>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Box sx={{ width: '48%', }}>
-                                <Select
-                                    readOnly={props.readonly}
-                                    sx={{ width: '100%', }}
-                                    value={formHour}
-                                    onChange={(e) => { setFormHour(Number(e.target.value)); }}
-                                >
-                                    {[...Array(24 + 1)].map((n, index) => (
-                                        <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
-                                    ))}
-                                </Select>
-                            </Box>
-                            <Box sx={{ width: '48%', }}>
-                                <Select
-                                    readOnly={props.readonly}
-                                    sx={{ width: '100%', }}
-                                    value={formMinute}
-                                    onChange={(e) => { setFormMinute(Number(e.target.value)); }}
-                                >
-                                    {[...Array(59 + 1)].map((n, index) => (
-                                        <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
-                                    ))}
-                                </Select>
+                    <li>
+                        <Box sx={{ mb: '20px' }}>
+                            <h4>実績時間</h4>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Box sx={{ width: '48%', }}>
+                                    <Select
+                                        readOnly={props.readonly}
+                                        sx={{ width: '100%', }}
+                                        value={formHour}
+                                        onChange={(e) => { setFormHour(Number(e.target.value)); }}
+                                    >
+                                        {[...Array(24 + 1)].map((n, index) => (
+                                            <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
+                                        ))}
+                                    </Select>
+                                </Box>
+                                <Box sx={{ width: '48%', }}>
+                                    <Select
+                                        readOnly={props.readonly}
+                                        sx={{ width: '100%', }}
+                                        value={formMinute}
+                                        onChange={(e) => { setFormMinute(Number(e.target.value)); }}
+                                    >
+                                        {[...Array(59 + 1)].map((n, index) => (
+                                            <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                                        ))}
+                                    </Select>
+                                </Box>
                             </Box>
                         </Box>
                     </li>
-                    <li className='mb-5'>
-                        <h4>メモ</h4>
-                        <TextareaAutosize
-                            readOnly={props.readonly}
-                            onChange={onChangeMemo}
-                            value={formMemo}
-                            minRows={6}
-                            placeholder="memo"
-                            style={{ width: '100%' }}
-                        />
+                    <li>
+                        <Box sx={{ mb: '20px' }}>
+                            <h4>メモ</h4>
+                            <TextareaAutosize
+                                readOnly={props.readonly}
+                                onChange={onChangeMemo}
+                                value={formMemo}
+                                minRows={6}
+                                placeholder="memo"
+                                style={{ width: '100%' }}
+                            />
+                        </Box>
                     </li>
                 </ul>
             </CardContent>

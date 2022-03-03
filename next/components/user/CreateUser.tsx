@@ -133,10 +133,11 @@ function CreateUser(props: Props) {
             <CardHeader title={props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'} />
             <CardContent>
                 <ul>
-                    <li className='mb-5'>
+                    <li>
                         <Box sx={{
                             display: 'flex',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            mb: '20px'
                         }}>
                             {Boolean(uploadedImage) &&
                                 <Avatar
@@ -168,49 +169,67 @@ function CreateUser(props: Props) {
                             />
                         </Box>
                     </li>
-                    <li className='mb-3'>
-                        <TextField
-                            onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
-                            error={Boolean(nameError)}
-                            helperText={nameError}
-                            value={name}
-                            onChange={(e) => { setName(e.currentTarget.value); }}
-                            label="名前" variant="outlined" color="primary" />
+                    <li>
+                        <Box sx={{ mb: '15px' }}>
+                            <TextField
+                                onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                error={Boolean(nameError)}
+                                helperText={nameError}
+                                value={name}
+                                onChange={(e) => { setName(e.currentTarget.value); }}
+                                label="名前" variant="outlined" color="primary"
+                            />
+                        </Box>
                     </li>
-                    <li className='mb-3'>
-                        <TextField
-                            onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
-                            error={Boolean(emailError)}
-                            helperText={emailError}
-                            value={email}
-                            onChange={(e) => { setEmail(e.currentTarget.value); }}
-                            label="メールアドレス" variant="outlined" color="primary" />
+                    <li>
+                        <Box sx={{ mb: '15px' }}>
+                            <TextField
+                                onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                error={Boolean(emailError)}
+                                helperText={emailError}
+                                value={email}
+                                onChange={(e) => { setEmail(e.currentTarget.value); }}
+                                label="メールアドレス" variant="outlined" color="primary"
+                            />
+                        </Box>
                     </li>
                     {passwordEditMode && <>
-                        <li className='mb-3'>
-                            <TextField
-                                onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
-                                error={Boolean(passwordError)}
-                                helperText={passwordError}
-                                value={password}
-                                onChange={(e) => { setPassword(e.currentTarget.value); }}
-                                label="パスワード" variant="outlined" color="primary" />
+                        <li>
+                            <Box sx={{ mb: '15px' }}>
+                                <TextField
+                                    onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                    error={Boolean(passwordError)}
+                                    helperText={passwordError}
+                                    value={password}
+                                    onChange={(e) => { setPassword(e.currentTarget.value); }}
+                                    label="パスワード" variant="outlined" color="primary"
+                                />
+                            </Box>
                         </li>
-                        <li className='mb-3'>
-                            <TextField
-                                onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
-                                value={passwordAgain}
-                                onChange={(e) => { setPasswordAgain(e.currentTarget.value); }}
-                                label="パスワード確認" variant="outlined" color="primary" />
+                        <li>
+                            <Box sx={{ mb: '15px' }}>
+                                <TextField
+                                    onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                    value={passwordAgain}
+                                    onChange={(e) => { setPasswordAgain(e.currentTarget.value); }}
+                                    label="パスワード確認" variant="outlined" color="primary"
+                                />
+                            </Box>
                         </li>
                     </>}
                     {!passwordEditMode && <>
-                        <li className='mb-3 d-flex justify-end'>
-                            <Button
-                                onClick={() => { setPasswordEditMode(true); }}
-                                variant="contained"
-                                color="inherit">パスワードを編集
-                            </Button>
+                        <li>
+                            <Box sx={{
+                                mb: '15px',
+                                display: 'flex',
+                                justifyContent: 'flex-end'
+                            }}>
+                                <Button
+                                    onClick={() => { setPasswordEditMode(true); }}
+                                    variant="contained"
+                                    color="inherit">パスワードを編集
+                                </Button>
+                            </Box>
                         </li>
                     </>}
                 </ul>
