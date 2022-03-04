@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { api } from '@/plugins/axios';
+import * as React from "react";
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
-import { apiInvitationDeleteRequestType } from '@/types/api/invitation/delete/request';
+import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
+import { apiInvitationDeleteRequestType } from "@/types/api/invitation/delete/request";
 import {
     Avatar,
     IconButton,
@@ -11,15 +11,15 @@ import {
     ListItemAvatar,
     ListItemText,
     CircularProgress,
-} from '@mui/material';
-import CancelIcon from '@mui/icons-material/Cancel';
-import UserImg from '@/components/common/UserImg';
+} from "@mui/material";
+import CancelIcon from "@mui/icons-material/Cancel";
+import UserImg from "@/components/common/UserImg";
 
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any
 }
-export default function FriendItemTo(props: Props) {
+export default function FriendItemTo (props: Props) {
     const [invitationDeleteLoading, setinvitationDeleteLoading] = React.useState<boolean>(false);
     const invitationDelete = () => {
         if (!confirm(`「${props.friend.name}」さんの招待を中止しますか？`)) {
@@ -29,7 +29,7 @@ export default function FriendItemTo(props: Props) {
             invitation_id: props.friend.invitation_id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/invitation/delete`,
+            url: "/api/invitation/delete",
             method: "DELETE",
             data: apiParam
         };

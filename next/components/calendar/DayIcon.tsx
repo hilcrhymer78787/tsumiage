@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router';
-import React from 'react';
+import { useRouter } from "next/router";
+import React from "react";
 import moment from "moment";
 import styled from "styled-components";
 type Props = {
     day: number
 }
-export default function DayIcon(props: Props) {
+export default function DayIcon (props: Props) {
     const router = useRouter();
     const isToday = (): boolean => {
         return (

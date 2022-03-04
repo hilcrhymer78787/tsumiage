@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Router from 'next/router';
-import LoginLayout from '@/layouts/login';
+import React, { useState, useEffect } from "react";
+import Router from "next/router";
+import LoginLayout from "@/layouts/login";
 import store from "@/store/index";
-import { api } from '@/plugins/axios';
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { errorType } from "@/types/api/error";
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { apiUserCreateRequestType } from "@/types/api/user/create/request";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
-import SendIcon from '@material-ui/icons/Send';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
-import moment from 'moment';
+import SendIcon from "@material-ui/icons/Send";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
+import moment from "moment";
 import {
     Avatar,
     Button,
@@ -20,22 +20,22 @@ import {
     CardHeader,
     CardContent,
     CardActions,
-} from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-import UserImg from '@/components/common/UserImg';
+} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import UserImg from "@/components/common/UserImg";
 type Props = {
     onCloseMyself: any
     loginInfo: apiUserBearerAuthenticationResponseType | null
 }
-CreateUser.getLayout = function getLayout(page: any) {
+CreateUser.getLayout = function getLayout (page: any) {
     return (
         <LoginLayout>{page}</LoginLayout>
     );
 };
-let inputRef: any = '';
-let file: any = '';
-function CreateUser(props: Props) {
-    const [uploadedImage, setUploadedImage] = useState('' as any);
+let inputRef: any = "";
+let file: any = "";
+function CreateUser (props: Props) {
+    const [uploadedImage, setUploadedImage] = useState("" as any);
     const [passwordEditMode, setPasswordEditMode] = useState(true as boolean);
     const [id, setId] = useState(0 as number);
     const [name, setName] = useState("" as string);
@@ -56,20 +56,20 @@ function CreateUser(props: Props) {
         if (file) {
             postData.append("file", file);
         }
-        postData.append('id', id.toString());
-        postData.append('name', name);
-        postData.append('email', email);
-        postData.append('password', password);
-        postData.append('user_img', user_img);
-        postData.append('img_oldname', props.loginInfo?.user_img);
+        postData.append("id", id.toString());
+        postData.append("name", name);
+        postData.append("email", email);
+        postData.append("password", password);
+        postData.append("user_img", user_img);
+        postData.append("img_oldname", props.loginInfo?.user_img);
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/user/create`,
+            url: "/api/user/create",
             method: "POST",
             data: postData
         };
         await api(requestConfig)
             .then((res: AxiosResponse<apiUserCreateResponseType>) => {
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem("token", res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data });
                 props.onCloseMyself();
             })
@@ -77,7 +77,7 @@ function CreateUser(props: Props) {
                 if (err.response?.data.errorMessage) {
                     alert(err.response.data.errorMessage);
                 } else {
-                    alert('登録に失敗しました');
+                    alert("登録に失敗しました");
                 }
             })
             .finally(() => {
@@ -130,22 +130,22 @@ function CreateUser(props: Props) {
     }, []);
     return (
         <Card>
-            <CardHeader title={props.loginInfo ? 'ユーザー編集' : '新規ユーザー登録'} />
+            <CardHeader title={props.loginInfo ? "ユーザー編集" : "新規ユーザー登録"} />
             <CardContent>
                 <ul>
                     <li>
                         <Box sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            mb: '20px'
+                            display: "flex",
+                            alignItems: "center",
+                            mb: "20px"
                         }}>
                             {Boolean(uploadedImage) &&
                                 <Avatar
                                     src={uploadedImage}
                                     sx={{
-                                        width: '70px',
-                                        height: '70px',
-                                        border: '2px solid #1976d2'
+                                        width: "70px",
+                                        height: "70px",
+                                        border: "2px solid #1976d2"
                                     }}
                                 />
                             }
@@ -158,7 +158,7 @@ function CreateUser(props: Props) {
                             <Button
                                 onClick={() => inputRef.click()}
                                 variant="contained"
-                                sx={{ ml: '20px' }}
+                                sx={{ ml: "20px" }}
                                 color="inherit">画像を選択<FileUploadIcon />
                             </Button>
                             <input
@@ -170,9 +170,9 @@ function CreateUser(props: Props) {
                         </Box>
                     </li>
                     <li>
-                        <Box sx={{ mb: '15px' }}>
+                        <Box sx={{ mb: "15px" }}>
                             <TextField
-                                onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
                                 error={Boolean(nameError)}
                                 helperText={nameError}
                                 value={name}
@@ -182,9 +182,9 @@ function CreateUser(props: Props) {
                         </Box>
                     </li>
                     <li>
-                        <Box sx={{ mb: '15px' }}>
+                        <Box sx={{ mb: "15px" }}>
                             <TextField
-                                onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
                                 error={Boolean(emailError)}
                                 helperText={emailError}
                                 value={email}
@@ -195,9 +195,9 @@ function CreateUser(props: Props) {
                     </li>
                     {passwordEditMode && <>
                         <li>
-                            <Box sx={{ mb: '15px' }}>
+                            <Box sx={{ mb: "15px" }}>
                                 <TextField
-                                    onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                    onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
                                     error={Boolean(passwordError)}
                                     helperText={passwordError}
                                     value={password}
@@ -207,9 +207,9 @@ function CreateUser(props: Props) {
                             </Box>
                         </li>
                         <li>
-                            <Box sx={{ mb: '15px' }}>
+                            <Box sx={{ mb: "15px" }}>
                                 <TextField
-                                    onKeyPress={e => { if (e.key === 'Enter') { createUser(); } }}
+                                    onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
                                     value={passwordAgain}
                                     onChange={(e) => { setPasswordAgain(e.currentTarget.value); }}
                                     label="パスワード確認" variant="outlined" color="primary"
@@ -220,9 +220,9 @@ function CreateUser(props: Props) {
                     {!passwordEditMode && <>
                         <li>
                             <Box sx={{
-                                mb: '15px',
-                                display: 'flex',
-                                justifyContent: 'flex-end'
+                                mb: "15px",
+                                display: "flex",
+                                justifyContent: "flex-end"
                             }}>
                                 <Button
                                     onClick={() => { setPasswordEditMode(true); }}

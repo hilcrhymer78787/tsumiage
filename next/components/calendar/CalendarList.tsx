@@ -1,17 +1,17 @@
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Router from 'next/router';
-import moment from 'moment';
-import { api } from '@/plugins/axios';
-import axios from 'axios';
-import { apiWorkReadCalendarResponseCalendarType } from '@/types/api/work/read/calendar/response';
-import { apiWorkReadCalendarRequestType } from '@/types/api/work/read/calendar/request';
-import { apiWorkReadCalendarResponseType } from '@/types/api/work/read/calendar/response';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Router from "next/router";
+import moment from "moment";
+import { api } from "@/plugins/axios";
+import axios from "axios";
+import { apiWorkReadCalendarResponseCalendarType } from "@/types/api/work/read/calendar/response";
+import { apiWorkReadCalendarRequestType } from "@/types/api/work/read/calendar/request";
+import { apiWorkReadCalendarResponseType } from "@/types/api/work/read/calendar/response";
 import DayIcon from "@/components/calendar/DayIcon";
 import Pagination from "@/components/calendar/Pagination";
-import TaskList from '@/components/task/TaskList';
-import LinePlot from '@/components/common/LinePlot';
+import TaskList from "@/components/task/TaskList";
+import LinePlot from "@/components/common/LinePlot";
 import styled from "styled-components";
 import {
     CardActionArea,
@@ -21,22 +21,22 @@ import {
     CardContent,
     CircularProgress,
     Box,
-} from '@mui/material';
+} from "@mui/material";
 const CancelToken = axios.CancelToken;
 let getCalendarDataCancel: any = null;
 type Props = {
     userId: number,
     readonly: boolean,
 }
-export default function CalendarList(props: Props) {
+export default function CalendarList (props: Props) {
     const [calendarData, setCalendarData] = useState({
         calendars: [],
         analytics: {
             labels: [] as string[],
             datasets: {
-                label: '' as string,
+                label: "" as string,
                 data: [] as number[],
-                borderColor: '' as string,
+                borderColor: "" as string,
             } as any,
         }
     } as apiWorkReadCalendarResponseType);
@@ -86,7 +86,7 @@ export default function CalendarList(props: Props) {
             month: month
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/read/calendar`,
+            url: "/api/work/read/calendar",
             method: "GET",
             params: apiParam,
             cancelToken: new CancelToken(c => {
@@ -105,7 +105,7 @@ export default function CalendarList(props: Props) {
 
     return (
         <>
-            <Card sx={{ mb: '20px' }}>
+            <Card sx={{ mb: "20px" }}>
                 <CardHeader
                     title={
                         <Pagination setCalendarData={(date: { year: number, month: number }) => {
@@ -113,7 +113,7 @@ export default function CalendarList(props: Props) {
                         }} />
                     }
                 />
-                <CardContent sx={{ p: '0 !important' }}>
+                <CardContent sx={{ p: "0 !important" }}>
                     <Indent >
                         {week.map((day, index) => (
                             <IndentItem key={index.toString()}>{day}</IndentItem>
@@ -121,9 +121,9 @@ export default function CalendarList(props: Props) {
                     </Indent>
                     {calendarLoading && !Boolean(calendarData.calendars.length) &&
                         <Box sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            p: '30px'
+                            display: "flex",
+                            justifyContent: "center",
+                            p: "30px"
                         }}>
                             <CircularProgress />
                         </Box>
@@ -138,11 +138,11 @@ export default function CalendarList(props: Props) {
                                     onClick={() => {
                                         Router.push(`${location.pathname}?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
                                     }}
-                                    sx={{ minHeight: '40px' }}
+                                    sx={{ minHeight: "40px" }}
                                 >
                                     <DayIcon day={index + 1} />
                                     <ContentItemText>
-                                        {Boolean(calendar.minute) ? `${calendar.minute}分` : ''}
+                                        {Boolean(calendar.minute) ? `${calendar.minute}分` : ""}
                                     </ContentItemText>
                                 </CardActionArea>
                             </ContentItem>

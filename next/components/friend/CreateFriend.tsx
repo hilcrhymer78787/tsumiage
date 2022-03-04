@@ -1,21 +1,21 @@
-import Typography from '@mui/material/Typography';
-import { LoadingButton } from '@mui/lab';
-import { api } from '@/plugins/axios';
+import Typography from "@mui/material/Typography";
+import { LoadingButton } from "@mui/lab";
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardActions from '@mui/material/CardActions';
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { CardContent } from '@mui/material';
-import { apiInvitationCreateRequestType } from '@/types/api/invitation/create/request';
-import { apiInvitationCreateResponseType } from '@/types/api/invitation/create/response';
-import SendIcon from '@material-ui/icons/Send';
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardActions from "@mui/material/CardActions";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import { CardContent } from "@mui/material";
+import { apiInvitationCreateRequestType } from "@/types/api/invitation/create/request";
+import { apiInvitationCreateResponseType } from "@/types/api/invitation/create/response";
+import SendIcon from "@material-ui/icons/Send";
 import { errorType } from "@/types/api/error";
-export default function CreateFriend() {
-    const [successMessage, setSuccessMessage] = React.useState<string>('');
-    const [email, setEmail] = React.useState<string>('');
-    const [emailError, setEmailError] = React.useState<string>('');
+export default function CreateFriend () {
+    const [successMessage, setSuccessMessage] = React.useState<string>("");
+    const [email, setEmail] = React.useState<string>("");
+    const [emailError, setEmailError] = React.useState<string>("");
     const [invitationCreateLoading, setInvitationCreateLoading] = React.useState<boolean>(false);
     const invitationCreate = () => {
         if (validation()) {
@@ -25,7 +25,7 @@ export default function CreateFriend() {
             email: email
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/invitation/create`,
+            url: "/api/invitation/create",
             method: "POST",
             data: apiParam
         };
@@ -55,10 +55,10 @@ export default function CreateFriend() {
     return (
         <Card>
             <CardHeader title="友達申請"/>
-            <CardContent sx={{ p: '30px 15px', }} >
+            <CardContent sx={{ p: "30px 15px", }} >
                 {!Boolean(successMessage) &&
                     <TextField
-                        onKeyPress={e => { if (e.key === 'Enter') { invitationCreate(); } }}
+                        onKeyPress={e => { if (e.key === "Enter") { invitationCreate(); } }}
                         error={Boolean(emailError)}
                         helperText={emailError}
                         value={email}
@@ -69,8 +69,8 @@ export default function CreateFriend() {
                 {Boolean(successMessage) &&
                     <Typography
                         sx={{
-                            color: '#1976d2',
-                            textAlign: 'center'
+                            color: "#1976d2",
+                            textAlign: "center"
                         }}>{successMessage}
                     </Typography>
                 }
@@ -90,8 +90,8 @@ export default function CreateFriend() {
                 {Boolean(successMessage) &&
                     <LoadingButton
                         onClick={() => {
-                            setEmail('');
-                            setSuccessMessage('');
+                            setEmail("");
+                            setSuccessMessage("");
                         }}
                         color="inherit"
                         variant="contained"

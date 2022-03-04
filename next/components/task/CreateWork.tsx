@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { api } from '@/plugins/axios';
+import React, { useState, useEffect } from "react";
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { apiTaskReadResponseType } from '@/types/api/task/read/response';
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
-import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
-import SendIcon from '@material-ui/icons/Send';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SettingsIcon from '@material-ui/icons/Settings';
-import CreateTask from '@/components/task/CreateTask';
-import { LoadingButton } from '@mui/lab';
+import { apiTaskReadResponseType } from "@/types/api/task/read/response";
+import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
+import { apiWorkCreateRequestType } from "@/types/api/work/create/request";
+import { apiWorkDeleteRequestType } from "@/types/api/work/delete/request";
+import SendIcon from "@material-ui/icons/Send";
+import DeleteIcon from "@material-ui/icons/Delete";
+import SettingsIcon from "@material-ui/icons/Settings";
+import CreateTask from "@/components/task/CreateTask";
+import { LoadingButton } from "@mui/lab";
 import {
     TextareaAutosize,
     Select,
@@ -21,7 +21,7 @@ import {
     CardActions,
     IconButton,
     Dialog,
-} from '@mui/material';
+} from "@mui/material";
 
 type Props = {
     date: string,
@@ -29,13 +29,13 @@ type Props = {
     onCloseMyself: any
     readonly: boolean
 }
-export default function CreateWork(props: Props) {
+export default function CreateWork (props: Props) {
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [formMinute, setFormMinute] = useState(0);
     const [formHour, setFormHour] = useState(0);
-    const [formMemo, setFormMemo] = useState('');
+    const [formMemo, setFormMemo] = useState("");
     const workDelete = () => {
         if (!confirm(`「${props.task.name}」の実績を削除しますか？`)) {
             return;
@@ -45,7 +45,7 @@ export default function CreateWork(props: Props) {
             task_id: props.task.id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/delete`,
+            url: "/api/work/delete",
             method: "DELETE",
             data: apiParam
         };
@@ -67,7 +67,7 @@ export default function CreateWork(props: Props) {
             memo: formMemo,
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/create`,
+            url: "/api/work/create",
             method: "POST",
             data: apiParam
         };
@@ -92,7 +92,7 @@ export default function CreateWork(props: Props) {
             setFormHour(Math.floor(Number(props.task.default_minute) / 60));
             setFormMinute(props.task.default_minute % 60);
         }
-        setFormMemo(props.task.work.memo ? props.task.work.memo : '');
+        setFormMemo(props.task.work.memo ? props.task.work.memo : "");
     }, []);
     return (
         <Card>
@@ -108,13 +108,13 @@ export default function CreateWork(props: Props) {
             <CardContent>
                 <ul>
                     <li>
-                        <Box sx={{ mb: '20px' }}>
+                        <Box sx={{ mb: "20px" }}>
                             <h4>実績時間</h4>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Box sx={{ width: '48%', }}>
+                            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                <Box sx={{ width: "48%", }}>
                                     <Select
                                         readOnly={props.readonly}
-                                        sx={{ width: '100%', }}
+                                        sx={{ width: "100%", }}
                                         value={formHour}
                                         onChange={(e) => { setFormHour(Number(e.target.value)); }}
                                     >
@@ -123,10 +123,10 @@ export default function CreateWork(props: Props) {
                                         ))}
                                     </Select>
                                 </Box>
-                                <Box sx={{ width: '48%', }}>
+                                <Box sx={{ width: "48%", }}>
                                     <Select
                                         readOnly={props.readonly}
-                                        sx={{ width: '100%', }}
+                                        sx={{ width: "100%", }}
                                         value={formMinute}
                                         onChange={(e) => { setFormMinute(Number(e.target.value)); }}
                                     >
@@ -139,7 +139,7 @@ export default function CreateWork(props: Props) {
                         </Box>
                     </li>
                     <li>
-                        <Box sx={{ mb: '20px' }}>
+                        <Box sx={{ mb: "20px" }}>
                             <h4>メモ</h4>
                             <TextareaAutosize
                                 readOnly={props.readonly}
@@ -148,10 +148,10 @@ export default function CreateWork(props: Props) {
                                 minRows={6}
                                 placeholder="memo"
                                 style={{
-                                    width: '100%',
-                                    border: '1px solid #e0e0e0',
-                                    borderRadius: '5px',
-                                    padding: '5px',
+                                    width: "100%",
+                                    border: "1px solid #e0e0e0",
+                                    borderRadius: "5px",
+                                    padding: "5px",
                                 }}
                             />
                         </Box>

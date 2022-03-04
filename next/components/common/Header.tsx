@@ -1,19 +1,19 @@
 import { connect } from "react-redux";
-import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Dialog from '@mui/material/Dialog';
-import Mypage from '@/components/common/Mypage';
-import UserImg from '@/components/common/UserImg';
+import React, { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Dialog from "@mui/material/Dialog";
+import Mypage from "@/components/common/Mypage";
+import UserImg from "@/components/common/UserImg";
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
     };
 };
-function Header({ loginInfo }) {
+function Header ({ loginInfo }) {
     const [mypageDialog, setMypageDialog] = useState(false as boolean);
 
     return (

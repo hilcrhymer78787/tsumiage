@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
     Button,
     Card,
@@ -9,20 +9,20 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemText,
-} from '@mui/material';
+} from "@mui/material";
 import CreateUser from "@/components/user/CreateUser";
 import { connect } from "react-redux";
-import Router from 'next/router';
-import UserImg from '@/components/common/UserImg';
+import Router from "next/router";
+import UserImg from "@/components/common/UserImg";
 const mapStateToProps = (state: any) => {
     return {
         loginInfo: state.loginInfo,
     };
 };
-function Mypage({ dispatch, loginInfo }) {
+function Mypage ({ dispatch, loginInfo }) {
     const [createUserDialog, setCreateUserDialog] = useState(false as boolean);
     const logout = () => {
-        if (!confirm(`ログアウトしますか？`)) {
+        if (!confirm("ログアウトしますか？")) {
             return;
         }
         localStorage.removeItem("token");
@@ -43,7 +43,7 @@ function Mypage({ dispatch, loginInfo }) {
                         />
                     </ListItemAvatar>
                     <ListItemText
-                        sx={{ ml: '15px', }}
+                        sx={{ ml: "15px", }}
                         primary={loginInfo.name}
                         secondary={loginInfo.email}
                     />

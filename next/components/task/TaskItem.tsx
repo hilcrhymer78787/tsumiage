@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { api } from '@/plugins/axios';
+import React, { useState, useEffect } from "react";
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import CreateWork from '@/components/task/CreateWork';
-import { apiTaskReadResponseType } from '@/types/api/task/read/response';
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiWorkDeleteRequestType } from '@/types/api/work/delete/request';
-import { apiWorkCreateRequestType } from '@/types/api/work/create/request';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CreateWork from "@/components/task/CreateWork";
+import { apiTaskReadResponseType } from "@/types/api/task/read/response";
+import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
+import { apiWorkDeleteRequestType } from "@/types/api/work/delete/request";
+import { apiWorkCreateRequestType } from "@/types/api/work/create/request";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import {
     CardActionArea,
     Dialog,
@@ -19,14 +19,14 @@ import {
     ListItemText,
     Avatar,
     CircularProgress
-} from '@mui/material';
+} from "@mui/material";
 type Props = {
     task: apiTaskReadResponseTaskType,
     date: string
     taskRead: any
     readonly: boolean
 }
-export default function TaskItem(props: Props) {
+export default function TaskItem (props: Props) {
     const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
     const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
     const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
@@ -39,7 +39,7 @@ export default function TaskItem(props: Props) {
             task_id: props.task.id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/delete`,
+            url: "/api/work/delete",
             method: "DELETE",
             data: apiParam
         };
@@ -58,10 +58,10 @@ export default function TaskItem(props: Props) {
             date: props.date,
             task_id: props.task.id,
             minute: props.task.default_minute,
-            memo: '',
+            memo: "",
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/work/create`,
+            url: "/api/work/create",
             method: "POST",
             data: apiParam
         };
@@ -94,9 +94,9 @@ export default function TaskItem(props: Props) {
             secondaryAction={!Boolean(props.readonly) &&
                 <QuickIcon />
             }>
-            <ListItemButton sx={{ p: '8px 48px 8px 16px' }}>
+            <ListItemButton sx={{ p: "8px 48px 8px 16px" }}>
                 <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
-                    <Avatar sx={{ bgcolor: Boolean(props.task.work.id) ? '#1976d2' : '' }}>
+                    <Avatar sx={{ bgcolor: Boolean(props.task.work.id) ? "#1976d2" : "" }}>
                         <TaskOutlinedIcon />
                     </Avatar>
                 </ListItemAvatar>

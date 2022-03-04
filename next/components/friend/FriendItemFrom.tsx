@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { LoadingButton } from '@mui/lab';
-import { api } from '@/plugins/axios';
-import SendIcon from '@material-ui/icons/Send';
-import DeleteIcon from '@material-ui/icons/Delete';
+import * as React from "react";
+import { LoadingButton } from "@mui/lab";
+import { api } from "@/plugins/axios";
+import SendIcon from "@material-ui/icons/Send";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
-import { apiInvitationDeleteRequestType } from '@/types/api/invitation/delete/request';
-import { apiInvitationUpdateRequestType } from '@/types/api/invitation/update/request';
-import UserImg from '@/components/common/UserImg';
+import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
+import { apiInvitationDeleteRequestType } from "@/types/api/invitation/delete/request";
+import { apiInvitationUpdateRequestType } from "@/types/api/invitation/update/request";
+import UserImg from "@/components/common/UserImg";
 import {
     Avatar,
     ListItem,
@@ -15,12 +15,12 @@ import {
     ListItemText,
     Card,
     CardActions,
-} from '@mui/material';
+} from "@mui/material";
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any
 }
-export default function FriendItemFrom(props: Props) {
+export default function FriendItemFrom (props: Props) {
     const [invitationDeleteLoading, setinvitationDeleteLoading] = React.useState<boolean>(false);
     const [invitationUpdateLoading, setInvitationUpdateLoading] = React.useState<boolean>(false);
     const invitationDelete = () => {
@@ -31,7 +31,7 @@ export default function FriendItemFrom(props: Props) {
             invitation_id: props.friend.invitation_id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/invitation/delete`,
+            url: "/api/invitation/delete",
             method: "DELETE",
             data: apiParam
         };
@@ -49,7 +49,7 @@ export default function FriendItemFrom(props: Props) {
             invitation_id: props.friend.invitation_id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/invitation/update`,
+            url: "/api/invitation/update",
             method: "PUT",
             data: apiParam
         };
@@ -63,8 +63,8 @@ export default function FriendItemFrom(props: Props) {
             });
     };
     return (
-        <Card sx={{ m: '15px' }}>
-            <ListItem sx={{ border: 'none !important' }}>
+        <Card sx={{ m: "15px" }}>
+            <ListItem sx={{ border: "none !important" }}>
                 <ListItemAvatar>
                     <UserImg
                         fileName={props.friend.user_img}

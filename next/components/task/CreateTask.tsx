@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { api } from '@/plugins/axios';
+import React, { useState, useEffect } from "react";
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { apiTaskReadResponseType } from '@/types/api/task/read/response';
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import { apiTaskCreateRequestType } from '@/types/api/task/create/request';
-import { apiTaskDeleteRequestType } from '@/types/api/task/delete/request';
-import SendIcon from '@material-ui/icons/Send';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { apiTaskReadResponseType } from "@/types/api/task/read/response";
+import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
+import { apiTaskCreateRequestType } from "@/types/api/task/create/request";
+import { apiTaskDeleteRequestType } from "@/types/api/task/delete/request";
+import SendIcon from "@material-ui/icons/Send";
+import DeleteIcon from "@material-ui/icons/Delete";
 import {
     TextField,
     Select,
@@ -24,19 +24,19 @@ import {
     ListItemText,
     Avatar,
     CircularProgress
-} from '@mui/material';
-import { LoadingButton } from '@mui/lab';
+} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
 type Props = {
     task: apiTaskReadResponseTaskType
     onCloseMyself: any
 }
-export default function CreateTask(props: Props) {
+export default function CreateTask (props: Props) {
     const [taskCreateLoading, setTaskCreateLoading] = useState(false as boolean);
     const [taskDeleteLoading, setTaskDeleteLoading] = useState(false as boolean);
     const [formTask, setFormTask] = useState({
         id: 0 as number,
-        name: '' as string,
+        name: "" as string,
         default_hour: 0 as number,
         default_minute: 0 as number,
         status: 1 as string | number,
@@ -47,14 +47,14 @@ export default function CreateTask(props: Props) {
         if (!confirm(`「${props.task.name}」を削除しますか？`)) {
             return;
         }
-        if (!confirm(`このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？`)) {
+        if (!confirm("このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？")) {
             return;
         }
         const apiParam: apiTaskDeleteRequestType = {
             task_id: formTask.id
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/task/delete`,
+            url: "/api/task/delete",
             method: "DELETE",
             data: apiParam
         };
@@ -78,7 +78,7 @@ export default function CreateTask(props: Props) {
             task_default_minute: formTask.default_hour * 60 + formTask.default_minute
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/task/create`,
+            url: "/api/task/create",
             method: "POST",
             data: apiParam
         };
@@ -114,11 +114,11 @@ export default function CreateTask(props: Props) {
     }, []);
     return (
         <Card>
-            <CardHeader title={props.task ? props.task.name : '新規タスク登録'} />
+            <CardHeader title={props.task ? props.task.name : "新規タスク登録"} />
             <CardContent>
                 <ul>
                     <li>
-                        <Box sx={{ mb: '15px' }}>
+                        <Box sx={{ mb: "15px" }}>
                             <TextField
                                 error={Boolean(nameError)}
                                 helperText={nameError}
@@ -128,12 +128,12 @@ export default function CreateTask(props: Props) {
                         </Box>
                     </li>
                     <li>
-                        <Box sx={{ mb: '15px' }}>
+                        <Box sx={{ mb: "15px" }}>
                             <h4>1日あたりの想定時間</h4>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Box sx={{ width: '48%', }}>
+                            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                <Box sx={{ width: "48%", }}>
                                     <Select
-                                        sx={{ width: '100%', }}
+                                        sx={{ width: "100%", }}
                                         value={formTask.default_hour}
                                         onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
                                     >
@@ -142,9 +142,9 @@ export default function CreateTask(props: Props) {
                                         ))}
                                     </Select>
                                 </Box>
-                                <Box sx={{ width: '48%', }}>
+                                <Box sx={{ width: "48%", }}>
                                     <Select
-                                        sx={{ width: '100%', }}
+                                        sx={{ width: "100%", }}
                                         value={formTask.default_minute}
                                         onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
                                     >

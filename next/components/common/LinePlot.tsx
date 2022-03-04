@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { analyticsType } from '@/types/common/analyticsType';
-import { Box } from '@mui/material';
+import { analyticsType } from "@/types/common/analyticsType";
+import { Box } from "@mui/material";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +11,7 @@ import {
     Title,
     Tooltip,
     Legend,
-} from 'chart.js';
+} from "chart.js";
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -25,7 +25,7 @@ type Props = {
     data: analyticsType
     height: string
 }
-function LinePlot(props: Props) {
+function LinePlot (props: Props) {
 
     const options: {} = {
         maintainAspectRatio: false,

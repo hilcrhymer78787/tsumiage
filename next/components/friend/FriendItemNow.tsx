@@ -1,20 +1,20 @@
-import * as React from 'react';
-import { apiInvitationResponseFriendType } from '@/types/api/invitation/read/response';
-import Router from 'next/router';
+import * as React from "react";
+import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
+import Router from "next/router";
 import {
     Avatar,
     ListItem,
     ListItemButton,
     ListItemAvatar,
     ListItemText,
-} from '@mui/material';
-import UserImg from '@/components/common/UserImg';
-import moment from 'moment';
+} from "@mui/material";
+import UserImg from "@/components/common/UserImg";
+import moment from "moment";
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any
 }
-export default function FriendItemNow(props: Props) {
+export default function FriendItemNow (props: Props) {
     const nowYear = (): number => {
         return Number(moment().format("Y"));
     };

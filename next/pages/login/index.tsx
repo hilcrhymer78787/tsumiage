@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Router from 'next/router';
-import SendIcon from '@material-ui/icons/Send';
-import LoginLayout from '@/layouts/login';
+import React, { useState } from "react";
+import Router from "next/router";
+import SendIcon from "@material-ui/icons/Send";
+import LoginLayout from "@/layouts/login";
 import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from '@/plugins/axios';
+import { api } from "@/plugins/axios";
 import store from "@/store/index";
 import { errorType } from "@/types/api/error";
 import {
@@ -15,14 +15,14 @@ import {
     CardActions,
     Button,
     TextField,
-} from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-Login.getLayout = function getLayout(page: any) {
+} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+Login.getLayout = function getLayout (page: any) {
     return (
         <LoginLayout>{page}</LoginLayout>
     );
 };
-function Login() {
+function Login () {
     const [email, setEmail] = useState("" as string);
     const [emailError, setEmailError] = useState("" as string);
     const [password, setPassword] = useState("" as string);
@@ -31,13 +31,13 @@ function Login() {
     const [testAuthenticationLoading, setTestAuthenticationLoading] = useState(false as boolean);
     const testAuthentication = async () => {
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/user/test_authentication`,
+            url: "/api/user/test_authentication",
             method: "GET",
         };
         setTestAuthenticationLoading(true);
         await api(requestConfig)
             .then((res: AxiosResponse) => {
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem("token", res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data });
             })
             .finally(() => {
@@ -54,13 +54,13 @@ function Login() {
             password: password
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/user/basic_authentication`,
+            url: "/api/user/basic_authentication",
             method: "POST",
             data: apiParam
         };
         await api(requestConfig)
             .then((res: AxiosResponse) => {
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem("token", res.data.token);
                 store.dispatch({ type: "setLoginInfo", value: res.data });
             })
             .catch((err: AxiosError<errorType>) => {
@@ -92,9 +92,9 @@ function Login() {
             <CardContent>
                 <ul>
                     <li>
-                        <Box sx={{ mb: '15px' }}>
+                        <Box sx={{ mb: "15px" }}>
                             <TextField
-                                onKeyPress={e => { if (e.key === 'Enter') { basicAuthentication(); } }}
+                                onKeyPress={e => { if (e.key === "Enter") { basicAuthentication(); } }}
                                 error={Boolean(emailError)}
                                 helperText={emailError}
                                 value={email}
@@ -104,9 +104,9 @@ function Login() {
                         </Box>
                     </li>
                     <li>
-                        <Box sx={{ mb: '15px' }}>
+                        <Box sx={{ mb: "15px" }}>
                             <TextField
-                                onKeyPress={e => { if (e.key === 'Enter') { basicAuthentication(); } }}
+                                onKeyPress={e => { if (e.key === "Enter") { basicAuthentication(); } }}
                                 error={Boolean(passwordError)}
                                 helperText={passwordError}
                                 value={password}
@@ -115,11 +115,11 @@ function Login() {
                             />
                         </Box>
                     </li>
-                    {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == '1' &&
+                    {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" &&
                         <li>
                             <Box sx={{
-                                display: 'flex',
-                                justifyContent: 'flex-end'
+                                display: "flex",
+                                justifyContent: "flex-end"
                             }}>
                                 <LoadingButton
                                     color="inherit"

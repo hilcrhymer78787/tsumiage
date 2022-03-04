@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { api } from '@/plugins/axios';
+import React, { useState, useEffect } from "react";
+import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import CreateTask from '@/components/task/CreateTask';
-import TaskItem from '@/components/task/TaskItem';
-import { apiTaskReadRequestType } from '@/types/api/task/read/request';
-import { apiTaskReadResponseType } from '@/types/api/task/read/response';
-import { apiTaskReadResponseTaskType } from '@/types/api/task/read/response';
-import AddIcon from '@mui/icons-material/Add';
+import CreateTask from "@/components/task/CreateTask";
+import TaskItem from "@/components/task/TaskItem";
+import { apiTaskReadRequestType } from "@/types/api/task/read/request";
+import { apiTaskReadResponseType } from "@/types/api/task/read/response";
+import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
+import AddIcon from "@mui/icons-material/Add";
 import {
     Card,
     CardHeader,
@@ -14,13 +14,13 @@ import {
     IconButton,
     Dialog,
     CircularProgress
-} from '@mui/material';
+} from "@mui/material";
 type Props = {
     date: string,
     userId: number,
     readonly: boolean,
 }
-export default function TaskList(props: Props) {
+export default function TaskList (props: Props) {
     const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
     const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
@@ -31,7 +31,7 @@ export default function TaskList(props: Props) {
             user_id: props.userId
         };
         const requestConfig: AxiosRequestConfig = {
-            url: `/api/task/read`,
+            url: "/api/task/read",
             method: "GET",
             params: params
         };
@@ -64,9 +64,9 @@ export default function TaskList(props: Props) {
                 {taskReadLoading && !Boolean(tasks.length) &&
                     <CardContent
                         sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            p: '30px'
+                            display: "flex",
+                            justifyContent: "center",
+                            p: "30px"
                         }}>
                         <CircularProgress />
                     </CardContent>
@@ -74,14 +74,14 @@ export default function TaskList(props: Props) {
                 {!taskReadLoading && !Boolean(tasks.length) &&
                     <CardContent
                         sx={{
-                            textAlign: 'center',
-                            p: '20px !important'
+                            textAlign: "center",
+                            p: "20px !important"
                         }}>
                         登録されているタスクはありません
                     </CardContent>
                 }
                 {Boolean(tasks.length) &&
-                    <CardContent sx={{ p: '0 !important' }}>
+                    <CardContent sx={{ p: "0 !important" }}>
                         {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
                             <TaskItem
                                 task={task}

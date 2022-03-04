@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import { useRouter } from "next/router";
+import React from "react";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import styled from "styled-components";
 type Props = {
     setCalendarData: any
 }
-export default function Pagination(props: Props) {
+export default function Pagination (props: Props) {
     const router = useRouter();
     const year = (): number => {
         return Number(router.query.year);
