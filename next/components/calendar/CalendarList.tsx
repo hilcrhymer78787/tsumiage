@@ -57,24 +57,13 @@ export default function CalendarList (props: Props) {
         return Number(router.query.day);
     };
     const lastDay = (): number => {
-        return new Date(Number(year()), Number(month()), 0).getDate();
+        return moment(`${year()}/${month()}/1`).endOf("month").date();
     };
     const firstDay = (): number => {
-        return new Date(
-            Number(year()),
-            Number(month()) - 1,
-            1
-        ).getDay();
+        return moment(`${year()}/${month()}/1`).day();
     };
     const lastDayCount = (): number => {
-        return (
-            6 -
-            new Date(
-                Number(year()),
-                Number(month()) - 1,
-                Number(lastDay())
-            ).getDay()
-        );
+        return 6 - moment(`${year()}/${month()}/${lastDay()}`).day();
     };
     const getCalendarData = async (year: number, month: number) => {
         if (getCalendarDataCancel) {
