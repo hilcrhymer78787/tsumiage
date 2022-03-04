@@ -37,7 +37,7 @@ export default function CalendarList (props: Props) {
                 label: "" as string,
                 data: [] as number[],
                 borderColor: "" as string,
-            } as any,
+            } as object,
         }
     } as apiWorkReadCalendarResponseType);
     const [calendarLoading, setCalendarLoading] = useState(false as boolean);
@@ -56,14 +56,11 @@ export default function CalendarList (props: Props) {
     const day = (): number => {
         return Number(router.query.day);
     };
-    const lastDay = (): number => {
-        return moment(`${year()}/${month()}/1`,"YYYY-MM-DD").endOf("month").date();
-    };
     const firstDay = (): number => {
         return moment(`${year()}/${month()}/1`,"YYYY-MM-DD").day();
     };
     const lastDayCount = (): number => {
-        return 6 - moment(`${year()}/${month()}/${lastDay()}`,"YYYY-MM-DD").day();
+        return 6 - moment(`${year()}/${month()}/1`,"YYYY-MM-DD").endOf("month").day();
     };
     const getCalendarData = async (year: number, month: number) => {
         if (getCalendarDataCancel) {
