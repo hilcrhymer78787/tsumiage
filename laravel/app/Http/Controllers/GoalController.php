@@ -34,16 +34,9 @@ class GoalController extends Controller
     }
     public function read(Request $request)
     {
-        // 'goal_id',
-        // 'goal_minute',
-        // 'goal_task_id',
-        // 'goal_user_id',
-        // 'goal_start_date',
-        // 'goal_end_date',
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         $goals = Goal::where('goal_user_id', $loginInfo['id'])
             ->leftjoin('tasks', 'goals.goal_task_id', '=', 'tasks.task_id')
-            // ->where('goal_task_id', $loginInfo['id'])
             ->select(
                 'goal_id as id',
                 'goal_minute as minute',
