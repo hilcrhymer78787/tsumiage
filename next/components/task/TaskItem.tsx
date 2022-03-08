@@ -96,7 +96,7 @@ export default function TaskItem (props: Props) {
             }>
             <ListItemButton sx={{ p: "8px 48px 8px 16px" }}>
                 <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
-                    <Avatar sx={{ bgcolor: Boolean(props.task.work.id) ? "#1976d2" : "" }}>
+                    <Avatar sx={{ background: Boolean(props.task.work.id) ? "linear-gradient(#62b1ff,#1976d2);" : "" }}>
                         <TaskOutlinedIcon />
                     </Avatar>
                 </ListItemAvatar>
@@ -119,6 +119,6 @@ export default function TaskItem (props: Props) {
                     />
                 }
             </Dialog>
-        </ListItem>
+        </ListItem >
     );
 }

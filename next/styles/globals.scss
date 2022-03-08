@@ -35,6 +35,12 @@ ul,li{
     padding: 7px;
     background-color: white !important;
 }
+.MuiButton-containedPrimary{
+    background: linear-gradient(#62b1ff,#1976d2);
+}
+.MuiButton-containedError{
+    background: linear-gradient(#ff6565,#d32f2f);
+}
 .MuiLoadingButton-root {
     .MuiSvgIcon-root {
         margin-left: 10px;
