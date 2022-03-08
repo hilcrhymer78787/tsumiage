@@ -11,13 +11,13 @@ import React from "react";
 import { ServerStyleSheets as MaterialUIStyleSheets } from "@material-ui/core/styles";
 import { ServerStyleSheet as StyledComponentsStyleSheets } from "styled-components";
 class MyDocument extends Document {
-    static async getInitialProps(
+    static async getInitialProps (
         ctx: DocumentContext
     ): Promise<DocumentInitialProps> {
         return await Document.getInitialProps(ctx);
     }
 
-    render() {
+    render () {
         return (
             <Html lang="ja-JP" dir="ltr">
                 <Head>
