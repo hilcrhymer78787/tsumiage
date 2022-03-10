@@ -18,6 +18,9 @@ ul,li{
 .MuiFormControl-root {
     width: 100%;
 }
+.MuiBottomNavigation-root{
+    padding: calc(env(safe-area-inset-bottom)) 0 calc(env(safe-area-inset-bottom) * 1.5);
+}
 .MuiListItem-root.MuiListItem-gutters {
     border-bottom: 1px solid #e0e0e0;
     &:last-child {
