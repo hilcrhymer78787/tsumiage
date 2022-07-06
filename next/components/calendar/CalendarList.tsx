@@ -206,7 +206,7 @@ overflow: hidden;
 }
 &.main:hover {
     cursor: pointer;
-    background-color: #00968734;
+    background-color: #62b1ff55;
 }
 `;
 const ContentItemText = styled.div`
