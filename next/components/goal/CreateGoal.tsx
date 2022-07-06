@@ -29,16 +29,17 @@ import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import { LoadingButton } from "@mui/lab";
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, ownProps:Props) => {
     return {
         loginInfo: state.loginInfo,
+        props:ownProps
     };
 };
 type Props = {
     focusGoal: apiGoalReadResponseGoalsType | null
     onCloseMyself: any
 }
-function Creategoal ({ loginInfo }: any, props: Props) {
+function Creategoal ({ loginInfo,props }: any) {
     const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
     const [goalDeleteLoading, setGoalDeleteLoading] = useState(false as boolean);
     const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
