@@ -7,6 +7,7 @@ import { apiTaskReadRequestType } from "@/types/api/task/read/request";
 import { apiTaskReadResponseType } from "@/types/api/task/read/response";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
 import AddIcon from "@mui/icons-material/Add";
+import { useMount } from "react-use";
 import {
     Card,
     CardHeader,
@@ -16,14 +17,14 @@ import {
     CircularProgress
 } from "@mui/material";
 type Props = {
-    date: string,
-    userId: number,
-    readonly: boolean,
+  date: string,
+  userId: number,
+  readonly: boolean,
 }
 export default function TaskList (props: Props) {
-    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
-    const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
-    const [taskReadLoading, seTtaskReadLoading] = useState(false as boolean);
+    const [createTaskDialog, setCreateTaskDialog] = useState<boolean>(false);
+    const [tasks, setTasks] = useState<apiTaskReadResponseTaskType[]>([]);
+    const [taskReadLoading, seTtaskReadLoading] = useState<boolean>(false);
 
     const taskRead = () => {
         const params: apiTaskReadRequestType = {
@@ -45,23 +46,21 @@ export default function TaskList (props: Props) {
             });
     };
 
-    useEffect(() => {
-        taskRead();
-    }, []);
+    useMount(() => taskRead());
 
     return (
         <>
             <Card>
                 <CardHeader
-                    action={!Boolean(props.readonly) &&
-                        <IconButton onClick={() => { setCreateTaskDialog(true); }} component="span">
+                    action={!Boolean(props.readonly) && (
+                        <IconButton onClick={() => setCreateTaskDialog(true)} component="span">
                             <AddIcon color="primary" />
                         </IconButton>
-                    }
+                    )}
                     title="タスク"
                     subheader={props.date}
                 />
-                {taskReadLoading && !Boolean(tasks.length) &&
+                {taskReadLoading && !Boolean(tasks.length) && (
                     <CardContent
                         sx={{
                             display: "flex",
@@ -70,17 +69,16 @@ export default function TaskList (props: Props) {
                         }}>
                         <CircularProgress />
                     </CardContent>
-                }
-                {!taskReadLoading && !Boolean(tasks.length) &&
+                )}
+                {!taskReadLoading && !Boolean(tasks.length) && (
                     <CardContent
                         sx={{
                             textAlign: "center",
                             p: "20px !important"
-                        }}>
-                        登録されているタスクはありません
+                        }}>登録されているタスクはありません
                     </CardContent>
-                }
-                {Boolean(tasks.length) &&
+                )}
+                {Boolean(tasks.length) && (
                     <CardContent sx={{ p: "0 !important" }}>
                         {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
                             <TaskItem
@@ -92,11 +90,11 @@ export default function TaskList (props: Props) {
                             />
                         ))}
                     </CardContent>
-                }
+                )}
             </Card>
 
-            <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-                {createTaskDialog &&
+            <Dialog open={createTaskDialog} onClose={() => setCreateTaskDialog(false)}>
+                {createTaskDialog && (
                     <CreateTask
                         onCloseMyself={() => {
                             setCreateTaskDialog(false);
@@ -104,9 +102,8 @@ export default function TaskList (props: Props) {
                         }}
                         task={null}
                     />
-                }
+                )}
             </Dialog>
-            {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
         </>
     );
 }
