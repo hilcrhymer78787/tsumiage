@@ -1,22 +1,9 @@
-import { connect } from "react-redux";
 import Layout from "@/layouts/default";
 import FriendList from "@/components/friend/FriendList";
-const mapStateToProps = (state: any) => {
-  return {
-    loginInfo: state.loginInfo,
-  };
-};
-Friend.getLayout = function getLayout (page) {
+export default function Friend () {
   return (
-    <Layout>{page}</Layout>
-  );
-};
-function Friend ({ dispatch, count, post, loginInfo }) {
-  return (
-    <div>
+    <Layout>
       <FriendList />
-    </div>
+    </Layout>
   );
 }
-
-export default connect(mapStateToProps)(Friend);

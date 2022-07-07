@@ -4,13 +4,12 @@ import Header from "@/components/common/Header";
 import Container from '@mui/material/Container';
 import { connect } from "react-redux";
 import { stateType } from "@/types/common/stateType";
-import type { AppProps } from "next/app";
 const mapStateToProps = (state: stateType) => {
   return {
     loginInfo: state.loginInfo,
   };
 };
-function Layout({ dispatch, children, loginInfo }:any) {
+function Layout({ children, loginInfo }:any) {
   if (!loginInfo) return <></>;
   return (
     <>

@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { apiTaskReadResponseType } from "@/types/api/task/read/response";
+import React, { useState } from "react";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import { apiTaskCreateRequestType } from "@/types/api/task/create/request";
-import { apiTaskDeleteRequestType } from "@/types/api/task/delete/request";
 import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
@@ -18,92 +13,63 @@ import {
   CardActions,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { useTaskApi } from "@/data/task";
 
 type Props = {
-    task: apiTaskReadResponseTaskType | null
-    onCloseMyself: () => void
+  task: apiTaskReadResponseTaskType | null
+  onCloseMyself: () => void
 }
 export default function CreateTask (props: Props) {
-  const [taskCreateLoading, setTaskCreateLoading] = useState<boolean>(false);
-  const [taskDeleteLoading, setTaskDeleteLoading] = useState<boolean>(false);
+  const { taskCreate, taskCreateLoading, taskDelete, taskDeleteLoading } = useTaskApi();
   const [formTask, setFormTask] = useState({
-    id: 0 as number,
-    name: "" as string,
-    default_hour: 0 as number,
-    default_minute: 0 as number,
-    status: 1 as string | number,
-    sort_key: null as number | null,
+    id: props.task?.id ?? 0 as number,
+    name: props.task?.name ?? "" as string,
+    default_hour: props.task ? Math.floor(props.task.default_minute / 60) : 0 as number,
+    default_minute: props.task ? props.task.default_minute % 60 : 0 as number,
+    status: props.task?.status ?? 1 as string | number,
+    sort_key: props.task?.sort_key ?? null as number | null,
   });
   const [nameError, setNameError] = useState<string>("");
-  const taskDelete = () => {
+  const apiTaskDelete = async () => {
     if (!confirm(`「${props.task?.name}」を削除しますか？`)) {
       return;
     }
     if (!confirm("このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？")) {
       return;
     }
-    const apiParam: apiTaskDeleteRequestType = {
-      task_id: formTask.id
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/task/delete",
-      method: "DELETE",
-      data: apiParam
-    };
-    setTaskDeleteLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        props.onCloseMyself();
-      })
-      .finally(() => {
-        setTaskDeleteLoading(false);
+    try {
+      await taskDelete({
+        task_id: formTask.id
       });
+      props.onCloseMyself();
+    } catch (e) {
+      alert("失敗しました");
+    }
   };
-  const taskCreate = () => {
+  const apiTaskCreate = async () => {
     if (validation()) {
       return;
     }
-    const apiParam: apiTaskCreateRequestType = {
-      task_id: formTask.id,
-      task_name: formTask.name,
-      task_status: Number(formTask.status),
-      task_default_minute: formTask.default_hour * 60 + formTask.default_minute
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/task/create",
-      method: "POST",
-      data: apiParam
-    };
-    setTaskCreateLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        props.onCloseMyself();
-      })
-      .finally(() => {
-        setTaskCreateLoading(false);
+    try {
+      await taskCreate({
+        task_id: formTask.id,
+        task_name: formTask.name,
+        task_status: Number(formTask.status),
+        task_default_minute: formTask.default_hour * 60 + formTask.default_minute
       });
+      props.onCloseMyself();
+    } catch (e) {
+      alert("失敗しました");
+    }
   };
   const validation = (): boolean => {
-    let isError: boolean = false;
     setNameError("");
     if (formTask.name == "") {
       setNameError("タスクの名前は必須です");
-      isError = true;
+      return true;
     }
-    return isError;
+    return false;
   };
-  useEffect(() => {
-    if (props.task) {
-      setFormTask({
-        id: props.task.id,
-        name: props.task.name,
-        default_hour: Math.floor(props.task.default_minute / 60),
-        default_minute: props.task.default_minute % 60,
-        status: props.task.status,
-        sort_key: props.task.sort_key,
-      });
-    }
-  }, []);
   return (
     <Card>
       <CardHeader title={props.task ? props.task.name : "新規タスク登録"} />
@@ -170,18 +136,16 @@ export default function CreateTask (props: Props) {
         <LoadingButton
           color="error"
           variant="contained"
-          onClick={taskDelete}
+          onClick={apiTaskDelete}
           loading={taskDeleteLoading}
-          disabled={taskCreateLoading}>
-                    削除<DeleteIcon />
+          disabled={taskCreateLoading}>削除<DeleteIcon />
         </LoadingButton>
         <LoadingButton
           color="primary"
           variant="contained"
-          onClick={taskCreate}
+          onClick={apiTaskCreate}
           loading={taskCreateLoading}
-          disabled={taskDeleteLoading}>
-                    登録<SendIcon />
+          disabled={taskDeleteLoading}>登録<SendIcon />
         </LoadingButton>
       </CardActions>
     </Card>

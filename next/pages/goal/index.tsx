@@ -1,13 +1,10 @@
 import React from "react";
 import GoalList from "@/components/goal/GoalList";
 import Layout from "@/layouts/default";
-Task.getLayout = function getLayout (page: any) {
+export default function Goal () {
   return (
-    <Layout>{page}</Layout>
-  );
-};
-export default function Task () {
-  return (
-    <GoalList />
+    <Layout>
+      <GoalList />
+    </Layout>
   );
 }

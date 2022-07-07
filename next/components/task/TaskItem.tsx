@@ -21,7 +21,7 @@ import {
 type Props = {
     task: apiTaskReadResponseTaskType,
     date: string
-    fetchTasks: () => void
+    apiTaskRead: () => void
     readonly: boolean
 }
 export default function TaskItem (props: Props) {
@@ -44,7 +44,7 @@ export default function TaskItem (props: Props) {
     setWorkDeleteLoading(true);
     api(requestConfig)
       .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        props.fetchTasks();
+        props.apiTaskRead();
       })
       .finally(() => {
         setWorkDeleteLoading(false);
@@ -66,7 +66,7 @@ export default function TaskItem (props: Props) {
     setWorkCreateLoading(true);
     api(requestConfig)
       .then((res) => {
-        props.fetchTasks();
+        props.apiTaskRead();
       })
       .finally(() => {
         setWorkCreateLoading(false);
@@ -109,7 +109,7 @@ export default function TaskItem (props: Props) {
                     <CreateWork
                       onCloseMyself={() => {
                         setCreateWorkDialog(false);
-                        props.fetchTasks();
+                        props.apiTaskRead();
                       }}
                       date={props.date}
                       task={props.task}

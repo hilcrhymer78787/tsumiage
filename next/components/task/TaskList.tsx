@@ -24,7 +24,7 @@ export default function TaskList (props: Props) {
   const [tasks, setTasks] = React.useState<apiTaskReadResponseTaskType[]>([]);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
-  const fetchTasks = async () => {
+  const apiTaskRead = async () => {
     try {
       const res = await taskRead({
         date: props.date,
@@ -39,7 +39,7 @@ export default function TaskList (props: Props) {
     }
   };
 
-  useMount(() => fetchTasks());
+  useMount(() => apiTaskRead());
 
   return (
     <>
@@ -77,7 +77,7 @@ export default function TaskList (props: Props) {
               <TaskItem
                 task={task}
                 date={props.date}
-                fetchTasks={fetchTasks}
+                apiTaskRead={apiTaskRead}
                 key={index.toString()}
                 readonly={props.readonly}
               />
@@ -91,7 +91,7 @@ export default function TaskList (props: Props) {
           <CreateTask
             onCloseMyself={() => {
               setCreateTaskDialog(false);
-              fetchTasks();
+              apiTaskRead();
             }}
             task={null}
           />
