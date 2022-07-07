@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { api } from "@/plugins/axios";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import CreateWork from "@/components/task/CreateWork";
@@ -10,9 +10,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import {
-    CardActionArea,
     Dialog,
-    List,
     ListItem,
     ListItemButton,
     ListItemAvatar,
@@ -23,13 +21,13 @@ import {
 type Props = {
     task: apiTaskReadResponseTaskType,
     date: string
-    taskRead: any
+    fetchTasks: () => void
     readonly: boolean
 }
 export default function TaskItem (props: Props) {
-    const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
-    const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
-    const [createWorkDialog, setCreateWorkDialog] = useState(false as boolean);
+    const [workDeleteLoading, setWorkDeleteLoading] = React.useState<boolean>(false);
+    const [workCreateLoading, setWorkCreateLoading] = React.useState<boolean>(false);
+    const [createWorkDialog, setCreateWorkDialog] = React.useState<boolean>(false);
     const workDelete = () => {
         if (!confirm(`${props.date}、「${props.task.name}」の実績を削除しますか？`)) {
             return;
@@ -46,13 +44,13 @@ export default function TaskItem (props: Props) {
         setWorkDeleteLoading(true);
         api(requestConfig)
             .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                props.taskRead();
+                props.fetchTasks();
             })
             .finally(() => {
                 setWorkDeleteLoading(false);
             });
     };
-    const workCreate = (e) => {
+    const workCreate = () => {
         const apiParam: apiWorkCreateRequestType = {
             id: props.task.work.id,
             date: props.date,
@@ -68,7 +66,7 @@ export default function TaskItem (props: Props) {
         setWorkCreateLoading(true);
         api(requestConfig)
             .then((res) => {
-                props.taskRead();
+                props.fetchTasks();
             })
             .finally(() => {
                 setWorkCreateLoading(false);
@@ -111,7 +109,7 @@ export default function TaskItem (props: Props) {
                     <CreateWork
                         onCloseMyself={() => {
                             setCreateWorkDialog(false);
-                            props.taskRead();
+                            props.fetchTasks();
                         }}
                         date={props.date}
                         task={props.task}

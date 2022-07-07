@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Router from "next/router";
+import { useMount } from "react-use";
 export default function Index () {
-    useEffect(() => {
-        Router.push("/task");
-    }, []);
+    useMount(() => Router.push("/task"));
     return (
         <></>
     );

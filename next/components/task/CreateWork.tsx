@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiTaskReadResponseType } from "@/types/api/task/read/response";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
 import { apiWorkCreateRequestType } from "@/types/api/work/create/request";
@@ -24,27 +24,27 @@ import {
 } from "@mui/material";
 
 type Props = {
-    date: string,
-    task: apiTaskReadResponseTaskType
-    onCloseMyself: any
-    readonly: boolean
+  date: string,
+  task: apiTaskReadResponseTaskType
+  onCloseMyself: () => void
+  readonly: boolean
 }
 export default function CreateWork (props: Props) {
-    const [workCreateLoading, setWorkCreateLoading] = useState(false as boolean);
-    const [workDeleteLoading, setWorkDeleteLoading] = useState(false as boolean);
-    const [createTaskDialog, setCreateTaskDialog] = useState(false as boolean);
-    const [formMinute, setFormMinute] = useState(0);
-    const [formHour, setFormHour] = useState(0);
-    const [formMemo, setFormMemo] = useState("");
+    const [workCreateLoading, setWorkCreateLoading] = useState<boolean>(false);
+    const [workDeleteLoading, setWorkDeleteLoading] = useState<boolean>(false);
+    const [createTaskDialog, setCreateTaskDialog] = useState<boolean>(false);
+    const [formMinute, setFormMinute] = useState<number>(0);
+    const [formHour, setFormHour] = useState<number>(0);
+    const [formMemo, setFormMemo] = useState<string>("");
     const workDelete = () => {
         if (!confirm(`「${props.task.name}」の実績を削除しますか？`)) {
             return;
         }
-        const apiParam: apiWorkDeleteRequestType = {
+        const apiParam = {
             date: props.date,
             task_id: props.task.id
         };
-        const requestConfig: AxiosRequestConfig = {
+        const requestConfig: AxiosRequestConfig<apiWorkDeleteRequestType> = {
             url: "/api/work/delete",
             method: "DELETE",
             data: apiParam
@@ -59,14 +59,14 @@ export default function CreateWork (props: Props) {
             });
     };
     const workCreate = () => {
-        const apiParam: apiWorkCreateRequestType = {
+        const apiParam = {
             id: props.task.work.id,
             date: props.date,
             task_id: props.task.id,
             minute: formHour * 60 + formMinute,
             memo: formMemo,
         };
-        const requestConfig: AxiosRequestConfig = {
+        const requestConfig: AxiosRequestConfig<apiWorkCreateRequestType> = {
             url: "/api/work/create",
             method: "POST",
             data: apiParam
@@ -80,7 +80,7 @@ export default function CreateWork (props: Props) {
                 setWorkCreateLoading(false);
             });
     };
-    const onChangeMemo = (event) => {
+    const onChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setFormMemo(event.target.value);
     };
 
@@ -97,11 +97,11 @@ export default function CreateWork (props: Props) {
     return (
         <Card>
             <CardHeader
-                action={!Boolean(props.readonly) &&
+                action={!Boolean(props.readonly) && (
                     <IconButton onClick={() => { setCreateTaskDialog(true); }} color="primary">
                         <SettingsIcon />
                     </IconButton>
-                }
+                )}
                 title={props.task.name}
                 subheader={props.date}
             />
@@ -158,28 +158,26 @@ export default function CreateWork (props: Props) {
                     </li>
                 </ul>
             </CardContent>
-            {!Boolean(props.readonly) &&
+            {!Boolean(props.readonly) && (
                 <CardActions>
                     <LoadingButton
                         onClick={workDelete}
                         color="error"
                         variant="contained"
                         loading={workDeleteLoading}
-                        disabled={workCreateLoading}>
-                        削除<DeleteIcon />
+                        disabled={workCreateLoading}>削除<DeleteIcon />
                     </LoadingButton>
                     <LoadingButton
                         onClick={workCreate}
                         color="primary"
                         variant="contained"
                         loading={workCreateLoading}
-                        disabled={workDeleteLoading}>
-                        登録<SendIcon />
+                        disabled={workDeleteLoading}>登録<SendIcon />
                     </LoadingButton>
                 </CardActions>
-            }
+            )}
             <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-                {createTaskDialog &&
+                {createTaskDialog &&(
                     <CreateTask
                         onCloseMyself={() => {
                             setCreateTaskDialog(false);
@@ -187,7 +185,7 @@ export default function CreateWork (props: Props) {
                         }}
                         task={props.task}
                     />
-                }
+                )}
             </Dialog>
         </Card>
     );

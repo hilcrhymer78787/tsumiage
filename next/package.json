@@ -5,8 +5,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "next lint --fix",
     "test": "jest --env=jsdom --verbose"
   },
   "jest": {
@@ -44,6 +43,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.25.3",
     "react-redux": "^7.2.6",
+    "react-use": "^17.4.0",
     "redux": "^4.1.2",
     "setimmediate": "^1.0.5",
     "styled-components": "^5.3.3"

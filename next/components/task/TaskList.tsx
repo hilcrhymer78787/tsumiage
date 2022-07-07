@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import React from "react";
 import CreateTask from "@/components/task/CreateTask";
 import TaskItem from "@/components/task/TaskItem";
-import { apiTaskReadRequestType } from "@/types/api/task/read/request";
-import { apiTaskReadResponseType } from "@/types/api/task/read/response";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
 import AddIcon from "@mui/icons-material/Add";
 import { useMount } from "react-use";
+import { useTaskApi } from "@/data/task";
 import {
     Card,
     CardHeader,
@@ -22,31 +19,27 @@ type Props = {
   readonly: boolean,
 }
 export default function TaskList (props: Props) {
-    const [createTaskDialog, setCreateTaskDialog] = useState<boolean>(false);
-    const [tasks, setTasks] = useState<apiTaskReadResponseTaskType[]>([]);
-    const [taskReadLoading, seTtaskReadLoading] = useState<boolean>(false);
+    const { taskRead, taskReadLoading } = useTaskApi();
+    const [createTaskDialog, setCreateTaskDialog] = React.useState<boolean>(false);
+    const [tasks, setTasks] = React.useState<apiTaskReadResponseTaskType[]>([]);
+    const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
-    const taskRead = () => {
-        const params: apiTaskReadRequestType = {
-            date: props.date,
-            user_id: props.userId
-        };
-        const requestConfig: AxiosRequestConfig = {
-            url: "/api/task/read",
-            method: "GET",
-            params: params
-        };
-        seTtaskReadLoading(true);
-        api(requestConfig)
-            .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-                setTasks(res.data.tasks);
-            })
-            .finally(() => {
-                seTtaskReadLoading(false);
+    const fetchTasks = async () => {
+        try {
+            const res = await taskRead({
+                date: props.date,
+                user_id: props.userId,
             });
+            setTasks(res.data.tasks);
+            setErrorMessage(null);
+            if(!res.data.tasks)setErrorMessage("登録されているタスクはありません");
+        } catch (e) {
+            setTasks([]);
+            setErrorMessage("エラーが発生しました");
+        }
     };
 
-    useMount(() => taskRead());
+    useMount(() => fetchTasks());
 
     return (
         <>
@@ -60,6 +53,14 @@ export default function TaskList (props: Props) {
                     title="タスク"
                     subheader={props.date}
                 />
+                {Boolean(errorMessage) && (
+                    <CardContent
+                        sx={{
+                            textAlign: "center",
+                            p: "20px !important"
+                        }}>{errorMessage}
+                    </CardContent>
+                )}
                 {taskReadLoading && !Boolean(tasks.length) && (
                     <CardContent
                         sx={{
@@ -70,21 +71,13 @@ export default function TaskList (props: Props) {
                         <CircularProgress />
                     </CardContent>
                 )}
-                {!taskReadLoading && !Boolean(tasks.length) && (
-                    <CardContent
-                        sx={{
-                            textAlign: "center",
-                            p: "20px !important"
-                        }}>登録されているタスクはありません
-                    </CardContent>
-                )}
                 {Boolean(tasks.length) && (
                     <CardContent sx={{ p: "0 !important" }}>
                         {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
                             <TaskItem
                                 task={task}
                                 date={props.date}
-                                taskRead={taskRead}
+                                fetchTasks={fetchTasks}
                                 key={index.toString()}
                                 readonly={props.readonly}
                             />
@@ -98,7 +91,7 @@ export default function TaskList (props: Props) {
                     <CreateTask
                         onCloseMyself={() => {
                             setCreateTaskDialog(false);
-                            taskRead();
+                            fetchTasks();
                         }}
                         task={null}
                     />

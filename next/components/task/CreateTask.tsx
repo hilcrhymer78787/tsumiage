@@ -15,25 +15,17 @@ import {
     Card,
     CardHeader,
     CardContent,
-    CardActionArea,
     CardActions,
-    IconButton,
-    Dialog,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Avatar,
-    CircularProgress
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 type Props = {
-    task: apiTaskReadResponseTaskType
-    onCloseMyself: any
+    task: apiTaskReadResponseTaskType | null
+    onCloseMyself: () => void
 }
 export default function CreateTask (props: Props) {
-    const [taskCreateLoading, setTaskCreateLoading] = useState(false as boolean);
-    const [taskDeleteLoading, setTaskDeleteLoading] = useState(false as boolean);
+    const [taskCreateLoading, setTaskCreateLoading] = useState<boolean>(false);
+    const [taskDeleteLoading, setTaskDeleteLoading] = useState<boolean>(false);
     const [formTask, setFormTask] = useState({
         id: 0 as number,
         name: "" as string,
@@ -42,9 +34,9 @@ export default function CreateTask (props: Props) {
         status: 1 as string | number,
         sort_key: null as number | null,
     });
-    const [nameError, setNameError] = useState("" as string);
+    const [nameError, setNameError] = useState<string>("");
     const taskDelete = () => {
-        if (!confirm(`「${props.task.name}」を削除しますか？`)) {
+        if (!confirm(`「${props.task?.name}」を削除しますか？`)) {
             return;
         }
         if (!confirm("このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？")) {

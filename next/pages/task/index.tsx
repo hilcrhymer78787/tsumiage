@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import TaskList from "@/components/task/TaskList";
 import Layout from "@/layouts/default";
 import moment from "moment";
-const mapStateToProps = (state: any) => {
-    return {
-        loginInfo: state.loginInfo,
-    };
-};
-Task.getLayout = function getLayout (page: any) {
+import { stateType } from "@/types/common/stateType";
+const mapStateToProps = (state: stateType) => state;
+function Task (state: stateType) {
     return (
-        <Layout>{page}</Layout>
-    );
-};
-function Task ({ loginInfo }) {
-    return (
-        <TaskList
-            date={moment().format("YYYY-MM-DD")}
-            userId={loginInfo.id}
-            readonly={false}
-        />
+        <Layout>
+            <TaskList
+                date={moment().format("YYYY-MM-DD")}
+                userId={state.loginInfo?.id ?? 0}
+                readonly={false}
+            />
+        </Layout>
     );
 }
 export default connect(mapStateToProps)(Task);
