@@ -9,32 +9,32 @@ import Dialog from "@mui/material/Dialog";
 import Mypage from "@/components/common/Mypage";
 import UserImg from "@/components/common/UserImg";
 const mapStateToProps = (state: any) => {
-    return {
-        loginInfo: state.loginInfo,
-    };
+  return {
+    loginInfo: state.loginInfo,
+  };
 };
 function Header ({ loginInfo }) {
-    const [mypageDialog, setMypageDialog] = useState(false as boolean);
+  const [mypageDialog, setMypageDialog] = useState(false as boolean);
 
-    return (
-        <AppBar position="fixed" color="inherit">
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
-                    <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
-                        <UserImg
-                            fileName={loginInfo.user_img}
-                            size="40"
-                        />
-                    </IconButton>
-                </Toolbar>
-            </Container>
-            <Dialog open={mypageDialog} onClose={() => { setMypageDialog(false); }}>
-                {mypageDialog &&
+  return (
+    <AppBar position="fixed" color="inherit">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
+          <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
+            <UserImg
+              fileName={loginInfo.user_img}
+              size="40"
+            />
+          </IconButton>
+        </Toolbar>
+      </Container>
+      <Dialog open={mypageDialog} onClose={() => { setMypageDialog(false); }}>
+        {mypageDialog &&
                     <Mypage />
-                }
-            </Dialog>
-        </AppBar>
-    );
+        }
+      </Dialog>
+    </AppBar>
+  );
 };
 export default connect(mapStateToProps)(Header);

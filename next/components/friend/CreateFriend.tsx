@@ -13,93 +13,93 @@ import { apiInvitationCreateResponseType } from "@/types/api/invitation/create/r
 import SendIcon from "@material-ui/icons/Send";
 import { errorType } from "@/types/api/error";
 export default function CreateFriend () {
-    const [successMessage, setSuccessMessage] = React.useState<string>("");
-    const [email, setEmail] = React.useState<string>("");
-    const [emailError, setEmailError] = React.useState<string>("");
-    const [invitationCreateLoading, setInvitationCreateLoading] = React.useState<boolean>(false);
-    const invitationCreate = () => {
-        if (validation()) {
-            return;
-        }
-        const apiParam: apiInvitationCreateRequestType = {
-            email: email
-        };
-        const requestConfig: AxiosRequestConfig = {
-            url: "/api/invitation/create",
-            method: "POST",
-            data: apiParam
-        };
-        setInvitationCreateLoading(true);
-        api(requestConfig)
-            .then((res: AxiosResponse<apiInvitationCreateResponseType>) => {
-                setSuccessMessage(res.data.successMessage);
-            })
-            .catch((err: AxiosError<errorType>) => {
-                if (err.response?.data?.errorMessage) {
-                    setEmailError(err.response.data.errorMessage);
-                }
-            })
-            .finally(() => {
-                setInvitationCreateLoading(false);
-            });
+  const [successMessage, setSuccessMessage] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("");
+  const [emailError, setEmailError] = React.useState<string>("");
+  const [invitationCreateLoading, setInvitationCreateLoading] = React.useState<boolean>(false);
+  const invitationCreate = () => {
+    if (validation()) {
+      return;
+    }
+    const apiParam: apiInvitationCreateRequestType = {
+      email: email
     };
-    const validation = (): boolean => {
-        let isError: boolean = false;
-        setEmailError("");
-        if (!(/.+@.+\..+/.test(email))) {
-            setEmailError("正しい形式で入力してください");
-            isError = true;
-        }
-        return isError;
+    const requestConfig: AxiosRequestConfig = {
+      url: "/api/invitation/create",
+      method: "POST",
+      data: apiParam
     };
-    return (
-        <Card>
-            <CardHeader title="友達申請"/>
-            <CardContent sx={{ p: "30px 15px", }} >
-                {!Boolean(successMessage) &&
+    setInvitationCreateLoading(true);
+    api(requestConfig)
+      .then((res: AxiosResponse<apiInvitationCreateResponseType>) => {
+        setSuccessMessage(res.data.successMessage);
+      })
+      .catch((err: AxiosError<errorType>) => {
+        if (err.response?.data?.errorMessage) {
+          setEmailError(err.response.data.errorMessage);
+        }
+      })
+      .finally(() => {
+        setInvitationCreateLoading(false);
+      });
+  };
+  const validation = (): boolean => {
+    let isError: boolean = false;
+    setEmailError("");
+    if (!(/.+@.+\..+/.test(email))) {
+      setEmailError("正しい形式で入力してください");
+      isError = true;
+    }
+    return isError;
+  };
+  return (
+    <Card>
+      <CardHeader title="友達申請"/>
+      <CardContent sx={{ p: "30px 15px", }} >
+        {!Boolean(successMessage) &&
                     <TextField
-                        onKeyPress={e => { if (e.key === "Enter") { invitationCreate(); } }}
-                        error={Boolean(emailError)}
-                        helperText={emailError}
-                        value={email}
-                        onChange={(e) => { setEmail(e.currentTarget.value); }}
-                        label="メールアドレス" variant="outlined" color="primary"
+                      onKeyPress={e => { if (e.key === "Enter") { invitationCreate(); } }}
+                      error={Boolean(emailError)}
+                      helperText={emailError}
+                      value={email}
+                      onChange={(e) => { setEmail(e.currentTarget.value); }}
+                      label="メールアドレス" variant="outlined" color="primary"
                     />
-                }
-                {Boolean(successMessage) &&
+        }
+        {Boolean(successMessage) &&
                     <Typography
-                        sx={{
-                            color: "#1976d2",
-                            textAlign: "center"
-                        }}>{successMessage}
+                      sx={{
+                        color: "#1976d2",
+                        textAlign: "center"
+                      }}>{successMessage}
                     </Typography>
-                }
-            </CardContent>
+        }
+      </CardContent>
 
-            <CardActions disableSpacing>
-                <div></div>
-                {!Boolean(successMessage) &&
+      <CardActions disableSpacing>
+        <div></div>
+        {!Boolean(successMessage) &&
                     <LoadingButton
-                        onClick={invitationCreate}
-                        color="primary"
-                        variant="contained"
-                        loading={invitationCreateLoading}>
+                      onClick={invitationCreate}
+                      color="primary"
+                      variant="contained"
+                      loading={invitationCreateLoading}>
                         申請<SendIcon />
                     </LoadingButton>
-                }
-                {Boolean(successMessage) &&
+        }
+        {Boolean(successMessage) &&
                     <LoadingButton
-                        onClick={() => {
-                            setEmail("");
-                            setSuccessMessage("");
-                        }}
-                        color="inherit"
-                        variant="contained"
-                        loading={invitationCreateLoading}>
+                      onClick={() => {
+                        setEmail("");
+                        setSuccessMessage("");
+                      }}
+                      color="inherit"
+                      variant="contained"
+                      loading={invitationCreateLoading}>
                         続けて申請
                     </LoadingButton>
-                }
-            </CardActions>
-        </Card>
-    );
+        }
+      </CardActions>
+    </Card>
+  );
 }

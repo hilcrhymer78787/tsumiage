@@ -9,92 +9,92 @@ import { apiInvitationDeleteRequestType } from "@/types/api/invitation/delete/re
 import { apiInvitationUpdateRequestType } from "@/types/api/invitation/update/request";
 import UserImg from "@/components/common/UserImg";
 import {
-    Avatar,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Card,
-    CardActions,
+  Avatar,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Card,
+  CardActions,
 } from "@mui/material";
 type Props = {
     friend: apiInvitationResponseFriendType
     friendRead: any
 }
 export default function FriendItemFrom (props: Props) {
-    const [invitationDeleteLoading, setinvitationDeleteLoading] = React.useState<boolean>(false);
-    const [invitationUpdateLoading, setInvitationUpdateLoading] = React.useState<boolean>(false);
-    const invitationDelete = () => {
-        if (!confirm(`「${props.friend.name}」さんからの招待を拒否しますか？`)) {
-            return;
-        }
-        const apiParam: apiInvitationDeleteRequestType = {
-            invitation_id: props.friend.invitation_id
-        };
-        const requestConfig: AxiosRequestConfig = {
-            url: "/api/invitation/delete",
-            method: "DELETE",
-            data: apiParam
-        };
-        setinvitationDeleteLoading(true);
-        api(requestConfig)
-            .then((res: AxiosResponse) => {
-                props.friendRead();
-            })
-            .finally(() => {
-                setinvitationDeleteLoading(false);
-            });
+  const [invitationDeleteLoading, setinvitationDeleteLoading] = React.useState<boolean>(false);
+  const [invitationUpdateLoading, setInvitationUpdateLoading] = React.useState<boolean>(false);
+  const invitationDelete = () => {
+    if (!confirm(`「${props.friend.name}」さんからの招待を拒否しますか？`)) {
+      return;
+    }
+    const apiParam: apiInvitationDeleteRequestType = {
+      invitation_id: props.friend.invitation_id
     };
-    const invitationUpdate = () => {
-        const apiParam: apiInvitationUpdateRequestType = {
-            invitation_id: props.friend.invitation_id
-        };
-        const requestConfig: AxiosRequestConfig = {
-            url: "/api/invitation/update",
-            method: "PUT",
-            data: apiParam
-        };
-        setInvitationUpdateLoading(true);
-        api(requestConfig)
-            .then((res: AxiosResponse) => {
-                props.friendRead();
-            })
-            .finally(() => {
-                setInvitationUpdateLoading(false);
-            });
+    const requestConfig: AxiosRequestConfig = {
+      url: "/api/invitation/delete",
+      method: "DELETE",
+      data: apiParam
     };
-    return (
-        <Card sx={{ m: "15px" }}>
-            <ListItem sx={{ border: "none !important" }}>
-                <ListItemAvatar>
-                    <UserImg
-                        fileName={props.friend.user_img}
-                        size="40"
-                    />
-                </ListItemAvatar>
-                <ListItemText
-                    primary={props.friend.name}
-                    secondary={props.friend.email}
-                />
-            </ListItem>
-            <CardActions disableSpacing>
-                <LoadingButton
-                    onClick={invitationDelete}
-                    color="error"
-                    variant="contained"
-                    loading={invitationDeleteLoading}
-                    disabled={invitationUpdateLoading}>
+    setinvitationDeleteLoading(true);
+    api(requestConfig)
+      .then((res: AxiosResponse) => {
+        props.friendRead();
+      })
+      .finally(() => {
+        setinvitationDeleteLoading(false);
+      });
+  };
+  const invitationUpdate = () => {
+    const apiParam: apiInvitationUpdateRequestType = {
+      invitation_id: props.friend.invitation_id
+    };
+    const requestConfig: AxiosRequestConfig = {
+      url: "/api/invitation/update",
+      method: "PUT",
+      data: apiParam
+    };
+    setInvitationUpdateLoading(true);
+    api(requestConfig)
+      .then((res: AxiosResponse) => {
+        props.friendRead();
+      })
+      .finally(() => {
+        setInvitationUpdateLoading(false);
+      });
+  };
+  return (
+    <Card sx={{ m: "15px" }}>
+      <ListItem sx={{ border: "none !important" }}>
+        <ListItemAvatar>
+          <UserImg
+            fileName={props.friend.user_img}
+            size="40"
+          />
+        </ListItemAvatar>
+        <ListItemText
+          primary={props.friend.name}
+          secondary={props.friend.email}
+        />
+      </ListItem>
+      <CardActions disableSpacing>
+        <LoadingButton
+          onClick={invitationDelete}
+          color="error"
+          variant="contained"
+          loading={invitationDeleteLoading}
+          disabled={invitationUpdateLoading}>
                     拒否<DeleteIcon />
-                </LoadingButton>
-                <div></div>
-                <LoadingButton
-                    onClick={invitationUpdate}
-                    color="primary"
-                    variant="contained"
-                    loading={invitationUpdateLoading}
-                    disabled={invitationDeleteLoading}>
+        </LoadingButton>
+        <div></div>
+        <LoadingButton
+          onClick={invitationUpdate}
+          color="primary"
+          variant="contained"
+          loading={invitationUpdateLoading}
+          disabled={invitationDeleteLoading}>
                     許可<SendIcon />
-                </LoadingButton>
-            </CardActions>
-        </Card>
-    );
+        </LoadingButton>
+      </CardActions>
+    </Card>
+  );
 }

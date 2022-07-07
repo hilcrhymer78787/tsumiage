@@ -6,14 +6,14 @@ import { useMount } from "react-use";
 import CssBaseline from "@mui/material/CssBaseline";
 import "@/styles/globals.scss";
 function MyApp ({ Component, pageProps }: AppProps) {
-    useMount(() => bearerAuthentication());
+  useMount(() => bearerAuthentication());
 
-    return (
-        <Provider store={store}>
-            <CssBaseline />
-            <Component {...pageProps} />
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
 export default MyApp;

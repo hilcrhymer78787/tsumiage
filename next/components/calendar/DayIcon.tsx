@@ -6,36 +6,36 @@ type Props = {
     day: number
 }
 export default function DayIcon (props: Props) {
-    const router = useRouter();
-    const isToday = (): boolean => {
-        return (
-            props.day == nowDay() &&
+  const router = useRouter();
+  const isToday = (): boolean => {
+    return (
+      props.day == nowDay() &&
             year() == nowYear() &&
             month() == nowMonth()
-        );
-    };
-    const year = (): number => {
-        return Number(router.query.year);
-    };
-    const month = (): number => {
-        return Number(router.query.month);
-    };
-    const nowDay = (): number => {
-        return Number(moment().format("D"));
-    };
-    const nowYear = (): number => {
-        return Number(moment().format("Y"));
-    };
-    const nowMonth = (): number => {
-        return Number(moment().format("M"));
-    };
-    return (
-        <Icn>
-            <IcnNum className={isToday() ? "icn_num isToday" : "icn_num"}>
-                {props.day}
-            </IcnNum>
-        </Icn>
     );
+  };
+  const year = (): number => {
+    return Number(router.query.year);
+  };
+  const month = (): number => {
+    return Number(router.query.month);
+  };
+  const nowDay = (): number => {
+    return Number(moment().format("D"));
+  };
+  const nowYear = (): number => {
+    return Number(moment().format("Y"));
+  };
+  const nowMonth = (): number => {
+    return Number(moment().format("M"));
+  };
+  return (
+    <Icn>
+      <IcnNum className={isToday() ? "icn_num isToday" : "icn_num"}>
+        {props.day}
+      </IcnNum>
+    </Icn>
+  );
 }
 const Icn = styled.div`
 padding-top: 5px;
