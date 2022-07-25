@@ -13,11 +13,10 @@ jobs:
         working-directory: next
     steps:
       - uses: actions/checkout@v1
-      # - run: npm install --force && npm run lint && npm run build
+      - run: npm install --force && npm run lint && npm run build
       - name: ssh key generate
         run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: rsync deploy
-        run: ls -a
-        # run: rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./next/out/* xs150334@sv10235.xserver.jp:/home/xs150334/magicgifted.com/public_html/stg-tsumiage.magicgifted.com/ --exclude .htaccess
+        run: rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./out/* xs150334@sv10235.xserver.jp:/home/xs150334/magicgifted.com/public_html/stg-tsumiage.magicgifted.com/ --exclude .htaccess
