@@ -20,7 +20,7 @@ function Header ({ loginInfo }:any) {
     <AppBar position="fixed" color="inherit">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE6</Typography>
+          <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE7</Typography>
           <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
             <UserImg
               fileName={loginInfo.user_img}
