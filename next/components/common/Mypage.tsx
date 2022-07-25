@@ -19,7 +19,7 @@ const mapStateToProps = (state: any) => {
     loginInfo: state.loginInfo,
   };
 };
-function Mypage ({ dispatch, loginInfo }) {
+function Mypage({ dispatch, loginInfo }: any) {
   const [createUserDialog, setCreateUserDialog] = useState(false as boolean);
   const logout = () => {
     if (!confirm("ログアウトしますか？")) {
@@ -63,7 +63,7 @@ function Mypage ({ dispatch, loginInfo }) {
       </CardActions>
       <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false); }}>
         {createUserDialog &&
-                    <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }} />
+          <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }} />
         }
       </Dialog>
     </Card>

@@ -3,7 +3,7 @@ import {
   Avatar,
 } from "@mui/material";
 type Props = {
-    fileName: string
+    fileName: string | undefined
     size: string
 }
 export default function UserImg (props: Props) {

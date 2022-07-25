@@ -122,7 +122,7 @@ export default function CalendarList (props: Props) {
               <ContentItem key={calendar.date} className="main">
                 <CardActionArea
                   onClick={() => {
-                    Router.push(`${location.pathname}?year=${Router.router.query.year}&month=${Router.router.query.month}&day=${index + 1}`);
+                    Router.push(`${location.pathname}?year=${Router.router?.query.year}&month=${Router.router?.query.month}&day=${index + 1}`);
                   }}
                   sx={{ minHeight: "40px" }}
                 >
