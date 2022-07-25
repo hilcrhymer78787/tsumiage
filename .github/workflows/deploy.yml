@@ -19,4 +19,4 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: rsync deploy
-        run: rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./tsumiage/out/* xs150334@sv10235.xserver.jp:/home/xs150334/magicgifted.com/public_html/stg-tsumiage.magicgifted.com/ --exclude .htaccess
+        run: rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete out/* xs150334@sv10235.xserver.jp:/home/xs150334/magicgifted.com/public_html/stg-tsumiage.magicgifted.com/ --exclude .htaccess
