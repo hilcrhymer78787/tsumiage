@@ -13,7 +13,7 @@ jobs:
         working-directory: next
     steps:
       - uses: actions/checkout@v1
-      - run: npm install --force && npm run lint && npm run build
+      - run: touch .env && echo "NEXT_PUBLIC_API_BASE_URL=https://stg-tsumiage-back.magicgifted.com/tsumiage/laravel/public/" >> .env && npm install --force && npm run lint && npm run build
       - name: ssh key generate
         run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
         env:
