@@ -61,7 +61,7 @@ function CreateUser (props: Props) {
     postData.append("email", email);
     postData.append("password", password);
     postData.append("user_img", user_img);
-    postData.append("img_oldname", props.loginInfo?.user_img ?? '');
+    postData.append("img_oldname", props.loginInfo?.user_img ?? "");
     const requestConfig: AxiosRequestConfig = {
       url: "/api/user/create",
       method: "POST",

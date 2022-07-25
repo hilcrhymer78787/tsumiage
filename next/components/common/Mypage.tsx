@@ -19,7 +19,7 @@ const mapStateToProps = (state: any) => {
     loginInfo: state.loginInfo,
   };
 };
-function Mypage({ dispatch, loginInfo }: any) {
+function Mypage ({ dispatch, loginInfo }: any) {
   const [createUserDialog, setCreateUserDialog] = useState(false as boolean);
   const logout = () => {
     if (!confirm("ログアウトしますか？")) {
