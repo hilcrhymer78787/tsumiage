@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import Router from "next/router";
 import SendIcon from "@material-ui/icons/Send";
 import LoginLayout from "@/layouts/login";
-import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { api } from "@/plugins/axios";
 import store from "@/store/index";
-import { errorType } from "@/types/api/error";
 import {
   Box,
   Card,
@@ -17,60 +13,47 @@ import {
   TextField,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-Login.getLayout = function getLayout (page: any) {
-  return (
-    <LoginLayout>{page}</LoginLayout>
-  );
-};
+import { useUserApi } from "@/data/user";
+import axios from "axios";
 function Login () {
-  const [email, setEmail] = useState("" as string);
-  const [emailError, setEmailError] = useState("" as string);
-  const [password, setPassword] = useState("" as string);
-  const [passwordError, setPasswordError] = useState("" as string);
-  const [basicAuthenticationLoading, setBasicAuthenticationLoading] = useState(false as boolean);
-  const [testAuthenticationLoading, setTestAuthenticationLoading] = useState(false as boolean);
-  const testAuthentication = async () => {
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/user/test_authentication",
-      method: "GET",
-    };
-    setTestAuthenticationLoading(true);
-    await api(requestConfig)
-      .then((res: AxiosResponse) => {
-        localStorage.setItem("token", res.data.token);
-        store.dispatch({ type: "setLoginInfo", value: res.data });
-      })
-      .finally(() => {
-        setTestAuthenticationLoading(false);
-      });
-  };
-  const basicAuthentication = async () => {
-    if (validation()) {
-      return;
+  const { testAuthentication, testAuthenticationLoading, basicAuthentication, basicAuthenticationLoading } = useUserApi();
+  const [email, setEmail] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+  const apiTestAuthentication = async () => {
+    try {
+      const res = await testAuthentication();
+      localStorage.setItem("token", res.data.token);
+      store.dispatch({ type: "setLoginInfo", value: res.data });
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
     }
-    setBasicAuthenticationLoading(true);
-    const apiParam: apiUserBasicAuthenticationRequestType = {
-      email: email,
-      password: password
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/user/basic_authentication",
-      method: "POST",
-      data: apiParam
-    };
-    await api(requestConfig)
-      .then((res: AxiosResponse) => {
-        localStorage.setItem("token", res.data.token);
-        store.dispatch({ type: "setLoginInfo", value: res.data });
-      })
-      .catch((err: AxiosError<errorType>) => {
-        if (err.response?.data.errorMessage) {
-          alert(err.response.data.errorMessage);
-        }
-      })
-      .finally(() => {
-        setBasicAuthenticationLoading(false);
+  };
+  const apiBasicAuthentication = async () => {
+    if (validation()) return;
+    try {
+      const res = await basicAuthentication({
+        email: email,
+        password: password
       });
+      localStorage.setItem("token", res.data.token);
+      store.dispatch({ type: "setLoginInfo", value: res.data });
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        if (e.response?.data.errorMessage) {
+          alert(e.response.data.errorMessage);
+        } else {
+          alert(`${e?.response?.status}：${e?.response?.statusText}`);
+        }
+      } else {
+        alert("予期せぬエラー");
+      }
+    }
   };
   const validation = (): boolean => {
     let isError: boolean = false;
@@ -87,70 +70,72 @@ function Login () {
     return isError;
   };
   return (
-    <Card>
-      <CardHeader title="ログイン" />
-      <CardContent>
-        <ul>
-          <li>
-            <Box sx={{ mb: "15px" }}>
-              <TextField
-                onKeyPress={e => { if (e.key === "Enter") { basicAuthentication(); } }}
-                error={Boolean(emailError)}
-                helperText={emailError}
-                value={email}
-                onChange={(e) => { setEmail(e.currentTarget.value); }}
-                label="email" variant="outlined" color="primary"
-              />
-            </Box>
-          </li>
-          <li>
-            <Box sx={{ mb: "15px" }}>
-              <TextField
-                onKeyPress={e => { if (e.key === "Enter") { basicAuthentication(); } }}
-                error={Boolean(passwordError)}
-                helperText={passwordError}
-                value={password}
-                onChange={(e) => { setPassword(e.currentTarget.value); }}
-                label="password" variant="outlined" color="primary"
-              />
-            </Box>
-          </li>
-          {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" &&
-                        <li>
-                          <Box sx={{
-                            display: "flex",
-                            justifyContent: "flex-end"
-                          }}>
-                            <LoadingButton
-                              color="inherit"
-                              variant="contained"
-                              onClick={testAuthentication}
-                              loading={testAuthenticationLoading}
-                              disabled={basicAuthenticationLoading}>
-                                    テストユーザーでログイン<SendIcon />
-                            </LoadingButton>
-                          </Box>
-                        </li>
-          }
-        </ul>
-      </CardContent>
-      <CardActions>
-        <Button
-          onClick={() => { Router.push("/login/new"); }}
-          color="inherit"
-          variant="contained">
-                    新規登録
-        </Button>
-        <LoadingButton
-          color="primary"
-          variant="contained"
-          onClick={basicAuthentication}
-          loading={basicAuthenticationLoading}
-          disabled={testAuthenticationLoading}>
-                    ログイン<SendIcon />
-        </LoadingButton>
-      </CardActions>
-    </Card>
+    <LoginLayout>
+      <Card>
+        <CardHeader title="ログイン" />
+        <CardContent>
+          <ul>
+            <li>
+              <Box sx={{ mb: "15px" }}>
+                <TextField
+                  onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
+                  error={Boolean(emailError)}
+                  helperText={emailError}
+                  value={email}
+                  onChange={(e) => { setEmail(e.currentTarget.value); }}
+                  label="email" variant="outlined" color="primary"
+                />
+              </Box>
+            </li>
+            <li>
+              <Box sx={{ mb: "15px" }}>
+                <TextField
+                  onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
+                  error={Boolean(passwordError)}
+                  helperText={passwordError}
+                  value={password}
+                  onChange={(e) => { setPassword(e.currentTarget.value); }}
+                  label="password" variant="outlined" color="primary"
+                />
+              </Box>
+            </li>
+            {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" &&
+              <li>
+                <Box sx={{
+                  display: "flex",
+                  justifyContent: "flex-end"
+                }}>
+                  <LoadingButton
+                    color="inherit"
+                    variant="contained"
+                    onClick={apiTestAuthentication}
+                    loading={testAuthenticationLoading}
+                    disabled={basicAuthenticationLoading}>
+                    テストユーザーでログイン<SendIcon />
+                  </LoadingButton>
+                </Box>
+              </li>
+            }
+          </ul>
+        </CardContent>
+        <CardActions>
+          <Button
+            onClick={() => { Router.push("/login/new"); }}
+            color="inherit"
+            variant="contained">
+            新規登録
+          </Button>
+          <LoadingButton
+            color="primary"
+            variant="contained"
+            onClick={apiBasicAuthentication}
+            loading={basicAuthenticationLoading}
+            disabled={testAuthenticationLoading}>
+            ログイン<SendIcon />
+          </LoadingButton>
+        </CardActions>
+      </Card>
+    </LoginLayout>
   );
 }
 export default Login;

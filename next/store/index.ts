@@ -20,7 +20,7 @@ const reducer = (state = initialState, action: any) => {
 };
 const store = createStore(reducer);
 
-export const bearerAuthentication = async () => {
+export const apiBearerAuthentication = async () => {
   if (setLoginInfoByTokenCancel) {
     setLoginInfoByTokenCancel();
   }

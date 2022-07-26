@@ -14,14 +14,14 @@ import {
   CircularProgress
 } from "@mui/material";
 import { useWorkApi } from "@/data/work";
-import axios from "axios"
+import axios from "axios";
 type Props = {
   task: apiTaskReadResponseTaskType,
   date: string
   apiTaskRead: () => void
   readonly: boolean
 }
-export default function TaskItem(props: Props) {
+export default function TaskItem (props: Props) {
   const { workCreate, workCreateLoading, workDelete, workDeleteLoading } = useWorkApi();
   const [createWorkDialog, setCreateWorkDialog] = React.useState<boolean>(false);
   const apiWorkDelete = async () => {

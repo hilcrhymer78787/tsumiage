@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
-import LoginLayout from "@/layouts/login";
 import store from "@/store/index";
-import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { errorType } from "@/types/api/error";
-import { apiUserCreateResponseType } from "@/types/api/user/create/response";
-import { apiUserCreateRequestType } from "@/types/api/user/create/request";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 import SendIcon from "@material-ui/icons/Send";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -23,35 +17,29 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import UserImg from "@/components/common/UserImg";
+import { useUserApi } from "@/data/user";
+import axios from "axios";
 type Props = {
-    onCloseMyself: any
-    loginInfo: apiUserBearerAuthenticationResponseType | null
+  onCloseMyself: any
+  loginInfo: apiUserBearerAuthenticationResponseType | null
 }
-CreateUser.getLayout = function getLayout (page: any) {
-  return (
-    <LoginLayout>{page}</LoginLayout>
-  );
-};
 let inputRef: any = "";
 let file: any = "";
 function CreateUser (props: Props) {
-  const [uploadedImage, setUploadedImage] = useState("" as any);
-  const [passwordEditMode, setPasswordEditMode] = useState(true as boolean);
-  const [id, setId] = useState(0 as number);
-  const [name, setName] = useState("" as string);
-  const [nameError, setNameError] = useState("" as string);
-  const [email, setEmail] = useState("" as string);
-  const [emailError, setEmailError] = useState("" as string);
-  const [password, setPassword] = useState("" as string);
-  const [passwordError, setPasswordError] = useState("" as string);
-  const [user_img, setUserImg] = useState("" as string);
-  const [passwordAgain, setPasswordAgain] = useState("" as string);
-  const [createUserLoading, setCreateUserLoading] = useState(false as boolean);
-  const createUser = async () => {
-    if (validation()) {
-      return;
-    }
-    setCreateUserLoading(true);
+  const { createUser, createUserLoading } = useUserApi();
+  const [uploadedImage, setUploadedImage] = useState<any>("");
+  const [passwordEditMode, setPasswordEditMode] = useState<boolean>(true);
+  const [id, setId] = useState<number>(0);
+  const [name, setName] = useState<string>("");
+  const [nameError, setNameError] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+  const [user_img, setUserImg] = useState<string>("");
+  const [passwordAgain, setPasswordAgain] = useState<string>("");
+  const apiCreateUser = async () => {
+    if (validation()) return;
     const postData: FormData = new FormData();
     if (file) {
       postData.append("file", file);
@@ -62,27 +50,22 @@ function CreateUser (props: Props) {
     postData.append("password", password);
     postData.append("user_img", user_img);
     postData.append("img_oldname", props.loginInfo?.user_img ?? "");
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/user/create",
-      method: "POST",
-      data: postData
-    };
-    await api(requestConfig)
-      .then((res: AxiosResponse<apiUserCreateResponseType>) => {
-        localStorage.setItem("token", res.data.token);
-        store.dispatch({ type: "setLoginInfo", value: res.data });
-        props.onCloseMyself();
-      })
-      .catch((err: AxiosError<errorType>) => {
-        if (err.response?.data.errorMessage) {
-          alert(err.response.data.errorMessage);
+    try {
+      const res = await createUser(postData);
+      localStorage.setItem("token", res.data.token);
+      store.dispatch({ type: "setLoginInfo", value: res.data });
+      props.onCloseMyself();
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        if (e.response?.data.errorMessage) {
+          alert(e.response.data.errorMessage);
         } else {
-          alert("登録に失敗しました");
+          alert(`${e?.response?.status}：${e?.response?.statusText}`);
         }
-      })
-      .finally(() => {
-        setCreateUserLoading(false);
-      });
+      } else {
+        alert("予期せぬエラー");
+      }
+    }
   };
   const validation = (): boolean => {
     let isError: boolean = false;
@@ -98,12 +81,12 @@ function CreateUser (props: Props) {
       isError = true;
     }
     if (passwordEditMode) {
-      if (password.length < 8) {
-        setPasswordError("パスワードは8桁以上で設定してください");
-        isError = true;
-      }
       if (password != passwordAgain) {
         setPasswordError("パスワードが一致しません");
+        isError = true;
+      }
+      if (password.length < 8) {
+        setPasswordError("パスワードは8桁以上で設定してください");
         isError = true;
       }
     }
@@ -139,22 +122,22 @@ function CreateUser (props: Props) {
               alignItems: "center",
               mb: "20px"
             }}>
-              {Boolean(uploadedImage) &&
-                                <Avatar
-                                  src={uploadedImage}
-                                  sx={{
-                                    width: "70px",
-                                    height: "70px",
-                                    border: "2px solid #1976d2"
-                                  }}
-                                />
-              }
-              {!Boolean(uploadedImage) &&
-                                <UserImg
-                                  fileName={props.loginInfo?.user_img}
-                                  size="70"
-                                />
-              }
+              {Boolean(uploadedImage) && (
+                <Avatar
+                  src={uploadedImage}
+                  sx={{
+                    width: "70px",
+                    height: "70px",
+                    border: "2px solid #1976d2"
+                  }}
+                />
+              )}
+              {!Boolean(uploadedImage) && (
+                <UserImg
+                  fileName={props.loginInfo?.user_img}
+                  size="70"
+                />
+              )}
               <Button
                 onClick={() => inputRef.click()}
                 variant="contained"
@@ -172,7 +155,7 @@ function CreateUser (props: Props) {
           <li>
             <Box sx={{ mb: "15px" }}>
               <TextField
-                onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
+                onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
                 error={Boolean(nameError)}
                 helperText={nameError}
                 value={name}
@@ -184,7 +167,7 @@ function CreateUser (props: Props) {
           <li>
             <Box sx={{ mb: "15px" }}>
               <TextField
-                onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
+                onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
                 error={Boolean(emailError)}
                 helperText={emailError}
                 value={email}
@@ -197,7 +180,7 @@ function CreateUser (props: Props) {
             <li>
               <Box sx={{ mb: "15px" }}>
                 <TextField
-                  onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
+                  onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
                   error={Boolean(passwordError)}
                   helperText={passwordError}
                   value={password}
@@ -209,7 +192,7 @@ function CreateUser (props: Props) {
             <li>
               <Box sx={{ mb: "15px" }}>
                 <TextField
-                  onKeyPress={e => { if (e.key === "Enter") { createUser(); } }}
+                  onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
                   value={passwordAgain}
                   onChange={(e) => { setPasswordAgain(e.currentTarget.value); }}
                   label="パスワード確認" variant="outlined" color="primary"
@@ -235,21 +218,21 @@ function CreateUser (props: Props) {
         </ul>
       </CardContent>
       <CardActions>
-        {!props.loginInfo &&
-                    <Button
-                      onClick={() => { Router.push("/login"); }}
-                      color="inherit"
-                      variant="contained">
-                        ログイン画面へ
-                    </Button>
-        }
-        <div></div>
+        {!props.loginInfo && (
+          <Button
+            onClick={() => { Router.push("/login"); }}
+            color="inherit"
+            variant="contained">
+            ログイン画面へ
+          </Button>
+        )}
+        <Box></Box>
         <LoadingButton
-          onClick={createUser}
+          onClick={apiCreateUser}
           color="primary"
           variant="contained"
           loading={createUserLoading}>
-                    登録<SendIcon />
+          登録<SendIcon />
         </LoadingButton>
       </CardActions>
     </Card>

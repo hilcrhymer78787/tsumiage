@@ -1,16 +1,11 @@
 import React from "react";
 import LoginLayout from "@/layouts/login";
 import CreateUser from "@/components/user/CreateUser";
-Login.getLayout = function getLayout (page: any) {
+const Login = () => {
   return (
-    <LoginLayout>{page}</LoginLayout>
+    <LoginLayout>
+      <CreateUser onCloseMyself={() => { }} loginInfo={null} />
+    </LoginLayout>
   );
 };
-function Login () {
-  return (
-    <>
-      <CreateUser onCloseMyself={() => { }} loginInfo={null} />
-    </>
-  );
-}
 export default Login;

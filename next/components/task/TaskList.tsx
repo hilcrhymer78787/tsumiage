@@ -33,7 +33,7 @@ export default function TaskList (props: Props) {
       });
       setTasks(res.data.tasks);
       setErrorMessage(null);
-      if(!res.data.tasks)setErrorMessage("登録されているタスクはありません");
+      if(!res.data.tasks.length)setErrorMessage("登録されているタスクはありません");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         setErrorMessage(`${e?.response?.status}：${e?.response?.statusText}`);
