@@ -13,7 +13,7 @@ jobs:
         working-directory: next
     steps:
       - uses: actions/checkout@v1
-      - run: touch .env && echo "NEXT_PUBLIC_API_BASE_URL=https://stg-tsumiage-back.magicgifted.com/tsumiage/laravel/public/" >> .env && echo "NEXT_PUBLIC_IS_SHOW_TEST_USER=1" >> .env && yarn install && yarn lint:fix && yarn build
+      - run: touch .env && echo "NEXT_PUBLIC_API_BASE_URL=https://stg-tsumiage-back.magicgifted.com/tsumiage/laravel/public/" >> .env && echo "NEXT_PUBLIC_IS_SHOW_TEST_USER=1" >> .env && yarn install && yarn lint && yarn build
       - name: ssh key generate
         run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
         env:
