@@ -1,11 +1,6 @@
-import React, { useState } from "react";
-import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import React from "react";
 import CreateWork from "@/components/task/CreateWork";
-import { apiTaskReadResponseType } from "@/types/api/task/read/response";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import { apiWorkDeleteRequestType } from "@/types/api/work/delete/request";
-import { apiWorkCreateRequestType } from "@/types/api/work/create/request";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import TaskOutlinedIcon from "@mui/icons-material/TaskOutlined";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -18,80 +13,72 @@ import {
   Avatar,
   CircularProgress
 } from "@mui/material";
+import { useWorkApi } from "@/data/work";
+import axios from "axios"
 type Props = {
-    task: apiTaskReadResponseTaskType,
-    date: string
-    apiTaskRead: () => void
-    readonly: boolean
+  task: apiTaskReadResponseTaskType,
+  date: string
+  apiTaskRead: () => void
+  readonly: boolean
 }
-export default function TaskItem (props: Props) {
-  const [workDeleteLoading, setWorkDeleteLoading] = React.useState<boolean>(false);
-  const [workCreateLoading, setWorkCreateLoading] = React.useState<boolean>(false);
+export default function TaskItem(props: Props) {
+  const { workCreate, workCreateLoading, workDelete, workDeleteLoading } = useWorkApi();
   const [createWorkDialog, setCreateWorkDialog] = React.useState<boolean>(false);
-  const workDelete = () => {
-    if (!confirm(`${props.date}、「${props.task.name}」の実績を削除しますか？`)) {
-      return;
+  const apiWorkDelete = async () => {
+    if (!confirm(`${props.date}、「${props.task.name}」の実績を削除しますか？`)) return;
+    try {
+      await workDelete({
+        date: props.date,
+        task_id: props.task.id
+      });
+      props.apiTaskRead();
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
     }
-    const apiParam: apiWorkDeleteRequestType = {
-      date: props.date,
-      task_id: props.task.id
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/work/delete",
-      method: "DELETE",
-      data: apiParam
-    };
-    setWorkDeleteLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        props.apiTaskRead();
-      })
-      .finally(() => {
-        setWorkDeleteLoading(false);
-      });
   };
-  const workCreate = () => {
-    const apiParam: apiWorkCreateRequestType = {
-      id: props.task.work.id,
-      date: props.date,
-      task_id: props.task.id,
-      minute: props.task.default_minute,
-      memo: "",
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/work/create",
-      method: "POST",
-      data: apiParam
-    };
-    setWorkCreateLoading(true);
-    api(requestConfig)
-      .then((res) => {
-        props.apiTaskRead();
-      })
-      .finally(() => {
-        setWorkCreateLoading(false);
+  const apiWorkCreate = async () => {
+    try {
+      await workCreate({
+        id: props.task.work.id,
+        date: props.date,
+        task_id: props.task.id,
+        minute: props.task.default_minute,
+        memo: "",
       });
+      props.apiTaskRead();
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
+    }
   };
   const QuickIcon = () => {
     if (workDeleteLoading || workCreateLoading) {
       return <CircularProgress size={25} />;
     } else if (props.task.work.id) {
       return <CheckBoxIcon
-        onClick={workDelete}
+        onClick={apiWorkDelete}
         color="primary"
       />;
     } else {
       return <CheckBoxOutlineBlankIcon
-        onClick={workCreate}
+        onClick={apiWorkCreate}
         color="disabled"
       />;
     }
   };
   return (
     <ListItem sx={{ p: 0 }}
-      secondaryAction={!Boolean(props.readonly) &&
-                <QuickIcon />
-      }>
+      secondaryAction={!Boolean(props.readonly) && (
+        <QuickIcon />
+      )}
+    >
       <ListItemButton sx={{ p: "8px 48px 8px 16px" }}>
         <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
           <Avatar sx={{ background: Boolean(props.task.work.id) ? "linear-gradient(#62b1ff,#1976d2);" : "" }}>
@@ -105,17 +92,17 @@ export default function TaskItem (props: Props) {
         />
       </ListItemButton>
       <Dialog open={createWorkDialog} onClose={() => { setCreateWorkDialog(false); }}>
-        {createWorkDialog &&
-                    <CreateWork
-                      onCloseMyself={() => {
-                        setCreateWorkDialog(false);
-                        props.apiTaskRead();
-                      }}
-                      date={props.date}
-                      task={props.task}
-                      readonly={props.readonly}
-                    />
-        }
+        {createWorkDialog && (
+          <CreateWork
+            onCloseMyself={() => {
+              setCreateWorkDialog(false);
+              props.apiTaskRead();
+            }}
+            date={props.date}
+            task={props.task}
+            readonly={props.readonly}
+          />
+        )}
       </Dialog>
     </ListItem >
   );

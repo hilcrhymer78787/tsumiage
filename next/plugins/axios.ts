@@ -16,7 +16,7 @@ api.interceptors.request.use((req: AxiosRequestConfig) => {
 
 api.interceptors.response.use(
   (res: AxiosResponse) => {
-    if(res.config.baseURL){
+    if (res.config.baseURL) {
       console.log(res.config.baseURL + res.config.url, res);
     }
     if (Router.pathname == "/login" || Router.pathname == "/login/new") {
@@ -25,7 +25,11 @@ api.interceptors.response.use(
     return res;
   },
   (err: AxiosError) => {
-    console.error(err.response);
+    if (axios.isCancel(err)) {
+      console.error('リクエストがキャンセルされました');
+    } else {
+      console.error(err.response);
+    }
     if (err.response?.status == 429) {
       alert("一定時間にアクセスが集中したため、しばらくアクセスできません");
     }

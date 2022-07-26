@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { apiTaskReadResponseType } from "@/types/api/task/read/response";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import { apiWorkCreateRequestType } from "@/types/api/work/create/request";
-import { apiWorkDeleteRequestType } from "@/types/api/work/delete/request";
 import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -22,6 +17,8 @@ import {
   IconButton,
   Dialog,
 } from "@mui/material";
+import { useWorkApi } from "@/data/work";
+import axios from "axios";
 
 type Props = {
   date: string,
@@ -29,59 +26,45 @@ type Props = {
   onCloseMyself: () => void
   readonly: boolean
 }
-export default function CreateWork (props: Props) {
-  const [workCreateLoading, setWorkCreateLoading] = useState<boolean>(false);
-  const [workDeleteLoading, setWorkDeleteLoading] = useState<boolean>(false);
+export default function CreateWork(props: Props) {
+  const { workCreate, workCreateLoading, workDelete, workDeleteLoading } = useWorkApi();
   const [createTaskDialog, setCreateTaskDialog] = useState<boolean>(false);
   const [formMinute, setFormMinute] = useState<number>(0);
   const [formHour, setFormHour] = useState<number>(0);
   const [formMemo, setFormMemo] = useState<string>("");
-  const workDelete = () => {
-    if (!confirm(`「${props.task.name}」の実績を削除しますか？`)) {
-      return;
+  const apiWorkDelete = async () => {
+    if (!confirm(`「${props.task.name}」の実績を削除しますか？`)) return;
+    try {
+      await workDelete({
+        date: props.date,
+        task_id: props.task.id
+      });
+      props.onCloseMyself();
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
     }
-    const apiParam = {
-      date: props.date,
-      task_id: props.task.id
-    };
-    const requestConfig: AxiosRequestConfig<apiWorkDeleteRequestType> = {
-      url: "/api/work/delete",
-      method: "DELETE",
-      data: apiParam
-    };
-    setWorkDeleteLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        props.onCloseMyself();
-      })
-      .finally(() => {
-        setWorkDeleteLoading(false);
-      });
   };
-  const workCreate = () => {
-    const apiParam = {
-      id: props.task.work.id,
-      date: props.date,
-      task_id: props.task.id,
-      minute: formHour * 60 + formMinute,
-      memo: formMemo,
-    };
-    const requestConfig: AxiosRequestConfig<apiWorkCreateRequestType> = {
-      url: "/api/work/create",
-      method: "POST",
-      data: apiParam
-    };
-    setWorkCreateLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        props.onCloseMyself();
-      })
-      .finally(() => {
-        setWorkCreateLoading(false);
+  const apiWorkCreate = async () => {
+    try {
+      await workCreate({
+        id: props.task.work.id,
+        date: props.date,
+        task_id: props.task.id,
+        minute: formHour * 60 + formMinute,
+        memo: formMemo,
       });
-  };
-  const onChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormMemo(event.target.value);
+      props.onCloseMyself();
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
+    }
   };
 
   useEffect(() => {
@@ -143,7 +126,9 @@ export default function CreateWork (props: Props) {
               <h4>メモ</h4>
               <TextareaAutosize
                 readOnly={props.readonly}
-                onChange={onChangeMemo}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                  setFormMemo(e.target.value);
+                }}
                 value={formMemo}
                 minRows={6}
                 placeholder="memo"
@@ -161,14 +146,14 @@ export default function CreateWork (props: Props) {
       {!Boolean(props.readonly) && (
         <CardActions>
           <LoadingButton
-            onClick={workDelete}
+            onClick={apiWorkDelete}
             color="error"
             variant="contained"
             loading={workDeleteLoading}
             disabled={workCreateLoading}>削除<DeleteIcon />
           </LoadingButton>
           <LoadingButton
-            onClick={workCreate}
+            onClick={apiWorkCreate}
             color="primary"
             variant="contained"
             loading={workCreateLoading}
@@ -177,7 +162,7 @@ export default function CreateWork (props: Props) {
         </CardActions>
       )}
       <Dialog open={createTaskDialog} onClose={() => { setCreateTaskDialog(false); }}>
-        {createTaskDialog &&(
+        {createTaskDialog && (
           <CreateTask
             onCloseMyself={() => {
               setCreateTaskDialog(false);

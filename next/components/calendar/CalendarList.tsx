@@ -1,12 +1,9 @@
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Router from "next/router";
 import moment from "moment";
-import { api } from "@/plugins/axios";
 import axios from "axios";
 import { apiWorkReadCalendarResponseCalendarType } from "@/types/api/work/read/calendar/response";
-import { apiWorkReadCalendarRequestType } from "@/types/api/work/read/calendar/request";
 import { apiWorkReadCalendarResponseType } from "@/types/api/work/read/calendar/response";
 import DayIcon from "@/components/calendar/DayIcon";
 import Pagination from "@/components/calendar/Pagination";
@@ -22,25 +19,20 @@ import {
   CircularProgress,
   Box,
 } from "@mui/material";
-const CancelToken = axios.CancelToken;
-let getCalendarDataCancel: any = null;
+import { useWorkApi } from "@/data/work";
 type Props = {
-    userId: number,
-    readonly: boolean,
+  userId: number,
+  readonly: boolean,
 }
-export default function CalendarList (props: Props) {
-  const [calendarData, setCalendarData] = useState({
+export default function CalendarList(props: Props) {
+  const { workReadCalendar, workReadCalendarLoading, } = useWorkApi();
+  const [calendarData, setCalendarData] = useState<apiWorkReadCalendarResponseType>({
     calendars: [],
     analytics: {
-      labels: [] as string[],
-      datasets: {
-        label: "" as string,
-        data: [] as number[],
-        borderColor: "" as string,
-      } as object,
+      labels: [],
+      datasets:[],
     }
-  } as apiWorkReadCalendarResponseType);
-  const [calendarLoading, setCalendarLoading] = useState(false as boolean);
+  });
   const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const router = useRouter();
   useEffect(() => {
@@ -63,30 +55,21 @@ export default function CalendarList (props: Props) {
     return 6 - moment(`${year()}/${month()}/1`, "YYYY-MM-DD").endOf("month").day();
   };
   const getCalendarData = async (year: number, month: number) => {
-    if (getCalendarDataCancel) {
-      getCalendarDataCancel();
-    }
-    const apiParam: apiWorkReadCalendarRequestType = {
-      user_id: props.userId,
-      year: year,
-      month: month
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/work/read/calendar",
-      method: "GET",
-      params: apiParam,
-      cancelToken: new CancelToken(c => {
-        getCalendarDataCancel = c;
-      }),
-    };
-    setCalendarLoading(true);
-    await api(requestConfig)
-      .then((res: AxiosResponse<apiWorkReadCalendarResponseType>) => {
-        setCalendarData(res.data);
-      })
-      .finally(() => {
-        setCalendarLoading(false);
+    try {
+      const res = await workReadCalendar({
+        user_id: props.userId,
+        year: year,
+        month: month
       });
+      setCalendarData(res.data);
+    } catch (e) {
+      if (axios.isCancel(e)) return;
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
+    }
   };
 
   return (
@@ -105,15 +88,15 @@ export default function CalendarList (props: Props) {
               <IndentItem key={index.toString()}>{day}</IndentItem>
             ))}
           </Indent>
-          {calendarLoading && !Boolean(calendarData.calendars.length) &&
-                        <Box sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                          p: "30px"
-                        }}>
-                          <CircularProgress />
-                        </Box>
-          }
+          {workReadCalendarLoading && !Boolean(calendarData.calendars.length) && (
+            <Box sx={{
+              display: "flex",
+              justifyContent: "center",
+              p: "30px"
+            }}>
+              <CircularProgress />
+            </Box>
+          )}
           <Content>
             {[...Array(firstDay())].map((n, index) => (
               <ContentItem key={index.toString()} className="blank"></ContentItem>
@@ -140,14 +123,14 @@ export default function CalendarList (props: Props) {
         </CardContent>
       </Card>
 
-      {Boolean(calendarData.analytics.datasets.length) &&
-                <Card>
-                  <CardHeader title="データ" />
-                  <CardContent>
-                    <LinePlot height="300px" data={calendarData.analytics} />
-                  </CardContent>
-                </Card>
-      }
+      {Boolean(calendarData.analytics.datasets.length) && (
+        <Card>
+          <CardHeader title="データ" />
+          <CardContent>
+            <LinePlot height="300px" data={calendarData.analytics} />
+          </CardContent>
+        </Card>
+      )}
 
       <Dialog
         open={Boolean(router.query.day)}
@@ -155,13 +138,13 @@ export default function CalendarList (props: Props) {
           getCalendarData(year(), month());
           Router.push(`${location.pathname}?year=${year()}&month=${month()}`);
         }}>
-        {Boolean(router.query.day) &&
-                    <TaskList
-                      readonly={props.readonly}
-                      userId={props.userId}
-                      date={moment(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")}
-                    />
-        }
+        {Boolean(router.query.day) && (
+          <TaskList
+            readonly={props.readonly}
+            userId={props.userId}
+            date={moment(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")}
+          />
+        )}
       </Dialog>
     </>
   );
