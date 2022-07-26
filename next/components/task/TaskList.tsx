@@ -5,6 +5,7 @@ import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
 import AddIcon from "@mui/icons-material/Add";
 import { useMount } from "react-use";
 import { useTaskApi } from "@/data/task";
+import axios from "axios";
 import {
   Card,
   CardHeader,
@@ -34,8 +35,12 @@ export default function TaskList (props: Props) {
       setErrorMessage(null);
       if(!res.data.tasks)setErrorMessage("登録されているタスクはありません");
     } catch (e) {
+      if (axios.isAxiosError(e)) {
+        setErrorMessage(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        setErrorMessage("予期せぬエラーが発生しました");
+      }
       setTasks([]);
-      setErrorMessage("エラーが発生しました");
     }
   };
 

@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useTaskApi } from "@/data/task";
+import axios from "axios";
 
 type Props = {
   task: apiTaskReadResponseTaskType | null
@@ -31,25 +32,23 @@ export default function CreateTask (props: Props) {
   });
   const [nameError, setNameError] = useState<string>("");
   const apiTaskDelete = async () => {
-    if (!confirm(`「${props.task?.name}」を削除しますか？`)) {
-      return;
-    }
-    if (!confirm("このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？")) {
-      return;
-    }
+    if (!confirm(`「${props.task?.name}」を削除しますか？`)) return;
+    if (!confirm("このタスクに登録されている全ての目標や実績も削除されますが、よろしいですか？")) return;
     try {
       await taskDelete({
         task_id: formTask.id
       });
       props.onCloseMyself();
     } catch (e) {
-      alert("失敗しました");
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
     }
   };
   const apiTaskCreate = async () => {
-    if (validation()) {
-      return;
-    }
+    if (validation()) return;
     try {
       await taskCreate({
         task_id: formTask.id,
@@ -59,7 +58,11 @@ export default function CreateTask (props: Props) {
       });
       props.onCloseMyself();
     } catch (e) {
-      alert("失敗しました");
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラー");
+      }
     }
   };
   const validation = (): boolean => {

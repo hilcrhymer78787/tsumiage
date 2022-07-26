@@ -36,6 +36,6 @@ api.interceptors.response.use(
         Router.push("/login");
       }
     }
-    throw { response: err.response };
+    throw err;
   }
 );

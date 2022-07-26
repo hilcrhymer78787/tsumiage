@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiTaskReadRequestType } from "@/types/api/task/read/request";
 import { apiTaskReadResponseType } from "@/types/api/task/read/response";
 import { apiTaskCreateRequestType } from "@/types/api/task/create/request";
@@ -29,12 +29,6 @@ export const useTaskApi = (): {
     };
     setTaskCreateLoading(true);
     return api(requestConfig)
-      .then((res: AxiosResponse) => {
-        return res;
-      })
-      .catch((err: AxiosError) => {
-        throw err.response;
-      })
       .finally(() => {
         setTaskCreateLoading(false);
       });
@@ -53,12 +47,6 @@ export const useTaskApi = (): {
     };
     setTaskReadLoading(true);
     return api(requestConfig)
-      .then((res: AxiosResponse<apiTaskReadResponseType>) => {
-        return res;
-      })
-      .catch((err: AxiosError) => {
-        throw err.response;
-      })
       .finally(() => {
         setTaskReadLoading(false);
       });
@@ -77,12 +65,6 @@ export const useTaskApi = (): {
     };
     setTaskDeleteLoading(true);
     return api(requestConfig)
-      .then((res: AxiosResponse) => {
-        return res;
-      })
-      .catch((err: AxiosError) => {
-        throw err.response;
-      })
       .finally(() => {
         setTaskDeleteLoading(false);
       });
