@@ -9,7 +9,7 @@ export const api = axios.create({
 
 api.interceptors.request.use((req: AxiosRequestConfig) => {
   if (req.headers) {
-    req.headers.token = localStorage.getItem("token") ?? '';
+    req.headers.token = localStorage.getItem("token") ?? "";
   }
   return req;
 });
@@ -26,7 +26,7 @@ api.interceptors.response.use(
   },
   (err: AxiosError) => {
     if (axios.isCancel(err)) {
-      console.error('リクエストがキャンセルされました');
+      console.error("リクエストがキャンセルされました");
     } else {
       console.error(err.response);
     }

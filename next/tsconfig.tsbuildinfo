@@ -7992,13 +7992,13 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "4ee9ef1dae5ce87dd0f8afacd6537fe5f7132b32843b712ef42e3ed4f4e40809",
-        "signature": "574a097ed8432f624995f2ec52dd65c1a916683564572b8bc7f9caacd9ba60cb",
+        "version": "551256bd0b8a1cc87f1514bb7367475b51e7d57590b89354a026032c66f0d3d2",
+        "signature": "e51aba86d760c1cd2cd67ebcaa85bc5ac5a096240ce84e837a02e47a654cdfe9",
         "affectsGlobalScope": false
       },
       "./components/common/mypage.tsx": {
         "version": "8fc1cc433f9530a64244bf379f7f9368c5093ada62489883b54e4b9134611f5b",
-        "signature": "4e5c1975fe5830402d04dec8225ba5f565946590384446aa9fde28e198e0a23f",
+        "signature": "224f60602730499c7697ef70d505bc88c9d9ee1e3e9180eadd312557d35ce7a3",
         "affectsGlobalScope": false
       },
       "./components/common/header.tsx": {
@@ -8077,8 +8077,8 @@
         "affectsGlobalScope": false
       },
       "./components/goal/creategoal.tsx": {
-        "version": "79564f6b2c94166ee45ac9112046447ceb401ecd03b048858aea7403d8b54661",
-        "signature": "2590027765f4cf1508b049dc9be5965dd16459e3f540788d330456d6003c5e05",
+        "version": "aae8fff4b82e73a37181025f1f45e289d439a45c932076a2ef657b5cc71f4198",
+        "signature": "88b9820936c18662b83146900ab9e5bdf09d5adc976dee445af6941bac30bc48",
         "affectsGlobalScope": false
       },
       "./components/goal/goalitem.tsx": {
@@ -8557,6 +8557,7 @@
       ],
       "./components/goal/creategoal.tsx": [
         "./components/common/lineplot.tsx",
+        "./data/task.ts",
         "./node_modules/@material-ui/icons/delete.d.ts",
         "./node_modules/@material-ui/icons/send.d.ts",
         "./node_modules/@mui/lab/adapterdatefns/index.d.ts",

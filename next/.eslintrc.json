@@ -4,7 +4,6 @@
         "prefer-const": "error",
         "no-var": "error",
         "quotes": "error",
-        "space-before-function-paren": "error",
         "indent": [
             "error",
             2

@@ -20,12 +20,12 @@ import UserImg from "@/components/common/UserImg";
 import { useUserApi } from "@/data/user";
 import axios from "axios";
 type Props = {
-  onCloseMyself: any
+  onCloseMyself: () => void
   loginInfo: apiUserBearerAuthenticationResponseType | null
 }
 let inputRef: any = "";
 let file: any = "";
-function CreateUser (props: Props) {
+function CreateUser(props: Props) {
   const { createUser, createUserLoading } = useUserApi();
   const [uploadedImage, setUploadedImage] = useState<any>("");
   const [passwordEditMode, setPasswordEditMode] = useState<boolean>(true);

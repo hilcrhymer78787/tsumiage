@@ -24,13 +24,13 @@ type Props = {
   userId: number,
   readonly: boolean,
 }
-export default function CalendarList (props: Props) {
+export default function CalendarList(props: Props) {
   const { workReadCalendar, workReadCalendarLoading, } = useWorkApi();
   const [calendarData, setCalendarData] = useState<apiWorkReadCalendarResponseType>({
     calendars: [],
     analytics: {
       labels: [],
-      datasets:[],
+      datasets: [],
     }
   });
   const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
