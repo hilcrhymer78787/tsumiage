@@ -29,17 +29,17 @@ import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import { LoadingButton } from "@mui/lab";
-const mapStateToProps = (state: any, ownProps:Props) => {
+const mapStateToProps = (state: any, ownProps: Props) => {
   return {
     loginInfo: state.loginInfo,
-    props:ownProps
+    props: ownProps
   };
 };
 type Props = {
-    focusGoal: apiGoalReadResponseGoalsType | null
-    onCloseMyself: any
+  focusGoal: apiGoalReadResponseGoalsType | null
+  onCloseMyself: any
 }
-function Creategoal ({ loginInfo,props }: any) {
+function Creategoal ({ loginInfo, props }: any) {
   const [goalCreateLoading, setGoalCreateLoading] = useState(false as boolean);
   const [goalDeleteLoading, setGoalDeleteLoading] = useState(false as boolean);
   const [tasks, setTasks] = useState([] as apiTaskReadResponseTaskType[]);
@@ -167,21 +167,21 @@ function Creategoal ({ loginInfo,props }: any) {
               </li>
             </>}
             {Boolean(tasks.length) &&
-                            <li>
-                              <Box sx={{ mb: "16px" }}>
-                                <h4>タスク</h4>
-                                <Select
-                                  sx={{ width: "100%", }}
-                                  labelId="task-id"
-                                  value={taskId}
-                                  onChange={(e) => { setTaskId(Number(e.target.value)); }}
-                                >
-                                  {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
-                                    <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
-                                  ))}
-                                </Select>
-                              </Box>
-                            </li>
+              <li>
+                <Box sx={{ mb: "16px" }}>
+                  <h4>タスク</h4>
+                  <Select
+                    sx={{ width: "100%", }}
+                    labelId="task-id"
+                    value={taskId}
+                    onChange={(e) => { setTaskId(Number(e.target.value)); }}
+                  >
+                    {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
+                      <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
+                    ))}
+                  </Select>
+                </Box>
+              </li>
             }
             <li>
               <Box sx={{ mb: "16px" }}>
@@ -211,7 +211,7 @@ function Creategoal ({ loginInfo,props }: any) {
                 </Box>
               </Box>
               {Boolean(hourError) &&
-                                <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{hourError}</Typography>
+                <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{hourError}</Typography>
               }
             </li>
             <li>
@@ -224,10 +224,10 @@ function Creategoal ({ loginInfo,props }: any) {
                   <Box sx={{ width: "42%", }}>
                     <MobileDatePicker
                       value={startDate}
-                      onChange={(v) => {
+                      onChange={(v: any) => {
                         setStartDate(moment(v).format("YYYY-MM-DD"));
                       }}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params: any) => <TextField {...params} />}
                     />
                   </Box>
                   <Box sx={{
@@ -237,15 +237,15 @@ function Creategoal ({ loginInfo,props }: any) {
                   <Box sx={{ width: "42%", }}>
                     <MobileDatePicker
                       value={endDate}
-                      onChange={(v) => {
+                      onChange={(v:any) => {
                         setEndDate(moment(v).format("YYYY-MM-DD"));
                       }}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params:any) => <TextField {...params} />}
                     />
                   </Box>
                 </Box>
                 {Boolean(dateError) &&
-                                    <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{dateError}</Typography>
+                  <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{dateError}</Typography>
                 }
               </Box>
             </li>
@@ -258,7 +258,7 @@ function Creategoal ({ loginInfo,props }: any) {
             onClick={goalDelete}
             loading={goalDeleteLoading}
             disabled={goalCreateLoading}>
-                        削除<DeleteIcon />
+            削除<DeleteIcon />
           </LoadingButton>
           <LoadingButton
             color="primary"
@@ -266,7 +266,7 @@ function Creategoal ({ loginInfo,props }: any) {
             onClick={goalCreate}
             loading={goalCreateLoading}
             disabled={goalDeleteLoading}>
-                        登録<SendIcon />
+            登録<SendIcon />
           </LoadingButton>
         </CardActions>
       </Card>
