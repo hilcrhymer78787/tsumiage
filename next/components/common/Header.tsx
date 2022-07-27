@@ -13,9 +13,8 @@ const mapStateToProps = (state: any) => {
     loginInfo: state.loginInfo,
   };
 };
-function Header({ loginInfo }: any) {
+const Header = ({ loginInfo }: any) => {
   const [mypageDialog, setMypageDialog] = useState(false as boolean);
-
   return (
     <AppBar position="fixed" color="inherit">
       <Container maxWidth="xl">

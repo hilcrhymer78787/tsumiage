@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { api } from "@/plugins/axios";
 import AddIcon from "@mui/icons-material/Add";
 import FriendItemTo from "@/components/friend/FriendItemTo";
 import FriendItemNow from "@/components/friend/FriendItemNow";

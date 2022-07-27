@@ -25,7 +25,7 @@ export const apiBearerAuthentication = async () => {
     setLoginInfoByTokenCancel();
   }
   const requestConfig: AxiosRequestConfig = {
-    url: `/api/user/bearer_authentication`,
+    url: "/api/user/bearer_authentication",
     method: "GET",
     cancelToken: new CancelToken((c) => {
       setLoginInfoByTokenCancel = c;

@@ -12,11 +12,11 @@ export const useInvitationApi = (): {
   invitationRead: () => Promise<AxiosResponse<apiInvitationResponseType>>;
   invitationReadLoading: boolean;
   invitationUpdate: (params: apiInvitationUpdateRequestType) => Promise<AxiosResponse>;
-  invitationUpdateLoading:boolean,
+  invitationUpdateLoading: boolean,
   invitationDelete: (params: apiInvitationDeleteRequestType) => Promise<AxiosResponse>;
   invitationDeleteLoading: boolean;
 } => {
-  
+
   // invitationCreate
 
   const [invitationCreateLoading, setInvitationCreateLoading] = useState<boolean>(false);

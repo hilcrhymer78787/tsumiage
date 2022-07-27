@@ -19,7 +19,7 @@ type Props = {
   userId: number,
   readonly: boolean,
 }
-export default function TaskList (props: Props) {
+export default function TaskList(props: Props) {
   const { taskRead, taskReadLoading } = useTaskApi();
   const [createTaskDialog, setCreateTaskDialog] = React.useState<boolean>(false);
   const [tasks, setTasks] = React.useState<apiTaskReadResponseTaskType[]>([]);
@@ -33,7 +33,7 @@ export default function TaskList (props: Props) {
       });
       setTasks(res.data.tasks);
       setErrorMessage(null);
-      if(!res.data.tasks.length)setErrorMessage("登録されているタスクはありません");
+      if (!res.data.tasks.length) setErrorMessage("登録されているタスクはありません");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         setErrorMessage(`${e?.response?.status}：${e?.response?.statusText}`);

@@ -14,23 +14,20 @@ import CreateUser from "@/components/user/CreateUser";
 import { connect } from "react-redux";
 import Router from "next/router";
 import UserImg from "@/components/common/UserImg";
-const mapStateToProps = (state: any) => {
+import { stateType } from "@/types/common/stateType";
+const mapStateToProps = (state: stateType) => {
   return {
     loginInfo: state.loginInfo,
   };
 };
-function Mypage ({ dispatch, loginInfo }: any) {
+const Mypage = ({ dispatch, loginInfo }: any) => {
   const [createUserDialog, setCreateUserDialog] = useState(false as boolean);
   const logout = () => {
-    if (!confirm("ログアウトしますか？")) {
-      return;
-    }
+    if (!confirm("ログアウトしますか？")) return;
     localStorage.removeItem("token");
     Router.push("/login");
     dispatch({ type: "setLoginInfo", value: false });
   };
-  useEffect(() => {
-  }, []);
   return (
     <Card>
       <CardHeader title="マイページ" />
@@ -62,11 +59,11 @@ function Mypage ({ dispatch, loginInfo }: any) {
         </Button>
       </CardActions>
       <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false); }}>
-        {createUserDialog &&
+        {createUserDialog && (
           <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }} />
-        }
+        )}
       </Dialog>
     </Card>
   );
-}
+};
 export default connect(mapStateToProps)(Mypage);

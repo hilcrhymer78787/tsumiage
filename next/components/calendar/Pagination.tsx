@@ -4,9 +4,9 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import styled from "styled-components";
 type Props = {
-    setCalendarData: any
+  setCalendarData: (date: { year: number, month: number }) => void
 }
-export default function Pagination (props: Props) {
+export default function Pagination(props: Props) {
   const router = useRouter();
   const year = (): number => {
     return Number(router.query.year);

@@ -7,21 +7,17 @@ import TaskIcon from "@mui/icons-material/Task";
 import TodayIcon from "@mui/icons-material/Today";
 import SportsScoreIcon from "@mui/icons-material/SportsScore";
 import GroupIcon from "@mui/icons-material/Group";
-export default function Navigation () {
+const Navigation = () => {
   const router = useRouter();
   const [value, setValue] = useState(router.pathname);
-  const nowYear = (): number => {
-    return Number(moment().format("Y"));
-  };
-  const nowMonth = (): number => {
-    return Number(moment().format("M"));
-  };
+  const nowYear = (): number => Number(moment().format("Y"));
+  const nowMonth = (): number => Number(moment().format("M"));
   return (
     <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
       <BottomNavigation
         showLabels
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(_, newValue) => {
           router.push(newValue);
           setValue(newValue);
         }}
@@ -44,6 +40,6 @@ export default function Navigation () {
           icon={<GroupIcon />} />
       </BottomNavigation>
     </Paper>
-
   );
-}
+};
+export default Navigation;

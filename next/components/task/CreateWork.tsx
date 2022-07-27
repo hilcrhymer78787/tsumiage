@@ -26,7 +26,7 @@ type Props = {
   onCloseMyself: () => void
   readonly: boolean
 }
-export default function CreateWork (props: Props) {
+export default function CreateWork(props: Props) {
   const { workCreate, workCreateLoading, workDelete, workDeleteLoading } = useWorkApi();
   const [createTaskDialog, setCreateTaskDialog] = useState<boolean>(false);
   const [formMinute, setFormMinute] = useState<number>(0);

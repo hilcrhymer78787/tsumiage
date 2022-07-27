@@ -20,7 +20,7 @@ type Props = {
   task: apiTaskReadResponseTaskType | null
   onCloseMyself: () => void
 }
-export default function CreateTask (props: Props) {
+export default function CreateTask(props: Props) {
   const { taskCreate, taskCreateLoading, taskDelete, taskDeleteLoading } = useTaskApi();
   const [formTask, setFormTask] = useState({
     id: props.task?.id ?? 0 as number,

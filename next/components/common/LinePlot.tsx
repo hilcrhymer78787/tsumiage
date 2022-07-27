@@ -22,10 +22,10 @@ ChartJS.register(
   Legend
 );
 type Props = {
-    data: analyticsType
-    height: string
+  data: analyticsType
+  height: string
 }
-function LinePlot (props: Props) {
+const LinePlot = (props: Props) => {
 
   const options: {} = {
     maintainAspectRatio: false,
@@ -33,15 +33,15 @@ function LinePlot (props: Props) {
 
   return (
     <Box sx={{ height: props.height }}>
-      {Boolean(props.data.datasets.length) &&
-                <Line
-                  data={props.data}
-                  options={options}
-                  id="chart-key"
-                />
-      }
+      {Boolean(props.data.datasets.length) && (
+        <Line
+          data={props.data}
+          options={options}
+          id="chart-key"
+        />
+      )}
     </Box>
   );
-}
+};
 
 export default LinePlot;

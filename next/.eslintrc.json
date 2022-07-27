@@ -4,10 +4,6 @@
         "prefer-const": "error",
         "no-var": "error",
         "quotes": "error",
-        "indent": [
-            "error",
-            2
-        ],
         "no-multiple-empty-lines": [
             "error",
             {

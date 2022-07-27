@@ -15,7 +15,7 @@ export const useTaskApi = (): {
   taskDelete: (params: apiTaskDeleteRequestType) => Promise<AxiosResponse>;
   taskDeleteLoading: boolean;
 } => {
-  
+
   // taskCreate
 
   const [taskCreateLoading, setTaskCreateLoading] = useState<boolean>(false);

@@ -1,20 +1,22 @@
-import React from 'react';
+import React from "react";
 import { connect } from "react-redux";
-import Container from '@mui/material/Container';
-const mapStateToProps = (state: any) => {
+import Container from "@mui/material/Container";
+import { stateType } from "@/types/common/stateType";
+const mapStateToProps = (state: stateType) => {
   return {
-    loginInfo: state.loginInfo,
+    state: state,
   };
 };
-function LoginLayout({ children, loginInfo }: any) {
+type Props = {
+  children: React.ReactNode;
+  state: stateType;
+}
+function LoginLayout({ children, state }: Props) {
+  if (state?.loginInfo !== false) return <></>;
   return (
-    <>
-      {loginInfo === false && <>
-        <Container sx={{ p: '10px' }} maxWidth="xs">
-          {children}
-        </Container>
-      </>}
-    </>
-  )
+    <Container sx={{ p: "10px" }} maxWidth="xs">
+      {children}
+    </Container>
+  );
 }
 export default connect(mapStateToProps)(LoginLayout);

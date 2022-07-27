@@ -927,7 +927,7 @@
         "affectsGlobalScope": false
       },
       "./store/index.ts": {
-        "version": "90eb13cbaddc7fce2e5b0e85aeffbe77fa873af41b7b6d3c7bc4d46e16af3b23",
+        "version": "01d3b1612f4a3cd9a5356f92770957143a3b5c11b0d8f5dbdeec48204b5f2b18",
         "signature": "4b3a31146408c4b66358a2485fea6de92e89720ca5cc3000033d14820b4083f8",
         "affectsGlobalScope": false
       },
@@ -987,7 +987,7 @@
         "affectsGlobalScope": false
       },
       "./data/invitation.ts": {
-        "version": "1aa563cce51f457fcd7fce65078cf3ca339216fb69d0612704ccd0a700653cfe",
+        "version": "2e4a6dadfd54f90fc4b12e1ffbbeb5b4df746646366dfcdbdfcbd33601544cca",
         "signature": "212d576293ff2aa69f218e9e86e3f7d57b726453f3d52d22802d334019f08680",
         "affectsGlobalScope": false
       },
@@ -1012,7 +1012,7 @@
         "affectsGlobalScope": false
       },
       "./data/task.ts": {
-        "version": "d3b2a1ed134e37b62dcec07d45c605bc9d6a104ed0cd909099ac40877ce1d857",
+        "version": "9ef0f9b7bf74c344f8afb0680578faf8383b5e147c6827bc50a7d71d16c63f05",
         "signature": "f5e2e63e4698457486c8401f29e8c8822a16be99428e3888791865be39def479",
         "affectsGlobalScope": false
       },
@@ -1067,7 +1067,7 @@
         "affectsGlobalScope": false
       },
       "./data/work.ts": {
-        "version": "067ce21743f4ad7918b4028a15747b6c42c6d6f6619d368186ddb4484faecb86",
+        "version": "32579d05173808830875779ad065e3f9da60c34ac5983292c9bdf7c55a942191",
         "signature": "cfcc16204ca9f92447cfacf374919a78e7d1a13d38928553a4001cf3279a8a1d",
         "affectsGlobalScope": false
       },
@@ -1102,8 +1102,8 @@
         "affectsGlobalScope": false
       },
       "./types/common/statetype.d.ts": {
-        "version": "5b9198d3351a8909aa94bf5228e57d6da7ed5604aed17ae5b32421a42fda5f94",
-        "signature": "5b9198d3351a8909aa94bf5228e57d6da7ed5604aed17ae5b32421a42fda5f94",
+        "version": "a6e0a0e15d5d1d032a4e625e3bb21c123035f68c1e503146023a7173c2cd426b",
+        "signature": "a6e0a0e15d5d1d032a4e625e3bb21c123035f68c1e503146023a7173c2cd426b",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/aria-query/index.d.ts": {
@@ -1212,7 +1212,7 @@
         "affectsGlobalScope": false
       },
       "./components/test.tsx": {
-        "version": "fa2de1f395c9e22a7025bde23d3823670de0ae441197de147bd5a5af3fc494c1",
+        "version": "117ba0437cffdbdad81b770fc5b19bbeac62d194ef9089111cc1c9acc1cf6661",
         "signature": "b63d65de164ced28050da8bf439b7502bf90a87822c02754069f77eb6441368c",
         "affectsGlobalScope": false
       },
@@ -7137,7 +7137,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/createtask.tsx": {
-        "version": "a558872cbf81bc96c14ee90d9f5f49de6245a3ef9c6691bc140610a7d7ef2d21",
+        "version": "989a966e1b82105655be98897ba95739f41697e38ac44e6e36f282dfa19c82ec",
         "signature": "950f6313ef8a0d331dada7fbf261fdf7da12ffc057e24c12c13060c7a31b2cd7",
         "affectsGlobalScope": false
       },
@@ -7147,7 +7147,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/creatework.tsx": {
-        "version": "c945678f881cdfc561ee89684cd2ffb2156f3bdc870acc25b638b487bfa386f8",
+        "version": "01d979a6de5fe0fa0bff569f1df8c42190ae890b2ab86c4fc3add0001bfa5ece",
         "signature": "78dc96b56d798eb9543cd2b7e8cab66313345b86cd966072fde5c3d57fc690a5",
         "affectsGlobalScope": false
       },
@@ -7167,7 +7167,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskitem.tsx": {
-        "version": "701f68747ef8a2354ab1a34a84e5da971ec042e2d95ed537719f72f1093a41ba",
+        "version": "9826a4e47d7ed4ba7ad80f456b7bc100181b618ebf3878888ee47828b11780e7",
         "signature": "97fcaaac56cc4c5bfbbc3d34cd2b283c5404d11ee848b1173678f622828261a9",
         "affectsGlobalScope": false
       },
@@ -7767,7 +7767,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/tasklist.tsx": {
-        "version": "66641fa0ddad9fb4d9e4e7a37f3c127cb874d8cc363b20f0d99f73ed9e979e4f",
+        "version": "53b9cf5b80d7dfb84883f871320cbc880a891e5b6962adf617372a973fa57bc7",
         "signature": "1c7e208404994d61097a9c72d5dd738d2eeed47caf615a7aa78be0727e13826b",
         "affectsGlobalScope": false
       },
@@ -7887,7 +7887,7 @@
         "affectsGlobalScope": true
       },
       "./components/calendar/dayicon.tsx": {
-        "version": "fb45111ea4338a3bebb58a2c16df30fa7413765a78b8f29e6f34b4471f9d423e",
+        "version": "b6a353a3cff9d899106cbdfd7c6b2cf7732ad0cf73fbaed8fd6e28954970a6cb",
         "signature": "19ae6da52d11049cb87b954f227e73a4bbae80c984adb7db2c49a3d5e6de80fd",
         "affectsGlobalScope": false
       },
@@ -7902,8 +7902,8 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/pagination.tsx": {
-        "version": "ab51bb1c8cf7e68172eebbaa04d611d5926be47d2199e5913d608a24653c4d68",
-        "signature": "b45c051ca4eb18e8adbd6b10e905d22c79f61522b3dab1f7bfe2893491ffaa9a",
+        "version": "3a871924083b445f1edc471dbbc62c6f181b2213b1d682392bfdfc93e2e8fef3",
+        "signature": "0e99801ee707e95051f0bb7b25e7de27651b61971011985e74065a6b027bff57",
         "affectsGlobalScope": false
       },
       "./node_modules/chart.js/types/utils.d.ts": {
@@ -7977,8 +7977,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/lineplot.tsx": {
-        "version": "bd074e743fc627ea41445a013ef9de4e87a578e6216a8d7b2d1e371104261ea4",
-        "signature": "ca381fc077b4a99b504a37958a7a550059d12bd7634ac4c8012b293cb6756022",
+        "version": "3c94503338d4d6a05340d8d74347abdd8cea6962b7e7919d6df1d8cad8a1ccad",
+        "signature": "e628fe73c8a80cdb4505f60a5491c367a9b327fc886a3c9a6bda77baa9fbae4a",
         "affectsGlobalScope": false
       },
       "./components/calendar/calendarlist.tsx": {
@@ -7997,8 +7997,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/userimg.tsx": {
-        "version": "cd4e3449aa3b076be2ac1a408096d07c03a4f8f9a71fdd14945d11041ea362a5",
-        "signature": "4a35c1e09ca8e0592ec92da0aad18baa39c78fda30bc4e1e18589ce6dd20dc45",
+        "version": "0655ea8f6f15ff99d14db2de6b8e166f9f47fd1475e72bb0a594638ca0426999",
+        "signature": "18ef2bcc954fc906098649e3702f9211b135513fa316164f8fe20e516e04dd18",
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
@@ -8007,13 +8007,13 @@
         "affectsGlobalScope": false
       },
       "./components/common/mypage.tsx": {
-        "version": "8fc1cc433f9530a64244bf379f7f9368c5093ada62489883b54e4b9134611f5b",
-        "signature": "4e5c1975fe5830402d04dec8225ba5f565946590384446aa9fde28e198e0a23f",
+        "version": "6ed96fd7f3bfd688afb9fb664bb509640a91dfaf987d5df256f3adb12941c45f",
+        "signature": "8a5ab896fd75a3d1c00fe9dabc9b280e9e82701eec3615073b21772f9db0dfe3",
         "affectsGlobalScope": false
       },
       "./components/common/header.tsx": {
-        "version": "9fe792f3c9a1e749791dbca588264094f9033076004fc0c3267b6bd81115d999",
-        "signature": "85b8a3fe361b3542f54b5d04ac0b50ae7ce2ff12c4ef3848aa0fe51946faafe7",
+        "version": "32ade77c74851dbd005cda53cf17d7d6e82d892c936fd164fef2bd13f45378b3",
+        "signature": "4c8368a9935bce0ce23e2b59f863811f88818dc5c6408e90d913f46ed9aecb0e",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/task.d.ts": {
@@ -8037,13 +8037,13 @@
         "affectsGlobalScope": false
       },
       "./components/common/navigation.tsx": {
-        "version": "3759fe73a18f7f72340c9e11c2233779ee669ee61d1ac98adb3b61817efd9053",
-        "signature": "842900eeb39330214451cf4b9c518826526c66eedcf8f801022abaf1c2989762",
+        "version": "cf8be186c35010c4f25f355ea3169a80b5c8cd65292628b9abc6a268154ea745",
+        "signature": "aa8ce5c61f2428d1b89ea7b6d2a4b3d270711f00dc8202c2ba50eeb41ea4e52d",
         "affectsGlobalScope": false
       },
       "./components/common/simpletable.tsx": {
-        "version": "18c2f3439a9490c3d8f587fe82aedd7733de5000414837164872004a08e8553b",
-        "signature": "b397409cadf2f8b1e777ba4cc1e8758ed782d76d5a33168588a7a0ecdffd7003",
+        "version": "37352c757238643f75f331a7ab3febda729fbcfe8d38bef3fb7be1e13db776b0",
+        "signature": "baaa203d325c73c323cd4dd6353650e3c0bfdecd17b29ed38b5ff543273b9dba",
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
@@ -8072,7 +8072,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/friendlist.tsx": {
-        "version": "80a7329d27f77e15132dbb4a9adab5041c360ea62001e8dc3e807bbc78a066a3",
+        "version": "f5b7e8f741b876b425a13035d077efcd622d0fdc4cfd9aa030fdf6df837bd85e",
         "signature": "2157180923c6f8e81600b60497fdd6b398ad142af98cce56799d0ffb60257cf9",
         "affectsGlobalScope": false
       },
@@ -8613,7 +8613,7 @@
       },
       "./components/goal/creategoal.tsx": {
         "version": "8dae85df5334b13ebeb09baca2ef8dd436aa45ff9c7ed56eba055ae10cc760e3",
-        "signature": "75b41f3eaa59bc99f8118b129f66aafc92ab982f439de19f9a677368c1cba728",
+        "signature": "8700a215d2aaf3c4f0055fdb34c2774ce86bc41725d611e4098c6c614317354f",
         "affectsGlobalScope": false
       },
       "./components/goal/goalitem.tsx": {
@@ -8627,13 +8627,13 @@
         "affectsGlobalScope": false
       },
       "./layouts/default.tsx": {
-        "version": "ef149a213a16b192870be04666ec9fe0d8fbdcd9a2dd4c5019a079ca6f9fe673",
-        "signature": "c920d2d6ee1fae7554a9e566e020b493b054685d43fd0e99750bcf359d7c2802",
+        "version": "9898a4c1035b6d2828e7aa8329b3e5f72b378c953cd3dc34f6887f492b82c629",
+        "signature": "9ab94a255ceb10231a1d955174e7b7737069519243be273c83232f16d45b8ecd",
         "affectsGlobalScope": false
       },
       "./layouts/login.tsx": {
-        "version": "f18ae5a845c4c412b1d61f2dadeabf7ca39f4ea1f9f056cdf23133619e397a3e",
-        "signature": "7ea1b6c32f13c42bd93be25ff99963ccde8042575d4a026aca9ce37278148ac8",
+        "version": "b8c29ffa21c94cc771cb9576ba392e8a7f34da8e56537129271185dda447becc",
+        "signature": "c78cb750a4f6a5f7d3d0f354f03bb4d137f698f8f6fc103f7f5185c38da45acc",
         "affectsGlobalScope": false
       },
       "./node_modules/@date-io/date-fns/type/index.d.ts": {
@@ -8677,7 +8677,7 @@
         "affectsGlobalScope": false
       },
       "./pages/calendar/index.tsx": {
-        "version": "3b377c56a3964e7416b2984d380441842378c906616c279dd00555d2e37a663d",
+        "version": "d29f543f71f2e240fdb854d5a42f57e2e2e510d0be151977914cdcfa5aea9d78",
         "signature": "b282ae1bf39d290dec8996c34de5294ac4998225decd5d9d96bbec2eb14c4316",
         "affectsGlobalScope": false
       },
@@ -8707,7 +8707,7 @@
         "affectsGlobalScope": false
       },
       "./pages/task/index.tsx": {
-        "version": "1cd98d07d03dae705d688aaeffa8b8d97862ff7c7d16e63c702d9c69d7f3bcdc",
+        "version": "882cbbdc24455248d3e38cdc191d4e3c6f6438f3b09ba093bc3792bab06dad3b",
         "signature": "80072182a2f8d1b8fec1d9d1bcffce8ce86391f8ca72ecb7c5d789d55373ae5a",
         "affectsGlobalScope": false
       },
@@ -9025,7 +9025,8 @@
         "./node_modules/@types/react-redux/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/next/router.d.ts"
+        "./node_modules/next/router.d.ts",
+        "./types/common/statetype.d.ts"
       ],
       "./components/common/navigation.tsx": [
         "./node_modules/@mui/icons-material/group.d.ts",
@@ -9113,7 +9114,6 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./plugins/axios.ts",
         "./types/api/invitation/read/response.d.ts"
       ],
       "./components/goal/creategoal.tsx": [
@@ -9301,7 +9301,8 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/react-redux/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts"
+        "./node_modules/date-fns/typings.d.ts",
+        "./types/common/statetype.d.ts"
       ],
       "./next-env.d.ts": [
         "./node_modules/@types/node/util.d.ts",
@@ -20788,10 +20789,14 @@
         "./types/api/work/read/calendar/response.d.ts"
       ],
       "./layouts/default.tsx": [
-        "./node_modules/@types/react-redux/index.d.ts"
+        "./node_modules/@types/react-redux/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./types/common/statetype.d.ts"
       ],
       "./layouts/login.tsx": [
-        "./node_modules/@types/react-redux/index.d.ts"
+        "./node_modules/@types/react-redux/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./types/common/statetype.d.ts"
       ],
       "./next-env.d.ts": [
         "./node_modules/@types/node/util.d.ts",

@@ -5,14 +5,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
 type Props = {
-    datas: {
-        key: string,
-        value: string,
-    }[]
+  datas: {
+    key: string,
+    value: string,
+  }[]
 }
-export default function SimpleTable (props: Props) {
+const SimpleTable = (props: Props) => {
   return (
     <TableContainer
       component={Paper}>
@@ -31,4 +30,5 @@ export default function SimpleTable (props: Props) {
       </Table>
     </TableContainer>
   );
-}
+};
+export default SimpleTable;

@@ -3,15 +3,15 @@ import React from "react";
 import moment from "moment";
 import styled from "styled-components";
 type Props = {
-    day: number
+  day: number
 }
-export default function DayIcon (props: Props) {
+export default function DayIcon(props: Props) {
   const router = useRouter();
   const isToday = (): boolean => {
     return (
       props.day == nowDay() &&
-            year() == nowYear() &&
-            month() == nowMonth()
+      year() == nowYear() &&
+      month() == nowMonth()
     );
   };
   const year = (): number => {

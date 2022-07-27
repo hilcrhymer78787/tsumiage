@@ -3,10 +3,10 @@ import {
   Avatar,
 } from "@mui/material";
 type Props = {
-    fileName: string | undefined
-    size: string
+  fileName: string | undefined
+  size: string
 }
-export default function UserImg (props: Props) {
+const UserImg = (props: Props) => {
   const getUserImg = () => {
     if (!props.fileName) {
       return "";
@@ -26,4 +26,5 @@ export default function UserImg (props: Props) {
       }}
     />
   );
-}
+};
+export default UserImg;

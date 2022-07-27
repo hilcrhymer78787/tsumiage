@@ -5,12 +5,12 @@ import Layout from "@/layouts/default";
 import moment from "moment";
 import { stateType } from "@/types/common/stateType";
 const mapStateToProps = (state: stateType) => state;
-function Task (state: stateType) {
+function Task(state: stateType) {
   return (
     <Layout>
       <TaskList
         date={moment().format("YYYY-MM-DD")}
-        userId={state.loginInfo?.id ?? 0}
+        userId={state.loginInfo ? state.loginInfo.id : 0}
         readonly={false}
       />
     </Layout>

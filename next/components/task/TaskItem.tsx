@@ -21,7 +21,7 @@ type Props = {
   apiTaskRead: () => void
   readonly: boolean
 }
-export default function TaskItem (props: Props) {
+export default function TaskItem(props: Props) {
   const { workCreate, workCreateLoading, workDelete, workDeleteLoading } = useWorkApi();
   const [createWorkDialog, setCreateWorkDialog] = React.useState<boolean>(false);
   const apiWorkDelete = async () => {
