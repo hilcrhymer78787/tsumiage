@@ -13,14 +13,14 @@ const mapStateToProps = (state: any) => {
     loginInfo: state.loginInfo,
   };
 };
-function Header ({ loginInfo }:any) {
+function Header({ loginInfo }: any) {
   const [mypageDialog, setMypageDialog] = useState(false as boolean);
 
   return (
     <AppBar position="fixed" color="inherit">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE11</Typography>
+          <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
           <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
             <UserImg
               fileName={loginInfo.user_img}
@@ -31,7 +31,7 @@ function Header ({ loginInfo }:any) {
       </Container>
       <Dialog open={mypageDialog} onClose={() => { setMypageDialog(false); }}>
         {mypageDialog &&
-                    <Mypage />
+          <Mypage />
         }
       </Dialog>
     </AppBar>
