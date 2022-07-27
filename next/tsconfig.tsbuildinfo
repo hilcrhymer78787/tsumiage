@@ -981,9 +981,14 @@
         "signature": "bdc44a08b724ea51d00dea22595f026e99f693a69b040e393fb4d41dbde2fd2f",
         "affectsGlobalScope": false
       },
+      "./types/api/invitation/update/request.d.ts": {
+        "version": "64a1f285e58ee00be92033d9e661883984955ff2a4d6babfc80c89aa99819c5e",
+        "signature": "64a1f285e58ee00be92033d9e661883984955ff2a4d6babfc80c89aa99819c5e",
+        "affectsGlobalScope": false
+      },
       "./data/invitation.ts": {
-        "version": "c0a5e9c003245d96c6455d7ef406b4c20cc27c9aff589534026a8a90bbfce390",
-        "signature": "7705d2177a50943a34253782463ff9a0b76e90652abf88d7847fdbe3789efddb",
+        "version": "1aa563cce51f457fcd7fce65078cf3ca339216fb69d0612704ccd0a700653cfe",
+        "signature": "212d576293ff2aa69f218e9e86e3f7d57b726453f3d52d22802d334019f08680",
         "affectsGlobalScope": false
       },
       "./types/api/task/read/request.d.ts": {
@@ -1074,11 +1079,6 @@
       "./types/api/invitation/create/response.d.ts": {
         "version": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
         "signature": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
-        "affectsGlobalScope": false
-      },
-      "./types/api/invitation/update/request.d.ts": {
-        "version": "64a1f285e58ee00be92033d9e661883984955ff2a4d6babfc80c89aa99819c5e",
-        "signature": "64a1f285e58ee00be92033d9e661883984955ff2a4d6babfc80c89aa99819c5e",
         "affectsGlobalScope": false
       },
       "./types/api/task/sortset/request.d.ts": {
@@ -8012,8 +8012,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/header.tsx": {
-        "version": "416562d670670e00ba4c6bcc67b93470e03e3b9a6a6077d0265fb66f6ad9fa7d",
-        "signature": "7dd314746e67e9f870c12a2d05a8266bf72fb06fb82b28eb426215cbfe826fed",
+        "version": "9fe792f3c9a1e749791dbca588264094f9033076004fc0c3267b6bd81115d999",
+        "signature": "85b8a3fe361b3542f54b5d04ac0b50ae7ce2ff12c4ef3848aa0fe51946faafe7",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/task.d.ts": {
@@ -8047,18 +8047,18 @@
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "e097b0fb3b893259d01d6333368d04fe73c5ee52bca447811afdec88caa58548",
-        "signature": "de7f29b3ae68c9fdfd5fe4ec2c91c981156f8c25f434a47ede12b3e3e45b25dc",
+        "version": "5edc583815d29986e53f5a56195e271f91928fd6b00d1924db20d10e6c9e85ad",
+        "signature": "d25d795038ced1c8311dc7807b3220cfb3127c079f8eeafff9708ae733d34b54",
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemfrom.tsx": {
-        "version": "d5087447b406ab6db50291b23db78c5740bacc0cb54415724fddcddc1307ee9d",
-        "signature": "335dc100956a7768d180e6fc49b38b2245dfd7ab5a4f12d800c9cb6a60ffc69d",
+        "version": "419dd72302c07b324dc12c5ca7130e172f883b80a8373812e80442806887e06d",
+        "signature": "2f969d485e214f3ff2dead8320af1ce1e3d72e11a88b77e9ee24900bc2fb1daa",
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "2e1f687a3481cd67cbc8d56747323daa9dbe29d967f81a2506b8aee62dfb7d0e",
-        "signature": "884358ba27e617a5a69d78c6da7460250e710bec686a0e05fa02cd7cde88bc63",
+        "version": "e128f7d0b53020deb9f813bb71ecb3418c16d8867208ee167939cde08018bee2",
+        "signature": "18a8e07e6bdfa5de11f738142c393f2c971dde21c1cdca68b3019a7c17836e5c",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/cancel.d.ts": {
@@ -8067,13 +8067,13 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemto.tsx": {
-        "version": "f5b2b50121935f953f16d9744053efe4d558cfe3ad34df7e7932ab99d3a100f6",
-        "signature": "631c9e2beb8f9c72438c6ee702ed83ed5da73ad695f27a13aa08af2b3450daba",
+        "version": "b9b3f536208794330339c1d4d50a337f031e7b5f6c528045814b7f36d0aecc03",
+        "signature": "3ec33854db5c70ea45742eec8aff52ab6eda4ec6381dbd31a85197d092524ca0",
         "affectsGlobalScope": false
       },
       "./components/friend/friendlist.tsx": {
-        "version": "08cfb9a0b7f419d59a94e8017bd65daa9bb9d056c7e085b16ce0e7c5d85170d8",
-        "signature": "1b4c8be91493648db0c1cc7829712d546234026505e1a60a8aad7344cd9dca7d",
+        "version": "80a7329d27f77e15132dbb4a9adab5041c360ea62001e8dc3e807bbc78a066a3",
+        "signature": "2157180923c6f8e81600b60497fdd6b398ad142af98cce56799d0ffb60257cf9",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/x-date-pickers/internals/models/views.d.ts": {
@@ -8628,7 +8628,7 @@
       },
       "./layouts/default.tsx": {
         "version": "ef149a213a16b192870be04666ec9fe0d8fbdcd9a2dd4c5019a079ca6f9fe673",
-        "signature": "39c0939792c6198253c3b0a47f913e43248ce6469614a7a709ca4ff44a9bc6a8",
+        "signature": "c920d2d6ee1fae7554a9e566e020b493b054685d43fd0e99750bcf359d7c2802",
         "affectsGlobalScope": false
       },
       "./layouts/login.tsx": {
@@ -9078,14 +9078,10 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./plugins/axios.ts",
-        "./types/api/invitation/delete/request.d.ts",
-        "./types/api/invitation/read/response.d.ts",
-        "./types/api/invitation/update/request.d.ts"
+        "./types/api/invitation/read/response.d.ts"
       ],
       "./components/friend/frienditemnow.tsx": [
         "./components/common/userimg.tsx",
-        "./data/invitation.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/react/index.d.ts",
@@ -9103,8 +9099,6 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./plugins/axios.ts",
-        "./types/api/invitation/delete/request.d.ts",
         "./types/api/invitation/read/response.d.ts"
       ],
       "./components/friend/friendlist.tsx": [
@@ -9255,7 +9249,8 @@
         "./plugins/axios.ts",
         "./types/api/invitation/create/request.d.ts",
         "./types/api/invitation/delete/request.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./types/api/invitation/read/response.d.ts",
+        "./types/api/invitation/update/request.d.ts"
       ],
       "./data/task.ts": [
         "./node_modules/@types/node/util.d.ts",
@@ -20769,7 +20764,8 @@
         "./node_modules/axios/index.d.ts",
         "./types/api/invitation/create/request.d.ts",
         "./types/api/invitation/delete/request.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./types/api/invitation/read/response.d.ts",
+        "./types/api/invitation/update/request.d.ts"
       ],
       "./data/task.ts": [
         "./node_modules/axios/index.d.ts",
