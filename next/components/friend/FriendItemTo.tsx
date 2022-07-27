@@ -1,10 +1,6 @@
 import * as React from "react";
-import { api } from "@/plugins/axios";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
-import { apiInvitationDeleteRequestType } from "@/types/api/invitation/delete/request";
 import {
-  Avatar,
   IconButton,
   ListItem,
   ListItemButton,
@@ -14,38 +10,34 @@ import {
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import UserImg from "@/components/common/UserImg";
+import { useInvitationApi } from "@/data/invitation";
+import axios from "axios";
 
 type Props = {
-    friend: apiInvitationResponseFriendType
-    friendRead: any
+  friend: apiInvitationResponseFriendType
+  friendRead: () => void
 }
-export default function FriendItemTo (props: Props) {
-  const [invitationDeleteLoading, setinvitationDeleteLoading] = React.useState<boolean>(false);
-  const invitationDelete = () => {
-    if (!confirm(`「${props.friend.name}」さんの招待を中止しますか？`)) {
-      return;
-    }
-    const apiParam: apiInvitationDeleteRequestType = {
-      invitation_id: props.friend.invitation_id
-    };
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/invitation/delete",
-      method: "DELETE",
-      data: apiParam
-    };
-    setinvitationDeleteLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse) => {
-        props.friendRead();
-      })
-      .finally(() => {
-        setinvitationDeleteLoading(false);
+const FriendItemTo = (props: Props) => {
+  const { invitationDelete, invitationDeleteLoading } = useInvitationApi();
+  const apiInvitationDelete = async () => {
+    if (!confirm(`「${props.friend.name}」さんの招待を中止しますか？`)) return;
+    try {
+      await invitationDelete({
+        invitation_id: props.friend.invitation_id
       });
+      props.friendRead();
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラーが発生しました");
+      }
+    }
   };
   return (
     <ListItem sx={{ p: 0 }}
       secondaryAction={
-        <IconButton onClick={invitationDelete}>
+        <IconButton onClick={apiInvitationDelete}>
           {invitationDeleteLoading ?
             <CircularProgress color="error" size={25} />
             :
@@ -68,4 +60,5 @@ export default function FriendItemTo (props: Props) {
       </ListItemButton>
     </ListItem >
   );
-}
+};
+export default FriendItemTo;

@@ -11,10 +11,10 @@ import {
 import UserImg from "@/components/common/UserImg";
 import moment from "moment";
 type Props = {
-    friend: apiInvitationResponseFriendType
-    friendRead: any
+  friend: apiInvitationResponseFriendType
+  friendRead: any
 }
-export default function FriendItemNow (props: Props) {
+const FriendItemNow = (props: Props) => {
   const nowYear = (): number => {
     return Number(moment().format("Y"));
   };
@@ -39,4 +39,5 @@ export default function FriendItemNow (props: Props) {
       </ListItemButton>
     </ListItem>
   );
-}
+};
+export default FriendItemNow;

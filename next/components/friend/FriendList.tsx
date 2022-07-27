@@ -15,33 +15,32 @@ import {
   CardContent,
   CircularProgress,
 } from "@mui/material";
-export default function GoalList () {
-  const [createInvitationDialog, setCreateInvitationDialog] = useState(false as boolean);
-
-  const [friendData, setFriendData] = useState({
+import { useInvitationApi } from "@/data/invitation";
+import axios from "axios";
+const FriendList = () => {
+  const { invitationRead, invitationReadLoading } = useInvitationApi();
+  const [createInvitationDialog, setCreateInvitationDialog] = useState<boolean>(false);
+  const [friendData, setFriendData] = useState<apiInvitationResponseType>({
     fromFriends: [],
     nowFriends: [],
     toFriends: [],
-  } as apiInvitationResponseType);
-  const [friendReadLoading, setFriendReadLoading] = useState(false as boolean);
+  });
 
-  const friendRead = () => {
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/invitation/read",
-      method: "GET",
-    };
-    setFriendReadLoading(true);
-    api(requestConfig)
-      .then((res: AxiosResponse<apiInvitationResponseType>) => {
-        setFriendData(res.data);
-      })
-      .finally(() => {
-        setFriendReadLoading(false);
-      });
+  const apiFriendRead = async () => {
+    try {
+      const res = await invitationRead();
+      setFriendData(res.data);
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        alert(`${e?.response?.status}：${e?.response?.statusText}`);
+      } else {
+        alert("予期せぬエラーが発生しました");
+      }
+    }
   };
 
   useEffect(() => {
-    friendRead();
+    apiFriendRead();
   }, []);
 
   return (
@@ -55,66 +54,67 @@ export default function GoalList () {
           }
           title="友達"
         />
-        {friendReadLoading && !Boolean(friendData.nowFriends.length) &&
-                    <CardContent
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        p: "30px"
-                      }}>
-                      <CircularProgress />
-                    </CardContent>
-        }
-        {!friendReadLoading && !Boolean(friendData.nowFriends.length) &&
-                    <CardContent
-                      sx={{
-                        textAlign: "center",
-                        p: "20px !important"
-                      }}>
-                            登録されている友達はいません
-                    </CardContent>
-        }
-        {Boolean(friendData.nowFriends.length) && friendData.nowFriends.map((friend, index) => (
+        {invitationReadLoading && !friendData.nowFriends.length && (
+          <CardContent
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              p: "30px"
+            }}>
+            <CircularProgress />
+          </CardContent>
+        )}
+        {!invitationReadLoading && !friendData.nowFriends.length && (
+          <CardContent
+            sx={{
+              textAlign: "center",
+              p: "20px !important"
+            }}>
+            登録されている友達はいません
+          </CardContent>
+        )}
+        {!!friendData.nowFriends.length && friendData.nowFriends.map((friend, index) => (
           <FriendItemNow
-            friendRead={friendRead}
+            friendRead={apiFriendRead}
             friend={friend}
             key={index.toString()}
           />
         ))}
       </Card>
-      {Boolean(friendData.fromFriends.length) &&
-                <Card sx={{ mb: "20px" }}>
-                  <CardHeader title="友達申請が来ています"/>
-                  {friendData.fromFriends.map((friend, index) => (
-                    <FriendItemFrom
-                      friendRead={friendRead}
-                      friend={friend}
-                      key={index.toString()}
-                    />
-                  ))}
-                </Card>
-      }
-      {Boolean(friendData.toFriends.length) &&
-                <Card sx={{ mb: "20px" }}>
-                  <CardHeader title="友達申請中"/>
-                  {friendData.toFriends.map((friend, index) => (
-                    <FriendItemTo
-                      friendRead={friendRead}
-                      friend={friend}
-                      key={index.toString()}
-                    />
-                  ))}
-                </Card>
-      }
+      {!!friendData.fromFriends.length && (
+        <Card sx={{ mb: "20px" }}>
+          <CardHeader title="友達申請が来ています" />
+          {friendData.fromFriends.map((friend, index) => (
+            <FriendItemFrom
+              friendRead={apiFriendRead}
+              friend={friend}
+              key={index.toString()}
+            />
+          ))}
+        </Card>
+      )}
+      {!!friendData.toFriends.length && (
+        <Card sx={{ mb: "20px" }}>
+          <CardHeader title="友達申請中" />
+          {friendData.toFriends.map((friend, index) => (
+            <FriendItemTo
+              friendRead={apiFriendRead}
+              friend={friend}
+              key={index.toString()}
+            />
+          ))}
+        </Card>
+      )}
       <Dialog open={createInvitationDialog}
         onClose={() => {
           setCreateInvitationDialog(false);
-          friendRead();
+          apiFriendRead();
         }}>
-        {createInvitationDialog &&
-                    <CreateFriend />
-        }
+        {createInvitationDialog && (
+          <CreateFriend />
+        )}
       </Dialog>
     </>
   );
-}
+};
+export default FriendList;
