@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,10 +7,11 @@ import Container from "@mui/material/Container";
 import Dialog from "@mui/material/Dialog";
 import Mypage from "@/components/common/Mypage";
 import UserImg from "@/components/common/UserImg";
-import { stateType } from "@/types/common/stateType";
-const mapStateToProps = (state: stateType) => state;
-const Header = (state: stateType) => {
-  const [mypageDialog, setMypageDialog] = useState(false as boolean);
+import { loginInfoAtom } from "@/data/user";
+import { useRecoilValue } from "recoil";
+const Header = () => {
+  const loginInfo = useRecoilValue(loginInfoAtom);
+  const [mypageDialog, setMypageDialog] = useState<boolean>(false);
   return (
     <AppBar position="fixed" color="inherit">
       <Container maxWidth="xl">
@@ -19,7 +19,7 @@ const Header = (state: stateType) => {
           <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
           <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
             <UserImg
-              fileName={state.loginInfo ? state.loginInfo.user_img : ''}
+              fileName={loginInfo?.user_img}
               size="40"
             />
           </IconButton>
@@ -33,4 +33,4 @@ const Header = (state: stateType) => {
     </AppBar>
   );
 };
-export default connect(mapStateToProps)(Header);
+export default Header;

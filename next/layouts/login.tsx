@@ -1,22 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
 import Container from "@mui/material/Container";
-import { stateType } from "@/types/common/stateType";
-const mapStateToProps = (state: stateType) => {
-  return {
-    state: state,
-  };
-};
+import { loginInfoAtom } from "@/data/user";
+import { useRecoilValue } from "recoil";
+import Router from "next/router";
 type Props = {
   children: React.ReactNode;
-  state: stateType;
 }
-function LoginLayout({ children, state }: Props) {
-  if (state?.loginInfo !== false) return <></>;
+function LoginLayout({ children }: Props) {
+  const loginInfo = useRecoilValue(loginInfoAtom);
+  React.useEffect(() => {
+    if (loginInfo) {
+      Router.push("/");
+    };
+  }, [])
   return (
     <Container sx={{ p: "10px" }} maxWidth="xs">
       {children}
     </Container>
   );
 }
-export default connect(mapStateToProps)(LoginLayout);
+export default LoginLayout;

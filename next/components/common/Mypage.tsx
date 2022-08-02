@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -11,22 +11,18 @@ import {
   ListItemText,
 } from "@mui/material";
 import CreateUser from "@/components/user/CreateUser";
-import { connect } from "react-redux";
 import Router from "next/router";
 import UserImg from "@/components/common/UserImg";
-import { stateType } from "@/types/common/stateType";
-const mapStateToProps = (state: stateType) => {
-  return {
-    loginInfo: state.loginInfo,
-  };
-};
-const Mypage = ({ dispatch, loginInfo }: any) => {
-  const [createUserDialog, setCreateUserDialog] = useState(false as boolean);
+import { loginInfoAtom } from "@/data/user";
+import { useRecoilValue } from "recoil";
+import { useSetRecoilState } from "recoil";
+const Mypage = () => {
+  const setLoginInfo = useSetRecoilState(loginInfoAtom);
+  const loginInfo = useRecoilValue(loginInfoAtom);
+  const [createUserDialog, setCreateUserDialog] = useState<boolean>(false);
   const logout = () => {
     if (!confirm("ログアウトしますか？")) return;
-    localStorage.removeItem("token");
-    Router.push("/login");
-    dispatch({ type: "setLoginInfo", value: false });
+    Router.push("/logout");
   };
   return (
     <Card>
@@ -35,14 +31,14 @@ const Mypage = ({ dispatch, loginInfo }: any) => {
         <ListItem sx={{ p: 0 }}>
           <ListItemAvatar>
             <UserImg
-              fileName={loginInfo.user_img}
+              fileName={loginInfo?.user_img}
               size="70"
             />
           </ListItemAvatar>
           <ListItemText
             sx={{ ml: "15px", }}
-            primary={loginInfo.name}
-            secondary={loginInfo.email}
+            primary={loginInfo?.name}
+            secondary={loginInfo?.email}
           />
         </ListItem>
       </CardContent>
@@ -66,4 +62,4 @@ const Mypage = ({ dispatch, loginInfo }: any) => {
     </Card>
   );
 };
-export default connect(mapStateToProps)(Mypage);
+export default Mypage;

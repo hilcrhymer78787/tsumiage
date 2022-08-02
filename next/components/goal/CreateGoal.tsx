@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { MINUTE } from "@/static/const";
-import { connect } from "react-redux";
 import moment from "moment";
 import LinePlot from "@/components/common/LinePlot";
 import { apiGoalReadResponseGoalsType } from "@/types/api/goal/read/response";
@@ -24,18 +23,14 @@ import { LoadingButton } from "@mui/lab";
 import { useTaskApi } from "@/data/task";
 import { useGoalApi } from "@/data/goal";
 import axios from "axios";
-import { stateType } from "@/types/common/stateType";
-const mapStateToProps = (state: stateType, props: Props) => {
-  return {
-    state: state,
-    props: props
-  };
-};
+import { loginInfoAtom } from "@/data/user";
+import { useRecoilValue } from "recoil";
 type Props = {
   focusGoal: apiGoalReadResponseGoalsType | null
   onCloseMyself: () => void
 }
-const Creategoal = ({ state, props }: { state: stateType, props: Props }) => {
+const Creategoal = (props: Props) => {
+  const loginInfo = useRecoilValue(loginInfoAtom);
   const { taskRead } = useTaskApi();
   const { goalCreate, goalCreateLoading, goalDelete, goalDeleteLoading } = useGoalApi();
   const [tasks, setTasks] = useState<apiTaskReadResponseTaskType[]>([]);
@@ -108,7 +103,7 @@ const Creategoal = ({ state, props }: { state: stateType, props: Props }) => {
     try {
       const res = await taskRead({
         date: moment().format("YYYY-MM-DD"),
-        user_id: state.loginInfo ? state.loginInfo.id : 0
+        user_id: loginInfo?.id ?? 0
       });
       setTasks(res.data.tasks);
       if (!props.focusGoal) {
@@ -256,4 +251,4 @@ const Creategoal = ({ state, props }: { state: stateType, props: Props }) => {
     </Card>
   );
 };
-export default connect(mapStateToProps)(Creategoal);
+export default Creategoal;

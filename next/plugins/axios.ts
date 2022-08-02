@@ -1,7 +1,6 @@
 import Router from "next/router";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import axios from "axios";
-import store from "@/store/index";
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -19,9 +18,6 @@ api.interceptors.response.use(
     if (res.config.baseURL) {
       console.log(res.config.baseURL + res.config.url, res);
     }
-    if (Router.pathname == "/login" || Router.pathname == "/login/new") {
-      Router.push("/");
-    }
     return res;
   },
   (err: AxiosError) => {
@@ -34,10 +30,9 @@ api.interceptors.response.use(
       alert("一定時間にアクセスが集中したため、しばらくアクセスできません");
     }
     if (err.response?.status == 401) {
-      localStorage.removeItem("token");
-      store.dispatch({ type: "setLoginInfo", value: false });
       if (!(Router.pathname == "/login" || Router.pathname == "/login/new")) {
-        Router.push("/login");
+        Router.push("/logout");
+
       }
     }
     throw err;

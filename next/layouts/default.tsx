@@ -2,19 +2,20 @@ import React from "react";
 import Navigation from "@/components/common/Navigation";
 import Header from "@/components/common/Header";
 import Container from "@mui/material/Container";
-import { connect } from "react-redux";
-import { stateType } from "@/types/common/stateType";
-const mapStateToProps = (state: stateType) => {
-  return {
-    state: state,
-  };
-};
+import { loginInfoAtom } from "@/data/user";
+import { useRecoilValue } from "recoil";
+import Router from "next/router";
 type Props = {
   children: React.ReactNode;
-  state: stateType;
 }
-function Layout({ children, state }: Props) {
-  if (!state.loginInfo) return <></>;
+function Layout({ children }: Props) {
+  const loginInfo = useRecoilValue(loginInfoAtom);
+  React.useEffect(() => {
+    if (!loginInfo) {
+      Router.push("/login");
+    };
+  }, [])
+  if (!loginInfo) return <></>;
   return (
     <>
       <Header />
@@ -25,4 +26,4 @@ function Layout({ children, state }: Props) {
     </>
   );
 }
-export default connect(mapStateToProps)(Layout);
+export default Layout;

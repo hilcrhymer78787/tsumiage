@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
-import store from "@/store/index";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 import SendIcon from "@mui/icons-material/Send";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -19,6 +18,8 @@ import { LoadingButton } from "@mui/lab";
 import UserImg from "@/components/common/UserImg";
 import { useUserApi } from "@/data/user";
 import axios from "axios";
+import { loginInfoAtom } from "@/data/user";
+import { useSetRecoilState } from "recoil";
 type Props = {
   onCloseMyself: () => void
   loginInfo: apiUserBearerAuthenticationResponseType | null
@@ -26,6 +27,7 @@ type Props = {
 let inputRef: HTMLInputElement | null = null;
 let file: any = "";
 function CreateUser(props: Props) {
+  const setLoginInfo = useSetRecoilState(loginInfoAtom);
   const { createUser, createUserLoading } = useUserApi();
   const [uploadedImage, setUploadedImage] = useState<any>("");
   const [passwordEditMode, setPasswordEditMode] = useState<boolean>(true);
@@ -53,8 +55,9 @@ function CreateUser(props: Props) {
     try {
       const res = await createUser(postData);
       localStorage.setItem("token", res.data.token);
-      store.dispatch({ type: "setLoginInfo", value: res.data });
+      setLoginInfo(res.data);
       props.onCloseMyself();
+      Router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         if (e.response?.data.errorMessage) {

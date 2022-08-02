@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Router from "next/router";
 import SendIcon from "@mui/icons-material/Send";
 import LoginLayout from "@/layouts/login";
-import store from "@/store/index";
 import {
   Box,
   Card,
@@ -15,7 +14,10 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { useUserApi } from "@/data/user";
 import axios from "axios";
-function Login () {
+import { loginInfoAtom } from "@/data/user";
+import { useSetRecoilState } from "recoil";
+function Login() {
+  const setLoginInfo = useSetRecoilState(loginInfoAtom);
   const { testAuthentication, testAuthenticationLoading, basicAuthentication, basicAuthenticationLoading } = useUserApi();
   const [email, setEmail] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
@@ -25,7 +27,8 @@ function Login () {
     try {
       const res = await testAuthentication();
       localStorage.setItem("token", res.data.token);
-      store.dispatch({ type: "setLoginInfo", value: res.data });
+      setLoginInfo(res.data);
+      Router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         alert(`${e?.response?.status}：${e?.response?.statusText}`);
@@ -42,7 +45,8 @@ function Login () {
         password: password
       });
       localStorage.setItem("token", res.data.token);
-      store.dispatch({ type: "setLoginInfo", value: res.data });
+      setLoginInfo(res.data);
+      Router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         if (e.response?.data.errorMessage) {

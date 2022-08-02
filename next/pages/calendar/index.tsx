@@ -1,14 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
 import Layout from "@/layouts/default";
-import { stateType } from "@/types/common/stateType";
 import CalendarList from "@/components/calendar/CalendarList";
-const mapStateToProps = (state: stateType) => state;
-function Calendar(state: stateType) {
+import { loginInfoAtom } from "@/data/user";
+import { useRecoilValue } from "recoil";
+function Calendar() {
+  const loginInfo = useRecoilValue(loginInfoAtom);
   return (
     <Layout>
-      <CalendarList readonly={false} userId={state.loginInfo ? state.loginInfo.id : 0} />
+      <CalendarList readonly={false} userId={loginInfo?.id ?? 0} />
     </Layout>
   );
 }
-export default connect(mapStateToProps)(Calendar);
+export default Calendar;

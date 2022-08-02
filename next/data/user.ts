@@ -3,9 +3,17 @@ import { api } from "@/plugins/axios";
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";
 import { apiUserBasicAuthenticationResponseType } from "@/types/api/user/basicAuthentication/response";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError, Canceler } from "axios";
+import { atom } from "recoil";
 import { errorType } from "@/types/api/error";
-
+const CancelToken = axios.CancelToken;
+let setLoginInfoByTokenCancel: Canceler;
+export const loginInfoAtom = atom<apiUserBearerAuthenticationResponseType | null>({
+  key: 'loginInfo',
+  dangerouslyAllowMutability: true,
+  default: null,
+})
 export const useUserApi = (): {
   testAuthentication: () => Promise<AxiosResponse>;
   testAuthenticationLoading: boolean;
@@ -13,6 +21,8 @@ export const useUserApi = (): {
     params: apiUserBasicAuthenticationRequestType
   ) => Promise<AxiosResponse<apiUserBasicAuthenticationResponseType>>;
   basicAuthenticationLoading: boolean;
+  bearerAuthentication: () => Promise<AxiosResponse<apiUserBearerAuthenticationResponseType>>;
+  bearerAuthenticationLoading: boolean;
   createUser: (params: FormData) => Promise<AxiosResponse<apiUserCreateResponseType>>;
   createUserLoading: boolean;
 } => {
@@ -53,6 +63,24 @@ export const useUserApi = (): {
       });
   };
 
+  // bearerAuthentication
+
+  const [bearerAuthenticationLoading, setBearerAuthenticationLoading] = useState<boolean>(false);
+  const bearerAuthentication = async (): Promise<AxiosResponse<apiUserBearerAuthenticationResponseType>> => {
+    const requestConfig: AxiosRequestConfig = {
+      url: "/api/user/bearer_authentication",
+      method: "GET",
+      cancelToken: new CancelToken(c => {
+        setLoginInfoByTokenCancel = c;
+      }),
+    };
+    setBearerAuthenticationLoading(true);
+    return api(requestConfig)
+      .finally(() => {
+        setBearerAuthenticationLoading(false);
+      });
+  };
+
   // createUser
 
   const [createUserLoading, setCreateUserLoading] = useState<boolean>(false);
@@ -79,6 +107,8 @@ export const useUserApi = (): {
     testAuthenticationLoading,
     basicAuthentication,
     basicAuthenticationLoading,
+    bearerAuthentication,
+    bearerAuthenticationLoading,
     createUser,
     createUserLoading,
   };

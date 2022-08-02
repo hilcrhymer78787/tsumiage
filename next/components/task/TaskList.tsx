@@ -44,8 +44,8 @@ export default function TaskList(props: Props) {
   };
 
   React.useEffect(()=>{
-    apiTaskRead()
-  },[])
+    apiTaskRead();
+  },[]);
 
   return (
     <>
