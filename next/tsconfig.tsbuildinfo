@@ -6307,7 +6307,7 @@
         "affectsGlobalScope": false
       },
       "./pages/_app.tsx": {
-        "version": "cdc08ed8087febe7e18da48a6a257cdb9af768004ef4f5e16469ec2f555f37f9",
+        "version": "d7ca3334268642280577a9935ff326c71d99b3700996ba2089af731081f82d75",
         "signature": "4ecefffe15c8faa9455343c2c606751c241f65d3e326354747c007cc92e4397f",
         "affectsGlobalScope": false
       },

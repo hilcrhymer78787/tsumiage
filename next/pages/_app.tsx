@@ -9,6 +9,7 @@ import { loginInfoAtom, useUserApi } from "@/data/user";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/plugins/theme";
 import "@/styles/globals.scss";
+import ja from "date-fns/locale/ja";
 type AppInitProps = {
   setIsAuth: React.Dispatch<React.SetStateAction<boolean | null>>
 }
@@ -37,7 +38,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ThemeProvider theme={theme}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider
+          dateAdapter={AdapterDateFns}
+          adapterLocale={ja}
+        >
           <CssBaseline />
           <AppInit setIsAuth={setIsAuth} />
           {isAuth !== null && <Component {...pageProps} />}

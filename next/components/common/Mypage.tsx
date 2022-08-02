@@ -15,9 +15,7 @@ import Router from "next/router";
 import UserImg from "@/components/common/UserImg";
 import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
-import { useSetRecoilState } from "recoil";
 const Mypage = () => {
-  const setLoginInfo = useSetRecoilState(loginInfoAtom);
   const loginInfo = useRecoilValue(loginInfoAtom);
   const [createUserDialog, setCreateUserDialog] = useState<boolean>(false);
   const logout = () => {
