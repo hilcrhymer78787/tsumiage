@@ -83,7 +83,7 @@ function Login() {
               <Box sx={{ mb: "15px" }}>
                 <TextField
                   onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
-                  error={Boolean(emailError)}
+                  error={!!emailError}
                   helperText={emailError}
                   value={email}
                   onChange={(e) => { setEmail(e.currentTarget.value); }}
@@ -95,7 +95,7 @@ function Login() {
               <Box sx={{ mb: "15px" }}>
                 <TextField
                   onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
-                  error={Boolean(passwordError)}
+                  error={!!passwordError}
                   helperText={passwordError}
                   value={password}
                   onChange={(e) => { setPassword(e.currentTarget.value); }}

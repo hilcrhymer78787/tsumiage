@@ -75,13 +75,13 @@ export default function TaskItem(props: Props) {
   };
   return (
     <ListItem sx={{ p: 0 }}
-      secondaryAction={!Boolean(props.readonly) && (
+      secondaryAction={!props.readonly && (
         <QuickIcon />
       )}
     >
       <ListItemButton sx={{ p: "8px 48px 8px 16px" }}>
         <ListItemAvatar onClick={() => { setCreateWorkDialog(true); }}>
-          <Avatar sx={{ background: Boolean(props.task.work.id) ? "linear-gradient(#62b1ff,#1976d2);" : "" }}>
+          <Avatar sx={{ background: !!props.task.work.id ? "linear-gradient(#62b1ff,#1976d2);" : "" }}>
             <TaskOutlinedIcon />
           </Avatar>
         </ListItemAvatar>

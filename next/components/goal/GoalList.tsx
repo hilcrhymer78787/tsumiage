@@ -47,7 +47,7 @@ export default function GoalList() {
           }
           title={"目標" + (goals.length ? `（${goals.length}件）` : "")}
         />
-        {goalReadLoading && !Boolean(goals.length) && (
+        {goalReadLoading && !goals.length && (
           <CardContent
             sx={{
               display: "flex",
@@ -57,7 +57,7 @@ export default function GoalList() {
             <CircularProgress />
           </CardContent>
         )}
-        {!goalReadLoading && !Boolean(goals.length) && (
+        {!goalReadLoading && !goals.length && (
           <CardContent
             sx={{
               textAlign: "center",
@@ -66,7 +66,7 @@ export default function GoalList() {
             登録されている目標はありません
           </CardContent>
         )}
-        {Boolean(goals.length) && (
+        {!!goals.length && (
           <CardContent sx={{ p: "0 !important" }}>
             {goals.map((goal, index) => (
               <GoalItem

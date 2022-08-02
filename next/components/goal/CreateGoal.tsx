@@ -166,7 +166,7 @@ const Creategoal = (props: Props) => {
               <Box sx={{ display: "flex" }}>
                 <Box sx={{ width: "42%", }}>
                   <TextField
-                    error={Boolean(hourError)}
+                    error={!!hourError}
                     value={hour}
                     onChange={(e) => { setHour(e.currentTarget.value); }}
                     variant="outlined" color="primary"
@@ -175,7 +175,7 @@ const Creategoal = (props: Props) => {
                 <Box sx={{ width: "16%", p: "20px 0 0 1%" }}>時間</Box>
                 <Box sx={{ width: "42%", }}>
                   <Select
-                    error={Boolean(hourError)}
+                    error={!!hourError}
                     sx={{ width: "100%", }}
                     value={minute}
                     onChange={(e) => { setMinute(Number(e.target.value)); }}
@@ -187,7 +187,7 @@ const Creategoal = (props: Props) => {
                 </Box>
               </Box>
             </Box>
-            {Boolean(hourError) &&
+            {!!hourError &&
               <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{hourError}</Typography>
             }
           </li>
@@ -223,7 +223,7 @@ const Creategoal = (props: Props) => {
                   />
                 </Box>
               </Box>
-              {Boolean(dateError) &&
+              {!!dateError &&
                 <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{dateError}</Typography>
               }
             </Box>

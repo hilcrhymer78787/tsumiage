@@ -89,7 +89,7 @@ export default function CreateTask(props: Props) {
           <li>
             <Box sx={{ mb: "15px" }}>
               <TextField
-                error={Boolean(nameError)}
+                error={!!nameError}
                 helperText={nameError}
                 value={formTask.name}
                 onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}

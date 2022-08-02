@@ -126,7 +126,7 @@ function CreateUser(props: Props) {
               alignItems: "center",
               mb: "20px"
             }}>
-              {Boolean(uploadedImage) && (
+              {!!uploadedImage && (
                 <Avatar
                   src={uploadedImage}
                   sx={{
@@ -136,7 +136,7 @@ function CreateUser(props: Props) {
                   }}
                 />
               )}
-              {!Boolean(uploadedImage) && (
+              {!uploadedImage && (
                 <UserImg
                   fileName={props.loginInfo?.user_img}
                   size="70"
@@ -160,7 +160,7 @@ function CreateUser(props: Props) {
             <Box sx={{ mb: "15px" }}>
               <TextField
                 onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                error={Boolean(nameError)}
+                error={!!nameError}
                 helperText={nameError}
                 value={name}
                 onChange={(e) => { setName(e.currentTarget.value); }}
@@ -172,7 +172,7 @@ function CreateUser(props: Props) {
             <Box sx={{ mb: "15px" }}>
               <TextField
                 onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                error={Boolean(emailError)}
+                error={!!emailError}
                 helperText={emailError}
                 value={email}
                 onChange={(e) => { setEmail(e.currentTarget.value); }}
@@ -185,7 +185,7 @@ function CreateUser(props: Props) {
               <Box sx={{ mb: "15px" }}>
                 <TextField
                   onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                  error={Boolean(passwordError)}
+                  error={!!passwordError}
                   helperText={passwordError}
                   value={password}
                   onChange={(e) => { setPassword(e.currentTarget.value); }}

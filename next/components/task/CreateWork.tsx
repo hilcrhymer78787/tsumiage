@@ -80,7 +80,7 @@ export default function CreateWork(props: Props) {
   return (
     <Card>
       <CardHeader
-        action={!Boolean(props.readonly) && (
+        action={!props.readonly && (
           <IconButton onClick={() => { setCreateTaskDialog(true); }} color="primary">
             <SettingsIcon />
           </IconButton>
@@ -143,7 +143,7 @@ export default function CreateWork(props: Props) {
           </li>
         </ul>
       </CardContent>
-      {!Boolean(props.readonly) && (
+      {!props.readonly && (
         <CardActions>
           <LoadingButton
             onClick={apiWorkDelete}

@@ -51,7 +51,7 @@ export default function TaskList(props: Props) {
     <>
       <Card>
         <CardHeader
-          action={!Boolean(props.readonly) && (
+          action={!props.readonly && (
             <IconButton onClick={() => setCreateTaskDialog(true)} component="span">
               <AddIcon color="primary" />
             </IconButton>
@@ -59,7 +59,7 @@ export default function TaskList(props: Props) {
           title="タスク"
           subheader={props.date}
         />
-        {Boolean(errorMessage) && (
+        {!!errorMessage && (
           <CardContent
             sx={{
               textAlign: "center",
@@ -67,7 +67,7 @@ export default function TaskList(props: Props) {
             }}>{errorMessage}
           </CardContent>
         )}
-        {taskReadLoading && !Boolean(tasks.length) && (
+        {taskReadLoading && !tasks.length && (
           <CardContent
             sx={{
               display: "flex",
@@ -77,7 +77,7 @@ export default function TaskList(props: Props) {
             <CircularProgress />
           </CardContent>
         )}
-        {Boolean(tasks.length) && (
+        {!!tasks.length && (
           <CardContent sx={{ p: "0 !important" }}>
             {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
               <TaskItem

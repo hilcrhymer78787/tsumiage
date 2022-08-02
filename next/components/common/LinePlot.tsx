@@ -33,7 +33,7 @@ const LinePlot = (props: Props) => {
 
   return (
     <Box sx={{ height: props.height }}>
-      {Boolean(props.data.datasets.length) && (
+      {!!props.data.datasets.length && (
         <Line
           data={props.data}
           options={options}

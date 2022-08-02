@@ -42,17 +42,17 @@ const CreateFriend = () => {
     <Card>
       <CardHeader title="友達申請" />
       <CardContent sx={{ p: "30px 15px", }} >
-        {!Boolean(successMessage) && (
+        {!successMessage && (
           <TextField
             onKeyPress={e => { if (e.key === "Enter") { apiInvitationCreate(); } }}
-            error={Boolean(emailError)}
+            error={!!emailError}
             helperText={emailError}
             value={email}
             onChange={(e) => { setEmail(e.currentTarget.value); }}
             label="メールアドレス" variant="outlined" color="primary"
           />
         )}
-        {Boolean(successMessage) && (
+        {!!successMessage && (
           <Typography
             sx={{
               color: "#1976d2",
@@ -64,7 +64,7 @@ const CreateFriend = () => {
 
       <CardActions disableSpacing>
         <Box></Box>
-        {!Boolean(successMessage) && (
+        {!successMessage && (
           <LoadingButton
             onClick={apiInvitationCreate}
             color="primary"
@@ -73,7 +73,7 @@ const CreateFriend = () => {
             申請<SendIcon />
           </LoadingButton>
         )}
-        {Boolean(successMessage) && (
+        {!!successMessage && (
           <LoadingButton
             onClick={() => {
               setEmail("");

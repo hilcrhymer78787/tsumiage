@@ -88,7 +88,7 @@ export default function CalendarList(props: Props) {
               <IndentItem key={index.toString()}>{day}</IndentItem>
             ))}
           </Indent>
-          {workReadCalendarLoading && !Boolean(calendarData.calendars.length) && (
+          {workReadCalendarLoading && !calendarData.calendars.length && (
             <Box sx={{
               display: "flex",
               justifyContent: "center",
@@ -111,7 +111,7 @@ export default function CalendarList(props: Props) {
                 >
                   <DayIcon day={index + 1} />
                   <ContentItemText>
-                    {Boolean(calendar.minute) ? `${calendar.minute}分` : ""}
+                    {!!calendar.minute ? `${calendar.minute}分` : ""}
                   </ContentItemText>
                 </CardActionArea>
               </ContentItem>
@@ -123,7 +123,7 @@ export default function CalendarList(props: Props) {
         </CardContent>
       </Card>
 
-      {Boolean(calendarData.analytics.datasets.length) && (
+      {!!calendarData.analytics.datasets.length && (
         <Card>
           <CardHeader title="データ" />
           <CardContent>
@@ -133,12 +133,12 @@ export default function CalendarList(props: Props) {
       )}
 
       <Dialog
-        open={Boolean(router.query.day)}
+        open={!!router.query.day}
         onClose={() => {
           getCalendarData(year(), month());
           Router.push(`${location.pathname}?year=${year()}&month=${month()}`);
         }}>
-        {Boolean(router.query.day) && (
+        {!!router.query.day && (
           <TaskList
             readonly={props.readonly}
             userId={props.userId}
