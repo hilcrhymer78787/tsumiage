@@ -3,7 +3,6 @@ import CreateTask from "@/components/task/CreateTask";
 import TaskItem from "@/components/task/TaskItem";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
 import AddIcon from "@mui/icons-material/Add";
-import { useMount } from "react-use";
 import { useTaskApi } from "@/data/task";
 import axios from "axios";
 import {
@@ -44,7 +43,9 @@ export default function TaskList(props: Props) {
     }
   };
 
-  useMount(() => apiTaskRead());
+  React.useEffect(()=>{
+    apiTaskRead()
+  },[])
 
   return (
     <>

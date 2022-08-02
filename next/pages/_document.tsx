@@ -1,25 +1,9 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-  DocumentInitialProps,
-} from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
-import React from "react";
-import { ServerStyleSheets as MaterialUIStyleSheets } from "@material-ui/core/styles";
-import { ServerStyleSheet as StyledComponentsStyleSheets } from "styled-components";
 class MyDocument extends Document {
-  static async getInitialProps (
-    ctx: DocumentContext
-  ): Promise<DocumentInitialProps> {
-    return await Document.getInitialProps(ctx);
-  }
-
   render () {
     return (
-      <Html lang="ja-JP" dir="ltr">
+      <Html>
         <Head>
           <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
           {/* windows */}
@@ -37,7 +21,6 @@ class MyDocument extends Document {
             sizes="180x180"
             href="/apple-touch-icon-180x180.png"
           />
-
           {/* Add to splash screen for Safari on iOS */}
           <link href="splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
           <link href="splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
@@ -66,34 +49,5 @@ class MyDocument extends Document {
     );
   }
 }
-
-MyDocument.getInitialProps = async (ctx) => {
-  const materialUISheets = new MaterialUIStyleSheets();
-  const styledComponentsSheets = new StyledComponentsStyleSheets();
-  const originalRenderPage = ctx.renderPage;
-
-  try {
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) => styledComponentsSheets.collectStyles(
-          materialUISheets.collect(<App {...props} />)
-        ),
-      });
-
-    const initialProps = await Document.getInitialProps(ctx);
-
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          {styledComponentsSheets.getStyleElement()}
-        </>
-      ),
-    };
-  } finally {
-    styledComponentsSheets.seal();
-  }
-};
 
 export default MyDocument;
