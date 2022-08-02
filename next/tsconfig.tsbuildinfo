@@ -5637,7 +5637,7 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "af790cc6b44987eac6c7f3711dffbcb989a08f67008fac83820a2ecbe8f87ecb",
+        "version": "9c0568201099b63250e243dfcb6cbd331701445d0ad6f265b14025f192b71b9b",
         "signature": "e51aba86d760c1cd2cd67ebcaa85bc5ac5a096240ce84e837a02e47a654cdfe9",
         "affectsGlobalScope": false
       },
@@ -6347,7 +6347,7 @@
         "affectsGlobalScope": false
       },
       "./pages/logout/index.tsx": {
-        "version": "b4f5408845302f799f0c90d5d7ee1ef28c497019240d6d34ef4a28faadb8671c",
+        "version": "2beb4fb501b9657f4700aade10adb094015ed54eeaee5799b7809aca7df8984a",
         "signature": "b3aefe92ee9805b83ecf9e21087caade164f2bbafde105ed3ad827760cf50ed6",
         "affectsGlobalScope": false
       },

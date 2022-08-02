@@ -25,7 +25,7 @@ type Props = {
   loginInfo: apiUserBearerAuthenticationResponseType | null
 }
 let inputRef: HTMLInputElement | null = null;
-let file: any = "";
+let file: File;
 function CreateUser(props: Props) {
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
   const { createUser, createUserLoading } = useUserApi();
@@ -95,11 +95,12 @@ function CreateUser(props: Props) {
     }
     return isError;
   };
-  const fileSelected = (e: any) => {
+  const fileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
     file = e.target.files[0];
     setUserImg(moment().format("YYYYMMDDHHmmss") + file.name);
     const reader: FileReader = new FileReader();
-    reader.onload = (e:ProgressEvent<FileReader>) => {
+    reader.onload = (e: ProgressEvent<FileReader>) => {
       setUploadedImage(e.target?.result);
     };
     reader.readAsDataURL(file);
