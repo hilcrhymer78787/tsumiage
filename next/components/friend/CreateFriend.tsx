@@ -2,7 +2,7 @@ import { LoadingButton } from "@mui/lab";
 import * as React from "react";
 import { TextField, Box, Card, CardHeader, CardActions, Typography } from "@mui/material";
 import { CardContent } from "@mui/material";
-import SendIcon from "@material-ui/icons/Send";
+import SendIcon from "@mui/icons-material/Send";
 import { useInvitationApi } from "@/data/invitation";
 import axios from "axios";
 const CreateFriend = () => {

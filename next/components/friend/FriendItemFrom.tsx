@@ -1,7 +1,7 @@
 import * as React from "react";
 import { LoadingButton } from "@mui/lab";
-import SendIcon from "@material-ui/icons/Send";
-import DeleteIcon from "@material-ui/icons/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import UserImg from "@/components/common/UserImg";
 import {

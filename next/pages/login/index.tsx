@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Router from "next/router";
-import SendIcon from "@material-ui/icons/Send";
+import SendIcon from "@mui/icons-material/Send";
 import LoginLayout from "@/layouts/login";
 import store from "@/store/index";
 import {

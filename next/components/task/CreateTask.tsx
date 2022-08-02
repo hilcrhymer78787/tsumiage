@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import SendIcon from "@material-ui/icons/Send";
-import DeleteIcon from "@material-ui/icons/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   TextField,
   Select,

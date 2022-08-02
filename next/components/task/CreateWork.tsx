@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import SendIcon from "@material-ui/icons/Send";
-import DeleteIcon from "@material-ui/icons/Delete";
-import SettingsIcon from "@material-ui/icons/Settings";
+import SendIcon from "@mui/icons-material/Send";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SettingsIcon from "@mui/icons-material/Settings";
 import CreateTask from "@/components/task/CreateTask";
 import { LoadingButton } from "@mui/lab";
 import {

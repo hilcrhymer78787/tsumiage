@@ -17,8 +17,8 @@ import {
   Typography,
   TextFieldProps,
 } from "@mui/material";
-import SendIcon from "@material-ui/icons/Send";
-import DeleteIcon from "@material-ui/icons/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { LoadingButton } from "@mui/lab";
 import { useTaskApi } from "@/data/task";
