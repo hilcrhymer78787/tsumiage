@@ -12,7 +12,7 @@ import UserImg from "@/components/common/UserImg";
 import moment from "moment";
 type Props = {
   friend: apiInvitationResponseFriendType
-  friendRead: any
+  friendRead: () => void
 }
 const FriendItemNow = (props: Props) => {
   const nowYear = (): number => {

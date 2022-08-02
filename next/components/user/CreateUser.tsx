@@ -23,7 +23,7 @@ type Props = {
   onCloseMyself: () => void
   loginInfo: apiUserBearerAuthenticationResponseType | null
 }
-let inputRef: any = "";
+let inputRef: HTMLInputElement | null = null;
 let file: any = "";
 function CreateUser(props: Props) {
   const { createUser, createUserLoading } = useUserApi();
@@ -95,9 +95,9 @@ function CreateUser(props: Props) {
   const fileSelected = (e: any) => {
     file = e.target.files[0];
     setUserImg(moment().format("YYYYMMDDHHmmss") + file.name);
-    const reader: any = new FileReader();
-    reader.onload = (e: any) => {
-      setUploadedImage(e.target.result);
+    const reader: FileReader = new FileReader();
+    reader.onload = (e:ProgressEvent<FileReader>) => {
+      setUploadedImage(e.target?.result);
     };
     reader.readAsDataURL(file);
   };
@@ -139,7 +139,7 @@ function CreateUser(props: Props) {
                 />
               )}
               <Button
-                onClick={() => inputRef.click()}
+                onClick={() => inputRef?.click()}
                 variant="contained"
                 sx={{ ml: "20px" }}
                 color="inherit">画像を選択<FileUploadIcon />

@@ -1584,11 +1584,12 @@
     "@mui/utils" "^5.9.1"
     prop-types "^15.8.1"
 
-"@mui/styled-engine-sc@^5.4.2":
-  version "5.8.0"
-  resolved "https://registry.yarnpkg.com/@mui/styled-engine-sc/-/styled-engine-sc-5.8.0.tgz#20bc536dce25739e38fcd2586f100e70fbf02065"
-  integrity sha512-46eRLWxjTF0d50Q1Q9tj96cgF41r7lesbXAy6kKocCdUfJ8rbIo36C4Ws8Pd7nfVsvaitTb7tmCbVQzDT3niJQ==
+"@mui/styled-engine-sc@^5.8.0":
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/@mui/styled-engine-sc/-/styled-engine-sc-5.9.3.tgz#e287fad4c1c42eea96e592301dec0a0fa7cc38c7"
+  integrity sha512-hpKZM+0SH1Vv0r2OsLgp9aH/3CwUjXoPJDAJXFaWnjC70zAOFxX5hUL/5OY6gSw9+vdjcSr7N0PopwiPXBxBKQ==
   dependencies:
+    "@babel/runtime" "^7.17.2"
     prop-types "^15.8.1"
 
 "@mui/styled-engine@^5.8.7":
@@ -6992,7 +6993,7 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-styled-components@^5.3.3:
+styled-components@^5.3.5:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-5.3.5.tgz#a750a398d01f1ca73af16a241dec3da6deae5ec4"
   integrity sha512-ndETJ9RKaaL6q41B69WudeqLzOpY1A/ET/glXkNZ2T7dPjPqpPCXXQjDFYZWwNnE5co0wX+gTCqx9mfxTmSIPg==

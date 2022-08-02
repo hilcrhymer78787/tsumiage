@@ -1,10 +1,10 @@
 import { createStore } from "redux";
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { api } from "@/plugins/axios";
-import axios from "axios";
+import axios, { Canceler } from "axios";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 const CancelToken = axios.CancelToken;
-let setLoginInfoByTokenCancel: any = null;
+let setLoginInfoByTokenCancel: Canceler;
 
 const initialState = {
   loginInfo: null,

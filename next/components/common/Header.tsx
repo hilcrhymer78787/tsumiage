@@ -8,12 +8,9 @@ import Container from "@mui/material/Container";
 import Dialog from "@mui/material/Dialog";
 import Mypage from "@/components/common/Mypage";
 import UserImg from "@/components/common/UserImg";
-const mapStateToProps = (state: any) => {
-  return {
-    loginInfo: state.loginInfo,
-  };
-};
-const Header = ({ loginInfo }: any) => {
+import { stateType } from "@/types/common/stateType";
+const mapStateToProps = (state: stateType) => state;
+const Header = (state: stateType) => {
   const [mypageDialog, setMypageDialog] = useState(false as boolean);
   return (
     <AppBar position="fixed" color="inherit">
@@ -22,7 +19,7 @@ const Header = ({ loginInfo }: any) => {
           <Typography color="primary" variant="h6" sx={{ flexGrow: 1 }}>TSUMIAGE</Typography>
           <IconButton onClick={() => { setMypageDialog(true); }} sx={{ p: 0 }}>
             <UserImg
-              fileName={loginInfo.user_img}
+              fileName={state.loginInfo ? state.loginInfo.user_img : ''}
               size="40"
             />
           </IconButton>

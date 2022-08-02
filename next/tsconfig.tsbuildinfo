@@ -927,7 +927,7 @@
         "affectsGlobalScope": false
       },
       "./store/index.ts": {
-        "version": "01d3b1612f4a3cd9a5356f92770957143a3b5c11b0d8f5dbdeec48204b5f2b18",
+        "version": "e68328ae8622a7ad0a16db961a7aeb69775d8185c649b6a29e379456d0248564",
         "signature": "4b3a31146408c4b66358a2485fea6de92e89720ca5cc3000033d14820b4083f8",
         "affectsGlobalScope": false
       },
@@ -1021,11 +1021,6 @@
         "signature": "3f94f439969c408d06ba7a34b3dc1dbf6cdce0b5dc485029be0e7681bf7cdb51",
         "affectsGlobalScope": false
       },
-      "./types/api/user/create/request.d.ts": {
-        "version": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
-        "signature": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
-        "affectsGlobalScope": false
-      },
       "./types/api/user/basicauthentication/request.d.ts": {
         "version": "d93d3fdf7d34d1daf7e1db12ba3eedf8f5e40746ae5fb10af83375f60a10c573",
         "signature": "d93d3fdf7d34d1daf7e1db12ba3eedf8f5e40746ae5fb10af83375f60a10c573",
@@ -1042,8 +1037,8 @@
         "affectsGlobalScope": false
       },
       "./data/user.ts": {
-        "version": "396df0167d7e8d55870f09e8f719a33aacebb55a99a85bae6622ba79d49c60be",
-        "signature": "45b4808d2266e1e42ddc5dd834d8801ecee656dba6f2fc082704ecd507bef410",
+        "version": "a47c1f57d0b288d5b58dc78592b2041f84e1e2d72ef5ff352ff2f9e7b042c9d9",
+        "signature": "898938b4594f3618970a27130e6ad58af71d1a350b8ab6824ef1bf6083e802b5",
         "affectsGlobalScope": false
       },
       "./types/api/work/read/calendar/request.d.ts": {
@@ -1067,7 +1062,7 @@
         "affectsGlobalScope": false
       },
       "./data/work.ts": {
-        "version": "32579d05173808830875779ad065e3f9da60c34ac5983292c9bdf7c55a942191",
+        "version": "3e7cbbbd765073739135ac11599a16c8466feb611590375ae22770386369f965",
         "signature": "cfcc16204ca9f92447cfacf374919a78e7d1a13d38928553a4001cf3279a8a1d",
         "affectsGlobalScope": false
       },
@@ -1084,6 +1079,11 @@
       "./types/api/task/sortset/request.d.ts": {
         "version": "6f3d28a561f5e26d716b0bb8394a35dd754b7ffce6ae8dabd5d71063aca9076b",
         "signature": "6f3d28a561f5e26d716b0bb8394a35dd754b7ffce6ae8dabd5d71063aca9076b",
+        "affectsGlobalScope": false
+      },
+      "./types/api/user/create/request.d.ts": {
+        "version": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
+        "signature": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
         "affectsGlobalScope": false
       },
       "./types/api/user/testauthentication/response.d.ts": {
@@ -8002,7 +8002,7 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "551256bd0b8a1cc87f1514bb7367475b51e7d57590b89354a026032c66f0d3d2",
+        "version": "26d34c2a974d95baa46d5ea025656343519ebe054530f9c875421abafaf78af7",
         "signature": "e51aba86d760c1cd2cd67ebcaa85bc5ac5a096240ce84e837a02e47a654cdfe9",
         "affectsGlobalScope": false
       },
@@ -8057,8 +8057,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "e128f7d0b53020deb9f813bb71ecb3418c16d8867208ee167939cde08018bee2",
-        "signature": "18a8e07e6bdfa5de11f738142c393f2c971dde21c1cdca68b3019a7c17836e5c",
+        "version": "170fedeb5484321247b901699770368e3e2f0f5e2085f9cd832aa6cdf160af65",
+        "signature": "b68bd1ec0d21abf43682de935b03fa0a28252db5aa4db3c93cf99d0b2e3f443d",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/cancel.d.ts": {
@@ -8612,8 +8612,8 @@
         "affectsGlobalScope": false
       },
       "./components/goal/creategoal.tsx": {
-        "version": "8dae85df5334b13ebeb09baca2ef8dd436aa45ff9c7ed56eba055ae10cc760e3",
-        "signature": "8700a215d2aaf3c4f0055fdb34c2774ce86bc41725d611e4098c6c614317354f",
+        "version": "725ff14db415d903436c6d2639657952b6b229b376b21ff2a9dc392af65739e6",
+        "signature": "1627b5a64ecc7dd0867f964fd128af9731afb152a02deedb472b3f123b07573a",
         "affectsGlobalScope": false
       },
       "./components/goal/goalitem.tsx": {
@@ -9133,7 +9133,8 @@
         "./node_modules/moment/ts3.1-typings/moment.d.ts",
         "./static/const.ts",
         "./types/api/goal/read/response.d.ts",
-        "./types/api/task/read/response.d.ts"
+        "./types/api/task/read/response.d.ts",
+        "./types/common/statetype.d.ts"
       ],
       "./components/goal/goalitem.tsx": [
         "./components/goal/creategoal.tsx",
@@ -9272,7 +9273,6 @@
         "./types/api/error.d.ts",
         "./types/api/user/basicauthentication/request.d.ts",
         "./types/api/user/basicauthentication/response.d.ts",
-        "./types/api/user/create/request.d.ts",
         "./types/api/user/create/response.d.ts"
       ],
       "./data/work.ts": [
@@ -20737,7 +20737,8 @@
       ],
       "./components/goal/creategoal.tsx": [
         "./node_modules/@types/react-redux/index.d.ts",
-        "./types/api/goal/read/response.d.ts"
+        "./types/api/goal/read/response.d.ts",
+        "./types/common/statetype.d.ts"
       ],
       "./components/goal/goalitem.tsx": [
         "./types/api/goal/read/response.d.ts"
@@ -31352,7 +31353,30 @@
       "./components/friend/frienditemnow.tsx",
       "./components/friend/frienditemto.tsx",
       "./components/friend/friendlist.tsx",
-      "./components/goal/creategoal.tsx",
+      [
+        "./components/goal/creategoal.tsx",
+        [
+          {
+            "file": "./components/goal/creategoal.tsx",
+            "start": 3537,
+            "length": 2,
+            "code": 2339,
+            "category": 1,
+            "messageText": {
+              "messageText": "Property 'id' does not exist on type 'false | apiUserBasicAuthenticationResponseType'.",
+              "category": 1,
+              "code": 2339,
+              "next": [
+                {
+                  "messageText": "Property 'id' does not exist on type 'false'.",
+                  "category": 1,
+                  "code": 2339
+                }
+              ]
+            }
+          }
+        ]
+      ],
       "./components/goal/goalitem.tsx",
       "./components/goal/goallist.tsx",
       "./components/task/createtask.tsx",

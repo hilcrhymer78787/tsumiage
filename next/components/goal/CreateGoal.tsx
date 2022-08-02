@@ -15,6 +15,7 @@ import {
   CardActions,
   TextField,
   Typography,
+  TextFieldProps,
 } from "@mui/material";
 import SendIcon from "@material-ui/icons/Send";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -23,17 +24,18 @@ import { LoadingButton } from "@mui/lab";
 import { useTaskApi } from "@/data/task";
 import { useGoalApi } from "@/data/goal";
 import axios from "axios";
-const mapStateToProps = (state: any, ownProps: Props) => {
+import { stateType } from "@/types/common/stateType";
+const mapStateToProps = (state: stateType, props: Props) => {
   return {
-    loginInfo: state.loginInfo,
-    props: ownProps
+    state: state,
+    props: props
   };
 };
 type Props = {
   focusGoal: apiGoalReadResponseGoalsType | null
   onCloseMyself: () => void
 }
-const Creategoal = ({ loginInfo, props }: any) => {
+const Creategoal = ({ state, props }: { state: stateType, props: Props }) => {
   const { taskRead } = useTaskApi();
   const { goalCreate, goalCreateLoading, goalDelete, goalDeleteLoading } = useGoalApi();
   const [tasks, setTasks] = useState<apiTaskReadResponseTaskType[]>([]);
@@ -46,7 +48,7 @@ const Creategoal = ({ loginInfo, props }: any) => {
   const [hourError, setHourError] = useState<string>("");
   const [dateError, setDateError] = useState<string>("");
   const apiGoalDelete = async () => {
-    if (!confirm(`「${props.focusGoal.task_name}」を削除しますか？`)) return;
+    if (!confirm(`「${props?.focusGoal?.task_name}」を削除しますか？`)) return;
     try {
       await goalDelete({
         goal_id: id
@@ -106,7 +108,7 @@ const Creategoal = ({ loginInfo, props }: any) => {
     try {
       const res = await taskRead({
         date: moment().format("YYYY-MM-DD"),
-        user_id: loginInfo.id
+        user_id: state.loginInfo ? state.loginInfo.id : 0
       });
       setTasks(res.data.tasks);
       if (!props.focusGoal) {
@@ -139,14 +141,14 @@ const Creategoal = ({ loginInfo, props }: any) => {
       <CardHeader title={props.focusGoal ? props.focusGoal.task_name : "新規目標登録"} />
       <CardContent>
         <ul>
-          {Boolean(props.focusGoal) && <>
+          {!!props.focusGoal && <>
             <li>
               <Box sx={{ mb: "16px" }}>
                 <LinePlot height="200px" data={props.focusGoal.analytics} />
               </Box>
             </li>
           </>}
-          {Boolean(tasks.length) &&
+          {!!tasks.length &&
             <li>
               <Box sx={{ mb: "16px" }}>
                 <h4>タスク</h4>
@@ -204,10 +206,10 @@ const Creategoal = ({ loginInfo, props }: any) => {
                 <Box sx={{ width: "42%", }}>
                   <MobileDatePicker
                     value={startDate}
-                    onChange={(v: any) => {
+                    onChange={(v: string | null) => {
                       setStartDate(moment(v).format("YYYY-MM-DD"));
                     }}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    renderInput={(params: TextFieldProps) => <TextField {...params} />}
                     inputFormat="yyyy/MM/dd"
                   />
                 </Box>
@@ -218,10 +220,10 @@ const Creategoal = ({ loginInfo, props }: any) => {
                 <Box sx={{ width: "42%", }}>
                   <MobileDatePicker
                     value={endDate}
-                    onChange={(v: any) => {
+                    onChange={(v: string | null) => {
                       setEndDate(moment(v).format("YYYY-MM-DD"));
                     }}
-                    renderInput={(params: any) => <TextField {...params} />}
+                    renderInput={(params: TextFieldProps) => <TextField {...params} />}
                     inputFormat="yyyy/MM/dd"
                   />
                 </Box>

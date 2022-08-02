@@ -5,9 +5,9 @@ import { apiWorkReadCalendarRequestType } from "@/types/api/work/read/calendar/r
 import { apiWorkReadCalendarResponseType } from "@/types/api/work/read/calendar/response";
 import { apiWorkCreateRequestType } from "@/types/api/work/create/request";
 import { apiWorkDeleteRequestType } from "@/types/api/work/delete/request";
-import axios from "axios";
+import axios, {Canceler} from "axios";
 const CancelToken = axios.CancelToken;
-let getCalendarDataCancel: any = null;
+let getCalendarDataCancel: Canceler;
 export const useWorkApi = (): {
   workCreate: (params: apiWorkCreateRequestType) => Promise<AxiosResponse>;
   workCreateLoading: boolean;

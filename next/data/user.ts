@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { api } from "@/plugins/axios";
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
-import { apiUserCreateRequestType } from "@/types/api/user/create/request";
 import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";
 import { apiUserBasicAuthenticationResponseType } from "@/types/api/user/basicAuthentication/response";
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
@@ -14,7 +13,7 @@ export const useUserApi = (): {
     params: apiUserBasicAuthenticationRequestType
   ) => Promise<AxiosResponse<apiUserBasicAuthenticationResponseType>>;
   basicAuthenticationLoading: boolean;
-  createUser: (params: any) => Promise<AxiosResponse<apiUserCreateResponseType>>;
+  createUser: (params: FormData) => Promise<AxiosResponse<apiUserCreateResponseType>>;
   createUserLoading: boolean;
 } => {
 
@@ -58,7 +57,7 @@ export const useUserApi = (): {
 
   const [createUserLoading, setCreateUserLoading] = useState<boolean>(false);
   const createUser = async (
-    params: apiUserCreateRequestType
+    params: FormData
   ): Promise<AxiosResponse<apiUserCreateResponseType>> => {
     const requestConfig: AxiosRequestConfig = {
       url: "/api/user/create",
