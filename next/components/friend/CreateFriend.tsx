@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import * as React from "react";
+import React from "react";
 import { TextField, Box, Card, CardHeader, CardActions, Typography } from "@mui/material";
 import { CardContent } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";

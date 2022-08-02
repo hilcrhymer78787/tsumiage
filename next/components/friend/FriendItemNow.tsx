@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import Router from "next/router";
 import {

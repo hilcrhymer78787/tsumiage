@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import { analyticsType } from "@/types/common/analyticsType";
 import { Box } from "@mui/material";
 import {
-  Chart as ChartJS,
+  Chart,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -12,7 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-ChartJS.register(
+Chart.register(
   CategoryScale,
   LinearScale,
   PointElement,

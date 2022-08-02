@@ -20,15 +20,23 @@ type Props = {
   task: apiTaskReadResponseTaskType | null
   onCloseMyself: () => void
 }
+type FormTask = {
+  id: number,
+  name: string,
+  default_hour: number,
+  default_minute: number,
+  status: string | number,
+  sort_key: number | null,
+}
 export default function CreateTask(props: Props) {
   const { taskCreate, taskCreateLoading, taskDelete, taskDeleteLoading } = useTaskApi();
-  const [formTask, setFormTask] = useState({
-    id: props.task?.id ?? 0 as number,
-    name: props.task?.name ?? "" as string,
-    default_hour: props.task ? Math.floor(props.task.default_minute / 60) : 0 as number,
-    default_minute: props.task ? props.task.default_minute % 60 : 0 as number,
-    status: props.task?.status ?? 1 as string | number,
-    sort_key: props.task?.sort_key ?? null as number | null,
+  const [formTask, setFormTask] = useState<FormTask>({
+    id: props.task?.id ?? 0,
+    name: props.task?.name ?? "",
+    default_hour: props.task ? Math.floor(props.task.default_minute / 60) : 0,
+    default_minute: props.task ? props.task.default_minute % 60 : 0,
+    status: props.task?.status ?? 1,
+    sort_key: props.task?.sort_key ?? null,
   });
   const [nameError, setNameError] = useState<string>("");
   const apiTaskDelete = async () => {

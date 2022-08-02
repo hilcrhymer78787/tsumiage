@@ -1,7 +1,5 @@
-import * as React from "react";
-import {
-  Avatar,
-} from "@mui/material";
+import React from "react";
+import { Avatar } from "@mui/material";
 type Props = {
   fileName: string | undefined
   size: string
