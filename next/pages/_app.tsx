@@ -6,12 +6,14 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import axios from "axios";
 import { RecoilRoot, useSetRecoilState } from "recoil";
 import { loginInfoAtom, useUserApi } from "@/data/user";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/plugins/theme";
 import "@/styles/globals.scss";
 type AppInitProps = {
   setIsAuth: React.Dispatch<React.SetStateAction<boolean | null>>
 }
 function AppInit(props: AppInitProps) {
-  const { bearerAuthentication, bearerAuthenticationLoading } = useUserApi();
+  const { bearerAuthentication } = useUserApi();
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
   React.useEffect(() => {
     const mountedFunc = async () => {
@@ -34,11 +36,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [isAuth, setIsAuth] = React.useState<boolean | null>(null);
   return (
     <RecoilRoot>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <CssBaseline />
-        <AppInit setIsAuth={setIsAuth} />
-        {isAuth !== null && <Component {...pageProps} />}
-      </LocalizationProvider>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <CssBaseline />
+          <AppInit setIsAuth={setIsAuth} />
+          {isAuth !== null && <Component {...pageProps} />}
+        </LocalizationProvider>
+      </ThemeProvider>
     </RecoilRoot>
   );
 }

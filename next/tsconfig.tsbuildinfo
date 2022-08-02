@@ -1061,159 +1061,109 @@
         "signature": "cfcc16204ca9f92447cfacf374919a78e7d1a13d38928553a4001cf3279a8a1d",
         "affectsGlobalScope": false
       },
-      "./static/const.ts": {
-        "version": "d6f88f63a2f23fb5fb98fb0fdc7006409106368069c8f5a5ecbbf2148b8cd7aa",
-        "signature": "064fe6edd772ccb550878182d158f369079893e22bb8d7619a04289b80dc3122",
+      "./node_modules/@mui/material/colors/amber.d.ts": {
+        "version": "05034631dc7665c544420c87919787415718eb904c7e377a2deed50f174726c5",
+        "signature": "05034631dc7665c544420c87919787415718eb904c7e377a2deed50f174726c5",
         "affectsGlobalScope": false
       },
-      "./types/api/invitation/create/response.d.ts": {
-        "version": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
-        "signature": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
+      "./node_modules/@mui/material/colors/blue.d.ts": {
+        "version": "cd2b5bd606dbef4a5a0d0ed510e2d53dac00f0ef92db994e1f72ce4525d918d3",
+        "signature": "cd2b5bd606dbef4a5a0d0ed510e2d53dac00f0ef92db994e1f72ce4525d918d3",
         "affectsGlobalScope": false
       },
-      "./types/api/task/sortset/request.d.ts": {
-        "version": "6f3d28a561f5e26d716b0bb8394a35dd754b7ffce6ae8dabd5d71063aca9076b",
-        "signature": "6f3d28a561f5e26d716b0bb8394a35dd754b7ffce6ae8dabd5d71063aca9076b",
+      "./node_modules/@mui/material/colors/bluegrey.d.ts": {
+        "version": "ba2151c63fe743790a29e9e8de924e65d5bcb4f51cff999b825afbaf135d592d",
+        "signature": "ba2151c63fe743790a29e9e8de924e65d5bcb4f51cff999b825afbaf135d592d",
         "affectsGlobalScope": false
       },
-      "./types/api/user/create/request.d.ts": {
-        "version": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
-        "signature": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
+      "./node_modules/@mui/material/colors/brown.d.ts": {
+        "version": "2e51f8457814a3e4aa3b73ca27c14d36928a348f85c003bc3b1b8d8797cf0fc9",
+        "signature": "2e51f8457814a3e4aa3b73ca27c14d36928a348f85c003bc3b1b8d8797cf0fc9",
         "affectsGlobalScope": false
       },
-      "./types/api/user/testauthentication/response.d.ts": {
-        "version": "8f7e77aeaba49aa5499e5b7d102ee6f4eece8a3b4d587001ffa844eaf5831693",
-        "signature": "8f7e77aeaba49aa5499e5b7d102ee6f4eece8a3b4d587001ffa844eaf5831693",
+      "./node_modules/@mui/material/colors/common.d.ts": {
+        "version": "c4cdadeb3aecf4031106c52c2fb782ba5cdcd7dbefd0a3aba2fd9850f8cdd478",
+        "signature": "c4cdadeb3aecf4031106c52c2fb782ba5cdcd7dbefd0a3aba2fd9850f8cdd478",
         "affectsGlobalScope": false
       },
-      "./types/api/work/read/analytics/request.d.ts": {
-        "version": "be20bd51ab8710db6e029ff0076a1282c1b5a0ffe617a4efa17d821af808d6d9",
-        "signature": "be20bd51ab8710db6e029ff0076a1282c1b5a0ffe617a4efa17d821af808d6d9",
+      "./node_modules/@mui/material/colors/cyan.d.ts": {
+        "version": "5f4a10115c06510164e18ac8a5b5db1f615f096a40d5c69726bb32309af93252",
+        "signature": "5f4a10115c06510164e18ac8a5b5db1f615f096a40d5c69726bb32309af93252",
         "affectsGlobalScope": false
       },
-      "./types/api/work/read/analytics/response.d.ts": {
-        "version": "00b891805051cadf791ba3b79880b60e4cb95734cf6a7bac5f37729943e05d3c",
-        "signature": "00b891805051cadf791ba3b79880b60e4cb95734cf6a7bac5f37729943e05d3c",
+      "./node_modules/@mui/material/colors/deeporange.d.ts": {
+        "version": "58e3f7eeaadad8a3f69dff6a59566e9eaa15b11facd397e2b9e199fdb2a84533",
+        "signature": "58e3f7eeaadad8a3f69dff6a59566e9eaa15b11facd397e2b9e199fdb2a84533",
         "affectsGlobalScope": false
       },
-      "./types/common/statetype.d.ts": {
-        "version": "a6e0a0e15d5d1d032a4e625e3bb21c123035f68c1e503146023a7173c2cd426b",
-        "signature": "a6e0a0e15d5d1d032a4e625e3bb21c123035f68c1e503146023a7173c2cd426b",
+      "./node_modules/@mui/material/colors/deeppurple.d.ts": {
+        "version": "537b5657a19792461eefee12e406dbccb7b3fbbf4117e7a443e81e925f6e1b43",
+        "signature": "537b5657a19792461eefee12e406dbccb7b3fbbf4117e7a443e81e925f6e1b43",
         "affectsGlobalScope": false
       },
-      "./node_modules/@types/aria-query/index.d.ts": {
-        "version": "5024433f8da3a7968f6d12cffd32f2cefae4442a9ad1c965fa2d23342338b700",
-        "signature": "5024433f8da3a7968f6d12cffd32f2cefae4442a9ad1c965fa2d23342338b700",
+      "./node_modules/@mui/material/colors/green.d.ts": {
+        "version": "c3be2a86d6ab205269fdb5f1da4ab6e7d825f8e119ecc235fc587cec2af2c8f1",
+        "signature": "c3be2a86d6ab205269fdb5f1da4ab6e7d825f8e119ecc235fc587cec2af2c8f1",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/matches.d.ts": {
-        "version": "f70bc756d933cc38dc603331a4b5c8dee89e1e1fb956cfb7a6e04ebb4c008091",
-        "signature": "f70bc756d933cc38dc603331a4b5c8dee89e1e1fb956cfb7a6e04ebb4c008091",
+      "./node_modules/@mui/material/colors/grey.d.ts": {
+        "version": "a35dd28e140a6ded634995e25fc6c1d1f85eb59ebb18c3afaf5c66de43972fbf",
+        "signature": "a35dd28e140a6ded634995e25fc6c1d1f85eb59ebb18c3afaf5c66de43972fbf",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/wait-for.d.ts": {
-        "version": "8387ec1601cf6b8948672537cf8d430431ba0d87b1f9537b4597c1ab8d3ade5b",
-        "signature": "8387ec1601cf6b8948672537cf8d430431ba0d87b1f9537b4597c1ab8d3ade5b",
+      "./node_modules/@mui/material/colors/indigo.d.ts": {
+        "version": "be4bc9c39dd458aa3a993a48dbbfb09be898bf30f3276660b012401ebcc54cbf",
+        "signature": "be4bc9c39dd458aa3a993a48dbbfb09be898bf30f3276660b012401ebcc54cbf",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/query-helpers.d.ts": {
-        "version": "e4b367f488986faa41155eba6408573e8ff66e98fd1870c3fb2a3570e421fad4",
-        "signature": "e4b367f488986faa41155eba6408573e8ff66e98fd1870c3fb2a3570e421fad4",
+      "./node_modules/@mui/material/colors/lightblue.d.ts": {
+        "version": "25b92cc86a4aa9b088a1abb16c60547951859d4ae12fc909e23d675e6046b4a6",
+        "signature": "25b92cc86a4aa9b088a1abb16c60547951859d4ae12fc909e23d675e6046b4a6",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/queries.d.ts": {
-        "version": "cd40e95389d7ea83b8eda20fd90a3d217af2973da559af0d1f3deb2015001327",
-        "signature": "cd40e95389d7ea83b8eda20fd90a3d217af2973da559af0d1f3deb2015001327",
+      "./node_modules/@mui/material/colors/lightgreen.d.ts": {
+        "version": "dbe50a407dca6d6143ac10dc3f4a09816ca2604788851d086e621d990eac1662",
+        "signature": "dbe50a407dca6d6143ac10dc3f4a09816ca2604788851d086e621d990eac1662",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/get-queries-for-element.d.ts": {
-        "version": "38917038579abb914ee0957b48968b2bed721532e9bee8cb01b354093283344f",
-        "signature": "38917038579abb914ee0957b48968b2bed721532e9bee8cb01b354093283344f",
+      "./node_modules/@mui/material/colors/lime.d.ts": {
+        "version": "8b226b564befbf10933d0e3c0f179c522aa024f1472022d9fe35a0addd6e17d1",
+        "signature": "8b226b564befbf10933d0e3c0f179c522aa024f1472022d9fe35a0addd6e17d1",
         "affectsGlobalScope": false
       },
-      "./node_modules/pretty-format/build/types.d.ts": {
-        "version": "5d72971a459517c44c1379dab9ed248e87a61ba0a1e0f25c9d67e1e640cd9a09",
-        "signature": "5d72971a459517c44c1379dab9ed248e87a61ba0a1e0f25c9d67e1e640cd9a09",
+      "./node_modules/@mui/material/colors/orange.d.ts": {
+        "version": "43d7bf6b658159db2ec49152852d3b25113b50ead0a0088564a83bbc30b5a61d",
+        "signature": "43d7bf6b658159db2ec49152852d3b25113b50ead0a0088564a83bbc30b5a61d",
         "affectsGlobalScope": false
       },
-      "./node_modules/pretty-format/build/index.d.ts": {
-        "version": "02d734976af36f4273d930bea88b3e62adf6b078cf120c1c63d49aa8d8427c5c",
-        "signature": "02d734976af36f4273d930bea88b3e62adf6b078cf120c1c63d49aa8d8427c5c",
+      "./node_modules/@mui/material/colors/pink.d.ts": {
+        "version": "4ab69812962d1cf86bccfd350af2e07ce74267e90071888f823e1402212bc100",
+        "signature": "4ab69812962d1cf86bccfd350af2e07ce74267e90071888f823e1402212bc100",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/screen.d.ts": {
-        "version": "d2ac9ef9ac638aebb16f0dfd03949f14d442dc9c58a0605069ba03b2088f1034",
-        "signature": "d2ac9ef9ac638aebb16f0dfd03949f14d442dc9c58a0605069ba03b2088f1034",
+      "./node_modules/@mui/material/colors/purple.d.ts": {
+        "version": "efe27b07f8f5f9dc29e2c64bae34e21c3f755895adb0aa9813733860d5fa41af",
+        "signature": "efe27b07f8f5f9dc29e2c64bae34e21c3f755895adb0aa9813733860d5fa41af",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/wait.d.ts": {
-        "version": "0197f7bcd7d83cd642bca7ca2272bebfeb48047a16c6e3e97f1421abe46c5069",
-        "signature": "0197f7bcd7d83cd642bca7ca2272bebfeb48047a16c6e3e97f1421abe46c5069",
+      "./node_modules/@mui/material/colors/red.d.ts": {
+        "version": "c6ca120560597056bb69d12cf8b3f2e05aa15ad6cd2deda6f7b25ebad41b15ea",
+        "signature": "c6ca120560597056bb69d12cf8b3f2e05aa15ad6cd2deda6f7b25ebad41b15ea",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/wait-for-dom-change.d.ts": {
-        "version": "4a93493a505ad7576039efb314a4c26821b272e7192c0724b6e877202258e668",
-        "signature": "4a93493a505ad7576039efb314a4c26821b272e7192c0724b6e877202258e668",
+      "./node_modules/@mui/material/colors/teal.d.ts": {
+        "version": "0bd118496029e7bde27d232865e91eb1e8bd5f1aafdbd8365c2f8862c2122326",
+        "signature": "0bd118496029e7bde27d232865e91eb1e8bd5f1aafdbd8365c2f8862c2122326",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/wait-for-element.d.ts": {
-        "version": "876e5cfd4db6eab43d260bcf8adda394163d835adf0cbc9167c1c2d7bc13a34e",
-        "signature": "876e5cfd4db6eab43d260bcf8adda394163d835adf0cbc9167c1c2d7bc13a34e",
+      "./node_modules/@mui/material/colors/yellow.d.ts": {
+        "version": "8a9fac3501784d42eed037c9b3702a64e51ab0cf862c19a82851b712703e32ff",
+        "signature": "8a9fac3501784d42eed037c9b3702a64e51ab0cf862c19a82851b712703e32ff",
         "affectsGlobalScope": false
       },
-      "./node_modules/@testing-library/dom/types/wait-for-element-to-be-removed.d.ts": {
-        "version": "3aca7f4260dad9dcc0a0333654cb3cde6664d34a553ec06c953bce11151764d7",
-        "signature": "3aca7f4260dad9dcc0a0333654cb3cde6664d34a553ec06c953bce11151764d7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/get-node-text.d.ts": {
-        "version": "a0a6f0095f25f08a7129bc4d7cb8438039ec422dc341218d274e1e5131115988",
-        "signature": "a0a6f0095f25f08a7129bc4d7cb8438039ec422dc341218d274e1e5131115988",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/events.d.ts": {
-        "version": "cc7f5deaf4e1e2b8dde0645ae824d213cc71834a0d58d557f805f443451664a8",
-        "signature": "cc7f5deaf4e1e2b8dde0645ae824d213cc71834a0d58d557f805f443451664a8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/pretty-dom.d.ts": {
-        "version": "2ac36e828c9e778acbd5a34cd57c144a875443b45d6cee38cfebb9e5756e5dca",
-        "signature": "2ac36e828c9e778acbd5a34cd57c144a875443b45d6cee38cfebb9e5756e5dca",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/role-helpers.d.ts": {
-        "version": "168994907c6427e885018396248c567b6214e0daa6b62d4fc1be334affa44c56",
-        "signature": "168994907c6427e885018396248c567b6214e0daa6b62d4fc1be334affa44c56",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/config.d.ts": {
-        "version": "1710c396fe5c4804b37df33caab2e2f69cf0dd2a9f7a5e5379148d50f4ea7419",
-        "signature": "1710c396fe5c4804b37df33caab2e2f69cf0dd2a9f7a5e5379148d50f4ea7419",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/suggestions.d.ts": {
-        "version": "82200e963d3c767976a5a9f41ecf8c65eca14a6b33dcbe00214fcbe959698c46",
-        "signature": "82200e963d3c767976a5a9f41ecf8c65eca14a6b33dcbe00214fcbe959698c46",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/dom/types/index.d.ts": {
-        "version": "5e4dd2e2cef503b3198735afd73a98b63a44a70d49fb0e9659222f1771b5f46d",
-        "signature": "5e4dd2e2cef503b3198735afd73a98b63a44a70d49fb0e9659222f1771b5f46d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@testing-library/react/types/index.d.ts": {
-        "version": "93d72cd6f97ba8fa778d340091a0b25a08ea336a2ac79cd7d33086906b5c498e",
-        "signature": "93d72cd6f97ba8fa778d340091a0b25a08ea336a2ac79cd7d33086906b5c498e",
-        "affectsGlobalScope": false
-      },
-      "./components/test.tsx": {
-        "version": "872bd4e8514811c4cfca9fcf5de57b8aedcc5a7eda88bd93318b4a8bd27e9e56",
-        "signature": "b63d65de164ced28050da8bf439b7502bf90a87822c02754069f77eb6441368c",
-        "affectsGlobalScope": false
-      },
-      "./pages/testpage.tsx": {
-        "version": "8fde95834b163f48072dbbbdf91583bba5018ace6886d13fb0dc4b295e348dc5",
-        "signature": "f6bdfd94f81cd9e5b37a0bdc349ccf30c118d9ff244ae56010ebfd029e909a05",
+      "./node_modules/@mui/material/colors/index.d.ts": {
+        "version": "e00aed0f8e5f35807d735a1fc5424e3a15fcf4052eab5cc59887006db55d5ee7",
+        "signature": "e00aed0f8e5f35807d735a1fc5424e3a15fcf4052eab5cc59887006db55d5ee7",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/types/index.d.ts": {
@@ -1546,111 +1496,6 @@
         "signature": "98461c5f55d1b191d145af33a258679cc93b41f876315b20f567655642726c11",
         "affectsGlobalScope": false
       },
-      "./node_modules/@mui/material/colors/amber.d.ts": {
-        "version": "05034631dc7665c544420c87919787415718eb904c7e377a2deed50f174726c5",
-        "signature": "05034631dc7665c544420c87919787415718eb904c7e377a2deed50f174726c5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/blue.d.ts": {
-        "version": "cd2b5bd606dbef4a5a0d0ed510e2d53dac00f0ef92db994e1f72ce4525d918d3",
-        "signature": "cd2b5bd606dbef4a5a0d0ed510e2d53dac00f0ef92db994e1f72ce4525d918d3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/bluegrey.d.ts": {
-        "version": "ba2151c63fe743790a29e9e8de924e65d5bcb4f51cff999b825afbaf135d592d",
-        "signature": "ba2151c63fe743790a29e9e8de924e65d5bcb4f51cff999b825afbaf135d592d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/brown.d.ts": {
-        "version": "2e51f8457814a3e4aa3b73ca27c14d36928a348f85c003bc3b1b8d8797cf0fc9",
-        "signature": "2e51f8457814a3e4aa3b73ca27c14d36928a348f85c003bc3b1b8d8797cf0fc9",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/common.d.ts": {
-        "version": "c4cdadeb3aecf4031106c52c2fb782ba5cdcd7dbefd0a3aba2fd9850f8cdd478",
-        "signature": "c4cdadeb3aecf4031106c52c2fb782ba5cdcd7dbefd0a3aba2fd9850f8cdd478",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/cyan.d.ts": {
-        "version": "5f4a10115c06510164e18ac8a5b5db1f615f096a40d5c69726bb32309af93252",
-        "signature": "5f4a10115c06510164e18ac8a5b5db1f615f096a40d5c69726bb32309af93252",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/deeporange.d.ts": {
-        "version": "58e3f7eeaadad8a3f69dff6a59566e9eaa15b11facd397e2b9e199fdb2a84533",
-        "signature": "58e3f7eeaadad8a3f69dff6a59566e9eaa15b11facd397e2b9e199fdb2a84533",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/deeppurple.d.ts": {
-        "version": "537b5657a19792461eefee12e406dbccb7b3fbbf4117e7a443e81e925f6e1b43",
-        "signature": "537b5657a19792461eefee12e406dbccb7b3fbbf4117e7a443e81e925f6e1b43",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/green.d.ts": {
-        "version": "c3be2a86d6ab205269fdb5f1da4ab6e7d825f8e119ecc235fc587cec2af2c8f1",
-        "signature": "c3be2a86d6ab205269fdb5f1da4ab6e7d825f8e119ecc235fc587cec2af2c8f1",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/grey.d.ts": {
-        "version": "a35dd28e140a6ded634995e25fc6c1d1f85eb59ebb18c3afaf5c66de43972fbf",
-        "signature": "a35dd28e140a6ded634995e25fc6c1d1f85eb59ebb18c3afaf5c66de43972fbf",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/indigo.d.ts": {
-        "version": "be4bc9c39dd458aa3a993a48dbbfb09be898bf30f3276660b012401ebcc54cbf",
-        "signature": "be4bc9c39dd458aa3a993a48dbbfb09be898bf30f3276660b012401ebcc54cbf",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/lightblue.d.ts": {
-        "version": "25b92cc86a4aa9b088a1abb16c60547951859d4ae12fc909e23d675e6046b4a6",
-        "signature": "25b92cc86a4aa9b088a1abb16c60547951859d4ae12fc909e23d675e6046b4a6",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/lightgreen.d.ts": {
-        "version": "dbe50a407dca6d6143ac10dc3f4a09816ca2604788851d086e621d990eac1662",
-        "signature": "dbe50a407dca6d6143ac10dc3f4a09816ca2604788851d086e621d990eac1662",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/lime.d.ts": {
-        "version": "8b226b564befbf10933d0e3c0f179c522aa024f1472022d9fe35a0addd6e17d1",
-        "signature": "8b226b564befbf10933d0e3c0f179c522aa024f1472022d9fe35a0addd6e17d1",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/orange.d.ts": {
-        "version": "43d7bf6b658159db2ec49152852d3b25113b50ead0a0088564a83bbc30b5a61d",
-        "signature": "43d7bf6b658159db2ec49152852d3b25113b50ead0a0088564a83bbc30b5a61d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/pink.d.ts": {
-        "version": "4ab69812962d1cf86bccfd350af2e07ce74267e90071888f823e1402212bc100",
-        "signature": "4ab69812962d1cf86bccfd350af2e07ce74267e90071888f823e1402212bc100",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/purple.d.ts": {
-        "version": "efe27b07f8f5f9dc29e2c64bae34e21c3f755895adb0aa9813733860d5fa41af",
-        "signature": "efe27b07f8f5f9dc29e2c64bae34e21c3f755895adb0aa9813733860d5fa41af",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/red.d.ts": {
-        "version": "c6ca120560597056bb69d12cf8b3f2e05aa15ad6cd2deda6f7b25ebad41b15ea",
-        "signature": "c6ca120560597056bb69d12cf8b3f2e05aa15ad6cd2deda6f7b25ebad41b15ea",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/teal.d.ts": {
-        "version": "0bd118496029e7bde27d232865e91eb1e8bd5f1aafdbd8365c2f8862c2122326",
-        "signature": "0bd118496029e7bde27d232865e91eb1e8bd5f1aafdbd8365c2f8862c2122326",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/yellow.d.ts": {
-        "version": "8a9fac3501784d42eed037c9b3702a64e51ab0cf862c19a82851b712703e32ff",
-        "signature": "8a9fac3501784d42eed037c9b3702a64e51ab0cf862c19a82851b712703e32ff",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/colors/index.d.ts": {
-        "version": "e00aed0f8e5f35807d735a1fc5424e3a15fcf4052eab5cc59887006db55d5ee7",
-        "signature": "e00aed0f8e5f35807d735a1fc5424e3a15fcf4052eab5cc59887006db55d5ee7",
-        "affectsGlobalScope": false
-      },
       "./node_modules/@mui/utils/chainproptypes.d.ts": {
         "version": "3fd188ce8702e15ef258dbe0ce9531a311a8fad945343a1876c7bfd8b75c54e5",
         "signature": "3fd188ce8702e15ef258dbe0ce9531a311a8fad945343a1876c7bfd8b75c54e5",
@@ -1866,6 +1711,26 @@
         "signature": "073b157e1b9f89ee0b8067b0b2202a63667d7f3a2d66f2432cc04742796a0c67",
         "affectsGlobalScope": false
       },
+      "./node_modules/@mui/material/overridablecomponent.d.ts": {
+        "version": "3531f7e18acc9d88ced99e23145ea2e8d0443cac8739d96bf71dc086ce24a275",
+        "signature": "3531f7e18acc9d88ced99e23145ea2e8d0443cac8739d96bf71dc086ce24a275",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@mui/material/svgicon/svgiconclasses.d.ts": {
+        "version": "514d89fa386687c3c76c798f9fa850d9e015f86116cb7bfdc6ae73e14c0bdd00",
+        "signature": "514d89fa386687c3c76c798f9fa850d9e015f86116cb7bfdc6ae73e14c0bdd00",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@mui/material/svgicon/svgicon.d.ts": {
+        "version": "01e0566609a3d553235099361c083d6ff47767bb3ea8d6ab1cfeba8e26d06354",
+        "signature": "01e0566609a3d553235099361c083d6ff47767bb3ea8d6ab1cfeba8e26d06354",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@mui/material/svgicon/index.d.ts": {
+        "version": "9df4da519d58916b856971122d79e200f2a3be01fd2a0b4e2a556cc618007824",
+        "signature": "9df4da519d58916b856971122d79e200f2a3be01fd2a0b4e2a556cc618007824",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@mui/material/utils/createsvgicon.d.ts": {
         "version": "9d459e023609e74bbc8da58e71d21fafd293bad7130da8fe9c12b2200750ca36",
         "signature": "9d459e023609e74bbc8da58e71d21fafd293bad7130da8fe9c12b2200750ca36",
@@ -1959,11 +1824,6 @@
       "./node_modules/@mui/material/transitions/transition.d.ts": {
         "version": "fbbc2e7f6462ad0a925683ec3888af319031dcceea02ddcb2d3ebb9828e390ad",
         "signature": "fbbc2e7f6462ad0a925683ec3888af319031dcceea02ddcb2d3ebb9828e390ad",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@mui/material/overridablecomponent.d.ts": {
-        "version": "3531f7e18acc9d88ced99e23145ea2e8d0443cac8739d96bf71dc086ce24a275",
-        "signature": "3531f7e18acc9d88ced99e23145ea2e8d0443cac8739d96bf71dc086ce24a275",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/material/paper/paperclasses.d.ts": {
@@ -4741,19 +4601,164 @@
         "signature": "34c68f85a85231647dece97324630a2513697db64c16401babcb51e35148b731",
         "affectsGlobalScope": false
       },
-      "./node_modules/@mui/material/svgicon/svgiconclasses.d.ts": {
-        "version": "514d89fa386687c3c76c798f9fa850d9e015f86116cb7bfdc6ae73e14c0bdd00",
-        "signature": "514d89fa386687c3c76c798f9fa850d9e015f86116cb7bfdc6ae73e14c0bdd00",
+      "./plugins/theme.ts": {
+        "version": "2c92cc34b04c7716dd1fd265ccb2f7360f171cf8fffeba9e16027f00bcb3b941",
+        "signature": "33cc8ecb940f105e4ee25f9871b94f365383345817a97910550175d2acbf4670",
         "affectsGlobalScope": false
       },
-      "./node_modules/@mui/material/svgicon/svgicon.d.ts": {
-        "version": "01e0566609a3d553235099361c083d6ff47767bb3ea8d6ab1cfeba8e26d06354",
-        "signature": "01e0566609a3d553235099361c083d6ff47767bb3ea8d6ab1cfeba8e26d06354",
+      "./static/const.ts": {
+        "version": "d6f88f63a2f23fb5fb98fb0fdc7006409106368069c8f5a5ecbbf2148b8cd7aa",
+        "signature": "064fe6edd772ccb550878182d158f369079893e22bb8d7619a04289b80dc3122",
         "affectsGlobalScope": false
       },
-      "./node_modules/@mui/material/svgicon/index.d.ts": {
-        "version": "9df4da519d58916b856971122d79e200f2a3be01fd2a0b4e2a556cc618007824",
-        "signature": "9df4da519d58916b856971122d79e200f2a3be01fd2a0b4e2a556cc618007824",
+      "./types/api/invitation/create/response.d.ts": {
+        "version": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
+        "signature": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
+        "affectsGlobalScope": false
+      },
+      "./types/api/task/sortset/request.d.ts": {
+        "version": "6f3d28a561f5e26d716b0bb8394a35dd754b7ffce6ae8dabd5d71063aca9076b",
+        "signature": "6f3d28a561f5e26d716b0bb8394a35dd754b7ffce6ae8dabd5d71063aca9076b",
+        "affectsGlobalScope": false
+      },
+      "./types/api/user/create/request.d.ts": {
+        "version": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
+        "signature": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
+        "affectsGlobalScope": false
+      },
+      "./types/api/user/testauthentication/response.d.ts": {
+        "version": "8f7e77aeaba49aa5499e5b7d102ee6f4eece8a3b4d587001ffa844eaf5831693",
+        "signature": "8f7e77aeaba49aa5499e5b7d102ee6f4eece8a3b4d587001ffa844eaf5831693",
+        "affectsGlobalScope": false
+      },
+      "./types/api/work/read/analytics/request.d.ts": {
+        "version": "be20bd51ab8710db6e029ff0076a1282c1b5a0ffe617a4efa17d821af808d6d9",
+        "signature": "be20bd51ab8710db6e029ff0076a1282c1b5a0ffe617a4efa17d821af808d6d9",
+        "affectsGlobalScope": false
+      },
+      "./types/api/work/read/analytics/response.d.ts": {
+        "version": "00b891805051cadf791ba3b79880b60e4cb95734cf6a7bac5f37729943e05d3c",
+        "signature": "00b891805051cadf791ba3b79880b60e4cb95734cf6a7bac5f37729943e05d3c",
+        "affectsGlobalScope": false
+      },
+      "./types/common/statetype.d.ts": {
+        "version": "a6e0a0e15d5d1d032a4e625e3bb21c123035f68c1e503146023a7173c2cd426b",
+        "signature": "a6e0a0e15d5d1d032a4e625e3bb21c123035f68c1e503146023a7173c2cd426b",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/aria-query/index.d.ts": {
+        "version": "5024433f8da3a7968f6d12cffd32f2cefae4442a9ad1c965fa2d23342338b700",
+        "signature": "5024433f8da3a7968f6d12cffd32f2cefae4442a9ad1c965fa2d23342338b700",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/matches.d.ts": {
+        "version": "f70bc756d933cc38dc603331a4b5c8dee89e1e1fb956cfb7a6e04ebb4c008091",
+        "signature": "f70bc756d933cc38dc603331a4b5c8dee89e1e1fb956cfb7a6e04ebb4c008091",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/wait-for.d.ts": {
+        "version": "8387ec1601cf6b8948672537cf8d430431ba0d87b1f9537b4597c1ab8d3ade5b",
+        "signature": "8387ec1601cf6b8948672537cf8d430431ba0d87b1f9537b4597c1ab8d3ade5b",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/query-helpers.d.ts": {
+        "version": "e4b367f488986faa41155eba6408573e8ff66e98fd1870c3fb2a3570e421fad4",
+        "signature": "e4b367f488986faa41155eba6408573e8ff66e98fd1870c3fb2a3570e421fad4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/queries.d.ts": {
+        "version": "cd40e95389d7ea83b8eda20fd90a3d217af2973da559af0d1f3deb2015001327",
+        "signature": "cd40e95389d7ea83b8eda20fd90a3d217af2973da559af0d1f3deb2015001327",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/get-queries-for-element.d.ts": {
+        "version": "38917038579abb914ee0957b48968b2bed721532e9bee8cb01b354093283344f",
+        "signature": "38917038579abb914ee0957b48968b2bed721532e9bee8cb01b354093283344f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/pretty-format/build/types.d.ts": {
+        "version": "5d72971a459517c44c1379dab9ed248e87a61ba0a1e0f25c9d67e1e640cd9a09",
+        "signature": "5d72971a459517c44c1379dab9ed248e87a61ba0a1e0f25c9d67e1e640cd9a09",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/pretty-format/build/index.d.ts": {
+        "version": "02d734976af36f4273d930bea88b3e62adf6b078cf120c1c63d49aa8d8427c5c",
+        "signature": "02d734976af36f4273d930bea88b3e62adf6b078cf120c1c63d49aa8d8427c5c",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/screen.d.ts": {
+        "version": "d2ac9ef9ac638aebb16f0dfd03949f14d442dc9c58a0605069ba03b2088f1034",
+        "signature": "d2ac9ef9ac638aebb16f0dfd03949f14d442dc9c58a0605069ba03b2088f1034",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/wait.d.ts": {
+        "version": "0197f7bcd7d83cd642bca7ca2272bebfeb48047a16c6e3e97f1421abe46c5069",
+        "signature": "0197f7bcd7d83cd642bca7ca2272bebfeb48047a16c6e3e97f1421abe46c5069",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/wait-for-dom-change.d.ts": {
+        "version": "4a93493a505ad7576039efb314a4c26821b272e7192c0724b6e877202258e668",
+        "signature": "4a93493a505ad7576039efb314a4c26821b272e7192c0724b6e877202258e668",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/wait-for-element.d.ts": {
+        "version": "876e5cfd4db6eab43d260bcf8adda394163d835adf0cbc9167c1c2d7bc13a34e",
+        "signature": "876e5cfd4db6eab43d260bcf8adda394163d835adf0cbc9167c1c2d7bc13a34e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/wait-for-element-to-be-removed.d.ts": {
+        "version": "3aca7f4260dad9dcc0a0333654cb3cde6664d34a553ec06c953bce11151764d7",
+        "signature": "3aca7f4260dad9dcc0a0333654cb3cde6664d34a553ec06c953bce11151764d7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/get-node-text.d.ts": {
+        "version": "a0a6f0095f25f08a7129bc4d7cb8438039ec422dc341218d274e1e5131115988",
+        "signature": "a0a6f0095f25f08a7129bc4d7cb8438039ec422dc341218d274e1e5131115988",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/events.d.ts": {
+        "version": "cc7f5deaf4e1e2b8dde0645ae824d213cc71834a0d58d557f805f443451664a8",
+        "signature": "cc7f5deaf4e1e2b8dde0645ae824d213cc71834a0d58d557f805f443451664a8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/pretty-dom.d.ts": {
+        "version": "2ac36e828c9e778acbd5a34cd57c144a875443b45d6cee38cfebb9e5756e5dca",
+        "signature": "2ac36e828c9e778acbd5a34cd57c144a875443b45d6cee38cfebb9e5756e5dca",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/role-helpers.d.ts": {
+        "version": "168994907c6427e885018396248c567b6214e0daa6b62d4fc1be334affa44c56",
+        "signature": "168994907c6427e885018396248c567b6214e0daa6b62d4fc1be334affa44c56",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/config.d.ts": {
+        "version": "1710c396fe5c4804b37df33caab2e2f69cf0dd2a9f7a5e5379148d50f4ea7419",
+        "signature": "1710c396fe5c4804b37df33caab2e2f69cf0dd2a9f7a5e5379148d50f4ea7419",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/suggestions.d.ts": {
+        "version": "82200e963d3c767976a5a9f41ecf8c65eca14a6b33dcbe00214fcbe959698c46",
+        "signature": "82200e963d3c767976a5a9f41ecf8c65eca14a6b33dcbe00214fcbe959698c46",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/dom/types/index.d.ts": {
+        "version": "5e4dd2e2cef503b3198735afd73a98b63a44a70d49fb0e9659222f1771b5f46d",
+        "signature": "5e4dd2e2cef503b3198735afd73a98b63a44a70d49fb0e9659222f1771b5f46d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@testing-library/react/types/index.d.ts": {
+        "version": "93d72cd6f97ba8fa778d340091a0b25a08ea336a2ac79cd7d33086906b5c498e",
+        "signature": "93d72cd6f97ba8fa778d340091a0b25a08ea336a2ac79cd7d33086906b5c498e",
+        "affectsGlobalScope": false
+      },
+      "./components/test.tsx": {
+        "version": "872bd4e8514811c4cfca9fcf5de57b8aedcc5a7eda88bd93318b4a8bd27e9e56",
+        "signature": "b63d65de164ced28050da8bf439b7502bf90a87822c02754069f77eb6441368c",
+        "affectsGlobalScope": false
+      },
+      "./pages/testpage.tsx": {
+        "version": "8fde95834b163f48072dbbbdf91583bba5018ace6886d13fb0dc4b295e348dc5",
+        "signature": "f6bdfd94f81cd9e5b37a0bdc349ccf30c118d9ff244ae56010ebfd029e909a05",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/send.d.ts": {
@@ -6302,7 +6307,7 @@
         "affectsGlobalScope": false
       },
       "./pages/_app.tsx": {
-        "version": "4cd891f8659dbaa5ce7e0b1fb1a1690422ebe070f117bacb2f426ad0ca73c739",
+        "version": "cdc08ed8087febe7e18da48a6a257cdb9af768004ef4f5e16469ec2f555f37f9",
         "signature": "4ecefffe15c8faa9455343c2c606751c241f65d3e326354747c007cc92e4397f",
         "affectsGlobalScope": false
       },
@@ -14899,6 +14904,7 @@
       "./pages/_app.tsx": [
         "./data/user.ts",
         "./node_modules/@mui/material/cssbaseline/index.d.ts",
+        "./node_modules/@mui/material/styles/index.d.ts",
         "./node_modules/@mui/x-date-pickers/adapterdatefns/index.d.ts",
         "./node_modules/@mui/x-date-pickers/index.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -14906,7 +14912,8 @@
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/next/app.d.ts",
-        "./node_modules/recoil/index.d.ts"
+        "./node_modules/recoil/index.d.ts",
+        "./plugins/theme.ts"
       ],
       "./pages/_document.tsx": [
         "./node_modules/@types/node/util.d.ts",
@@ -14997,6 +15004,12 @@
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/next/router.d.ts"
+      ],
+      "./plugins/theme.ts": [
+        "./node_modules/@mui/material/colors/index.d.ts",
+        "./node_modules/@mui/material/styles/index.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./static/const.ts": [
         "./node_modules/@types/node/util.d.ts",
@@ -23338,6 +23351,9 @@
       "./plugins/axios.ts": [
         "./node_modules/axios/index.d.ts"
       ],
+      "./plugins/theme.ts": [
+        "./node_modules/@mui/material/styles/index.d.ts"
+      ],
       "./types/api/error.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -24870,6 +24886,7 @@
       "./pages/task/index.tsx",
       "./pages/testpage.tsx",
       "./plugins/axios.ts",
+      "./plugins/theme.ts",
       "./static/const.ts",
       "./types/api/error.d.ts",
       "./types/api/goal/create/request.d.ts",
@@ -29884,6 +29901,10 @@
       ],
       [
         "./plugins/axios.ts",
+        1
+      ],
+      [
+        "./plugins/theme.ts",
         1
       ],
       [
