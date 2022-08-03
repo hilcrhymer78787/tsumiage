@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Router from "next/router";
-import moment from "moment";
+import dayjs from "dayjs";
 import axios from "axios";
 import { apiWorkReadCalendarResponseCalendarType } from "@/types/api/work/read/calendar/response";
 import { apiWorkReadCalendarResponseType } from "@/types/api/work/read/calendar/response";
@@ -49,10 +49,10 @@ export default function CalendarList(props: Props) {
     return Number(router.query.day);
   };
   const firstDay = (): number => {
-    return moment(`${year()}/${month()}/1`, "YYYY-MM-DD").day();
+    return dayjs(`${year()}/${month()}/1`, "YYYY-MM-DD").day();
   };
   const lastDayCount = (): number => {
-    return 6 - moment(`${year()}/${month()}/1`, "YYYY-MM-DD").endOf("month").day();
+    return 6 - dayjs(`${year()}/${month()}/1`, "YYYY-MM-DD").endOf("month").day();
   };
   const getCalendarData = async (year: number, month: number) => {
     try {
@@ -142,7 +142,7 @@ export default function CalendarList(props: Props) {
           <TaskList
             readonly={props.readonly}
             userId={props.userId}
-            date={moment(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")}
+            date={dayjs(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")}
           />
         )}
       </Dialog>

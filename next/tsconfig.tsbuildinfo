@@ -5516,9 +5516,19 @@
         "signature": "21b789e6f745b3c2f3c0ace3a97c1265897af08011456808ebdf8f18ecee608d",
         "affectsGlobalScope": false
       },
-      "./node_modules/moment/ts3.1-typings/moment.d.ts": {
-        "version": "4051f6311deb0ce6052329eeb1cd4b1b104378fe52f882f483130bea75f92197",
-        "signature": "4051f6311deb0ce6052329eeb1cd4b1b104378fe52f882f483130bea75f92197",
+      "./node_modules/dayjs/locale/types.d.ts": {
+        "version": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
+        "signature": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
+        "affectsGlobalScope": true
+      },
+      "./node_modules/dayjs/locale/index.d.ts": {
+        "version": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
+        "signature": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/dayjs/index.d.ts": {
+        "version": "09d906c1aeb34304755b072698e6728d3e83ed0b6366cf82e695f7a0f078564e",
+        "signature": "09d906c1aeb34304755b072698e6728d3e83ed0b6366cf82e695f7a0f078564e",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/hoist-non-react-statics/index.d.ts": {
@@ -5532,7 +5542,7 @@
         "affectsGlobalScope": true
       },
       "./components/calendar/dayicon.tsx": {
-        "version": "b6a353a3cff9d899106cbdfd7c6b2cf7732ad0cf73fbaed8fd6e28954970a6cb",
+        "version": "d0612da08db8fc849295bf5f494d10097654f39590feaf921aceedc08d4aa7ce",
         "signature": "19ae6da52d11049cb87b954f227e73a4bbae80c984adb7db2c49a3d5e6de80fd",
         "affectsGlobalScope": false
       },
@@ -5557,8 +5567,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/chart.js/types/adapters.d.ts": {
-        "version": "6fc8e9a4f60350dfeae4bf1c35aa190103ada86d510914c9e22b6ac7f1d6f8f7",
-        "signature": "6fc8e9a4f60350dfeae4bf1c35aa190103ada86d510914c9e22b6ac7f1d6f8f7",
+        "version": "231d244ee043c1e4acb0ec54e42161daad28d77fa4fd4b8b90d870cdedea3181",
+        "signature": "231d244ee043c1e4acb0ec54e42161daad28d77fa4fd4b8b90d870cdedea3181",
         "affectsGlobalScope": false
       },
       "./node_modules/chart.js/types/basic.d.ts": {
@@ -5592,8 +5602,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/chart.js/types/index.esm.d.ts": {
-        "version": "c4e7c1de73990374af88737958c53412f908275a02e3725179fa1e672650a44c",
-        "signature": "c4e7c1de73990374af88737958c53412f908275a02e3725179fa1e672650a44c",
+        "version": "ec1272726f7f5fea69ea756ba2b2c880348ef6b8f46ba29ef71b6b16e2b96cdc",
+        "signature": "ec1272726f7f5fea69ea756ba2b2c880348ef6b8f46ba29ef71b6b16e2b96cdc",
         "affectsGlobalScope": false
       },
       "./node_modules/react-chartjs-2/dist/types.d.ts": {
@@ -5627,7 +5637,7 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/calendarlist.tsx": {
-        "version": "e1c9eef5b63776039e16f262cd769c17d28e311fde974367a9f830f9b43c2e48",
+        "version": "1b38c819f8b1ea75d724c94bf7f00ff40a35765c221af42ced62d86bb31197fc",
         "signature": "a5ac6be5b828f67bd85bd226d5d9955ee245af4aa7f504377dd4cd62ee73b99a",
         "affectsGlobalScope": false
       },
@@ -5642,12 +5652,12 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "6836c73730ee273bc24d2a3378f6f191d45c51284e5f8eeade26a211bc6d47a1",
+        "version": "4cc00a3ff4847462dbf9bca42dafc265b0ab018c2b1b92c7e9555736a6f877ef",
         "signature": "e51aba86d760c1cd2cd67ebcaa85bc5ac5a096240ce84e837a02e47a654cdfe9",
         "affectsGlobalScope": false
       },
       "./components/common/mypage.tsx": {
-        "version": "dee8776f38d8e46b4e2495635a1dc61b2e4da9ace21ab05df6b1a05f46c3abbe",
+        "version": "2dbbd9f9e4fcce2a5cc163669f2a52250ff9954720123eab0b8cfeb99afa202b",
         "signature": "83e0ec8be6698a128c3ed59d3f2af7aeebc1af22ed879c7f20712516f2edde9e",
         "affectsGlobalScope": false
       },
@@ -5677,7 +5687,7 @@
         "affectsGlobalScope": false
       },
       "./components/common/navigation.tsx": {
-        "version": "cf8be186c35010c4f25f355ea3169a80b5c8cd65292628b9abc6a268154ea745",
+        "version": "734d66fffa4b3ed64428fbcd2d59d192fdb7039ca85ff7753000e11169757703",
         "signature": "aa8ce5c61f2428d1b89ea7b6d2a4b3d270711f00dc8202c2ba50eeb41ea4e52d",
         "affectsGlobalScope": false
       },
@@ -5697,7 +5707,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "319ae88858f5892e7cd3a3c7de6a45b7a3c2e350082f7e4a5a80a861b8f9e34d",
+        "version": "010dc3841372352912397a0ada4c9c7d785f9ff9cef965158f1e1eff896f6e29",
         "signature": "b68bd1ec0d21abf43682de935b03fa0a28252db5aa4db3c93cf99d0b2e3f443d",
         "affectsGlobalScope": false
       },
@@ -6257,12 +6267,12 @@
         "affectsGlobalScope": false
       },
       "./components/goal/creategoal.tsx": {
-        "version": "f8721d35ca02ac8ae65003e20b412742a25306811a5153dafa922f0f2336b7dd",
+        "version": "72c9c591418bef446bd3bb4b6fd1de7e784b08cc54b3ae23f412b4e2b40d2c28",
         "signature": "020bdc11c4890ff0a3f4a0fe587830cb5b627bbdbe3a412ee7e65989c60f04c9",
         "affectsGlobalScope": false
       },
       "./components/goal/goalitem.tsx": {
-        "version": "d7dc3cbb170ebc52f41e29cd480c610d77e5394045429425bf7e30e1434f23cf",
+        "version": "602041560a5413f4c46bc3890787898be6455bc640e989bc0808ba13cef50a93",
         "signature": "76ab75397d9e406be3fe9cdaa644282944e07a45f904f7b7dc3147e9e75fd0ce",
         "affectsGlobalScope": false
       },
@@ -6307,7 +6317,7 @@
         "affectsGlobalScope": false
       },
       "./pages/_app.tsx": {
-        "version": "d7ca3334268642280577a9935ff326c71d99b3700996ba2089af731081f82d75",
+        "version": "b577fde33b25a6bd1e4d0cefb000765c66e6255a4d7a345901e7071ba1447258",
         "signature": "4ecefffe15c8faa9455343c2c606751c241f65d3e326354747c007cc92e4397f",
         "affectsGlobalScope": false
       },
@@ -6357,7 +6367,7 @@
         "affectsGlobalScope": false
       },
       "./pages/task/index.tsx": {
-        "version": "319c5809f2b4017d4b78eb13f1c1ff1c5a31ff7e1d30a2916ad0f9c285f6b614",
+        "version": "c67ad7f712460527e9f8722d3942564649d7acffc2626ccdeb10512a057f02e2",
         "signature": "428dcddd3ab77c4d9ebb2c773ccc6ffafa730d032cdd958a96351792009878dc",
         "affectsGlobalScope": false
       },
@@ -6608,7 +6618,7 @@
         "./node_modules/@types/styled-components/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
         "./types/api/work/read/calendar/response.d.ts"
       ],
@@ -6617,7 +6627,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/@types/styled-components/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts"
       ],
       "./components/calendar/pagination.tsx": [
@@ -6674,7 +6684,7 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts"
       ],
       "./components/common/simpletable.tsx": [
@@ -6723,7 +6733,7 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
         "./types/api/invitation/read/response.d.ts"
       ],
@@ -6766,7 +6776,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/recoil/index.d.ts",
         "./static/const.ts",
         "./types/api/goal/read/response.d.ts",
@@ -6779,7 +6789,7 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./types/api/goal/read/response.d.ts"
       ],
       "./components/goal/goallist.tsx": [
@@ -6861,7 +6871,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
         "./node_modules/recoil/index.d.ts",
         "./types/api/user/bearerauthentication/response.d.ts"
@@ -14133,6 +14143,7 @@
       ],
       "./node_modules/chart.js/types/adapters.d.ts": [
         "./node_modules/@types/node/util.d.ts",
+        "./node_modules/chart.js/types/index.esm.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./node_modules/chart.js/types/animation.d.ts": [
@@ -14192,6 +14203,20 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
+      "./node_modules/dayjs/index.d.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/locale/index.d.ts"
+      ],
+      "./node_modules/dayjs/locale/index.d.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/locale/types.d.ts"
+      ],
+      "./node_modules/dayjs/locale/types.d.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./node_modules/jest-diff/build/cleanupsemantic.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -14217,10 +14242,6 @@
         "./node_modules/jest-diff/build/types.d.ts"
       ],
       "./node_modules/jest-diff/build/types.d.ts": [
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/moment/ts3.1-typings/moment.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -14991,7 +15012,7 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/recoil/index.d.ts"
       ],
       "./pages/testpage.tsx": [
@@ -22574,6 +22595,7 @@
       ],
       "./node_modules/chart.js/types/adapters.d.ts": [
         "./node_modules/@types/node/util.d.ts",
+        "./node_modules/chart.js/types/index.esm.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./node_modules/chart.js/types/animation.d.ts": [
@@ -22633,6 +22655,20 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
+      "./node_modules/dayjs/index.d.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/locale/index.d.ts"
+      ],
+      "./node_modules/dayjs/locale/index.d.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/locale/types.d.ts"
+      ],
+      "./node_modules/dayjs/locale/types.d.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./node_modules/jest-diff/build/cleanupsemantic.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -22658,10 +22694,6 @@
         "./node_modules/jest-diff/build/types.d.ts"
       ],
       "./node_modules/jest-diff/build/types.d.ts": [
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/moment/ts3.1-typings/moment.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -24771,12 +24803,14 @@
       "./node_modules/clsx/clsx.d.ts",
       "./node_modules/csstype/index.d.ts",
       "./node_modules/date-fns/typings.d.ts",
+      "./node_modules/dayjs/index.d.ts",
+      "./node_modules/dayjs/locale/index.d.ts",
+      "./node_modules/dayjs/locale/types.d.ts",
       "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
       "./node_modules/jest-diff/build/difflines.d.ts",
       "./node_modules/jest-diff/build/index.d.ts",
       "./node_modules/jest-diff/build/printdiffs.d.ts",
       "./node_modules/jest-diff/build/types.d.ts",
-      "./node_modules/moment/ts3.1-typings/moment.d.ts",
       "./node_modules/next-page-tester/dist/_app/defaultapp.d.ts",
       "./node_modules/next-page-tester/dist/commontypes.d.ts",
       "./node_modules/next-page-tester/dist/constants.d.ts",
@@ -29444,6 +29478,18 @@
         1
       ],
       [
+        "./node_modules/dayjs/index.d.ts",
+        1
+      ],
+      [
+        "./node_modules/dayjs/locale/index.d.ts",
+        1
+      ],
+      [
+        "./node_modules/dayjs/locale/types.d.ts",
+        1
+      ],
+      [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
         1
       ],
@@ -29461,10 +29507,6 @@
       ],
       [
         "./node_modules/jest-diff/build/types.d.ts",
-        1
-      ],
-      [
-        "./node_modules/moment/ts3.1-typings/moment.d.ts",
         1
       ],
       [

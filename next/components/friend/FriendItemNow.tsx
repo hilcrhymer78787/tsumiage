@@ -9,17 +9,17 @@ import {
   ListItemText,
 } from "@mui/material";
 import UserImg from "@/components/common/UserImg";
-import moment from "moment";
+import dayjs from "dayjs";
 type Props = {
   friend: apiInvitationResponseFriendType
   friendRead: () => void
 }
 const FriendItemNow = (props: Props) => {
   const nowYear = (): number => {
-    return Number(moment().format("Y"));
+    return Number(dayjs().format("YYYY"));
   };
   const nowMonth = (): number => {
-    return Number(moment().format("M"));
+    return Number(dayjs().format("M"));
   };
   return (
     <ListItem sx={{ p: 0 }}>

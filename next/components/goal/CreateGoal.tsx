@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MINUTE } from "@/static/const";
-import moment from "moment";
+import dayjs from "dayjs";
 import LinePlot from "@/components/common/LinePlot";
 import { apiGoalReadResponseGoalsType } from "@/types/api/goal/read/response";
 import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
@@ -38,8 +38,8 @@ const Creategoal = (props: Props) => {
   const [hour, setHour] = useState<number | string>("");
   const [minute, setMinute] = useState<number>(0);
   const [taskId, setTaskId] = useState<number>(0);
-  const [startDate, setStartDate] = useState<string>(moment().format("YYYY-MM-DD"));
-  const [endDate, setEndDate] = useState<string>(moment().format("YYYY-MM-DD"));
+  const [startDate, setStartDate] = useState<string>(dayjs().format("YYYY-MM-DD"));
+  const [endDate, setEndDate] = useState<string>(dayjs().format("YYYY-MM-DD"));
   const [hourError, setHourError] = useState<string>("");
   const [dateError, setDateError] = useState<string>("");
   const apiGoalDelete = async () => {
@@ -88,11 +88,11 @@ const Creategoal = (props: Props) => {
       setHourError("目標合計時間が設定されていません");
       isError = true;
     }
-    if (moment(endDate).diff(moment(startDate), "days") < 0) {
+    if (dayjs(endDate).diff(dayjs(startDate), "days") < 0) {
       setDateError("開始日以降の期限日を設定してください");
       isError = true;
     }
-    if (moment(endDate).diff(moment(startDate), "days") > 366) {
+    if (dayjs(endDate).diff(dayjs(startDate), "days") > 366) {
       setDateError("366日以上の範囲は設定できません");
       isError = true;
     }
@@ -102,7 +102,7 @@ const Creategoal = (props: Props) => {
   const apiTaskRead = async () => {
     try {
       const res = await taskRead({
-        date: moment().format("YYYY-MM-DD"),
+        date: dayjs().format("YYYY-MM-DD"),
         user_id: loginInfo?.id ?? 0
       });
       setTasks(res.data.tasks);
@@ -202,7 +202,7 @@ const Creategoal = (props: Props) => {
                   <MobileDatePicker
                     value={startDate}
                     onChange={(v: string | null) => {
-                      setStartDate(moment(v).format("YYYY-MM-DD"));
+                      setStartDate(dayjs(v).format("YYYY-MM-DD"));
                     }}
                     renderInput={(params: TextFieldProps) => <TextField {...params} />}
                     inputFormat="yyyy/MM/dd"
@@ -216,7 +216,7 @@ const Creategoal = (props: Props) => {
                   <MobileDatePicker
                     value={endDate}
                     onChange={(v: string | null) => {
-                      setEndDate(moment(v).format("YYYY-MM-DD"));
+                      setEndDate(dayjs(v).format("YYYY-MM-DD"));
                     }}
                     renderInput={(params: TextFieldProps) => <TextField {...params} />}
                     inputFormat="yyyy/MM/dd"

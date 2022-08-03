@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import styled from "styled-components";
 type Props = {
   day: number
@@ -21,13 +21,13 @@ export default function DayIcon(props: Props) {
     return Number(router.query.month);
   };
   const nowDay = (): number => {
-    return Number(moment().format("D"));
+    return Number(dayjs().format("D"));
   };
   const nowYear = (): number => {
-    return Number(moment().format("Y"));
+    return Number(dayjs().format("YYYY"));
   };
   const nowMonth = (): number => {
-    return Number(moment().format("M"));
+    return Number(dayjs().format("M"));
   };
   return (
     <Icn>

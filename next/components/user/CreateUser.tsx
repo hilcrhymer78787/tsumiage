@@ -3,7 +3,7 @@ import Router from "next/router";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 import SendIcon from "@mui/icons-material/Send";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   Avatar,
   Button,
@@ -98,7 +98,7 @@ function CreateUser(props: Props) {
   const fileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     file = e.target.files[0];
-    setUserImg(moment().format("YYYYMMDDHHmmss") + file.name);
+    setUserImg(dayjs().format("YYYYMMDDHHmmss") + file.name);
     const reader: FileReader = new FileReader();
     reader.onload = (e: ProgressEvent<FileReader>) => {
       setUploadedImage(e.target?.result);
