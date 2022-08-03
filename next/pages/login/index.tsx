@@ -78,49 +78,41 @@ function Login() {
       <Card>
         <CardHeader title="ログイン" />
         <CardContent>
-          <ul>
-            <li>
-              <Box sx={{ mb: "15px" }}>
-                <TextField
-                  onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
-                  error={!!emailError}
-                  helperText={emailError}
-                  value={email}
-                  onChange={(e) => { setEmail(e.currentTarget.value); }}
-                  label="email" variant="outlined" color="primary"
-                />
-              </Box>
-            </li>
-            <li>
-              <Box sx={{ mb: "15px" }}>
-                <TextField
-                  onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
-                  error={!!passwordError}
-                  helperText={passwordError}
-                  value={password}
-                  onChange={(e) => { setPassword(e.currentTarget.value); }}
-                  label="password" variant="outlined" color="primary"
-                />
-              </Box>
-            </li>
-            {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" &&
-              <li>
-                <Box sx={{
-                  display: "flex",
-                  justifyContent: "flex-end"
-                }}>
-                  <LoadingButton
-                    color="inherit"
-                    variant="contained"
-                    onClick={apiTestAuthentication}
-                    loading={testAuthenticationLoading}
-                    disabled={basicAuthenticationLoading}>
-                    テストユーザーでログイン<SendIcon />
-                  </LoadingButton>
-                </Box>
-              </li>
-            }
-          </ul>
+          <Box sx={{ mb: "15px" }}>
+            <TextField
+              onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
+              error={!!emailError}
+              helperText={emailError}
+              value={email}
+              onChange={(e) => { setEmail(e.currentTarget.value); }}
+              label="email" variant="outlined" color="primary"
+            />
+          </Box>
+          <Box sx={{ mb: "15px" }}>
+            <TextField
+              onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
+              error={!!passwordError}
+              helperText={passwordError}
+              value={password}
+              onChange={(e) => { setPassword(e.currentTarget.value); }}
+              label="password" variant="outlined" color="primary"
+            />
+          </Box>
+          {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" &&
+            <Box sx={{
+              display: "flex",
+              justifyContent: "flex-end"
+            }}>
+              <LoadingButton
+                color="inherit"
+                variant="contained"
+                onClick={apiTestAuthentication}
+                loading={testAuthenticationLoading}
+                disabled={basicAuthenticationLoading}>
+                テストユーザーでログイン<SendIcon />
+              </LoadingButton>
+            </Box>
+          }
         </CardContent>
         <CardActions>
           <Button

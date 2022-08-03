@@ -135,100 +135,92 @@ const Creategoal = (props: Props) => {
     <Card>
       <CardHeader title={props.focusGoal ? props.focusGoal.task_name : "新規目標登録"} />
       <CardContent>
-        <ul>
-          {!!props.focusGoal && <>
-            <li>
-              <Box sx={{ mb: "16px" }}>
-                <LinePlot height="200px" data={props.focusGoal.analytics} />
-              </Box>
-            </li>
-          </>}
-          {!!tasks.length &&
-            <li>
-              <Box sx={{ mb: "16px" }}>
-                <h4>タスク</h4>
-                <Select
-                  sx={{ width: "100%", }}
-                  labelId="task-id"
-                  value={taskId}
-                  onChange={(e) => { setTaskId(Number(e.target.value)); }}
-                >
-                  {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
-                    <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
-                  ))}
-                </Select>
-              </Box>
-            </li>
+        {!!props.focusGoal && <>
+          <Box sx={{ mb: "16px" }}>
+            <LinePlot height="200px" data={props.focusGoal.analytics} />
+          </Box>
+        </>}
+        {!!tasks.length &&
+          <Box sx={{ mb: "16px" }}>
+            <h4>タスク</h4>
+            <Select
+              sx={{ width: "100%", }}
+              labelId="task-id"
+              value={taskId}
+              onChange={(e) => { setTaskId(Number(e.target.value)); }}
+            >
+              {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
+                <MenuItem key={index.toString()} value={task.id}>{task.name}</MenuItem>
+              ))}
+            </Select>
+          </Box>
+        }
+        <Box sx={{ mb: "16px" }}>
+          <h4>目標合計時間</h4>
+          <Box sx={{ display: "flex" }}>
+            <Box sx={{ width: "42%", }}>
+              <TextField
+                error={!!hourError}
+                value={hour}
+                onChange={(e) => { setHour(e.currentTarget.value); }}
+                variant="outlined" color="primary"
+              />
+            </Box>
+            <Box sx={{ width: "16%", p: "20px 0 0 1%" }}>
+              時間
+            </Box>
+            <Box sx={{ width: "42%", }}>
+              <Select
+                error={!!hourError}
+                sx={{ width: "100%", }}
+                value={minute}
+                onChange={(e) => { setMinute(Number(e.target.value)); }}
+              >
+                {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
+                  <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
+                ))}
+              </Select>
+            </Box>
+          </Box>
+        </Box>
+        {!!hourError &&
+          <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{hourError}</Typography>
+        }
+        <Box sx={{ mb: "16px" }}>
+          <h4>目標期間</h4>
+          <Box sx={{
+            display: "flex",
+            alignItems: "center"
+          }}>
+            <Box sx={{ width: "42%", }}>
+              <MobileDatePicker
+                value={startDate}
+                onChange={(v: string | null) => {
+                  setStartDate(dayjs(v).format("YYYY-MM-DD"));
+                }}
+                renderInput={(params: TextFieldProps) => <TextField {...params} />}
+                inputFormat="yyyy/MM/dd"
+              />
+            </Box>
+            <Box sx={{
+              width: "16%",
+              textAlign: "center"
+            }}>~</Box>
+            <Box sx={{ width: "42%", }}>
+              <MobileDatePicker
+                value={endDate}
+                onChange={(v: string | null) => {
+                  setEndDate(dayjs(v).format("YYYY-MM-DD"));
+                }}
+                renderInput={(params: TextFieldProps) => <TextField {...params} />}
+                inputFormat="yyyy/MM/dd"
+              />
+            </Box>
+          </Box>
+          {!!dateError &&
+            <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{dateError}</Typography>
           }
-          <li>
-            <Box sx={{ mb: "16px" }}>
-              <h4>目標合計時間</h4>
-              <Box sx={{ display: "flex" }}>
-                <Box sx={{ width: "42%", }}>
-                  <TextField
-                    error={!!hourError}
-                    value={hour}
-                    onChange={(e) => { setHour(e.currentTarget.value); }}
-                    variant="outlined" color="primary"
-                  />
-                </Box>
-                <Box sx={{ width: "16%", p: "20px 0 0 1%" }}>時間</Box>
-                <Box sx={{ width: "42%", }}>
-                  <Select
-                    error={!!hourError}
-                    sx={{ width: "100%", }}
-                    value={minute}
-                    onChange={(e) => { setMinute(Number(e.target.value)); }}
-                  >
-                    {MINUTE.map((minute: { txt: string; val: number; }, index: number) => (
-                      <MenuItem key={index.toString()} value={minute.val}>{minute.txt}</MenuItem>
-                    ))}
-                  </Select>
-                </Box>
-              </Box>
-            </Box>
-            {!!hourError &&
-              <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{hourError}</Typography>
-            }
-          </li>
-          <li>
-            <Box sx={{ mb: "16px" }}>
-              <h4>目標期間</h4>
-              <Box sx={{
-                display: "flex",
-                alignItems: "center"
-              }}>
-                <Box sx={{ width: "42%", }}>
-                  <MobileDatePicker
-                    value={startDate}
-                    onChange={(v: string | null) => {
-                      setStartDate(dayjs(v).format("YYYY-MM-DD"));
-                    }}
-                    renderInput={(params: TextFieldProps) => <TextField {...params} />}
-                    inputFormat="yyyy/MM/dd"
-                  />
-                </Box>
-                <Box sx={{
-                  width: "16%",
-                  textAlign: "center"
-                }}>~</Box>
-                <Box sx={{ width: "42%", }}>
-                  <MobileDatePicker
-                    value={endDate}
-                    onChange={(v: string | null) => {
-                      setEndDate(dayjs(v).format("YYYY-MM-DD"));
-                    }}
-                    renderInput={(params: TextFieldProps) => <TextField {...params} />}
-                    inputFormat="yyyy/MM/dd"
-                  />
-                </Box>
-              </Box>
-              {!!dateError &&
-                <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{dateError}</Typography>
-              }
-            </Box>
-          </li>
-        </ul>
+        </Box>
       </CardContent>
       <CardActions>
         <LoadingButton

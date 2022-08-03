@@ -119,107 +119,93 @@ function CreateUser(props: Props) {
     <Card>
       <CardHeader title={props.loginInfo ? "ユーザー編集" : "新規ユーザー登録"} />
       <CardContent>
-        <ul>
-          <li>
-            <Box sx={{
-              display: "flex",
-              alignItems: "center",
-              mb: "20px"
-            }}>
-              {!!uploadedImage && (
-                <Avatar
-                  src={uploadedImage}
-                  sx={{
-                    width: "70px",
-                    height: "70px",
-                    border: "2px solid #1976d2"
-                  }}
-                />
-              )}
-              {!uploadedImage && (
-                <UserImg
-                  fileName={props.loginInfo?.user_img}
-                  size="70"
-                />
-              )}
-              <Button
-                onClick={() => inputRef?.click()}
-                variant="contained"
-                sx={{ ml: "20px" }}
-                color="inherit">画像を選択<FileUploadIcon />
-              </Button>
-              <input
-                onChange={fileSelected}
-                type="file"
-                hidden
-                ref={refParam => inputRef = refParam}
-              />
-            </Box>
-          </li>
-          <li>
-            <Box sx={{ mb: "15px" }}>
-              <TextField
-                onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                error={!!nameError}
-                helperText={nameError}
-                value={name}
-                onChange={(e) => { setName(e.currentTarget.value); }}
-                label="名前" variant="outlined" color="primary"
-              />
-            </Box>
-          </li>
-          <li>
-            <Box sx={{ mb: "15px" }}>
-              <TextField
-                onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                error={!!emailError}
-                helperText={emailError}
-                value={email}
-                onChange={(e) => { setEmail(e.currentTarget.value); }}
-                label="メールアドレス" variant="outlined" color="primary"
-              />
-            </Box>
-          </li>
-          {passwordEditMode && <>
-            <li>
-              <Box sx={{ mb: "15px" }}>
-                <TextField
-                  onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                  error={!!passwordError}
-                  helperText={passwordError}
-                  value={password}
-                  onChange={(e) => { setPassword(e.currentTarget.value); }}
-                  label="パスワード" variant="outlined" color="primary"
-                />
-              </Box>
-            </li>
-            <li>
-              <Box sx={{ mb: "15px" }}>
-                <TextField
-                  onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
-                  value={passwordAgain}
-                  onChange={(e) => { setPasswordAgain(e.currentTarget.value); }}
-                  label="パスワード確認" variant="outlined" color="primary"
-                />
-              </Box>
-            </li>
-          </>}
-          {!passwordEditMode && <>
-            <li>
-              <Box sx={{
-                mb: "15px",
-                display: "flex",
-                justifyContent: "flex-end"
-              }}>
-                <Button
-                  onClick={() => { setPasswordEditMode(true); }}
-                  variant="contained"
-                  color="inherit">パスワードを編集
-                </Button>
-              </Box>
-            </li>
-          </>}
-        </ul>
+        <Box sx={{
+          display: "flex",
+          alignItems: "center",
+          mb: "20px"
+        }}>
+          {!!uploadedImage && (
+            <Avatar
+              src={uploadedImage}
+              sx={{
+                width: "70px",
+                height: "70px",
+                border: "2px solid #1976d2"
+              }}
+            />
+          )}
+          {!uploadedImage && (
+            <UserImg
+              fileName={props.loginInfo?.user_img}
+              size="70"
+            />
+          )}
+          <Button
+            onClick={() => inputRef?.click()}
+            variant="contained"
+            sx={{ ml: "20px" }}
+            color="inherit">画像を選択<FileUploadIcon />
+          </Button>
+          <input
+            onChange={fileSelected}
+            type="file"
+            hidden
+            ref={refParam => inputRef = refParam}
+          />
+        </Box>
+        <Box sx={{ mb: "15px" }}>
+          <TextField
+            onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
+            error={!!nameError}
+            helperText={nameError}
+            value={name}
+            onChange={(e) => { setName(e.currentTarget.value); }}
+            label="名前" variant="outlined" color="primary"
+          />
+        </Box>
+        <Box sx={{ mb: "15px" }}>
+          <TextField
+            onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
+            error={!!emailError}
+            helperText={emailError}
+            value={email}
+            onChange={(e) => { setEmail(e.currentTarget.value); }}
+            label="メールアドレス" variant="outlined" color="primary"
+          />
+        </Box>
+        {passwordEditMode && <>
+          <Box sx={{ mb: "15px" }}>
+            <TextField
+              onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
+              error={!!passwordError}
+              helperText={passwordError}
+              value={password}
+              onChange={(e) => { setPassword(e.currentTarget.value); }}
+              label="パスワード" variant="outlined" color="primary"
+            />
+          </Box>
+          <Box sx={{ mb: "15px" }}>
+            <TextField
+              onKeyPress={e => { if (e.key === "Enter") { apiCreateUser(); } }}
+              value={passwordAgain}
+              onChange={(e) => { setPasswordAgain(e.currentTarget.value); }}
+              label="パスワード確認" variant="outlined" color="primary"
+            />
+          </Box>
+        </>}
+        {!passwordEditMode && <>
+          <Box sx={{
+            mb: "15px",
+            display: "flex",
+            justifyContent: "flex-end"
+          }}>
+            <Button
+              onClick={() => { setPasswordEditMode(true); }}
+              variant="contained"
+              color="inherit">パスワードを編集
+            </Button>
+          </Box>
+        </>}
       </CardContent>
       <CardActions>
         {!props.loginInfo && (

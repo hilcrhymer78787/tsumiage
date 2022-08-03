@@ -85,63 +85,55 @@ export default function CreateTask(props: Props) {
     <Card>
       <CardHeader title={props.task ? props.task.name : "新規タスク登録"} />
       <CardContent>
-        <ul>
-          <li>
-            <Box sx={{ mb: "15px" }}>
-              <TextField
-                error={!!nameError}
-                helperText={nameError}
-                value={formTask.name}
-                onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
-                label="タスクの名前" variant="outlined" color="primary" />
+        <Box sx={{ mb: "15px" }}>
+          <TextField
+            error={!!nameError}
+            helperText={nameError}
+            value={formTask.name}
+            onChange={(e) => { setFormTask({ ...formTask, name: e.currentTarget.value }); }}
+            label="タスクの名前" variant="outlined" color="primary" />
+        </Box>
+        <Box sx={{ mb: "15px" }}>
+          <h4>1日あたりの想定時間</h4>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ width: "48%", }}>
+              <Select
+                sx={{ width: "100%", }}
+                value={formTask.default_hour}
+                onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
+              >
+                {[...Array(24 + 1)].map((n, index) => (
+                  <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
+                ))}
+              </Select>
             </Box>
-          </li>
-          <li>
-            <Box sx={{ mb: "15px" }}>
-              <h4>1日あたりの想定時間</h4>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Box sx={{ width: "48%", }}>
-                  <Select
-                    sx={{ width: "100%", }}
-                    value={formTask.default_hour}
-                    onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
-                  >
-                    {[...Array(24 + 1)].map((n, index) => (
-                      <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
-                    ))}
-                  </Select>
-                </Box>
-                <Box sx={{ width: "48%", }}>
-                  <Select
-                    sx={{ width: "100%", }}
-                    value={formTask.default_minute}
-                    onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
-                  >
-                    {[...Array(59 + 1)].map((n, index) => (
-                      <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
-                    ))}
-                  </Select>
-                </Box>
-              </Box>
+            <Box sx={{ width: "48%", }}>
+              <Select
+                sx={{ width: "100%", }}
+                value={formTask.default_minute}
+                onChange={(e) => { setFormTask({ ...formTask, default_minute: Number(e.target.value) }); }}
+              >
+                {[...Array(59 + 1)].map((n, index) => (
+                  <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                ))}
+              </Select>
             </Box>
-          </li>
-          {/* <li>
-                        <Box sx={{ mb: '15px' }}>
-                            <FormControl fullWidth>
-                                <InputLabel id="defaultーminute-label">ステータス</InputLabel>
-                                <Select
-                                    labelId="defaultーminute-label"
-                                    value={formTask.status}
-                                    onChange={(e) => { setFormTask({ ...formTask, status: Number(e.target.value) }); }}
-                                >
-                                    {[...Array(10 + 1)].map((n, index) => (
-                                        <MenuItem key={index.toString()} value={index}>{index}</MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Box>
-                    </li> */}
-        </ul>
+          </Box>
+        </Box>
+        {/* <Box sx={{ mb: '15px' }}>
+          <FormControl fullWidth>
+            <InputLabel id="defaultーminute-label">ステータス</InputLabel>
+            <Select
+              labelId="defaultーminute-label"
+              value={formTask.status}
+              onChange={(e) => { setFormTask({ ...formTask, status: Number(e.target.value) }); }}
+            >
+              {[...Array(10 + 1)].map((n, index) => (
+                <MenuItem key={index.toString()} value={index}>{index}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box> */}
       </CardContent>
       <CardActions>
         <LoadingButton

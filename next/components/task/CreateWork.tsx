@@ -89,59 +89,53 @@ export default function CreateWork(props: Props) {
         subheader={props.date}
       />
       <CardContent>
-        <ul>
-          <li>
-            <Box sx={{ mb: "20px" }}>
-              <h4>実績時間</h4>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Box sx={{ width: "48%", }}>
-                  <Select
-                    readOnly={props.readonly}
-                    sx={{ width: "100%", }}
-                    value={formHour}
-                    onChange={(e) => { setFormHour(Number(e.target.value)); }}
-                  >
-                    {[...Array(24 + 1)].map((n, index) => (
-                      <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
-                    ))}
-                  </Select>
-                </Box>
-                <Box sx={{ width: "48%", }}>
-                  <Select
-                    readOnly={props.readonly}
-                    sx={{ width: "100%", }}
-                    value={formMinute}
-                    onChange={(e) => { setFormMinute(Number(e.target.value)); }}
-                  >
-                    {[...Array(59 + 1)].map((n, index) => (
-                      <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
-                    ))}
-                  </Select>
-                </Box>
-              </Box>
-            </Box>
-          </li>
-          <li>
-            <Box sx={{ mb: "20px" }}>
-              <h4>メモ</h4>
-              <TextareaAutosize
+        <Box sx={{ mb: "20px" }}>
+          <h4>実績時間</h4>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ width: "48%", }}>
+              <Select
                 readOnly={props.readonly}
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                  setFormMemo(e.target.value);
-                }}
-                value={formMemo}
-                minRows={6}
-                placeholder="memo"
-                style={{
-                  width: "100%",
-                  border: "1px solid #e0e0e0",
-                  borderRadius: "5px",
-                  padding: "5px",
-                }}
-              />
+                sx={{ width: "100%", }}
+                value={formHour}
+                onChange={(e) => { setFormHour(Number(e.target.value)); }}
+              >
+                {[...Array(24 + 1)].map((n, index) => (
+                  <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
+                ))}
+              </Select>
             </Box>
-          </li>
-        </ul>
+            <Box sx={{ width: "48%", }}>
+              <Select
+                readOnly={props.readonly}
+                sx={{ width: "100%", }}
+                value={formMinute}
+                onChange={(e) => { setFormMinute(Number(e.target.value)); }}
+              >
+                {[...Array(59 + 1)].map((n, index) => (
+                  <MenuItem key={index.toString()} value={index}>{index}分</MenuItem>
+                ))}
+              </Select>
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={{ mb: "20px" }}>
+          <h4>メモ</h4>
+          <TextareaAutosize
+            readOnly={props.readonly}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+              setFormMemo(e.target.value);
+            }}
+            value={formMemo}
+            minRows={6}
+            placeholder="memo"
+            style={{
+              width: "100%",
+              border: "1px solid #e0e0e0",
+              borderRadius: "5px",
+              padding: "5px",
+            }}
+          />
+        </Box>
       </CardContent>
       {!props.readonly && (
         <CardActions>
