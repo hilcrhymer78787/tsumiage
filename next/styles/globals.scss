@@ -7,25 +7,6 @@ body {
     color: rgba(0, 0, 0, 0.54);
     margin: 0 0 5px;
 }
-.MuiToolbar-root{
-    min-height: 56px !important;
-}
-.MuiCardActions-root {
-    border-top: 1px solid #e0e0e0 !important;
-    justify-content: space-between;
-}
-.MuiFormControl-root {
-    width: 100%;
-}
-.MuiBottomNavigation-root{
-    padding: calc(env(safe-area-inset-bottom)) 0 calc(env(safe-area-inset-bottom) * 1.5);
-}
-.MuiListItem-root.MuiListItem-gutters {
-    border-bottom: 1px solid #e0e0e0;
-    &:last-child {
-        border-bottom: none;
-    }
-}
 .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
     padding: 0 5px !important;
     background-color: white !important;
@@ -37,28 +18,9 @@ body {
     padding: 7px;
     background-color: white !important;
 }
-.MuiButton-containedPrimary{
-    background: linear-gradient(#62b1ff,#1976d2);
-}
-.MuiButton-containedError{
-    background: linear-gradient(#ff6565,#d32f2f);
-}
 .MuiLoadingButton-root {
     .MuiSvgIcon-root {
         margin-left: 10px;
-    }
-}
-.MuiCardHeader {
-    &-title{
-        font-size: 20px !important;
-    }
-    &-root {
-        background: linear-gradient(#62b1ff,#1976d2);
-        color: white;
-    }
-    &-subheader {
-        color: white !important;
-        font-size: 13px !important;
     }
 }
 .MuiModal-root{
