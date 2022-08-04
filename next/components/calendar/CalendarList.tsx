@@ -10,6 +10,7 @@ import Pagination from "@/components/calendar/Pagination";
 import TaskList from "@/components/task/TaskList";
 import LinePlot from "@/components/common/LinePlot";
 import styled from "styled-components";
+import { useTheme } from '@mui/material/styles';
 import {
   CardActionArea,
   Dialog,
@@ -25,6 +26,7 @@ type Props = {
   readonly: boolean,
 }
 export default function CalendarList(props: Props) {
+  const theme = useTheme();
   const { workReadCalendar, workReadCalendarLoading, } = useWorkApi();
   const [calendarData, setCalendarData] = useState<apiWorkReadCalendarResponseType>({
     calendars: [],
@@ -110,7 +112,7 @@ export default function CalendarList(props: Props) {
                   sx={{ minHeight: "40px" }}
                 >
                   <DayIcon day={index + 1} />
-                  <ContentItemText>
+                  <ContentItemText style={{ color: theme.palette.primary.main }}>
                     {!!calendar.minute ? `${calendar.minute}分` : ""}
                   </ContentItemText>
                 </CardActionArea>
@@ -196,6 +198,5 @@ const ContentItemText = styled.div`
 text-align: center;
 font-size: 13px;
 padding: 5px 2px;
-color: #1976d2b4;
 min-height: 25px;
 `;

@@ -9,12 +9,14 @@ import {
   ListItemAvatar,
   ListItemText,
 } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 import dayjs from "dayjs";
 type Props = {
   goalRead: () => void,
   goal: apiGoalReadResponseGoalsType
 }
 export default function GoalItem(props: Props) {
+  const theme = useTheme();
   const [createGoalDialog, setCreateGoalDialog] = useState<boolean>(false);
   return (
     <ListItem sx={{ p: 0 }}>
@@ -23,7 +25,7 @@ export default function GoalItem(props: Props) {
           <Avatar
             sx={{
               fontSize: "13px",
-              bgcolor: props.goal.sum_minute >= props.goal.minute ? "#1976d2" : ""
+              bgcolor: props.goal.sum_minute >= props.goal.minute ? theme.palette.primary.main : ""
             }}
           >{Math.floor(props.goal.sum_minute * 100 / props.goal.minute)}%</Avatar>
         </ListItemAvatar>
