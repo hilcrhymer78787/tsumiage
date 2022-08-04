@@ -16,6 +16,7 @@ import {
   CardActions,
   IconButton,
   Dialog,
+  Typography,
 } from "@mui/material";
 import { useWorkApi } from "@/data/work";
 import axios from "axios";
@@ -90,7 +91,7 @@ export default function CreateWork(props: Props) {
       />
       <CardContent>
         <Box sx={{ mb: "20px" }}>
-          <h4>実績時間</h4>
+          <Typography variant="subtitle1">実績時間</Typography>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ width: "48%", }}>
               <Select
@@ -119,7 +120,7 @@ export default function CreateWork(props: Props) {
           </Box>
         </Box>
         <Box sx={{ mb: "20px" }}>
-          <h4>メモ</h4>
+          <Typography variant="subtitle1">メモ</Typography>
           <TextareaAutosize
             readOnly={props.readonly}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

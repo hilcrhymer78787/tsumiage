@@ -5372,7 +5372,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/createtask.tsx": {
-        "version": "43c09df7125e385e60c758a38cf5530c7991a3db22dca01b9c948fa200d3081c",
+        "version": "2a97a2d503d2fde88196022948bc0528bfcbb77a097792d3d40beff2fba98a01",
         "signature": "950f6313ef8a0d331dada7fbf261fdf7da12ffc057e24c12c13060c7a31b2cd7",
         "affectsGlobalScope": false
       },
@@ -5382,7 +5382,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/creatework.tsx": {
-        "version": "ced4d632615f909fe2426d93195fd651d3b1d12409834af828758ac18cd1a73f",
+        "version": "c511fb41794a3131e948d1695c259af69be79763d05872a54919d84409ff7ad1",
         "signature": "78dc96b56d798eb9543cd2b7e8cab66313345b86cd966072fde5c3d57fc690a5",
         "affectsGlobalScope": false
       },
@@ -5652,7 +5652,7 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "4cc00a3ff4847462dbf9bca42dafc265b0ab018c2b1b92c7e9555736a6f877ef",
+        "version": "1d0eb6be21594edf97828e7a5fb995882bf3944a212228fbbeea55a469401da3",
         "signature": "e51aba86d760c1cd2cd67ebcaa85bc5ac5a096240ce84e837a02e47a654cdfe9",
         "affectsGlobalScope": false
       },
@@ -6267,7 +6267,7 @@
         "affectsGlobalScope": false
       },
       "./components/goal/creategoal.tsx": {
-        "version": "72c9c591418bef446bd3bb4b6fd1de7e784b08cc54b3ae23f412b4e2b40d2c28",
+        "version": "ab15bc30b233836f0f1860e4dea6ff80a1dc61e3fbc1279ad7131283578fbb70",
         "signature": "020bdc11c4890ff0a3f4a0fe587830cb5b627bbdbe3a412ee7e65989c60f04c9",
         "affectsGlobalScope": false
       },
@@ -6352,7 +6352,7 @@
         "affectsGlobalScope": false
       },
       "./pages/login/index.tsx": {
-        "version": "a8911a85e084f96ea161a553e0ad50fd78cc66c4da33cb0cbf787165dea779c8",
+        "version": "0b1873c5a5413260f7387c29ad912d483c17a4e1e4776fc3091ccf46ff46f092",
         "signature": "683530a06337db1600fbe68391c5f58d7344be33ff40cea342c1bf6f971e7f51",
         "affectsGlobalScope": false
       },
@@ -6362,7 +6362,7 @@
         "affectsGlobalScope": false
       },
       "./pages/logout/index.tsx": {
-        "version": "2beb4fb501b9657f4700aade10adb094015ed54eeaee5799b7809aca7df8984a",
+        "version": "7eb611c6117cc6f57d7e97bfce4f083188e2be8db0269479c3c81fd6aac82570",
         "signature": "b3aefe92ee9805b83ecf9e21087caade164f2bbafde105ed3ad827760cf50ed6",
         "affectsGlobalScope": false
       },

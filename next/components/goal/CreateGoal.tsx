@@ -135,14 +135,14 @@ const Creategoal = (props: Props) => {
     <Card>
       <CardHeader title={props.focusGoal ? props.focusGoal.task_name : "新規目標登録"} />
       <CardContent>
-        {!!props.focusGoal && <>
+        {!!props.focusGoal && 
           <Box sx={{ mb: "16px" }}>
             <LinePlot height="200px" data={props.focusGoal.analytics} />
           </Box>
-        </>}
+        }
         {!!tasks.length &&
           <Box sx={{ mb: "16px" }}>
-            <h4>タスク</h4>
+            <Typography variant="subtitle1">タスク</Typography>
             <Select
               sx={{ width: "100%", }}
               labelId="task-id"
@@ -156,7 +156,7 @@ const Creategoal = (props: Props) => {
           </Box>
         }
         <Box sx={{ mb: "16px" }}>
-          <h4>目標合計時間</h4>
+          <Typography variant="subtitle1">目標合計時間</Typography>
           <Box sx={{ display: "flex" }}>
             <Box sx={{ width: "42%", }}>
               <TextField
@@ -187,7 +187,7 @@ const Creategoal = (props: Props) => {
           <Typography sx={{ color: "#d32f2f", fontSize: "13px" }}>{hourError}</Typography>
         }
         <Box sx={{ mb: "16px" }}>
-          <h4>目標期間</h4>
+          <Typography variant="subtitle1">目標期間</Typography>
           <Box sx={{
             display: "flex",
             alignItems: "center"

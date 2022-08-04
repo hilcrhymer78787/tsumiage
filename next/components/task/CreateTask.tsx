@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardContent,
   CardActions,
+  Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useTaskApi } from "@/data/task";
@@ -94,7 +95,7 @@ export default function CreateTask(props: Props) {
             label="タスクの名前" variant="outlined" color="primary" />
         </Box>
         <Box sx={{ mb: "15px" }}>
-          <h4>1日あたりの想定時間</h4>
+          <Typography variant="subtitle1">1日あたりの想定時間</Typography>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ width: "48%", }}>
               <Select
@@ -102,7 +103,7 @@ export default function CreateTask(props: Props) {
                 value={formTask.default_hour}
                 onChange={(e) => { setFormTask({ ...formTask, default_hour: Number(e.target.value) }); }}
               >
-                {[...Array(24 + 1)].map((n, index) => (
+                {[...Array(24 + 1)].map((_, index) => (
                   <MenuItem key={index.toString()} value={index}>{index}時間</MenuItem>
                 ))}
               </Select>
