@@ -20,8 +20,8 @@ docker-compose exec next bash
 
 cp .env.example .env
 
-npm install
+yarn install
 
-npm run dev
+yarn dev
 
 <!-- node v16.13.2 -->

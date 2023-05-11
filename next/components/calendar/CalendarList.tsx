@@ -10,7 +10,7 @@ import Pagination from "@/components/calendar/Pagination";
 import TaskList from "@/components/task/TaskList";
 import LinePlot from "@/components/common/LinePlot";
 import styled from "styled-components";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import {
   CardActionArea,
   Dialog,
