@@ -48,17 +48,13 @@ class TaskController extends Controller
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         if ($request['task_id']) {
-            Task::where('task_id', $request['task_id'])->update([
-                'task_name' => $request['task_name'],
-                'task_status' => $request['task_status'],
-                'task_default_minute' => $request['task_default_minute'],
+            Task::where('task_id', $request['id'])->update([
+                'task_name' => $request['name'],
                 'task_user_id' => $loginInfo['id'],
             ]);
         } else {
             Task::create([
-                'task_name' => $request['task_name'],
-                'task_status' => $request['task_status'],
-                'task_default_minute' => $request['task_default_minute'],
+                'task_name' => $request['name'],
                 'task_user_id' => $loginInfo['id'],
             ]);
         }

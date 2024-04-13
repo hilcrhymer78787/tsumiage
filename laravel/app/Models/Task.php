@@ -13,16 +13,12 @@ class Task extends Model
         'task_id',
         'task_user_id',
         'task_name',
-        'task_status',
-        'task_default_minute',//TODO 削除
         'task_sort_key',
     ];
 
     protected $casts = [
         'task_id'=>'integer',
         'task_user_id'=>'integer',
-        'task_status'=>'integer',
-        'task_default_minute'=>'integer',
         'task_sort_key'=>'integer',
       ];
 }

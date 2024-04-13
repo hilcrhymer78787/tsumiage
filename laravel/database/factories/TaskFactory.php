@@ -24,8 +24,6 @@ class TaskFactory extends Factory
         return [
             // 'task_user_id' => $this->faker->numberBetween(1,10),
             // 'task_name' => $this->faker->word(),
-            // 'task_status' => $this->faker->numberBetween(1,4),
-            // 'task_default_minute' => $this->faker->numberBetween(1,60),
         ];
     }
 }
