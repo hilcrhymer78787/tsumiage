@@ -18,9 +18,7 @@ class CreateWorksTable extends Migration
             $table->date('work_date');
             $table->integer('work_task_id');
             $table->integer('work_user_id');
-            $table->integer('work_minute');
             $table->integer('work_state');
-            $table->text('work_memo')->nullable();
             $table->timestamps();
         });
     }

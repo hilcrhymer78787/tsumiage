@@ -47,7 +47,7 @@ class TaskController extends Controller
     public function create(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        if ($request['task_id']) {
+        if ($request['id']) {
             Task::where('task_id', $request['id'])->update([
                 'task_name' => $request['name'],
                 'task_user_id' => $loginInfo['id'],
@@ -62,14 +62,11 @@ class TaskController extends Controller
     public function delete(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        Task::where('task_id', $request['task_id'])
+        Task::where('task_id', $request['id'])
             ->where('task_user_id', $loginInfo['id'])
             ->delete();
-        Work::where('work_task_id', $request['task_id'])
+        Work::where('work_task_id', $request['id'])
             ->where('work_user_id', $loginInfo['id'])
-            ->delete();
-        Goal::where('goal_task_id', $request['task_id'])
-            ->where('goal_user_id', $loginInfo['id'])
             ->delete();
 
         return $request;

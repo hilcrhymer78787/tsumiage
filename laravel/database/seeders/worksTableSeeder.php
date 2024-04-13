@@ -21,7 +21,6 @@ class worksTableSeeder extends Seeder
                         'work_user_id' => 1,
                         'work_task_id' => $taskId,
                         'work_date' => date($date),
-                        'work_minute' => 10 + $taskId * 5,
                         'work_state' => $taskId % 3,
                     ],
                 ]);
