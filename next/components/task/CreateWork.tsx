@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import SendIcon from "@mui/icons-material/Send";
-import DeleteIcon from "@mui/icons-material/Delete";
-import SettingsIcon from "@mui/icons-material/Settings";
-import CreateTask from "@/components/task/CreateTask";
-import { LoadingButton } from "@mui/lab";
 import {
-  TextareaAutosize,
-  Select,
-  MenuItem,
   Box,
   Card,
-  CardHeader,
-  CardContent,
   CardActions,
-  IconButton,
+  CardContent,
+  CardHeader,
   Dialog,
+  IconButton,
+  MenuItem,
+  Select,
+  TextareaAutosize,
   Typography,
 } from "@mui/material";
-import { useWorkApi } from "@/data/work";
+import React, { useEffect, useState } from "react";
+
+import CreateTask from "@/components/task/CreateTask";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { LoadingButton } from "@mui/lab";
+import SendIcon from "@mui/icons-material/Send";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
 import axios from "axios";
+import { useWorkApi } from "@/data/work";
 
 type Props = {
   date: string,
@@ -163,7 +164,7 @@ export default function CreateWork(props: Props) {
               setCreateTaskDialog(false);
               props.onCloseMyself();
             }}
-            task={props.task}
+            task={props.task as any}
           />
         )}
       </Dialog>
