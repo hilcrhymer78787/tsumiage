@@ -16,28 +16,28 @@ class TaskController extends Controller
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         // 友達判定
-        if ($loginInfo['id'] != $request['user_id']) {
-            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'],$request['user_id']);
+        if ($loginInfo['id'] != $request['userId']) {
+            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'],$request['userId']);
             if(!$is_friends){
                 $errorMessage = 'このユーザは友達ではありません';
                 return response()->json(['errorMessage' => $errorMessage], 500);
             }
         }
 
-        $return['tasks'] = (new TaskService())->getTasksByUserId($request['user_id']);
+        $return['tasks'] = (new TaskService())->getTasksByUserId($request['userId']);
 
         $return['date'] = $request['date'];
 
         foreach ($return['tasks'] as $task) {
             $work = Work::where('work_task_id', $task['id'])
                 ->where('work_date', $request['date'])
-                ->select('work_id as id', 'work_minute as minute', 'work_memo as memo', 'work_state as state')
+                ->select('work_id as id', 'work_state as state')
                 ->first();
             if ($work) {
                 $task['work'] = $work;
             } else {
                 $obj['id'] = 0;
-                $obj['minute'] = 0;
+                $obj['state'] = 0;
                 $task['work'] = $obj;
             }
         }

@@ -4,23 +4,21 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  MenuItem,
-  Select,
   TextField,
-  Typography,
 } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
+import ErrTxt from "@/components/common/ErrTxt";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
-import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
+import { Task } from "@/data/task/useReadTasks";
 import axios from "axios";
 import { useCreateTask } from "@/data/task/useCreateTask";
 import { useState } from "react";
 import { useTaskApi } from "@/data/task";
 
 type Props = {
-  task: apiTaskReadResponseTaskType | null;
+  task: Task | null;
   onCloseMyself: () => void;
 };
 export default function CreateTask({ task, onCloseMyself }: Props) {
@@ -67,6 +65,7 @@ export default function CreateTask({ task, onCloseMyself }: Props) {
           variant="outlined"
           color="primary"
         />
+        <ErrTxt txt={createTaskError} />
       </CardContent>
       <CardActions>
         {!!task && (

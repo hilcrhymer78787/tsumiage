@@ -1,98 +1,91 @@
-import React from "react";
-import CreateTask from "@/components/task/CreateTask";
-import TaskItem from "@/components/task/TaskItem";
-import { apiTaskReadResponseTaskType } from "@/types/api/task/read/response";
-import AddIcon from "@mui/icons-material/Add";
-import { useTaskApi } from "@/data/task";
-import axios from "axios";
 import {
   Card,
-  CardHeader,
   CardContent,
-  IconButton,
+  CardHeader,
+  CircularProgress,
   Dialog,
-  CircularProgress
+  IconButton,
 } from "@mui/material";
-type Props = {
-  date: string,
-  userId: number,
-  readonly: boolean,
-}
-export default function TaskList(props: Props) {
-  const { taskRead, taskReadLoading } = useTaskApi();
-  const [createTaskDialog, setCreateTaskDialog] = React.useState<boolean>(false);
-  const [tasks, setTasks] = React.useState<apiTaskReadResponseTaskType[]>([]);
-  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+import { useEffect, useState } from "react";
 
+import AddIcon from "@mui/icons-material/Add";
+import CreateTask from "@/components/task/CreateTask";
+import TaskItem from "@/components/task/TaskItem";
+import { useReadTasks } from "@/data/task/useReadTasks";
+
+type Props = {
+  date: string;
+  userId: number;
+  readonly: boolean;
+};
+export default function TaskList({ date, userId, readonly }: Props) {
+  const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
+  const [createTaskDialog, setCreateTaskDialog] = useState(false);
   const apiTaskRead = async () => {
-    try {
-      const res = await taskRead({
-        date: props.date,
-        user_id: props.userId,
-      });
-      setTasks(res.data.tasks);
-      setErrorMessage(null);
-      if (!res.data.tasks.length) setErrorMessage("登録されているタスクはありません");
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        setErrorMessage(`${e?.response?.status}：${e?.response?.statusText}`);
-      } else {
-        setErrorMessage("予期せぬエラーが発生しました");
-      }
-      setTasks([]);
-    }
+    await readTasks(date, userId);
   };
 
-  React.useEffect(()=>{
+  useEffect(() => {
     apiTaskRead();
-  },[]);
+  }, []);
 
   return (
     <>
       <Card>
         <CardHeader
-          action={!props.readonly && (
-            <IconButton onClick={() => setCreateTaskDialog(true)} component="span">
-              <AddIcon color="primary" />
-            </IconButton>
-          )}
+          action={
+            !readonly && (
+              <IconButton
+                onClick={() => setCreateTaskDialog(true)}
+                component="span"
+              >
+                <AddIcon color="primary" />
+              </IconButton>
+            )
+          }
           title="タスク"
-          subheader={props.date}
+          subheader={date}
         />
-        {!!errorMessage && (
+        {!!readTasksError && (
           <CardContent
             sx={{
               textAlign: "center",
-              p: "20px !important"
-            }}>{errorMessage}
+              p: "20px !important",
+            }}
+          >
+            {readTasksError}
           </CardContent>
         )}
-        {taskReadLoading && !tasks.length && (
+        {readTasksLoading && !tasks?.length && (
           <CardContent
             sx={{
               display: "flex",
               justifyContent: "center",
-              p: "30px"
-            }}>
+              p: "30px",
+            }}
+          >
             <CircularProgress />
           </CardContent>
         )}
-        {!!tasks.length && (
+        {!!tasks?.length && (
           <CardContent sx={{ p: "0 !important" }}>
-            {tasks.map((task: apiTaskReadResponseTaskType, index: number) => (
+            {tasks.map((task, index) => (
               <TaskItem
                 task={task}
-                date={props.date}
+                date={date}
                 apiTaskRead={apiTaskRead}
                 key={index.toString()}
-                readonly={props.readonly}
+                readonly={readonly}
               />
             ))}
           </CardContent>
         )}
       </Card>
 
-      <Dialog open={createTaskDialog} onClose={() => setCreateTaskDialog(false)}>
+      <Dialog
+        open={createTaskDialog}
+        onClose={() => setCreateTaskDialog(false)}
+      >
         {createTaskDialog && (
           <CreateTask
             onCloseMyself={() => {
@@ -105,7 +98,6 @@ export default function TaskList(props: Props) {
       </Dialog>
 
       <pre>{JSON.stringify(tasks, null, 4)}</pre>
-
     </>
   );
 }

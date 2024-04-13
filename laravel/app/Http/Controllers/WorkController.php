@@ -87,8 +87,7 @@ class WorkController extends Controller
                     'work_user_id' => $loginInfo['id'],
                     'work_date' => $request['date'],
                     'work_task_id' => $request['task_id'],
-                    'work_minute' => $request['minute'],
-                    'work_memo' => $request['memo'],
+                    'work_state' => $request['state'],
                 ]);
             return;
         }
@@ -98,17 +97,12 @@ class WorkController extends Controller
             'work_user_id' => $loginInfo['id'],
             'work_date' => $request['date'],
             'work_task_id' => $request['task_id'],
-            'work_minute' => $request['minute'],
-            'work_memo' => $request['memo'],
+            'work_state' => $request['state'],
         ]);
         return;
     }
     public function delete(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
-        Work::where('work_user_id', $loginInfo['id'])
-            ->where('work_date', $request['date'])
-            ->where('work_task_id', $request['task_id'])
-            ->delete();
+        Work::where('work_id', $request['id'])->delete();
     }
 }
