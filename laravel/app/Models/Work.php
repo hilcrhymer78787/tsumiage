@@ -14,8 +14,9 @@ class Work extends Model
         'work_date',
         'work_task_id',
         'work_user_id',
-        'work_minute',
+        'work_minute',//TODO 削除
         'work_memo',
+        'work_state',//TODO 未完了 完了 不要
     ];
 
     protected $casts = [
@@ -24,6 +25,7 @@ class Work extends Model
         'work_task_id'=>'integer',
         'work_user_id'=>'integer',
         'work_minute'=>'integer',
+        'work_state'=>'integer',
         'work_memo'=>'string',
         'minute'=>'integer',
     ];

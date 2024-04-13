@@ -25,6 +25,7 @@ class WorkFactory extends Factory
             'work_task_id' => $this->faker->numberBetween(1,10),
             'work_user_id' => $this->faker->numberBetween(1,2),
             'work_minute' => $this->faker->numberBetween(1,30),
+            'work_state' => $this->faker->numberBetween(0,2),
         ];
     }
 }

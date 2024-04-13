@@ -103,6 +103,9 @@ export default function TaskList(props: Props) {
           />
         )}
       </Dialog>
+
+      <pre>{JSON.stringify(tasks, null, 4)}</pre>
+
     </>
   );
 }

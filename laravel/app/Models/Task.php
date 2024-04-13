@@ -14,7 +14,7 @@ class Task extends Model
         'task_user_id',
         'task_name',
         'task_status',
-        'task_default_minute',
+        'task_default_minute',//TODO 削除
         'task_sort_key',
     ];
 

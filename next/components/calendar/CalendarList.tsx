@@ -148,6 +148,8 @@ export default function CalendarList(props: Props) {
           />
         )}
       </Dialog>
+      <pre>{JSON.stringify(calendarData, null, 4)}</pre>
+
     </>
   );
 }
