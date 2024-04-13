@@ -18,7 +18,7 @@ type Props = {
   userId: number;
   readonly: boolean;
 };
-export default function TaskList({ date, userId, readonly }: Props) {
+const TaskList = ({ date, userId, readonly }: Props) => {
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
   const [createTaskDialog, setCreateTaskDialog] = useState(false);
   const apiTaskRead = async () => {
@@ -44,7 +44,6 @@ export default function TaskList({ date, userId, readonly }: Props) {
             )
           }
           title="タスク"
-          subheader={date}
         />
         {!!readTasksError && (
           <CardContent
@@ -100,4 +99,5 @@ export default function TaskList({ date, userId, readonly }: Props) {
       <pre>{JSON.stringify(tasks, null, 4)}</pre>
     </>
   );
-}
+};
+export default TaskList;

@@ -1,12 +1,13 @@
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import BottomNavigation from "@mui/material/BottomNavigation";
 import { BottomNavigationAction, Paper } from "@mui/material";
-import dayjs from "dayjs";
+import React, { useState } from "react";
+
+import BottomNavigation from "@mui/material/BottomNavigation";
+import GroupIcon from "@mui/icons-material/Group";
+import SportsScoreIcon from "@mui/icons-material/SportsScore";
 import TaskIcon from "@mui/icons-material/Task";
 import TodayIcon from "@mui/icons-material/Today";
-import SportsScoreIcon from "@mui/icons-material/SportsScore";
-import GroupIcon from "@mui/icons-material/Group";
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
 const Navigation = () => {
   const router = useRouter();
   const [value, setValue] = useState(router.pathname);
@@ -26,18 +27,18 @@ const Navigation = () => {
           label="task"
           value="/task"
           icon={<TaskIcon />} />
-        <BottomNavigationAction
+        {/* <BottomNavigationAction
           label="calendar"
           value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
-          icon={<TodayIcon />} />
-        <BottomNavigationAction
+          icon={<TodayIcon />} /> */}
+        {/* <BottomNavigationAction
           label="goal"
           value="/goal"
           icon={<SportsScoreIcon />} />
         <BottomNavigationAction
           label="friend"
           value="/friend"
-          icon={<GroupIcon />} />
+          icon={<GroupIcon />} /> */}
       </BottomNavigation>
     </Paper>
   );
