@@ -10,20 +10,28 @@ import { useEffect, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import CreateTask from "@/components/task/CreateTask";
+import { Task } from "@/data/task/useReadTasks";
 import TaskItem from "@/components/task/TaskItem";
-import { useReadTasks } from "@/data/task/useReadTasks";
 
 type Props = {
   date: string;
-  userId: number;
   readonly: boolean;
+  tasks: Task[] | null;
+  apiTaskRead: () => void;
+  readTasksLoading: boolean;
+  readTasksError: string;
+  title: string;
 };
-const TaskList = ({ date, userId, readonly }: Props) => {
-  const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
+const TaskList = ({
+  date,
+  readonly,
+  tasks,
+  apiTaskRead,
+  readTasksLoading,
+  readTasksError,
+  title,
+}: Props) => {
   const [createTaskDialog, setCreateTaskDialog] = useState(false);
-  const apiTaskRead = async () => {
-    await readTasks(date, userId);
-  };
 
   useEffect(() => {
     apiTaskRead();
@@ -43,7 +51,7 @@ const TaskList = ({ date, userId, readonly }: Props) => {
               </IconButton>
             )
           }
-          title="タスク"
+          title={title}
         />
         {!!readTasksError && (
           <CardContent
@@ -95,8 +103,6 @@ const TaskList = ({ date, userId, readonly }: Props) => {
           />
         )}
       </Dialog>
-
-      <pre>{JSON.stringify(tasks, null, 4)}</pre>
     </>
   );
 };

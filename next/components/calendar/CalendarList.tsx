@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  Dialog,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+
+import DayIcon from "@/components/calendar/DayIcon";
+import LinePlot from "@/components/common/LinePlot";
+import Pagination from "@/components/calendar/Pagination";
 import Router from "next/router";
-import dayjs from "dayjs";
-import axios from "axios";
+import TaskList from "@/components/task/TaskList";
 import { apiWorkReadCalendarResponseCalendarType } from "@/types/api/work/read/calendar/response";
 import { apiWorkReadCalendarResponseType } from "@/types/api/work/read/calendar/response";
-import DayIcon from "@/components/calendar/DayIcon";
-import Pagination from "@/components/calendar/Pagination";
-import TaskList from "@/components/task/TaskList";
-import LinePlot from "@/components/common/LinePlot";
+import axios from "axios";
+import dayjs from "dayjs";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
-import {
-  CardActionArea,
-  Dialog,
-  Card,
-  CardHeader,
-  CardContent,
-  CircularProgress,
-  Box,
-} from "@mui/material";
 import { useWorkApi } from "@/data/work";
+
 type Props = {
   userId: number,
   readonly: boolean,
@@ -140,13 +142,6 @@ export default function CalendarList(props: Props) {
           getCalendarData(year(), month());
           Router.push(`${location.pathname}?year=${year()}&month=${month()}`);
         }}>
-        {!!router.query.day && (
-          <TaskList
-            readonly={props.readonly}
-            userId={props.userId}
-            date={dayjs(`${year()}/${month()}/${day()}`).format("YYYY-MM-DD")}
-          />
-        )}
       </Dialog>
       <pre>{JSON.stringify(calendarData, null, 4)}</pre>
 
