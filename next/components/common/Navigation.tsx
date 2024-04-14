@@ -2,19 +2,25 @@ import { BottomNavigationAction, Paper } from "@mui/material";
 import React, { useState } from "react";
 
 import BottomNavigation from "@mui/material/BottomNavigation";
-import GroupIcon from "@mui/icons-material/Group";
-import SportsScoreIcon from "@mui/icons-material/SportsScore";
 import TaskIcon from "@mui/icons-material/Task";
-import TodayIcon from "@mui/icons-material/Today";
-import dayjs from "dayjs";
+import UserAvatar from "@/components/common/UserAvatar";
+import { loginInfoAtom } from "@/data/user";
+import theme from "@/plugins/theme";
+import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
+
 const Navigation = () => {
+  const loginInfo = useRecoilValue(loginInfoAtom);
   const router = useRouter();
   const [value, setValue] = useState(router.pathname);
-  const nowYear = (): number => Number(dayjs().format("YYYY"));
-  const nowMonth = (): number => Number(dayjs().format("M"));
+  const getColor = (value: string) => {
+    return router.pathname === value ? theme.palette.primary.main : "white";
+  };
   return (
-    <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
+    <Paper
+      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      elevation={3}
+    >
       <BottomNavigation
         showLabels
         value={value}
@@ -26,7 +32,20 @@ const Navigation = () => {
         <BottomNavigationAction
           label="task"
           value="/task"
-          icon={<TaskIcon />} />
+          icon={<TaskIcon />}
+        />
+        <BottomNavigationAction
+          label="mypage"
+          value="/mypage"
+          icon={
+            <UserAvatar
+              src={loginInfo?.user_img ?? ""}
+              size={30}
+              onClick={() => {}}
+              borderColor={getColor("/mypage")}
+            />
+          }
+        />
         {/* <BottomNavigationAction
           label="calendar"
           value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}

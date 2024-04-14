@@ -25,36 +25,24 @@ const Task = () => {
     return tasks?.filter((task) => task.work.state === 2) ?? [];
   }, [tasks]);
 
+  const cmnProps = {
+    date: dayjs().format("YYYY-MM-DD"),
+    readonly: false,
+    apiTaskRead: apiTaskRead,
+    readTasksLoading: readTasksLoading,
+    readTasksError: readTasksError,
+  };
+
   return (
     <Layout>
-      <TaskList
-        title="未達成のタスク"
-        date={dayjs().format("YYYY-MM-DD")}
-        readonly={false}
-        tasks={notDoneTasks}
-        apiTaskRead={apiTaskRead}
-        readTasksLoading={readTasksLoading}
-        readTasksError={readTasksError}
-      />
+      <TaskList title="未達成のタスク" tasks={notDoneTasks} {...cmnProps} />
       <Box sx={{ p: 2 }}></Box>
-      <TaskList
-        title="達成したタスク"
-        date={dayjs().format("YYYY-MM-DD")}
-        readonly={false}
-        tasks={doneTasks}
-        apiTaskRead={apiTaskRead}
-        readTasksLoading={readTasksLoading}
-        readTasksError={readTasksError}
-      />
+      <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
       <Box sx={{ p: 2 }}></Box>
       <TaskList
         title="達成不要のタスク"
-        date={dayjs().format("YYYY-MM-DD")}
-        readonly={false}
         tasks={notNecessaryTasks}
-        apiTaskRead={apiTaskRead}
-        readTasksLoading={readTasksLoading}
-        readTasksError={readTasksError}
+        {...cmnProps}
       />
     </Layout>
   );

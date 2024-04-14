@@ -116,7 +116,7 @@ function Login() {
         </CardContent>
         <CardActions>
           <Button
-            onClick={() => { Router.push("/login/new"); }}
+            onClick={() => { Router.push("/auth/new"); }}
             color="inherit"
             variant="contained">
             新規登録

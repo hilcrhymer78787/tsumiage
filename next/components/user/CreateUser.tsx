@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
-import Router from "next/router";
-import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
-import SendIcon from "@mui/icons-material/Send";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import dayjs from "dayjs";
 import {
   Avatar,
-  Button,
   Box,
-  TextField,
+  Button,
   Card,
-  CardHeader,
-  CardContent,
   CardActions,
+  CardContent,
+  CardHeader,
+  TextField,
 } from "@mui/material";
+import React, { useEffect, useState } from "react";
+
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { LoadingButton } from "@mui/lab";
+import Router from "next/router";
+import SendIcon from "@mui/icons-material/Send";
 import UserImg from "@/components/common/UserImg";
-import { useUserApi } from "@/data/user";
+import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 import axios from "axios";
+import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
 import { useSetRecoilState } from "recoil";
+import { useUserApi } from "@/data/user";
 type Props = {
   onCloseMyself: () => void
   loginInfo: apiUserBearerAuthenticationResponseType | null
@@ -210,7 +211,7 @@ function CreateUser(props: Props) {
       <CardActions>
         {!props.loginInfo && (
           <Button
-            onClick={() => { Router.push("/login"); }}
+            onClick={() => { Router.push("/auth"); }}
             color="inherit"
             variant="contained">
             ログイン画面へ

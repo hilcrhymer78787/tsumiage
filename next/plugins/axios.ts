@@ -30,7 +30,7 @@ api.interceptors.response.use(
       alert("一定時間にアクセスが集中したため、しばらくアクセスできません");
     }
     if (err.response?.status == 401) {
-      if (!(Router.pathname == "/login" || Router.pathname == "/login/new")) {
+      if (!(Router.pathname == "/auth" || Router.pathname == "/auth/new")) {
         Router.push("/logout");
 
       }

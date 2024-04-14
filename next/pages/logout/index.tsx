@@ -7,7 +7,7 @@ const Logout = () => {
   React.useEffect(() => {
     localStorage.removeItem("token");
     setLoginInfo(null);
-    Router.push("/login");
+    Router.push("/auth");
   }, []);
   return <></>;
 };
