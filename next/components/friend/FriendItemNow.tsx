@@ -1,20 +1,24 @@
-import React from "react";
-import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
-import Router from "next/router";
 import {
   Avatar,
   ListItem,
-  ListItemButton,
   ListItemAvatar,
+  ListItemButton,
   ListItemText,
 } from "@mui/material";
+
+import React from "react";
 import UserImg from "@/components/common/UserImg";
+import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import dayjs from "dayjs";
+import { useRouter } from "next/router";
+
 type Props = {
   friend: apiInvitationResponseFriendType
   friendRead: () => void
 }
 const FriendItemNow = (props: Props) => {
+  const router = useRouter();
+
   const nowYear = (): number => {
     return Number(dayjs().format("YYYY"));
   };
@@ -24,7 +28,7 @@ const FriendItemNow = (props: Props) => {
   return (
     <ListItem sx={{ p: 0 }}>
       <ListItemButton onClick={() => {
-        Router.push(`/friend/${props.friend.id}/${props.friend.name}/?year=${nowYear()}&month=${nowMonth()}`);
+        router.push(`/friend/${props.friend.id}/${props.friend.name}/?year=${nowYear()}&month=${nowMonth()}`);
       }}>
         <ListItemAvatar>
           <UserImg

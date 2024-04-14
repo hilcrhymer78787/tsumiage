@@ -1,24 +1,32 @@
-import React, { useState } from "react";
-import Router from "next/router";
-import SendIcon from "@mui/icons-material/Send";
-import LoginLayout from "@/layouts/login";
 import {
   Box,
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
   Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
   TextField,
 } from "@mui/material";
+import React, { useState } from "react";
+
 import { LoadingButton } from "@mui/lab";
-import { useUserApi } from "@/data/user";
+import LoginLayout from "@/layouts/login";
+import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { loginInfoAtom } from "@/data/user";
+import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
-function Login() {
+import { useUserApi } from "@/data/user";
+
+const Login = () => {
+  const router = useRouter();
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
-  const { testAuthentication, testAuthenticationLoading, basicAuthentication, basicAuthenticationLoading } = useUserApi();
+  const {
+    testAuthentication,
+    testAuthenticationLoading,
+    basicAuthentication,
+    basicAuthenticationLoading,
+  } = useUserApi();
   const [email, setEmail] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -28,7 +36,7 @@ function Login() {
       const res = await testAuthentication();
       localStorage.setItem("token", res.data.token);
       setLoginInfo(res.data);
-      Router.push("/");
+      router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         alert(`${e?.response?.status}：${e?.response?.statusText}`);
@@ -42,11 +50,11 @@ function Login() {
     try {
       const res = await basicAuthentication({
         email: email,
-        password: password
+        password: password,
       });
       localStorage.setItem("token", res.data.token);
       setLoginInfo(res.data);
-      Router.push("/");
+      router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         if (e.response?.data.errorMessage) {
@@ -63,7 +71,7 @@ function Login() {
     let isError: boolean = false;
     setEmailError("");
     setPasswordError("");
-    if (!(/.+@.+\..+/.test(email))) {
+    if (!/.+@.+\..+/.test(email)) {
       setEmailError("正しい形式で入力してください");
       isError = true;
     }
@@ -80,45 +88,68 @@ function Login() {
         <CardContent>
           <Box sx={{ mb: "15px" }}>
             <TextField
-              onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  apiBasicAuthentication();
+                }
+              }}
               error={!!emailError}
               helperText={emailError}
               value={email}
-              onChange={(e) => { setEmail(e.currentTarget.value); }}
-              label="email" variant="outlined" color="primary"
+              onChange={(e) => {
+                setEmail(e.currentTarget.value);
+              }}
+              label="email"
+              variant="outlined"
+              color="primary"
             />
           </Box>
           <Box sx={{ mb: "15px" }}>
             <TextField
-              onKeyPress={e => { if (e.key === "Enter") { apiBasicAuthentication(); } }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  apiBasicAuthentication();
+                }
+              }}
               error={!!passwordError}
               helperText={passwordError}
               value={password}
-              onChange={(e) => { setPassword(e.currentTarget.value); }}
-              label="password" variant="outlined" color="primary"
+              onChange={(e) => {
+                setPassword(e.currentTarget.value);
+              }}
+              label="password"
+              variant="outlined"
+              color="primary"
             />
           </Box>
-          {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" &&
-            <Box sx={{
-              display: "flex",
-              justifyContent: "flex-end"
-            }}>
+          {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
               <LoadingButton
                 color="inherit"
                 variant="contained"
                 onClick={apiTestAuthentication}
                 loading={testAuthenticationLoading}
-                disabled={basicAuthenticationLoading}>
-                テストユーザーでログイン<SendIcon />
+                disabled={basicAuthenticationLoading}
+              >
+                テストユーザーでログイン
+                <SendIcon />
               </LoadingButton>
             </Box>
-          }
+          )}
         </CardContent>
         <CardActions>
           <Button
-            onClick={() => { Router.push("/auth/new"); }}
+            onClick={() => {
+              router.push("/auth/new");
+            }}
             color="inherit"
-            variant="contained">
+            variant="contained"
+          >
             新規登録
           </Button>
           <LoadingButton
@@ -126,12 +157,14 @@ function Login() {
             variant="contained"
             onClick={apiBasicAuthentication}
             loading={basicAuthenticationLoading}
-            disabled={testAuthenticationLoading}>
-            ログイン<SendIcon />
+            disabled={testAuthenticationLoading}
+          >
+            ログイン
+            <SendIcon />
           </LoadingButton>
         </CardActions>
       </Card>
     </LoginLayout>
   );
-}
+};
 export default Login;

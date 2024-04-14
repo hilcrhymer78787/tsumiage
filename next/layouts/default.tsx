@@ -1,18 +1,21 @@
+import {ReactNode, useEffect} from "react";
+
 import Container from "@mui/material/Container";
 import Navigation from "@/components/common/Navigation";
-import React from "react";
-import Router from "next/router";
 import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/router";
+
 type Props = {
-  children: React.ReactNode;
-}
+  children: ReactNode;
+};
 function Layout({ children }: Props) {
+  const router = useRouter();
   const loginInfo = useRecoilValue(loginInfoAtom);
-  React.useEffect(() => {
+  useEffect(() => {
     if (!loginInfo) {
-      Router.push("/auth");
-    };
+      router.push("/auth");
+    }
   }, []);
   if (!loginInfo) return <></>;
   return (

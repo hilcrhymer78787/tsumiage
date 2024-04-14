@@ -12,15 +12,16 @@ import React, { useEffect, useState } from "react";
 
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { LoadingButton } from "@mui/lab";
-import Router from "next/router";
 import SendIcon from "@mui/icons-material/Send";
 import UserImg from "@/components/common/UserImg";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
 import axios from "axios";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
+import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 import { useUserApi } from "@/data/user";
+
 type Props = {
   onCloseMyself: () => void
   loginInfo: apiUserBearerAuthenticationResponseType | null
@@ -28,6 +29,8 @@ type Props = {
 let inputRef: HTMLInputElement | null = null;
 let file: File;
 function CreateUser(props: Props) {
+  const router = useRouter();
+
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
   const { createUser, createUserLoading } = useUserApi();
   const [uploadedImage, setUploadedImage] = useState<any>("");
@@ -58,7 +61,7 @@ function CreateUser(props: Props) {
       localStorage.setItem("token", res.data.token);
       setLoginInfo(res.data);
       props.onCloseMyself();
-      Router.push("/");
+      router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
         if (e.response?.data.errorMessage) {
@@ -211,7 +214,7 @@ function CreateUser(props: Props) {
       <CardActions>
         {!props.loginInfo && (
           <Button
-            onClick={() => { Router.push("/auth"); }}
+            onClick={() => { router.push("/auth"); }}
             color="inherit"
             variant="contained">
             ログイン画面へ

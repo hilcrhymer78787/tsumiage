@@ -1,26 +1,29 @@
-import React, { useState } from "react";
 import {
   Button,
   Card,
-  CardHeader,
-  CardContent,
   CardActions,
+  CardContent,
+  CardHeader,
   Dialog,
   ListItem,
   ListItemAvatar,
   ListItemText,
 } from "@mui/material";
+import React, { useState } from "react";
+
 import CreateUser from "@/components/user/CreateUser";
-import Router from "next/router";
 import UserImg from "@/components/common/UserImg";
 import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/router";
+
 const Mypage = () => {
   const loginInfo = useRecoilValue(loginInfoAtom);
+  const router = useRouter();
   const [createUserDialog, setCreateUserDialog] = useState<boolean>(false);
   const logout = () => {
     if (!confirm("ログアウトしますか？")) return;
-    Router.push("/logout");
+    router.push("/logout");
   };
   return (
     <Card>

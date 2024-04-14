@@ -12,7 +12,6 @@ import React, { useEffect, useState } from "react";
 import DayIcon from "@/components/calendar/DayIcon";
 import LinePlot from "@/components/common/LinePlot";
 import Pagination from "@/components/calendar/Pagination";
-import Router from "next/router";
 import TaskList from "@/components/task/TaskList";
 import { apiWorkReadCalendarResponseCalendarType } from "@/types/api/work/read/calendar/response";
 import { apiWorkReadCalendarResponseType } from "@/types/api/work/read/calendar/response";
@@ -29,6 +28,7 @@ type Props = {
 }
 export default function CalendarList(props: Props) {
   const theme = useTheme();
+  const router = useRouter();
   const { workReadCalendar, workReadCalendarLoading, } = useWorkApi();
   const [calendarData, setCalendarData] = useState<apiWorkReadCalendarResponseType>({
     calendars: [],
@@ -38,7 +38,6 @@ export default function CalendarList(props: Props) {
     }
   });
   const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const router = useRouter();
   useEffect(() => {
     getCalendarData(year(), month());
   }, []);
@@ -109,7 +108,7 @@ export default function CalendarList(props: Props) {
               <ContentItem key={calendar.date} className="main">
                 <CardActionArea
                   onClick={() => {
-                    Router.push(`${location.pathname}?year=${Router.router?.query.year}&month=${Router.router?.query.month}&day=${index + 1}`);
+                    router.push(`${location.pathname}?year=${router?.query.year}&month=${router?.query.month}&day=${index + 1}`);
                   }}
                   sx={{ minHeight: "40px" }}
                 >
@@ -140,7 +139,7 @@ export default function CalendarList(props: Props) {
         open={!!router.query.day}
         onClose={() => {
           getCalendarData(year(), month());
-          Router.push(`${location.pathname}?year=${year()}&month=${month()}`);
+          router.push(`${location.pathname}?year=${year()}&month=${month()}`);
         }}>
       </Dialog>
       <pre>{JSON.stringify(calendarData, null, 4)}</pre>

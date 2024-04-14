@@ -1,13 +1,14 @@
 import React from "react";
-import Router from "next/router";
 import { loginInfoAtom } from "@/data/user";
+import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 const Logout = () => {
+  const router = useRouter();
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
   React.useEffect(() => {
     localStorage.removeItem("token");
     setLoginInfo(null);
-    Router.push("/auth");
+    router.push("/auth");
   }, []);
   return <></>;
 };
