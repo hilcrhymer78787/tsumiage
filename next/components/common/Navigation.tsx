@@ -14,16 +14,23 @@ import { useRouter } from "next/router";
 const Navigation = () => {
   const loginInfo = useRecoilValue(loginInfoAtom);
   const router = useRouter();
-  const [value, setValue] = useState(router.pathname);
   const getColor = (value: string) => {
     return router.pathname === value ? theme.palette.primary.main : "white";
   };
-  const nowYear = () => {
-    return Number(dayjs().format("YYYY"));
+  const onChangeNav = (val: string) => {
+    if (val == "/calendar") {
+      router.push({
+        pathname: "calendar",
+        query: {
+          year: dayjs().format("YYYY"),
+          month: dayjs().format("M"),
+        },
+      });
+      return;
+    }
+    router.push(val);
   };
-  const nowMonth = () => {
-    return Number(dayjs().format("M"));
-  };
+
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
@@ -31,11 +38,8 @@ const Navigation = () => {
     >
       <BottomNavigation
         showLabels
-        value={value}
-        onChange={(_, newValue) => {
-          router.push(newValue);
-          setValue(newValue);
-        }}
+        value={router.pathname}
+        onChange={(_, val) => onChangeNav(val)}
       >
         <BottomNavigationAction
           label="task"
@@ -44,7 +48,7 @@ const Navigation = () => {
         />
         <BottomNavigationAction
           label="calendar"
-          value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
+          value="/calendar"
           icon={<TodayIcon />}
         />
         <BottomNavigationAction
