@@ -68,7 +68,7 @@ const CalendarList = (props: Props) => {
         />
         <CardContent sx={{ p: "0 !important" }}>
           <Box className="flexStart" sx={{ alignItems: "flex-end" }}>
-            <Box sx={{ width: "100px" }}>
+            <Box sx={{ width: "150px" }}>
               <Box></Box>
               {calendars?.[0]?.tasks.map((task) => (
                 <>
@@ -83,7 +83,7 @@ const CalendarList = (props: Props) => {
               ))}
             </Box>
             <Box
-              sx={{ overflow: "scroll", width: "calc(100% - 100px)" }}
+              sx={{ overflow: "scroll", width: "calc(100% - 150px)" }}
               className="flexStart"
             >
               {calendars?.map((calendar) => (
