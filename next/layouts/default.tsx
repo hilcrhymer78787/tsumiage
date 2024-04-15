@@ -20,7 +20,7 @@ function Layout({ children }: Props) {
   if (!loginInfo) return <></>;
   return (
     <>
-      <Container sx={{ p: "70px 10px" }} maxWidth="xs">
+      <Container sx={{ p: "70px 10px" }}>
         {children}
       </Container>
       <Navigation />

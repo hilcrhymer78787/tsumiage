@@ -3,7 +3,9 @@ import React, { useState } from "react";
 
 import BottomNavigation from "@mui/material/BottomNavigation";
 import TaskIcon from "@mui/icons-material/Task";
+import TodayIcon from "@mui/icons-material/Today";
 import UserAvatar from "@/components/common/UserAvatar";
+import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
 import theme from "@/plugins/theme";
 import { useRecoilValue } from "recoil";
@@ -15,6 +17,12 @@ const Navigation = () => {
   const [value, setValue] = useState(router.pathname);
   const getColor = (value: string) => {
     return router.pathname === value ? theme.palette.primary.main : "white";
+  };
+  const nowYear = () => {
+    return Number(dayjs().format("YYYY"));
+  };
+  const nowMonth = () => {
+    return Number(dayjs().format("M"));
   };
   return (
     <Paper
@@ -35,6 +43,11 @@ const Navigation = () => {
           icon={<TaskIcon />}
         />
         <BottomNavigationAction
+          label="calendar"
+          value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
+          icon={<TodayIcon />}
+        />
+        <BottomNavigationAction
           label="mypage"
           value="/mypage"
           icon={
@@ -46,10 +59,6 @@ const Navigation = () => {
             />
           }
         />
-        {/* <BottomNavigationAction
-          label="calendar"
-          value={`/calendar?year=${nowYear()}&month=${nowMonth()}`}
-          icon={<TodayIcon />} /> */}
         {/* <BottomNavigationAction
           label="goal"
           value="/goal"

@@ -22,7 +22,7 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::delete('/user/delete', 'UserController@delete');
 
     Route::post('/work/create', 'WorkController@create');
-    Route::get('/work/read/calendar', 'WorkController@read_calendar');
+    Route::get('/work/read/month', 'WorkController@read_month');
     Route::post('/work/read/analytics', 'WorkController@read_analytics');
     Route::delete('/work/delete', 'WorkController@delete');
     

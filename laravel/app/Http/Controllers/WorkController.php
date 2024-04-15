@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
-use App\Services\TaskService;
 use App\Services\WorkService;
 use App\Models\Work;
 
 class WorkController extends Controller
 {
-    public function read_calendar(Request $request)
+    public function read_month(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         // 友達判定
-        if ($loginInfo['id'] != $request['user_id']) {
-            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'],$request['user_id']);
-            if(!$is_friends){
+        if ($loginInfo['id'] != $request['userId']) {
+            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'], $request['userId']);
+            if (!$is_friends) {
                 $errorMessage = 'このユーザは友達ではありません';
                 return response()->json(['errorMessage' => $errorMessage], 500);
             }
@@ -27,47 +26,12 @@ class WorkController extends Controller
 
         $return['calendars'] = [];
         for ($day = 1; $day <= $last_day; $day++) {
-            $calendar['date'] = date('Y-m-d', strtotime($year_month . '-' . $day));
-            $calendar['minute'] = (int)Work::where('work_user_id', $request['user_id'])
-                ->where('work_date', $calendar['date'])
-                ->sum('work_minute');
-            array_push($return['calendars'], $calendar);
-        }
-
-        // データ
-        $GRAPH_COLORS = [
-            "#2196f390",
-            "#ff525290",
-            "#fff9b1",
-            "#d7e7af",
-            "#a5d4ad",
-            "#a3bce2",
-            "#a59aca",
-            "#cfa7cd",
-            "#f4b4d0",
-            "#f5b2b2",
-        ];
-        $analytics['datasets'] = [];
-        $tasks = (new TaskService())->getTasksByUserId($request['user_id']);
-        foreach ($tasks as $index => $task) {
-            $end_date = date('Y-m-d', strtotime($year_month . '-' . $last_day)) >= date('Y-m-d')
-                ? date('Y-m-d')
-                : date('Y-m-d', strtotime($year_month . '-' . $last_day));
-            $dataset = (new WorkService())->getDataset([
-                'task_id' => $task['id'],
-                'task_name' => $task['name'],
-                'start_date' => date('Y-m-d', strtotime($year_month . '-1')),
-                'end_date' => $end_date,
-                'color' => $GRAPH_COLORS[$index]
+            $workData = (new WorkService())->getWorks([
+                'date' => date('Y-m-d', strtotime($year_month . '-' . $day)),
+                'userId' => $request['userId'],
             ]);
-            array_push($analytics['datasets'], $dataset);
+            array_push($return['calendars'], $workData);
         }
-        $analytics['labels'] = (new WorkService())->getLabels([
-            'start_date' => date('Y-m-d', strtotime($year_month . '-1')),
-            'end_date' => date('Y-m-d', strtotime($year_month . '-' . $last_day)),
-        ]);
-        $return['analytics'] = $analytics;
-
         return $return;
     }
     public function create(Request $request)

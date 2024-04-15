@@ -8,6 +8,7 @@ use App\Models\Goal;
 use App\Models\Work;
 use App\Services\UserService;
 use App\Services\TaskService;
+use App\Services\WorkService;
 
 
 class TaskController extends Controller
@@ -17,30 +18,17 @@ class TaskController extends Controller
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
         // 友達判定
         if ($loginInfo['id'] != $request['userId']) {
-            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'],$request['userId']);
-            if(!$is_friends){
+            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'], $request['userId']);
+            if (!$is_friends) {
                 $errorMessage = 'このユーザは友達ではありません';
                 return response()->json(['errorMessage' => $errorMessage], 500);
             }
         }
 
-        $return['tasks'] = (new TaskService())->getTasksByUserId($request['userId']);
-
-        $return['date'] = $request['date'];
-
-        foreach ($return['tasks'] as $task) {
-            $work = Work::where('work_task_id', $task['id'])
-                ->where('work_date', $request['date'])
-                ->select('work_id as id', 'work_state as state')
-                ->first();
-            if ($work) {
-                $task['work'] = $work;
-            } else {
-                $obj['id'] = 0;
-                $obj['state'] = 0;
-                $task['work'] = $obj;
-            }
-        }
+        $return = (new WorkService())->getWorks([
+            'date' => $request['date'],
+            'userId' => $request['userId'],
+        ]);
 
         return $return;
     }
