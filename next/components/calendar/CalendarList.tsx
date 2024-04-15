@@ -1,5 +1,12 @@
-import { Box, Card, CardContent, CardHeader } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+} from "@mui/material";
 import React, { useEffect, useMemo } from "react";
+import { WorkState, useCreateWork } from "@/data/work/useCreateWork";
 
 import CheckIcon from "@mui/icons-material/Check";
 import Pagination from "@/components/calendar/Pagination";
@@ -16,6 +23,8 @@ type Props = {
 const CalendarList = (props: Props) => {
   const router = useRouter();
   const { calendars, readWorkMonth } = useReadWorkMonth();
+  const { createWork, createWorkLoading } = useCreateWork();
+
   useEffect(() => {
     getCalendarData(year(), month());
   }, []);
@@ -50,14 +59,30 @@ const CalendarList = (props: Props) => {
       work: { state },
       createdAt,
     } = task;
+
+    const apiWorkCreate = async () => {
+      const newState = state === 0 ? 1 : state === 1 ? 2 : 0;
+      const res = await createWork({
+        id: task.work.id,
+        date: date,
+        state: newState,
+        task_id: task.id,
+      });
+      if (res) getCalendarData(year(), month());
+    };
+
     if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
     if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <></>;
-    if (state === 0) return <CheckIcon />;
-    if (state === 1) return <CheckIcon color="primary" />;
-    if (state === 2) return <RemoveIcon color="primary" />;
+    if (state === 0) return <CheckIcon onClick={apiWorkCreate} />;
+    if (state === 1)
+      return <CheckIcon onClick={apiWorkCreate} color="primary" />;
+    if (state === 2)
+      return <RemoveIcon onClick={apiWorkCreate} color="primary" />;
   };
 
   const height = "40px";
+  const borderBottom = "1px solid rgba(255, 255, 255, 0.23)";
+  const borderLeft = "1px solid rgba(255, 255, 255, 0.23)";
 
   return (
     <>
@@ -74,25 +99,23 @@ const CalendarList = (props: Props) => {
         <CardContent sx={{ p: "0 !important" }}>
           <Box className="flexStart" sx={{ alignItems: "flex-end" }}>
             <Box sx={{ width: "150px" }}>
-              <Box sx={{borderBottom: "1px solid rgba(255, 255, 255, 0.23)",}}>　</Box>
+              <Box sx={{ borderBottom }}></Box>
               {calendars?.[0]?.tasks.map((task) => (
-                <>
-                  <Box
-                    className="ellipsis"
-                    sx={{
-                      p: 1,
-                      fontSize: "14px",
-                      height,
-                      borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
-                      "&:last-child": {
-                        borderBottom: "none",
-                      },
-                    }}
-                    key={task.id}
-                  >
-                    {task.name}
-                  </Box>
-                </>
+                <Box
+                  className="ellipsis"
+                  sx={{
+                    p: 1,
+                    fontSize: "14px",
+                    height,
+                    borderBottom,
+                    "&:last-child": {
+                      borderBottom: "none",
+                    },
+                  }}
+                  key={task.id}
+                >
+                  {task.name}
+                </Box>
               ))}
             </Box>
             <Box
@@ -102,16 +125,13 @@ const CalendarList = (props: Props) => {
               {calendars?.map((calendar) => (
                 <Box
                   key={calendar.date}
-                  sx={{
-                    textAlign: "center",
-                    borderLeft: "1px solid rgba(255, 255, 255, 0.23)",
-                  }}
+                  sx={{ textAlign: "center", borderLeft }}
                 >
                   <Box
                     sx={{
                       p: 1,
                       width: "40px",
-                      borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
+                      borderBottom,
                       height,
                     }}
                   >
@@ -122,10 +142,14 @@ const CalendarList = (props: Props) => {
                       sx={{
                         p: 1,
                         width: "40px",
-                        borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
+                        cursor: "pointer",
+                        borderBottom,
                         height,
                         "&:last-child": {
                           borderBottom: "none",
+                        },
+                        "&:hover": {
+                          backgroundColor: "rgba(255, 255, 255, 0.23)",
                         },
                       }}
                       key={task.id}

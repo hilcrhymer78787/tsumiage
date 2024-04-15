@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
 import { useReadTasks } from "@/data/task/useReadTasks";
 import { useRecoilValue } from "recoil";
+
 const Task = () => {
   const loginInfo = useRecoilValue(loginInfoAtom);
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
@@ -46,14 +47,22 @@ const Task = () => {
         {...cmnProps}
         isShowAddBtn
       />
-      <Box sx={{ p: 2 }}></Box>
-      <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
-      <Box sx={{ p: 2 }}></Box>
-      <TaskList
-        title="達成不要のタスク"
-        tasks={notNecessaryTasks}
-        {...cmnProps}
-      />
+      {!!doneTasks.length && (
+        <>
+          <Box sx={{ p: 2 }}></Box>
+          <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
+        </>
+      )}
+      {!!notNecessaryTasks.length && (
+        <>
+          <Box sx={{ p: 2 }}></Box>
+          <TaskList
+            title="達成不要のタスク"
+            tasks={notNecessaryTasks}
+            {...cmnProps}
+          />
+        </>
+      )}
       {process.env.NODE_ENV === "development" && (
         <pre>{JSON.stringify(tasks, null, 4)}</pre>
       )}
