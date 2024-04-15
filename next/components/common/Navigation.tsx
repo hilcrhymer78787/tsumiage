@@ -64,10 +64,6 @@ const Navigation = () => {
           }
         />
         {/* <BottomNavigationAction
-          label="goal"
-          value="/goal"
-          icon={<SportsScoreIcon />} />
-        <BottomNavigationAction
           label="friend"
           value="/friend"
           icon={<GroupIcon />} /> */}
