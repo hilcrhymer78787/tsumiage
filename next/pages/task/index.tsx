@@ -44,7 +44,9 @@ const Task = () => {
         tasks={notNecessaryTasks}
         {...cmnProps}
       />
-      <pre>{JSON.stringify(tasks, null, 4)}</pre>
+      {process.env.NODE_ENV === "development" && (
+        <pre>{JSON.stringify(tasks, null, 4)}</pre>
+      )}
     </Layout>
   );
 };

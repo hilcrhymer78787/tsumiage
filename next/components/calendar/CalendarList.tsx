@@ -102,7 +102,9 @@ const CalendarList = (props: Props) => {
           </Box>
         </CardContent>
       </Card>
-      <pre>{JSON.stringify(calendars, null, 4)}</pre>
+      {process.env.NODE_ENV === "development" && (
+        <pre>{JSON.stringify(calendars, null, 4)}</pre>
+      )}
     </>
   );
 };
