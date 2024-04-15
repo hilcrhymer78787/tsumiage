@@ -42,6 +42,8 @@ const CalendarList = (props: Props) => {
     });
   };
 
+  const height = "40px";
+
   return (
     <>
       <Card sx={{ mb: "20px" }}>
@@ -60,7 +62,11 @@ const CalendarList = (props: Props) => {
               <Box></Box>
               {calendars?.[0]?.tasks.map((task) => (
                 <>
-                  <Box sx={{ p: 1, fontSize: "14px" }} key={task.id}>
+                  <Box
+                    className="ellipsis"
+                    sx={{ p: 1, fontSize: "14px", height }}
+                    key={task.id}
+                  >
                     {task.name}
                   </Box>
                 </>
@@ -72,15 +78,13 @@ const CalendarList = (props: Props) => {
             >
               {calendars?.map((calendar) => (
                 <Box key={calendar.date} sx={{ textAlign: "center" }}>
-                  <Box sx={{ p: 1, width: "40px" }}>
+                  <Box sx={{ p: 1, width: "40px", height }}>
                     {dayjs(calendar.date).format("D")}
                   </Box>
                   {calendar.tasks.map((task) => (
-                    <>
-                      <Box sx={{ p: 1 }} key={task.id}>
-                        {task.work.state}
-                      </Box>
-                    </>
+                    <Box sx={{ p: 1, width: "40px", height }} key={task.id}>
+                      {task.work.state}
+                    </Box>
                   ))}
                 </Box>
               ))}
