@@ -1,35 +1,3 @@
-body {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-.MuiTypography-subtitle1 {
-    font-size: 14px;
-    font-weight: bold !important;
-    color: rgba(0, 0, 0, 0.54);
-    margin: 0 0 5px;
-}
-.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
-    padding: 0 5px !important;
-    background-color: white !important;
-}
-.MuiDialog-paperWidthSm {
-    width: 90%;
-}
-.MuiButtonBase-root.MuiIconButton-root {
-    padding: 7px;
-    background-color: white !important;
-}
-.MuiLoadingButton-root {
-    .MuiSvgIcon-root {
-        margin-left: 10px;
-    }
-}
-.MuiModal-root{
-    .MuiCardContent-root{
-        max-height: 60vh;
-        overflow-y: scroll;
-    }
-}
-
 .flexCenter {
     display: flex;
     justify-content: center;

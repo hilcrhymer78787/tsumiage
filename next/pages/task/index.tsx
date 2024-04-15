@@ -35,7 +35,12 @@ const Task = () => {
 
   return (
     <Layout>
-      <TaskList title="未達成のタスク" tasks={notDoneTasks} {...cmnProps} />
+      <TaskList
+        title="未達成のタスク"
+        tasks={notDoneTasks}
+        {...cmnProps}
+        isShowAddBtn
+      />
       <Box sx={{ p: 2 }}></Box>
       <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
       <Box sx={{ p: 2 }}></Box>

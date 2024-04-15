@@ -2,6 +2,7 @@ import { BottomNavigationAction, Paper } from "@mui/material";
 import React, { useState } from "react";
 
 import BottomNavigation from "@mui/material/BottomNavigation";
+import GroupIcon from "@mui/icons-material/Group";
 import TaskIcon from "@mui/icons-material/Task";
 import TodayIcon from "@mui/icons-material/Today";
 import UserAvatar from "@/components/common/UserAvatar";
@@ -52,6 +53,11 @@ const Navigation = () => {
           icon={<TodayIcon />}
         />
         <BottomNavigationAction
+          label="friend"
+          value="/friend"
+          icon={<GroupIcon />}
+        />
+        <BottomNavigationAction
           label="mypage"
           value="/mypage"
           icon={
@@ -63,10 +69,6 @@ const Navigation = () => {
             />
           }
         />
-        {/* <BottomNavigationAction
-          label="friend"
-          value="/friend"
-          icon={<GroupIcon />} /> */}
       </BottomNavigation>
     </Paper>
   );

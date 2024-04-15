@@ -1,10 +1,12 @@
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
   CircularProgress,
   Dialog,
   IconButton,
+  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -21,6 +23,7 @@ type Props = {
   readTasksLoading: boolean;
   readTasksError: string;
   title: string;
+  isShowAddBtn?: boolean;
 };
 const TaskList = ({
   date,
@@ -30,6 +33,7 @@ const TaskList = ({
   readTasksLoading,
   readTasksError,
   title,
+  isShowAddBtn,
 }: Props) => {
   const [createTaskDialog, setCreateTaskDialog] = useState(false);
 
@@ -42,13 +46,14 @@ const TaskList = ({
       <Card>
         <CardHeader
           action={
-            !readonly && (
-              <IconButton
+            !readonly && !!isShowAddBtn && (
+              <Button
                 onClick={() => setCreateTaskDialog(true)}
                 component="span"
               >
-                <AddIcon color="primary" />
-              </IconButton>
+                <AddIcon sx={{ marginTop: "-4px" }} color="primary" />
+                <Typography>新規</Typography>
+              </Button>
             )
           }
           title={title}

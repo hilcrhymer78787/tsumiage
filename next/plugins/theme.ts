@@ -4,13 +4,6 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   components: {
-    MuiToolbar: {
-      styleOverrides: {
-        root: {
-          minHeight: "56px !important",
-        },
-      },
-    },
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
@@ -18,25 +11,28 @@ const theme = createTheme({
         },
       },
     },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          border: "1px solid rgba(255, 255, 255, 0.23)",
+        },
+      },
+    },
     MuiCardHeader: {
       styleOverrides: {
         root: {
-          background: `linear-gradient(${blue[300]},${blue[600]})`,
-          color: "white",
+          color: blue[300],
+          borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
         },
         title: {
-          fontSize: "20px !important",
-        },
-        subheader: {
-          color: "white !important",
-          fontSize: "13px !important"
+          fontSize: "20px",
         },
       },
     },
     MuiCardActions: {
       styleOverrides: {
         root: {
-          borderTop: "1px solid #e0e0e0 !important",
+          borderTop: "1px solid rgba(255, 255, 255, 0.23)",
           justifyContent: "space-between",
         },
       },
@@ -44,7 +40,7 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedPrimary: {
-          background: `linear-gradient(${blue[300]},${blue[600]})`
+          background: blue[300]
         },
         containedError: {
           background: `linear-gradient(${red[200]},${red[600]})`
@@ -54,7 +50,7 @@ const theme = createTheme({
     MuiListItem: {
       styleOverrides: {
         root: {
-          borderBottom: "1px solid #e0e0e0",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
           "&:last-child": {
             borderBottom: "none",
           }
@@ -70,8 +66,9 @@ const theme = createTheme({
     },
   },
   palette: {
+    mode: "dark",
     primary: {
-      main: blue[500],
+      main: blue[300],
     },
   },
 });

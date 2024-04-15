@@ -1,19 +1,20 @@
-import { useState } from "react";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Canceler } from "axios";
+
 import { api } from "@/plugins/axios";
-import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { apiUserBasicAuthenticationRequestType } from "@/types/api/user/basicAuthentication/request";
 import { apiUserBasicAuthenticationResponseType } from "@/types/api/user/basicAuthentication/response";
 import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError, Canceler } from "axios";
+import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { atom } from "recoil";
 import { errorType } from "@/types/api/error";
+import { useState } from "react";
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;
 export const loginInfoAtom = atom<apiUserBearerAuthenticationResponseType | null>({
-  key: 'loginInfo',
+  key: "loginInfo",
   dangerouslyAllowMutability: true,
   default: null,
-})
+});
 export const useUserApi = (): {
   testAuthentication: () => Promise<AxiosResponse>;
   testAuthenticationLoading: boolean;

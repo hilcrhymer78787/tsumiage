@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import React from "react";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 type Props = {
   setCalendarData: (date: { year: number, month: number }) => void
 }
@@ -54,10 +54,8 @@ justify-content: center;
 align-items:center;
 `;
 const StyledNavigateBeforeIcon = styled(NavigateBeforeIcon)`
-color: white;
 font-size: 30px;
 `;
 const StyledNavigateNextIcon = styled(NavigateNextIcon)`
-color: white;
 font-size: 30px;
 `;
