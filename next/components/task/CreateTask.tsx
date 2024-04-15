@@ -6,6 +6,7 @@ import {
   CardHeader,
   TextField,
 } from "@mui/material";
+import { HTMLDivElement, KeyboardEvent } from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import ErrTxt from "@/components/common/ErrTxt";
@@ -34,9 +35,13 @@ export default function CreateTask({ task, onCloseMyself }: Props) {
     const res = await deleteTask(task.id);
     if (res) onCloseMyself();
   };
-  const onClickSubmit = async () => {
+  const submit = async () => {
     const res = await createTask(task?.id ?? 0, name);
     if (res) onCloseMyself();
+  };
+  const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
+    if (e?.keyCode !== 13) return;
+    submit();
   };
   return (
     <Card>
@@ -47,6 +52,7 @@ export default function CreateTask({ task, onCloseMyself }: Props) {
           helperText={nameError}
           value={name}
           onChange={(e) => setName(e.currentTarget.value)}
+          onKeyDown={onKeyDown}
           label="タスクの名前"
           variant="outlined"
           color="primary"
@@ -66,10 +72,11 @@ export default function CreateTask({ task, onCloseMyself }: Props) {
             <DeleteIcon />
           </LoadingButton>
         )}
+        <Box></Box>
         <LoadingButton
           color="primary"
           variant="contained"
-          onClick={onClickSubmit}
+          onClick={submit}
           loading={createTaskLoading}
           disabled={deleteTaskLoading}
         >
