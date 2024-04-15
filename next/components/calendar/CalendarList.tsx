@@ -45,11 +45,16 @@ const CalendarList = (props: Props) => {
     });
   };
 
-  const getStateIcon = (task: Task) => {
-    const { state } = task.work;
+  const getStateIcon = (task: Task, date: string) => {
+    const {
+      work: { state },
+      createdAt,
+    } = task;
+    if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
+    if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <></>;
     if (state === 0) return <CheckIcon />;
     if (state === 1) return <CheckIcon color="primary" />;
-    if (state === 2) return <RemoveIcon />;
+    if (state === 2) return <RemoveIcon color="primary" />;
   };
 
   const height = "40px";
@@ -93,7 +98,7 @@ const CalendarList = (props: Props) => {
                   </Box>
                   {calendar.tasks.map((task) => (
                     <Box sx={{ p: 1, width: "40px", height }} key={task.id}>
-                      {getStateIcon(task)}
+                      {getStateIcon(task, calendar.date)}
                     </Box>
                   ))}
                 </Box>

@@ -5,6 +5,7 @@ import { useState } from "react";
 export type Task = {
   id: number;
   name: string;
+  createdAt:string;
   sort_key: null | undefined;
   work: {
     id: number;

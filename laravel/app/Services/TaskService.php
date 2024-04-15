@@ -12,6 +12,7 @@ class TaskService
             ->select(
                 'task_id as id',
                 'task_name as name',
+                'created_at as createdAt',
                 'task_sort_key as sort_key',
             )
             ->orderBy('task_sort_key')
