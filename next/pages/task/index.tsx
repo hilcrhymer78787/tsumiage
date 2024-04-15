@@ -1,9 +1,10 @@
+import { useEffect, useMemo } from "react";
+
 import { Box } from "@mui/material";
 import Layout from "@/layouts/default";
 import TaskList from "@/components/task/TaskList";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
-import { useMemo } from "react";
 import { useReadTasks } from "@/data/task/useReadTasks";
 import { useRecoilValue } from "recoil";
 const Task = () => {
@@ -32,6 +33,10 @@ const Task = () => {
     readTasksLoading: readTasksLoading,
     readTasksError: readTasksError,
   };
+
+  useEffect(() => {
+    apiTaskRead();
+  }, []);
 
   return (
     <Layout>

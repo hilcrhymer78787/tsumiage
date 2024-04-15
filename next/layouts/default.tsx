@@ -20,7 +20,7 @@ function Layout({ children }: Props) {
   if (!loginInfo) return <></>;
   return (
     <>
-      <Container sx={{ p: "70px 10px" }}>
+      <Container sx={{ p: "10px 10px 70px" }}>
         {children}
       </Container>
       <Navigation />

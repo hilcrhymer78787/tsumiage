@@ -37,20 +37,14 @@ const TaskList = ({
 }: Props) => {
   const [createTaskDialog, setCreateTaskDialog] = useState(false);
 
-  useEffect(() => {
-    apiTaskRead();
-  }, []);
-
   return (
     <>
       <Card>
         <CardHeader
           action={
-            !readonly && !!isShowAddBtn && (
-              <Button
-                onClick={() => setCreateTaskDialog(true)}
-                component="span"
-              >
+            !readonly &&
+            !!isShowAddBtn && (
+              <Button onClick={() => setCreateTaskDialog(true)}>
                 <AddIcon sx={{ marginTop: "-4px" }} color="primary" />
                 <Typography>新規</Typography>
               </Button>

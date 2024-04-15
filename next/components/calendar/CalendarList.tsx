@@ -74,12 +74,20 @@ const CalendarList = (props: Props) => {
         <CardContent sx={{ p: "0 !important" }}>
           <Box className="flexStart" sx={{ alignItems: "flex-end" }}>
             <Box sx={{ width: "150px" }}>
-              <Box></Box>
+              <Box sx={{borderBottom: "1px solid rgba(255, 255, 255, 0.23)",}}>　</Box>
               {calendars?.[0]?.tasks.map((task) => (
                 <>
                   <Box
                     className="ellipsis"
-                    sx={{ p: 1, fontSize: "14px", height }}
+                    sx={{
+                      p: 1,
+                      fontSize: "14px",
+                      height,
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
+                      "&:last-child": {
+                        borderBottom: "none",
+                      },
+                    }}
                     key={task.id}
                   >
                     {task.name}
@@ -92,12 +100,36 @@ const CalendarList = (props: Props) => {
               className="flexStart"
             >
               {calendars?.map((calendar) => (
-                <Box key={calendar.date} sx={{ textAlign: "center" }}>
-                  <Box sx={{ p: 1, width: "40px", height }}>
+                <Box
+                  key={calendar.date}
+                  sx={{
+                    textAlign: "center",
+                    borderLeft: "1px solid rgba(255, 255, 255, 0.23)",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      p: 1,
+                      width: "40px",
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
+                      height,
+                    }}
+                  >
                     {dayjs(calendar.date).format("D")}
                   </Box>
                   {calendar.tasks.map((task) => (
-                    <Box sx={{ p: 1, width: "40px", height }} key={task.id}>
+                    <Box
+                      sx={{
+                        p: 1,
+                        width: "40px",
+                        borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
+                        height,
+                        "&:last-child": {
+                          borderBottom: "none",
+                        },
+                      }}
+                      key={task.id}
+                    >
                       {getStateIcon(task, calendar.date)}
                     </Box>
                   ))}

@@ -1,6 +1,7 @@
 import {
   CircularProgress,
   Dialog,
+  IconButton,
   ListItem,
   ListItemAvatar,
   ListItemButton,
@@ -45,13 +46,16 @@ export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
     if (deleteWorkLoading || createWorkLoading) {
       return <CircularProgress size={25} />;
     } else if (task.work.state === 1) {
-      return <CheckBoxIcon onClick={apiWorkDelete} color="primary" />;
+      return (
+        <IconButton onClick={apiWorkDelete}>
+          <CheckBoxIcon color="primary" />
+        </IconButton>
+      );
     } else {
       return (
-        <CheckBoxOutlineBlankIcon
-          onClick={() => apiWorkCreate(1)}
-          color="disabled"
-        />
+        <IconButton onClick={() => apiWorkCreate(1)}>
+          <CheckBoxOutlineBlankIcon color="disabled" />
+        </IconButton>
       );
     }
   };
@@ -59,9 +63,17 @@ export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
     if (deleteWorkLoading || createWorkLoading) {
       return <CircularProgress size={25} />;
     } else if (task.work.state === 2) {
-      return <AddIcon onClick={apiWorkDelete} color="primary" />;
+      return (
+        <IconButton onClick={apiWorkDelete}>
+          <AddIcon color="primary" />
+        </IconButton>
+      );
     } else {
-      return <RemoveIcon onClick={() => apiWorkCreate(2)} color="disabled" />;
+      return (
+        <IconButton onClick={() => apiWorkCreate(2)}>
+          <RemoveIcon color="disabled" />
+        </IconButton>
+      );
     }
   };
   return (
