@@ -1,7 +1,10 @@
 import { Box, Card, CardContent, CardHeader } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
+import CheckIcon from "@mui/icons-material/Check";
 import Pagination from "@/components/calendar/Pagination";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Task } from "@/data/task/useReadTasks";
 import dayjs from "dayjs";
 import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import { useRouter } from "next/router";
@@ -40,6 +43,13 @@ const CalendarList = (props: Props) => {
       year: year,
       month: month,
     });
+  };
+
+  const getStateIcon = (task: Task) => {
+    const { state } = task.work;
+    if (state === 0) return <CheckIcon />;
+    if (state === 1) return <CheckIcon color="primary" />;
+    if (state === 2) return <RemoveIcon />;
   };
 
   const height = "40px";
@@ -83,7 +93,7 @@ const CalendarList = (props: Props) => {
                   </Box>
                   {calendar.tasks.map((task) => (
                     <Box sx={{ p: 1, width: "40px", height }} key={task.id}>
-                      {task.work.state}
+                      {getStateIcon(task)}
                     </Box>
                   ))}
                 </Box>
