@@ -1,13 +1,54 @@
-import Layout from "@/layouts/default";
+import { useCallback, useEffect, useMemo } from "react";
+
 import CalendarList from "@/components/calendar/CalendarList";
-import Typography from "@mui/material/Typography";
+import ErrTxt from "@/components/common/ErrTxt";
+import Layout from "@/layouts/default";
+import Loading from "@/components/common/Loading";
+import { Typography } from "@mui/material";
+import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import { useRouter } from "next/router";
-export default function FriendId () {
+
+const FriendId = () => {
   const router = useRouter();
+  const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
+  useReadWorkMonth();
+
+  const userId=useMemo(()=>{
+    return Number(router.query.user?.[0]);
+  },[router.query.user]);
+  
+  const getCalendarData = useCallback(
+    async (year?: number, month?: number) => {
+      await readWorkMonth({
+        userId,
+        year: year ?? Number(router.query.year),
+        month: month ?? Number(router.query.month),
+      });
+    },
+    [userId, readWorkMonth, router.query.month, router.query.year]
+  );
+  
+  useEffect(() => {
+    getCalendarData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  const CalendarContent = useCallback(() => {
+    if (!!readWorkMonthError) return <ErrTxt txt={readWorkMonthError} />;
+    if (calendars === null) {
+      if (readWorkMonthLoading) return <Loading />;
+      return <></>;
+    }
+    return (
+      <CalendarList calendars={calendars} getCalendarData={getCalendarData} />
+    );
+  }, [readWorkMonthLoading, readWorkMonthError, calendars, getCalendarData]);
+
   if (router.asPath === router.route) return null;
   if (!router.query.user) return null;
+
   return (
-    <Layout>
+    <Layout pcMaxWidth={false}>
       <Typography
         color="primary"
         variant="h5"
@@ -15,7 +56,8 @@ export default function FriendId () {
           textAlign: "center",
           m: "15px 0"
         }}>{router.query.user[1]}さんの部屋</Typography>
-      <CalendarList readonly userId={Number(router.query.user[0])} />
+      <CalendarContent />
     </Layout>
   );
-}
+};
+export default FriendId;
