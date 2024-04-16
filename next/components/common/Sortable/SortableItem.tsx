@@ -16,13 +16,11 @@ export const SortableItem: FC<Props> = ({ item }: Props) => {
     useSortable({ id: item.id });
 
   const style = {
-    border: "1px solid #ddd",
+    border: "1px solid rgba(255, 255, 255, 0.23)",
     padding: "0.5rem 1rem",
     marginBottom: "0.5rem",
-    backgroundColor: "#fafafa",
-    color: "black",
+    backgroundColor: "rgba(255, 255, 255, 0.09)",
     cursor: "move",
-    listStyle: "none",
     transform: CSS.Transform.toString(transform),
     transition,
   };
