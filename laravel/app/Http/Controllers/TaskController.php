@@ -57,10 +57,10 @@ class TaskController extends Controller
 
         return $request;
     }
-    public function sortset(Request $request)
+    public function sort(Request $request)
     {
         foreach ($request['tasks'] as $index => $task) {
-            Task::where('task_id', $task['task_id'])->update([
+            Task::where('task_id', $task['id'])->update([
                 'task_sort_key' => $index,
             ]);
         }

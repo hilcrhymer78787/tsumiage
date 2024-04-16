@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from "react";
+import { Task, useReadTasks } from "@/data/task/useReadTasks";
 
 import ErrTxt from "@/components/common/ErrTxt";
 import Layout from "@/layouts/default";
@@ -7,14 +8,20 @@ import NoData from "@/components/common/NoData";
 import Sortable from "@/components/common/Sortable";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
-import { useReadTasks } from "@/data/task/useReadTasks";
 import { useRecoilValue } from "recoil";
+import { useSortTasks } from "@/data/task/useSortTasks";
 
 const TaskSort = () => {
   const loginInfo = useRecoilValue(loginInfoAtom);
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
+  const { sortTasks } = useSortTasks();
+  
   const apiTaskRead = async () => {
     await readTasks(dayjs().format("YYYY-MM-DD"), loginInfo?.id ?? 0);
+  };
+
+  const apiTaskSort = async (tasks:Task[]) => {
+    sortTasks(tasks)
   };
 
   const TaskSortContent = useCallback(() => {
@@ -24,7 +31,7 @@ const TaskSort = () => {
       return <></>;
     }
     if (!tasks.length) return <NoData txt="登録されているタスクはありません"/>;
-    return <Sortable />;
+    return <Sortable initItems={tasks} onChange={apiTaskSort}/>;
   }, [readTasksLoading, readTasksError, tasks]);
 
   useEffect(() => {

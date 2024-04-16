@@ -14,8 +14,8 @@ Route::get('/user/bearer_authentication', 'UserController@bearer_authentication'
 Route::post('/user/create', 'UserController@create');
 
 Route::middleware([CheckToken::class])->group(function () {
-    Route::post('/task/sortset', 'TaskController@sortset');
     Route::post('/task/create', 'TaskController@create');
+    Route::post('/task/sort', 'TaskController@sort');
     Route::get('/task/read', 'TaskController@read');
     Route::delete('/task/delete', 'TaskController@delete');
 

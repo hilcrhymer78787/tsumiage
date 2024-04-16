@@ -7,7 +7,6 @@ import {
     useSensor,
     useSensors,
 } from "@dnd-kit/core";
-import { Item, SortableItem } from "@/components/common/Sortable/SortableItem";
 import React, { FC, useState } from "react";
 import {
     SortableContext,
@@ -16,22 +15,18 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
+import { SortableItem } from "@/components/common/Sortable/SortableItem";
+import { Task } from "@/data/task/useReadTasks";
+
 const style = {
     padding: "1rem",
   };
-  
-  const App: FC = () => {
-    const [items, setItems] = useState<Array<Item>>([
-      { id: 1, name: "dnd-kit example 1" },
-      { id: 2, name: "dnd-kit example 2" },
-      { id: 3, name: "dnd-kit example 3" },
-      { id: 4, name: "dnd-kit example 4" },
-      { id: 5, name: "dnd-kit example 5" },
-      { id: 6, name: "dnd-kit example 6" },
-      { id: 7, name: "dnd-kit example 7" },
-      { id: 8, name: "dnd-kit example 8" },
-    ]);
-  
+  type SortableProps = {
+    initItems:Task[],
+    onChange :(items:Task[])=>void
+  }
+  const Sortable = ({initItems,onChange}:SortableProps) => {
+    const [items, setItems] = useState(initItems);
     const sensors = useSensors(
       useSensor(PointerSensor),
       useSensor(KeyboardSensor, {
@@ -50,6 +45,7 @@ const style = {
         const oldIndex = items.findIndex((v) => v.id === active.id);
         const newIndex = items.findIndex((v) => v.id === over.id);
         setItems(arrayMove(items, oldIndex, newIndex));
+        onChange(arrayMove(items, oldIndex, newIndex));
       }
     };
   
@@ -73,4 +69,4 @@ const style = {
     );
   };
   
-  export default App;
+  export default Sortable;
