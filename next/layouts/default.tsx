@@ -50,7 +50,7 @@ const Layout = ({
   const onChangeNav = (value: string) => {
     if (value == "/calendar") {
       router.push({
-        pathname: "calendar",
+        pathname: "/calendar",
         query: {
           year: dayjs().format("YYYY"),
           month: dayjs().format("M"),
