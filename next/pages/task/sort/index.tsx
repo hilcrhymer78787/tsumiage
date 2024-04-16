@@ -6,7 +6,7 @@ import Layout from "@/layouts/default";
 import Loading from "@/components/common/Loading";
 import NoData from "@/components/common/NoData";
 import Sortable from "@/components/common/Sortable";
-import TaskSortHeader from "@/components/task/TaskSortHeader"
+import TaskSortHeader from "@/components/task/TaskSortHeader";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
@@ -42,7 +42,7 @@ const TaskSort = () => {
 
   return (
     <Layout pcP="80px 0">
-<TaskSortHeader/>
+      <TaskSortHeader />
       <TaskSortContent />
       {process.env.NODE_ENV === "development" && (
         <pre>{JSON.stringify(tasks, null, 4)}</pre>
