@@ -32,6 +32,36 @@ const Navigation = () => {
     router.push(val);
   };
 
+  const navs = [
+    {
+      label: "task",
+      value: "/task",
+      icon: <TaskIcon />,
+    },
+    {
+      label: "calendar",
+      value: "/calendar",
+      icon: <TodayIcon />,
+    },
+    {
+      label: "friend",
+      value: "/friend",
+      icon: <GroupIcon />,
+    },
+    {
+      label: "mypage",
+      value: "/mypage",
+      icon: (
+        <UserAvatar
+          src={loginInfo?.user_img ?? ""}
+          size={30}
+          onClick={() => {}}
+          borderColor={getColor("/mypage")}
+        />
+      ),
+    },
+  ];
+
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
@@ -42,33 +72,14 @@ const Navigation = () => {
         value={router.pathname}
         onChange={(_, val) => onChangeNav(val)}
       >
-        <BottomNavigationAction
-          label="task"
-          value="/task"
-          icon={<TaskIcon />}
-        />
-        <BottomNavigationAction
-          label="calendar"
-          value="/calendar"
-          icon={<TodayIcon />}
-        />
-        <BottomNavigationAction
-          label="friend"
-          value="/friend"
-          icon={<GroupIcon />}
-        />
-        <BottomNavigationAction
-          label="mypage"
-          value="/mypage"
-          icon={
-            <UserAvatar
-              src={loginInfo?.user_img ?? ""}
-              size={30}
-              onClick={() => {}}
-              borderColor={getColor("/mypage")}
-            />
-          }
-        />
+        {navs.map((nav, i) => (
+          <BottomNavigationAction
+            key={i}
+            label={nav.label}
+            value={nav.value}
+            icon={nav.icon}
+          />
+        ))}
       </BottomNavigation>
     </Paper>
   );
