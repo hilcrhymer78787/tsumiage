@@ -37,7 +37,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
             />
           }
         />
-        <CardContent sx={{ p: 0 }}>
+        <CardContent sx={{ p: "0 !important" }}>
           <Box className="flexStart" sx={{ alignItems: "flex-end" }}>
             <Box sx={{ width: "150px" }}>
               <Box sx={{ borderBottom }}></Box>
