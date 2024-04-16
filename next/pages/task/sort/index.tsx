@@ -15,13 +15,13 @@ const TaskSort = () => {
   const loginInfo = useRecoilValue(loginInfoAtom);
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
   const { sortTasks } = useSortTasks();
-  
+
   const apiTaskRead = async () => {
     await readTasks(dayjs().format("YYYY-MM-DD"), loginInfo?.id ?? 0);
   };
 
-  const apiTaskSort = async (tasks:Task[]) => {
-    sortTasks(tasks)
+  const apiTaskSort = async (tasks: Task[]) => {
+    sortTasks(tasks);
   };
 
   const TaskSortContent = useCallback(() => {
@@ -30,8 +30,8 @@ const TaskSort = () => {
       if (readTasksLoading) return <Loading />;
       return <></>;
     }
-    if (!tasks.length) return <NoData txt="登録されているタスクはありません"/>;
-    return <Sortable initItems={tasks} onChange={apiTaskSort}/>;
+    if (!tasks.length) return <NoData txt="登録されているタスクはありません" />;
+    return <Sortable initItems={tasks} onChange={apiTaskSort} />;
   }, [readTasksLoading, readTasksError, tasks]);
 
   useEffect(() => {
