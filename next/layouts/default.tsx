@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 type Props = {
   children: ReactNode;
   authRequired?: boolean;
-  pcMaxWidth?: Breakpoint;
+  pcMaxWidth?: Breakpoint | false;
   spP?: string;
   pcP?: string;
 };
@@ -36,7 +36,7 @@ export type Nav = {
 };
 const Layout = ({
   children,
-  pcMaxWidth = "sm",
+  pcMaxWidth = "lg",
   spP = "70px 10px 180px",
   pcP = "32px 24px",
 }: Props) => {

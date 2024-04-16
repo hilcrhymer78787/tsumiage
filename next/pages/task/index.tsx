@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 
 import { Box } from "@mui/material";
 import Layout from "@/layouts/default";
+import TaskHeader from "@/components/task/TaskHeader";
 import TaskList from "@/components/task/TaskList";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
@@ -40,7 +41,8 @@ const Task = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout pcP="80px 0">
+      <TaskHeader />
       <TaskList
         title="未達成のタスク"
         tasks={notDoneTasks}
