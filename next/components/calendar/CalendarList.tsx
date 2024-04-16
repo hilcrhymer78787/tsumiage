@@ -1,9 +1,12 @@
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardHeader,
+  CircularProgress,
 } from "@mui/material";
+import { useCallback, useMemo, useState } from "react";
 
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import CheckIcon from "@mui/icons-material/Check";
@@ -18,34 +21,6 @@ type Props = {
   getCalendarData: (year?: number, month?: number) => Promise<void>;
 };
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
-  const { createWork, createWorkLoading } = useCreateWork();
-
-  const getStateIcon = (task: Task, date: string) => {
-    const {
-      work: { state },
-      createdAt,
-    } = task;
-
-    const apiWorkCreate = async () => {
-      const newState = state === 0 ? 1 : state === 1 ? 2 : 0;
-      const res = await createWork({
-        id: task.work.id,
-        date: date,
-        state: newState,
-        task_id: task.id,
-      });
-      if (res) getCalendarData();
-    };
-
-    if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
-    if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <></>;
-    if (state === 0) return <CheckIcon onClick={apiWorkCreate} />;
-    if (state === 1)
-      return <CheckIcon onClick={apiWorkCreate} color="primary" />;
-    if (state === 2)
-      return <RemoveIcon onClick={apiWorkCreate} color="primary" />;
-  };
-
   const height = "40px";
   const borderBottom = "1px solid rgba(255, 255, 255, 0.23)";
   const borderLeft = "1px solid rgba(255, 255, 255, 0.23)";
@@ -62,7 +37,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
             />
           }
         />
-        <CardContent sx={{ p: "0 !important" }}>
+        <CardContent sx={{ p: 0 }}>
           <Box className="flexStart" sx={{ alignItems: "flex-end" }}>
             <Box sx={{ width: "150px" }}>
               <Box sx={{ borderBottom }}></Box>
@@ -104,24 +79,12 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
                     {dayjs(calendar.date).format("D")}
                   </Box>
                   {calendar.tasks.map((task) => (
-                    <Box
-                      sx={{
-                        p: 1,
-                        width: "40px",
-                        cursor: "pointer",
-                        borderBottom,
-                        height,
-                        "&:last-child": {
-                          borderBottom: "none",
-                        },
-                        "&:hover": {
-                          backgroundColor: "rgba(255, 255, 255, 0.23)",
-                        },
-                      }}
+                    <CalendarItem
+                      task={task}
+                      date={calendar.date}
                       key={task.id}
-                    >
-                      {getStateIcon(task, calendar.date)}
-                    </Box>
+                      getCalendarData={getCalendarData}
+                    />
                   ))}
                 </Box>
               ))}
@@ -135,4 +98,65 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
     </>
   );
 };
+
+type CalendarItemProps = {
+  task: Task;
+  date: string;
+  getCalendarData: (year?: number, month?: number) => Promise<void>;
+};
+const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
+  const {
+    work: { state },
+    createdAt,
+  } = task;
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { createWork } = useCreateWork();
+
+  const apiWorkCreate = useCallback(async () => {
+    setIsLoading(true);
+    const newState = state === 0 ? 1 : state === 1 ? 2 : 0;
+    const res = await createWork({
+      id: task.work.id,
+      date,
+      state: newState,
+      task_id: task.id,
+    });
+    if (res) await getCalendarData();
+    setIsLoading(false);
+  }, [createWork, date, getCalendarData, state, task.id, task.work.id]);
+
+  const getStateIcon = useMemo(() => {
+    if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
+    if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <></>;
+    if (isLoading) return <CircularProgress size={24} />;
+    if (state === 0) return <CheckIcon onClick={apiWorkCreate} color="error"/>;
+    if (state === 1)
+      return <CheckIcon onClick={apiWorkCreate} color="primary" />;
+    if (state === 2)
+      return <RemoveIcon onClick={apiWorkCreate} color="primary" />;
+  }, [apiWorkCreate, createdAt, date, state, isLoading]);
+
+  return (
+    <Box
+      sx={{
+        cursor: "pointer",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
+        height: "40px",
+        "&:last-child": {
+          borderBottom: "none",
+        },
+        "&:hover": {
+          backgroundColor: "rgba(255, 255, 255, 0.23)",
+        },
+      }}
+    >
+      <Button sx={{ minWidth: "40px", width: "40px", height: "40px", p: 0 }}>
+        {getStateIcon}
+      </Button>
+    </Box>
+  );
+};
+
 export default CalendarList;

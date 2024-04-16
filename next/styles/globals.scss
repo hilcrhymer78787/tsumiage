@@ -1,25 +1,25 @@
 .flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .flexStart {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .flexBetween {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .flexEnd {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .ellipsis {
-    white-space: nowrap; /* テキストを折り返さないようにする */
-    overflow: hidden; /* コンテナーからはみ出た部分を隠す */
-    text-overflow: ellipsis; /* はみ出た部分を省略記号で表示 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.ellipsis {
+  white-space: nowrap; /* テキストを折り返さないようにする */
+  overflow: hidden; /* コンテナーからはみ出た部分を隠す */
+  text-overflow: ellipsis; /* はみ出た部分を省略記号で表示 */
 }

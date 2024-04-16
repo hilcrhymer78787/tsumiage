@@ -1,6 +1,7 @@
+import { useCallback, useState } from "react";
+
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
-import { useState } from "react";
 
 export type Work = {
   id: number;
@@ -20,7 +21,7 @@ export type workCreateData = {
 export const useCreateWork = () => {
   const [createWorkLoading, setCreateWorkLoading] = useState(false);
   const [createWorkError, setCreateWorkError] = useState("");
-  const createWork = async (data: workCreateData) => {
+  const createWork = useCallback(async (data: workCreateData) => {
     setCreateWorkError("");
     setCreateWorkLoading(true);
     const requestConfig = {
@@ -38,7 +39,7 @@ export const useCreateWork = () => {
       .finally(() => {
         setCreateWorkLoading(false);
       });
-  };
+  },[]);
 
   return {
     createWork,
