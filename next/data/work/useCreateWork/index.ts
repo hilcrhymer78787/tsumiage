@@ -21,7 +21,7 @@ export type workCreateData = {
 export const useCreateWork = () => {
   const [createWorkLoading, setCreateWorkLoading] = useState(false);
   const [createWorkError, setCreateWorkError] = useState("");
-  const createWork = useCallback(async (data: workCreateData) => {
+  const createWork = async (data: workCreateData) => {
     setCreateWorkError("");
     setCreateWorkLoading(true);
     const requestConfig = {
@@ -39,7 +39,7 @@ export const useCreateWork = () => {
       .finally(() => {
         setCreateWorkLoading(false);
       });
-  },[]);
+  };
 
   return {
     createWork,

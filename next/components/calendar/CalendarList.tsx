@@ -114,7 +114,7 @@ const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
 
   const { createWork } = useCreateWork();
 
-  const apiWorkCreate = useCallback(async () => {
+  const apiWorkCreate = async () => {
     setIsLoading(true);
     const newState = state === 0 ? 1 : state === 1 ? 2 : 0;
     const res = await createWork({
@@ -125,18 +125,18 @@ const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
     });
     if (res) await getCalendarData();
     setIsLoading(false);
-  }, [createWork, date, getCalendarData, state, task.id, task.work.id]);
+  };
 
   const getStateIcon = useMemo(() => {
     if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
     if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <></>;
     if (isLoading) return <CircularProgress size={24} />;
-    if (state === 0) return <CheckIcon onClick={apiWorkCreate} color="error"/>;
+    if (state === 0) return <CheckIcon color="error"/>;
     if (state === 1)
-      return <CheckIcon onClick={apiWorkCreate} color="primary" />;
+      return <CheckIcon color="primary" />;
     if (state === 2)
-      return <RemoveIcon onClick={apiWorkCreate} color="primary" />;
-  }, [apiWorkCreate, createdAt, date, state, isLoading]);
+      return <RemoveIcon color="primary" />;
+  }, [createdAt, date, state, isLoading]);
 
   return (
     <Box
@@ -152,7 +152,7 @@ const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
         },
       }}
     >
-      <Button sx={{ minWidth: "40px", width: "40px", height: "40px", p: 0 }}>
+      <Button onClick={apiWorkCreate} sx={{ minWidth: "40px", width: "40px", height: "40px", p: 0 }}>
         {getStateIcon}
       </Button>
     </Box>
