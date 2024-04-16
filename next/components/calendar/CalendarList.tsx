@@ -3,56 +3,22 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CircularProgress,
 } from "@mui/material";
-import React, { useEffect, useMemo } from "react";
-import { WorkState, useCreateWork } from "@/data/work/useCreateWork";
 
+import { Calendar } from "@/data/work/useReadWorkMonth";
 import CheckIcon from "@mui/icons-material/Check";
 import Pagination from "@/components/calendar/Pagination";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Task } from "@/data/task/useReadTasks";
 import dayjs from "dayjs";
-import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
-import { useRouter } from "next/router";
+import { useCreateWork } from "@/data/work/useCreateWork";
 
 type Props = {
-  userId: number;
-  readonly: boolean;
+  calendars: Calendar[] | null;
+  getCalendarData: (year?: number, month?: number) => Promise<void>;
 };
-const CalendarList = (props: Props) => {
-  const router = useRouter();
-  const { calendars, readWorkMonth } = useReadWorkMonth();
+const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const { createWork, createWorkLoading } = useCreateWork();
-
-  useEffect(() => {
-    getCalendarData(year(), month());
-  }, []);
-
-  const year = (): number => {
-    return Number(router.query.year);
-  };
-  const month = (): number => {
-    return Number(router.query.month);
-  };
-  const day = (): number => {
-    return Number(router.query.day);
-  };
-  const firstDay = (): number => {
-    return dayjs(`${year()}/${month()}/1`, "YYYY-MM-DD").day();
-  };
-  const lastDayCount = (): number => {
-    return (
-      6 - dayjs(`${year()}/${month()}/1`, "YYYY-MM-DD").endOf("month").day()
-    );
-  };
-  const getCalendarData = async (year: number, month: number) => {
-    await readWorkMonth({
-      userId: props.userId,
-      year: year,
-      month: month,
-    });
-  };
 
   const getStateIcon = (task: Task, date: string) => {
     const {
@@ -68,7 +34,7 @@ const CalendarList = (props: Props) => {
         state: newState,
         task_id: task.id,
       });
-      if (res) getCalendarData(year(), month());
+      if (res) getCalendarData();
     };
 
     if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
