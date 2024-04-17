@@ -38,7 +38,7 @@ const Layout = ({
   children,
   pcMaxWidth = "lg",
   spP = "10px 10px 180px",
-  pcP = "32px 24px",
+  pcP = "20px",
 }: Props) => {
   const { isPc } = useMedia();
   const router = useRouter();
@@ -63,22 +63,22 @@ const Layout = ({
 
   const navs: Nav[] = [
     {
-      label: "task",
+      label: "タスク",
       value: "/task",
       icon: <TaskIcon />,
     },
     {
-      label: "calendar",
+      label: "カレンダー",
       value: "/calendar",
       icon: <TodayIcon />,
     },
     {
-      label: "friend",
+      label: "友達",
       value: "/friend",
       icon: <GroupIcon />,
     },
     {
-      label: "mypage",
+      label: "マイページ",
       value: "/mypage",
       icon: (
         <UserImg
@@ -94,7 +94,7 @@ const Layout = ({
     return (
       <Box sx={{ display: "flex" }} data-testid="Dashboard">
         <Drawer variant="permanent">
-          <List component="nav">
+          <List component="nav" sx={{ width: "170px" }}>
             {navs.map((nav, i) => {
               const color = getColor(nav.value);
               return (
