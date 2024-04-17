@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 import CalendarList from "@/components/calendar/CalendarList";
 import ErrTxt from "@/components/common/ErrTxt";
@@ -15,22 +15,24 @@ const Calendar = () => {
   const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
     useReadWorkMonth();
 
-  const getCalendarData = useCallback(
-    async (year?: number, month?: number) => {
-      if (!loginInfo?.id) return;
-      await readWorkMonth({
-        userId: loginInfo.id,
-        year: year ?? Number(router.query.year),
-        month: month ?? Number(router.query.month),
-      });
-    },
-    [loginInfo, readWorkMonth, router.query.month, router.query.year]
-  );
+  const year = useMemo(() => {
+    return Number(router.query.year);
+  }, [router.query.year]);
+
+  const month = useMemo(() => {
+    return Number(router.query.month);
+  }, [router.query.month]);
+
+  const getCalendarData = useCallback(async () => {
+    const userId = loginInfo?.id;
+    if (!userId) return;
+    await readWorkMonth({ userId, year, month });
+  }, [loginInfo?.id, month, readWorkMonth, year]);
 
   useEffect(() => {
     getCalendarData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [year, month]);
 
   const CalendarContent = useCallback(() => {
     if (!!readWorkMonthError) return <ErrTxt txt={readWorkMonthError} />;

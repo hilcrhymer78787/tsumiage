@@ -24,7 +24,7 @@ import { useMedia } from "@/data/media/useMedia";
 //TODO ページ全体のリファクタリング
 type Props = {
   calendars: Calendar[] | null;
-  getCalendarData: (year?: number, month?: number) => Promise<void>;
+  getCalendarData: () => Promise<void>;
 };
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const { isPc } = useMedia();
@@ -44,11 +44,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
 
   return (
     <>
-      <Pagination
-        setCalendarData={(date) => {
-          getCalendarData(date.year, date.month);
-        }}
-      />
+      <Pagination/>
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? navWidth : "0px"})`,
@@ -135,7 +131,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
 type CalendarItemProps = {
   task: Task;
   date: string;
-  getCalendarData: (year?: number, month?: number) => Promise<void>;
+  getCalendarData: () => Promise<void>;
 };
 const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
   const {

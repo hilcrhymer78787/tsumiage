@@ -1,63 +1,54 @@
-import { IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
+
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import React from "react";
-import styled from "styled-components";
+import { useMemo } from "react";
 import { useRouter } from "next/router";
-type Props = {
-  setCalendarData: (date: { year: number; month: number }) => void;
-};
-export default function Pagination(props: Props) {
+
+const fontSize = "27px";
+const Pagination = () => {
   const router = useRouter();
-  const year = () => {
+  
+  const year = useMemo(() => {
     return Number(router.query.year);
-  };
-  const month = () => {
+  }, [router.query.year]);
+
+  const month = useMemo(() => {
     return Number(router.query.month);
-  };
+  }, [router.query.month]);
+
   const onClickPrevMonth = () => {
-    if (month() == 1) {
-      router.push(`${location.pathname}?year=${year() - 1}&month=12`);
-      props.setCalendarData({ year: year() - 1, month: 12 });
-    } else {
-      router.push(`${location.pathname}?year=${year()}&month=${month() - 1}`);
-      props.setCalendarData({ year: year(), month: month() - 1 });
-    }
+    router.push({
+      pathname: location.pathname,
+      query: {
+        year: month == 1 ? year - 1 : year,
+        month: month == 1 ? 12 : month - 1,
+      },
+    });
   };
+
   const onClickNextMonth = () => {
-    if (month() == 12) {
-      router.push(`${location.pathname}?year=${year() + 1}&month=1`);
-      props.setCalendarData({ year: year() + 1, month: 1 });
-    } else {
-      router.push(`${location.pathname}?year=${year()}&month=${month() + 1}`);
-      props.setCalendarData({ year: year(), month: month() + 1 });
-    }
+    router.push({
+      pathname: location.pathname,
+      query: {
+        year: month == 12 ? year + 1 : year,
+        month: month == 12 ? 1 : month + 1,
+      },
+    });
   };
+
   return (
-    <PaginationDiv>
+    <Box className="flexCenter" height="60px">
       <IconButton onClick={onClickPrevMonth}>
-        <NavigateBeforeIcon sx={{ fontSize: "30px" }} />
+        <NavigateBeforeIcon sx={{ fontSize }} />
       </IconButton>
-      <H1>
-        {year()}年 {month()}月
-      </H1>
+      <Typography fontSize={fontSize}>
+        {year}年 {month}月
+      </Typography>
       <IconButton onClick={onClickNextMonth}>
-        <NavigateNextIcon sx={{ fontSize: "30px" }} />
+        <NavigateNextIcon sx={{ fontSize }} />
       </IconButton>
-    </PaginationDiv>
+    </Box>
   );
-}
-const H1 = styled.h1`
-  font-size: 25px;
-  width: 183px;
-  text-align: center;
-  margin: 0;
-`;
-const PaginationDiv = styled.div`
-  width: 100%;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-`;
+};
+export default Pagination;
