@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { Box } from "@mui/material";
 import Layout from "@/layouts/default";
 import TaskHeader from "@/components/task/TaskHeader";
 import TaskList from "@/components/task/TaskList";
@@ -36,6 +35,7 @@ const Task = () => {
     apiTaskRead: apiTaskRead,
     readTasksLoading: readTasksLoading,
     readTasksError: readTasksError,
+    sx: { mb: 5 },
   };
 
   useEffect(() => {
@@ -54,27 +54,19 @@ const Task = () => {
 
   return (
     <Layout pcP="80px 0">
-      <TaskHeader isGray={!!scrollY} apiTaskRead={apiTaskRead}/>
-      <TaskList
-        title="未達成のタスク"
-        tasks={notDoneTasks}
-        {...cmnProps}
-      />
+      <TaskHeader isGray={!!scrollY} apiTaskRead={apiTaskRead} />
+      {!!notDoneTasks.length && (
+        <TaskList title="未達成のタスク" tasks={notDoneTasks} {...cmnProps} />
+      )}
       {!!doneTasks.length && (
-        <>
-          <Box sx={{ p: 2 }}></Box>
-          <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
-        </>
+        <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
       )}
       {!!notNecessaryTasks.length && (
-        <>
-          <Box sx={{ p: 2 }}></Box>
-          <TaskList
-            title="達成不要のタスク"
-            tasks={notNecessaryTasks}
-            {...cmnProps}
-          />
-        </>
+        <TaskList
+          title="達成不要のタスク"
+          tasks={notNecessaryTasks}
+          {...cmnProps}
+        />
       )}
       {process.env.NODE_ENV === "development" && (
         <pre>{JSON.stringify(tasks, null, 4)}</pre>

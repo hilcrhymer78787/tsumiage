@@ -25,14 +25,20 @@ type Props = {
   readonly: boolean;
 };
 export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
+  const [isLoadingRight, setIsLoadingRight] = useState(false);
   const { deleteWork, deleteWorkLoading } = useDeleteWork();
   const [createTaskkDialog, setCreateTaskDialog] = useState(false);
   const { createWork, createWorkLoading } = useCreateWork();
-  const apiWorkDelete = async () => {
+
+  const apiWorkDelete = async (isRight: boolean) => {
+    if (isRight) setIsLoadingRight(true);
     const res = await deleteWork(task.work.id);
     if (res) apiTaskRead();
+    if (isRight) setIsLoadingRight(false);
   };
-  const apiWorkCreate = async (state: WorkState) => {
+
+  const apiWorkCreate = async (state: WorkState, isRight: boolean) => {
+    if (isRight) setIsLoadingRight(true);
     const res = await createWork({
       id: task.work.id,
       date: date,
@@ -40,19 +46,22 @@ export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
       task_id: task.id,
     });
     if (res) apiTaskRead();
+    if (isRight) setIsLoadingRight(false);
   };
+
   const IsDoneIcon = () => {
     if (deleteWorkLoading || createWorkLoading) {
+      if (isLoadingRight) return <></>;
       return <CircularProgress size={25} />;
     } else if (task.work.state === 1) {
       return (
-        <IconButton onClick={apiWorkDelete}>
+        <IconButton onClick={() => apiWorkDelete(false)}>
           <CheckBoxIcon color="primary" />
         </IconButton>
       );
     } else {
       return (
-        <IconButton onClick={() => apiWorkCreate(1)}>
+        <IconButton onClick={() => apiWorkCreate(1, false)}>
           <CheckBoxOutlineBlankIcon color="disabled" />
         </IconButton>
       );
@@ -60,16 +69,17 @@ export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
   };
   const IsNecessaryIcon = () => {
     if (deleteWorkLoading || createWorkLoading) {
+      if (!isLoadingRight) return <></>;
       return <CircularProgress size={25} />;
     } else if (task.work.state === 2) {
       return (
-        <IconButton onClick={apiWorkDelete}>
+        <IconButton onClick={() => apiWorkDelete(true)}>
           <AddIcon color="primary" />
         </IconButton>
       );
     } else {
       return (
-        <IconButton onClick={() => apiWorkCreate(2)}>
+        <IconButton onClick={() => apiWorkCreate(2, true)}>
           <RemoveIcon color="disabled" />
         </IconButton>
       );

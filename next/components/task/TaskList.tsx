@@ -1,19 +1,16 @@
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
-  Dialog,
-  Typography,
+  SxProps
 } from "@mui/material";
 
-import AddIcon from "@mui/icons-material/Add";
-import CreateTask from "@/components/task/CreateTask";
 import ErrTxt from "@/components/common/ErrTxt";
 import Loading from "@/components/common/Loading";
 import { Task } from "@/data/task/useReadTasks";
 import TaskItem from "@/components/task/TaskItem";
-import { useState } from "react";
+
+;
 
 type Props = {
   date: string;
@@ -23,6 +20,7 @@ type Props = {
   readTasksLoading: boolean;
   readTasksError: string;
   title: string;
+  sx?:SxProps
 };
 const TaskList = ({
   date,
@@ -32,11 +30,11 @@ const TaskList = ({
   readTasksLoading,
   readTasksError,
   title,
+  sx,
 }: Props) => {
 
   return (
-    <>
-      <Card>
+      <Card sx={{...sx}}>
         <CardHeader title={title}/>
         <CardContent sx={{ p: "0 !important" }}>
           <ErrTxt txt={readTasksError} />
@@ -52,7 +50,6 @@ const TaskList = ({
           ))}
         </CardContent>
       </Card>
-    </>
   );
 };
 export default TaskList;
