@@ -2,12 +2,12 @@ import {
   AppBar,
   Button,
   Container,
-  IconButton,
   Toolbar,
   Typography,
 } from "@mui/material";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { navWidth } from "@/layouts/default";
 import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
 
@@ -23,7 +23,7 @@ const TaskSortHeader = ({isGray}:TaskSortHeaderProps) => {
     backgroundColor: "transparent",
   };
   return (
-    <AppBar style={!isGray ? style : {}} position="fixed" sx={{ paddingLeft: isPc ? "170px" : 0 }}>
+    <AppBar style={!isGray ? style : {}} position="fixed" sx={{ paddingLeft: isPc ? navWidth : 0 }}>
       <Container sx={{ p: "0 10px" }} maxWidth="lg">
         <Toolbar className="flexStart" disableGutters>
           <Button onClick={() => router.push("/task")}>

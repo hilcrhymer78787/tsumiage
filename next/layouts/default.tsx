@@ -34,6 +34,8 @@ export type Nav = {
   value: string;
   icon: ReactNode;
 };
+export const navWidth = "180px";
+
 const Layout = ({
   children,
   pcMaxWidth = "lg",
@@ -94,7 +96,7 @@ const Layout = ({
     return (
       <Box sx={{ display: "flex" }} data-testid="Dashboard">
         <Drawer variant="permanent">
-          <List component="nav" sx={{ width: "170px" }}>
+          <List component="nav" sx={{ width: navWidth }}>
             {navs.map((nav, i) => {
               const color = getColor(nav.value);
               return (
@@ -114,7 +116,7 @@ const Layout = ({
           component="main"
           sx={{
             flexGrow: 1,
-            paddingLeft: "170px",
+            paddingLeft: navWidth,
           }}
         >
           <Container maxWidth={pcMaxWidth} sx={{ my: 0, p: pcP }}>

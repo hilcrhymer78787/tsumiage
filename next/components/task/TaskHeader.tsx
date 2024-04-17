@@ -11,6 +11,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import CreateTask from "@/components/task/CreateTask";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import { navWidth } from "@/layouts/default";
 import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -32,7 +33,7 @@ const TaskHeader = ({ isGray, apiTaskRead }: TaskHeaderProps) => {
     <AppBar
       style={!isGray ? style : {}}
       position="fixed"
-      sx={{ paddingLeft: isPc ? "170px" : 0 }}
+      sx={{ paddingLeft: isPc ? navWidth : 0 }}
     >
       <Container sx={{ p: "0 10px" }} maxWidth="lg">
         <Toolbar className="flexBetween" disableGutters>

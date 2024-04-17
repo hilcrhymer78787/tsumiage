@@ -1,10 +1,7 @@
 import {
   Box,
   Button,
-  Card,
-  CardHeader,
   CircularProgress,
-  Divider,
   Table,
   TableBody,
   TableCell,
@@ -12,7 +9,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import CheckIcon from "@mui/icons-material/Check";
@@ -20,6 +17,7 @@ import Pagination from "@/components/calendar/Pagination";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Task } from "@/data/task/useReadTasks";
 import dayjs from "dayjs";
+import { navWidth } from "@/layouts/default";
 import { useCreateWork } from "@/data/work/useCreateWork";
 import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
@@ -31,26 +29,7 @@ type Props = {
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const router = useRouter();
   const { isPc } = useMedia();
-  const year = () => {
-    return Number(router.query.year);
-  };
-  const month = () => {
-    return Number(router.query.month);
-  };
-  const day = () => {
-    return Number(router.query.day);
-  };
-  const firstDay = () => {
-    return dayjs(`${year()}/${month()}/1`, "YYYY-MM-DD").day();
-  };
-  const lastDay = () => {
-    return dayjs(`${year()}-${month()}-01`).endOf("month").date();
-  };
-
-  const height = "40px";
   const borderTop = "1px solid rgba(255, 255, 255, 0.23)";
-  const borderBottom = "1px solid rgba(255, 255, 255, 0.23)";
-  const borderLeft = "1px solid rgba(255, 255, 255, 0.23)";
   const borderRight = "1px solid rgba(255, 255, 255, 0.23)";
 
   const getStickyCellStyle = (width: number, zIndex: number) => {
@@ -73,7 +52,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
       />
       <TableContainer
         sx={{
-          width: `calc(100vw - ${isPc ? 170 : 0}px)`,
+          width: `calc(100vw - ${isPc ? navWidth : "0px"})`,
           height: `calc(100vh - ${isPc ? 60 : 140}px)`,
           borderTop,
         }}
