@@ -77,7 +77,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
         />
         <CardContent sx={{ p: "0 !important" }}>
           <TableContainer
-            sx={{ height: `calc(100vh - ${isPc ? 50 : 180}px)` }}
+            sx={{ height: `calc(100vh - ${isPc ? 120 : 180}px)` }}
           >
             <Table
               stickyHeader
