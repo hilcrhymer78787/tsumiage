@@ -1,10 +1,12 @@
-import React from "react";
 import { Avatar } from "@mui/material";
+import React from "react";
 import { useTheme } from "@mui/material/styles";
 type Props = {
   fileName: string | undefined
   size: string
+  borderColor?: string
 }
+//
 const UserImg = (props: Props) => {
   const theme = useTheme();
   const getUserImg = () => {
@@ -20,7 +22,7 @@ const UserImg = (props: Props) => {
     <Avatar
       src={getUserImg()}
       sx={{
-        border: `2px solid ${theme.palette.primary.main}`,
+        border: `2px solid ${props.borderColor ?? theme.palette.primary.main}`,
         width: props.size + "px",
         height: props.size + "px",
       }}

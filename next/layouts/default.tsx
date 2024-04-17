@@ -14,7 +14,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import { ReactNode } from "react";
 import TaskIcon from "@mui/icons-material/Task";
 import TodayIcon from "@mui/icons-material/Today";
-import UserAvatar from "@/components/common/UserAvatar";
+import UserImg from "@/components/common/UserImg";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
 import theme from "@/plugins/theme";
@@ -81,10 +81,9 @@ const Layout = ({
       label: "mypage",
       value: "/mypage",
       icon: (
-        <UserAvatar
-          src={loginInfo?.user_img ?? ""}
-          size={30}
-          onClick={() => {}}
+        <UserImg
+          fileName={loginInfo?.user_img}
+          size="30"
           borderColor={getColor("/mypage")}
         />
       ),
