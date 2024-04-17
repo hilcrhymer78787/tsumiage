@@ -115,8 +115,6 @@ const Layout = ({
           component="main"
           sx={{
             flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
             paddingLeft: "170px",
           }}
         >

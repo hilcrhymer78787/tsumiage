@@ -1,10 +1,12 @@
 import { AppBar, Container, IconButton, Toolbar } from "@mui/material";
-import { useEffect, useState } from "react";
 
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { useRouter } from "next/router";
 
-const TaskHeader = () => {
+type TaskHeaderProps = {
+  isGray: boolean;
+};
+const TaskHeader = ({ isGray }: TaskHeaderProps) => {
   const router = useRouter();
   const style = {
     backgroundImage: "none",
@@ -13,6 +15,7 @@ const TaskHeader = () => {
   };
   return (
     <AppBar
+      style={!isGray ? style : {}}
       position="fixed"
       sx={{ paddingLeft: "170px" }}
     >

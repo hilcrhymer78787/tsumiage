@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Box } from "@mui/material";
 import Layout from "@/layouts/default";
@@ -12,6 +12,8 @@ import { useRecoilValue } from "recoil";
 const Task = () => {
   const loginInfo = useRecoilValue(loginInfoAtom);
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
+  const [scrollY, setScrollY] = useState(0);
+
   const apiTaskRead = async () => {
     await readTasks(dayjs().format("YYYY-MM-DD"), loginInfo?.id ?? 0);
   };
@@ -38,11 +40,20 @@ const Task = () => {
 
   useEffect(() => {
     apiTaskRead();
+
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <Layout pcP="80px 0">
-      <TaskHeader />
+      <TaskHeader isGray={!!scrollY}/>
       <TaskList
         title="未達成のタスク"
         tasks={notDoneTasks}
