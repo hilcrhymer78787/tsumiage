@@ -3,17 +3,17 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CircularProgress,
   Dialog,
-  IconButton,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import CreateTask from "@/components/task/CreateTask";
+import ErrTxt from "@/components/common/ErrTxt";
+import Loading from "@/components/common/Loading";
 import { Task } from "@/data/task/useReadTasks";
 import TaskItem from "@/components/task/TaskItem";
+import { useState } from "react";
 
 type Props = {
   date: string;
@@ -52,40 +52,19 @@ const TaskList = ({
           }
           title={title}
         />
-        {!!readTasksError && (
-          <CardContent
-            sx={{
-              textAlign: "center",
-              p: "20px !important",
-            }}
-          >
-            {readTasksError}
-          </CardContent>
-        )}
-        {readTasksLoading && !tasks?.length && (
-          <CardContent
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              p: "30px",
-            }}
-          >
-            <CircularProgress />
-          </CardContent>
-        )}
-        {!!tasks?.length && (
-          <CardContent sx={{ p: "0 !important" }}>
-            {tasks.map((task, index) => (
-              <TaskItem
-                task={task}
-                date={date}
-                apiTaskRead={apiTaskRead}
-                key={index.toString()}
-                readonly={readonly}
-              />
-            ))}
-          </CardContent>
-        )}
+        <CardContent sx={{ p: "0 !important" }}>
+          <ErrTxt txt={readTasksError} />
+          {readTasksLoading && !tasks?.length && <Loading />}
+          {tasks?.map((task, index) => (
+            <TaskItem
+              task={task}
+              date={date}
+              apiTaskRead={apiTaskRead}
+              key={index.toString()}
+              readonly={readonly}
+            />
+          ))}
+        </CardContent>
       </Card>
 
       <Dialog
