@@ -51,7 +51,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? navWidth : "0px"})`,
-          height: `calc(100vh - ${isPc ? 60 : 180}px)`,
+          height: `calc(100vh - ${isPc ? 60 : 190}px)`,
           borderTop,
         }}
       >
