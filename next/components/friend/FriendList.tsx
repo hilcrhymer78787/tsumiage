@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
-import AddIcon from "@mui/icons-material/Add";
-import FriendItemTo from "@/components/friend/FriendItemTo";
-import FriendItemNow from "@/components/friend/FriendItemNow";
-import FriendItemFrom from "@/components/friend/FriendItemFrom";
-import { apiInvitationResponseType } from "@/types/api/invitation/read/response";
-import CreateFriend from "@/components/friend/CreateFriend";
 import {
-  IconButton,
-  Dialog,
+  Button,
   Card,
-  CardHeader,
   CardContent,
+  CardHeader,
   CircularProgress,
+  Dialog,
 } from "@mui/material";
-import { useInvitationApi } from "@/data/invitation";
+import React, { useEffect, useState } from "react";
+
+import AddIcon from "@mui/icons-material/Add";
+import CreateFriend from "@/components/friend/CreateFriend";
+import FriendItemFrom from "@/components/friend/FriendItemFrom";
+import FriendItemNow from "@/components/friend/FriendItemNow";
+import FriendItemTo from "@/components/friend/FriendItemTo";
+import { apiInvitationResponseType } from "@/types/api/invitation/read/response";
 import axios from "axios";
+import { useInvitationApi } from "@/data/invitation";
+
 const FriendList = () => {
   const { invitationRead, invitationReadLoading } = useInvitationApi();
   const [createInvitationDialog, setCreateInvitationDialog] = useState<boolean>(false);
@@ -46,9 +48,9 @@ const FriendList = () => {
       <Card sx={{ mb: "20px" }}>
         <CardHeader
           action={
-            <IconButton onClick={() => { setCreateInvitationDialog(true); }}>
-              <AddIcon color="primary" sx={{ bgcolor: "white" }} />
-            </IconButton>
+            <Button onClick={() => setCreateInvitationDialog(true)}>
+              <AddIcon color="primary" />申請
+            </Button>
           }
           title="友達"
         />
