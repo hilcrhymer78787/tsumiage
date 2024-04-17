@@ -20,14 +20,12 @@ import dayjs from "dayjs";
 import { navWidth } from "@/layouts/default";
 import { useCreateWork } from "@/data/work/useCreateWork";
 import { useMedia } from "@/data/media/useMedia";
-import { useRouter } from "next/router";
 
 type Props = {
   calendars: Calendar[] | null;
   getCalendarData: (year?: number, month?: number) => Promise<void>;
 };
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
-  const router = useRouter();
   const { isPc } = useMedia();
   const borderTop = "1px solid rgba(255, 255, 255, 0.23)";
   const borderRight = "1px solid rgba(255, 255, 255, 0.23)";
@@ -53,7 +51,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? navWidth : "0px"})`,
-          height: `calc(100vh - ${isPc ? 60 : 140}px)`,
+          height: `calc(100vh - ${isPc ? 60 : 180}px)`,
           borderTop,
         }}
       >
@@ -63,7 +61,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell sx={getStickyCellStyle(150, 110)}></TableCell>
+              <TableCell sx={getStickyCellStyle(150, 2)}></TableCell>
               {calendars?.map((calendar, i) => (
                 <TableCell
                   align="center"
@@ -85,7 +83,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
             {calendars?.[0].tasks.map((task) => {
               return (
                 <TableRow key={task.id}>
-                  <TableCell sx={getStickyCellStyle(150, 100)}>
+                  <TableCell sx={getStickyCellStyle(150, 1)}>
                     <Box
                       sx={{ width: "150px", paddingLeft: 1 }}
                       className="ellipsis"
