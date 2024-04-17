@@ -61,7 +61,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell sx={getStickyCellStyle(150, 2)}></TableCell>
+              <TableCell sx={getStickyCellStyle(150, 3)}></TableCell>
               {calendars?.map((calendar, i) => (
                 <TableCell
                   align="center"
@@ -83,7 +83,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
             {calendars?.[0].tasks.map((task) => {
               return (
                 <TableRow key={task.id}>
-                  <TableCell sx={getStickyCellStyle(150, 1)}>
+                  <TableCell sx={getStickyCellStyle(150, 2)}>
                     <Box
                       sx={{ width: "150px", paddingLeft: 1 }}
                       className="ellipsis"
