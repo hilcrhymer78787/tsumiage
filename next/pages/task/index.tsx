@@ -49,16 +49,16 @@ const Task = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Layout pcP="80px 0">
-      <TaskHeader isGray={!!scrollY}/>
+      <TaskHeader isGray={!!scrollY} apiTaskRead={apiTaskRead}/>
       <TaskList
         title="未達成のタスク"
         tasks={notDoneTasks}
         {...cmnProps}
-        isShowAddBtn
       />
       {!!doneTasks.length && (
         <>

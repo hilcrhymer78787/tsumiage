@@ -23,7 +23,6 @@ type Props = {
   readTasksLoading: boolean;
   readTasksError: string;
   title: string;
-  isShowAddBtn?: boolean;
 };
 const TaskList = ({
   date,
@@ -33,25 +32,12 @@ const TaskList = ({
   readTasksLoading,
   readTasksError,
   title,
-  isShowAddBtn,
 }: Props) => {
-  const [createTaskDialog, setCreateTaskDialog] = useState(false);
 
   return (
     <>
       <Card>
-        <CardHeader
-          action={
-            !readonly &&
-            !!isShowAddBtn && (
-              <Button onClick={() => setCreateTaskDialog(true)}>
-                <AddIcon sx={{ marginTop: "-4px" }} color="primary" />
-                <Typography>新規</Typography>
-              </Button>
-            )
-          }
-          title={title}
-        />
+        <CardHeader title={title}/>
         <CardContent sx={{ p: "0 !important" }}>
           <ErrTxt txt={readTasksError} />
           {readTasksLoading && !tasks?.length && <Loading />}
@@ -66,21 +52,6 @@ const TaskList = ({
           ))}
         </CardContent>
       </Card>
-
-      <Dialog
-        open={createTaskDialog}
-        onClose={() => setCreateTaskDialog(false)}
-      >
-        {createTaskDialog && (
-          <CreateTask
-            onCloseMyself={() => {
-              setCreateTaskDialog(false);
-              apiTaskRead();
-            }}
-            task={null}
-          />
-        )}
-      </Dialog>
     </>
   );
 };
