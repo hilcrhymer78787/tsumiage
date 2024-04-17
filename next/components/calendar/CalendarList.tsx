@@ -2,9 +2,9 @@ import {
   Box,
   Button,
   Card,
-  CardContent,
   CardHeader,
   CircularProgress,
+  Divider,
   Table,
   TableBody,
   TableCell,
@@ -48,6 +48,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
   };
 
   const height = "40px";
+  const borderTop = "1px solid rgba(255, 255, 255, 0.23)";
   const borderBottom = "1px solid rgba(255, 255, 255, 0.23)";
   const borderLeft = "1px solid rgba(255, 255, 255, 0.23)";
   const borderRight = "1px solid rgba(255, 255, 255, 0.23)";
@@ -65,90 +66,86 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
 
   return (
     <>
-      <Card sx={{ mb: "20px" }}>
-        <CardHeader
-          title={
-            <Pagination
-              setCalendarData={(date) => {
-                getCalendarData(date.year, date.month);
-              }}
-            />
-          }
-        />
-        <CardContent sx={{ p: "0 !important" }}>
-          <TableContainer
-            sx={{ height: `calc(100vh - ${isPc ? 120 : 180}px)` }}
-          >
-            <Table
-              stickyHeader
-              sx={{ width: `${150 + 40 * Number(calendars?.length)}px` }}
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={getStickyCellStyle(150, 110)}></TableCell>
-                  {calendars?.map((calendar, i) => (
-                    <TableCell
-                      align="center"
-                      key={i}
-                      sx={{
-                        p: 1,
-                        borderRight,
-                        "&:last-child": {
-                          borderRight: "none",
-                        },
-                      }}
+      <Pagination
+        setCalendarData={(date) => {
+          getCalendarData(date.year, date.month);
+        }}
+      />
+      <TableContainer
+        sx={{
+          width: `calc(100vw - ${isPc ? 170 : 0}px)`,
+          height: `calc(100vh - ${isPc ? 60 : 140}px)`,
+          borderTop,
+        }}
+      >
+        <Table
+          stickyHeader
+          sx={{ width: `${150 + 40 * Number(calendars?.length)}px` }}
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell sx={getStickyCellStyle(150, 110)}></TableCell>
+              {calendars?.map((calendar, i) => (
+                <TableCell
+                  align="center"
+                  key={i}
+                  sx={{
+                    p: 1,
+                    borderRight,
+                    "&:last-child": {
+                      borderRight: "none",
+                    },
+                  }}
+                >
+                  {dayjs(calendar.date).format("D")}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {calendars?.[0].tasks.map((task) => {
+              return (
+                <TableRow key={task.id}>
+                  <TableCell sx={getStickyCellStyle(150, 100)}>
+                    <Box
+                      sx={{ width: "150px", paddingLeft: 1 }}
+                      className="ellipsis"
                     >
-                      {dayjs(calendar.date).format("D")}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {calendars?.[0].tasks.map((task) => {
-                  return (
-                    <TableRow key={task.id}>
-                      <TableCell sx={getStickyCellStyle(150, 100)}>
-                        <Box
-                          sx={{ width: "150px", paddingLeft: 1 }}
-                          className="ellipsis"
-                        >
-                          {task.name}
-                        </Box>
+                      {task.name}
+                    </Box>
+                  </TableCell>
+                  {calendars.map((calendar) => {
+                    const targetTask = calendar.tasks.find(
+                      (elm) => elm.id === task.id
+                    );
+                    const date = calendar.date;
+                    return (
+                      <TableCell
+                        align="center"
+                        key={calendar.date}
+                        sx={{
+                          borderRight,
+                          "&:last-child": {
+                            borderRight: "none",
+                          },
+                        }}
+                      >
+                        {!!targetTask && (
+                          <CalendarItem
+                            task={targetTask}
+                            date={date}
+                            getCalendarData={getCalendarData}
+                          />
+                        )}
                       </TableCell>
-                      {calendars.map((calendar) => {
-                        const targetTask = calendar.tasks.find(
-                          (elm) => elm.id === task.id
-                        );
-                        const date = calendar.date;
-                        return (
-                          <TableCell
-                            align="center"
-                            key={calendar.date}
-                            sx={{
-                              borderRight,
-                              "&:last-child": {
-                                borderRight: "none",
-                              },
-                            }}
-                          >
-                            {!!targetTask && (
-                              <CalendarItem
-                                task={targetTask}
-                                date={date}
-                                getCalendarData={getCalendarData}
-                              />
-                            )}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </CardContent>
-      </Card>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
       {/* {process.env.NODE_ENV === "development" && (
         <pre>{JSON.stringify(calendars, null, 4)}</pre>
       )} */}
