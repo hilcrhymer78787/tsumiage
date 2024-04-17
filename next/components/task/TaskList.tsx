@@ -5,20 +5,14 @@ import {
   SxProps
 } from "@mui/material";
 
-import ErrTxt from "@/components/common/ErrTxt";
-import Loading from "@/components/common/Loading";
 import { Task } from "@/data/task/useReadTasks";
 import TaskItem from "@/components/task/TaskItem";
-
-;
 
 type Props = {
   date: string;
   readonly: boolean;
-  tasks: Task[] | null;
+  tasks: Task[];
   apiTaskRead: () => void;
-  readTasksLoading: boolean;
-  readTasksError: string;
   title: string;
   sx?:SxProps
 };
@@ -27,8 +21,6 @@ const TaskList = ({
   readonly,
   tasks,
   apiTaskRead,
-  readTasksLoading,
-  readTasksError,
   title,
   sx,
 }: Props) => {
@@ -36,9 +28,7 @@ const TaskList = ({
       <Card sx={{...sx}}>
         <CardHeader title={title}/>
         <CardContent sx={{ p: "0 !important" }}>
-          <ErrTxt txt={readTasksError} />
-          {readTasksLoading && !tasks?.length && <Loading />}
-          {tasks?.map((task, index) => (
+          {tasks.map((task, index) => (
             <TaskItem
               task={task}
               date={date}
