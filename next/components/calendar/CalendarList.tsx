@@ -21,6 +21,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Task } from "@/data/task/useReadTasks";
 import dayjs from "dayjs";
 import { useCreateWork } from "@/data/work/useCreateWork";
+import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -29,6 +30,7 @@ type Props = {
 };
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const router = useRouter();
+  const { isPc } = useMedia();
   const year = () => {
     return Number(router.query.year);
   };
@@ -48,6 +50,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const height = "40px";
   const borderBottom = "1px solid rgba(255, 255, 255, 0.23)";
   const borderLeft = "1px solid rgba(255, 255, 255, 0.23)";
+  const borderRight = "1px solid rgba(255, 255, 255, 0.23)";
 
   const getStickyCellStyle = (width: number, zIndex: number) => {
     return {
@@ -56,6 +59,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
       width,
       zIndex,
       background: "#121212",
+      borderRight,
     };
   };
 
@@ -72,13 +76,28 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
           }
         />
         <CardContent sx={{ p: "0 !important" }}>
-          <TableContainer sx={{ height: "40vh" }}>
-            <Table stickyHeader sx={{ width: "2500px" }}>
+          <TableContainer
+            sx={{ height: `calc(100vh - ${isPc ? 50 : 180}px)` }}
+          >
+            <Table
+              stickyHeader
+              sx={{ width: `${150 + 40 * Number(calendars?.length)}px` }}
+            >
               <TableHead>
                 <TableRow>
                   <TableCell sx={getStickyCellStyle(150, 110)}></TableCell>
                   {calendars?.map((calendar, i) => (
-                    <TableCell key={i}>
+                    <TableCell
+                      align="center"
+                      key={i}
+                      sx={{
+                        p: 1,
+                        borderRight,
+                        "&:last-child": {
+                          borderRight: "none",
+                        },
+                      }}
+                    >
                       {dayjs(calendar.date).format("D")}
                     </TableCell>
                   ))}
@@ -89,7 +108,10 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
                   return (
                     <TableRow key={task.id}>
                       <TableCell sx={getStickyCellStyle(150, 100)}>
-                        <Box sx={{ width: "118px" }} className="ellipsis">
+                        <Box
+                          sx={{ width: "150px", paddingLeft: 1 }}
+                          className="ellipsis"
+                        >
                           {task.name}
                         </Box>
                       </TableCell>
@@ -99,7 +121,16 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
                         );
                         const date = calendar.date;
                         return (
-                          <TableCell key={calendar.date}>
+                          <TableCell
+                            align="center"
+                            key={calendar.date}
+                            sx={{
+                              borderRight,
+                              "&:last-child": {
+                                borderRight: "none",
+                              },
+                            }}
+                          >
                             {!!targetTask && (
                               <CalendarItem
                                 task={targetTask}
@@ -118,9 +149,9 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
           </TableContainer>
         </CardContent>
       </Card>
-      {process.env.NODE_ENV === "development" && (
+      {/* {process.env.NODE_ENV === "development" && (
         <pre>{JSON.stringify(calendars, null, 4)}</pre>
-      )}
+      )} */}
     </>
   );
 };
