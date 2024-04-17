@@ -21,6 +21,7 @@ import { navWidth } from "@/layouts/default";
 import { useCreateWork } from "@/data/work/useCreateWork";
 import { useMedia } from "@/data/media/useMedia";
 
+//TODO ページ全体のリファクタリング
 type Props = {
   calendars: Calendar[] | null;
   getCalendarData: (year?: number, month?: number) => Promise<void>;
@@ -51,7 +52,8 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? navWidth : "0px"})`,
-          height: `calc(100vh - ${isPc ? 60 : 190}px)`,
+          //TODO 正確な値を計算
+          height: `calc(100vh - ${isPc ? 60 : 200}px)`,
           borderTop,
         }}
       >
