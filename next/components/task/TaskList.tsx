@@ -32,7 +32,6 @@ const TaskList = ({
   title,
   sx,
 }: Props) => {
-
   return (
       <Card sx={{...sx}}>
         <CardHeader title={title}/>

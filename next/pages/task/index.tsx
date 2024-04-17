@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import Layout from "@/layouts/default";
+import NoData from "@/components/common/NoData";
 import TaskHeader from "@/components/task/TaskHeader";
 import TaskList from "@/components/task/TaskList";
 import dayjs from "dayjs";
@@ -53,8 +54,9 @@ const Task = () => {
   }, []);
 
   return (
-    <Layout pcP="80px 0">
+    <Layout pcP="80px 0" spP="70px 10px 180px">
       <TaskHeader isGray={!!scrollY} apiTaskRead={apiTaskRead} />
+      {tasks?.length === 0 && <NoData txt="登録されているタスクはありません"/>}
       {!!notDoneTasks.length && (
         <TaskList title="未達成のタスク" tasks={notDoneTasks} {...cmnProps} />
       )}

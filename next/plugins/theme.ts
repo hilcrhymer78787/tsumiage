@@ -37,13 +37,31 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialog: {
+      defaultProps: {
+        fullWidth: true,
+        maxWidth: "sm",
+      },
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          justifyContent: "space-between",
+        },
+      },
+    },
+    MuiDialogContent: {
+      defaultProps: {
+        dividers: true,
+      },
+    },
     MuiButton: {
       styleOverrides: {
         containedPrimary: {
-          background: blue[300]
+          background: blue[400]
         },
         containedError: {
-          background: `linear-gradient(${red[200]},${red[600]})`
+          background: red[400]
         },
       },
     },

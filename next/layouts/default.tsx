@@ -37,7 +37,7 @@ export type Nav = {
 const Layout = ({
   children,
   pcMaxWidth = "lg",
-  spP = "70px 10px 180px",
+  spP = "10px 10px 180px",
   pcP = "32px 24px",
 }: Props) => {
   const { isPc } = useMedia();
