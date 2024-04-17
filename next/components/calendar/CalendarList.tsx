@@ -5,6 +5,12 @@ import {
   CardContent,
   CardHeader,
   CircularProgress,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
 
@@ -15,15 +21,43 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { Task } from "@/data/task/useReadTasks";
 import dayjs from "dayjs";
 import { useCreateWork } from "@/data/work/useCreateWork";
+import { useRouter } from "next/router";
 
 type Props = {
   calendars: Calendar[] | null;
   getCalendarData: (year?: number, month?: number) => Promise<void>;
 };
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
+  const router = useRouter();
+  const year = () => {
+    return Number(router.query.year);
+  };
+  const month = () => {
+    return Number(router.query.month);
+  };
+  const day = () => {
+    return Number(router.query.day);
+  };
+  const firstDay = () => {
+    return dayjs(`${year()}/${month()}/1`, "YYYY-MM-DD").day();
+  };
+  const lastDay = () => {
+    return dayjs(`${year()}-${month()}-01`).endOf("month").date();
+  };
+
   const height = "40px";
   const borderBottom = "1px solid rgba(255, 255, 255, 0.23)";
   const borderLeft = "1px solid rgba(255, 255, 255, 0.23)";
+
+  const getStickyCellStyle = (width: number, zIndex: number) => {
+    return {
+      position: "sticky",
+      left: 0,
+      width,
+      zIndex,
+      background: "#121212",
+    };
+  };
 
   return (
     <>
@@ -38,58 +72,50 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
           }
         />
         <CardContent sx={{ p: "0 !important" }}>
-          <Box className="flexStart" sx={{ alignItems: "flex-end" }}>
-            <Box sx={{ width: "150px" }}>
-              <Box sx={{ borderBottom }}></Box>
-              {calendars?.[0]?.tasks.map((task) => (
-                <Box
-                  className="ellipsis"
-                  sx={{
-                    p: 1,
-                    fontSize: "14px",
-                    height,
-                    borderBottom,
-                    "&:last-child": {
-                      borderBottom: "none",
-                    },
-                  }}
-                  key={task.id}
-                >
-                  {task.name}
-                </Box>
-              ))}
-            </Box>
-            <Box
-              sx={{ overflow: "scroll", width: "calc(100% - 150px)" }}
-              className="flexStart"
-            >
-              {calendars?.map((calendar) => (
-                <Box
-                  key={calendar.date}
-                  sx={{ textAlign: "center", borderLeft }}
-                >
-                  <Box
-                    sx={{
-                      p: 1,
-                      width: "40px",
-                      borderBottom,
-                      height,
-                    }}
-                  >
-                    {dayjs(calendar.date).format("D")}
-                  </Box>
-                  {calendar.tasks.map((task) => (
-                    <CalendarItem
-                      task={task}
-                      date={calendar.date}
-                      key={task.id}
-                      getCalendarData={getCalendarData}
-                    />
+          <TableContainer sx={{ height: "40vh" }}>
+            <Table stickyHeader sx={{ width: "2500px" }}>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={getStickyCellStyle(150, 110)}></TableCell>
+                  {calendars?.map((calendar, i) => (
+                    <TableCell key={i}>
+                      {dayjs(calendar.date).format("D")}
+                    </TableCell>
                   ))}
-                </Box>
-              ))}
-            </Box>
-          </Box>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {calendars?.[0].tasks.map((task) => {
+                  return (
+                    <TableRow key={task.id}>
+                      <TableCell sx={getStickyCellStyle(150, 100)}>
+                        <Box sx={{ width: "118px" }} className="ellipsis">
+                          {task.name}
+                        </Box>
+                      </TableCell>
+                      {calendars.map((calendar) => {
+                        const targetTask = calendar.tasks.find(
+                          (elm) => elm.id === task.id
+                        );
+                        const date = calendar.date;
+                        return (
+                          <TableCell key={calendar.date}>
+                            {!!targetTask && (
+                              <CalendarItem
+                                task={targetTask}
+                                date={date}
+                                getCalendarData={getCalendarData}
+                              />
+                            )}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </CardContent>
       </Card>
       {process.env.NODE_ENV === "development" && (
@@ -131,11 +157,9 @@ const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
     if (dayjs(date).isAfter(dayjs(), "day")) return <></>;
     if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <></>;
     if (isLoading) return <CircularProgress size={24} />;
-    if (state === 0) return <CheckIcon color="error"/>;
-    if (state === 1)
-      return <CheckIcon color="primary" />;
-    if (state === 2)
-      return <RemoveIcon color="primary" />;
+    if (state === 0) return <CheckIcon color="error" />;
+    if (state === 1) return <CheckIcon color="primary" />;
+    if (state === 2) return <RemoveIcon color="primary" />;
   }, [createdAt, date, state, isLoading]);
 
   return (
@@ -152,7 +176,10 @@ const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
         },
       }}
     >
-      <Button onClick={apiWorkCreate} sx={{ minWidth: "40px", width: "40px", height: "40px", p: 0 }}>
+      <Button
+        onClick={apiWorkCreate}
+        sx={{ minWidth: "40px", width: "40px", height: "40px", p: 0 }}
+      >
         {getStateIcon}
       </Button>
     </Box>

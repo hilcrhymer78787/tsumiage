@@ -82,6 +82,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          padding: 0
+        },
+      },
+    },
   },
   palette: {
     mode: "dark",

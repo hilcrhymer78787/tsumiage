@@ -44,7 +44,7 @@ const Calendar = () => {
   }, [readWorkMonthLoading, readWorkMonthError, calendars, getCalendarData]);
 
   return (
-    <Layout pcMaxWidth={false}>
+    <Layout pcMaxWidth="lg">
       <CalendarContent />
     </Layout>
   );
