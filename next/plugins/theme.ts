@@ -95,6 +95,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderTop: "1px solid rgba(255, 255, 255, 0.23)",
+          height: "calc(100vh - 60px - 60px - env(safe-area-inset-bottom))",
         },
       },
     },
