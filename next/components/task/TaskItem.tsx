@@ -1,9 +1,9 @@
 import {
+  Box,
   CircularProgress,
   Dialog,
   IconButton,
   ListItem,
-  ListItemAvatar,
   ListItemButton,
   ListItemText,
 } from "@mui/material";
@@ -24,7 +24,7 @@ type Props = {
   apiTaskRead: () => void;
   readonly: boolean;
 };
-export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
+const TaskItem = ({ task, date, apiTaskRead, readonly }: Props) => {
   const [isLoadingRight, setIsLoadingRight] = useState(false);
   const { deleteWork, deleteWorkLoading } = useDeleteWork();
   const [createTaskkDialog, setCreateTaskDialog] = useState(false);
@@ -86,15 +86,23 @@ export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
     }
   };
   return (
-    <ListItem sx={{ p: 0 }} secondaryAction={!readonly && <IsNecessaryIcon />}>
-      <ListItemButton sx={{ p: "8px 48px 8px 16px" }}>
-        <ListItemAvatar>
-          <IsDoneIcon />
-        </ListItemAvatar>
-        <ListItemText
-          onClick={() => setCreateTaskDialog(true)}
-          primary={task.name}
-        />
+    <ListItem
+      sx={{ p: 0 }}
+      secondaryAction={
+        !readonly && (
+          <Box className="flexStart">
+            <Box className="flexCenter" width="40px" height="40px">
+              <IsNecessaryIcon />
+            </Box>
+            <Box className="flexCenter" width="40px" height="40px">
+              <IsDoneIcon />
+            </Box>
+          </Box>
+        )
+      }
+    >
+      <ListItemButton onClick={() => setCreateTaskDialog(true)}>
+        <ListItemText primary={task.name} />
       </ListItemButton>
       <Dialog
         open={createTaskkDialog}
@@ -112,4 +120,5 @@ export default function TaskItem({ task, date, apiTaskRead, readonly }: Props) {
       </Dialog>
     </ListItem>
   );
-}
+};
+export default TaskItem;
