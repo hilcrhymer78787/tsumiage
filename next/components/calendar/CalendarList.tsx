@@ -22,6 +22,7 @@ import { useCreateWork } from "@/data/work/useCreateWork";
 import { useMedia } from "@/data/media/useMedia";
 
 //TODO ページ全体のリファクタリング
+const TASK_NAME_WIDTH = 150;
 type Props = {
   calendars: Calendar[] | null;
   getCalendarData: () => Promise<void>;
@@ -31,20 +32,17 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const borderTop = "1px solid rgba(255, 255, 255, 0.23)";
   const borderRight = "1px solid rgba(255, 255, 255, 0.23)";
 
-  const getStickyCellStyle = (width: number, zIndex: number) => {
-    return {
-      position: "sticky",
-      left: 0,
-      width,
-      zIndex,
-      background: "#121212",
-      borderRight,
-    };
+  const stickyStyle = {
+    position: "sticky",
+    left: 0,
+    width:TASK_NAME_WIDTH,
+    background: "#121212",
+    borderRight,
   };
 
   return (
     <>
-      <Pagination/>
+      <Pagination />
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? navWidth : "0px"})`,
@@ -55,15 +53,15 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
       >
         <Table
           stickyHeader
-          sx={{ width: `${150 + 40 * Number(calendars?.length)}px` }}
+          sx={{ width: `${TASK_NAME_WIDTH + 40 * Number(calendars?.length)}px` }}
         >
           <TableHead>
             <TableRow>
-              <TableCell sx={getStickyCellStyle(150, 3)}></TableCell>
-              {calendars?.map((calendar, i) => (
+              <TableCell sx={{...stickyStyle, zIndex:3}}></TableCell>
+              {calendars?.map((calendar) => (
                 <TableCell
                   align="center"
-                  key={i}
+                  key={calendar.date}
                   sx={{
                     p: 1,
                     borderRight,
@@ -81,40 +79,32 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
             {calendars?.[0].tasks.map((task) => {
               return (
                 <TableRow key={task.id}>
-                  <TableCell sx={getStickyCellStyle(150, 2)}>
+                  <TableCell sx={{...stickyStyle, zIndex:2}}>
                     <Box
-                      sx={{ width: "150px", paddingLeft: 1 }}
+                      sx={{ width: `${TASK_NAME_WIDTH}px`, paddingLeft: 1 }}
                       className="ellipsis"
                     >
                       {task.name}
                     </Box>
                   </TableCell>
-                  {calendars.map((calendar) => {
-                    const targetTask = calendar.tasks.find(
-                      (elm) => elm.id === task.id
-                    );
-                    const date = calendar.date;
-                    return (
-                      <TableCell
-                        align="center"
-                        key={calendar.date}
-                        sx={{
-                          borderRight,
-                          "&:last-child": {
-                            borderRight: "none",
-                          },
-                        }}
-                      >
-                        {!!targetTask && (
-                          <CalendarItem
-                            task={targetTask}
-                            date={date}
-                            getCalendarData={getCalendarData}
-                          />
-                        )}
-                      </TableCell>
-                    );
-                  })}
+                  {calendars.map((calendar) => (
+                    <TableCell
+                      align="center"
+                      key={calendar.date}
+                      sx={{
+                        borderRight,
+                        "&:last-child": {
+                          borderRight: "none",
+                        },
+                      }}
+                    >
+                      <CalendarItem
+                        taskId={task.id}
+                        calendar={calendar}
+                        getCalendarData={getCalendarData}
+                      />
+                    </TableCell>
+                  ))}
                 </TableRow>
               );
             })}
@@ -129,29 +119,31 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
 };
 
 type CalendarItemProps = {
-  task: Task;
-  date: string;
+  taskId: number;
+  calendar: Calendar;
   getCalendarData: () => Promise<void>;
 };
-const CalendarItem = ({ task, date, getCalendarData }: CalendarItemProps) => {
-  const {
-    work: { state },
-    createdAt,
-  } = task;
+const CalendarItem = ({
+  taskId,
+  calendar,
+  getCalendarData,
+}: CalendarItemProps) => {
+  const task = calendar.tasks.find((task) => task.id === taskId);
+  const { date } = calendar;
+  const state = task?.work.state;
+  const createdAt = task?.createdAt;
 
   const [isLoading, setIsLoading] = useState(false);
 
   const { createWork } = useCreateWork();
 
   const apiWorkCreate = async () => {
+    if(!task)return;
     setIsLoading(true);
     const newState = state === 0 ? 1 : state === 1 ? 2 : 0;
-    const res = await createWork({
-      id: task.work.id,
-      date,
-      state: newState,
-      task_id: task.id,
-    });
+    const id = task.work.id;
+    const task_id = task.id;
+    const res = await createWork({ id, date, state: newState, task_id });
     if (res) await getCalendarData();
     setIsLoading(false);
   };
