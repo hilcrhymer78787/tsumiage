@@ -7,7 +7,8 @@ const theme = createTheme({
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
-          padding: "calc(env(safe-area-inset-bottom)) 0 calc(env(safe-area-inset-bottom) * 1.5)"
+          padding:
+            "calc(env(safe-area-inset-bottom)) 0 calc(env(safe-area-inset-bottom) * 1.5)",
         },
       },
     },
@@ -58,10 +59,10 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         containedPrimary: {
-          background: blue[400]
+          background: blue[400],
         },
         containedError: {
-          background: red[400]
+          background: red[400],
         },
       },
     },
@@ -71,21 +72,29 @@ const theme = createTheme({
           borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
           "&:last-child": {
             borderBottom: "none",
-          }
+          },
         },
       },
     },
     MuiFormControl: {
       styleOverrides: {
         root: {
-          width: "100%"
+          width: "100%",
+        },
+      },
+    },
+    MuiTableContainer: {
+      styleOverrides: {
+        root: {
+          borderTop: "1px solid rgba(255, 255, 255, 0.23)",
         },
       },
     },
     MuiTableCell: {
       styleOverrides: {
         root: {
-          padding: 0
+          padding: 0,
+          borderRight: "1px solid rgba(255, 255, 255, 0.23)",
         },
       },
     },

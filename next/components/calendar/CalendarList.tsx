@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Divider,
   Table,
   TableBody,
   TableCell,
@@ -16,28 +17,25 @@ import CheckIcon from "@mui/icons-material/Check";
 import { NAV_WIDTH } from "@/layouts/default";
 import Pagination from "@/components/calendar/Pagination";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { Task } from "@/data/task/useReadTasks";
 import dayjs from "dayjs";
 import { useCreateWork } from "@/data/work/useCreateWork";
 import { useMedia } from "@/data/media/useMedia";
 
 //TODO ページ全体のリファクタリング
 const TASK_NAME_WIDTH = 150;
+const CELL_SIZE = 40;
 type Props = {
   calendars: Calendar[] | null;
   getCalendarData: () => Promise<void>;
 };
 const CalendarList = ({ calendars, getCalendarData }: Props) => {
   const { isPc } = useMedia();
-  const borderTop = "1px solid rgba(255, 255, 255, 0.23)";
-  const borderRight = "1px solid rgba(255, 255, 255, 0.23)";
 
   const stickyStyle = {
     position: "sticky",
     left: 0,
     width: TASK_NAME_WIDTH,
     background: "#121212",
-    borderRight,
   };
 
   return (
@@ -48,13 +46,14 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
           //TODO 正確な値を計算
           height: `calc(100vh - ${isPc ? 60 : 200}px)`,
-          borderTop,
         }}
       >
         <Table
           stickyHeader
           sx={{
-            width: `${TASK_NAME_WIDTH + 40 * Number(calendars?.length)}px`,
+            width: `${
+              TASK_NAME_WIDTH + CELL_SIZE * Number(calendars?.length)
+            }px`,
           }}
         >
           <TableHead>
@@ -64,13 +63,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
                 <TableCell
                   align="center"
                   key={calendar.date}
-                  sx={{
-                    p: 1,
-                    borderRight,
-                    "&:last-child": {
-                      borderRight: "none",
-                    },
-                  }}
+                  sx={{ height: `${CELL_SIZE}px` }}
                 >
                   {dayjs(calendar.date).format("D")}
                 </TableCell>
@@ -89,16 +82,7 @@ const CalendarList = ({ calendars, getCalendarData }: Props) => {
                   </Box>
                 </TableCell>
                 {calendars.map((calendar) => (
-                  <TableCell
-                    align="center"
-                    key={calendar.date}
-                    sx={{
-                      borderRight,
-                      "&:last-child": {
-                        borderRight: "none",
-                      },
-                    }}
-                  >
+                  <TableCell key={calendar.date} align="center">
                     <CalendarItem
                       taskId={task.id}
                       calendar={calendar}
@@ -158,26 +142,19 @@ const CalendarItem = ({
   }, [createdAt, date, state, isLoading]);
 
   return (
-    <Box
+    <Button
+      onClick={apiWorkCreate}
       sx={{
-        cursor: "pointer",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.23)",
-        height: "40px",
-        "&:last-child": {
-          borderBottom: "none",
-        },
+        minWidth: `${CELL_SIZE}px`,
+        height: `${CELL_SIZE}px`,
+        borderRadius: 0,
         "&:hover": {
           backgroundColor: "rgba(255, 255, 255, 0.23)",
         },
       }}
     >
-      <Button
-        onClick={apiWorkCreate}
-        sx={{ minWidth: "40px", width: "40px", height: "40px", p: 0 }}
-      >
-        {getStateIcon}
-      </Button>
-    </Box>
+      {getStateIcon}
+    </Button>
   );
 };
 
