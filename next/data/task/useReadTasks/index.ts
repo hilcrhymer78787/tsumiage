@@ -1,3 +1,4 @@
+import { WorkState } from "@/data/work/useCreateWork";
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
@@ -9,7 +10,7 @@ export type Task = {
   sort_key: number | null | undefined;
   work: {
     id: number;
-    state: 0 | 1 | 2;
+    state: WorkState;
   };
 };
 

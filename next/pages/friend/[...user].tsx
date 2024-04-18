@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 
-import CalendarList from "@/components/calendar/CalendarList";
+import CalendarTable from "@/components/calendar/CalendarTable";
 import ErrTxt from "@/components/common/ErrTxt";
 import Layout from "@/layouts/default";
 import Loading from "@/components/common/Loading";
@@ -40,7 +40,7 @@ const FriendId = () => {
       return <></>;
     }
     return (
-      <CalendarList calendars={calendars} getCalendarData={getCalendarData} />
+      <CalendarTable calendars={calendars} getCalendarData={getCalendarData} />
     );
   }, [readWorkMonthLoading, readWorkMonthError, calendars, getCalendarData]);
 
