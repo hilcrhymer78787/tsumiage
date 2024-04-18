@@ -2,20 +2,21 @@ import { blue, red } from "@mui/material/colors";
 
 import { createTheme } from "@mui/material/styles";
 
+export const BOTTOM_NAV_HEIGHT = 60;
 const theme = createTheme({
   components: {
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
-          height:"calc(60px + env(safe-area-inset-bottom))"
+          height: `calc(${BOTTOM_NAV_HEIGHT}px + env(safe-area-inset-bottom))`,
         },
       },
     },
     MuiBottomNavigationAction: {
       styleOverrides: {
         root: {
-          paddingBottom:"env(safe-area-inset-bottom)",
-          height:"calc(60px + env(safe-area-inset-bottom))"
+          paddingBottom: "env(safe-area-inset-bottom)",
+          height: `calc(${BOTTOM_NAV_HEIGHT}px + env(safe-area-inset-bottom))`,
         },
       },
     },
