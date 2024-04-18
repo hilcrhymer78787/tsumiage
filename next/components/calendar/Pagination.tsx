@@ -5,10 +5,11 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
 
-const fontSize = "27px";
+export const PAGINATION_HEIGHT = 60;
 const Pagination = () => {
+  const fontSize = "27px";
   const router = useRouter();
-  
+
   const year = useMemo(() => {
     return Number(router.query.year);
   }, [router.query.year]);
@@ -38,7 +39,7 @@ const Pagination = () => {
   };
 
   return (
-    <Box className="flexCenter" height="60px">
+    <Box className="flexCenter" height={`${PAGINATION_HEIGHT}px`}>
       <IconButton onClick={onClickPrevMonth}>
         <NavigateBeforeIcon sx={{ fontSize }} />
       </IconButton>

@@ -1,3 +1,4 @@
+import Pagination,{PAGINATION_HEIGHT} from "@/components/calendar/Pagination";
 import {
   Table,
   TableBody,
@@ -10,7 +11,6 @@ import {
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import CalendarTableRow from "@/components/calendar/CalendarTableRow";
 import { NAV_WIDTH } from "@/layouts/default";
-import Pagination from "@/components/calendar/Pagination";
 import dayjs from "dayjs";
 import { useMedia } from "@/data/media/useMedia";
 import { useMemo } from "react";
@@ -42,7 +42,7 @@ const CalendarTable = ({ calendars, getCalendarData }: Props) => {
         sx={{
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
           //TODO 正確な値を計算
-          height: `calc(100vh - ${isPc ? 60 : 120}px - env(safe-area-inset-bottom)) - env(safe-area-inset-top))`,
+          height: `calc(100vh - ${PAGINATION_HEIGHT}px - ${isPc ? 0 : 60}px - env(safe-area-inset-bottom) - env(safe-area-inset-top))`,
         }}
       >
         <Table stickyHeader sx={{ width: tableWidth }}>
