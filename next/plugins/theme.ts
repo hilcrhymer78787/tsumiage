@@ -91,20 +91,10 @@ const theme = createTheme({
         },
       },
     },
-    MuiTable: {
-      styleOverrides: {
-        root: {
-          borderTop: "1px solid rgba(255, 255, 255, 0.23)",
-          borderLeft: "1px solid rgba(255, 255, 255, 0.23)",
-          // height: "calc(100vh - 60px - 60px - env(safe-area-inset-bottom))",
-          height: "calc(100vh - 60px - 60px - 40px)",
-        },
-      },
-    },
     MuiTableContainer: {
       styleOverrides: {
         root: {
-          height: "calc(100vh - 60px - 60px - env(safe-area-inset-bottom))",
+          borderTop: "1px solid rgba(255, 255, 255, 0.23)",
         },
       },
     },
