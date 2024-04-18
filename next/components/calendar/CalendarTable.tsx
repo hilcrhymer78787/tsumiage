@@ -45,7 +45,7 @@ const CalendarTable = ({ calendars, getCalendarData }: Props) => {
         sx={{
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
           height: `calc(100vh - ${PAGINATION_HEIGHT}px - ${
-            isPc ? 0 : (BOTTOM_NAV_HEIGHT + 40)
+            isPc ? 0 : (BOTTOM_NAV_HEIGHT)
           }px)`,
           // env(safe-area-inset-bottom) = 40px
         }}
