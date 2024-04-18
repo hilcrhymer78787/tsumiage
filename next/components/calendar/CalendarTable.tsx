@@ -42,7 +42,7 @@ const CalendarTable = ({ calendars, getCalendarData }: Props) => {
         sx={{
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
           //TODO 正確な値を計算
-          height: `calc(100vh - ${isPc ? 60 : 120}px - env(safe-area-inset-bottom))`,
+          height: `calc(100vh - ${isPc ? 60 : 120}px - env(safe-area-inset-bottom)) - env(safe-area-inset-top))`,
         }}
       >
         <Table stickyHeader sx={{ width: tableWidth }}>
