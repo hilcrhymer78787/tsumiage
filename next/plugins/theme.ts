@@ -7,8 +7,15 @@ const theme = createTheme({
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
-          padding:
-            "calc(env(safe-area-inset-bottom)) 0 calc(env(safe-area-inset-bottom) * 1.5)",
+          height:"calc(60px + env(safe-area-inset-bottom))"
+        },
+      },
+    },
+    MuiBottomNavigationAction: {
+      styleOverrides: {
+        root: {
+          paddingBottom:"env(safe-area-inset-bottom)",
+          height:"calc(60px + env(safe-area-inset-bottom))"
         },
       },
     },
