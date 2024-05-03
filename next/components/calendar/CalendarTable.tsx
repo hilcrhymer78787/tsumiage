@@ -32,11 +32,11 @@ type Props = {
   calendars: Calendar[] | null;
   getCalendarData: () => Promise<void>;
   userName?: string;
+  readonly?: boolean;
 };
-const CalendarTable = ({ userName, calendars, getCalendarData }: Props) => {
+const CalendarTable = ({ userName, calendars, getCalendarData, readonly }: Props) => {
   const theme = useTheme();
   const { isPc } = useMedia();
-
   const tableWidth = useMemo(() => {
     const size = TASK_NAME_WIDTH + CELL_SIZE * Number(calendars?.length);
     return `${size}px`;
@@ -83,10 +83,11 @@ const CalendarTable = ({ userName, calendars, getCalendarData }: Props) => {
           <TableBody>
             {calendars?.[0].tasks.map((task) => (
               <CalendarTableRow
-                key={task.id}
-                task={task}
-                calendars={calendars}
-                getCalendarData={getCalendarData}
+              key={task.id}
+              task={task}
+              calendars={calendars}
+              getCalendarData={getCalendarData}
+              readonly={readonly}
               />
             ))}
           </TableBody>

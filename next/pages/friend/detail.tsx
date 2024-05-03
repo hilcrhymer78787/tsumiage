@@ -4,11 +4,10 @@ import CalendarTable from "@/components/calendar/CalendarTable";
 import ErrTxt from "@/components/common/ErrTxt";
 import Layout from "@/layouts/default";
 import Loading from "@/components/common/Loading";
-import { Typography } from "@mui/material";
 import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import { useRouter } from "next/router";
 
-const FriendId = () => {
+const FriendDetail = () => {
   const router = useRouter();
   const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
     useReadWorkMonth();
@@ -59,6 +58,7 @@ const FriendId = () => {
         userName={userName}
         calendars={calendars}
         getCalendarData={getCalendarData}
+        readonly
       />
     );
   }, [
@@ -76,4 +76,4 @@ const FriendId = () => {
     </Layout>
   );
 };
-export default FriendId;
+export default FriendDetail;

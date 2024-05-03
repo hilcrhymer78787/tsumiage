@@ -1,21 +1,23 @@
 import { Box, Button, CircularProgress } from "@mui/material";
+import { useMemo, useState } from "react";
 
 import { CELL_SIZE } from "@/components/calendar/CalendarTable";
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import WorkStateIcon from "@/components/calendar/WorkStateIcon";
 import dayjs from "dayjs";
 import { useCreateWork } from "@/data/work/useCreateWork";
-import { useState } from "react";
 
 type CalendarTableCellProps = {
   taskId: number;
   calendar: Calendar;
   getCalendarData: () => Promise<void>;
+  readonly?: boolean;
 };
 const CalendarTableCell = ({
   taskId,
   calendar,
   getCalendarData,
+  readonly
 }: CalendarTableCellProps) => {
   const task = calendar.tasks.find((task) => task.id === taskId);
   const { date } = calendar;
@@ -60,6 +62,7 @@ const CalendarTableCell = ({
   return (
     <Button
       onClick={apiWorkCreate}
+      disabled={readonly}
       sx={{
         minWidth: `${CELL_SIZE}px`,
         height: `${CELL_SIZE}px`,

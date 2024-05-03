@@ -13,11 +13,13 @@ type CalendarTableRowProps = {
   task: Task;
   calendars: Calendar[];
   getCalendarData: () => Promise<void>;
+  readonly?: boolean;
 };
 const CalendarTableRow = ({
   task,
   calendars,
   getCalendarData,
+  readonly,
 }: CalendarTableRowProps) => {
   return (
     <TableRow>
@@ -35,6 +37,7 @@ const CalendarTableRow = ({
             taskId={task.id}
             calendar={calendar}
             getCalendarData={getCalendarData}
+            readonly={readonly}
           />
         </TableCell>
       ))}
