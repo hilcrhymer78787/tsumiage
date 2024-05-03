@@ -41,9 +41,9 @@ const Calendar = () => {
       return <></>;
     }
     return (
-      <CalendarTable calendars={calendars} getCalendarData={getCalendarData} />
+      <CalendarTable calendars={calendars} />
     );
-  }, [readWorkMonthLoading, readWorkMonthError, calendars, getCalendarData]);
+  }, [readWorkMonthLoading, readWorkMonthError, calendars]);
 
   return (
     <Layout pcMaxWidth={false} spP="0 !important" pcP="0 !important">

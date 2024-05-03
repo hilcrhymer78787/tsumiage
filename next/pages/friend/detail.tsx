@@ -57,7 +57,6 @@ const FriendDetail = () => {
       <CalendarTable
         userName={userName}
         calendars={calendars}
-        getCalendarData={getCalendarData}
         readonly
       />
     );
@@ -65,7 +64,6 @@ const FriendDetail = () => {
     readWorkMonthLoading,
     readWorkMonthError,
     calendars,
-    getCalendarData,
     userName,
   ]);
 

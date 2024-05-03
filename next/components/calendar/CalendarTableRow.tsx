@@ -12,13 +12,11 @@ import { Task } from "@/data/task/useReadTasks";
 type CalendarTableRowProps = {
   task: Task;
   calendars: Calendar[];
-  getCalendarData: () => Promise<void>;
   readonly?: boolean;
 };
 const CalendarTableRow = ({
   task,
   calendars,
-  getCalendarData,
   readonly,
 }: CalendarTableRowProps) => {
   return (
@@ -36,7 +34,6 @@ const CalendarTableRow = ({
           <CalendarTableCell
             taskId={task.id}
             calendar={calendar}
-            getCalendarData={getCalendarData}
             readonly={readonly}
           />
         </TableCell>

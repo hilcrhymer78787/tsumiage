@@ -30,11 +30,10 @@ export const stickyStyle = {
 };
 type Props = {
   calendars: Calendar[] | null;
-  getCalendarData: () => Promise<void>;
   userName?: string;
   readonly?: boolean;
 };
-const CalendarTable = ({ userName, calendars, getCalendarData, readonly }: Props) => {
+const CalendarTable = ({ userName, calendars, readonly }: Props) => {
   const theme = useTheme();
   const { isPc } = useMedia();
   const tableWidth = useMemo(() => {
@@ -86,7 +85,6 @@ const CalendarTable = ({ userName, calendars, getCalendarData, readonly }: Props
               key={task.id}
               task={task}
               calendars={calendars}
-              getCalendarData={getCalendarData}
               readonly={readonly}
               />
             ))}
