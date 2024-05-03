@@ -22,6 +22,7 @@ const Pagination = () => {
     router.push({
       pathname: location.pathname,
       query: {
+        ...router.query,
         year: month == 1 ? year - 1 : year,
         month: month == 1 ? 12 : month - 1,
       },
@@ -32,6 +33,7 @@ const Pagination = () => {
     router.push({
       pathname: location.pathname,
       query: {
+        ...router.query,
         year: month == 12 ? year + 1 : year,
         month: month == 12 ? 1 : month + 1,
       },

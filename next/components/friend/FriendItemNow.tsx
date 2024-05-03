@@ -13,28 +13,28 @@ import dayjs from "dayjs";
 import { useRouter } from "next/router";
 
 type Props = {
-  friend: apiInvitationResponseFriendType
-  friendRead: () => void
-}
+  friend: apiInvitationResponseFriendType;
+  friendRead: () => void;
+};
 const FriendItemNow = (props: Props) => {
   const router = useRouter();
-
-  const nowYear = (): number => {
-    return Number(dayjs().format("YYYY"));
-  };
-  const nowMonth = (): number => {
-    return Number(dayjs().format("M"));
-  };
   return (
     <ListItem sx={{ p: 0 }}>
-      <ListItemButton onClick={() => {
-        router.push(`/friend/${props.friend.id}/${props.friend.name}/?year=${nowYear()}&month=${nowMonth()}`);
-      }}>
+      <ListItemButton
+        onClick={() => {
+          router.push({
+            pathname: "/friend/detail",
+            query: {
+              year: dayjs().format("YYYY"),
+              month: dayjs().format("M"),
+              id: props.friend.id,
+              name: props.friend.name,
+            },
+          });
+        }}
+      >
         <ListItemAvatar>
-          <UserImg
-            fileName={props.friend.user_img}
-            size="40"
-          />
+          <UserImg fileName={props.friend.user_img} size="40" />
         </ListItemAvatar>
         <ListItemText
           primary={props.friend.name}

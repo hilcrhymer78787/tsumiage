@@ -14,12 +14,15 @@ const FriendId = () => {
     useReadWorkMonth();
 
   const userId = useMemo(() => {
-    return Number(router.query.user?.[0]);
-  }, [router.query.user]);
+    return Number(router.query.id);
+  }, [router.query]);
 
   const userName = useMemo(() => {
-    return router.query.user?.[1];
-  }, [router.query.user]);
+    const { name } = router.query;
+    if (!name) return "";
+    if (Array.isArray(name)) return "";
+    return name;
+  }, [router.query]);
 
   const year = useMemo(() => {
     return Number(router.query.year);
