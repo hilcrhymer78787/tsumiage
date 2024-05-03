@@ -39,7 +39,7 @@ const Pagination = () => {
   };
 
   return (
-    <Box className="flexCenter" height={`${PAGINATION_HEIGHT}px`}>
+    <Box className="flexStart" height={`${PAGINATION_HEIGHT}px`}>
       <IconButton onClick={onClickPrevMonth}>
         <NavigateBeforeIcon sx={{ fontSize }} />
       </IconButton>

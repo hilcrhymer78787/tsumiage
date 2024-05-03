@@ -11,12 +11,24 @@ import { useRouter } from "next/router";
 const FriendId = () => {
   const router = useRouter();
   const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
-  useReadWorkMonth();
+    useReadWorkMonth();
 
-  const userId=useMemo(()=>{
+  const userId = useMemo(() => {
     return Number(router.query.user?.[0]);
-  },[router.query.user]);
-  
+  }, [router.query.user]);
+
+  const userName = useMemo(() => {
+    return router.query.user?.[1];
+  }, [router.query.user]);
+
+  const year = useMemo(() => {
+    return Number(router.query.year);
+  }, [router.query.year]);
+
+  const month = useMemo(() => {
+    return Number(router.query.month);
+  }, [router.query.month]);
+
   const getCalendarData = useCallback(
     async (year?: number, month?: number) => {
       await readWorkMonth({
@@ -27,12 +39,12 @@ const FriendId = () => {
     },
     [userId, readWorkMonth, router.query.month, router.query.year]
   );
-  
+
   useEffect(() => {
     getCalendarData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  
+  }, [year, month]);
+
   const CalendarContent = useCallback(() => {
     if (!!readWorkMonthError) return <ErrTxt txt={readWorkMonthError} />;
     if (calendars === null) {
@@ -40,22 +52,23 @@ const FriendId = () => {
       return <></>;
     }
     return (
-      <CalendarTable calendars={calendars} getCalendarData={getCalendarData} />
+      <CalendarTable
+        userName={userName}
+        calendars={calendars}
+        getCalendarData={getCalendarData}
+      />
     );
-  }, [readWorkMonthLoading, readWorkMonthError, calendars, getCalendarData]);
+  }, [
+    readWorkMonthLoading,
+    readWorkMonthError,
+    calendars,
+    getCalendarData,
+    userName,
+  ]);
 
   if (router.asPath === router.route) return null;
-  if (!router.query.user) return null;
-
   return (
-    <Layout pcMaxWidth={false}>
-      <Typography
-        color="primary"
-        variant="h5"
-        sx={{
-          textAlign: "center",
-          m: "15px 0"
-        }}>{router.query.user[1]}さんの部屋</Typography>
+    <Layout pcMaxWidth={false} spP="0 !important" pcP="0 !important">
       <CalendarContent />
     </Layout>
   );

@@ -1,7 +1,5 @@
-import Pagination, {
-  PAGINATION_HEIGHT,
-} from "@/components/calendar/Pagination";
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -9,6 +7,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import Pagination, {
+  PAGINATION_HEIGHT,
+} from "@/components/calendar/Pagination";
 
 import { BOTTOM_NAV_HEIGHT } from "@/plugins/theme";
 import { Calendar } from "@/data/work/useReadWorkMonth";
@@ -17,6 +18,7 @@ import { NAV_WIDTH } from "@/layouts/default";
 import dayjs from "dayjs";
 import { useMedia } from "@/data/media/useMedia";
 import { useMemo } from "react";
+import { useTheme } from "@mui/material/styles";
 
 export const TASK_NAME_WIDTH = 150;
 export const CELL_SIZE = 40;
@@ -29,8 +31,10 @@ export const stickyStyle = {
 type Props = {
   calendars: Calendar[] | null;
   getCalendarData: () => Promise<void>;
+  userName?: string;
 };
-const CalendarTable = ({ calendars, getCalendarData }: Props) => {
+const CalendarTable = ({ userName, calendars, getCalendarData }: Props) => {
+  const theme = useTheme();
   const { isPc } = useMedia();
 
   const tableWidth = useMemo(() => {
@@ -45,7 +49,7 @@ const CalendarTable = ({ calendars, getCalendarData }: Props) => {
         sx={{
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
           height: `calc(100vh - ${PAGINATION_HEIGHT}px - ${
-            isPc ? 0 : (BOTTOM_NAV_HEIGHT + 50)
+            isPc ? 0 : BOTTOM_NAV_HEIGHT + 50
           }px - env(safe-area-inset-bottom))`,
           // TODO +40を消したい
         }}
@@ -53,7 +57,18 @@ const CalendarTable = ({ calendars, getCalendarData }: Props) => {
         <Table stickyHeader sx={{ width: tableWidth }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ ...stickyStyle, zIndex: 3 }}></TableCell>
+              <TableCell sx={{ ...stickyStyle, zIndex: 3 }}>
+                <Box
+                  sx={{
+                    width: `${TASK_NAME_WIDTH}px`,
+                    paddingLeft: 1,
+                    color: theme.palette.primary.main,
+                  }}
+                  className="ellipsis"
+                >
+                  {userName}
+                </Box>
+              </TableCell>
               {calendars?.map((calendar) => (
                 <TableCell
                   align="center"
