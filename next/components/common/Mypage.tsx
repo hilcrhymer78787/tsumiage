@@ -31,33 +31,36 @@ const Mypage = () => {
       <CardContent>
         <ListItem sx={{ p: 0 }}>
           <ListItemAvatar>
-            <UserImg
-              fileName={loginInfo?.user_img}
-              size="70"
-            />
+            <UserImg fileName={loginInfo?.user_img} size="70" />
           </ListItemAvatar>
           <ListItemText
-            sx={{ ml: "15px", }}
+            sx={{ ml: "15px" }}
             primary={loginInfo?.name}
             secondary={loginInfo?.email}
           />
         </ListItem>
       </CardContent>
       <CardActions>
-        <Button
-          onClick={logout}
-          color="inherit"
-          variant="contained">ログアウト
+        <Button onClick={logout} color="inherit" variant="contained">
+          ログアウト
         </Button>
         <Button
-          onClick={() => { setCreateUserDialog(true); }}
+          onClick={() => setCreateUserDialog(true)}
           color="primary"
-          variant="contained">編集
+          variant="contained"
+        >
+          編集
         </Button>
       </CardActions>
-      <Dialog open={createUserDialog} onClose={() => { setCreateUserDialog(false); }}>
+      <Dialog
+        open={createUserDialog}
+        onClose={() => setCreateUserDialog(false)}
+      >
         {createUserDialog && (
-          <CreateUser loginInfo={loginInfo} onCloseMyself={() => { setCreateUserDialog(false); }} />
+          <CreateUser
+            loginInfo={loginInfo}
+            onCloseMyself={() => setCreateUserDialog(false)}
+          />
         )}
       </Dialog>
     </Card>

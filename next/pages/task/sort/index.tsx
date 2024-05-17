@@ -34,6 +34,7 @@ const TaskSort = () => {
     }
     if (!tasks.length) return <NoData txt="登録されているタスクはありません" />;
     return <Sortable initItems={tasks} onChange={apiTaskSort} />;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readTasksLoading, readTasksError, tasks]);
 
   useEffect(() => {

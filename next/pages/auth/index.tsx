@@ -144,9 +144,7 @@ const Login = () => {
         </CardContent>
         <CardActions>
           <Button
-            onClick={() => {
-              router.push("/auth/new");
-            }}
+            onClick={() => router.push("/auth/new")}
             color="inherit"
             variant="contained"
           >

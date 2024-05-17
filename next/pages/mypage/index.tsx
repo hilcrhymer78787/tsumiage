@@ -47,9 +47,7 @@ const Mypage = () => {
             ログアウト
           </Button>
           <Button
-            onClick={() => {
-              setCreateUserDialog(true);
-            }}
+            onClick={() => setCreateUserDialog(true)}
             color="primary"
             variant="contained"
           >
@@ -58,16 +56,12 @@ const Mypage = () => {
         </CardActions>
         <Dialog
           open={createUserDialog}
-          onClose={() => {
-            setCreateUserDialog(false);
-          }}
+          onClose={() => setCreateUserDialog(false)}
         >
           {createUserDialog && (
             <CreateUser
               loginInfo={loginInfo}
-              onCloseMyself={() => {
-                setCreateUserDialog(false);
-              }}
+              onCloseMyself={() => setCreateUserDialog(false)}
             />
           )}
         </Dialog>

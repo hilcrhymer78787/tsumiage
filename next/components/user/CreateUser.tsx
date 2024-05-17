@@ -8,7 +8,7 @@ import {
   CardHeader,
   TextField,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 
 import ErrTxt from "@/components/common/ErrTxt";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -102,7 +102,7 @@ function CreateUser(props: Props) {
     }
     return isError;
   };
-  const fileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const fileSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     file = e.target.files[0];
     setUserImg(dayjs().format("YYYYMMDDHHmmss") + file.name);
@@ -119,6 +119,12 @@ function CreateUser(props: Props) {
     const res = await deleteUser(props.loginInfo.id);
     if (res) router.push("/auth");
   };
+
+  const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
+    if (e?.keyCode !== 13) return;
+    apiCreateUser();
+  };
+
   useEffect(() => {
     if (props.loginInfo) {
       setId(props.loginInfo.id);
@@ -173,17 +179,11 @@ function CreateUser(props: Props) {
         </Box>
         <Box sx={{ mb: "15px" }}>
           <TextField
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                apiCreateUser();
-              }
-            }}
+            onKeyDown={onKeyDown}
             error={!!nameError}
             helperText={nameError}
             value={name}
-            onChange={(e) => {
-              setName(e.currentTarget.value);
-            }}
+            onChange={(e) => setName(e.currentTarget.value)}
             label="名前"
             variant="outlined"
             color="primary"
@@ -191,17 +191,11 @@ function CreateUser(props: Props) {
         </Box>
         <Box sx={{ mb: "15px" }}>
           <TextField
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                apiCreateUser();
-              }
-            }}
+            onKeyDown={onKeyDown}
             error={!!emailError}
             helperText={emailError}
             value={email}
-            onChange={(e) => {
-              setEmail(e.currentTarget.value);
-            }}
+            onChange={(e) => setEmail(e.currentTarget.value)}
             label="メールアドレス"
             variant="outlined"
             color="primary"
@@ -211,11 +205,7 @@ function CreateUser(props: Props) {
           <>
             <Box sx={{ mb: "15px" }}>
               <TextField
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    apiCreateUser();
-                  }
-                }}
+                onKeyDown={onKeyDown}
                 error={!!passwordError}
                 helperText={passwordError}
                 value={password}
@@ -229,15 +219,9 @@ function CreateUser(props: Props) {
             </Box>
             <Box sx={{ mb: "15px" }}>
               <TextField
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    apiCreateUser();
-                  }
-                }}
+                onKeyDown={onKeyDown}
                 value={passwordAgain}
-                onChange={(e) => {
-                  setPasswordAgain(e.currentTarget.value);
-                }}
+                onChange={(e) => setPasswordAgain(e.currentTarget.value)}
                 label="パスワード確認"
                 variant="outlined"
                 color="primary"
@@ -255,9 +239,7 @@ function CreateUser(props: Props) {
               }}
             >
               <Button
-                onClick={() => {
-                  setPasswordEditMode(true);
-                }}
+                onClick={() => setPasswordEditMode(true)}
                 variant="contained"
                 color="inherit"
               >
@@ -271,9 +253,7 @@ function CreateUser(props: Props) {
       <CardActions>
         {!props.loginInfo && (
           <Button
-            onClick={() => {
-              router.push("/auth");
-            }}
+            onClick={() => router.push("/auth")}
             color="inherit"
             variant="contained"
           >

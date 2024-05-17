@@ -1,6 +1,6 @@
-import React from "react";
+import {useState} from "react";
 export default function Test() {
-  const [value, setValue] = React.useState<number>(5);
+  const [value, setValue] = useState(5);
   return (
     <>
       <div>サンプル</div>

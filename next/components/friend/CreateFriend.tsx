@@ -1,10 +1,11 @@
+import { Box, Card, CardActions, CardHeader, TextField, Typography } from "@mui/material";
+
+import { CardContent } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import React from "react";
-import { TextField, Box, Card, CardHeader, CardActions, Typography } from "@mui/material";
-import { CardContent } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useInvitationApi } from "@/data/invitation";
 import axios from "axios";
+import { useInvitationApi } from "@/data/invitation";
 const CreateFriend = () => {
   const { invitationCreate, invitationCreateLoading } = useInvitationApi();
   const [successMessage, setSuccessMessage] = React.useState<string>("");

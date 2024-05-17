@@ -1,19 +1,23 @@
+import { ReactNode, useEffect } from "react";
+
 import Container from "@mui/material/Container";
-import React from "react";
 import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
+
 type Props = {
-  children: React.ReactNode;
-}
+  children: ReactNode;
+};
 function LoginLayout({ children }: Props) {
   const router = useRouter();
   const loginInfo = useRecoilValue(loginInfoAtom);
-  React.useEffect(() => {
-    if (loginInfo) {
-      router.push("/");
-    };
+  
+  useEffect(() => {
+    if (!loginInfo) return;
+    router.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
   return (
     <Container sx={{ p: "10px" }} maxWidth="xs">
       {children}

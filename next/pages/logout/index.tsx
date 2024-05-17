@@ -1,15 +1,16 @@
-import React from "react";
 import { loginInfoAtom } from "@/data/user";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 const Logout = () => {
   const router = useRouter();
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.removeItem("token");
     setLoginInfo(null);
     router.push("/auth");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <></>;
 };
-export default Logout; 
+export default Logout;

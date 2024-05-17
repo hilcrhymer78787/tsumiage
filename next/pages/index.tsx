@@ -4,6 +4,7 @@ const Index = () => {
   const router = useRouter();
   useEffect(() => {
     router.push("/task");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <></>;
 };
