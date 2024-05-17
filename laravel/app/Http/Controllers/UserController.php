@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
+use App\Models\Work;
 use App\Models\User;
+use App\Models\Invitation;
 use App\Services\UserService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -96,6 +99,10 @@ class UserController extends Controller
     public function delete(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        Task::where('task_user_id', $loginInfo['id'])->delete();
+        Work::where('work_user_id', $loginInfo['id'])->delete();
+        Invitation::where('invitation_to_user_id', $loginInfo['id'])->delete();
+        Invitation::where('invitation_from_user_id', $loginInfo['id'])->delete();
         User::where('id', $loginInfo['id'])->delete();
     }
 }
