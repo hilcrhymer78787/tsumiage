@@ -40,8 +40,7 @@ const TaskItem = ({ task, date, apiTaskRead, readonly }: Props) => {
   const apiWorkCreate = async (state: WorkState, isRight: boolean) => {
     if (isRight) setIsLoadingRight(true);
     const res = await createWork({
-      id: task.work.id,
-      date: date,
+      date,
       state,
       task_id: task.id,
     });

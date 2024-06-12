@@ -29,7 +29,16 @@ const CalendarTableRow = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <TableRow>
-      <TableCell sx={{ ...stickyStyle, zIndex: 2 }}>
+      <TableCell
+        sx={{
+          ...stickyStyle,
+          zIndex: 2,
+          "&:hover": {
+            backgroundColor: "rgba(255, 255, 255, 0.23)",
+            cursor: "pointer",
+          },
+        }}
+      >
         <Box
           onClick={() => setIsDialogOpen(true)}
           sx={{ width: `${TASK_NAME_WIDTH}px`, paddingLeft: 1 }}

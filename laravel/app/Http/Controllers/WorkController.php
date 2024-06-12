@@ -39,14 +39,14 @@ class WorkController extends Controller
         $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
 
         // 重複確認
-        $double = Work::where('work_date', $request['date'])
+        $targetWork = Work::where('work_date', $request['date'])
             ->where('work_task_id', $request['task_id'])
             ->first();
 
         // 編集
-        if ($double) {
+        if ($targetWork) {
             Work::where('work_user_id', $loginInfo['id'])
-                ->where('work_id', $request['id'])
+                ->where('work_id', $targetWork['work_id'])
                 ->update([
                     'work_user_id' => $loginInfo['id'],
                     'work_date' => $request['date'],

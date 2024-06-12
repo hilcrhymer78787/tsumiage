@@ -12,7 +12,6 @@ const workState = [0 , 1 , 2] as const;
 export type WorkState = (typeof workState)[number]
 
 export type workCreateData = {
-  id: number;
   state: WorkState;
   date: string;
   task_id: number;
