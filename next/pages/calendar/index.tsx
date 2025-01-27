@@ -8,10 +8,12 @@ import { loginInfoAtom } from "@/data/user";
 import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
+import { useResetWork } from "@/data/work/useResetWork";
 
 const Calendar = () => {
   const router = useRouter();
   const loginInfo = useRecoilValue(loginInfoAtom);
+  const { resetWork, resetWorkLoading } = useResetWork();
   const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
     useReadWorkMonth();
 
@@ -29,6 +31,13 @@ const Calendar = () => {
     await readWorkMonth({ userId, year, month });
   }, [loginInfo?.id, month, readWorkMonth, year]);
 
+  const onClickReset = useCallback(async () => {
+    if (!confirm("活動情報を全て削除しますか？")) return;
+    if (!confirm("本当によろしいですか？")) return;
+    await resetWork();
+    await getCalendarData();
+  }, [getCalendarData, resetWork]);
+
   useEffect(() => {
     getCalendarData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,9 +50,19 @@ const Calendar = () => {
       return <></>;
     }
     return (
-      <CalendarTable calendars={calendars} />
+      <CalendarTable
+        calendars={calendars}
+        onClickReset={onClickReset}
+        resetWorkLoading={resetWorkLoading}
+      />
     );
-  }, [readWorkMonthLoading, readWorkMonthError, calendars]);
+  }, [
+    readWorkMonthLoading,
+    readWorkMonthError,
+    calendars,
+    onClickReset,
+    resetWorkLoading,
+  ]);
 
   return (
     <Layout pcMaxWidth={false} spP="0 !important" pcP="0 !important">

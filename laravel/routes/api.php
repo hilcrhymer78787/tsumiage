@@ -25,6 +25,7 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::get('/work/read/month', 'WorkController@read_month');
     Route::post('/work/read/analytics', 'WorkController@read_analytics');
     Route::delete('/work/delete', 'WorkController@delete');
+    Route::delete('/work/reset', 'WorkController@reset');
     
     Route::get('/invitation/read', 'InvitationController@read');
     Route::post('/invitation/create', 'InvitationController@create');

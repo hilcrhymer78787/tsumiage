@@ -4,9 +4,14 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
+import { LoadingButton } from "@mui/lab";
 
 export const PAGINATION_HEIGHT = 60;
-const Pagination = () => {
+type PaginationProps = {
+  onClickReset?: () => void;
+  resetWorkLoading?: boolean;
+};
+const Pagination = ({ onClickReset, resetWorkLoading }: PaginationProps) => {
   const fontSize = "27px";
   const router = useRouter();
 
@@ -41,16 +46,27 @@ const Pagination = () => {
   };
 
   return (
-    <Box className="flexStart" height={`${PAGINATION_HEIGHT}px`}>
-      <IconButton onClick={onClickPrevMonth}>
-        <NavigateBeforeIcon sx={{ fontSize }} />
-      </IconButton>
-      <Typography fontSize={fontSize}>
-        {year}年 {month}月
-      </Typography>
-      <IconButton onClick={onClickNextMonth}>
-        <NavigateNextIcon sx={{ fontSize }} />
-      </IconButton>
+    <Box
+      className="flexBetween"
+      height={`${PAGINATION_HEIGHT}px`}
+      sx={{ pr: 2 }}
+    >
+      <Box className="flexStart">
+        <IconButton onClick={onClickPrevMonth}>
+          <NavigateBeforeIcon sx={{ fontSize }} />
+        </IconButton>
+        <Typography fontSize={fontSize}>
+          {year}年 {month}月
+        </Typography>
+        <IconButton onClick={onClickNextMonth}>
+          <NavigateNextIcon sx={{ fontSize }} />
+        </IconButton>
+      </Box>
+      {!!onClickReset && (
+        <LoadingButton onClick={onClickReset} loading={!!resetWorkLoading}>
+          リセット
+        </LoadingButton>
+      )}
     </Box>
   );
 };

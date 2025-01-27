@@ -32,8 +32,16 @@ type Props = {
   calendars: Calendar[] | null;
   userName?: string;
   readonly?: boolean;
+  resetWorkLoading?: boolean;
+  onClickReset?: () => void;
 };
-const CalendarTable = ({ userName, calendars, readonly }: Props) => {
+const CalendarTable = ({
+  userName,
+  calendars,
+  readonly,
+  resetWorkLoading,
+  onClickReset,
+}: Props) => {
   const theme = useTheme();
   const { isPc } = useMedia();
   const tableWidth = useMemo(() => {
@@ -43,7 +51,10 @@ const CalendarTable = ({ userName, calendars, readonly }: Props) => {
 
   return (
     <>
-      <Pagination />
+      <Pagination
+        onClickReset={onClickReset}
+        resetWorkLoading={resetWorkLoading}
+      />
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
@@ -82,10 +93,10 @@ const CalendarTable = ({ userName, calendars, readonly }: Props) => {
           <TableBody>
             {calendars?.[0].tasks.map((task) => (
               <CalendarTableRow
-              key={task.id}
-              task={task}
-              calendars={calendars}
-              readonly={readonly}
+                key={task.id}
+                task={task}
+                calendars={calendars}
+                readonly={readonly}
               />
             ))}
           </TableBody>
