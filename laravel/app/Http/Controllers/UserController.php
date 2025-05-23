@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
-    public function test_authentication()
+    public function test_auth()
     {
         return User::find(1);
     }
-    public function basic_authentication(Request $request)
+    public function basic_auth(Request $request)
     {
         // ベーシック認証
         $user = User::where('email', $request['email'])->first();
@@ -33,9 +33,9 @@ class UserController extends Controller
         }
         return $user;
     }
-    public function bearer_authentication(Request $request)
+    public function bearer_auth(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
         if (!$loginInfo) {
             return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 401);
         }
@@ -67,7 +67,7 @@ class UserController extends Controller
         }
 
         // 編集の場合
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
         if (!$loginInfo) {
             return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 401);
         }
@@ -93,12 +93,12 @@ class UserController extends Controller
         if ($request['user_img'] != $request['img_oldname']) {
             Storage::delete('public/' . $request['img_oldname']);
         }
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
         return $loginInfo;
     }
     public function delete(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
         Task::where('task_user_id', $loginInfo['id'])->delete();
         Work::where('work_user_id', $loginInfo['id'])->delete();
         Invitation::where('invitation_to_user_id', $loginInfo['id'])->delete();

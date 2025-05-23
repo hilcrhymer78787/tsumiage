@@ -17,14 +17,17 @@ import UserImg from "@/components/common/UserImg";
 import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
+import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 const Mypage = () => {
   const router = useRouter();
   const loginInfo = useRecoilValue(loginInfoAtom);
   const [createUserDialog, setCreateUserDialog] = useState<boolean>(false);
-  const logout = () => {
+  const { logout } = useBearerAuth();
+
+  const onClickLogout = () => {
     if (!confirm("ログアウトしますか？")) return;
-    router.push("/logout");
+    logout();
   };
   return (
     <Layout>
@@ -43,7 +46,7 @@ const Mypage = () => {
           </ListItem>
         </CardContent>
         <CardActions>
-          <Button onClick={logout} color="inherit" variant="contained">
+          <Button onClick={onClickLogout} color="inherit" variant="contained">
             ログアウト
           </Button>
           <Button

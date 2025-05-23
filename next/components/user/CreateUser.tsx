@@ -8,14 +8,21 @@ import {
   CardHeader,
   TextField,
 } from "@mui/material";
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  KeyboardEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 import ErrTxt from "@/components/common/ErrTxt";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import UserImg from "@/components/common/UserImg";
-import { apiUserBearerAuthenticationResponseType } from "@/types/api/user/bearerAuthentication/response";
+import { apiUserBearerAuthResponseType } from "@/types/api/user/bearerAuth/response";
 import axios from "axios";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
@@ -24,13 +31,17 @@ import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 import { useUserApi } from "@/data/user";
 
-type Props = {
-  onCloseMyself: () => void;
-  loginInfo: apiUserBearerAuthenticationResponseType | null;
-};
 let inputRef: HTMLInputElement | null = null;
 let file: File;
-function CreateUser(props: Props) {
+function CreateUser({
+  onCloseMyself,
+  loginInfo,
+  setIsNew,
+}: {
+  onCloseMyself: () => void;
+  loginInfo: apiUserBearerAuthResponseType | null;
+  setIsNew?: Dispatch<SetStateAction<boolean>>;
+}) {
   const router = useRouter();
 
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
@@ -58,12 +69,12 @@ function CreateUser(props: Props) {
     postData.append("email", email);
     postData.append("password", password);
     postData.append("user_img", user_img);
-    postData.append("img_oldname", props.loginInfo?.user_img ?? "");
+    postData.append("img_oldname", loginInfo?.user_img ?? "");
     try {
       const res = await createUser(postData);
       localStorage.setItem("token", res.data.token);
       setLoginInfo(res.data);
-      props.onCloseMyself();
+      onCloseMyself();
       router.push("/");
     } catch (e) {
       if (axios.isAxiosError(e)) {
@@ -113,11 +124,10 @@ function CreateUser(props: Props) {
     reader.readAsDataURL(file);
   };
   const onClickDeleteUser = async () => {
-    if (!props.loginInfo) return;
-    if (!confirm(`「${props.loginInfo.name}」さんを削除しますか？`)) return;
+    if (!loginInfo) return;
+    if (!confirm(`「${loginInfo.name}」さんを削除しますか？`)) return;
     if (!confirm("関連する全データも削除されますが、よろしいですか？")) return;
-    const res = await deleteUser(props.loginInfo.id);
-    if (res) router.push("/auth");
+    const res = await deleteUser(loginInfo.id);
   };
 
   const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
@@ -126,20 +136,18 @@ function CreateUser(props: Props) {
   };
 
   useEffect(() => {
-    if (props.loginInfo) {
-      setId(props.loginInfo.id);
-      setName(props.loginInfo.name);
-      setEmail(props.loginInfo.email);
-      setUserImg(props.loginInfo.user_img);
+    if (loginInfo) {
+      setId(loginInfo.id);
+      setName(loginInfo.name);
+      setEmail(loginInfo.email);
+      setUserImg(loginInfo.user_img);
       setPasswordEditMode(false);
       // img_oldname
     }
-  }, [props.loginInfo]);
+  }, [loginInfo]);
   return (
     <Card>
-      <CardHeader
-        title={props.loginInfo ? "ユーザー編集" : "新規ユーザー登録"}
-      />
+      <CardHeader title={loginInfo ? "ユーザー編集" : "新規ユーザー登録"} />
       <CardContent>
         <Box
           sx={{
@@ -159,7 +167,7 @@ function CreateUser(props: Props) {
             />
           )}
           {!uploadedImage && (
-            <UserImg fileName={props.loginInfo?.user_img} size="70" />
+            <UserImg fileName={loginInfo?.user_img} size="70" />
           )}
           <Button
             onClick={() => inputRef?.click()}
@@ -251,16 +259,16 @@ function CreateUser(props: Props) {
         <ErrTxt txt={deleteUserError} />
       </CardContent>
       <CardActions>
-        {!props.loginInfo && (
+        {!!setIsNew && (
           <Button
-            onClick={() => router.push("/auth")}
+            onClick={() => setIsNew(false)}
             color="inherit"
             variant="contained"
           >
             ログイン画面へ
           </Button>
         )}
-        {props.loginInfo && (
+        {loginInfo && (
           <LoadingButton
             onClick={onClickDeleteUser}
             loading={deleteUserLoading}

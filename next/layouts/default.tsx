@@ -11,17 +11,17 @@ import {
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 
 import GroupIcon from "@mui/icons-material/Group";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import TaskIcon from "@mui/icons-material/Task";
 import TodayIcon from "@mui/icons-material/Today";
 import UserImg from "@/components/common/UserImg";
 import dayjs from "dayjs";
-import { loginInfoAtom } from "@/data/user";
 import theme from "@/plugins/theme";
 import { useMedia } from "@/data/media/useMedia";
-import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
-
+import { useBearerAuth } from "@/data/user/useBearerAuth";
+import Auth from "@/components/common/Auth";
+import AuthNew from "@/components/common/AuthNew";
 type Props = {
   children: ReactNode;
   authRequired?: boolean;
@@ -44,10 +44,11 @@ const Layout = ({
 }: Props) => {
   const { isPc } = useMedia();
   const router = useRouter();
+  const [isNew, setIsNew] = useState(false);
+  const { loginInfo } = useBearerAuth();
   const getColor = (value: string) => {
     return router.pathname === value ? theme.palette.primary.main : "white";
   };
-  const loginInfo = useRecoilValue(loginInfoAtom);
 
   const onChangeNav = (value: string) => {
     if (value == "/calendar") {
@@ -91,6 +92,9 @@ const Layout = ({
       ),
     },
   ];
+
+  if (!loginInfo)
+    return isNew ? <AuthNew setIsNew={setIsNew} /> : <Auth setIsNew={setIsNew} />;
 
   if (isPc) {
     return (

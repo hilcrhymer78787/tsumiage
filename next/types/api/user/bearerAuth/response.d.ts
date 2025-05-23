@@ -1,4 +1,4 @@
-export interface apiUserBearerAuthenticationResponseType {
+export interface apiUserBearerAuthResponseType {
     id: number
     email: string
     name: string

@@ -26,6 +26,7 @@ export default function CreateTask({ task, onCloseMyself }: Props) {
     useCreateTask();
   const { deleteTask, deleteTaskLoading } = useDeleteTask();
   const [name, setName] = useState(task?.name ?? "");
+  
   const onClickDelete = async () => {
     if (!task) return;
     if (!confirm(`「${task.name}」を削除しますか？`)) return;
@@ -33,14 +34,17 @@ export default function CreateTask({ task, onCloseMyself }: Props) {
     const res = await deleteTask(task.id);
     if (res) onCloseMyself();
   };
+
   const submit = async () => {
     const res = await createTask(task?.id ?? 0, name);
     if (res) onCloseMyself();
   };
+
   const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
     if (e?.keyCode !== 13) return;
     submit();
   };
+
   return (
     <Card>
       <CardHeader title={task ? task.name : "新規タスク登録"} />

@@ -1,4 +1,4 @@
-import { apiUserBasicAuthenticationResponseType } from "@/types/api/user/basicAuthentication/response";
+import { apiUserBasicAuthResponseType } from "@/types/api/user/basicAuth/response";
 export interface stateType {
-  loginInfo: apiUserBasicAuthenticationResponseType | null | false;
+  loginInfo: apiUserBasicAuthResponseType | null | false;
 }

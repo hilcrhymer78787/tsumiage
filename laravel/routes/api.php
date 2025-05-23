@@ -8,9 +8,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user/test_authentication', 'UserController@test_authentication');
-Route::post('/user/basic_authentication', 'UserController@basic_authentication');
-Route::get('/user/bearer_authentication', 'UserController@bearer_authentication');
+Route::get('/user/test_auth', 'UserController@test_auth');
+Route::post('/user/basic_auth', 'UserController@basic_auth');
+Route::get('/user/bearer_auth', 'UserController@bearer_auth');
 Route::post('/user/create', 'UserController@create');
 
 Route::middleware([CheckToken::class])->group(function () {

@@ -5,12 +5,12 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Container,
   TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import { LoadingButton } from "@mui/lab";
-import LoginLayout from "@/layouts/login";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { loginInfoAtom } from "@/data/user";
@@ -18,19 +18,23 @@ import { useRouter } from "next/router";
 import { useSetRecoilState } from "recoil";
 import { useUserApi } from "@/data/user";
 
-const Login = () => {
+const Login = ({
+  setIsNew,
+}: {
+  setIsNew: Dispatch<SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
   const setLoginInfo = useSetRecoilState(loginInfoAtom);
   const {
     testAuthentication,
     testAuthenticationLoading,
-    basicAuthentication,
-    basicAuthenticationLoading,
+    basicAuth,
+    basicAuthLoading,
   } = useUserApi();
-  const [email, setEmail] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [passwordError, setPasswordError] = useState<string>("");
+  const [email, setEmail] = useState("user1@gmail.com");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("password");
+  const [passwordError, setPasswordError] = useState("");
   const apiTestAuthentication = async () => {
     try {
       const res = await testAuthentication();
@@ -45,10 +49,10 @@ const Login = () => {
       }
     }
   };
-  const apiBasicAuthentication = async () => {
+  const apiBasicAuth = async () => {
     if (validation()) return;
     try {
-      const res = await basicAuthentication({
+      const res = await basicAuth({
         email: email,
         password: password,
       });
@@ -82,7 +86,7 @@ const Login = () => {
     return isError;
   };
   return (
-    <LoginLayout>
+    <Container sx={{ p: "10px" }} maxWidth="xs">
       <Card>
         <CardHeader title="ログイン" />
         <CardContent>
@@ -90,7 +94,7 @@ const Login = () => {
             <TextField
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
-                  apiBasicAuthentication();
+                  apiBasicAuth();
                 }
               }}
               error={!!emailError}
@@ -108,7 +112,7 @@ const Login = () => {
             <TextField
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
-                  apiBasicAuthentication();
+                  apiBasicAuth();
                 }
               }}
               error={!!passwordError}
@@ -134,7 +138,7 @@ const Login = () => {
                 variant="contained"
                 onClick={apiTestAuthentication}
                 loading={testAuthenticationLoading}
-                disabled={basicAuthenticationLoading}
+                disabled={basicAuthLoading}
               >
                 テストユーザーでログイン
                 <SendIcon />
@@ -144,7 +148,7 @@ const Login = () => {
         </CardContent>
         <CardActions>
           <Button
-            onClick={() => router.push("/auth/new")}
+            onClick={() => setIsNew(true)}
             color="inherit"
             variant="contained"
           >
@@ -153,8 +157,8 @@ const Login = () => {
           <LoadingButton
             color="primary"
             variant="contained"
-            onClick={apiBasicAuthentication}
-            loading={basicAuthenticationLoading}
+            onClick={apiBasicAuth}
+            loading={basicAuthLoading}
             disabled={testAuthenticationLoading}
           >
             ログイン
@@ -162,7 +166,7 @@ const Login = () => {
           </LoadingButton>
         </CardActions>
       </Card>
-    </LoginLayout>
+    </Container>
   );
 };
 export default Login;

@@ -8,7 +8,6 @@ const Logout = () => {
   useEffect(() => {
     localStorage.removeItem("token");
     setLoginInfo(null);
-    router.push("/auth");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <></>;

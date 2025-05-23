@@ -7,8 +7,9 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((req: AxiosRequestConfig) => {
-  if (req.headers) {
-    req.headers.token = localStorage.getItem("token") ?? "";
+  const token = localStorage.getItem("token");
+  if (token && req.headers) {
+    req.headers.Authorization = `Bearer ${token}`;
   }
   return req;
 });
@@ -29,12 +30,12 @@ api.interceptors.response.use(
     if (err.response?.status == 429) {
       alert("一定時間にアクセスが集中したため、しばらくアクセスできません");
     }
-    if (err.response?.status == 401) {
-      if (!(Router.pathname == "/auth" || Router.pathname == "/auth/new")) {
-        Router.push("/logout");
+    // if (err.response?.status == 401) {
+    //   if (!(Router.pathname == "/auth" || Router.pathname == "/auth/new")) {
+    //     Router.push("/logout");
 
-      }
-    }
+    //   }
+    // }
     throw err;
   }
 );

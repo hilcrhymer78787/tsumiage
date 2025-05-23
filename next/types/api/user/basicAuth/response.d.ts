@@ -1,4 +1,4 @@
-export interface apiUserBasicAuthenticationResponseType {
+export interface apiUserBasicAuthResponseType {
     id: number
     email: string
     name: string

@@ -17,7 +17,7 @@ class CheckToken
      */
     public function handle(Request $request, Closure $next)
     {
-      $loginInfo = (new UserService())->getLoginInfoByToken($request->header('token'));
+      $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
       if(!$loginInfo){
           return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 401);
       }
