@@ -17,7 +17,7 @@ import CalendarTableRow from "@/components/calendar/CalendarTableRow";
 import { NAV_WIDTH } from "@/layouts/default";
 import dayjs from "dayjs";
 import { useMedia } from "@/data/media/useMedia";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
 export const TASK_NAME_WIDTH = 150;
@@ -48,6 +48,7 @@ const CalendarTable = ({
     const size = TASK_NAME_WIDTH + CELL_SIZE * Number(calendars?.length);
     return `${size}px`;
   }, [calendars?.length]);
+  const [hoverColDate, setHoverColDate] = useState("");
 
   return (
     <>
@@ -76,6 +77,7 @@ const CalendarTable = ({
                   }}
                   className="ellipsis"
                 >
+                  {hoverColDate}
                   {userName}
                 </Box>
               </TableCell>
@@ -83,7 +85,15 @@ const CalendarTable = ({
                 <TableCell
                   align="center"
                   key={calendar.date}
-                  sx={{ height: `${CELL_SIZE}px` }}
+                  sx={{
+                    height: `${CELL_SIZE}px`,
+                    backgroundColor:
+                      hoverColDate === calendar.date
+                        ? "rgba(60, 60, 60)"
+                        : "transparent",
+                  }}
+                  onMouseEnter={() => setHoverColDate(calendar.date)}
+                  onMouseLeave={() => setHoverColDate("")}
                 >
                   {dayjs(calendar.date).format("D")}
                 </TableCell>
@@ -97,6 +107,8 @@ const CalendarTable = ({
                 task={task}
                 calendars={calendars}
                 readonly={readonly}
+                hoverColDate={hoverColDate}
+                setHoverColDate={setHoverColDate}
               />
             ))}
           </TableBody>

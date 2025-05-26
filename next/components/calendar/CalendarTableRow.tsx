@@ -14,21 +14,31 @@ import {
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import CalendarTableCell from "@/components/calendar/CalendarTableCell";
 import { Task } from "@/data/task/useReadTasks";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type CalendarTableRowProps = {
   task: Task;
   calendars: Calendar[];
   readonly?: boolean;
+  hoverColDate: string;
+  setHoverColDate: Dispatch<SetStateAction<string>>;
 };
 const CalendarTableRow = ({
   task,
   calendars,
   readonly,
+  hoverColDate,
+  setHoverColDate,
 }: CalendarTableRowProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
-    <TableRow>
+    <TableRow
+      sx={{
+        "&:hover .MuiTableCell-root": {
+          backgroundColor: "rgba(60, 60, 60)",
+        },
+      }}
+    >
       <TableCell
         sx={{
           ...stickyStyle,
@@ -56,11 +66,17 @@ const CalendarTableRow = ({
         </Dialog>
       </TableCell>
       {calendars.map((calendar) => (
-        <TableCell key={calendar.date} align="center">
+        <TableCell
+          key={calendar.date}
+          onMouseEnter={() => setHoverColDate(calendar.date)}
+          onMouseLeave={() => setHoverColDate("")}
+          align="center"
+        >
           <CalendarTableCell
             taskId={task.id}
             calendar={calendar}
             readonly={readonly}
+            hovered={hoverColDate === calendar.date}
           />
         </TableCell>
       ))}

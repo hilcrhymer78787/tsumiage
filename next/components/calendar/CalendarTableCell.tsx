@@ -11,11 +11,13 @@ type CalendarTableCellProps = {
   taskId: number;
   calendar: Calendar;
   readonly?: boolean;
+  hovered: boolean;
 };
 const CalendarTableCell = ({
   taskId,
   calendar,
   readonly,
+  hovered,
 }: CalendarTableCellProps) => {
   const boxSx = { width: `${CELL_SIZE}px`, height: `${CELL_SIZE}px` };
   const task = calendar.tasks.find((task) => task.id === taskId);
@@ -31,7 +33,6 @@ const CalendarTableCell = ({
     if (!task) return;
     setIsLoading(true);
     const newState = state === 0 ? 1 : state === 1 ? 2 : 0;
-    //
     const res = await createWork({
       date,
       state: newState,
@@ -59,6 +60,7 @@ const CalendarTableCell = ({
         minWidth: `${CELL_SIZE}px`,
         height: `${CELL_SIZE}px`,
         borderRadius: 0,
+        backgroundColor: hovered ? "rgba(60, 60, 60)" : "transparent",
         "&:hover": {
           backgroundColor: "rgba(255, 255, 255, 0.23)",
         },
