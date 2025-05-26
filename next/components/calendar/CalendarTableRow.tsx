@@ -16,20 +16,19 @@ import CalendarTableCell from "@/components/calendar/CalendarTableCell";
 import { Task } from "@/data/task/useReadTasks";
 import { Dispatch, SetStateAction, useState } from "react";
 
-type CalendarTableRowProps = {
-  task: Task;
-  calendars: Calendar[];
-  readonly?: boolean;
-  hoverColDate: string;
-  setHoverColDate: Dispatch<SetStateAction<string>>;
-};
 const CalendarTableRow = ({
   task,
   calendars,
   readonly,
   hoverColDate,
   setHoverColDate,
-}: CalendarTableRowProps) => {
+}: {
+  task: Task;
+  calendars: Calendar[];
+  readonly?: boolean;
+  hoverColDate: string;
+  setHoverColDate: Dispatch<SetStateAction<string>>;
+}) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <TableRow

@@ -28,20 +28,19 @@ export const stickyStyle = {
   width: TASK_NAME_WIDTH,
   background: "#121212",
 };
-type Props = {
-  calendars: Calendar[] | null;
-  userName?: string;
-  readonly?: boolean;
-  resetWorkLoading?: boolean;
-  onClickReset?: () => void;
-};
 const CalendarTable = ({
   userName,
   calendars,
   readonly,
   resetWorkLoading,
   onClickReset,
-}: Props) => {
+}: {
+  calendars: Calendar[] | null;
+  userName?: string;
+  readonly?: boolean;
+  resetWorkLoading?: boolean;
+  onClickReset?: () => void;
+}) => {
   const theme = useTheme();
   const { isPc } = useMedia();
   const tableWidth = useMemo(() => {
@@ -90,7 +89,7 @@ const CalendarTable = ({
                     backgroundColor:
                       hoverColDate === calendar.date
                         ? "rgba(60, 60, 60)"
-                        : "transparent",
+                        : "#121212",
                   }}
                   onMouseEnter={() => setHoverColDate(calendar.date)}
                   onMouseLeave={() => setHoverColDate("")}
