@@ -76,7 +76,6 @@ const CalendarTable = ({
                   }}
                   className="ellipsis"
                 >
-                  {hoverColDate}
                   {userName}
                 </Box>
               </TableCell>
