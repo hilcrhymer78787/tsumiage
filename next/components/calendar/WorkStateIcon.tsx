@@ -1,14 +1,29 @@
 import CheckIcon from "@mui/icons-material/Check";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { WorkState } from "@/data/work/useCreateWork";
+import { SvgIconProps } from "@mui/material";
+import { ElementType } from "react";
 
-type WorkStateIconProps = {
-  state: WorkState;
+const WORK_STATES: {
+  value: WorkState;
+  icon: ElementType;
+  color: SvgIconProps["color"];
+  opacity: number;
+}[] = [
+  { value: 0, icon: CheckIcon, color: "error", opacity: 1 },
+  { value: 1, icon: CheckIcon, color: "primary", opacity: 1 },
+  { value: 2, icon: RemoveIcon, color: "primary", opacity: 0.3 },
+];
+
+const WorkStateIcon = ({ state }: { state: WorkState }) => {
+  const iconData = WORK_STATES.find((e) => e.value === state);
+  if (!iconData) return <></>;
+  return (
+    <iconData.icon
+      color={iconData.color}
+      sx={{ opacity: iconData.opacity }}
+    />
+  );
 };
-const WorkStateIcon = ({ state }: WorkStateIconProps) => {
-  if (state === 0) return <CheckIcon color="error" />;
-  if (state === 1) return <CheckIcon color="primary" />;
-  if (state === 2) return <RemoveIcon color="primary" />;
-  return <></>;
-};
+
 export default WorkStateIcon;
