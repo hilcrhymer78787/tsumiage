@@ -31,9 +31,9 @@ const Login = ({
     basicAuth,
     basicAuthLoading,
   } = useUserApi();
-  const [email, setEmail] = useState("user1@gmail.com");
+  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [password, setPassword] = useState("password");
+  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const apiTestAuthentication = async () => {
     try {
