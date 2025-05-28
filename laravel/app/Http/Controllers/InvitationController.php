@@ -12,7 +12,7 @@ class InvitationController extends Controller
 {
     public function read(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         $return['fromFriends'] = (new UserService())->getFromFriends($loginInfo['id']);
         $return['nowFriends'] = (new UserService())->getNowFriends($loginInfo['id']);
         $return['toFriends'] = (new UserService())->getToFriends($loginInfo['id']);
@@ -26,7 +26,7 @@ class InvitationController extends Controller
             return response()->json(['errorMessage' => 'このメールアドレスは登録されていません'], 500);
         }
 
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
 
         // 自分自身でないか確認
         if ($toUserData['id'] == $loginInfo['id']) {
@@ -85,7 +85,7 @@ class InvitationController extends Controller
     }
     public function update(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         // 判定
         $judge = Invitation::where('invitation_id', $request['invitation_id'])
             ->where('invitation_to_user_id', $loginInfo['id'])
@@ -99,7 +99,7 @@ class InvitationController extends Controller
     }
     public function delete(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         Invitation::where('invitation_to_user_id', $loginInfo['id'])
             ->where('invitation_id', $request['invitation_id'])
             ->delete();

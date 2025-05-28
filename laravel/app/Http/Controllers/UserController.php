@@ -35,7 +35,7 @@ class UserController extends Controller
     }
     public function bearer_auth(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         if (!$loginInfo) {
             return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 401);
         }
@@ -67,7 +67,7 @@ class UserController extends Controller
         }
 
         // 編集の場合
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         if (!$loginInfo) {
             return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 401);
         }
@@ -93,12 +93,12 @@ class UserController extends Controller
         if ($request['user_img'] != $request['img_oldname']) {
             Storage::delete('public/' . $request['img_oldname']);
         }
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         return $loginInfo;
     }
     public function delete(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         Task::where('task_user_id', $loginInfo['id'])->delete();
         Work::where('work_user_id', $loginInfo['id'])->delete();
         Invitation::where('invitation_to_user_id', $loginInfo['id'])->delete();

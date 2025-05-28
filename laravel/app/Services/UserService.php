@@ -7,9 +7,9 @@ use App\Models\Invitation;
 
 class UserService
 {
-    public function getLoginInfoByToken($authHeader)
+    public function getLoginInfoByRequest($request)
     {
-        $token = substr($authHeader, 7);
+        $token = substr($request->header('Authorization'), 7);
         $loginInfo = User::where('token', $token)
             ->select('id', 'email', 'name', 'user_img', 'token')
             ->first();

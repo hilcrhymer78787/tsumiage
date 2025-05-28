@@ -13,7 +13,7 @@ class WorkController extends Controller
 {
     public function read_month(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         // 友達判定
         if ($loginInfo['id'] != $request['userId']) {
             $is_friends = (new UserService())->checkIsFriends($loginInfo['id'], $request['userId']);
@@ -38,7 +38,7 @@ class WorkController extends Controller
     }
     public function create(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
 
         // 重複確認
         $targetWork = Work::where('work_date', $request['date'])
@@ -73,7 +73,7 @@ class WorkController extends Controller
     }
     public function reset(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
         Work::where('work_user_id', $loginInfo['id'])->delete();
         Task::where('task_user_id', $loginInfo['id'])->update([
             'created_at' => Carbon::now()

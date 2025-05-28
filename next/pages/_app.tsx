@@ -18,7 +18,7 @@ const AppInit = ({
   setIsAuth: Dispatch<SetStateAction<boolean | null>>;
 }) => {
   const { bearerAuth } = useBearerAuth();
-
+  
   useEffect(() => {
     const mountedFunc = async () => {
       const res = await bearerAuth();

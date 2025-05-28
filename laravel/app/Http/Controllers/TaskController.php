@@ -20,7 +20,7 @@ class TaskController extends Controller
 
     public function read(Request $request)
     {
-        $loginInfo = $this->service->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = $this->service->getLoginInfoByRequest($request);
         // 友達判定
         if ($loginInfo['id'] != $request['userId']) {
             $is_friends = $this->service->checkIsFriends($loginInfo['id'], $request['userId']);
@@ -39,7 +39,7 @@ class TaskController extends Controller
     }
     public function create(Request $request)
     {
-        $loginInfo = $this->service->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = $this->service->getLoginInfoByRequest($request);
         if ($request['id']) {
             Task::where('task_id', $request['id'])->update([
                 'task_name' => $request['name'],
@@ -54,7 +54,7 @@ class TaskController extends Controller
     }
     public function delete(Request $request)
     {
-        $loginInfo = $this->service->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = $this->service->getLoginInfoByRequest($request);
         Task::where('task_id', $request['id'])
             ->where('task_user_id', $loginInfo['id'])
             ->delete();
