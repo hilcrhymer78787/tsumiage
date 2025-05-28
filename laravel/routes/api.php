@@ -11,7 +11,7 @@ use App\Http\Controllers\InvitationController;
 // テストルート
 Route::get('/test', function () {
     return response()->json([
-        'message' => 'test',
+        'message' => 'this is test',
     ]);
 });
 
