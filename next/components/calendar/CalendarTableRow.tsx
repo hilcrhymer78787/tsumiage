@@ -15,6 +15,7 @@ import { Calendar } from "@/data/work/useReadWorkMonth";
 import CalendarTableCell from "@/components/calendar/CalendarTableCell";
 import { Task } from "@/data/task/useReadTasks";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useMedia } from "@/data/media/useMedia";
 
 const CalendarTableRow = ({
   task,
@@ -27,14 +28,16 @@ const CalendarTableRow = ({
   calendars: Calendar[];
   readonly?: boolean;
   hoverColDate: string;
-  setHoverColDate: Dispatch<SetStateAction<string>>;
+  setHoverColDate: (date: string) => void;
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { isPc } = useMedia();
+
   return (
     <TableRow
       sx={{
         "&:hover .MuiTableCell-root": {
-          backgroundColor: "rgba(60, 60, 60)",
+          backgroundColor: isPc ? "rgba(60, 60, 60)" : "#121212",
         },
       }}
     >

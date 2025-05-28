@@ -49,6 +49,9 @@ const CalendarTable = ({
   }, [calendars?.length]);
   const [hoverColDate, setHoverColDate] = useState("");
 
+  const onSetHoverColDate = (date: string) => {
+    setHoverColDate(isPc ? date : "");
+  };
   return (
     <>
       <Pagination
@@ -90,8 +93,8 @@ const CalendarTable = ({
                         ? "rgba(60, 60, 60)"
                         : "#121212",
                   }}
-                  onMouseEnter={() => setHoverColDate(calendar.date)}
-                  onMouseLeave={() => setHoverColDate("")}
+                  onMouseEnter={() => onSetHoverColDate(calendar.date)}
+                  onMouseLeave={() => onSetHoverColDate("")}
                 >
                   {dayjs(calendar.date).format("D")}
                 </TableCell>
@@ -106,7 +109,7 @@ const CalendarTable = ({
                 calendars={calendars}
                 readonly={readonly}
                 hoverColDate={hoverColDate}
-                setHoverColDate={setHoverColDate}
+                setHoverColDate={onSetHoverColDate}
               />
             ))}
           </TableBody>

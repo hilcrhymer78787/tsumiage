@@ -11,12 +11,19 @@ use App\Services\WorkService;
 
 class TaskController extends Controller
 {
+    private UserService $service;
+
+    public function __construct(UserService $service)
+    {
+        $this->service = $service;
+    }
+
     public function read(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = $this->service->getLoginInfoByToken($request->header('Authorization'));
         // 友達判定
         if ($loginInfo['id'] != $request['userId']) {
-            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'], $request['userId']);
+            $is_friends = $this->service->checkIsFriends($loginInfo['id'], $request['userId']);
             if (!$is_friends) {
                 $errorMessage = 'このユーザは友達ではありません';
                 return response()->json(['errorMessage' => $errorMessage], 500);
@@ -32,7 +39,7 @@ class TaskController extends Controller
     }
     public function create(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = $this->service->getLoginInfoByToken($request->header('Authorization'));
         if ($request['id']) {
             Task::where('task_id', $request['id'])->update([
                 'task_name' => $request['name'],
@@ -47,7 +54,7 @@ class TaskController extends Controller
     }
     public function delete(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByToken($request->header('Authorization'));
+        $loginInfo = $this->service->getLoginInfoByToken($request->header('Authorization'));
         Task::where('task_id', $request['id'])
             ->where('task_user_id', $loginInfo['id'])
             ->delete();
