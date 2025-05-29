@@ -1,56 +1,38 @@
 import {
   Box,
   Dialog,
-  DialogContent,
   DialogTitle,
+  SxProps,
   TableCell,
   TableRow,
 } from "@mui/material";
-import {
-  TASK_NAME_WIDTH,
-  stickyStyle,
-} from "@/components/calendar/CalendarTable";
+import { TASK_NAME_WIDTH } from "@/components/calendar/CalendarTable";
 
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import CalendarTableCell from "@/components/calendar/CalendarTableCell";
 import { Task } from "@/data/task/useReadTasks";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useMedia } from "@/data/media/useMedia";
+import { useState } from "react";
 
 const CalendarTableRow = ({
   task,
   calendars,
   readonly,
-  hoverColDate,
+  getBgColor,
   setHoverColDate,
+  sx,
 }: {
   task: Task;
   calendars: Calendar[];
   readonly?: boolean;
-  hoverColDate: string;
+  getBgColor: (date: string) => string;
   setHoverColDate: (date: string) => void;
+  sx?: SxProps;
 }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { isPc } = useMedia();
 
   return (
-    <TableRow
-      sx={{
-        "&:hover .MuiTableCell-root": {
-          backgroundColor: isPc ? "rgba(60, 60, 60)" : "#121212",
-        },
-      }}
-    >
-      <TableCell
-        sx={{
-          ...stickyStyle,
-          zIndex: 2,
-          "&:hover": {
-            backgroundColor: "rgba(255, 255, 255, 0.23)",
-            cursor: "pointer",
-          },
-        }}
-      >
+    <TableRow sx={{ ...sx }}>
+      <TableCell>
         <Box
           onClick={() => setIsDialogOpen(true)}
           sx={{ width: `${TASK_NAME_WIDTH}px`, paddingLeft: 1 }}
@@ -73,12 +55,12 @@ const CalendarTableRow = ({
           onMouseEnter={() => setHoverColDate(calendar.date)}
           onMouseLeave={() => setHoverColDate("")}
           align="center"
+          sx={{ backgroundColor: getBgColor(calendar.date) }}
         >
           <CalendarTableCell
             taskId={task.id}
             calendar={calendar}
             readonly={readonly}
-            hovered={hoverColDate === calendar.date}
           />
         </TableCell>
       ))}

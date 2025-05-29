@@ -1,9 +1,25 @@
 import { blue, red } from "@mui/material/colors";
 
-import { createTheme } from "@mui/material/styles";
+import { createTheme, PaletteColorOptions } from "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+  interface Palette {
+    myBgColor: Palette["primary"];
+  }
+  interface PaletteOptions {
+    myBgColor?: PaletteOptions["primary"];
+  }
+}
 
 export const BOTTOM_NAV_HEIGHT = 60;
 const theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: blue[300],
+    },
+    myBgColor: { main: "#121212" },
+  },
   components: {
     MuiBottomNavigation: {
       styleOverrides: {
@@ -105,12 +121,6 @@ const theme = createTheme({
           borderRight: "1px solid rgba(255, 255, 255, 0.23)",
         },
       },
-    },
-  },
-  palette: {
-    mode: "dark",
-    primary: {
-      main: blue[300],
     },
   },
 });

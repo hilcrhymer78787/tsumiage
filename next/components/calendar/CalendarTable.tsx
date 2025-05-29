@@ -17,17 +17,13 @@ import CalendarTableRow from "@/components/calendar/CalendarTableRow";
 import { NAV_WIDTH } from "@/layouts/default";
 import dayjs from "dayjs";
 import { useMedia } from "@/data/media/useMedia";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 
 export const TASK_NAME_WIDTH = 150;
+
 export const CELL_SIZE = 40;
-export const stickyStyle = {
-  position: "sticky",
-  left: 0,
-  width: TASK_NAME_WIDTH,
-  background: "#121212",
-};
+
 const CalendarTable = ({
   userName,
   calendars,
@@ -43,15 +39,23 @@ const CalendarTable = ({
 }) => {
   const theme = useTheme();
   const { isPc } = useMedia();
+
   const tableWidth = useMemo(() => {
     const size = TASK_NAME_WIDTH + CELL_SIZE * Number(calendars?.length);
     return `${size}px`;
   }, [calendars?.length]);
+
   const [hoverColDate, setHoverColDate] = useState("");
 
   const onSetHoverColDate = (date: string) => {
     setHoverColDate(isPc ? date : "");
   };
+
+  const getBgColor = useCallback(
+    (date: string) => (hoverColDate === date ? "rgba(60, 60, 60) !important" : "myBgColor.main"),
+    [hoverColDate]
+  );
+
   return (
     <>
       <Pagination
@@ -64,39 +68,47 @@ const CalendarTable = ({
           height: `calc(100vh - ${PAGINATION_HEIGHT}px - ${
             isPc ? 0 : BOTTOM_NAV_HEIGHT + 50
           }px - env(safe-area-inset-bottom))`,
-          // TODO +40を消したい
+          // TODO +50を消したい
         }}
       >
-        <Table stickyHeader sx={{ width: tableWidth }}>
+        <Table
+          stickyHeader
+          sx={{
+            width: tableWidth,
+            "& .MuiTableCell-root": {
+              width: CELL_SIZE,
+              height: CELL_SIZE,
+              backgroundColor: "myBgColor.main",
+            },
+            "& .MuiTableRow-root > .MuiTableCell-root:first-of-type": {
+              position: "sticky",
+              left: 0,
+              width: TASK_NAME_WIDTH,
+              zIndex: 2,
+            },
+          }}
+        >
           <TableHead>
             <TableRow>
-              <TableCell sx={{ ...stickyStyle, zIndex: 3 }}>
+              <TableCell sx={{ zIndex: "3 !important" }}>
                 <Box
-                  sx={{
-                    width: `${TASK_NAME_WIDTH}px`,
-                    paddingLeft: 1,
-                    color: theme.palette.primary.main,
-                  }}
+                  width={`${TASK_NAME_WIDTH}px`}
+                  paddingLeft={1}
+                  color={theme.palette.primary.main}
                   className="ellipsis"
                 >
                   {userName}
                 </Box>
               </TableCell>
-              {calendars?.map((calendar) => (
+              {calendars?.map(({ date }) => (
                 <TableCell
                   align="center"
-                  key={calendar.date}
-                  sx={{
-                    height: `${CELL_SIZE}px`,
-                    backgroundColor:
-                      hoverColDate === calendar.date
-                        ? "rgba(60, 60, 60)"
-                        : "#121212",
-                  }}
-                  onMouseEnter={() => onSetHoverColDate(calendar.date)}
+                  key={date}
+                  sx={{ backgroundColor: getBgColor(date) }}
+                  onMouseEnter={() => onSetHoverColDate(date)}
                   onMouseLeave={() => onSetHoverColDate("")}
                 >
-                  {dayjs(calendar.date).format("D")}
+                  {dayjs(date).format("D")}
                 </TableCell>
               ))}
             </TableRow>
@@ -108,8 +120,20 @@ const CalendarTable = ({
                 task={task}
                 calendars={calendars}
                 readonly={readonly}
-                hoverColDate={hoverColDate}
+                getBgColor={getBgColor}
                 setHoverColDate={onSetHoverColDate}
+                sx={{
+                  "&:hover .MuiTableCell-root": {
+                    backgroundColor: isPc
+                      ? "rgba(60, 60, 60)"
+                      : "myBgColor.main",
+                  },
+                  "& .MuiTableCell-root:hover, & .MuiButton-root:hover": {
+                    backgroundColor: "rgba(120, 120, 120)",
+                    cursor: "pointer",
+                    
+                  },
+                }}
               />
             ))}
           </TableBody>

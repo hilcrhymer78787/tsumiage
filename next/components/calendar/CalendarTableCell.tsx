@@ -1,25 +1,20 @@
 import { Box, Button, CircularProgress } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import { CELL_SIZE } from "@/components/calendar/CalendarTable";
 import { Calendar } from "@/data/work/useReadWorkMonth";
 import WorkStateIcon from "@/components/calendar/WorkStateIcon";
 import dayjs from "dayjs";
 import { useCreateWork } from "@/data/work/useCreateWork";
 
-type CalendarTableCellProps = {
-  taskId: number;
-  calendar: Calendar;
-  readonly?: boolean;
-  hovered: boolean;
-};
 const CalendarTableCell = ({
   taskId,
   calendar,
   readonly,
-  hovered,
-}: CalendarTableCellProps) => {
-  const boxSx = { width: `${CELL_SIZE}px`, height: `${CELL_SIZE}px` };
+}: {
+  taskId: number;
+  calendar: Calendar;
+  readonly?: boolean;
+}) => {
   const task = calendar.tasks.find((task) => task.id === taskId);
   const { date } = calendar;
   const createdAt = task?.createdAt;
@@ -42,12 +37,11 @@ const CalendarTableCell = ({
     setIsLoading(false);
   };
 
-  if (dayjs(date).isAfter(dayjs(), "day")) return <Box sx={boxSx}></Box>;
-  if (dayjs(createdAt).isAfter(dayjs(date), "day"))
-    return <Box sx={boxSx}></Box>;
+  if (dayjs(date).isAfter(dayjs(), "day")) return <Box></Box>;
+  if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <Box></Box>;
   if (isLoading)
     return (
-      <Box className="flexCenter" sx={boxSx}>
+      <Box className="flexCenter">
         <CircularProgress size={24} />
       </Box>
     );
@@ -57,13 +51,10 @@ const CalendarTableCell = ({
       onClick={apiWorkCreate}
       disabled={readonly}
       sx={{
-        minWidth: `${CELL_SIZE}px`,
-        height: `${CELL_SIZE}px`,
+        p: 0,
         borderRadius: 0,
-        backgroundColor: hovered ? "rgba(60, 60, 60)" : "transparent",
-        "&:hover": {
-          backgroundColor: "rgba(255, 255, 255, 0.23)",
-        },
+        minWidth: "100%",
+        height: "100%",
       }}
     >
       <WorkStateIcon state={state} />
