@@ -24,7 +24,7 @@ export const useReadTasks = () => {
     const requestConfig = {
       url: "/api/task/read",
       method: "GET",
-      params: { date, userId },
+      params: { date, user_id: userId },
     };
     return api(requestConfig as any)
       .then((res) => {

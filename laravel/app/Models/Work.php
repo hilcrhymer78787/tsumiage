@@ -14,14 +14,19 @@ class Work extends Model
         'work_date',
         'work_task_id',
         'work_user_id',
-        'work_state',//TODO 未完了 完了 不要
+        'work_state', //TODO 未完了 完了 不要
     ];
 
     protected $casts = [
-        'work_id'=>'integer',
+        'work_id' => 'integer',
         'work_date',
-        'work_task_id'=>'integer',
-        'work_user_id'=>'integer',
-        'work_state'=>'integer',
+        'work_task_id' => 'integer',
+        'work_user_id' => 'integer',
+        'work_state' => 'integer',
     ];
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class, 'work_task_id', 'task_id');
+    }
 }

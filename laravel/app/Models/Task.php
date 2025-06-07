@@ -9,6 +9,8 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $table = 'tasks';
+
     protected $fillable = [
         'task_id',
         'task_user_id',
@@ -17,8 +19,13 @@ class Task extends Model
     ];
 
     protected $casts = [
-        'task_id'=>'integer',
-        'task_user_id'=>'integer',
-        'task_sort_key'=>'integer',
-      ];
+        'task_id' => 'integer',
+        'task_user_id' => 'integer',
+        'task_sort_key' => 'integer',
+    ];
+
+    public function works()
+    {
+        return $this->hasMany(Work::class, 'work_task_id', 'task_id');
+    }
 }

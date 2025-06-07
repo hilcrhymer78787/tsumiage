@@ -27,9 +27,9 @@ Route::post('/user/create', [UserController::class, 'create']);
 
 Route::middleware([CheckToken::class])->group(function () {
     // TaskController のルート
+    Route::get('/task/read', [TaskController::class, 'read']);
     Route::post('/task/create', [TaskController::class, 'create']);
     Route::post('/task/sort', [TaskController::class, 'sort']);
-    Route::get('/task/read', [TaskController::class, 'read']);
     Route::delete('/task/delete', [TaskController::class, 'delete']);
 
     // UserController のルート（トークンチェック後）
