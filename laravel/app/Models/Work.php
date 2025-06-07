@@ -14,7 +14,7 @@ class Work extends Model
         'work_date',
         'work_task_id',
         'work_user_id',
-        'work_state', //TODO 未完了 完了 不要
+        'work_state',
     ];
 
     protected $casts = [

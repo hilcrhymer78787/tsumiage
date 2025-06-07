@@ -37,13 +37,13 @@ class TaskReadService implements TaskReadServiceInterface
             $isFriends = $this->checkIsFriendsService->checkIsFriends($loginInfoId, $paramsUserId);
             if (!$isFriends) {
                 // TODO このエラーも共通化
-                // TODO factory？？
                 throw new HttpException(403, 'このユーザは友達ではありません');
             }
         }
 
         $tasks = $this->query->getTasks($params)->get();
 
+        // TODO ⭐️ factoryでエンティティを作る？？
         return collect([
             'date' => $params->date,
             'tasks' => $tasks,

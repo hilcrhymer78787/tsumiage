@@ -33,9 +33,9 @@ class TaskController extends Controller
             $result = $this->service->taskRead($params, $request);
             return response()->json($result);
         } catch (Throwable $error) {
-            // debugError($error);
-            // return ErrorResource::unexpectedError($error);
 
+            //TODO debugErrorというグローバル関数を作る
+            // debugError($error);
             Log::error('TaskReadエラー', [
                 'message' => $error->getMessage(),
                 'file' => $error->getFile(),
@@ -43,6 +43,8 @@ class TaskController extends Controller
                 'trace' => $error->getTraceAsString(),
             ]);
 
+            //TODO ErrorResourceで共通化
+            // return ErrorResource::unexpectedError($error);
             return response()->json([
                 'code' => 'UNEXPECTED_ERROR',
                 'message' => '予期せぬエラーが発生しました。',
