@@ -2,17 +2,12 @@ import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
 import axios, { Canceler } from "axios";
-import { apiUserBearerAuthResponseType } from "@/types/api/user/bearerAuth/response";
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+import { loginInfoAtom } from "@/data/user";
 
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;
 
-const loginInfoAtom = atom<apiUserBearerAuthResponseType | null>({
-  key: "loginInfo",
-  dangerouslyAllowMutability: true,
-  default: null,
-});
 export const useBearerAuth = () => {
   const [loginInfo, setLoginInfo] = useRecoilState(loginInfoAtom);
 

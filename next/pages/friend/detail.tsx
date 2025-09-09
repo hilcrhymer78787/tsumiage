@@ -34,7 +34,7 @@ const FriendDetail = () => {
   const getCalendarData = useCallback(
     async (year?: number, month?: number) => {
       await readWorkMonth({
-        userId,
+        user_id: userId,
         year: year ?? Number(router.query.year),
         month: month ?? Number(router.query.month),
       });

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class TaskReadRequest extends FormRequest
+class WorkReadMonthRequest extends FormRequest
 
 {
     public function authorize()
@@ -18,7 +18,8 @@ class TaskReadRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer',
-            'date' => 'required|date_format:Y-m-d',
+            'year' => 'required|integer',
+            'month' => 'required|integer',
         ];
     }
 
@@ -27,8 +28,10 @@ class TaskReadRequest extends FormRequest
         return [
             'user_id.required' => 'user_id は必須です。',
             'user_id.integer' => 'user_id は整数でなければなりません。',
-            'date.required' => 'date は必須です。',
-            'date.date_format' => 'date は YYYY-MM-DD 形式で入力してください。',
+            'year.required' => 'year は必須です。',
+            'year.integer' => 'year は整数でなければなりません。',
+            'month.required' => 'month は必須です。',
+            'month.integer' => 'month は整数でなければなりません。',
         ];
     }
 

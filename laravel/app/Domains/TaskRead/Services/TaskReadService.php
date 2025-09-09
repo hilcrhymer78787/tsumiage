@@ -4,34 +4,34 @@ declare(strict_types=1);
 
 namespace App\Domains\TaskRead\Services;
 
-// use App\Domains\TaskRead\Factories\TaskReadFactory;
-use App\Domains\TaskRead\Interfaces\Services\TaskReadServiceInterface;
+use App\Domains\TaskRead\Factories\TaskReadFactory;
 use App\Domains\TaskRead\Parameters\TaskReadParameter;
 use App\Http\Requests\TaskReadRequest;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Domains\Shared\CheckIsFriends\Services\CheckIsFriendsService;
+use App\Domains\TaskRead\Entities\TaskReadEntity;
 use App\Domains\TaskRead\Queries\TaskReadQuery;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class TaskReadService implements TaskReadServiceInterface
+class TaskReadService
 {
     public function __construct(
         private readonly TaskReadQuery $query,
         private readonly LoginInfoService $loginInfoService,
         private readonly CheckIsFriendsService $checkIsFriendsService,
+        private readonly TaskReadFactory $factory,
+
         // private readonly TaskReadService $taskReadService,
         // private readonly TaskReadFactory $factory,
     ) {}
 
-    /**
-     * 累計本指名ランキング
-     */
-    public function taskRead(TaskReadParameter $params, TaskReadRequest $request): Collection
+    public function taskRead(TaskReadParameter $params, TaskReadRequest $request): TaskReadEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
         $loginInfoId = $loginInfoModel->id;
         $paramsUserId = $params->userId;
+        $paramsDate = $params->date;
 
         if ($loginInfoId !== $paramsUserId) {
             $isFriends = $this->checkIsFriendsService->checkIsFriends($loginInfoId, $paramsUserId);
@@ -41,12 +41,8 @@ class TaskReadService implements TaskReadServiceInterface
             }
         }
 
-        $tasks = $this->query->getTasks($params)->get();
-
-        // TODO ⭐️ factoryでエンティティを作る？？
-        return collect([
-            'date' => $params->date,
-            'tasks' => $tasks,
-        ]);
+        $taskModels = $this->query->getTasksBuilder($params)->get();
+        
+        return $this->factory->create($paramsDate, $taskModels);
     }
 };

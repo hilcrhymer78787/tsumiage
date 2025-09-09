@@ -9,7 +9,7 @@ export type Calendar = {
 };
 
 export type ReadWorkMonthReq = {
-  userId: number;
+  user_id: number;
   year: number;
   month: number;
 };
@@ -28,7 +28,7 @@ export const useReadWorkMonth = () => {
     };
     return api(requestConfig as any)
       .then((res) => {
-        setCalendars(res.data.calendars);
+        setCalendars(res.data.data.calendars);
         return res;
       })
       .catch((err) => {

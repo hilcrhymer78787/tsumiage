@@ -7,7 +7,6 @@ export type Task = {
   id: number;
   name: string;
   createdAt: string;
-  sort_key: number | null | undefined;
   work: {
     id: number;
     state: WorkState;
@@ -28,7 +27,7 @@ export const useReadTasks = () => {
     };
     return api(requestConfig as any)
       .then((res) => {
-        setTasks(res.data.tasks);
+        setTasks(res.data.data.tasks);
         return res;
       })
       .catch((err) => {

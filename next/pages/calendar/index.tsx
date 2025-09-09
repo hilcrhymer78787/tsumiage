@@ -28,7 +28,7 @@ const Calendar = () => {
   const getCalendarData = useCallback(async () => {
     const userId = loginInfo?.id;
     if (!userId) return;
-    await readWorkMonth({ userId, year, month });
+    await readWorkMonth({ user_id: userId, year, month });
   }, [loginInfo?.id, month, readWorkMonth, year]);
 
   const onClickReset = useCallback(async () => {

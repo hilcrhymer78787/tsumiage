@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class TaskReadQuery
 {
-    public function getTasks(TaskReadParameter $params): Builder
+    public function getTasksBuilder(TaskReadParameter $params): Builder
     {
         $query =  Task::where('task_user_id', $params->userId)
             ->select(
@@ -20,7 +20,7 @@ class TaskReadQuery
                 'tasks.task_sort_key',
             )
             ->orderBy('task_sort_key')
-            ->with(['works' => function ($query) use ($params) {
+            ->with(['work' => function ($query) use ($params) {
                 $query
                     ->select(
                         'works.work_id',

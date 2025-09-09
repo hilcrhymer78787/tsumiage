@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Task extends Model
 {
@@ -27,5 +28,9 @@ class Task extends Model
     public function works()
     {
         return $this->hasMany(Work::class, 'work_task_id', 'task_id');
+    }
+    public function work(): HasOne
+    {
+        return $this->hasOne(Work::class, 'work_task_id', 'task_id');
     }
 }
