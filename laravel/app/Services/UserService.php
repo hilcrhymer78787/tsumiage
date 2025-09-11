@@ -25,28 +25,17 @@ class UserService
     }
     public function getNowFriends($userId)
     {
-        $users = [];
-
-        $usersArray1 = Invitation::where('invitation_to_user_id', $userId)
+        $users1 = Invitation::where('invitation_to_user_id', $userId)
             ->where('invitation_status', 2)
-            ->leftjoin('users', 'invitations.invitation_from_user_id', '=', 'users.id')
-            ->select('id', 'email', 'name', 'user_img', 'invitation_id')
-            ->get();
-
-        $usersArray2 = Invitation::where('invitation_from_user_id', $userId)
+            ->leftJoin('users', 'invitations.invitation_from_user_id', '=', 'users.id')
+            ->select('id', 'email', 'name', 'user_img', 'invitation_id');
+    
+        $users2 = Invitation::where('invitation_from_user_id', $userId)
             ->where('invitation_status', 2)
-            ->leftjoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
-            ->select('id', 'email', 'name', 'user_img', 'invitation_id')
-            ->get();
-
-        foreach ($usersArray1 as $user) {
-            array_push($users, $user);
-        }
-        foreach ($usersArray2 as $user) {
-            array_push($users, $user);
-        }
-
-        return $users;
+            ->leftJoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
+            ->select('id', 'email', 'name', 'user_img', 'invitation_id');
+    
+        return $users1->union($users2)->get();
     }
     public function getToFriends($userId)
     {
