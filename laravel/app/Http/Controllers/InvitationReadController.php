@@ -19,12 +19,10 @@ class InvitationReadController extends Controller
     }
 
     // 型のバリデーションを行う
-    public function index(InvitationReadRequest $request)
-    // : InvitationReadResource | ErrorResource
+    public function index(InvitationReadRequest $request) : InvitationReadResource | ErrorResource
     {
         try {
             $invitationReadEntity = $this->service->invitationRead($request);
-            return $invitationReadEntity;
             return new InvitationReadResource($invitationReadEntity);
         } catch (Throwable $error) {
             debugError($error);

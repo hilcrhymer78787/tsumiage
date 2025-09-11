@@ -3,21 +3,31 @@
 namespace App\Domains\InvitationRead\Factories;
 
 use App\Domains\InvitationRead\Entities\InvitationReadEntity;
-use App\Domains\Shared\Calendar\Factories\CalendarFactory;
+use App\Domains\Shared\Invitation\Factories\InvitationFactory;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
+use App\Models\Invitation;
 
 class InvitationReadFactory
 {
     public function __construct(
-        private readonly CalendarFactory $calendarFactory,
+        private readonly InvitationFactory $invitationFactory,
     ) {}
 
-    public function create(Collection $calendarModels): InvitationReadEntity
+    public function getInvitationReadEntity(Collection $invitationReadModel): InvitationReadEntity
     {
-        $calendarEntities = $calendarModels->map(function ($calendarModel) {
-            return $this->calendarFactory->create($calendarModel);
+        $fromFriendsEntity = $invitationReadModel["fromFriends"]->map(function ($invitationModel) {
+            return $this->invitationFactory->create($invitationModel);
         });
-        return new InvitationReadEntity($calendarEntities);
+        $nowFriendsEntity = $invitationReadModel["nowFriends"]->map(function ($invitationModel) {
+            return $this->invitationFactory->create($invitationModel);
+        });
+        $toFriendsEntity = $invitationReadModel["toFriends"]->map(function ($invitationModel) {
+            return $this->invitationFactory->create($invitationModel);
+        });
+        return new InvitationReadEntity(
+            $fromFriendsEntity,
+            $nowFriendsEntity,
+            $toFriendsEntity,
+        );
     }
 }

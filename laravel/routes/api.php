@@ -45,8 +45,6 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::delete('/work/reset', [WorkController::class, 'reset']);
 
     // InvitationController のルート
-    Route::get('/old/invitation/read', [InvitationController::class, 'read']);
-    // Route::get('/invitation/read', [InvitationController::class, 'read']);
     Route::get('/invitation/read', [InvitationReadController::class, 'index']); //⭐️
     Route::post('/invitation/create', [InvitationController::class, 'create']);
     Route::put('/invitation/update', [InvitationController::class, 'update']);

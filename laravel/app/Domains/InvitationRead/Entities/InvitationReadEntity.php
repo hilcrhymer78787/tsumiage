@@ -7,13 +7,24 @@ use Illuminate\Support\Collection;
 class InvitationReadEntity
 {
     public function __construct(
-        /** @var Collection<int, CalendarEntity> */
-        private readonly Collection $calendarEntities,
+        private readonly Collection $fromFriendsEntity,
+        private readonly Collection $nowFriendsEntity,
+        private readonly Collection $toFriendsEntity,
     ) {}
 
-    public function getCalendarEntities(): Collection
+    public function getFromFriendsEntity(): Collection
     {
-        return $this->calendarEntities;
+        return $this->fromFriendsEntity;
+    }
+
+    public function getNowFriendsEntity(): Collection
+    {
+        return $this->nowFriendsEntity;
+    }
+
+    public function getToFriendsEntity(): Collection
+    {
+        return $this->toFriendsEntity;
     }
 
 }

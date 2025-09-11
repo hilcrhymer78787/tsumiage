@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Common\CalendarResource;
+use App\Http\Resources\Common\InvitationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvitationReadResource extends JsonResource
@@ -20,12 +20,20 @@ class InvitationReadResource extends JsonResource
      */
     public function toArray($request)
     {
-        $calendarEntities = $this->resource->getCalendarEntities();
+        $fromFriendsEntity = $this->resource->getFromFriendsEntity();
+        $nowFriendsEntity = $this->resource->getNowFriendsEntity();
+        $toFriendsEntity = $this->resource->getToFriendsEntity();
 
         return [
             'data' => [
-                'calendars'=> $calendarEntities->map(function ($calendarEntity) {
-                    return (new CalendarResource($calendarEntity));
+                'fromFriends'=> $fromFriendsEntity->map(function ($invitationEntity) {
+                    return (new InvitationResource($invitationEntity));
+                }),
+                'nowFriends'=> $nowFriendsEntity->map(function ($invitationEntity) {
+                    return (new InvitationResource($invitationEntity));
+                }),
+                'toFriends'=> $toFriendsEntity->map(function ($invitationEntity) {
+                    return (new InvitationResource($invitationEntity));
                 }),
             ],
             'success' => true,

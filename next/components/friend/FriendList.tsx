@@ -19,8 +19,11 @@ import { useInvitationApi } from "@/data/invitation";
 
 const FriendList = () => {
   const { invitationRead, invitationReadLoading } = useInvitationApi();
-  const [createInvitationDialog, setCreateInvitationDialog] = useState<boolean>(false);
-  const [friendData, setFriendData] = useState<apiInvitationResponseType>({
+  const [createInvitationDialog, setCreateInvitationDialog] =
+    useState<boolean>(false);
+  const [friendData, setFriendData] = useState<
+    apiInvitationResponseType["data"]
+  >({
     fromFriends: [],
     nowFriends: [],
     toFriends: [],
@@ -29,7 +32,7 @@ const FriendList = () => {
   const apiFriendRead = async () => {
     try {
       const res = await invitationRead();
-      setFriendData(res.data);
+      setFriendData(res.data.data);
     } catch (e) {
       if (axios.isAxiosError(e)) {
         alert(`${e?.response?.status}：${e?.response?.statusText}`);
@@ -50,7 +53,8 @@ const FriendList = () => {
         <CardHeader
           action={
             <Button onClick={() => setCreateInvitationDialog(true)}>
-              <AddIcon color="primary" />申請
+              <AddIcon color="primary" />
+              申請
             </Button>
           }
           title="友達"
@@ -60,8 +64,9 @@ const FriendList = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              p: "30px"
-            }}>
+              p: "30px",
+            }}
+          >
             <CircularProgress />
           </CardContent>
         )}
@@ -69,18 +74,20 @@ const FriendList = () => {
           <CardContent
             sx={{
               textAlign: "center",
-              p: "20px !important"
-            }}>
+              p: "20px !important",
+            }}
+          >
             登録されている友達はいません
           </CardContent>
         )}
-        {!!friendData.nowFriends.length && friendData.nowFriends.map((friend, index) => (
-          <FriendItemNow
-            friendRead={apiFriendRead}
-            friend={friend}
-            key={index.toString()}
-          />
-        ))}
+        {!!friendData.nowFriends.length &&
+          friendData.nowFriends.map((friend, index) => (
+            <FriendItemNow
+              friendRead={apiFriendRead}
+              friend={friend}
+              key={index.toString()}
+            />
+          ))}
       </Card>
       {!!friendData.fromFriends.length && (
         <Card sx={{ mb: "20px" }}>
@@ -106,14 +113,14 @@ const FriendList = () => {
           ))}
         </Card>
       )}
-      <Dialog open={createInvitationDialog}
+      <Dialog
+        open={createInvitationDialog}
         onClose={() => {
           setCreateInvitationDialog(false);
           apiFriendRead();
-        }}>
-        {createInvitationDialog && (
-          <CreateFriend />
-        )}
+        }}
+      >
+        {createInvitationDialog && <CreateFriend />}
       </Dialog>
     </>
   );

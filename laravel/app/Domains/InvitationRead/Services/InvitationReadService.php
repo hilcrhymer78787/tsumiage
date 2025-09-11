@@ -26,8 +26,7 @@ class InvitationReadService
         private readonly InvitationReadBuilder $builder,
     ) {}
 
-    public function invitationRead(InvitationReadRequest $request)
-    // : InvitationReadEntity
+    public function invitationRead(InvitationReadRequest $request): InvitationReadEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
         $loginInfoId = $loginInfoModel->id;
@@ -38,8 +37,6 @@ class InvitationReadService
 
         $invitationReadModel = $this->builder->build($fromFriendModels, $nowFriendModels, $toFriendModels);
 
-        return $invitationReadModel;
-
-        return $this->factory->create($calendarModels);
+        return $this->factory->getInvitationReadEntity($invitationReadModel);
     }
 };
