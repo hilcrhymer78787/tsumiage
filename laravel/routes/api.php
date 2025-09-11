@@ -9,6 +9,7 @@ use App\Http\Controllers\WorkController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TaskReadController;
 use App\Http\Controllers\WorkReadMonthController;
+use App\Http\Controllers\InvitationReadController;
 
 // テストルート
 Route::get('/test', function () {
@@ -44,7 +45,9 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::delete('/work/reset', [WorkController::class, 'reset']);
 
     // InvitationController のルート
-    Route::get('/invitation/read', [InvitationController::class, 'read']); //⭐️
+    Route::get('/old/invitation/read', [InvitationController::class, 'read']);
+    // Route::get('/invitation/read', [InvitationController::class, 'read']);
+    Route::get('/invitation/read', [InvitationReadController::class, 'index']); //⭐️
     Route::post('/invitation/create', [InvitationController::class, 'create']);
     Route::put('/invitation/update', [InvitationController::class, 'update']);
     Route::delete('/invitation/delete', [InvitationController::class, 'delete']);
