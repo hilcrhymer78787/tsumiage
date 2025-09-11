@@ -25,17 +25,15 @@ class UserService
     }
     public function getNowFriends($userId)
     {
-        $users1 = Invitation::where('invitation_to_user_id', $userId)
-            ->where('invitation_status', 2)
-            ->leftJoin('users', 'invitations.invitation_from_user_id', '=', 'users.id')
-            ->select('id', 'email', 'name', 'user_img', 'invitation_id');
-    
-        $users2 = Invitation::where('invitation_from_user_id', $userId)
-            ->where('invitation_status', 2)
-            ->leftJoin('users', 'invitations.invitation_to_user_id', '=', 'users.id')
-            ->select('id', 'email', 'name', 'user_img', 'invitation_id');
-    
-        return $users1->union($users2)->get();
+        return Invitation::join('users', function ($join) use ($userId) {
+            $join->on('users.id', '=', 'invitations.invitation_from_user_id')
+                 ->where('invitations.invitation_to_user_id', $userId)
+                 ->orOn('users.id', '=', 'invitations.invitation_to_user_id')
+                 ->where('invitations.invitation_from_user_id', $userId);
+        })
+        ->where('invitation_status', 2)
+        ->select('users.id', 'users.email', 'users.name', 'users.user_img', 'invitations.invitation_id')
+        ->get();
     }
     public function getToFriends($userId)
     {
