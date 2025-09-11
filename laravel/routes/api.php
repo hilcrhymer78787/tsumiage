@@ -38,9 +38,8 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::delete('/user/delete', [UserController::class, 'delete']);
 
     // WorkController のルート
-    Route::post('/work/create', [WorkController::class, 'create']);
     Route::get('/work/read/month', [WorkReadMonthController::class, 'index']); //⭐️
-    Route::post('/work/read/analytics', [WorkController::class, 'read_analytics']);
+    Route::post('/work/create', [WorkController::class, 'create']);
     Route::delete('/work/delete', [WorkController::class, 'delete']);
     Route::delete('/work/reset', [WorkController::class, 'reset']);
 

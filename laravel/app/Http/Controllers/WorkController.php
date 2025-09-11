@@ -11,31 +11,6 @@ use Carbon\Carbon;
 
 class WorkController extends Controller
 {
-    public function read_month(Request $request)
-    {
-        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
-        // 友達判定
-        if ($loginInfo['id'] != $request['userId']) {
-            $is_friends = (new UserService())->checkIsFriends($loginInfo['id'], $request['userId']);
-            if (!$is_friends) {
-                $errorMessage = 'このユーザは友達ではありません';
-                return response()->json(['errorMessage' => $errorMessage], 500);
-            }
-        }
-        // 日別データ
-        $year_month = $request['year'] . '-' . $request['month'];
-        $last_day = date('d', strtotime("last day of " . $year_month));
-
-        $return['calendars'] = [];
-        for ($day = 1; $day <= $last_day; $day++) {
-            $workData = (new WorkService())->getWorks([
-                'date' => date('Y-m-d', strtotime($year_month . '-' . $day)),
-                'userId' => $request['userId'],
-            ]);
-            array_push($return['calendars'], $workData);
-        }
-        return $return;
-    }
     public function create(Request $request)
     {
         $loginInfo = (new UserService())->getLoginInfoByRequest($request);
