@@ -38,6 +38,9 @@ export const useReadInvitation = () => {
         setReadInvitationLoading(false);
       });
   };
+  const isFirstLoading = [fromFriends, nowFriends, toFriends].every(
+    (v) => v === null
+  );
 
   return {
     fromFriends,
@@ -45,6 +48,6 @@ export const useReadInvitation = () => {
     toFriends,
     readInvitation,
     readInvitationError,
-    readInvitationLoading,
+    isFirstLoading,
   };
 };

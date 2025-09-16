@@ -1,10 +1,9 @@
 import {
   Button,
   Card,
-  CardContent,
   CardHeader,
-  CircularProgress,
   Dialog,
+  Stack,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -13,9 +12,8 @@ import CreateFriend from "@/components/friend/CreateFriend";
 import FriendItemFrom from "@/components/friend/FriendItemFrom";
 import FriendItemNow from "@/components/friend/FriendItemNow";
 import FriendItemTo from "@/components/friend/FriendItemTo";
-import { apiInvitationResponseType } from "@/types/api/invitation/read/response";
-import axios from "axios";
 import { useReadInvitation } from "@/data/invitation/useReadInvitation";
+import ApiHandle from "@/components/common/ApiHandle";
 
 const FriendList = () => {
   const {
@@ -23,11 +21,11 @@ const FriendList = () => {
     nowFriends,
     toFriends,
     readInvitation,
-    readInvitationLoading,
+    readInvitationError,
+    isFirstLoading,
   } = useReadInvitation();
 
-  const [createInvitationDialog, setCreateInvitationDialog] =
-    useState<boolean>(false);
+  const [createInvitationDialog, setCreateInvitationDialog] = useState(false);
 
   useEffect(() => {
     readInvitation();
@@ -35,8 +33,8 @@ const FriendList = () => {
   }, []);
 
   return (
-    <>
-      <Card sx={{ mb: "20px" }}>
+    <Stack gap={5}>
+      <Card>
         <CardHeader
           action={
             <Button onClick={() => setCreateInvitationDialog(true)}>
@@ -46,56 +44,43 @@ const FriendList = () => {
           }
           title="友達"
         />
-        {readInvitationLoading && !nowFriends?.length && (
-          <CardContent
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              p: "30px",
-            }}
-          >
-            <CircularProgress />
-          </CardContent>
-        )}
-        {!readInvitationLoading && !nowFriends?.length && (
-          <CardContent
-            sx={{
-              textAlign: "center",
-              p: "20px !important",
-            }}
-          >
-            登録されている友達はいません
-          </CardContent>
-        )}
-        {!!nowFriends?.length &&
-          nowFriends.map((friend, index) => (
+        <ApiHandle
+          isLoading={isFirstLoading}
+          isError={!!readInvitationError}
+          isNoData={nowFriends?.length === 0}
+          errorTxt="データの取得に失敗しました。"
+          noDataTxt="登録されている友達はいません"
+          p={5}
+        >
+          {nowFriends?.map((friend) => (
             <FriendItemNow
               friendRead={readInvitation}
               friend={friend}
-              key={index.toString()}
+              key={friend.id}
             />
           ))}
+        </ApiHandle>
       </Card>
       {!!fromFriends?.length && (
-        <Card sx={{ mb: "20px" }}>
+        <Card>
           <CardHeader title="友達申請が来ています" />
-          {fromFriends.map((friend, index) => (
+          {fromFriends.map((friend) => (
             <FriendItemFrom
               friendRead={readInvitation}
               friend={friend}
-              key={index.toString()}
+              key={friend.id}
             />
           ))}
         </Card>
       )}
       {!!toFriends?.length && (
-        <Card sx={{ mb: "20px" }}>
+        <Card>
           <CardHeader title="友達申請中" />
-          {toFriends.map((friend, index) => (
+          {toFriends.map((friend) => (
             <FriendItemTo
               friendRead={readInvitation}
               friend={friend}
-              key={index.toString()}
+              key={friend.id}
             />
           ))}
         </Card>
@@ -109,7 +94,7 @@ const FriendList = () => {
       >
         {createInvitationDialog && <CreateFriend />}
       </Dialog>
-    </>
+    </Stack>
   );
 };
 export default FriendList;
