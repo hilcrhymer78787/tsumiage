@@ -1,9 +1,12 @@
 import Layout from "@/layouts/default";
 import FriendList from "@/components/friend/FriendList";
-export default function Friend () {
+
+const Friend =() =>{
   return (
     <Layout>
       <FriendList />
     </Layout>
   );
-}
+};
+
+export default Friend;

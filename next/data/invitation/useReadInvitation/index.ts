@@ -1,0 +1,50 @@
+import { WorkState } from "@/data/work/useCreateWork";
+import { api } from "@/plugins/axios";
+import { errHandler } from "@/data/common";
+import { useState } from "react";
+
+export type Friend = {
+  id: number;
+  name: string;
+  email: string;
+  user_img: string;
+  invitation_id: number;
+};
+
+export const useReadInvitation = () => {
+  const [readInvitationLoading, setReadInvitationLoading] = useState(false);
+  const [readInvitationError, setReadInvitationError] = useState("");
+  const [fromFriends, setFromFriends] = useState<Friend[] | null>(null);
+  const [nowFriends, setNowFriends] = useState<Friend[] | null>(null);
+  const [toFriends, setToFriends] = useState<Friend[] | null>(null);
+  const readInvitation = async () => {
+    setReadInvitationError("");
+    setReadInvitationLoading(true);
+    const requestConfig = {
+      url: "/api/invitation/read",
+      method: "GET",
+    };
+    return api(requestConfig as any)
+      .then((res) => {
+        setFromFriends(res.data.data.fromFriends);
+        setNowFriends(res.data.data.nowFriends);
+        setToFriends(res.data.data.toFriends);
+        return res;
+      })
+      .catch((err) => {
+        errHandler(err, setReadInvitationError);
+      })
+      .finally(() => {
+        setReadInvitationLoading(false);
+      });
+  };
+
+  return {
+    fromFriends,
+    nowFriends,
+    toFriends,
+    readInvitation,
+    readInvitationError,
+    readInvitationLoading,
+  };
+};
