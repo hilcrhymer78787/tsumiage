@@ -6,6 +6,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint --fix",
+    "tsc": "tsc --watch",
     "test": "jest --env=jsdom --verbose"
   },
   "jest": {

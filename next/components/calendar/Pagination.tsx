@@ -1,3 +1,10 @@
+// TODO: import styled from "styled-components" 撤去
+// TODO: type Props 撤去
+// TODO: Props = { 撤去
+// TODO: import React from "react" 撤去
+// TODO: display: flex 撤去
+// TODO: export default function 撤去
+
 import { Box, IconButton, Typography } from "@mui/material";
 
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
@@ -7,11 +14,14 @@ import { useRouter } from "next/router";
 import { LoadingButton } from "@mui/lab";
 
 export const PAGINATION_HEIGHT = 60;
-type PaginationProps = {
+
+const Pagination = ({
+  onClickReset,
+  resetWorkLoading,
+}: {
   onClickReset?: () => void;
   resetWorkLoading?: boolean;
-};
-const Pagination = ({ onClickReset, resetWorkLoading }: PaginationProps) => {
+}) => {
   const fontSize = "27px";
   const router = useRouter();
 
