@@ -1,4 +1,3 @@
-// TODO: import styled from "styled-components" 撤去
 // TODO: type Props 撤去
 // TODO: Props = { 撤去
 // TODO: import React from "react" 撤去

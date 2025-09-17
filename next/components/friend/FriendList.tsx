@@ -5,7 +5,7 @@ import {
   Dialog,
   Stack,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 import CreateFriend from "@/components/friend/CreateFriend";

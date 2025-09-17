@@ -1,4 +1,3 @@
-import React from "react";
 import { Line } from "react-chartjs-2";
 import { analyticsType } from "@/types/common/analyticsType";
 import { Box } from "@mui/material";
@@ -21,24 +20,21 @@ Chart.register(
   Tooltip,
   Legend
 );
-type Props = {
-  data: analyticsType
-  height: string
-}
-const LinePlot = (props: Props) => {
-
+const LinePlot = ({
+  data,
+  height,
+}: {
+  data: analyticsType;
+  height: string;
+}) => {
   const options: {} = {
     maintainAspectRatio: false,
   };
 
   return (
-    <Box sx={{ height: props.height }}>
-      {!!props.data.datasets.length && (
-        <Line
-          data={props.data}
-          options={options}
-          id="chart-key"
-        />
+    <Box sx={{ height: height }}>
+      {!!data.datasets.length && (
+        <Line data={data} options={options} id="chart-key" />
       )}
     </Box>
   );

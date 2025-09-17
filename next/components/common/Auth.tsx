@@ -8,7 +8,7 @@ import {
   Container,
   TextField,
 } from "@mui/material";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";

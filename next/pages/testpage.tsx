@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 
-import React from "react";
 import { api } from "@/plugins/axios";
 
 export default function TestPage() {

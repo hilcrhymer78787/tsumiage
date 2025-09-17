@@ -6242,7 +6242,7 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/pagination.tsx": {
-        "version": "52f8be703cfcc10a8d74f6c065197b87a16d5b900ae791c598fe31ec71d2fb93",
+        "version": "1726e8a1c5b3eedfe468d257e04b12f351e2d47ee45d5aea22849dc62a440322",
         "signature": "d8c89ec316b503c8302a03f80795205483ab7bc260747e9466a3a9daff367bea",
         "affectsGlobalScope": false
       },
@@ -6302,8 +6302,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/userimg.tsx": {
-        "version": "91fcc7dba6da2123cfb50e0aafdf44fb73f53e0f85f9f54b8345d29201c1c321",
-        "signature": "a3561c3cba5196d583047a4e7b28f6f5769d513fac5045a57869aaefc55814dd",
+        "version": "c8da1d5651b17497b159931f13545ed423d959160a952ddb2c9c936a6fb6be1d",
+        "signature": "9d81bca608a551a002f82635cc63070d43ad5eeddb5fa45349c7c773f083ea0c",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/send.d.ts": {
@@ -6312,13 +6312,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/auth.tsx": {
-        "version": "f26426a4b038f225784805c49d4521c39a49c4f705818e4c0a6dd1500bf8fa62",
-        "signature": "8473c81e6260c39422fd52875e03f4c0b7bd42fdbc4ff6b4d97932e1178d7431",
-        "affectsGlobalScope": false
-      },
-      "./layouts/login.tsx": {
-        "version": "a89469eeb857119ac02136ade45773a0a9b0235dc7c8aca22de89dfae0ee6f95",
-        "signature": "871095edb11ae33308439c2d6829459d1e48f6f772c9528afa661a40b778640f",
+        "version": "3e94ece07313aa2505665f4c256288b1f0299743fb828fab7c4246436951e667",
+        "signature": "b62606cca1dd7fffa3e2efa88e38657ee156bac2d2c5138fc1e7e725266f8d5b",
         "affectsGlobalScope": false
       },
       "./components/common/errtxt/index.tsx": {
@@ -6337,8 +6332,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/authnew.tsx": {
-        "version": "eae2e451514ce9098aef6a4e33a9283c17a67218ffc4993ae99688c486aa635d",
-        "signature": "020045503c2527b8b233c9062faec32160b86293ef7631c5746bd84c1b31b0ad",
+        "version": "be844c2bfb86661e365b76dc647f76bca8a85821dd0f35fbbcfb54eb2ae4568a",
+        "signature": "c6fb34d55d8b01830869a9d326ec518a8b6c77b3c69ba541d047b3a4f216b17a",
         "affectsGlobalScope": false
       },
       "./layouts/default.tsx": {
@@ -6347,7 +6342,7 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/calendartable.tsx": {
-        "version": "0aed50809b399fdacf028ceca7517ff61e0d7643501ca64896c9be2b6b258b17",
+        "version": "c3e2d05c68ae4f6e6683ff46bd735125cb5c598d6b4d6b559d0fe3340dcc73a2",
         "signature": "448e0a690a3474a63a4c4785c1f1a4a351169f35b6639669fba97c82e6d9f1b0",
         "affectsGlobalScope": false
       },
@@ -6432,13 +6427,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/lineplot.tsx": {
-        "version": "a5055aa77f13bd08ed2f48acab775e05f956e40f6fa90844444d49a45cf7dfc4",
-        "signature": "6ebdd3b148a56f5d7e121a1f6c3bc257531b0b5929ec6f9c9586ffe0e075a7d3",
-        "affectsGlobalScope": false
-      },
-      "./components/common/mypage.tsx": {
-        "version": "21d9ade75a42ada7123dd1b98f8c9b6baa5b5db4a5828db7ed30dbe8c69c979a",
-        "signature": "e8f91bb37cc31b03a223198298f1f7be7f0cf2eab55adce5b3360848d8b02a3c",
+        "version": "1cd4a56d8560cade9e0eaab73c240888767f87bc9ef36349ecd2e240a73c5193",
+        "signature": "a7896d1cf8af1a0938a516fd8724ddd9ccedcff5936659ca55b97c448cda35cb",
         "affectsGlobalScope": false
       },
       "./components/common/rstack.tsx": {
@@ -6452,8 +6442,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/simpletable.tsx": {
-        "version": "dde1286c7988882b8732b2d97e012ae85e6c74beed25d3994dde14e6c409c3d1",
-        "signature": "3487318ffb3a74bf52dc76211a23d32729ce2411496ecba1fceaa1b9136fb58f",
+        "version": "2ff0238dbdc7e65415dddebcd48ae27fc6ee17fc160dcf43ed8cb12662c3c2be",
+        "signature": "7e96409c4e443fe62b4d9e5b44acd4bdda974266f330b1cf507e0930b47c5e75",
         "affectsGlobalScope": false
       },
       "./components/common/loading/index.tsx": {
@@ -7332,18 +7322,18 @@
         "affectsGlobalScope": false
       },
       "./components/common/sortable/sortableitem.tsx": {
-        "version": "70a2a8e4374b4ce094bba82a4c7d6b3846ee6882a223d9f4182b5e287526c993",
-        "signature": "6ae1d9e0d3e65212ab6f9fe734ea3a55e058e8e019a9df2ba23f6790e87a850e",
+        "version": "8d8be45347b6e959e04521641541d2f06df68841e4b9a1563e6010de5d548555",
+        "signature": "b66667043b53b1b0ed64e98421061ca485dc0c9c803566ad618c159551154622",
         "affectsGlobalScope": false
       },
       "./components/common/sortable/index.tsx": {
-        "version": "26eb11e290272c66ef25a5eac8def638386513e6da68f1dcf11d19708ae951ca",
-        "signature": "a5b2b302f0f5e9e4490f78bcc949b38b7e4dd193d96ac44b9ba114e07692d7db",
+        "version": "12079659368df856f36d5fd19fb5ef6eefe49abd44ca8aff6e1e6e3289b381cc",
+        "signature": "9064fa87d6407d93e1d81344e8e7be8c043b616d2400aad9cdebbad63fe2a96b",
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "4fd0342f902737eaa2b4855b38dc270d47999458ff7348468f0452b5e5c93ea9",
-        "signature": "58e78efec2f00e7c3524d0ee1be2b7b8bd809dfc27ab9e06bd7f97a1fa3521a3",
+        "version": "acc55ca9f71c764955403288bf19e161d18ac9e42e79cb0c2542155024399d97",
+        "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/delete.d.ts": {
@@ -7352,8 +7342,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemfrom.tsx": {
-        "version": "7171f3824c11b41851b595e357124f46085f1d699b888534923438fd188dbdc6",
-        "signature": "d66550a0e1dcfb06971b02740f216f2e8d53c24ee2d3fea78ba81067386d6d46",
+        "version": "3b8e1951afbfe4ebfbdb506c3dee018cde0d75e5fe80bf1e6fecd5fdd01e965c",
+        "signature": "9e4fb2f066fb65a5a8f962aa632328ae84e55d44e3df5eba64825e8af3d8df7a",
         "affectsGlobalScope": false
       },
       "./node_modules/swiper/swiper-react.d.ts": {
@@ -7362,8 +7352,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "778e2c99ca43359ecaf4516c013a6abd7245bd493bdf5dc1fe152a6f4c78e2a4",
-        "signature": "654a1c6f8b5517295da959e451130da2e944a6d674804d184ee047ce7aafee98",
+        "version": "1861ff5a0e17455db61ed17254fb0b662dd9cd2e1a8e16ccd2981552ecbd6fbd",
+        "signature": "c59499fafdc5e4a81d9bb3940b7a817ead97535237d8f5f2422559ec2d2f0b3d",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/cancel.d.ts": {
@@ -7372,8 +7362,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemto.tsx": {
-        "version": "6e8afa1408cf4b31189ecaf9eaebb108baba1f998870ed27401cdc0fa23606af",
-        "signature": "7928e3e4755138b1df503c63380e90b214319c4ff15ab1e89f17a1be5183ce1f",
+        "version": "ca5cf0eac21f9ae7333481081d20c3c18989f27fb76a7f320252a28cc92fdfaf",
+        "signature": "8009bba30a580d52ecb1fc7dfa1ffaa5506b0b9be8a03a966aba6ca07906427c",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/add.d.ts": {
@@ -7382,8 +7372,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/friendlist.tsx": {
-        "version": "faffe750620b9e2a43d6f861e09aa513d5136bfc908ccdc3f7eec96958fc959f",
-        "signature": "e64dcc86e340037b0945f05e12418402e47e63b00aa126322d51489c2d270a2d",
+        "version": "1b6afb6fbdbbe4d4e8681c99e99eca8ee1cce2e969ac79c6e958375bd66d4a28",
+        "signature": "516f77218300bcec5c437dc0b89394540f84e72807a3370ea5a257fdecb0c184",
         "affectsGlobalScope": false
       },
       "./components/task/createtask.tsx": {
@@ -7429,6 +7419,11 @@
       "./components/task/tasksortheader.tsx": {
         "version": "680a151680caed21a6decb13c48c02fc61b8e6f8a67f1aa32b826a0257831df5",
         "signature": "8e578e92c31dabf57981f41a16ca39df68b713d0a899795c4aeda627ad52f1dc",
+        "affectsGlobalScope": false
+      },
+      "./layouts/login.tsx": {
+        "version": "a89469eeb857119ac02136ade45773a0a9b0235dc7c8aca22de89dfae0ee6f95",
+        "signature": "871095edb11ae33308439c2d6829459d1e48f6f772c9528afa661a40b778640f",
         "affectsGlobalScope": false
       },
       "./node_modules/@date-io/date-fns/type/index.d.ts": {
@@ -8212,8 +8207,8 @@
         "affectsGlobalScope": false
       },
       "./pages/testpage.tsx": {
-        "version": "701590b6deaa321dbc75db3e4630679286940da084ea8371142feaabf39194f9",
-        "signature": "454c6581cc9e5cc1293fdafe91f2bbbefed174cffc8376488089938126d1b099",
+        "version": "4f0516b46c6feaba90cfe737aba0454b9b16209d687e04d82b11e78b0130345c",
+        "signature": "999c07764d4450883d5fa9f96e1932801108e72ed1f847659b2537b4db7e92e3",
         "affectsGlobalScope": false
       },
       "./pages/calendar/index.tsx": {
@@ -8237,8 +8232,8 @@
         "affectsGlobalScope": false
       },
       "./pages/mypage/index.tsx": {
-        "version": "72c6efbccafcc7713666ca21f5dfca433f54ffd4fdd37e6beabdb96a1c3d87f9",
-        "signature": "e8f91bb37cc31b03a223198298f1f7be7f0cf2eab55adce5b3360848d8b02a3c",
+        "version": "3b7d171a0afe803328850396932a85f02eed08d06232e639cafac835a5235ce8",
+        "signature": "2905cddf1aa33ffbc83605227b7bc120fa8bd5779f1228874d7bed5e285e0d96",
         "affectsGlobalScope": false
       },
       "./pages/task/index.tsx": {
@@ -8247,8 +8242,8 @@
         "affectsGlobalScope": false
       },
       "./pages/task/sort/index.tsx": {
-        "version": "960d7d252894a11dcf5939197f6bb8422abf57bcb46f8ff0b1e679964fcc40df",
-        "signature": "3bc8ec1b8c83bafd6b4468c08e79c7f2d51c89541b169079d67764b79d7e2e13",
+        "version": "b1842d79fa1808b0a1c32d401bdf02218e5f5764e6dbe835a6c8ea76ff2e2de5",
+        "signature": "0d43bfa0b61722c78b084cbcace1f8f4b1d2690f15c39c2efc1e61a8cac8cf7c",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/aria-query/index.d.ts": {
@@ -8544,7 +8539,6 @@
         "./data/work/usereadworkmonth/index.ts",
         "./layouts/default.tsx",
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@mui/material/styles/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/dayjs/index.d.ts",
@@ -8603,7 +8597,6 @@
       ],
       "./components/common/authnew.tsx": [
         "./components/user/createuser.tsx",
-        "./layouts/login.tsx",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -8618,7 +8611,6 @@
       ],
       "./components/common/lineplot.tsx": [
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/chart.js/types/index.esm.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/react-chartjs-2/dist/index.d.ts",
@@ -8627,16 +8619,6 @@
       "./components/common/loading/index.tsx": [
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./components/common/mypage.tsx": [
-        "./components/common/userimg.tsx",
-        "./components/user/createuser.tsx",
-        "./data/user.ts",
-        "./data/user/usebearerauth/index.ts",
-        "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/recoil/index.d.ts"
       ],
       "./components/common/nodata/index.tsx": [
         "./node_modules/@mui/material/index.d.ts",
@@ -8651,13 +8633,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/common/simpletable.tsx": [
-        "./node_modules/@mui/material/paper/index.d.ts",
-        "./node_modules/@mui/material/table/index.d.ts",
-        "./node_modules/@mui/material/tablebody/index.d.ts",
-        "./node_modules/@mui/material/tablecell/index.d.ts",
-        "./node_modules/@mui/material/tablecontainer/index.d.ts",
-        "./node_modules/@mui/material/tablerow/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/@mui/material/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/common/sortable/index.tsx": [
@@ -8671,12 +8647,10 @@
       "./components/common/sortable/sortableitem.tsx": [
         "./node_modules/@dnd-kit/sortable/dist/index.d.ts",
         "./node_modules/@dnd-kit/utilities/dist/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/common/userimg.tsx": [
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@mui/material/styles/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -8696,7 +8670,6 @@
         "./node_modules/@mui/icons-material/send.d.ts",
         "./node_modules/@mui/lab/index.d.ts",
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./types/api/invitation/read/response.d.ts"
@@ -8706,7 +8679,6 @@
         "./data/invitation/usedeleteinvitation/index.ts",
         "./node_modules/@mui/lab/index.d.ts",
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
@@ -8718,7 +8690,6 @@
         "./data/invitation.ts",
         "./node_modules/@mui/icons-material/cancel.d.ts",
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./types/api/invitation/read/response.d.ts"
@@ -18123,9 +18094,6 @@
       "./components/common/loading/index.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
-      "./components/common/mypage.tsx": [
-        "./node_modules/@types/react/ts5.0/index.d.ts"
-      ],
       "./components/common/nodata/index.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
@@ -27332,7 +27300,6 @@
       "./components/common/errtxt/index.tsx",
       "./components/common/lineplot.tsx",
       "./components/common/loading/index.tsx",
-      "./components/common/mypage.tsx",
       "./components/common/nodata/index.tsx",
       "./components/common/ripple.tsx",
       "./components/common/rstack.tsx",

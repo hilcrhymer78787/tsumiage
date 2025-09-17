@@ -12,7 +12,6 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { LoadingButton } from "@mui/lab";
-import React from "react";
 import UserImg from "@/components/common/UserImg";
 import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import dayjs from "dayjs";

@@ -9,7 +9,7 @@ import {
   ListItemAvatar,
   ListItemText,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import CreateUser from "@/components/user/CreateUser";
 import Layout from "@/layouts/default";

@@ -18,7 +18,6 @@ import { NAV_WIDTH } from "@/layouts/default";
 import dayjs from "dayjs";
 import { useMedia } from "@/data/media/useMedia";
 import { useCallback, useMemo, useState } from "react";
-import { useTheme } from "@mui/material/styles";
 
 export const TASK_NAME_WIDTH = 150;
 
@@ -37,7 +36,6 @@ const CalendarTable = ({
   resetWorkLoading?: boolean;
   onClickReset?: () => void;
 }) => {
-  const theme = useTheme();
   const { isPc } = useMedia();
 
   const tableWidth = useMemo(() => {
@@ -94,7 +92,7 @@ const CalendarTable = ({
                 <Box
                   width={`${TASK_NAME_WIDTH}px`}
                   paddingLeft={1}
-                  color={theme.palette.primary.main}
+                  color="primary.main"
                   className="ellipsis"
                 >
                   {userName}

@@ -1,5 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
-import LoginLayout from "@/layouts/login";
+import { Dispatch, SetStateAction } from "react";
 import CreateUser from "@/components/user/CreateUser";
 import { Container } from "@mui/material";
 const AuthNew = ({setIsNew}:{setIsNew: Dispatch<SetStateAction<boolean>>}) => {

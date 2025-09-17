@@ -7,7 +7,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import {
   SortableContext,
   arrayMove,
