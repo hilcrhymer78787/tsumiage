@@ -1,6 +1,15 @@
 import { Line } from "react-chartjs-2";
-import { analyticsType } from "@/types/common/analyticsType";
+
 import { Box } from "@mui/material";
+export interface analyticsType {
+  labels: string[],
+  datasets: analyticsDatasetType[],
+}
+export interface analyticsDatasetType {
+  label: string,
+  borderColor: string,
+  data: string[],
+}
 import {
   Chart,
   CategoryScale,

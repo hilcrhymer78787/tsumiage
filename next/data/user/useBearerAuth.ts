@@ -2,15 +2,13 @@ import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
 import axios, { Canceler } from "axios";
-import { useRecoilState } from "recoil";
-import { loginInfoAtom } from "@/data/user";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;
 
 export const useBearerAuth = () => {
-  const [loginInfo, setLoginInfo] = useRecoilState(loginInfoAtom);
-
+  const { loginInfo, setLoginInfo } = useLoginInfo();
   const [bearerAuthLoading, setBearerAuthLoading] = useState(false);
   const [bearerAuthError, setBearerAuthError] = useState("");
 

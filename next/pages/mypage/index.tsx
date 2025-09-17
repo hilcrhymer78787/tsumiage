@@ -14,14 +14,11 @@ import { useState } from "react";
 import CreateUser from "@/components/user/CreateUser";
 import Layout from "@/layouts/default";
 import UserImg from "@/components/common/UserImg";
-import { loginInfoAtom } from "@/data/user";
-import { useRecoilValue } from "recoil";
-import { useRouter } from "next/router";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 const Mypage = () => {
-  const router = useRouter();
-  const loginInfo = useRecoilValue(loginInfoAtom);
+  const { loginInfo } = useLoginInfo();
   const [createUserDialog, setCreateUserDialog] = useState<boolean>(false);
   const { logout } = useBearerAuth();
 

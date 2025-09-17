@@ -1,13 +1,12 @@
 import { ReactNode, useEffect } from "react";
 
 import Container from "@mui/material/Container";
-import { loginInfoAtom } from "@/data/user";
-import { useRecoilValue } from "recoil";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useRouter } from "next/router";
 
 function LoginLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const loginInfo = useRecoilValue(loginInfoAtom);
+  const { loginInfo } = useLoginInfo();
 
   useEffect(() => {
     if (!loginInfo) return;

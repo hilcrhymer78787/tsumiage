@@ -1,7 +1,7 @@
 import "@/styles/globals.scss";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { RecoilRoot, useRecoilValue } from "recoil";
+import { RecoilRoot } from "recoil";
 import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -13,7 +13,7 @@ import ja from "date-fns/locale/ja";
 import theme from "@/plugins/theme";
 import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import dayjs from "dayjs";
-import { loginInfoAtom } from "@/data/user";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 const AppInit = ({
   setIsAuth,
@@ -22,7 +22,7 @@ const AppInit = ({
 }) => {
   const { bearerAuth } = useBearerAuth();
   const { readWorkMonth } = useReadWorkMonth();
-  const loginInfo = useRecoilValue(loginInfoAtom);
+  const { loginInfo } = useLoginInfo();
   
   useEffect(() => {
     const mountedFunc = async () => {

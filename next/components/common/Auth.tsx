@@ -12,64 +12,27 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
-import axios from "axios";
-import { loginInfoAtom } from "@/data/user";
-import { useRouter } from "next/router";
-import { useSetRecoilState } from "recoil";
-import { useUserApi } from "@/data/user";
+import { useTestAuth } from "@/data/user/useTestAuth";
+import { useBasicAuth } from "@/data/user/useBasicAuth";
 
 const Login = ({
   setIsNew,
 }: {
   setIsNew: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const router = useRouter();
-  const setLoginInfo = useSetRecoilState(loginInfoAtom);
-  const {
-    testAuthentication,
-    testAuthenticationLoading,
-    basicAuth,
-    basicAuthLoading,
-  } = useUserApi();
+  const { basicAuth, isLoading: basicAuthLoading } = useBasicAuth();
+  const { testAuth, isLoading: testAuthLoading } = useTestAuth();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const apiTestAuthentication = async () => {
-    try {
-      const res = await testAuthentication();
-      localStorage.setItem("token", res.data.token);
-      setLoginInfo(res.data);
-      router.push("/");
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        alert(`${e?.response?.status}：${e?.response?.statusText}`);
-      } else {
-        alert("予期せぬエラー");
-      }
-    }
-  };
   const apiBasicAuth = async () => {
     if (validation()) return;
-    try {
-      const res = await basicAuth({
-        email: email,
-        password: password,
-      });
-      localStorage.setItem("token", res.data.token);
-      setLoginInfo(res.data);
-      router.push("/");
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        if (e.response?.data.errorMessage) {
-          alert(e.response.data.errorMessage);
-        } else {
-          alert(`${e?.response?.status}：${e?.response?.statusText}`);
-        }
-      } else {
-        alert("予期せぬエラー");
-      }
-    }
+    const res = await basicAuth({
+      email: email,
+      password: password,
+    });
+    if (!res) alert("失敗しました");
   };
   const validation = (): boolean => {
     let isError: boolean = false;
@@ -128,8 +91,8 @@ const Login = ({
               <LoadingButton
                 color="inherit"
                 variant="contained"
-                onClick={apiTestAuthentication}
-                loading={testAuthenticationLoading}
+                onClick={testAuth}
+                loading={testAuthLoading}
                 disabled={basicAuthLoading}
               >
                 テストユーザーでログイン
@@ -151,7 +114,7 @@ const Login = ({
             variant="contained"
             onClick={apiBasicAuth}
             loading={basicAuthLoading}
-            disabled={testAuthenticationLoading}
+            disabled={testAuthLoading}
           >
             ログイン
             <SendIcon />

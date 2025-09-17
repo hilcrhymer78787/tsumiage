@@ -8,12 +8,11 @@ import NoData from "@/components/common/NoData";
 import Sortable from "@/components/common/Sortable";
 import TaskSortHeader from "@/components/task/TaskSortHeader";
 import dayjs from "dayjs";
-import { loginInfoAtom } from "@/data/user";
-import { useRecoilValue } from "recoil";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useSortTasks } from "@/data/task/useSortTasks";
 
 const TaskSort = () => {
-  const loginInfo = useRecoilValue(loginInfoAtom);
+  const { loginInfo } = useLoginInfo();
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
   const { sortTasks } = useSortTasks();
   const [scrollY, setScrollY] = useState(0);

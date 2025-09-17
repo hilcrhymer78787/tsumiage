@@ -1,19 +1,22 @@
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 
-export const useDeleteUser = () => {
+export const useTestAuth = () => {
+  const { loginInfo, setLoginInfo } = useLoginInfo();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const deleteUser = async (id: number) => {
+  const testAuth = async () => {
     setError("");
     setIsLoading(true);
     return api({
-      url: "/api/user/delete",
-      method: "DELETE",
-      data: { id },
+      url: "/api/user/test_auth",
+      method: "GET",
     })
       .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        setLoginInfo(res.data);
         return res;
       })
       .catch((err) => {
@@ -24,7 +27,8 @@ export const useDeleteUser = () => {
       });
   };
   return {
-    deleteUser,
+    loginInfo,
+    testAuth,
     error,
     isLoading,
   };

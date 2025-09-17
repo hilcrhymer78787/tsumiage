@@ -7,12 +7,11 @@ import NoData from "@/components/common/NoData";
 import TaskHeader from "@/components/task/TaskHeader";
 import TaskList from "@/components/task/TaskList";
 import dayjs from "dayjs";
-import { loginInfoAtom } from "@/data/user";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useReadTasks } from "@/data/task/useReadTasks";
-import { useRecoilValue } from "recoil";
 
 const Task = () => {
-  const loginInfo = useRecoilValue(loginInfoAtom);
+  const { loginInfo } = useLoginInfo();
   const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
   const [scrollY, setScrollY] = useState(0);
 

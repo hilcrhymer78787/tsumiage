@@ -1,10 +1,7 @@
-import { loginInfoAtom } from "@/data/user";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useSetRecoilState } from "recoil";
 const Logout = () => {
-  const router = useRouter();
-  const setLoginInfo = useSetRecoilState(loginInfoAtom);
+  const { setLoginInfo } = useLoginInfo();
   useEffect(() => {
     localStorage.removeItem("token");
     setLoginInfo(null);

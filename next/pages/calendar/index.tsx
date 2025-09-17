@@ -4,9 +4,9 @@ import CalendarTable from "@/components/calendar/CalendarTable";
 import ErrTxt from "@/components/common/ErrTxt";
 import Layout from "@/layouts/default";
 import Loading from "@/components/common/Loading";
-import { loginInfoAtom } from "@/data/user";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
-import { useRecoilValue } from "recoil";
+
 import { useRouter } from "next/router";
 import { useResetWork } from "@/data/work/useResetWork";
 import { LinearProgress } from "@mui/material";
@@ -14,7 +14,7 @@ import dayjs from "dayjs";
 
 const Calendar = () => {
   const router = useRouter();
-  const loginInfo = useRecoilValue(loginInfoAtom);
+  const { loginInfo } = useLoginInfo();
   const { resetWork, resetWorkLoading } = useResetWork();
   const {
     calendars,

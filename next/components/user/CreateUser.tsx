@@ -22,14 +22,11 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import UserImg from "@/components/common/UserImg";
-import { LoginInfo } from "@/data/user";
-import axios from "axios";
+import { useCreateUser } from "@/data/user/useCreateUser";
 import dayjs from "dayjs";
-import { loginInfoAtom } from "@/data/user";
 import { useDeleteUser } from "@/data/user/useDeleteUser";
 import { useRouter } from "next/router";
-import { useSetRecoilState } from "recoil";
-import { useUserApi } from "@/data/user";
+import { LoginInfo } from "@/data/common/useLoginInfo";
 
 let inputRef: HTMLInputElement | null = null;
 let file: File;
@@ -44,9 +41,12 @@ function CreateUser({
 }) {
   const router = useRouter();
 
-  const setLoginInfo = useSetRecoilState(loginInfoAtom);
-  const { createUser, createUserLoading } = useUserApi();
-  const { deleteUser, deleteUserError, deleteUserLoading } = useDeleteUser();
+  const { createUser, isLoading: createLoading } = useCreateUser();
+  const {
+    deleteUser,
+    error: deleteError,
+    isLoading: deleteLoading,
+  } = useDeleteUser();
   const [uploadedImage, setUploadedImage] = useState<any>("");
   const [passwordEditMode, setPasswordEditMode] = useState<boolean>(true);
   const [id, setId] = useState<number>(0);
@@ -61,32 +61,15 @@ function CreateUser({
   const apiCreateUser = async () => {
     if (validation()) return;
     const postData: FormData = new FormData();
-    if (file) {
-      postData.append("file", file);
-    }
+    if (file) postData.append("file", file);
     postData.append("id", id.toString());
     postData.append("name", name);
     postData.append("email", email);
     postData.append("password", password);
     postData.append("user_img", user_img);
     postData.append("img_oldname", loginInfo?.user_img ?? "");
-    try {
-      const res = await createUser(postData);
-      localStorage.setItem("token", res.data.token);
-      setLoginInfo(res.data);
-      onCloseMyself();
-      router.push("/");
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        if (e.response?.data.errorMessage) {
-          alert(e.response.data.errorMessage);
-        } else {
-          alert(`${e?.response?.status}：${e?.response?.statusText}`);
-        }
-      } else {
-        alert("予期せぬエラー");
-      }
-    }
+    const res = await createUser(postData);
+    if (res) onCloseMyself();
   };
   const validation = (): boolean => {
     let isError: boolean = false;
@@ -256,7 +239,7 @@ function CreateUser({
             </Box>
           </>
         )}
-        <ErrTxt txt={deleteUserError} />
+        <ErrTxt txt={deleteError} />
       </CardContent>
       <CardActions>
         {!!setIsNew && (
@@ -271,20 +254,19 @@ function CreateUser({
         {loginInfo && (
           <LoadingButton
             onClick={onClickDeleteUser}
-            loading={deleteUserLoading}
-            disabled={createUserLoading}
+            loading={deleteLoading}
+            disabled={createLoading}
             color="error"
             variant="contained"
           >
             ユーザー削除
           </LoadingButton>
         )}
-        {/* deleteUserLoading */}
         <Box></Box>
         <LoadingButton
           onClick={apiCreateUser}
-          loading={createUserLoading}
-          disabled={deleteUserLoading}
+          loading={createLoading}
+          disabled={deleteLoading}
           color="primary"
           variant="contained"
         >
