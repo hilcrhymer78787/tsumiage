@@ -17,11 +17,10 @@ import { useCreateTask } from "@/data/task/useCreateTask";
 import { useDeleteTask } from "@/data/task/useDeleteTask";
 import { useState } from "react";
 
-type Props = {
+export default function CreateTask({ task, onCloseMyself }: {
   task: Task | null;
   onCloseMyself: () => void;
-};
-export default function CreateTask({ task, onCloseMyself }: Props) {
+}) {
   const { nameError, createTaskLoading, createTask, createTaskError } =
     useCreateTask();
   const { deleteTask, deleteTaskLoading } = useDeleteTask();

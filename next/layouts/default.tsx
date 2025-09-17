@@ -22,13 +22,7 @@ import { useRouter } from "next/router";
 import { useBearerAuth } from "@/data/user/useBearerAuth";
 import Auth from "@/components/common/Auth";
 import AuthNew from "@/components/common/AuthNew";
-type Props = {
-  children: ReactNode;
-  authRequired?: boolean;
-  pcMaxWidth?: Breakpoint | false;
-  spP?: string;
-  pcP?: string;
-};
+
 export type Nav = {
   label: string;
   value: string;
@@ -41,7 +35,13 @@ const Layout = ({
   pcMaxWidth = "lg",
   spP = "10px 10px 180px",
   pcP = "20px",
-}: Props) => {
+}: {
+  children: ReactNode;
+  authRequired?: boolean;
+  pcMaxWidth?: Breakpoint | false;
+  spP?: string;
+  pcP?: string;
+}) => {
   const { isPc } = useMedia();
   const router = useRouter();
   const [isNew, setIsNew] = useState(false);

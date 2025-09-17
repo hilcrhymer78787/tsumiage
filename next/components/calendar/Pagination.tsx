@@ -1,6 +1,3 @@
-// TODO: type Props 撤去
-// TODO: Props = { 撤去
-// TODO: import React from "react" 撤去
 // TODO: display: flex 撤去
 // TODO: export default function 撤去
 

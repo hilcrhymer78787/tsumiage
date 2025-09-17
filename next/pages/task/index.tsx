@@ -33,7 +33,7 @@ const Task = () => {
   }, [tasks]);
 
   const TaskContent = useMemo(() => {
-    const cmnProps = {
+    const cmnprops = {
       date: dayjs().format("YYYY-MM-DD"),
       readonly: false,
       apiTaskRead: apiTaskRead,
@@ -50,16 +50,16 @@ const Task = () => {
     return (
       <>
         {!!notDoneTasks.length && (
-          <TaskList title="未達成のタスク" tasks={notDoneTasks} {...cmnProps} />
+          <TaskList title="未達成のタスク" tasks={notDoneTasks} {...cmnprops} />
         )}
         {!!doneTasks.length && (
-          <TaskList title="達成したタスク" tasks={doneTasks} {...cmnProps} />
+          <TaskList title="達成したタスク" tasks={doneTasks} {...cmnprops} />
         )}
         {!!notNecessaryTasks.length && (
           <TaskList
             title="達成不要のタスク"
             tasks={notNecessaryTasks}
-            {...cmnProps}
+            {...cmnprops}
           />
         )}
       </>

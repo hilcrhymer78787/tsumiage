@@ -16,11 +16,13 @@ import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-type TaskHeaderProps = {
+const TaskHeader = ({
+  isGray,
+  apiTaskRead,
+}: {
   isGray: boolean;
   apiTaskRead: () => void;
-};
-const TaskHeader = ({ isGray, apiTaskRead }: TaskHeaderProps) => {
+}) => {
   const router = useRouter();
   const { isPc } = useMedia();
   const [createTaskDialog, setCreateTaskDialog] = useState(false);

@@ -18,14 +18,13 @@ import {
 import { SortableItem } from "@/components/common/Sortable/SortableItem";
 import { Task } from "@/data/task/useReadTasks";
 
-const style = {
-  padding: "1rem",
-};
-type SortableProps = {
+const Sortable = ({
+  initItems,
+  onChange,
+}: {
   initItems: Task[];
   onChange: (items: Task[]) => void;
-};
-const Sortable = ({ initItems, onChange }: SortableProps) => {
+}) => {
   const [items, setItems] = useState(initItems);
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -37,9 +36,7 @@ const Sortable = ({ initItems, onChange }: SortableProps) => {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    if (!over) {
-      return;
-    }
+    if (!over) return;
 
     if (active.id !== over.id) {
       const oldIndex = items.findIndex((v) => v.id === active.id);
@@ -57,7 +54,7 @@ const Sortable = ({ initItems, onChange }: SortableProps) => {
         onDragEnd={handleDragEnd}
       >
         <SortableContext items={items} strategy={verticalListSortingStrategy}>
-          <ul style={style}>
+          <ul style={{ padding: "1rem" }}>
             {items.map((item) => (
               <SortableItem key={item.id} item={item} />
             ))}

@@ -18,11 +18,10 @@ import dayjs from "dayjs";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { useRouter } from "next/router";
 
-type Props = {
+const FriendItemNow = (props: {
   friend: apiInvitationResponseFriendType;
   friendRead: () => void;
-};
-const FriendItemNow = (props: Props) => {
+}) => {
   const router = useRouter();
   const { deleteInvitation, deleteInvitationLoading } = useDeleteInvitation();
   const onClickDelete = async () => {

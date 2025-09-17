@@ -12,17 +12,16 @@ import UserImg from "@/components/common/UserImg";
 import { useInvitationApi } from "@/data/invitation";
 import axios from "axios";
 
-type Props = {
-  friend: apiInvitationResponseFriendType
-  friendRead: () => void
-}
-const FriendItemTo = (props: Props) => {
+const FriendItemTo = (props: {
+  friend: apiInvitationResponseFriendType;
+  friendRead: () => void;
+}) => {
   const { invitationDelete, invitationDeleteLoading } = useInvitationApi();
   const apiInvitationDelete = async () => {
     if (!confirm(`「${props.friend.name}」さんの招待を中止しますか？`)) return;
     try {
       await invitationDelete({
-        invitation_id: props.friend.invitation_id
+        invitation_id: props.friend.invitation_id,
       });
       props.friendRead();
     } catch (e) {
@@ -34,30 +33,28 @@ const FriendItemTo = (props: Props) => {
     }
   };
   return (
-    <ListItem sx={{ p: 0 }}
+    <ListItem
+      sx={{ p: 0 }}
       secondaryAction={
         <IconButton onClick={apiInvitationDelete}>
-          {invitationDeleteLoading ?
+          {invitationDeleteLoading ? (
             <CircularProgress color="error" size={25} />
-            :
+          ) : (
             <CancelIcon color="error" />
-          }
+          )}
         </IconButton>
       }
     >
       <ListItemButton>
         <ListItemAvatar>
-          <UserImg
-            fileName={props.friend.user_img}
-            size="40"
-          />
+          <UserImg fileName={props.friend.user_img} size="40" />
         </ListItemAvatar>
         <ListItemText
           primary={props.friend.name}
           secondary={props.friend.email}
         />
       </ListItemButton>
-    </ListItem >
+    </ListItem>
   );
 };
 export default FriendItemTo;

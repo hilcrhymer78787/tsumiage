@@ -18,13 +18,17 @@ import { Task } from "@/data/task/useReadTasks";
 import { useDeleteWork } from "@/data/work/useDeleteWork";
 import { useState } from "react";
 
-type Props = {
+const TaskItem = ({
+  task,
+  date,
+  apiTaskRead,
+  readonly,
+}: {
   task: Task;
   date: string;
   apiTaskRead: () => void;
   readonly: boolean;
-};
-const TaskItem = ({ task, date, apiTaskRead, readonly }: Props) => {
+}) => {
   const [isLoadingRight, setIsLoadingRight] = useState(false);
   const { deleteWork, deleteWorkLoading } = useDeleteWork();
   const [createTaskkDialog, setCreateTaskDialog] = useState(false);

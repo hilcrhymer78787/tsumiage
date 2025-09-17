@@ -6242,7 +6242,7 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/pagination.tsx": {
-        "version": "1726e8a1c5b3eedfe468d257e04b12f351e2d47ee45d5aea22849dc62a440322",
+        "version": "f782d62986b0a7898ef9e7878f965e721e03f0156280aa0d467b55ec55f21249",
         "signature": "d8c89ec316b503c8302a03f80795205483ab7bc260747e9466a3a9daff367bea",
         "affectsGlobalScope": false
       },
@@ -6317,8 +6317,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/errtxt/index.tsx": {
-        "version": "286c47d562fce74e8199c6101f491e4d37b3588b22a4ccaf2ca7ebb3c1625c7b",
-        "signature": "27ef9370cbab3870b1b2a52accb68cd08328be2175ddd79be7910ff2da5c7c75",
+        "version": "017b8db8ef9a8f523f80cecec98af32f25f62b1d64ee402e345687ce2baf870c",
+        "signature": "931e7832f80b5c48af2200984368a00fa24b1a09a0753941dc348f750b2eb218",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/fileupload.d.ts": {
@@ -6337,8 +6337,8 @@
         "affectsGlobalScope": false
       },
       "./layouts/default.tsx": {
-        "version": "6fbef7bd9bce9ee2e31767ffd86822025def9ea1104085519b71cdb93a8cf5b8",
-        "signature": "94f79661c388b74c77464316792b9f8e80161cf824eba7436a3a89303b49b49e",
+        "version": "012117d19b1424879f777944a6502d1236594de7ed20b05375c32ef0afd468ab",
+        "signature": "20d1de7fe6cd4ebf5b9c935738a6fa314ea3df45aef4e2f0c7c0c8081a86e4e7",
         "affectsGlobalScope": false
       },
       "./components/calendar/calendartable.tsx": {
@@ -6452,8 +6452,8 @@
         "affectsGlobalScope": false
       },
       "./components/common/nodata/index.tsx": {
-        "version": "4cfbc6a6f48139942c28f486e07856f6016372c77062bc5fa2b4cb5e392f11c5",
-        "signature": "9233f9f17de99048a0ecf63e0cf18fdfd8f56c9177101b8e85aa5d7ce5975972",
+        "version": "c9bb07d330588c63c86f71466413a775cb43fc383c11a82f483bf93e0f894b67",
+        "signature": "254dc5140b16e02edc49a5e7127174674a5192d3b7e39c0152c0b9370e4304c7",
         "affectsGlobalScope": false
       },
       "./node_modules/@dnd-kit/utilities/dist/hooks/usecombinedrefs.d.ts": {
@@ -7327,12 +7327,12 @@
         "affectsGlobalScope": false
       },
       "./components/common/sortable/index.tsx": {
-        "version": "12079659368df856f36d5fd19fb5ef6eefe49abd44ca8aff6e1e6e3289b381cc",
-        "signature": "9064fa87d6407d93e1d81344e8e7be8c043b616d2400aad9cdebbad63fe2a96b",
+        "version": "47f5d0acb90b8a0438d9c65f92701ae03bbbc05ca417a1370d5352edcd6f399f",
+        "signature": "c452593e2e97fea96b35de4ee39a3ea467da09d374879259abff2977b2caaf5d",
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "acc55ca9f71c764955403288bf19e161d18ac9e42e79cb0c2542155024399d97",
+        "version": "e8d89ed6c602a2bbf8ad194062cd29b5cc0c5d6b93374657815cbf9cc4a28cf3",
         "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
@@ -7342,8 +7342,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemfrom.tsx": {
-        "version": "3b8e1951afbfe4ebfbdb506c3dee018cde0d75e5fe80bf1e6fecd5fdd01e965c",
-        "signature": "9e4fb2f066fb65a5a8f962aa632328ae84e55d44e3df5eba64825e8af3d8df7a",
+        "version": "175dd09bd4a71295d1f2e93116f8a7047740e585714fe3c8ca8dadf1bb0d4fa1",
+        "signature": "57aa9fc37d69af48400f388cbd0f5014ad5f54675dcaf8676c56cf68d7b2496a",
         "affectsGlobalScope": false
       },
       "./node_modules/swiper/swiper-react.d.ts": {
@@ -7352,8 +7352,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "1861ff5a0e17455db61ed17254fb0b662dd9cd2e1a8e16ccd2981552ecbd6fbd",
-        "signature": "c59499fafdc5e4a81d9bb3940b7a817ead97535237d8f5f2422559ec2d2f0b3d",
+        "version": "c9d18ef01787c58ec835eb8e47249d621fd58d47b4651d49cd9e61cf72559e87",
+        "signature": "283041b19ca88a22a181077dbb53c54461d8e17bd436e22d24406c422c0baa3a",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/cancel.d.ts": {
@@ -7362,8 +7362,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemto.tsx": {
-        "version": "ca5cf0eac21f9ae7333481081d20c3c18989f27fb76a7f320252a28cc92fdfaf",
-        "signature": "8009bba30a580d52ecb1fc7dfa1ffaa5506b0b9be8a03a966aba6ca07906427c",
+        "version": "8eedde177bedc0f6bf9bb87cea93016dc3f2bd0d56e4e30605b95804982f1e1f",
+        "signature": "8180ea88d86eae57c1706865fb42fd3354b3ce93d439488f8d772b570daa78d2",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/add.d.ts": {
@@ -7377,8 +7377,8 @@
         "affectsGlobalScope": false
       },
       "./components/task/createtask.tsx": {
-        "version": "4373742ea416696ba6b7fb2c99d640bbbed116a5be18689d3a268f790e71330e",
-        "signature": "56a478b2aa39d153a3ae967c616c6ff2a777f5a1fe262cf0dd5b69ded3de6105",
+        "version": "17c2da51d210ed1de2c4f2234e2dbd2e5a6b15a92cfe0e2adf8778d87c196323",
+        "signature": "7dadb1c08c9fa44d39d9b3c73c608e8698b08ebfdd559f9629fd68e9a519ebd7",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/swapvert.d.ts": {
@@ -7387,8 +7387,8 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskheader.tsx": {
-        "version": "4bbf2910ef7362ac4a961bb924e6c65c8af71c72e260eb0fdd5c2bcca199c55e",
-        "signature": "b8fb6bd40c5ebdcce3e2218ddbf8f38334e250b526a681ce4604da406fc31616",
+        "version": "7d04f83072a10758645d23cd725391dd97143c2decf6d21d4f2ad725ff7919d2",
+        "signature": "edf7bd64cf6945f72221bede3bf68260a8400fc1b6f4462b04cb5bceb000a933",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/checkbox.d.ts": {
@@ -7402,13 +7402,13 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskitem.tsx": {
-        "version": "98c771006f68bb6ee10f7500fddfc8598b5ada85596fb2dc00aa7462eb904c14",
-        "signature": "9ea3130f5f3537fa6558853c2819ef9422471c286818dd1b61021dce213297b4",
+        "version": "dfed19f6ce6006f2e9b58368ed028bc0074fbfcac14689d7ca37273f20ce44ed",
+        "signature": "19431d8a4de544b0452b3d675e26e640312b786b6574a5a8a0e2cca4ba517bee",
         "affectsGlobalScope": false
       },
       "./components/task/tasklist.tsx": {
-        "version": "d84de80b7bac1ec3b6d70ef686926d7cb7872d453d241aec350289761ec4f09c",
-        "signature": "1661bb6a63d98926d24136757796b5b3afa64d58ea336de6f89426f84e98d973",
+        "version": "8e9532bf63100fe488813a8bb128481d11859c88e02c361c10d3db8c4c90859c",
+        "signature": "794c535d261a06bdfa7f03bc438d2495ccca7010e72056ed4e927e7b4011b27b",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/arrowback.d.ts": {
@@ -7417,13 +7417,13 @@
         "affectsGlobalScope": false
       },
       "./components/task/tasksortheader.tsx": {
-        "version": "680a151680caed21a6decb13c48c02fc61b8e6f8a67f1aa32b826a0257831df5",
-        "signature": "8e578e92c31dabf57981f41a16ca39df68b713d0a899795c4aeda627ad52f1dc",
+        "version": "b89fdedeea5dfee5e9a640df7b13e66b2fa719528dbd0a381ed65114f432da98",
+        "signature": "74f45dc6ce40d631cb53c2040ffa0e3b06dfabd5236a804c2d46fffa724533e5",
         "affectsGlobalScope": false
       },
       "./layouts/login.tsx": {
-        "version": "a89469eeb857119ac02136ade45773a0a9b0235dc7c8aca22de89dfae0ee6f95",
-        "signature": "871095edb11ae33308439c2d6829459d1e48f6f772c9528afa661a40b778640f",
+        "version": "e782b80fc50d0094f785895a27e3310354ce33fe9ff2e094eefea989880f6776",
+        "signature": "33008cd003c4b9a986135e6d41131eedaace369d4bf19fbce69873deacc6e007",
         "affectsGlobalScope": false
       },
       "./node_modules/@date-io/date-fns/type/index.d.ts": {
@@ -8237,7 +8237,7 @@
         "affectsGlobalScope": false
       },
       "./pages/task/index.tsx": {
-        "version": "9a61739c787f230d1248973ab79b1d55d87751e5c855539a76cc1093b5eb390b",
+        "version": "a73a2ac765628758d5a9193a9d43b144a55e121eb01383c68c0f9c95a83195eb",
         "signature": "fd053655be22077a93b33dd71c1f47b3f01b4d5351cb6e63b67cae0b555fb174",
         "affectsGlobalScope": false
       },

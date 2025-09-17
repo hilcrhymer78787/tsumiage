@@ -12,11 +12,11 @@ import {
 } from "@mui/material";
 import { useInvitationApi } from "@/data/invitation";
 import axios from "axios";
-type Props = {
+
+const FriendItemFrom = (props: {
   friend: apiInvitationResponseFriendType
   friendRead: () => void
-}
-const FriendItemFrom = (props: Props) => {
+}) => {
   const { invitationDelete, invitationDeleteLoading, invitationUpdate, invitationUpdateLoading } = useInvitationApi();
   const apiInvitationDelete = async () => {
     if (!confirm(`「${props.friend.name}」さんからの招待を拒否しますか？`)) return;

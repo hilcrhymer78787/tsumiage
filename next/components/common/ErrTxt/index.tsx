@@ -1,8 +1,5 @@
 import { Typography } from "@mui/material";
-export type Props = {
-  txt?: string;
-};
-const ErrTxt = ({ txt }: Props) => {
+const ErrTxt = ({ txt }: { txt?: string }) => {
   if (!txt) return <></>;
   return (
     <Typography color="error" sx={{ p: 5 }}>

@@ -5,19 +5,16 @@ import { loginInfoAtom } from "@/data/user";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
 
-type Props = {
-  children: ReactNode;
-};
-function LoginLayout({ children }: Props) {
+function LoginLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const loginInfo = useRecoilValue(loginInfoAtom);
-  
+
   useEffect(() => {
     if (!loginInfo) return;
     router.push("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return (
     <Container sx={{ p: "10px" }} maxWidth="xs">
       {children}
