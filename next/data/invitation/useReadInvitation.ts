@@ -20,11 +20,10 @@ export const useReadInvitation = () => {
   const readInvitation = async () => {
     setReadInvitationError("");
     setReadInvitationLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/invitation/read",
       method: "GET",
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         setFromFriends(res.data.data.fromFriends);
         setNowFriends(res.data.data.nowFriends);

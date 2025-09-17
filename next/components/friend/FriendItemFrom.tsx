@@ -1,7 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import UserImg from "@/components/common/UserImg";
 import {
   ListItem,
@@ -9,75 +8,59 @@ import {
   ListItemText,
   Card,
   CardActions,
+  Box,
 } from "@mui/material";
-import { useInvitationApi } from "@/data/invitation";
-import axios from "axios";
+import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
+import { Friend } from "@/data/invitation/useReadInvitation";
+import { useUpdateInvitation } from "@/data/invitation/useUpdateInvitation";
 
-const FriendItemFrom = (props: {
-  friend: apiInvitationResponseFriendType
-  friendRead: () => void
+const FriendItemFrom = ({
+  friend,
+  friendRead,
+}: {
+  friend: Friend;
+  friendRead: () => void;
 }) => {
-  const { invitationDelete, invitationDeleteLoading, invitationUpdate, invitationUpdateLoading } = useInvitationApi();
-  const apiInvitationDelete = async () => {
-    if (!confirm(`「${props.friend.name}」さんからの招待を拒否しますか？`)) return;
-    try {
-      await invitationDelete({
-        invitation_id: props.friend.invitation_id
-      });
-      props.friendRead();
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        alert(`${e?.response?.status}：${e?.response?.statusText}`);
-      } else {
-        alert("予期せぬエラーが発生しました");
-      }
-    }
+  const { deleteInvitation, isLoading: deleteLoading } = useDeleteInvitation();
+  const { updateInvitation, isLoading: updateLoading } = useUpdateInvitation();
+  const onClickDelete = async () => {
+    if (!confirm(`「${friend.name}」さんからの招待を拒否しますか？`)) return;
+    await deleteInvitation(friend.invitation_id);
+    friendRead();
   };
-  const apiInvitationUpdate = async () => {
-    try {
-      await invitationUpdate({
-        invitation_id: props.friend.invitation_id
-      });
-      props.friendRead();
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        alert(`${e?.response?.status}：${e?.response?.statusText}`);
-      } else {
-        alert("予期せぬエラーが発生しました");
-      }
-    }
+  const onClickUpdate = async () => {
+    await updateInvitation(friend.invitation_id);
+    friendRead();
   };
   return (
     <Card sx={{ m: "15px" }}>
       <ListItem sx={{ border: "none !important" }}>
         <ListItemAvatar>
-          <UserImg
-            fileName={props.friend.user_img}
-            size="40"
-          />
+          <UserImg fileName={friend.user_img} size="40" />
         </ListItemAvatar>
-        <ListItemText
-          primary={props.friend.name}
-          secondary={props.friend.email}
-        />
+        <ListItemText primary={friend.name} secondary={friend.email} />
       </ListItem>
       <CardActions disableSpacing>
         <LoadingButton
-          onClick={apiInvitationDelete}
+          onClick={onClickDelete}
           color="error"
           variant="contained"
-          loading={invitationDeleteLoading}
-          disabled={invitationUpdateLoading}>
-          拒否<DeleteIcon />
+          loading={deleteLoading}
+          disabled={updateLoading}
+        >
+          拒否
+          <DeleteIcon />
         </LoadingButton>
-        <div></div>
+        <Box></Box>
         <LoadingButton
-          onClick={apiInvitationUpdate}
+          onClick={onClickUpdate}
           color="primary"
           variant="contained"
-          loading={invitationUpdateLoading}
-          disabled={invitationDeleteLoading}>
-          許可<SendIcon />
+          loading={updateLoading}
+          disabled={deleteLoading}
+        >
+          許可
+          <SendIcon />
         </LoadingButton>
       </CardActions>
     </Card>

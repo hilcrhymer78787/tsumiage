@@ -3,31 +3,30 @@ import { errHandler } from "@/data/common";
 import { useState } from "react";
 
 export const useUpdateInvitation = () => {
-  const [updateInvitationLoading, setUpdateInvitationLoading] = useState(false);
-  const [updateInvitationError, setUpdateInvitationError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const updateInvitation = async (invitation_id: number) => {
-    setUpdateInvitationError("");
-    setUpdateInvitationLoading(true);
-    const requestConfig = {
+    setError("");
+    setIsLoading(true);
+    return api({
       url: "/api/invitation/update",
       method: "PUT",
       data: { invitation_id },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })
       .catch((err) => {
-        errHandler(err, setUpdateInvitationError);
+        errHandler(err, setError);
       })
       .finally(() => {
-        setUpdateInvitationLoading(false);
+        setIsLoading(false);
       });
   };
 
   return {
     updateInvitation,
-    updateInvitationError,
-    updateInvitationLoading,
+    error,
+    isLoading,
   };
 };

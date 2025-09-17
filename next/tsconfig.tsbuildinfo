@@ -1172,8 +1172,8 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
-        "version": "cb941ba7736bde933b540106354e70ee65d5c5bf079cee6498617d4915795bb5",
-        "signature": "3fd11bbe61d75235970aa409d53739bd46a68542d218b48077eba11226d679a7",
+        "version": "b4a86cf9c07ec305fcda9397e9cf9b6589939d69d6feac4c1ff21b3b36d38780",
+        "signature": "5ff137e5d6afe5ffedc5641af43d4458bd64da10290f419864d3a862e84c0f33",
         "affectsGlobalScope": false
       },
       "./data/work/usecreatework.ts": {
@@ -1182,13 +1182,13 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usereadinvitation.ts": {
-        "version": "6d86eaf4383f0beda89f21bc9fe4877a88cf073500e068dc44f1ffc99f1dd1d9",
+        "version": "2c8ddf18883cf0a937999e7f626e8fb9c7c96d2be6f5acd0ba3d72ee45a4b215",
         "signature": "37bc780e43b7cba9d55e01b8f684aebb24ceff388a2e5c8415af348dc02d2b7f",
         "affectsGlobalScope": false
       },
       "./data/invitation/useupdateinvitation.ts": {
-        "version": "0db765cadc5b2915b443058df41b825364273f346b0428f570df44a227230231",
-        "signature": "dc43d41c755ff8058a0c7066fee6fed123a91a22de4eaa33fe7783eed1bb2fee",
+        "version": "e31621afda126853049461a29b68afbd0afc9f1f68edc6fa1401e8f095dbd048",
+        "signature": "00834144457bfa8511225f6483ba22d7205cfbc94bf441f10c58fc444a5dad61",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/material/colors/amber.d.ts": {
@@ -5631,11 +5631,6 @@
         "signature": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
         "affectsGlobalScope": false
       },
-      "./types/api/invitation/read/response.d.ts": {
-        "version": "b176b67095a3ce5f6d129a0eb66a9f640ceffb40fb5b7ca932eec0cceec9042c",
-        "signature": "b176b67095a3ce5f6d129a0eb66a9f640ceffb40fb5b7ca932eec0cceec9042c",
-        "affectsGlobalScope": false
-      },
       "./types/api/user/create/request.d.ts": {
         "version": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
         "signature": "a87fceb66d643f7729e8567e83f6f14a2e8e15df05ed0500f09ea0c2616fa6d2",
@@ -7342,8 +7337,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemfrom.tsx": {
-        "version": "175dd09bd4a71295d1f2e93116f8a7047740e585714fe3c8ca8dadf1bb0d4fa1",
-        "signature": "57aa9fc37d69af48400f388cbd0f5014ad5f54675dcaf8676c56cf68d7b2496a",
+        "version": "416ef8156d326d36c9f662262dd85b1f10a8d876ae67d62444cf95e1f64839a3",
+        "signature": "94c1bbed506922fd319047cf4d066836ddfaa05e14316010be5b76c51448f68d",
         "affectsGlobalScope": false
       },
       "./node_modules/swiper/swiper-react.d.ts": {
@@ -7352,8 +7347,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "c9d18ef01787c58ec835eb8e47249d621fd58d47b4651d49cd9e61cf72559e87",
-        "signature": "283041b19ca88a22a181077dbb53c54461d8e17bd436e22d24406c422c0baa3a",
+        "version": "120dacc52a5d5ebbcd518e8f11b68dbe54e184a34bbf8629280f230d28c645cd",
+        "signature": "15df6775dccac91648c489220b7cc2d806de0bb6abc0064888dd993fd0e3e1a9",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/cancel.d.ts": {
@@ -7362,8 +7357,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemto.tsx": {
-        "version": "fd91be2e2ba90efd91cd08afa4c4d2df480c921edd67669276c55e25e340f1e7",
-        "signature": "4274823ac3967322d9673259ee21b1aeb91a7f180a55ebaa34d6c3688d25549a",
+        "version": "a07ab8245b7a455f5101e1cd0624c477f599fe6a3a63adac40d0bffb9fa40ee9",
+        "signature": "852acfa39f65e55357beadf1f2b648b6e08fdcae0ff60f3eece150536787b255",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/add.d.ts": {
@@ -8665,35 +8660,33 @@
       ],
       "./components/friend/frienditemfrom.tsx": [
         "./components/common/userimg.tsx",
-        "./data/invitation.ts",
+        "./data/invitation/usedeleteinvitation.ts",
+        "./data/invitation/usereadinvitation.ts",
+        "./data/invitation/useupdateinvitation.ts",
         "./node_modules/@mui/icons-material/delete.d.ts",
         "./node_modules/@mui/icons-material/send.d.ts",
         "./node_modules/@mui/lab/index.d.ts",
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/axios/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/friend/frienditemnow.tsx": [
         "./components/common/userimg.tsx",
         "./data/invitation/usedeleteinvitation.ts",
+        "./data/invitation/usereadinvitation.ts",
         "./node_modules/@mui/lab/index.d.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
-        "./node_modules/swiper/swiper-react.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./node_modules/swiper/swiper-react.d.ts"
       ],
       "./components/friend/frienditemto.tsx": [
         "./components/common/userimg.tsx",
-        "./data/invitation.ts",
         "./data/invitation/usedeleteinvitation.ts",
+        "./data/invitation/usereadinvitation.ts",
         "./node_modules/@mui/icons-material/cancel.d.ts",
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/axios/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/friend/friendlist.tsx": [
         "./components/common/apihandle.tsx",
@@ -17898,9 +17891,6 @@
       "./types/api/invitation/delete/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/invitation/read/response.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/invitation/update/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -18132,16 +18122,16 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/friend/frienditemfrom.tsx": [
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./data/invitation/usereadinvitation.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/friend/frienditemnow.tsx": [
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./data/invitation/usereadinvitation.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/friend/frienditemto.tsx": [
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./types/api/invitation/read/response.d.ts"
+        "./data/invitation/usereadinvitation.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/friend/friendlist.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
@@ -27135,9 +27125,6 @@
       "./types/api/invitation/delete/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/invitation/read/response.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/invitation/update/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -27317,27 +27304,7 @@
       "./components/common/sortable/sortableitem.tsx",
       "./components/common/userimg.tsx",
       "./components/friend/createfriend.tsx",
-      [
-        "./components/friend/frienditemfrom.tsx",
-        [
-          {
-            "file": "./components/friend/frienditemfrom.tsx",
-            "start": 585,
-            "length": 16,
-            "messageText": "Property 'invitationDelete' does not exist on type '{ invitationCreate: (params: apiInvitationCreateRequestType) => Promise<AxiosResponse<any, any>>; invitationCreateLoading: boolean; invitationUpdate: (params: apiInvitationUpdateRequestType) => Promise<...>; invitationUpdateLoading: boolean; }'.",
-            "category": 1,
-            "code": 2339
-          },
-          {
-            "file": "./components/friend/frienditemfrom.tsx",
-            "start": 603,
-            "length": 23,
-            "messageText": "Property 'invitationDeleteLoading' does not exist on type '{ invitationCreate: (params: apiInvitationCreateRequestType) => Promise<AxiosResponse<any, any>>; invitationCreateLoading: boolean; invitationUpdate: (params: apiInvitationUpdateRequestType) => Promise<...>; invitationUpdateLoading: boolean; }'.",
-            "category": 1,
-            "code": 2339
-          }
-        ]
-      ],
+      "./components/friend/frienditemfrom.tsx",
       "./components/friend/frienditemnow.tsx",
       "./components/friend/frienditemto.tsx",
       "./components/friend/friendlist.tsx",
@@ -28964,7 +28931,6 @@
       "./types/api/invitation/create/request.d.ts",
       "./types/api/invitation/create/response.d.ts",
       "./types/api/invitation/delete/request.d.ts",
-      "./types/api/invitation/read/response.d.ts",
       "./types/api/invitation/update/request.d.ts",
       "./types/api/user/basicauth/request.d.ts",
       "./types/api/user/basicauth/response.d.ts",

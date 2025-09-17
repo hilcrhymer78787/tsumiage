@@ -13,17 +13,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { LoadingButton } from "@mui/lab";
 import UserImg from "@/components/common/UserImg";
-import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import dayjs from "dayjs";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { useRouter } from "next/router";
+import { Friend } from "@/data/invitation/useReadInvitation";
 
 const FriendItemNow = (props: {
-  friend: apiInvitationResponseFriendType;
+  friend: Friend;
   friendRead: () => void;
 }) => {
   const router = useRouter();
-  const { deleteInvitation, deleteInvitationLoading } = useDeleteInvitation();
+  const { deleteInvitation, isLoading } = useDeleteInvitation();
   const onClickDelete = async () => {
     if (!confirm(`「${props.friend.name}」さんを友達から削除しますか？`))
       return;
@@ -66,7 +66,7 @@ const FriendItemNow = (props: {
         <SwiperSlide style={{ height: "auto", width: "150px" }}>
           <Box className="flexCenter" sx={{ height: "100%" }}>
             <LoadingButton
-              loading={deleteInvitationLoading}
+              loading={isLoading}
               onClick={onClickDelete}
               color="error"
               variant="contained"

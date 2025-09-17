@@ -1,4 +1,3 @@
-import { apiInvitationResponseFriendType } from "@/types/api/invitation/read/response";
 import {
   IconButton,
   ListItem,
@@ -9,18 +8,17 @@ import {
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import UserImg from "@/components/common/UserImg";
-import { useInvitationApi } from "@/data/invitation";
-import axios from "axios";
+import { Friend } from "@/data/invitation/useReadInvitation";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 
 const FriendItemTo = ({
   friend,
   friendRead,
 }: {
-  friend: apiInvitationResponseFriendType;
+  friend: Friend;
   friendRead: () => void;
 }) => {
-  const { deleteInvitation, deleteInvitationLoading } = useDeleteInvitation();
+  const { deleteInvitation, isLoading } = useDeleteInvitation();
   const apiInvitationDelete = async () => {
     if (!confirm(`「${friend.name}」さんの招待を中止しますか？`)) return;
     await deleteInvitation(friend.invitation_id);
@@ -31,7 +29,7 @@ const FriendItemTo = ({
       sx={{ p: 0 }}
       secondaryAction={
         <IconButton onClick={apiInvitationDelete}>
-          {deleteInvitationLoading ? (
+          {isLoading ? (
             <CircularProgress color="error" size={25} />
           ) : (
             <CancelIcon color="error" />
