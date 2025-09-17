@@ -14,10 +14,6 @@ export const useInvitationApi = (): {
     params: apiInvitationUpdateRequestType
   ) => Promise<AxiosResponse>;
   invitationUpdateLoading: boolean;
-  invitationDelete: (
-    params: apiInvitationDeleteRequestType
-  ) => Promise<AxiosResponse>;
-  invitationDeleteLoading: boolean;
 } => {
   // invitationCreate
 
@@ -55,30 +51,10 @@ export const useInvitationApi = (): {
     });
   };
 
-  // invitationDelete
-
-  const [invitationDeleteLoading, setInvitationDeleteLoading] =
-    useState<boolean>(false);
-  const invitationDelete = async (
-    params: apiInvitationDeleteRequestType
-  ): Promise<AxiosResponse> => {
-    const requestConfig: AxiosRequestConfig = {
-      url: "/api/invitation/delete",
-      method: "DELETE",
-      data: params,
-    };
-    setInvitationDeleteLoading(true);
-    return api(requestConfig).finally(() => {
-      setInvitationDeleteLoading(false);
-    });
-  };
-
   return {
     invitationCreate,
     invitationCreateLoading,
     invitationUpdate,
     invitationUpdateLoading,
-    invitationDelete,
-    invitationDeleteLoading,
   };
 };
