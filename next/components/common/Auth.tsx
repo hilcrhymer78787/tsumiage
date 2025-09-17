@@ -93,16 +93,12 @@ const Login = ({
           <Box sx={{ mb: "15px" }}>
             <TextField
               onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  apiBasicAuth();
-                }
+                if (e.key === "Enter") apiBasicAuth();
               }}
               error={!!emailError}
               helperText={emailError}
               value={email}
-              onChange={(e) => {
-                setEmail(e.currentTarget.value);
-              }}
+              onChange={(e) => setEmail(e.currentTarget.value)}
               label="email"
               variant="outlined"
               color="primary"
@@ -111,16 +107,12 @@ const Login = ({
           <Box sx={{ mb: "15px" }}>
             <TextField
               onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  apiBasicAuth();
-                }
+                if (e.key === "Enter") apiBasicAuth();
               }}
               error={!!passwordError}
               helperText={passwordError}
               value={password}
-              onChange={(e) => {
-                setPassword(e.currentTarget.value);
-              }}
+              onChange={(e) => setPassword(e.currentTarget.value)}
               label="password"
               variant="outlined"
               color="primary"

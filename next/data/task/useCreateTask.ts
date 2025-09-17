@@ -16,12 +16,11 @@ export const useCreateTask = () => {
     }
     if (isError) return;
     setCreateTaskLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/task/create",
       method: "POST",
       data: { id, name },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })

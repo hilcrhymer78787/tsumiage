@@ -8,12 +8,11 @@ export const useDeleteTask = () => {
   const deleteTask = async (id: number) => {
     setDeleteTaskError("");
     setDeleteTaskLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/task/delete",
       method: "DELETE",
       data: { id },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })

@@ -8,12 +8,11 @@ export const useDeleteWork = () => {
   const deleteWork = async (id: number) => {
     setDeleteWorkError("");
     setDeleteWorkLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/work/delete",
       method: "DELETE",
       data: { id },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })

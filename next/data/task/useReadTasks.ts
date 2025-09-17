@@ -20,12 +20,11 @@ export const useReadTasks = () => {
   const readTasks = async (date: string, userId: number) => {
     setReadTasksError("");
     setReadTasksLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/task/read",
       method: "GET",
       params: { date, user_id: userId },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         setTasks(res.data.data.tasks);
         return res;

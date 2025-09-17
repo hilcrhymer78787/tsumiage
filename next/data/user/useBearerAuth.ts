@@ -11,10 +11,8 @@ let setLoginInfoByTokenCancel: Canceler;
 export const useBearerAuth = () => {
   const [loginInfo, setLoginInfo] = useRecoilState(loginInfoAtom);
 
-  const [bearerAuthLoading, setBearerAuthLoading] =
-    useState(false);
-  const [bearerAuthError, setBearerAuthError] =
-    useState("");
+  const [bearerAuthLoading, setBearerAuthLoading] = useState(false);
+  const [bearerAuthError, setBearerAuthError] = useState("");
 
   const logout = () => {
     setLoginInfo(null);
@@ -24,14 +22,13 @@ export const useBearerAuth = () => {
   const bearerAuth = async () => {
     setBearerAuthError("");
     setBearerAuthLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/user/bearer_auth",
       method: "GET",
       cancelToken: new CancelToken((c) => {
         setLoginInfoByTokenCancel = c;
       }),
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         setLoginInfo(res.data);
         return res;

@@ -11,12 +11,11 @@ export const useSortTasks = () => {
     setSortTasksError("");
     setNameError("");
     setSortTasksLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/task/sort",
       method: "POST",
       data: { tasks },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })

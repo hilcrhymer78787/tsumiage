@@ -1,4 +1,3 @@
-// TODO: requestConfig as any 撤廃
 import { Task } from "@/data/task/useReadTasks";
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";

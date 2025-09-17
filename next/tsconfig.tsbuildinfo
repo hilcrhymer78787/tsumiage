@@ -1162,7 +1162,7 @@
         "affectsGlobalScope": false
       },
       "./data/work/usecreatework.ts": {
-        "version": "dc5be843fec8893437dbf726d260f92c4edf1fd16f3023a08a705dbb772e7f70",
+        "version": "83d0144fc12fc75dc0e51a958836d4507f07cd8aeedcca2e8d5f3a05a4e5857f",
         "signature": "2cf3e4273bf422d4322a1eae8e12227e1533ccbf618938620c0b9eb4bd8d11dd",
         "affectsGlobalScope": false
       },
@@ -5542,37 +5542,37 @@
         "affectsGlobalScope": false
       },
       "./data/task/usecreatetask.ts": {
-        "version": "1d48954db2ba1b86adc67d117bfa86ac79047387f0a22d3fe14de82b25658c4d",
+        "version": "19b31a2b58f537e76f5e6ac9351afc030eab4654e9c60db11ffdae8237675bf5",
         "signature": "81593ffd9feaa5859155335283cdc66e73d4218470d1fc4720a78c7ede1f6fa3",
         "affectsGlobalScope": false
       },
       "./data/task/usedeletetask.ts": {
-        "version": "9eb8da1572157010759666a32b82c3a3ba50504f2d329535ba0cae3a847278cc",
+        "version": "1ab9b0aaaf5655de16f5eed6347b2055501a26f0a4f3339e8a3ff6ec27b64784",
         "signature": "9b3d646a8ff1a101f8ff02e0ff82bf82ff417aced5884919c8bb3f561a0ad7d2",
         "affectsGlobalScope": false
       },
       "./data/task/usereadtasks.ts": {
-        "version": "35f71bf306b885eba8f71ed1708ce1988775f8cd0263643c681061acdddab923",
+        "version": "bc545b414fd0b57e835b38b1bed5b308c54d8ffb7b0f79b0fddc5ff5e22749fc",
         "signature": "2ab3e21b04600f6fcea70217a0a2a603e8297079edf9665fe96e7c99aa321f92",
         "affectsGlobalScope": false
       },
       "./data/task/usesorttasks.ts": {
-        "version": "8f7e5d0efac175bb7b2fc61c54df7c32b431fd605bc7112f2ffa590caf7d7fea",
+        "version": "ab81d046105effe8a05ce5dfc62a849173776d8248252950ac8ce730e3e8a387",
         "signature": "35d2f7535c4447182eded1302f1885d35034153fcb9990bc78ea0bc53a1ee3d7",
         "affectsGlobalScope": false
       },
       "./data/user/usebearerauth.ts": {
-        "version": "cb77f81b550f6748cd57e9cbff2e4223e182b279d6cff81629f6ff5ce46fde05",
+        "version": "d6c329c579b2d2ad19e6672cacdaf71807e928ffe43a242ce0f0869ff8c6c114",
         "signature": "768de2a19fe765e788bf48aa08cbe5030b5b5aa616f5ecb4c1dd5c8ec932d201",
         "affectsGlobalScope": false
       },
       "./data/user/usedeleteuser.ts": {
-        "version": "05649cd798e6951b3aafa687085d40d782fc8d756ff7bf8b4f863848123dbb77",
+        "version": "dac7d1409eb4f98ea930140f5f56833e1e4c52c62a0e42d868d7112df073e3e1",
         "signature": "8582e3260882b59785de70624d646bf6c73fc2da726f1e8e83216edeed40183e",
         "affectsGlobalScope": false
       },
       "./data/work/usedeletework.ts": {
-        "version": "8dfe4dd68bc51408795de9fd718e20b9ecb6dfa861a5dfacf891419468a42a19",
+        "version": "d340759538b87e1be0bcb74649033f2a915da4be89a6bf032acb5d265905b871",
         "signature": "9c1369f235eee9f4899aad2d7f81f56d23eb3a7f179712d63d048d684ecf901f",
         "affectsGlobalScope": false
       },
@@ -5592,12 +5592,12 @@
         "affectsGlobalScope": false
       },
       "./data/work/usereadworkmonth.ts": {
-        "version": "a838bad0b65b94b2f92392bd3598be30dfaa49476aa6a998ba859d18c246bae1",
+        "version": "f3b854c4615ee4de432f9541426040869529ecca1f297331c5d0e95a70e6f797",
         "signature": "25d57e75e2dd050464e28680e7d0a84126f61ff249496e97fcc303e7953cb015",
         "affectsGlobalScope": false
       },
       "./data/work/useresetwork.ts": {
-        "version": "64c2845d8992d9670e298a06255a192e24f50feb9e70a854cf8257a1fe194293",
+        "version": "115dc7376c9abf734e4c78b6f8f0d59805943eb2887a0ecadb5d05328499b070",
         "signature": "d25560f28e04d0419a1489bbcaa520fd4e9087e707e4d2766afbe393e9a82607",
         "affectsGlobalScope": false
       },
@@ -5609,16 +5609,6 @@
       "./static/const.ts": {
         "version": "d6f88f63a2f23fb5fb98fb0fdc7006409106368069c8f5a5ecbbf2148b8cd7aa",
         "signature": "064fe6edd772ccb550878182d158f369079893e22bb8d7619a04289b80dc3122",
-        "affectsGlobalScope": false
-      },
-      "./types/api/invitation/create/request.d.ts": {
-        "version": "1ed52462060187807eba44867ecc5caed292731ca4aa8e3af55d1d9bd5717524",
-        "signature": "1ed52462060187807eba44867ecc5caed292731ca4aa8e3af55d1d9bd5717524",
-        "affectsGlobalScope": false
-      },
-      "./types/api/invitation/create/response.d.ts": {
-        "version": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
-        "signature": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
         "affectsGlobalScope": false
       },
       "./types/api/user/create/request.d.ts": {
@@ -6297,7 +6287,7 @@
         "affectsGlobalScope": false
       },
       "./components/common/auth.tsx": {
-        "version": "3e94ece07313aa2505665f4c256288b1f0299743fb828fab7c4246436951e667",
+        "version": "2af499f1d29f8ed7d46034f5770551d27200094dd9a321b2d6001b6bd70e44ba",
         "signature": "b62606cca1dd7fffa3e2efa88e38657ee156bac2d2c5138fc1e7e725266f8d5b",
         "affectsGlobalScope": false
       },
@@ -17869,12 +17859,6 @@
       "./types/api/error.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/invitation/create/request.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./types/api/invitation/create/response.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/user/basicauth/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -27095,12 +27079,6 @@
       "./types/api/error.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/invitation/create/request.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./types/api/invitation/create/response.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/user/basicauth/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -28901,8 +28879,6 @@
       "./plugins/theme.ts",
       "./static/const.ts",
       "./types/api/error.d.ts",
-      "./types/api/invitation/create/request.d.ts",
-      "./types/api/invitation/create/response.d.ts",
       "./types/api/user/basicauth/request.d.ts",
       "./types/api/user/basicauth/response.d.ts",
       "./types/api/user/create/request.d.ts",

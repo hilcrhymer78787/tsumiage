@@ -23,12 +23,11 @@ export const useCreateWork = () => {
   const createWork = async (data: workCreateData) => {
     setCreateWorkError("");
     setCreateWorkLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/work/create",
       method: "POST",
       data,
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })

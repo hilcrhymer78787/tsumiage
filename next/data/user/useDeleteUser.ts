@@ -8,12 +8,11 @@ export const useDeleteUser = () => {
   const deleteUser = async (id: number) => {
     setDeleteUserError("");
     setDeleteUserLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/user/delete",
       method: "DELETE",
       data: { id },
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })

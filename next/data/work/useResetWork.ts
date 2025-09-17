@@ -7,11 +7,10 @@ export const useResetWork = () => {
   const resetWork = async () => {
     setResetWorkError("");
     setResetWorkLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/work/reset",
       method: "DELETE",
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
         return res;
       })
