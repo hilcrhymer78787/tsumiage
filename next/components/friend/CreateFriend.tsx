@@ -1,40 +1,34 @@
-import { Box, Card, CardActions, CardHeader, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardHeader,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 import { CardContent } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
-import { useInvitationApi } from "@/data/invitation";
 import { useState } from "react";
+import { useCreateInvitation } from "@/data/invitation/useCreateInvitation";
 
 const CreateFriend = () => {
-  const { invitationCreate, invitationCreateLoading } = useInvitationApi();
+  const { createInvitation, isLoading } = useCreateInvitation();
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const apiInvitationCreate = async () => {
     if (validation()) return;
-    try {
-      const res = await invitationCreate({
-        email: email
-      });
-      setSuccessMessage(res.data.successMessage);
-    } catch (e) {
-      if (axios.isAxiosError(e)) {
-        if (e.response?.data?.errorMessage) {
-          setEmailError(e.response.data.errorMessage);
-        } else {
-          alert(`${e?.response?.status}：${e?.response?.statusText}`);
-        }
-      } else {
-        alert("予期せぬエラーが発生しました");
-      }
-    }
+    const res = await createInvitation({ email });
+    if (!res) return;
+    setSuccessMessage(res.data.successMessage);
   };
   const validation = (): boolean => {
-    let isError: boolean = false;
+    let isError = false;
     setEmailError("");
-    if (!(/.+@.+\..+/.test(email))) {
+    if (!/.+@.+\..+/.test(email)) {
       setEmailError("正しい形式で入力してください");
       isError = true;
     }
@@ -43,23 +37,32 @@ const CreateFriend = () => {
   return (
     <Card>
       <CardHeader title="友達申請" />
-      <CardContent sx={{ p: "30px 15px", }} >
+      <CardContent sx={{ p: "30px 15px" }}>
         {!successMessage && (
           <TextField
-            onKeyPress={e => { if (e.key === "Enter") { apiInvitationCreate(); } }}
+            onKeyPress={(e) => {
+              if (e.key !== "Enter") return;
+              apiInvitationCreate();
+            }}
             error={!!emailError}
             helperText={emailError}
             value={email}
-            onChange={(e) => { setEmail(e.currentTarget.value); }}
-            label="メールアドレス" variant="outlined" color="primary"
+            onChange={(e) => {
+              setEmail(e.currentTarget.value);
+            }}
+            label="メールアドレス"
+            variant="outlined"
+            color="primary"
           />
         )}
         {!!successMessage && (
           <Typography
             sx={{
               color: "#1976d2",
-              textAlign: "center"
-            }}>{successMessage}
+              textAlign: "center",
+            }}
+          >
+            {successMessage}
           </Typography>
         )}
       </CardContent>
@@ -71,8 +74,10 @@ const CreateFriend = () => {
             onClick={apiInvitationCreate}
             color="primary"
             variant="contained"
-            loading={invitationCreateLoading}>
-            申請<SendIcon />
+            loading={isLoading}
+          >
+            申請
+            <SendIcon />
           </LoadingButton>
         )}
         {!!successMessage && (
@@ -83,7 +88,8 @@ const CreateFriend = () => {
             }}
             color="inherit"
             variant="contained"
-            loading={invitationCreateLoading}>
+            loading={isLoading}
+          >
             続けて申請
           </LoadingButton>
         )}

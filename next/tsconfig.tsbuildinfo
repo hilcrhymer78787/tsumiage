@@ -1116,26 +1116,6 @@
         "signature": "619d51c855144261584ae428724b5880a816e3054e6e579a48390ecac3b93fa9",
         "affectsGlobalScope": false
       },
-      "./types/api/invitation/create/request.d.ts": {
-        "version": "1ed52462060187807eba44867ecc5caed292731ca4aa8e3af55d1d9bd5717524",
-        "signature": "1ed52462060187807eba44867ecc5caed292731ca4aa8e3af55d1d9bd5717524",
-        "affectsGlobalScope": false
-      },
-      "./types/api/invitation/delete/request.d.ts": {
-        "version": "bdc44a08b724ea51d00dea22595f026e99f693a69b040e393fb4d41dbde2fd2f",
-        "signature": "bdc44a08b724ea51d00dea22595f026e99f693a69b040e393fb4d41dbde2fd2f",
-        "affectsGlobalScope": false
-      },
-      "./types/api/invitation/update/request.d.ts": {
-        "version": "64a1f285e58ee00be92033d9e661883984955ff2a4d6babfc80c89aa99819c5e",
-        "signature": "64a1f285e58ee00be92033d9e661883984955ff2a4d6babfc80c89aa99819c5e",
-        "affectsGlobalScope": false
-      },
-      "./data/invitation.ts": {
-        "version": "679b899e2f5e7dba3dcc71cfc48f88b3c2c330a2af4a8550ac4f6b4c14bf0d3b",
-        "signature": "f4ce333385c36becaf6cbc4d32ea11da9710abae40f3908df72c51a09b7d31f2",
-        "affectsGlobalScope": false
-      },
       "./types/api/user/basicauth/request.d.ts": {
         "version": "3ac4275bfc067c93e509c6f0b60a03a4775da012c1f4272b747ca1c27f3b2e80",
         "signature": "3ac4275bfc067c93e509c6f0b60a03a4775da012c1f4272b747ca1c27f3b2e80",
@@ -1169,6 +1149,11 @@
       "./data/common/index.ts": {
         "version": "815b7cbb1f23408d8efbfb6641db882c4650fb1ab5f7f6143d190648cc8cb7fa",
         "signature": "ddf1a6b642b8fa7d611e2960236147cd4c842bdd1b87dfb54191891442da5c19",
+        "affectsGlobalScope": false
+      },
+      "./data/invitation/usecreateinvitation.ts": {
+        "version": "557e26703a19c2514f17c8b943132f3e5d6128128c4b660b7bc9ea659c75db9e",
+        "signature": "a2a70b5a6e132c5cc4cc3a53777084855c2325affa5e9e95014ead174ac0a934",
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
@@ -5626,6 +5611,11 @@
         "signature": "064fe6edd772ccb550878182d158f369079893e22bb8d7619a04289b80dc3122",
         "affectsGlobalScope": false
       },
+      "./types/api/invitation/create/request.d.ts": {
+        "version": "1ed52462060187807eba44867ecc5caed292731ca4aa8e3af55d1d9bd5717524",
+        "signature": "1ed52462060187807eba44867ecc5caed292731ca4aa8e3af55d1d9bd5717524",
+        "affectsGlobalScope": false
+      },
       "./types/api/invitation/create/response.d.ts": {
         "version": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
         "signature": "e9b4f6bff2cebbb033533ac652383b31d681fb905c1f7afa28fa89bfa3dd6b46",
@@ -7327,7 +7317,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "e8d89ed6c602a2bbf8ad194062cd29b5cc0c5d6b93374657815cbf9cc4a28cf3",
+        "version": "adc537d126ff806ee4509c4a84b71ddf08321ce038cea7ece1d424227a72e2df",
         "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
@@ -8650,7 +8640,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/friend/createfriend.tsx": [
-        "./data/invitation.ts",
+        "./data/invitation/usecreateinvitation.ts",
         "./node_modules/@mui/icons-material/send.d.ts",
         "./node_modules/@mui/lab/index.d.ts",
         "./node_modules/@mui/material/index.d.ts",
@@ -8775,14 +8765,11 @@
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./data/invitation.ts": [
+      "./data/invitation/usecreateinvitation.ts": [
+        "./data/common/index.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./plugins/axios.ts",
-        "./types/api/invitation/create/request.d.ts",
-        "./types/api/invitation/delete/request.d.ts",
-        "./types/api/invitation/update/request.d.ts"
+        "./plugins/axios.ts"
       ],
       "./data/invitation/usedeleteinvitation.ts": [
         "./data/common/index.ts",
@@ -17888,12 +17875,6 @@
       "./types/api/invitation/create/response.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/invitation/delete/request.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./types/api/invitation/update/request.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/user/basicauth/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -18166,10 +18147,8 @@
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts"
       ],
-      "./data/invitation.ts": [
-        "./node_modules/axios/index.d.ts",
-        "./types/api/invitation/create/request.d.ts",
-        "./types/api/invitation/update/request.d.ts"
+      "./data/invitation/usecreateinvitation.ts": [
+        "./node_modules/axios/index.d.ts"
       ],
       "./data/invitation/usedeleteinvitation.ts": [
         "./node_modules/axios/index.d.ts"
@@ -27122,12 +27101,6 @@
       "./types/api/invitation/create/response.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/invitation/delete/request.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./types/api/invitation/update/request.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/user/basicauth/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -27316,7 +27289,7 @@
       "./components/test.tsx",
       "./components/user/createuser.tsx",
       "./data/common/index.ts",
-      "./data/invitation.ts",
+      "./data/invitation/usecreateinvitation.ts",
       "./data/invitation/usedeleteinvitation.ts",
       "./data/invitation/usereadinvitation.ts",
       "./data/invitation/useupdateinvitation.ts",
@@ -28930,8 +28903,6 @@
       "./types/api/error.d.ts",
       "./types/api/invitation/create/request.d.ts",
       "./types/api/invitation/create/response.d.ts",
-      "./types/api/invitation/delete/request.d.ts",
-      "./types/api/invitation/update/request.d.ts",
       "./types/api/user/basicauth/request.d.ts",
       "./types/api/user/basicauth/response.d.ts",
       "./types/api/user/create/request.d.ts",
@@ -29123,6 +29094,10 @@
       ],
       [
         "./data/invitation.ts",
+        1
+      ],
+      [
+        "./data/invitation/usecreateinvitation.ts",
         1
       ],
       [
