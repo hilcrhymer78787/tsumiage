@@ -9,13 +9,20 @@ import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/router";
 import { useResetWork } from "@/data/work/useResetWork";
+import { LinearProgress } from "@mui/material";
+import dayjs from "dayjs";
 
 const Calendar = () => {
   const router = useRouter();
   const loginInfo = useRecoilValue(loginInfoAtom);
   const { resetWork, resetWorkLoading } = useResetWork();
-  const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
-    useReadWorkMonth();
+  const {
+    calendars,
+    myTomonthCalendars,
+    readWorkMonthLoading,
+    readWorkMonthError,
+    readWorkMonth,
+  } = useReadWorkMonth();
 
   const year = useMemo(() => {
     return Number(router.query.year);
@@ -25,11 +32,21 @@ const Calendar = () => {
     return Number(router.query.month);
   }, [router.query.month]);
 
+  const userId = useMemo(() => {
+    if (!loginInfo?.id) return 0;
+    return loginInfo.id;
+  }, [loginInfo]);
+
   const getCalendarData = useCallback(async () => {
-    const userId = loginInfo?.id;
-    if (!userId) return;
     await readWorkMonth({ user_id: userId, year, month });
-  }, [loginInfo?.id, month, readWorkMonth, year]);
+  }, [userId, month, readWorkMonth, year]);
+
+  const displayCalendars = useMemo(() => {
+    const isTomonth =
+      Number(dayjs().format("YYYY")) === year &&
+      Number(dayjs().format("M")) === month;
+    return isTomonth ? myTomonthCalendars : calendars;
+  }, [calendars, month, myTomonthCalendars, year]);
 
   const onClickReset = useCallback(async () => {
     if (!confirm("活動情報を全て削除しますか？")) return;
@@ -45,21 +62,26 @@ const Calendar = () => {
 
   const CalendarContent = useCallback(() => {
     if (!!readWorkMonthError) return <ErrTxt txt={readWorkMonthError} />;
-    if (calendars === null) {
+    if (displayCalendars === null) {
       if (readWorkMonthLoading) return <Loading />;
       return <></>;
     }
     return (
-      <CalendarTable
-        calendars={calendars}
-        onClickReset={onClickReset}
-        resetWorkLoading={resetWorkLoading}
-      />
+      <>
+        {!!readWorkMonthLoading && (
+          <LinearProgress sx={{ position: "fixed", top: 0, width: "100%" }} />
+        )}
+        <CalendarTable
+          calendars={displayCalendars}
+          onClickReset={onClickReset}
+          resetWorkLoading={resetWorkLoading}
+        />
+      </>
     );
   }, [
     readWorkMonthLoading,
     readWorkMonthError,
-    calendars,
+    displayCalendars,
     onClickReset,
     resetWorkLoading,
   ]);

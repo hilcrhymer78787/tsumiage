@@ -1,7 +1,7 @@
 import "@/styles/globals.scss";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useRecoilValue } from "recoil";
 import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -11,6 +11,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { ThemeProvider } from "@mui/material/styles";
 import ja from "date-fns/locale/ja";
 import theme from "@/plugins/theme";
+import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
+import dayjs from "dayjs";
+import { loginInfoAtom } from "@/data/user";
 
 const AppInit = ({
   setIsAuth,
@@ -18,6 +21,8 @@ const AppInit = ({
   setIsAuth: Dispatch<SetStateAction<boolean | null>>;
 }) => {
   const { bearerAuth } = useBearerAuth();
+  const { readWorkMonth } = useReadWorkMonth();
+  const loginInfo = useRecoilValue(loginInfoAtom);
   
   useEffect(() => {
     const mountedFunc = async () => {
@@ -27,7 +32,17 @@ const AppInit = ({
     mountedFunc();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
+  useEffect(() => {
+    if (!loginInfo) return;
+    readWorkMonth({
+      user_id: Number(loginInfo.id),
+      year: Number(dayjs().format("YYYY")),
+      month: Number(dayjs().format("M")),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginInfo]);
+
   return <></>;
 };
 

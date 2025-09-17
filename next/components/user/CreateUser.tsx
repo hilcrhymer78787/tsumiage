@@ -22,7 +22,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import UserImg from "@/components/common/UserImg";
-import { apiUserBearerAuthResponseType } from "@/types/api/user/bearerAuth/response";
+import { LoginInfo } from "@/data/user";
 import axios from "axios";
 import dayjs from "dayjs";
 import { loginInfoAtom } from "@/data/user";
@@ -39,7 +39,7 @@ function CreateUser({
   setIsNew,
 }: {
   onCloseMyself: () => void;
-  loginInfo: apiUserBearerAuthResponseType | null;
+  loginInfo: LoginInfo | null;
   setIsNew?: Dispatch<SetStateAction<boolean>>;
 }) {
   const router = useRouter();

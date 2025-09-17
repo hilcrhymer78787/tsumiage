@@ -53,19 +53,8 @@ const FriendDetail = () => {
       if (readWorkMonthLoading) return <Loading />;
       return <></>;
     }
-    return (
-      <CalendarTable
-        userName={userName}
-        calendars={calendars}
-        readonly
-      />
-    );
-  }, [
-    readWorkMonthLoading,
-    readWorkMonthError,
-    calendars,
-    userName,
-  ]);
+    return <CalendarTable userName={userName} calendars={calendars} readonly />;
+  }, [readWorkMonthLoading, readWorkMonthError, calendars, userName]);
 
   if (router.asPath === router.route) return null;
   return (

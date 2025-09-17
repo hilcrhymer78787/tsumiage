@@ -1146,11 +1146,6 @@
         "signature": "256862ceab1d8b3b41f5868c221cde3764d37013d22c63cd4a4de8475a789b81",
         "affectsGlobalScope": false
       },
-      "./types/api/user/bearerauth/response.d.ts": {
-        "version": "dfd2d59ee125be8960e28bff18e4fd6a4d79b64f25354c677aa0193141becfbd",
-        "signature": "dfd2d59ee125be8960e28bff18e4fd6a4d79b64f25354c677aa0193141becfbd",
-        "affectsGlobalScope": false
-      },
       "./types/api/user/create/response.d.ts": {
         "version": "3f94f439969c408d06ba7a34b3dc1dbf6cdce0b5dc485029be0e7681bf7cdb51",
         "signature": "3f94f439969c408d06ba7a34b3dc1dbf6cdce0b5dc485029be0e7681bf7cdb51",
@@ -1167,8 +1162,8 @@
         "affectsGlobalScope": false
       },
       "./data/user.ts": {
-        "version": "1e557042c8370404818bb5bcd9e28f772725dc1333108b30c703a89d61c02fd7",
-        "signature": "530a57728429d5a57a3c0b38f4a79606c2d8c8ef652fb58a12320826f0cfe041",
+        "version": "9b1d45babfeb0f71a53716cbaa0cb33ed5cf5dc685b1912c68e0204f623af4e2",
+        "signature": "f5f2b652cb42279c24a3a9c818393d76554985b4d231f270fa4a37af99997756",
         "affectsGlobalScope": false
       },
       "./data/common/index.ts": {
@@ -5578,7 +5573,7 @@
       },
       "./data/user/usebearerauth/index.ts": {
         "version": "cb77f81b550f6748cd57e9cbff2e4223e182b279d6cff81629f6ff5ce46fde05",
-        "signature": "9b9454b08f72a4b7af975e43eda1e89ae0780faa65c2e4ddb474d20e7756b883",
+        "signature": "768de2a19fe765e788bf48aa08cbe5030b5b5aa616f5ecb4c1dd5c8ec932d201",
         "affectsGlobalScope": false
       },
       "./data/user/usedeleteuser/index.ts": {
@@ -5591,9 +5586,24 @@
         "signature": "9c1369f235eee9f4899aad2d7f81f56d23eb3a7f179712d63d048d684ecf901f",
         "affectsGlobalScope": false
       },
+      "./node_modules/dayjs/locale/types.d.ts": {
+        "version": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
+        "signature": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
+        "affectsGlobalScope": true
+      },
+      "./node_modules/dayjs/locale/index.d.ts": {
+        "version": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
+        "signature": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/dayjs/index.d.ts": {
+        "version": "ccff6a039925da0bbddce77e8fe06865bb4bc144f8ca2f729b4390015044183b",
+        "signature": "ccff6a039925da0bbddce77e8fe06865bb4bc144f8ca2f729b4390015044183b",
+        "affectsGlobalScope": false
+      },
       "./data/work/usereadworkmonth/index.ts": {
-        "version": "99543c43fc3605dc549d3cbe0ad2ac1326c41f1b10fc47f5735832bc48017728",
-        "signature": "11f23fc87ae6ecc35c39d50eee46a11e093e7c2ead2eee38f5013610abce48c3",
+        "version": "a838bad0b65b94b2f92392bd3598be30dfaa49476aa6a998ba859d18c246bae1",
+        "signature": "25d57e75e2dd050464e28680e7d0a84126f61ff249496e97fcc303e7953cb015",
         "affectsGlobalScope": false
       },
       "./data/work/useresetwork/index.ts": {
@@ -6242,7 +6252,7 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/pagination.tsx": {
-        "version": "f782d62986b0a7898ef9e7878f965e721e03f0156280aa0d467b55ec55f21249",
+        "version": "c6ac2f03b7b2def23fc46bb3e2bb004668dfe56f33eee749b0e1abd88985f6e7",
         "signature": "d8c89ec316b503c8302a03f80795205483ab7bc260747e9466a3a9daff367bea",
         "affectsGlobalScope": false
       },
@@ -6259,21 +6269,6 @@
       "./components/calendar/workstateicon.tsx": {
         "version": "f0281503adf3a98702b7780e4fff107a2ef3a3cb8078fbc7a164881c17a35a65",
         "signature": "cae6375d6bfe4cdfed19033b2e9cefe2be0a8488f6ff09f8bfde3405968ac0b8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/dayjs/locale/types.d.ts": {
-        "version": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
-        "signature": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
-        "affectsGlobalScope": true
-      },
-      "./node_modules/dayjs/locale/index.d.ts": {
-        "version": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
-        "signature": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/dayjs/index.d.ts": {
-        "version": "ccff6a039925da0bbddce77e8fe06865bb4bc144f8ca2f729b4390015044183b",
-        "signature": "ccff6a039925da0bbddce77e8fe06865bb4bc144f8ca2f729b4390015044183b",
         "affectsGlobalScope": false
       },
       "./components/calendar/calendartablecell.tsx": {
@@ -6327,8 +6322,8 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "c8f0069f04eb6c9a34ca06e6acf77b88726f7b31e78d3ce285bac6c6aef2baf4",
-        "signature": "0b1a990614c59e85a4bd8f71fac30e6609e2f94a8460a63ce1e164495e25fd72",
+        "version": "7e8c84e8d70fbe32ae6f97735c0da39b37a1b7295d8915c54765161e1bb4ddf7",
+        "signature": "b69d1b66a694f6eda653d49362eba568cdd5dbae0e987c0850dc4658158335ec",
         "affectsGlobalScope": false
       },
       "./components/common/authnew.tsx": {
@@ -8192,7 +8187,7 @@
         "affectsGlobalScope": false
       },
       "./pages/_app.tsx": {
-        "version": "7d8898a375966c764b01b1a154811eda00e87c6e13004ed95c3999014a1f7174",
+        "version": "1d6b3b16dffb4bfe1466425e180f451e0ce102471cd7567ac63b67bf73b3f4d1",
         "signature": "10ce7e5fdf65e35ece92d0551d43eb07d7cf8473ac51caa25b01286321b01efe",
         "affectsGlobalScope": false
       },
@@ -8212,12 +8207,12 @@
         "affectsGlobalScope": false
       },
       "./pages/calendar/index.tsx": {
-        "version": "adea8c19cbcc740a5465e9944edc5360f0e021028293e946b475f14b6ec02c65",
+        "version": "f140d69028979ae39838f32af58544d199881fb9118a3dc8e281a0985c2e3c8f",
         "signature": "7ddcda96197483a33d9cabc1b29862875748f7d9a803a4e0a8364cf56c212c26",
         "affectsGlobalScope": false
       },
       "./pages/friend/detail.tsx": {
-        "version": "82d6789e45b87070e45e4e79a796d26eb870eb1d80c3b4bc7ba9ec64363043e3",
+        "version": "f7eafe7bf98b0cdc4684739e4d34167c3bc1f175633b0192e32b4bd7d9345b04",
         "signature": "a92e720e56bddeabc17d6c81910212a2927a4bdbbd77c232bbe1202c70cdb88a",
         "affectsGlobalScope": false
       },
@@ -8774,8 +8769,7 @@
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
-        "./node_modules/recoil/index.d.ts",
-        "./types/api/user/bearerauth/response.d.ts"
+        "./node_modules/recoil/index.d.ts"
       ],
       "./data/common/index.ts": [
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8844,7 +8838,6 @@
         "./types/api/error.d.ts",
         "./types/api/user/basicauth/request.d.ts",
         "./types/api/user/basicauth/response.d.ts",
-        "./types/api/user/bearerauth/response.d.ts",
         "./types/api/user/create/response.d.ts"
       ],
       "./data/user/usebearerauth/index.ts": [
@@ -8877,8 +8870,11 @@
       "./data/work/usereadworkmonth/index.ts": [
         "./data/common/index.ts",
         "./data/task/usereadtasks/index.ts",
+        "./data/user.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/index.d.ts",
+        "./node_modules/recoil/index.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/work/useresetwork/index.ts": [
@@ -17758,13 +17754,16 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./pages/_app.tsx": [
+        "./data/user.ts",
         "./data/user/usebearerauth/index.ts",
+        "./data/work/usereadworkmonth/index.ts",
         "./node_modules/@mui/material/cssbaseline/index.d.ts",
         "./node_modules/@mui/material/styles/index.d.ts",
         "./node_modules/@mui/x-date-pickers/adapterdatefns/index.d.ts",
         "./node_modules/@mui/x-date-pickers/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/app.d.ts",
         "./node_modules/recoil/index.d.ts",
         "./plugins/theme.ts"
@@ -17781,8 +17780,10 @@
         "./data/work/usereadworkmonth/index.ts",
         "./data/work/useresetwork/index.ts",
         "./layouts/default.tsx",
+        "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
         "./node_modules/recoil/index.d.ts"
       ],
@@ -17895,9 +17896,6 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./types/api/user/basicauth/response.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./types/api/user/bearerauth/response.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./types/api/user/create/request.d.ts": [
@@ -18159,8 +18157,8 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/user/createuser.tsx": [
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./types/api/user/bearerauth/response.d.ts"
+        "./data/user.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./data/common/index.ts": [
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -18197,12 +18195,11 @@
         "./node_modules/recoil/index.d.ts",
         "./types/api/user/basicauth/request.d.ts",
         "./types/api/user/basicauth/response.d.ts",
-        "./types/api/user/bearerauth/response.d.ts",
         "./types/api/user/create/response.d.ts"
       ],
       "./data/user/usebearerauth/index.ts": [
-        "./node_modules/axios/index.d.ts",
-        "./types/api/user/bearerauth/response.d.ts"
+        "./data/user.ts",
+        "./node_modules/axios/index.d.ts"
       ],
       "./data/user/usedeleteuser/index.ts": [
         "./node_modules/axios/index.d.ts"
@@ -18215,7 +18212,8 @@
       ],
       "./data/work/usereadworkmonth/index.ts": [
         "./data/task/usereadtasks/index.ts",
-        "./node_modules/axios/index.d.ts"
+        "./node_modules/axios/index.d.ts",
+        "./node_modules/recoil/index.d.ts"
       ],
       "./data/work/useresetwork/index.ts": [
         "./node_modules/axios/index.d.ts"
@@ -27135,9 +27133,6 @@
       "./types/api/user/basicauth/response.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./types/api/user/bearerauth/response.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
       "./types/api/user/create/request.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -28938,7 +28933,6 @@
       "./types/api/invitation/update/request.d.ts",
       "./types/api/user/basicauth/request.d.ts",
       "./types/api/user/basicauth/response.d.ts",
-      "./types/api/user/bearerauth/response.d.ts",
       "./types/api/user/create/request.d.ts",
       "./types/api/user/create/response.d.ts",
       "./types/api/user/testauth/response.d.ts",

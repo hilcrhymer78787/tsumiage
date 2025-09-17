@@ -1,34 +1,44 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Canceler } from "axios";
+import {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
 
 import { api } from "@/plugins/axios";
 import { apiUserBasicAuthRequestType } from "@/types/api/user/basicAuth/request";
 import { apiUserBasicAuthResponseType } from "@/types/api/user/basicAuth/response";
-import { apiUserBearerAuthResponseType } from "@/types/api/user/bearerAuth/response";
 import { apiUserCreateResponseType } from "@/types/api/user/create/response";
 import { atom } from "recoil";
 import { errorType } from "@/types/api/error";
 import { useState } from "react";
 
-export const loginInfoAtom = atom<apiUserBearerAuthResponseType | null>({
+export type LoginInfo = {
+  id: number;
+  email: string;
+  name: string;
+  token: string;
+  user_img: string;
+};
+
+export const loginInfoAtom = atom<LoginInfo | null>({
   key: "loginInfo",
   dangerouslyAllowMutability: true,
   default: null,
 });
 export const useUserApi = () => {
-
   // testAuthentication
 
-  const [testAuthenticationLoading, setTestAuthenticationLoading] = useState<boolean>(false);
+  const [testAuthenticationLoading, setTestAuthenticationLoading] =
+    useState<boolean>(false);
   const testAuthentication = async (): Promise<AxiosResponse> => {
     const requestConfig: AxiosRequestConfig = {
       url: "/api/user/test_auth",
       method: "GET",
     };
     setTestAuthenticationLoading(true);
-    return api(requestConfig)
-      .finally(() => {
-        setTestAuthenticationLoading(false);
-      });
+    return api(requestConfig).finally(() => {
+      setTestAuthenticationLoading(false);
+    });
   };
 
   // basicAuth
@@ -40,7 +50,7 @@ export const useUserApi = () => {
     const requestConfig: AxiosRequestConfig = {
       url: "/api/user/basic_auth",
       method: "POST",
-      data: params
+      data: params,
     };
     setBasicAuthLoading(true);
     return api(requestConfig)
@@ -61,7 +71,7 @@ export const useUserApi = () => {
     const requestConfig: AxiosRequestConfig = {
       url: "/api/user/create",
       method: "POST",
-      data: params
+      data: params,
     };
     setCreateUserLoading(true);
     return api(requestConfig)

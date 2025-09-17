@@ -1,33 +1,49 @@
+// TODO: requestConfig as any 撤廃
 import { Task } from "@/data/task/useReadTasks";
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
+import { loginInfoAtom } from "@/data/user";
+import dayjs from "dayjs";
+
+export const calendarsAtom = atom<Calendar[] | null>({
+  key: "calendar",
+  dangerouslyAllowMutability: true,
+  default: null,
+});
 
 export type Calendar = {
   date: string;
   tasks: Task[];
 };
 
-export type ReadWorkMonthReq = {
-  user_id: number;
-  year: number;
-  month: number;
-};
-
 export const useReadWorkMonth = () => {
+  const loginInfo = useRecoilValue(loginInfoAtom);
   const [readWorkMonthLoading, setReadWorkMonthLoading] = useState(false);
   const [readWorkMonthError, setReadWorkMonthError] = useState("");
   const [calendars, setCalendars] = useState<Calendar[] | null>(null);
-  const readWorkMonth = async (params: ReadWorkMonthReq) => {
+  const [myTomonthCalendars, setMyTomonthCalendars] =
+    useRecoilState(calendarsAtom);
+
+  const readWorkMonth = async (params: {
+    user_id: number;
+    year: number;
+    month: number;
+  }) => {
+    const isMyTomonth =
+      loginInfo?.id === params.user_id &&
+      Number(dayjs().format("YYYY")) === params.year &&
+      Number(dayjs().format("M")) === params.month;
     setReadWorkMonthError("");
     setReadWorkMonthLoading(true);
-    const requestConfig = {
+    return api({
       url: "/api/work/read/month",
       method: "GET",
       params,
-    };
-    return api(requestConfig as any)
+    })
       .then((res) => {
+        if (isMyTomonth) setMyTomonthCalendars(res.data.data.calendars);
         setCalendars(res.data.data.calendars);
         return res;
       })
@@ -41,6 +57,7 @@ export const useReadWorkMonth = () => {
 
   return {
     calendars,
+    myTomonthCalendars,
     readWorkMonth,
     readWorkMonthError,
     readWorkMonthLoading,
