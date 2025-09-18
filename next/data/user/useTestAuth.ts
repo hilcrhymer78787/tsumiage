@@ -11,12 +11,12 @@ export const useTestAuth = () => {
     setError("");
     setIsLoading(true);
     return api({
-      url: "/api/user/test_auth",
+      url: "/api/user/auth/test",
       method: "GET",
     })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        setLoginInfo(res.data);
+        localStorage.setItem("token", res.data.data.token);
+        setLoginInfo(res.data.data);
         return res;
       })
       .catch((err) => {

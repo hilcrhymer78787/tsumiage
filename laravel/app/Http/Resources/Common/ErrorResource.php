@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Common;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use RuntimeException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
@@ -14,15 +13,32 @@ class ErrorResource extends JsonResource
         $this->resource = $resource;
     }
 
+    /**
+     * 配列化（レスポンスボディ）
+     */
     public function toArray($request): array
     {
-        $status = $this->resource instanceof HttpExceptionInterface
-            ? $this->resource->getStatusCode()
-            : 500;
-
         return [
-            'status' => $status,
+            'status' => $this->getStatusCode(),
             'errorMessage' => $this->resource->getMessage(),
         ];
+    }
+
+    /**
+     * レスポンス作成時にステータスコードをセット
+     */
+    public function withResponse($request, $response): void
+    {
+        $response->setStatusCode($this->getStatusCode());
+    }
+
+    /**
+     * 例外からステータスコードを取得
+     */
+    private function getStatusCode(): int
+    {
+        return $this->resource instanceof HttpExceptionInterface
+            ? $this->resource->getStatusCode()
+            : 500;
     }
 }

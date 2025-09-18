@@ -21,14 +21,14 @@ export const useBearerAuth = () => {
     setBearerAuthError("");
     setBearerAuthLoading(true);
     return api({
-      url: "/api/user/bearer_auth",
+      url: "/api/user/auth/bearer",
       method: "GET",
       cancelToken: new CancelToken((c) => {
         setLoginInfoByTokenCancel = c;
       }),
     })
       .then((res) => {
-        setLoginInfo(res.data);
+        setLoginInfo(res.data.data);
         return res;
       })
       .catch((err) => {

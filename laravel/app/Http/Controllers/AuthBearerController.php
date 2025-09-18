@@ -5,22 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Resources\Common\ErrorResource;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Resources\Common\LoginInfoResource;
-use App\Domains\AuthTest\Services\AuthTestService;
+use App\Domains\AuthBearer\Services\AuthBearerService;
 use Throwable;
 
-class AuthTestController extends Controller
+class AuthBearerController extends Controller
 {
-    private AuthTestService $service;
+    private AuthBearerService $service;
 
-    public function __construct(AuthTestService $service)
+    public function __construct(AuthBearerService $service)
     {
         $this->service = $service;
     }
 
-    public function index(): LoginInfoResource | ErrorResource
+    public function index(FormRequest $request): LoginInfoResource | ErrorResource
     {
         try {
-            $loginInfoEntity = $this->service->getLoginInfoEntity();
+            $loginInfoEntity = $this->service->getLoginInfoEntity($request);
             return new LoginInfoResource($loginInfoEntity);
         } catch (Throwable $error) {
             debugError($error);

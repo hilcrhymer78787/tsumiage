@@ -29,19 +29,6 @@ class UserController extends Controller
         }
         return $user;
     }
-    public function bearer_auth(Request $request)
-    {
-        $token = substr($request->header('Authorization'), 7);
-        $loginInfo = User::where('token', $token)
-            ->select('id', 'email', 'name', 'user_img', 'token')
-            ->first();
-            
-        if (!$loginInfo) {
-            return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 401);
-        }
-
-        return $loginInfo;
-    }
     public function create(Request $request)
     {
         if (!$request['id']) {
