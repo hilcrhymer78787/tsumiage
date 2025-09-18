@@ -55,8 +55,6 @@ export default function CreateTask({ task, onCloseMyself }: {
           onChange={(e) => setName(e.currentTarget.value)}
           onKeyDown={onKeyDown}
           label="タスクの名前"
-          variant="outlined"
-          color="primary"
         />
         <ErrTxt txt={createTaskError} />
       </CardContent>
@@ -75,7 +73,6 @@ export default function CreateTask({ task, onCloseMyself }: {
         )}
         <Box></Box>
         <LoadingButton
-          color="primary"
           variant="contained"
           onClick={submit}
           loading={createTaskLoading}

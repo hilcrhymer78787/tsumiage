@@ -51,8 +51,6 @@ const CreateFriend = () => {
               setEmail(e.currentTarget.value);
             }}
             label="メールアドレス"
-            variant="outlined"
-            color="primary"
           />
         )}
         {!!successMessage && (
@@ -72,7 +70,6 @@ const CreateFriend = () => {
         {!successMessage && (
           <LoadingButton
             onClick={apiInvitationCreate}
-            color="primary"
             variant="contained"
             loading={isLoading}
           >

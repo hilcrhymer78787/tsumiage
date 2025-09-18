@@ -63,8 +63,6 @@ const Login = ({
               value={email}
               onChange={(e) => setEmail(e.currentTarget.value)}
               label="email"
-              variant="outlined"
-              color="primary"
             />
           </Box>
           <Box sx={{ mb: "15px" }}>
@@ -77,8 +75,6 @@ const Login = ({
               value={password}
               onChange={(e) => setPassword(e.currentTarget.value)}
               label="password"
-              variant="outlined"
-              color="primary"
             />
           </Box>
           {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
@@ -110,7 +106,6 @@ const Login = ({
             新規登録
           </Button>
           <LoadingButton
-            color="primary"
             variant="contained"
             onClick={apiBasicAuth}
             loading={basicAuthLoading}

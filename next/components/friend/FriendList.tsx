@@ -38,7 +38,7 @@ const FriendList = () => {
         <CardHeader
           action={
             <Button onClick={() => setCreateInvitationDialog(true)}>
-              <AddIcon color="primary" />
+              <AddIcon  />
               申請
             </Button>
           }

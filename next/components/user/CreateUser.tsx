@@ -2,10 +2,10 @@ import {
   Avatar,
   Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Stack,
   TextField,
 } from "@mui/material";
 import {
@@ -25,12 +25,13 @@ import UserImg from "@/components/common/UserImg";
 import { useCreateUser } from "@/data/user/useCreateUser";
 import dayjs from "dayjs";
 import { useDeleteUser } from "@/data/user/useDeleteUser";
-import { useRouter } from "next/router";
 import { LoginInfo } from "@/data/common/useLoginInfo";
+import RStack from "@/components/common/RStack";
 
 let inputRef: HTMLInputElement | null = null;
 let file: File;
-function CreateUser({
+
+const CreateUser = ({
   onCloseMyself,
   loginInfo,
   setIsNew,
@@ -38,9 +39,7 @@ function CreateUser({
   onCloseMyself: () => void;
   loginInfo: LoginInfo | null;
   setIsNew?: Dispatch<SetStateAction<boolean>>;
-}) {
-  const router = useRouter();
-
+}) => {
   const { createUser, isLoading: createLoading } = useCreateUser();
   const {
     deleteUser,
@@ -58,6 +57,7 @@ function CreateUser({
   const [passwordError, setPasswordError] = useState<string>("");
   const [user_img, setUserImg] = useState<string>("");
   const [passwordAgain, setPasswordAgain] = useState<string>("");
+
   const apiCreateUser = async () => {
     if (validation()) return;
     const postData: FormData = new FormData();
@@ -71,6 +71,7 @@ function CreateUser({
     const res = await createUser(postData);
     if (res) onCloseMyself();
   };
+
   const validation = (): boolean => {
     let isError: boolean = false;
     setEmailError("");
@@ -96,6 +97,7 @@ function CreateUser({
     }
     return isError;
   };
+
   const fileSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     file = e.target.files[0];
@@ -106,17 +108,19 @@ function CreateUser({
     };
     reader.readAsDataURL(file);
   };
+
   const onClickDeleteUser = async () => {
     if (!loginInfo) return;
     if (!confirm(`「${loginInfo.name}」さんを削除しますか？`)) return;
     if (!confirm("関連する全データも削除されますが、よろしいですか？")) return;
-    const res = await deleteUser(loginInfo.id);
+    await deleteUser(loginInfo.id);
   };
 
   const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
-    if (e?.keyCode !== 13) return;
-    apiCreateUser();
+    if (e?.keyCode === 13) apiCreateUser();
   };
+
+  const title = loginInfo ? "ユーザー編集" : "新規ユーザー登録";
 
   useEffect(() => {
     if (loginInfo) {
@@ -125,50 +129,38 @@ function CreateUser({
       setEmail(loginInfo.email);
       setUserImg(loginInfo.user_img);
       setPasswordEditMode(false);
-      // img_oldname
     }
   }, [loginInfo]);
   return (
-    <Card>
-      <CardHeader title={loginInfo ? "ユーザー編集" : "新規ユーザー登録"} />
-      <CardContent>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mb: "20px",
-          }}
-        >
-          {!!uploadedImage && (
-            <Avatar
-              src={uploadedImage}
-              sx={{
-                width: "70px",
-                height: "70px",
-                border: "2px solid #1976d2",
-              }}
+    <>
+      <DialogTitle>{title}</DialogTitle>
+      <DialogContent>
+        <Stack gap={2}>
+          <RStack gap={3}>
+            {!!uploadedImage ? (
+              <Avatar
+                src={uploadedImage}
+                sx={{
+                  width: "70px",
+                  height: "70px",
+                  border: "2px solid",
+                  borderColor: "primary.main",
+                }}
+              />
+            ) : (
+              <UserImg fileName={loginInfo?.user_img} size="70" />
+            )}
+            <Button onClick={() => inputRef?.click()}>
+              画像を選択
+              <FileUploadIcon />
+            </Button>
+            <input
+              onChange={fileSelected}
+              type="file"
+              hidden
+              ref={(refParam) => (inputRef = refParam)}
             />
-          )}
-          {!uploadedImage && (
-            <UserImg fileName={loginInfo?.user_img} size="70" />
-          )}
-          <Button
-            onClick={() => inputRef?.click()}
-            variant="contained"
-            sx={{ ml: "20px" }}
-            color="inherit"
-          >
-            画像を選択
-            <FileUploadIcon />
-          </Button>
-          <input
-            onChange={fileSelected}
-            type="file"
-            hidden
-            ref={(refParam) => (inputRef = refParam)}
-          />
-        </Box>
-        <Box sx={{ mb: "15px" }}>
+          </RStack>
           <TextField
             onKeyDown={onKeyDown}
             error={!!nameError}
@@ -176,11 +168,7 @@ function CreateUser({
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}
             label="名前"
-            variant="outlined"
-            color="primary"
           />
-        </Box>
-        <Box sx={{ mb: "15px" }}>
           <TextField
             onKeyDown={onKeyDown}
             error={!!emailError}
@@ -188,60 +176,36 @@ function CreateUser({
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
             label="メールアドレス"
-            variant="outlined"
-            color="primary"
           />
-        </Box>
-        {passwordEditMode && (
-          <>
-            <Box sx={{ mb: "15px" }}>
+          {passwordEditMode && (
+            <>
               <TextField
                 onKeyDown={onKeyDown}
                 error={!!passwordError}
                 helperText={passwordError}
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.currentTarget.value);
-                }}
+                onChange={(e) => setPassword(e.currentTarget.value)}
                 label="パスワード"
-                variant="outlined"
-                color="primary"
               />
-            </Box>
-            <Box sx={{ mb: "15px" }}>
               <TextField
                 onKeyDown={onKeyDown}
                 value={passwordAgain}
                 onChange={(e) => setPasswordAgain(e.currentTarget.value)}
                 label="パスワード確認"
-                variant="outlined"
-                color="primary"
               />
-            </Box>
-          </>
-        )}
-        {!passwordEditMode && (
-          <>
-            <Box
-              sx={{
-                mb: "15px",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <Button
-                onClick={() => setPasswordEditMode(true)}
-                variant="contained"
-                color="inherit"
-              >
+            </>
+          )}
+          {!passwordEditMode && (
+            <RStack justifyContent="flex-end">
+              <Button onClick={() => setPasswordEditMode(true)}>
                 パスワードを編集
               </Button>
-            </Box>
-          </>
-        )}
-        <ErrTxt txt={deleteError} />
-      </CardContent>
-      <CardActions>
+            </RStack>
+          )}
+          <ErrTxt txt={deleteError} />
+        </Stack>
+      </DialogContent>
+      <DialogActions>
         {!!setIsNew && (
           <Button
             onClick={() => setIsNew(false)}
@@ -267,15 +231,14 @@ function CreateUser({
           onClick={apiCreateUser}
           loading={createLoading}
           disabled={deleteLoading}
-          color="primary"
           variant="contained"
         >
           登録
           <SendIcon />
         </LoadingButton>
-      </CardActions>
-    </Card>
+      </DialogActions>
+    </>
   );
-}
+};
 
 export default CreateUser;

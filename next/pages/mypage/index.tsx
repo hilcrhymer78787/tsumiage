@@ -48,7 +48,6 @@ const Mypage = () => {
           </Button>
           <Button
             onClick={() => setCreateUserDialog(true)}
-            color="primary"
             variant="contained"
           >
             編集

@@ -54,7 +54,6 @@ const FriendItemFrom = ({
         <Box></Box>
         <LoadingButton
           onClick={onClickUpdate}
-          color="primary"
           variant="contained"
           loading={updateLoading}
           disabled={deleteLoading}

@@ -21,6 +21,12 @@ const theme = createTheme({
     myBgColor: { main: "#121212" },
   },
   components: {
+    MuiTextField: {
+      defaultProps: {
+        variant: "outlined",
+        color: "primary",
+      },
+    },
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
@@ -66,6 +72,7 @@ const theme = createTheme({
       defaultProps: {
         fullWidth: true,
         maxWidth: "sm",
+        // scroll: "paper",
       },
     },
     MuiDialogActions: {
