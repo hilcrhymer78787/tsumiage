@@ -19,9 +19,9 @@ import dayjs from "dayjs";
 import theme from "@/plugins/theme";
 import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
-import { useBearerAuth } from "@/data/user/useBearerAuth";
 import Auth from "@/components/common/Auth";
 import AuthNew from "@/components/common/AuthNew";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 export type Nav = {
   label: string;
@@ -45,7 +45,7 @@ const Layout = ({
   const { isPc } = useMedia();
   const router = useRouter();
   const [isNew, setIsNew] = useState(false);
-  const { loginInfo } = useBearerAuth();
+  const { loginInfo } = useLoginInfo();
   const getColor = (value: string) => {
     return router.pathname === value ? theme.palette.primary.main : "white";
   };
@@ -94,7 +94,11 @@ const Layout = ({
   ];
 
   if (!loginInfo)
-    return isNew ? <AuthNew setIsNew={setIsNew} /> : <Auth setIsNew={setIsNew} />;
+    return isNew ? (
+      <AuthNew setIsNew={setIsNew} />
+    ) : (
+      <Auth setIsNew={setIsNew} />
+    );
 
   if (isPc) {
     return (

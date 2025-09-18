@@ -23,11 +23,11 @@ const AppInit = ({
   const { bearerAuth } = useBearerAuth();
   const { readWorkMonth } = useReadWorkMonth();
   const { loginInfo } = useLoginInfo();
-  
+
   useEffect(() => {
     const mountedFunc = async () => {
       const res = await bearerAuth();
-      setIsAuth(!res);
+      setTimeout(() => setIsAuth(!res));
     };
     mountedFunc();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +42,6 @@ const AppInit = ({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginInfo]);
-
   return <></>;
 };
 
