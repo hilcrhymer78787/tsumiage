@@ -11,13 +11,13 @@ export const useBasicAuth = () => {
     setError("");
     setIsLoading(true);
     return api({
-      url: "/api/user/basic_auth",
+      url: "/api/user/auth/basic",
       method: "POST",
       data: params,
     })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        setLoginInfo(res.data);
+        localStorage.setItem("token", res.data.data.token);
+        setLoginInfo(res.data.data);
         return res;
       })
       .catch((err) => {

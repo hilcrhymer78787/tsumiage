@@ -14,21 +14,6 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-
-    public function basic_auth(Request $request)
-    {
-        // ベーシック認証
-        $user = User::where('email', $request['email'])->first();
-        if (!$user) {
-            return response()->json(['errorMessage' => 'このメールアドレスは登録されていません'], 500);
-        }
-        $user = User::where('email', $request['email'])
-            ->where('password', $request['password'])->first();
-        if (!$user) {
-            return response()->json(['errorMessage' => 'パスワードが間違っています'], 500);
-        }
-        return $user;
-    }
     public function create(Request $request)
     {
         if (!$request['id']) {

@@ -14,7 +14,6 @@ class AuthBearerService
 {
     public function __construct(
         private readonly LoginInfoService $loginInfoService,
-
     ) {}
 
     public function getLoginInfoEntity(FormRequest $request): LoginInfoEntity
