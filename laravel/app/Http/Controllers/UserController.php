@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
-    public function test_auth()
-    {
-        return User::find(1);
-    }
     public function basic_auth(Request $request)
     {
         // ベーシック認証
@@ -35,11 +31,15 @@ class UserController extends Controller
     }
     public function bearer_auth(Request $request)
     {
-        $loginInfo = (new UserService())->getLoginInfoByRequest($request);
+        $token = substr($request->header('Authorization'), 7);
+        $loginInfo = User::where('token', $token)
+            ->select('id', 'email', 'name', 'user_img', 'token')
+            ->first();
+            
         if (!$loginInfo) {
             return response()->json(['errorMessage' => 'このトークンは有効ではありません'], 401);
         }
-        
+
         return $loginInfo;
     }
     public function create(Request $request)
