@@ -26,27 +26,27 @@ class UserCreateService
 
     public function getLoginInfoEntity(UserCreateParameter $params, UserCreateRequest $request): LoginInfoEntity
     {
-        return empty($request['id'])
-            ? $this->createUser($request)
-            : $this->updateUser($request);
+        return empty($params->id)
+            ? $this->createUser($params, $request)
+            : $this->updateUser($params, $request);
     }
 
     /**
      * 新規作成処理
      */
-    private function createUser(UserCreateRequest $request): LoginInfoEntity
+    private function createUser(UserCreateParameter $params, UserCreateRequest $request): LoginInfoEntity
     {
-        $this->assertEmailUnique($request['email']);
+        $this->assertEmailUnique($params->email);
 
         $loginInfoModel = User::create([
-            'name'     => $request['name'],
-            'email'    => $request['email'],
-            'password' => $request['password'],
-            'user_img' => $request['user_img'],
-            'token'    => $request['email'] . Str::random(100),
+            'name'     => $params->name,
+            'email'    => $params->email,
+            'password' => $params->password,
+            'user_img' => $params->userImg,
+            'token'    => $params->email . Str::random(100),
         ]);
 
-        $this->storeUserFile($request);
+        $this->storeUserFile($params, $request);
 
         return $this->toLoginInfoEntity($loginInfoModel);
     }
@@ -54,31 +54,31 @@ class UserCreateService
     /**
      * 更新処理
      */
-    private function updateUser(UserCreateRequest $request): LoginInfoEntity
+    private function updateUser(UserCreateParameter $params, UserCreateRequest $request): LoginInfoEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
         if (!$loginInfoModel) {
             throw new HttpException(401, 'トークンが有効期限切れです');
         }
 
-        $this->assertEmailUnique($request['email'], $loginInfoModel->email);
+        $this->assertEmailUnique($params->email, $loginInfoModel->email);
 
         User::where('id', $loginInfoModel->id)->update([
-            'name'     => $request['name'],
-            'email'    => $request['email'],
-            'user_img' => $request['user_img'],
+            'name'     => $params->name,
+            'email'    => $params->email,
+            'user_img' => $params->userImg,
         ]);
 
-        if (!empty($request['password'])) {
-            User::where('id', $request['id'])->update([
-                'password' => $request['password'],
+        if (!empty($params->password)) {
+            User::where('id', $params->id)->update([
+                'password' => $params->password,
             ]);
         }
 
-        $this->storeUserFile($request);
+        $this->storeUserFile($params, $request);
 
-        if ($request['user_img'] !== $request['img_oldname']) {
-            Storage::delete('public/' . $request['img_oldname']);
+        if ($params->userImg !== $params->imgOldname) {
+            Storage::delete('public/' . $params->imgOldname);
         }
 
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
@@ -101,12 +101,12 @@ class UserCreateService
     /**
      * ファイル保存処理
      */
-    private function storeUserFile(UserCreateRequest $request): void
+    private function storeUserFile(UserCreateParameter $params, UserCreateRequest $request): void
     {
         if (empty($request['file'])) return;
         $request['file']->storeAs(
             '',                 // サブフォルダが不要なら空
-            $request['user_img'],
+            $params->userImg,
             'public'
         );
     }
