@@ -9,7 +9,6 @@ class AuthTestQuery
 {
     public function getLoginInfoModel(): User
     {
-        $query =  User::find(1);
-        return $query;
+        return User::find(1);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\UserCreate\Services;
 
-use App\Domains\AuthBasic\Queries\AuthBasicQuery;
+use App\Domains\Shared\CheckIsExistEmail\Services\CheckIsExistEmailService;
 use App\Domains\UserCreate\Parameters\UserCreateParameter;
 use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
 use App\Domains\UserCreate\Queries\UserCreateQuery;
@@ -13,15 +13,15 @@ use App\Http\Requests\UserCreateRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserCreateService
 {
     public function __construct(
         private readonly LoginInfoService $loginInfoService,
-        private readonly UserCreateQuery $query,
+        private readonly CheckIsExistEmailService $checkIsExistEmailService,
         private readonly UserService $userService,
+        private readonly UserCreateQuery $query,
     ) {}
 
     public function getLoginInfoEntity(UserCreateParameter $params, UserCreateRequest $request): LoginInfoEntity
@@ -38,14 +38,7 @@ class UserCreateService
     {
         $this->assertEmailUnique($params->email);
 
-        $loginInfoModel = User::create([
-            'name'     => $params->name,
-            'email'    => $params->email,
-            'password' => $params->password,
-            'user_img' => $params->userImg,
-            'token'    => $params->email . Str::random(100),
-        ]);
-
+        $loginInfoModel = $this->query->createUser($params);
         $this->storeUserFile($params, $request);
 
         return $this->toLoginInfoEntity($loginInfoModel);
@@ -63,16 +56,11 @@ class UserCreateService
 
         $this->assertEmailUnique($params->email, $loginInfoModel->email);
 
-        User::where('id', $loginInfoModel->id)->update([
-            'name'     => $params->name,
-            'email'    => $params->email,
-            'user_img' => $params->userImg,
-        ]);
+        $this->query->updateUser($params, $loginInfoModel);
+
 
         if (!empty($params->password)) {
-            User::where('id', $params->id)->update([
-                'password' => $params->password,
-            ]);
+            $this->query->updatePassword($params, $loginInfoModel);
         }
 
         $this->storeUserFile($params, $request);
@@ -91,9 +79,9 @@ class UserCreateService
      */
     private function assertEmailUnique(string $email, ?string $currentEmail = null): void
     {
-        $existEmail = User::where('email', $email)->first();
+        $existEmail = $this->checkIsExistEmailService->checkIsExistEmail($email);
 
-        if ($existEmail && $existEmail->email !== $currentEmail) {
+        if ($existEmail && $email !== $currentEmail) {
             throw new HttpException(500, 'このメールアドレスは既に登録されています');
         }
     }

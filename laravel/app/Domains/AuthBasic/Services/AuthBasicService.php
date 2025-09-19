@@ -8,8 +8,6 @@ use App\Domains\AuthBasic\Parameters\AuthBasicParameter;
 use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
 use App\Domains\AuthBasic\Queries\AuthBasicQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
-use App\Http\Requests\AuthBasicRequest;
-use App\Models\User;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AuthBasicService
@@ -19,9 +17,9 @@ class AuthBasicService
         private readonly AuthBasicQuery $query,
     ) {}
 
-    public function getLoginInfoEntity(AuthBasicParameter $params, AuthBasicRequest $request): LoginInfoEntity
+    public function getLoginInfoEntity(AuthBasicParameter $params): LoginInfoEntity
     {
-        $loginInfoModel = $this->query->getLoginInfoModel($params);
+        $loginInfoModel = $this->query->getLoginInfoBuilder($params)->first();
         if (!$loginInfoModel) {
             throw new HttpException(500, 'このメールアドレスは登録されていません');
         }
