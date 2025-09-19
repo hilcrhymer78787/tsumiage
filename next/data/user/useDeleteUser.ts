@@ -5,13 +5,12 @@ import { useState } from "react";
 export const useDeleteUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const deleteUser = async (id: number) => {
+  const deleteUser = async () => {
     setError("");
     setIsLoading(true);
     return api({
       url: "/api/user/delete",
       method: "DELETE",
-      data: { id },
     })
       .then((res) => {
         return res;

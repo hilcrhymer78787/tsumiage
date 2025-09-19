@@ -27,6 +27,7 @@ import dayjs from "dayjs";
 import { useDeleteUser } from "@/data/user/useDeleteUser";
 import { LoginInfo } from "@/data/common/useLoginInfo";
 import RStack from "@/components/common/RStack";
+import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 let inputRef: HTMLInputElement | null = null;
 let file: File;
@@ -57,6 +58,7 @@ const CreateUser = ({
   const [passwordError, setPasswordError] = useState<string>("");
   const [user_img, setUserImg] = useState<string>("");
   const [passwordAgain, setPasswordAgain] = useState<string>("");
+  const { logout } = useBearerAuth();
 
   const apiCreateUser = async () => {
     if (validation()) return;
@@ -113,7 +115,8 @@ const CreateUser = ({
     if (!loginInfo) return;
     if (!confirm(`「${loginInfo.name}」さんを削除しますか？`)) return;
     if (!confirm("関連する全データも削除されますが、よろしいですか？")) return;
-    await deleteUser(loginInfo.id);
+    const res = await deleteUser();
+    if (!!res) logout();
   };
 
   const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {

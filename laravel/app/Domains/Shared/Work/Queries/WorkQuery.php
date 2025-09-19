@@ -24,4 +24,8 @@ class WorkQuery
 
         return $query;
     }
+    public function deleteWorkByUserId(int $userId): void
+    {
+        Work::where('work_user_id', $userId)->delete();
+    }
 }
