@@ -19,7 +19,7 @@ import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 const Mypage = () => {
   const { loginInfo } = useLoginInfo();
-  const [createUserDialog, setCreateUserDialog] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { logout } = useBearerAuth();
 
   const onClickLogout = () => {
@@ -46,21 +46,15 @@ const Mypage = () => {
           <Button onClick={onClickLogout} color="inherit" variant="contained">
             ログアウト
           </Button>
-          <Button
-            onClick={() => setCreateUserDialog(true)}
-            variant="contained"
-          >
+          <Button onClick={() => setIsOpen(true)} variant="contained">
             編集
           </Button>
         </CardActions>
-        <Dialog
-          open={createUserDialog}
-          onClose={() => setCreateUserDialog(false)}
-        >
-          {createUserDialog && (
+        <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+          {isOpen && (
             <CreateUser
               loginInfo={loginInfo}
-              onCloseMyself={() => setCreateUserDialog(false)}
+              onCloseMyself={() => setIsOpen(false)}
             />
           )}
         </Dialog>

@@ -23,6 +23,7 @@ const AppInit = ({
   const { bearerAuth } = useBearerAuth();
   const { readWorkMonth } = useReadWorkMonth();
   const { loginInfo } = useLoginInfo();
+  const [isFirst, setIsFirst] = useState(true);
 
   useEffect(() => {
     const mountedFunc = async () => {
@@ -35,11 +36,13 @@ const AppInit = ({
 
   useEffect(() => {
     if (!loginInfo) return;
+    if (!isFirst) return;
     readWorkMonth({
       user_id: Number(loginInfo.id),
       year: Number(dayjs().format("YYYY")),
       month: Number(dayjs().format("M")),
     });
+    setIsFirst(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginInfo]);
   return <></>;

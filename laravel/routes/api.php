@@ -11,6 +11,7 @@ use App\Http\Controllers\TaskReadController;
 use App\Http\Controllers\AuthTestController;
 use App\Http\Controllers\AuthBearerController;
 use App\Http\Controllers\AuthBasicController;
+use App\Http\Controllers\UserCreateController;
 use App\Http\Controllers\WorkReadMonthController;
 use App\Http\Controllers\InvitationReadController;
 
@@ -28,8 +29,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // UserController のルート
 Route::get('/user/auth/test', [AuthTestController::class, 'index']); //✅
 Route::get('/user/auth/bearer', [AuthBearerController::class, 'index']); //✅
-Route::post('/user/auth/basic', [AuthBasicController::class, 'index']); //⭐️
-Route::post('/user/create', [UserController::class, 'create']);
+Route::post('/user/auth/basic', [AuthBasicController::class, 'index']); //✅
+Route::post('/user/create', [UserCreateController::class, 'index']);//⭐️
 
 Route::middleware([CheckToken::class])->group(function () {
     // TaskController のルート
