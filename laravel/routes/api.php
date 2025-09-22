@@ -7,6 +7,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TaskReadController;
+use App\Http\Controllers\TaskCreateController;
 use App\Http\Controllers\AuthTestController;
 use App\Http\Controllers\AuthBearerController;
 use App\Http\Controllers\AuthBasicController;
@@ -34,11 +35,11 @@ Route::post('/user/create', [UserCreateController::class, 'index']); //✅
 Route::middleware([CheckToken::class])->group(function () {
     // TaskController のルート
     Route::get('/task/read', [TaskReadController::class, 'index']); //✅
-    Route::post('/task/create', [TaskController::class, 'create']);
+    Route::post('/task/create', [TaskCreateController::class, 'index']);
     Route::post('/task/sort', [TaskController::class, 'sort']);
     Route::delete('/task/delete', [TaskController::class, 'delete']);
 
-    Route::delete('/user/delete', [UserDeleteController::class, 'index']); //⭐️
+    Route::delete('/user/delete', [UserDeleteController::class, 'index']); //✅
 
     // WorkController のルート
     Route::get('/work/read/month', [WorkReadMonthController::class, 'index']); //✅
