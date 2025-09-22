@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\Base\BaseFormRequest;
 
-class TaskReadRequest extends FormRequest
+class TaskReadRequest extends BaseFormRequest
 
 {
     public function authorize()
@@ -30,23 +28,5 @@ class TaskReadRequest extends FormRequest
             'date.required' => 'date は必須です。',
             'date.date_format' => 'date は YYYY-MM-DD 形式で入力してください。',
         ];
-    }
-
-    /**
-     * バリデーション失敗時のレスポンスをカスタマイズ
-     *
-     * @return void
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        // TODO エラーの共通化
-        throw new HttpResponseException(
-            response()->json([
-                'status' => 400,
-                'code' => 'VALIDATION_ERROR',
-                'message' => $validator->errors()->first(),
-                'errors' => $validator->errors(),
-            ], 400)
-        );
     }
 }

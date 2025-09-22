@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\Base\BaseFormRequest;
 
-class UserCreateRequest extends FormRequest
+class UserCreateRequest extends BaseFormRequest
 {
     public function authorize()
     {
@@ -42,20 +40,5 @@ class UserCreateRequest extends FormRequest
             'file.mimes'           => 'ファイル形式は jpg, jpeg, png, gif のいずれかでなければなりません。',
             'file.max'             => 'ファイルは:max 5MB 以下でなければなりません。',
         ];
-    }
-
-    /**
-     * バリデーション失敗時のレスポンスをカスタマイズ
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json([
-                'status'  => 400,
-                'code'    => 'VALIDATION_ERROR',
-                'message' => $validator->errors()->first(),
-                'errors'  => $validator->errors(),
-            ], 400)
-        );
     }
 }

@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\Base\BaseFormRequest;
 
-class WorkReadMonthRequest extends FormRequest
+class WorkReadMonthRequest extends BaseFormRequest
 
 {
     public function authorize()
@@ -33,23 +31,5 @@ class WorkReadMonthRequest extends FormRequest
             'month.required' => 'month は必須です。',
             'month.integer' => 'month は整数でなければなりません。',
         ];
-    }
-
-    /**
-     * バリデーション失敗時のレスポンスをカスタマイズ
-     *
-     * @return void
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        // TODO エラーの共通化
-        throw new HttpResponseException(
-            response()->json([
-                'status' => 400,
-                'code' => 'VALIDATION_ERROR',
-                'message' => $validator->errors()->first(),
-                'errors' => $validator->errors(),
-            ], 400)
-        );
     }
 }
