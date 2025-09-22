@@ -14,26 +14,28 @@ import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import { useTestAuth } from "@/data/user/useTestAuth";
 import { useBasicAuth } from "@/data/user/useBasicAuth";
+import ErrTxt from "./ErrTxt";
 
 const Login = ({
   setIsNew,
 }: {
   setIsNew: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { basicAuth, isLoading: basicAuthLoading } = useBasicAuth();
+  const { basicAuth, isLoading: basicAuthLoading, error } = useBasicAuth();
   const { testAuth, isLoading: testAuthLoading } = useTestAuth();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const apiBasicAuth = async () => {
+
+  const apiBasicAuth = () => {
     if (validation()) return;
-    const res = await basicAuth({
+    basicAuth({
       email: email,
       password: password,
     });
-    if (!res) alert("失敗しました");
   };
+
   const validation = (): boolean => {
     let isError: boolean = false;
     setEmailError("");
@@ -48,6 +50,7 @@ const Login = ({
     }
     return isError;
   };
+
   return (
     <Container sx={{ p: "10px" }} maxWidth="xs">
       <Card>
@@ -96,6 +99,7 @@ const Login = ({
               </LoadingButton>
             </Box>
           )}
+          <ErrTxt txt={error} />
         </CardContent>
         <CardActions>
           <Button
