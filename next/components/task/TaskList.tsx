@@ -18,6 +18,7 @@ const TaskList = ({
   title: string;
   sx?: SxProps;
 }) => {
+  if (!tasks?.length) return <></>;
   return (
     <Card sx={{ ...sx }}>
       <CardHeader title={title} />

@@ -20,8 +20,8 @@ const ApiHandle = ({
 }) => {
   if (isError) {
     return (
-      <Box p={p} color="primary">
-        <Typography>{errorTxt}</Typography>
+      <Box p={p}>
+        <Typography color="error">{errorTxt}</Typography>
       </Box>
     );
   }

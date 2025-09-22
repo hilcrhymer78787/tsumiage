@@ -14,8 +14,8 @@ export type Task = {
 };
 
 export const useReadTasks = () => {
-  const [readTasksLoading, setReadTasksLoading] = useState(false);
-  const [readTasksError, setReadTasksError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [tasks, setTasks] = useState<Task[] | null>(null);
 
   const notDoneTasks = useMemo(() => {
@@ -30,9 +30,11 @@ export const useReadTasks = () => {
     return tasks?.filter((task) => task.work.state === 2) ?? [];
   }, [tasks]);
 
+  const isFirstLoading = !tasks?.length && isLoading;
+
   const readTasks = async (date: string, userId: number) => {
-    setReadTasksError("");
-    setReadTasksLoading(true);
+    setError("");
+    setIsLoading(true);
     return api({
       url: "/api/task/read",
       method: "GET",
@@ -43,10 +45,10 @@ export const useReadTasks = () => {
         return res;
       })
       .catch((err) => {
-        errHandler(err, setReadTasksError);
+        errHandler(err, setError);
       })
       .finally(() => {
-        setReadTasksLoading(false);
+        setIsLoading(false);
       });
   };
 
@@ -55,8 +57,9 @@ export const useReadTasks = () => {
     notDoneTasks,
     doneTasks,
     notNecessaryTasks,
+    isFirstLoading,
     readTasks,
-    readTasksError,
-    readTasksLoading,
+    error,
+    isLoading,
   };
 };

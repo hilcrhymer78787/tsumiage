@@ -3,7 +3,7 @@ import { SetStateAction } from "react";
 type Error = {
   data: {
     errorMessage: string,
-    status: 500,
+    status: number,
   },
 };
 
