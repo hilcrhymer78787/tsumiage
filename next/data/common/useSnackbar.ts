@@ -1,45 +1,43 @@
+// useSnackbar.ts
 import { SyntheticEvent } from "react";
 import { atom, useRecoilState } from "recoil";
 
-export type LoginInfo = {
+export type SnackbarItem = {
   id: number;
-  email: string;
-  name: string;
-  token: string;
-  user_img: string;
+  message: string;
+  severity?: "error" | "success" | "info" | "warning";
 };
 
-export const messageAtom = atom<string>({
-  key: "messageAtom",
+export const snackbarListAtom = atom<SnackbarItem[]>({
+  key: "snackbarListAtom",
   dangerouslyAllowMutability: true,
-  default: "",
-});
-
-export const severityAtom = atom<"error" | undefined>({
-  key: "severityAtom",
-  dangerouslyAllowMutability: true,
-  default: undefined,
+  default: [],
 });
 
 export const useSnackbar = () => {
-  const [message, setMessage] = useRecoilState(messageAtom);
-  const [severity, setSeverity] = useRecoilState(severityAtom);
+  const [snackbars, setSnackbars] = useRecoilState(snackbarListAtom);
 
-  const setSnackbar = (msg: string, severity?: "error") => {
-    setMessage(msg);
-    setSeverity(severity);
+  const setSnackbar = (
+    msg: string,
+    severity?: "error" | "success" | "info" | "warning"
+  ) => {
+    setSnackbars((prev) => [
+      ...prev,
+      { id: Date.now(), message: msg, severity },
+    ]);
   };
 
   const handleClose = (
-    _: SyntheticEvent | Event,
+    id: number,
+    _event?: SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") return; // 背景クリックで閉じないように
-    setMessage("");
+    setSnackbars((prev) => prev.filter((s) => s.id !== id));
   };
+
   return {
-    message,
-    severity,
+    snackbars,
     setSnackbar,
     handleClose,
   };

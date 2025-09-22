@@ -7,23 +7,36 @@ const SlideTransition = (props: SlideProps) => {
 };
 
 const MySnackbar = () => {
-  const { message, severity, setSnackbar, handleClose } = useSnackbar();
+  const { snackbars, setSnackbar, handleClose } = useSnackbar();
+
   return (
     <div>
-      <Button onClick={() => setSnackbar("success")}>success</Button>
-      <Button onClick={() => setSnackbar("error", "error")}>error</Button>
+      <Button onClick={() => setSnackbar("保存しました！", "success")}>
+        success
+      </Button>
+      <Button onClick={() => setSnackbar("エラーが発生しました", "error")}>
+        error
+      </Button>
 
-      <Snackbar
-        open={!!message}
-        autoHideDuration={3000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }} // 位置調整
-        TransitionComponent={SlideTransition} // アニメーション指定
-      >
-        <Alert onClose={handleClose} severity={severity} sx={{ width: "100%" }}>
-          {message}
-        </Alert>
-      </Snackbar>
+      {snackbars.map((snackbar, index) => (
+        <Snackbar
+          key={snackbar.id}
+          open
+          autoHideDuration={3000}
+          onClose={(event, reason) => handleClose(snackbar.id, event, reason)}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          TransitionComponent={SlideTransition}
+          sx={{ mt: `${index * 60}px` }} // 重ならないようにずらす
+        >
+          <Alert
+            onClose={(event, reason) => handleClose(snackbar.id, event, reason)}
+            severity={snackbar.severity}
+            sx={{ width: "100%" }}
+          >
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
+      ))}
     </div>
   );
 };
