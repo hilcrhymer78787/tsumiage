@@ -1,7 +1,7 @@
 import { WorkState } from "@/data/work/useCreateWork";
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export type Task = {
   id: number;
@@ -17,6 +17,19 @@ export const useReadTasks = () => {
   const [readTasksLoading, setReadTasksLoading] = useState(false);
   const [readTasksError, setReadTasksError] = useState("");
   const [tasks, setTasks] = useState<Task[] | null>(null);
+
+  const notDoneTasks = useMemo(() => {
+    return tasks?.filter((task) => task.work.state === 0) ?? [];
+  }, [tasks]);
+
+  const doneTasks = useMemo(() => {
+    return tasks?.filter((task) => task.work.state === 1) ?? [];
+  }, [tasks]);
+
+  const notNecessaryTasks = useMemo(() => {
+    return tasks?.filter((task) => task.work.state === 2) ?? [];
+  }, [tasks]);
+
   const readTasks = async (date: string, userId: number) => {
     setReadTasksError("");
     setReadTasksLoading(true);
@@ -39,6 +52,9 @@ export const useReadTasks = () => {
 
   return {
     tasks,
+    notDoneTasks,
+    doneTasks,
+    notNecessaryTasks,
     readTasks,
     readTasksError,
     readTasksLoading,

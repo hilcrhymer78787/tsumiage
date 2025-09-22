@@ -1,9 +1,11 @@
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
+import { useSnackbar } from "@/data/common/useSnackbar";
 
 export const useCreateTask = () => {
   const [createTaskLoading, setCreateTaskLoading] = useState(false);
+  const { setSnackbar } = useSnackbar();
   const [createTaskError, setCreateTaskError] = useState("");
   const [nameError, setNameError] = useState("");
   const createTask = async (id: number, name: string) => {
@@ -22,6 +24,7 @@ export const useCreateTask = () => {
       data: { id, name },
     })
       .then((res) => {
+        setSnackbar(res.data.data.message);
         return res;
       })
       .catch((err) => {

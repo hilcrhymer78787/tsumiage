@@ -7,16 +7,16 @@ use App\Models\Task;
 
 class TaskCreateQuery
 {
-    public function createTask(TaskCreateParameter $params, int $userId): Task|null
+    public function createTask(TaskCreateParameter $params, int $userId): Task
     {
         return Task::create([
             'task_name' => $params->name,
             'task_user_id' => $userId,
         ]);
     }
-    public function updateTask(TaskCreateParameter $params, int $userId): void
+    public function updateTask(TaskCreateParameter $params, int $userId): int
     {
-        Task::where('task_id', $params->id)->update([
+        return Task::where('task_id', $params->id)->update([
             'task_name' => $params->name,
             'task_user_id' => $userId,
         ]);

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import ErrTxt from "@/components/common/ErrTxt";
-import Layout from "@/layouts/default";
 import Loading from "@/components/common/Loading";
 import NoData from "@/components/common/NoData";
 import TaskHeader from "@/components/task/TaskHeader";
@@ -11,29 +10,26 @@ import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useReadTasks } from "@/data/task/useReadTasks";
 
 const TaskMain = () => {
+  const date = dayjs().format("YYYY-MM-DD");
   const { loginInfo } = useLoginInfo();
-  const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
+  const {
+    tasks,
+    notDoneTasks,
+    doneTasks,
+    notNecessaryTasks,
+    readTasks,
+    readTasksLoading,
+    readTasksError,
+  } = useReadTasks();
   const [scrollY, setScrollY] = useState(0);
 
-  const apiTaskRead = useCallback(async () => {
-    await readTasks(dayjs().format("YYYY-MM-DD"), loginInfo?.id ?? 0);
-  }, [loginInfo?.id, readTasks]);
-
-  const notDoneTasks = useMemo(() => {
-    return tasks?.filter((task) => task.work.state === 0) ?? [];
-  }, [tasks]);
-
-  const doneTasks = useMemo(() => {
-    return tasks?.filter((task) => task.work.state === 1) ?? [];
-  }, [tasks]);
-
-  const notNecessaryTasks = useMemo(() => {
-    return tasks?.filter((task) => task.work.state === 2) ?? [];
-  }, [tasks]);
+  const apiTaskRead = useCallback(() => {
+    readTasks(date, loginInfo?.id ?? 0);
+  }, [loginInfo?.id, readTasks, date]);
 
   const TaskContent = useMemo(() => {
     const cmnprops = {
-      date: dayjs().format("YYYY-MM-DD"),
+      date,
       readonly: false,
       apiTaskRead: apiTaskRead,
       readTasksLoading: readTasksLoading,
@@ -71,6 +67,7 @@ const TaskMain = () => {
     readTasksError,
     readTasksLoading,
     tasks,
+    date,
   ]);
 
   useEffect(() => {

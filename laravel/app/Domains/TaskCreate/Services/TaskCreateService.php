@@ -17,7 +17,7 @@ class TaskCreateService
         private readonly TaskCreateQuery $query,
     ) {}
 
-    public function upsertTask(TaskCreateParameter $params, TaskCreateRequest $request)
+    public function upsertTask(TaskCreateParameter $params, TaskCreateRequest $request): string
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
         if (!$loginInfoModel) {
@@ -25,9 +25,21 @@ class TaskCreateService
         }
 
         $userId = $loginInfoModel->id;
-        empty($params->id)
-            ? $this->query->createTask($params, $userId)
-            : $this->query->updateTask($params, $userId);
-        return;
+        return empty($params->id)
+            ? $this->createTask($params, $userId)
+            : $this->updateTask($params, $userId);
+    }
+
+    public function createTask(TaskCreateParameter $params, int $userId): string
+    {
+        $this->query->createTask($params, $userId);
+        return "タスクを作成しました";
+    }
+
+    public function updateTask(TaskCreateParameter $params, int $userId): string
+    {
+        $num = $this->query->updateTask($params, $userId);
+        if (!$num) throw new HttpException(403, '更新するタスクが存在しません');
+        return "タスクを更新しました";
     }
 }

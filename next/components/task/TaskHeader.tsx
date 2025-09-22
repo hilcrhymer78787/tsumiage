@@ -26,14 +26,16 @@ const TaskHeader = ({
   const router = useRouter();
   const { isPc } = useMedia();
   const [createTaskDialog, setCreateTaskDialog] = useState(false);
-  const style = {
-    backgroundImage: "none",
-    boxShadow: "none",
-    backgroundColor: "transparent",
-  };
+  const style = !isGray
+    ? {
+        backgroundImage: "none",
+        boxShadow: "none",
+        backgroundColor: "transparent",
+      }
+    : {};
   return (
     <AppBar
-      style={!isGray ? style : {}}
+      style={style}
       position="fixed"
       sx={{ paddingLeft: isPc ? `${NAV_WIDTH}px` : 0 }}
     >
