@@ -5,6 +5,7 @@ namespace App\Http\Resources\Base;
 use App\Domains\Shared\Pagination\ValueObjects\PaginationMetadata;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 /**
  * @apiResource App\Http\Resources\Base\CastCardResource
@@ -37,7 +38,7 @@ abstract class BaseResource extends JsonResource
     public function toArray(Request $request): array
     {
         // コレクション or 単一エンティティ
-        if ($this->resource instanceof \Illuminate\Support\Collection) {
+        if ($this->resource instanceof Collection) {
             $data = $this->resource->map(fn ($item) => $this->transformItem($item));
         } else {
             $data = $this->transformItem($this->resource);

@@ -4,30 +4,22 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\Common\CalendarResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Log;
 
 class WorkReadMonthResource extends JsonResource
 {
-
-    public function __construct($resource)
-    {
-        $this->resource = $resource;
-    }
     /**
      * データを配列に変換
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array<string, mixed>
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
-        $calendarEntities = $this->resource->getCalendarEntities();
-
         return [
             'data' => [
-                'calendars'=> $calendarEntities->map(function ($calendarEntity) {
-                    return (new CalendarResource($calendarEntity));
-                }),
+                'calendars' => CalendarResource::collection(
+                    $this->resource->getCalendarEntities()
+                ),
             ],
             'success' => true,
             'status' => 200,
