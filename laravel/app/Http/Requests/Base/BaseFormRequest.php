@@ -14,7 +14,6 @@ abstract class BaseFormRequest extends FormRequest
             response()->json([
                 'status'  => 400,
                 'code'    => 'VALIDATION_ERROR',
-                'message' => $validator->errors()->first(),
                 'errors'  => $validator->errors(),
             ], 400)
         );
