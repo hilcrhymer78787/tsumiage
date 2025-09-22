@@ -137,8 +137,8 @@ const CreateUser = ({
   return (
     <>
       <DialogTitle>{title}</DialogTitle>
-      <DialogContent>
-        <Stack gap={2}>
+      <DialogContent sx={{ p: 3 }}>
+        <Stack gap={3}>
           <RStack gap={3}>
             {!!uploadedImage ? (
               <Avatar

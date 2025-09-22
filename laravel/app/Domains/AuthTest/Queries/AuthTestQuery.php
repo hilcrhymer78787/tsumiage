@@ -3,7 +3,6 @@
 namespace App\Domains\AuthTest\Queries;
 
 use App\Models\User;
-use Illuminate\Support\Collection;
 
 class AuthTestQuery
 {
