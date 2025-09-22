@@ -18,25 +18,33 @@ const MySnackbar = () => {
         error
       </Button>
 
-      {snackbars.map((snackbar, index) => (
-        <Snackbar
-          key={snackbar.id}
-          open
-          autoHideDuration={3000}
-          onClose={(event, reason) => handleClose(snackbar.id, event, reason)}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-          TransitionComponent={SlideTransition}
-          sx={{ mt: `${index * 60}px` }} // 重ならないようにずらす
-        >
-          <Alert
-            onClose={(event, reason) => handleClose(snackbar.id, event, reason)}
-            severity={snackbar.severity}
-            sx={{ width: "100%" }}
+      {snackbars.map((snackbar, index) => {
+        // ✅ 共通ハンドラを作る
+        const handleCloseWithId = (
+          event?: React.SyntheticEvent | Event,
+          reason?: string
+        ) => handleClose(snackbar.id, event, reason);
+
+        return (
+          <Snackbar
+            key={snackbar.id}
+            open
+            autoHideDuration={3000}
+            onClose={handleCloseWithId}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            TransitionComponent={SlideTransition}
+            sx={{ mt: `${index * 60}px` }} // 重ならないようにずらす
           >
-            {snackbar.message}
-          </Alert>
-        </Snackbar>
-      ))}
+            <Alert
+              onClose={handleCloseWithId}
+              severity={snackbar.severity}
+              sx={{ width: "100%" }}
+            >
+              {snackbar.message}
+            </Alert>
+          </Snackbar>
+        );
+      })}
     </div>
   );
 };
