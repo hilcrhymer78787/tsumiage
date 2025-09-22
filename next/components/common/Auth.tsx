@@ -6,15 +6,17 @@ import {
   CardContent,
   CardHeader,
   Container,
+  Stack,
   TextField,
 } from "@mui/material";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import { useTestAuth } from "@/data/user/useTestAuth";
 import { useBasicAuth } from "@/data/user/useBasicAuth";
 import ErrTxt from "./ErrTxt";
+import RStack from "./RStack";
 
 const Login = ({
   setIsNew,
@@ -36,8 +38,8 @@ const Login = ({
     });
   };
 
-  const validation = (): boolean => {
-    let isError: boolean = false;
+  const validation = () => {
+    let isError = false;
     setEmailError("");
     setPasswordError("");
     if (!/.+@.+\..+/.test(email)) {
@@ -51,55 +53,48 @@ const Login = ({
     return isError;
   };
 
+  const onKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter") apiBasicAuth();
+  };
+
   return (
     <Container sx={{ p: "10px" }} maxWidth="xs">
       <Card>
         <CardHeader title="ログイン" />
-        <CardContent>
-          <Box sx={{ mb: "15px" }}>
+        <CardContent sx={{ p: 0 }}>
+          <Stack gap={3} p={3}>
             <TextField
-              onKeyPress={(e) => {
-                if (e.key === "Enter") apiBasicAuth();
-              }}
+              onKeyPress={onKeyPress}
               error={!!emailError}
               helperText={emailError}
               value={email}
               onChange={(e) => setEmail(e.currentTarget.value)}
               label="email"
             />
-          </Box>
-          <Box sx={{ mb: "15px" }}>
             <TextField
-              onKeyPress={(e) => {
-                if (e.key === "Enter") apiBasicAuth();
-              }}
+              onKeyPress={onKeyPress}
               error={!!passwordError}
               helperText={passwordError}
               value={password}
               onChange={(e) => setPassword(e.currentTarget.value)}
               label="password"
             />
-          </Box>
-          {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <LoadingButton
-                color="inherit"
-                variant="contained"
-                onClick={testAuth}
-                loading={testAuthLoading}
-                disabled={basicAuthLoading}
-              >
-                テストユーザーでログイン
-                <SendIcon />
-              </LoadingButton>
-            </Box>
-          )}
-          <ErrTxt txt={error} />
+            {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
+              <RStack justifyContent="flex-end">
+                <LoadingButton
+                  color="inherit"
+                  variant="contained"
+                  onClick={testAuth}
+                  loading={testAuthLoading}
+                  disabled={basicAuthLoading}
+                >
+                  テストユーザーでログイン
+                  <SendIcon />
+                </LoadingButton>
+              </RStack>
+            )}
+            <ErrTxt txt={error} p={0} />
+          </Stack>
         </CardContent>
         <CardActions>
           <Button
