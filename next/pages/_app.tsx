@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { ThemeProvider } from "@mui/material/styles";
 import ja from "date-fns/locale/ja";
 import theme from "@/plugins/theme";
+import MySnackbar from "@/components/common/MySnackbar";
 import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import dayjs from "dayjs";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
@@ -55,6 +56,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ja}>
           <CssBaseline />
+          <MySnackbar />
           <AppInit setIsAuth={setIsAuth} />
           {isAuth !== null && <Component {...pageProps} />}
         </LocalizationProvider>
