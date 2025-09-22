@@ -16,8 +16,7 @@ class UserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 新規登録時は null、編集時は必須なので nullable
-            'id'          => 'nullable|integer',
+            'id'          => 'nullable|integer', // 新規登録時は null、編集時は必須なので nullable
             'name'        => 'required|string|max:255',
             'email'       => 'required|email|max:255',
             'password'    => 'nullable|string|min:8',

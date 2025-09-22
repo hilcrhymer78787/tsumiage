@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Domains\InvitationRead\Services\InvitationReadService;
 use App\Http\Resources\Common\ErrorResource;
-use App\Http\Requests\InvitationReadRequest;
 use App\Http\Resources\InvitationReadResource;
-
+use Illuminate\Foundation\Http\FormRequest;
 use Throwable;
 
 class InvitationReadController extends Controller
@@ -19,7 +18,7 @@ class InvitationReadController extends Controller
     }
 
     // 型のバリデーションを行う
-    public function index(InvitationReadRequest $request) : InvitationReadResource | ErrorResource
+    public function index(FormRequest $request) : InvitationReadResource | ErrorResource
     {
         try {
             $invitationReadEntity = $this->service->invitationRead($request);

@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace App\Domains\InvitationRead\Services;
 
 use App\Domains\InvitationRead\Factories\InvitationReadFactory;
-use App\Domains\InvitationRead\Parameters\InvitationReadParameter;
-use App\Http\Requests\InvitationReadRequest;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Domains\Shared\CheckIsFriends\Services\CheckIsFriendsService;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use App\Domains\Shared\Task\Queries\TaskQuery;
 use App\Domains\Shared\Work\Queries\WorkQuery;
 use App\Domains\InvitationRead\Entities\InvitationReadEntity;
 use App\Domains\InvitationRead\Queries\InvitationReadQuery;
+use Illuminate\Foundation\Http\FormRequest;
 
 class InvitationReadService
 {
@@ -26,7 +23,7 @@ class InvitationReadService
         private readonly InvitationReadBuilder $builder,
     ) {}
 
-    public function invitationRead(InvitationReadRequest $request): InvitationReadEntity
+    public function invitationRead(FormRequest $request): InvitationReadEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
         $loginInfoId = $loginInfoModel->id;

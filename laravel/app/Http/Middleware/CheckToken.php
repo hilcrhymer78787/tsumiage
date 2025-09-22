@@ -1,4 +1,5 @@
 <?php
+// TODO: ErrorResource を使いたい
 
 namespace App\Http\Middleware;
 
