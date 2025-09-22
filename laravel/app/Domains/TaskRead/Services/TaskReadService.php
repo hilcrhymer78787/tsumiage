@@ -11,7 +11,6 @@ use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Domains\Shared\CheckIsFriends\Services\CheckIsFriendsService;
 use App\Domains\TaskRead\Entities\TaskReadEntity;
 use App\Domains\TaskRead\Queries\TaskReadQuery;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TaskReadService
@@ -21,9 +20,6 @@ class TaskReadService
         private readonly LoginInfoService $loginInfoService,
         private readonly CheckIsFriendsService $checkIsFriendsService,
         private readonly TaskReadFactory $factory,
-
-        // private readonly TaskReadService $taskReadService,
-        // private readonly TaskReadFactory $factory,
     ) {}
 
     public function taskRead(TaskReadParameter $params, TaskReadRequest $request): TaskReadEntity
@@ -35,10 +31,7 @@ class TaskReadService
 
         if ($loginInfoId !== $paramsUserId) {
             $isFriends = $this->checkIsFriendsService->checkIsFriends($loginInfoId, $paramsUserId);
-            if (!$isFriends) {
-                // TODO このエラーも共通化
-                throw new HttpException(403, 'このユーザは友達ではありません');
-            }
+            if (!$isFriends) throw new HttpException(403, 'このユーザは友達ではありません');
         }
 
         $taskModels = $this->query->getTasksBuilder($params)->get();

@@ -17,15 +17,18 @@ import { useCreateTask } from "@/data/task/useCreateTask";
 import { useDeleteTask } from "@/data/task/useDeleteTask";
 import { useState } from "react";
 
-export default function CreateTask({ task, onCloseMyself }: {
+const CreateTask = ({
+  task,
+  onCloseMyself,
+}: {
   task: Task | null;
   onCloseMyself: () => void;
-}) {
+}) => {
   const { nameError, createTaskLoading, createTask, createTaskError } =
     useCreateTask();
   const { deleteTask, deleteTaskLoading } = useDeleteTask();
   const [name, setName] = useState(task?.name ?? "");
-  
+
   const onClickDelete = async () => {
     if (!task) return;
     if (!confirm(`「${task.name}」を削除しますか？`)) return;
@@ -84,4 +87,5 @@ export default function CreateTask({ task, onCloseMyself }: {
       </CardActions>
     </Card>
   );
-}
+};
+export default CreateTask;

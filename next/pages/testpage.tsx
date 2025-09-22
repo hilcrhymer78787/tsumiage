@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { api } from "@/plugins/axios";
 
-export default function TestPage() {
+const TestPage = () => {
   const [isLoading, setIsLoading] = useState<boolean | null>(null);
   const [resData, setResData] = useState<boolean | null>(null);
   useEffect(() => {
@@ -26,9 +26,6 @@ export default function TestPage() {
   }, []);
   if (isLoading) return <p>ローディング中...</p>;
   if (!resData) return <p>データがありません</p>;
-  return (
-    <>
-      <pre>{JSON.stringify(resData, null, 6)}</pre>
-    </>
-  );
-}
+  return <pre>{JSON.stringify(resData, null, 6)}</pre>;
+};
+export default TestPage;

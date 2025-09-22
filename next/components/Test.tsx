@@ -1,5 +1,5 @@
-import {useState} from "react";
-export default function Test() {
+import { useState } from "react";
+const Test = () => {
   const [value, setValue] = useState(5);
   return (
     <>
@@ -7,4 +7,5 @@ export default function Test() {
       {value}
     </>
   );
-}
+};
+export default Test;

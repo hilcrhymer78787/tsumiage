@@ -20,10 +20,7 @@ class AuthBearerService
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
 
-        if (!$loginInfoModel) {
-            // TODO このエラーも共通化
-            throw new HttpException(403, 'トークンが有効期限切れです');
-        }
+        if (!$loginInfoModel) throw new HttpException(403, 'トークンが有効期限切れです');
 
         return new LoginInfoEntity(
             id: $loginInfoModel->id,

@@ -1,6 +1,3 @@
-// TODO: display: flex 撤去
-// TODO: export default function 撤去
-
 import { Box, IconButton, Typography } from "@mui/material";
 
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
