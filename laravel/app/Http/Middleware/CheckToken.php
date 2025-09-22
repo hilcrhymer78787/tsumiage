@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use Illuminate\Auth\AuthenticationException;
 
 class CheckToken
 {
@@ -18,9 +19,7 @@ class CheckToken
     public function handle(Request $request, Closure $next)
     {
       $loginInfo = (new UserService())->getLoginInfoByRequest($request);
-      if(!$loginInfo){
-          return response()->json(['errorMessage' => 'トークンが有効期限切れです'], 401);
-      }
+      if(!$loginInfo)throw new AuthenticationException('トークンが有効期限切れです');
       return $next($request);
     }
 }

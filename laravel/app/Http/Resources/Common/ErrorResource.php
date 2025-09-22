@@ -20,7 +20,7 @@ class ErrorResource extends JsonResource
     {
         return [
             'status' => $this->getStatusCode(),
-            'errorMessage' => $this->resource->getMessage(),
+            'message' => $this->resource->getMessage(),
         ];
     }
 

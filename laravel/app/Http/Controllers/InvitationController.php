@@ -23,15 +23,15 @@ class InvitationController extends Controller
         // メールアドレスが存在するか確認
         $toUserData = User::where('email', $request['email'])->first();
         if (!$toUserData) {
-            return response()->json(['errorMessage' => 'このメールアドレスは登録されていません'], 500);
+            return response()->json(['message' => 'このメールアドレスは登録されていません'], 500);
         }
 
         $loginInfo = (new UserService())->getLoginInfoByRequest($request);
 
         // 自分自身でないか確認
         if ($toUserData['id'] == $loginInfo['id']) {
-            $errorMessage = '自分自身に友達申請することはできません';
-            return response()->json(['errorMessage' => $errorMessage], 500);
+            $message = '自分自身に友達申請することはできません';
+            return response()->json(['message' => $message], 500);
         }
 
         // 重複判定
@@ -40,8 +40,8 @@ class InvitationController extends Controller
             ->where('invitation_status', 2)
             ->first();
         if ($nowJudgment) {
-            $errorMessage = $toUserData['name'] . 'さんにはすでに友達です';
-            return response()->json(['errorMessage' => $errorMessage], 500);
+            $message = $toUserData['name'] . 'さんにはすでに友達です';
+            return response()->json(['message' => $message], 500);
         }
 
         // 重複判定
@@ -50,8 +50,8 @@ class InvitationController extends Controller
             ->where('invitation_status', 2)
             ->first();
         if ($nowJudgment) {
-            $errorMessage = $toUserData['name'] . 'さんにはすでに友達です';
-            return response()->json(['errorMessage' => $errorMessage], 500);
+            $message = $toUserData['name'] . 'さんにはすでに友達です';
+            return response()->json(['message' => $message], 500);
         }
 
         // 重複判定
@@ -60,8 +60,8 @@ class InvitationController extends Controller
             ->where('invitation_status', 1)
             ->first();
         if ($toJudgment) {
-            $errorMessage = $toUserData['name'] . 'さんにはすでに友達申請をしています';
-            return response()->json(['errorMessage' => $errorMessage], 500);
+            $message = $toUserData['name'] . 'さんにはすでに友達申請をしています';
+            return response()->json(['message' => $message], 500);
         }
 
         // 重複判定
@@ -70,8 +70,8 @@ class InvitationController extends Controller
             ->where('invitation_status', 1)
             ->first();
         if ($fromJudgment) {
-            $errorMessage = $toUserData['name'] . 'さんからの友達申請が来ているため許可してください';
-            return response()->json(['errorMessage' => $errorMessage], 500);
+            $message = $toUserData['name'] . 'さんからの友達申請が来ているため許可してください';
+            return response()->json(['message' => $message], 500);
         }
 
         Invitation::create([
@@ -91,7 +91,7 @@ class InvitationController extends Controller
             ->where('invitation_to_user_id', $loginInfo['id'])
             ->first();
         if (!$judge) {
-            return response()->json(['errorMessage' => '招待されていません'], 500);
+            return response()->json(['message' => '招待されていません'], 500);
         }
         Invitation::where('invitation_id', $request['invitation_id'])->update([
             'invitation_status' => 2,
