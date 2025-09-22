@@ -10,6 +10,7 @@ abstract class BaseFormRequest extends FormRequest
 {
     protected function failedValidation(Validator $validator)
     {
+        // TODO: ErrorResource を使いたい
         throw new HttpResponseException(
             response()->json([
                 'status'  => 400,

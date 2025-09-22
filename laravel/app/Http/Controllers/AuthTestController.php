@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Common\ErrorResource;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Resources\Common\LoginInfoResource;
 use App\Domains\AuthTest\Services\AuthTestService;
 use Throwable;
