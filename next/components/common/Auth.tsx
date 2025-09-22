@@ -1,9 +1,7 @@
 import {
-  Box,
   Button,
   Card,
   CardActions,
-  CardContent,
   CardHeader,
   Container,
   Stack,
@@ -15,7 +13,6 @@ import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import { useTestAuth } from "@/data/user/useTestAuth";
 import { useBasicAuth } from "@/data/user/useBasicAuth";
-import ErrTxt from "./ErrTxt";
 import RStack from "./RStack";
 
 const Login = ({
@@ -23,34 +20,19 @@ const Login = ({
 }: {
   setIsNew: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { basicAuth, isLoading: basicAuthLoading, error } = useBasicAuth();
+  const {
+    basicAuth,
+    isLoading: basicAuthLoading,
+    emailError,
+    passwordError,
+  } = useBasicAuth();
   const { testAuth, isLoading: testAuthLoading } = useTestAuth();
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
+
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
 
   const apiBasicAuth = () => {
-    if (validation()) return;
-    basicAuth({
-      email: email,
-      password: password,
-    });
-  };
-
-  const validation = () => {
-    let isError = false;
-    setEmailError("");
-    setPasswordError("");
-    if (!/.+@.+\..+/.test(email)) {
-      setEmailError("正しい形式で入力してください");
-      isError = true;
-    }
-    if (password.length < 8) {
-      setPasswordError("パスワードは8桁以上で設定してください");
-      isError = true;
-    }
-    return isError;
+    basicAuth({ email, password });
   };
 
   const onKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -61,41 +43,38 @@ const Login = ({
     <Container sx={{ p: "10px" }} maxWidth="xs">
       <Card>
         <CardHeader title="ログイン" />
-        <CardContent sx={{ p: 0 }}>
-          <Stack gap={3} p={3}>
-            <TextField
-              onKeyPress={onKeyPress}
-              error={!!emailError}
-              helperText={emailError}
-              value={email}
-              onChange={(e) => setEmail(e.currentTarget.value)}
-              label="email"
-            />
-            <TextField
-              onKeyPress={onKeyPress}
-              error={!!passwordError}
-              helperText={passwordError}
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-              label="password"
-            />
-            {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
-              <RStack justifyContent="flex-end">
-                <LoadingButton
-                  color="inherit"
-                  variant="contained"
-                  onClick={testAuth}
-                  loading={testAuthLoading}
-                  disabled={basicAuthLoading}
-                >
-                  テストユーザーでログイン
-                  <SendIcon />
-                </LoadingButton>
-              </RStack>
-            )}
-            <ErrTxt txt={error} p={0} />
-          </Stack>
-        </CardContent>
+        <Stack gap={3} p={3}>
+          <TextField
+            onKeyPress={onKeyPress}
+            error={!!emailError}
+            helperText={emailError}
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+            label="email"
+          />
+          <TextField
+            onKeyPress={onKeyPress}
+            error={!!passwordError}
+            helperText={passwordError}
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+            label="password"
+          />
+          {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
+            <RStack justifyContent="flex-end">
+              <LoadingButton
+                color="inherit"
+                variant="contained"
+                onClick={testAuth}
+                loading={testAuthLoading}
+                disabled={basicAuthLoading}
+              >
+                テストユーザーでログイン
+                <SendIcon />
+              </LoadingButton>
+            </RStack>
+          )}
+        </Stack>
         <CardActions>
           <Button
             onClick={() => setIsNew(true)}

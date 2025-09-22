@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 class AuthTestQuery
 {
-    public function getLoginInfoModel(): User
+    public function getLoginInfoModel(): User | null
     {
         return User::find(1);
     }

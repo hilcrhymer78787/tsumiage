@@ -6,6 +6,7 @@ namespace App\Domains\AuthTest\Services;
 
 use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
 use App\Domains\AuthTest\Queries\AuthTestQuery;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AuthTestService
 {
@@ -16,6 +17,11 @@ class AuthTestService
     public function getLoginInfoEntity(): LoginInfoEntity
     {
         $loginInfoModel = $this->query->getLoginInfoModel();
+
+        if (!$loginInfoModel) {
+            // TODO このエラーも共通化
+            throw new HttpException(403, 'テストユーザーが見つかりませんでした');
+        }
 
         return new LoginInfoEntity(
             id: $loginInfoModel->id,

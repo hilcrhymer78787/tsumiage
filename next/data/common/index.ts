@@ -1,19 +1,22 @@
 import { AxiosError } from "axios";
 import { SetStateAction } from "react";
+type Error = {
+  data: {
+    errorMessage: string,
+    status: 500,
+  },
+};
+
 export const errHandler = (
-  err: AxiosError<{ errorMessage: string }>,
+  err: AxiosError<Error>,
   setter: (value: SetStateAction<string>) => void
 ) => {
-  const errorMessage = err.response?.data?.errorMessage;
-  const status = err.response?.status;
-  const statusText = err.response?.statusText;
+  const errorMessage = err.response?.data?.data?.errorMessage;
   if (!!errorMessage) {
     setter(errorMessage);
-    return;
+    return errorMessage;
   }
-  if (!!status && !!statusText) {
-    setter(`${err.response?.status}：${err.response?.statusText}`);
-    return;
-  }
-  setter("不明なエラー");
+  const error = "不明なエラー";
+  setter(error);
+  return error;
 };

@@ -2,9 +2,11 @@ import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
+import { useSnackbar } from "@/data/common/useSnackbar";
 
 export const useTestAuth = () => {
   const { loginInfo, setLoginInfo } = useLoginInfo();
+  const { setSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const testAuth = async () => {
@@ -20,7 +22,8 @@ export const useTestAuth = () => {
         return res;
       })
       .catch((err) => {
-        errHandler(err, setError);
+        const error = errHandler(err, setError);
+        setSnackbar(error, "error");
       })
       .finally(() => {
         setIsLoading(false);
