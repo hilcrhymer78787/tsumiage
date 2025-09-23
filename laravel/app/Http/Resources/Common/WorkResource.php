@@ -7,11 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class WorkResource extends JsonResource
 {
-
-    public function __construct($resource)
-    {
-        $this->resource = $resource;
-    }
     /**
      * データを配列に変換
      *
