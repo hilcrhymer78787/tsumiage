@@ -22,6 +22,7 @@ export const useDeleteTask = () => {
         return res;
       })
       .catch((err) => {
+        setSnackbar("タスクの削除に失敗しました", "error");
         errHandler(err, setDeleteTaskError);
       })
       .finally(() => {

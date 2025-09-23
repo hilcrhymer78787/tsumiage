@@ -5537,12 +5537,12 @@
         "affectsGlobalScope": false
       },
       "./data/task/usecreatetask.ts": {
-        "version": "4c1595a6ad96a07792a5b8b4abbe86e98820e9a4eaa348b5c3b193a2de0fe387",
+        "version": "6c63a6e07e43624a02b1c4d130b22ebc64e7d98a72b84e28cf424ec87bae4a51",
         "signature": "82fc0bcace21848453f513231d7691ec7007b4a3226c47d21873183dda75104b",
         "affectsGlobalScope": false
       },
       "./data/task/usedeletetask.ts": {
-        "version": "ba99b2cf72334376bd34e99a063c4e63402a64f64ba46f41b4957d6dbfe688ff",
+        "version": "217f535b7190c0e670b25ee090e2d77e84883a4ad36a45e07e9339b87ba9a26b",
         "signature": "9deb41a5d57c40e21695db5e6287264b41462a87ebd81477bfa9421bd7e8c492",
         "affectsGlobalScope": false
       },

@@ -33,6 +33,7 @@ export const useCreateTask = () => {
         return res;
       })
       .catch((err) => {
+        setSnackbar(`タスクの${!!data.id ? "更新" : "作成"}に失敗しました`, "error");
         errHandler(err, setCreateTaskError);
       })
       .finally(() => {

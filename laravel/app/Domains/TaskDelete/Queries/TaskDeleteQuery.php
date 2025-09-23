@@ -2,7 +2,6 @@
 
 namespace App\Domains\TaskDelete\Queries;
 
-use App\Domains\TaskDelete\Parameters\TaskDeleteParameter;
 use App\Models\Task;
 use App\Models\Work;
 
