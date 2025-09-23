@@ -22,6 +22,11 @@ class ErrorResource extends JsonResource
         return [
             'status' => $this->getStatusCode(),
             'message' => $this->resource->getMessage(),
+            'detail'  => [
+                'file'  => $this->resource->getFile(),
+                'line'  => $this->resource->getLine(),
+                'trace' => $this->resource->getTraceAsString(),
+            ],
         ];
     }
 

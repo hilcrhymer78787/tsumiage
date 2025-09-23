@@ -12,7 +12,7 @@ readonly class TaskCreateParameter
     public static function makeParams(array $validated): self
     {
         return new self(
-            id: $validated['id'],
+            id: $validated['id'] ?? null,
             name: $validated['name'],
         );
     }
