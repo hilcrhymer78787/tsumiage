@@ -13,9 +13,11 @@ abstract class BaseFormRequest extends FormRequest
         // TODO: ErrorResource を使いたい
         throw new HttpResponseException(
             response()->json([
-                'status'  => 400,
-                'code'    => 'VALIDATION_ERROR',
-                'errors'  => $validator->errors(),
+                'data' => [
+                    'status'  => 400,
+                    'message'    => 'バリデーションエラーが発生しました。',
+                    'errors'  => $validator->errors(),
+                ]
             ], 400)
         );
     }

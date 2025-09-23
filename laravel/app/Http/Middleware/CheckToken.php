@@ -1,26 +1,28 @@
 <?php
-// TODO: ErrorResource を使いたい
 
 namespace App\Http\Middleware;
 
+use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use Closure;
 use Illuminate\Http\Request;
-use App\Services\UserService;
 use Illuminate\Auth\AuthenticationException;
 
 class CheckToken
 {
-    /**
-     * 送信されてきたリクエストの処理
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
-    {
-      $loginInfo = (new UserService())->getLoginInfoByRequest($request);
-      if(!$loginInfo)throw new AuthenticationException('トークンが有効期限切れです');
-      return $next($request);
-    }
+  public function __construct(
+    private readonly LoginInfoService $loginInfoService,
+  ) {}
+  /**
+   * 送信されてきたリクエストの処理
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \Closure  $next
+   * @return mixed
+   */
+  public function handle(Request $request, Closure $next)
+  {
+    $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
+    if (!$loginInfoModel) throw new AuthenticationException('トークンが有効期限切れです');
+    return $next($request);
+  }
 }

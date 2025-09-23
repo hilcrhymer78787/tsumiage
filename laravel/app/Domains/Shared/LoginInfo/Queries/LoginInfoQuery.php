@@ -4,11 +4,11 @@ namespace App\Domains\Shared\LoginInfo\Queries;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class LoginInfoQuery
 {
-    public function getLoginInfoBuilder(FormRequest $request): Builder
+    public function getLoginInfoBuilder(Request $request): Builder
     {
         $token = substr($request->header('Authorization'), 7);
         $query = User::where('token', $token)

@@ -4,7 +4,7 @@ namespace App\Domains\Shared\LoginInfo\Services;
 
 use App\Domains\Shared\LoginInfo\Queries\LoginInfoQuery;
 use App\Models\User;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class LoginInfoService
 {
@@ -12,7 +12,7 @@ class LoginInfoService
         private readonly LoginInfoQuery $query,
     ) {}
 
-    public function getLoginInfo(FormRequest $request): ?User
+    public function getLoginInfo(Request $request): ?User
     {
         return $this->query->getLoginInfoBuilder($request)->first();
     }
