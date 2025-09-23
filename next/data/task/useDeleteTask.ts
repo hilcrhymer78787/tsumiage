@@ -3,19 +3,22 @@ import { errHandler } from "@/data/common";
 import { useState } from "react";
 import { AxiosResponse } from "axios";
 import { useSnackbar } from "../common/useSnackbar";
-import { Success } from "../types/Success";
+import { Success } from "@/data/types/success";
 
+type Request = {
+  id: number;
+};
 export const useDeleteTask = () => {
   const { setSnackbar } = useSnackbar();
   const [deleteTaskLoading, setDeleteTaskLoading] = useState(false);
   const [deleteTaskError, setDeleteTaskError] = useState("");
-  const deleteTask = async (id: number) => {
+  const deleteTask = async (data: Request) => {
     setDeleteTaskError("");
     setDeleteTaskLoading(true);
     return api({
       url: "/api/task/delete",
       method: "DELETE",
-      data: { id },
+      data,
     })
       .then((res: AxiosResponse<Success>) => {
         setSnackbar(res.data.data.message);

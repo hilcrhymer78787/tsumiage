@@ -1,12 +1,7 @@
 // TODO: ファイル名、リファクタ
 import { AxiosError } from "axios";
 import { SetStateAction } from "react";
-type Error = {
-  data: {
-    message: string,
-    status: number,
-  },
-};
+import { Error } from "@/data/types/error";
 export const errHandler = (
   err: AxiosError<Error>,
   setter: (value: SetStateAction<string>) => void

@@ -3,7 +3,7 @@ import { errHandler } from "@/data/common";
 import { useState } from "react";
 import { useSnackbar } from "../common/useSnackbar";
 import { AxiosResponse } from "axios";
-import { Success } from "../types/Success";
+import { Success } from "@/data/types/success";
 type Request = {
   ids: number[];
 };

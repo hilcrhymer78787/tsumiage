@@ -1,7 +1,7 @@
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useMemo, useState } from "react";
-import { Task } from "../types/task";
+import { Task } from "@/data/types/task";
 
 type Request = { date: string; user_id: number }
 export const useReadTasks = () => {

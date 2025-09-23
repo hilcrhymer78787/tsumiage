@@ -33,7 +33,7 @@ const CreateTask = ({
     if (!task) return;
     if (!confirm(`「${task.name}」を削除しますか？`)) return;
     if (!confirm("このタスクに登録されている全ての実績も削除されます")) return;
-    const res = await deleteTask(task.id);
+    const res = await deleteTask({ id: task.id });
     if (res) onCloseMyself();
   };
 

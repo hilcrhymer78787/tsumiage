@@ -1111,9 +1111,14 @@
         "signature": "644c59289eb29590d65062c5b64dda9ef2797ce120071265a9099436f0d41a16",
         "affectsGlobalScope": false
       },
+      "./data/types/error.ts": {
+        "version": "24cfa664f9f66228afb8793da9323cacbad40571b35c55c5ee4d7785773bd231",
+        "signature": "e56247f97e6b637d1963a85fc77d6f08521b6c41bbbe3f3a1d7d087dc83985a2",
+        "affectsGlobalScope": false
+      },
       "./data/common/index.ts": {
-        "version": "6baaf04a33b178297884a1003ee023da68820d304edf8bec62c8105a20f93b80",
-        "signature": "15abd8d92600ae476007bf23aa385f4645d80a3a80626626457ba6596b583087",
+        "version": "69d17e9005b7222cb2c278b109b164b6a446d116afc1fa5c745370842804591f",
+        "signature": "508e31aa1874a279049132f182062033a45e46ef214f4e953e77dc60122f1693",
         "affectsGlobalScope": false
       },
       "./node_modules/recoil/index.d.ts": {
@@ -5537,13 +5542,13 @@
         "affectsGlobalScope": false
       },
       "./data/task/usecreatetask.ts": {
-        "version": "6c63a6e07e43624a02b1c4d130b22ebc64e7d98a72b84e28cf424ec87bae4a51",
-        "signature": "82fc0bcace21848453f513231d7691ec7007b4a3226c47d21873183dda75104b",
+        "version": "cf539329c1482430a7e13c81c04716075ea1338f9af9db4fe1de59ca03b8d971",
+        "signature": "6c965f9053003b4a3fe0e5271389e487392df8276cb477d30e81168fd592d8a9",
         "affectsGlobalScope": false
       },
       "./data/task/usedeletetask.ts": {
-        "version": "217f535b7190c0e670b25ee090e2d77e84883a4ad36a45e07e9339b87ba9a26b",
-        "signature": "9deb41a5d57c40e21695db5e6287264b41462a87ebd81477bfa9421bd7e8c492",
+        "version": "6d46d6916f7928eb7066855ac9733795d087195278857f342ac3d9b02d6277a6",
+        "signature": "6c5a69d283b4f9ad72fcdec9b078ee287844a63bed948f81bb51e4bb4919c6d2",
         "affectsGlobalScope": false
       },
       "./data/types/work.ts": {
@@ -5557,23 +5562,18 @@
         "affectsGlobalScope": false
       },
       "./data/task/usereadtasks.ts": {
-        "version": "2eee5f26a878f61cd5fe308ee7f90452cb75ab5c1c8d6edc0ef5b000d0c06d82",
-        "signature": "8d0dd8c3fad2473d05c3b7176da9e47185fc303600e6934a653a690272593b42",
+        "version": "8c632b2f28b558b4978e95634b355b5fbd33db5bbe8055252e3ee0115a65fa4a",
+        "signature": "a2773d85c73a3bc920dac5b1ea854c4645dfe1593c6178b66138e201cb8df2b3",
         "affectsGlobalScope": false
       },
       "./data/task/usesorttasks.ts": {
-        "version": "e4441717185bf18015bb3ed906549a087d933889cd4d0d4a83a64413d2f482c1",
-        "signature": "f8d18de59b7bfd767c8114ece96aba86db50f62fc809d2c7e6d40642b62b01d0",
+        "version": "fc331713862dec859fdb8bb1ed910dca02de762ae2b5de177af787ba5e85b2e7",
+        "signature": "682ed406902c9dbc907f77ab63d7cc8da840b0d4390c2a7f3bbaeb78b0c6e9e9",
         "affectsGlobalScope": false
       },
       "./data/types/calendar.ts": {
         "version": "7721fe1654b81e07e698c085b2c9c18ec11047a0ab1b672369591fcaac675e89",
         "signature": "a44477d77374c6da7f938c7c2d446148cffb0a4418c71e8b5438cc380f34bc98",
-        "affectsGlobalScope": false
-      },
-      "./data/types/error.ts": {
-        "version": "1756ca79b00ec4494a60803404ca3e4189a18bb36fad78c7e4131b48ee14fdf8",
-        "signature": "eb6f268418a1ffe81062b71698a60a9f99c5c3f27fd1523e8700543d5a844d30",
         "affectsGlobalScope": false
       },
       "./data/user/usebasicauth.ts": {
@@ -5627,8 +5627,8 @@
         "affectsGlobalScope": false
       },
       "./data/work/usereadworkmonth.ts": {
-        "version": "9a934481fc4303ef9f05e738ac5ef624b68609ec8886331669973fe8f13e32c6",
-        "signature": "87fbe7ae162877ef80a970bcaee3271c645e4c96cb93d4cb2f9c631699e94285",
+        "version": "75fa64bd2218180eee11d6de1acd69fcc6317818d00262f66e06ef92504907a5",
+        "signature": "0b58953eea7b2733a28ea912c11cb2525bb18b833f9432075bd0d85764b835d1",
         "affectsGlobalScope": false
       },
       "./data/work/useresetwork.ts": {
@@ -7382,7 +7382,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/createtask.tsx": {
-        "version": "eaa50d63345142dc228db71eed610cf22c371659f92c173b7f16b20a657280ec",
+        "version": "adb99c8dee5891bc5c3d1c22b9a230073ae3c34ce0b6678e2e02194dfe9eeafc",
         "signature": "17137aa5a4da5c973a717011bb2e1f0cfd133af8cb63edd65b82809d1b5255f0",
         "affectsGlobalScope": false
       },
@@ -8818,6 +8818,7 @@
         "./node_modules/dayjs/index.d.ts"
       ],
       "./data/common/index.ts": [
+        "./data/types/error.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -18200,6 +18201,7 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./data/common/index.ts": [
+        "./data/types/error.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts"
       ],

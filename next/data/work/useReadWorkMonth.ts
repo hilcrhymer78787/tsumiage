@@ -5,7 +5,7 @@ import { atom, useRecoilState, useRecoilValue } from "recoil";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 import dayjs from "dayjs";
-import { Calendar } from "../types/calendar";
+import { Calendar } from "@/data/types/calendar";
 
 export const calendarsAtom = atom<Calendar[] | null>({
   key: "calendar",
