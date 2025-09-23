@@ -5561,6 +5561,11 @@
         "signature": "225bba6de510438971f8972e42a1be6e2e8e5882885e5c5f29696133c836e152",
         "affectsGlobalScope": false
       },
+      "./data/types/success.ts": {
+        "version": "e9928a498ea06a99b337e88bb699984185928efeda2975754786527cc6155c8b",
+        "signature": "0d11d04c5f95e9aab6b73a95fc4c83eec39696b83d8fa6229004f27d04dfb472",
+        "affectsGlobalScope": false
+      },
       "./data/types/calendar.ts": {
         "version": "7721fe1654b81e07e698c085b2c9c18ec11047a0ab1b672369591fcaac675e89",
         "signature": "a44477d77374c6da7f938c7c2d446148cffb0a4418c71e8b5438cc380f34bc98",
@@ -8897,6 +8902,9 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./data/types/logininfo.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./data/types/success.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./data/types/task.ts": [
@@ -27337,6 +27345,7 @@
       "./data/types/error.ts",
       "./data/types/friend.ts",
       "./data/types/logininfo.ts",
+      "./data/types/success.ts",
       "./data/types/task.ts",
       "./data/types/work.ts",
       "./data/user/usebasicauth.ts",
@@ -29254,6 +29263,10 @@
       ],
       [
         "./data/types/logininfo.ts",
+        1
+      ],
+      [
+        "./data/types/success.ts",
         1
       ],
       [

@@ -6,7 +6,7 @@ use App\Http\Resources\Common\ErrorResource;
 use App\Domains\TaskCreate\Services\TaskCreateService;
 use App\Http\Requests\TaskCreateRequest;
 use App\Domains\TaskCreate\Parameters\TaskCreateParameter;
-use App\Http\Resources\SuccessResource;
+use App\Http\Resources\Common\SuccessResource;
 use Throwable;
 
 class TaskCreateController extends Controller
