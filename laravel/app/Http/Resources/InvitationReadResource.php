@@ -2,42 +2,23 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Base\BaseResource;
 use App\Http\Resources\Common\InvitationResource;
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class InvitationReadResource extends JsonResource
+class InvitationReadResource extends BaseResource
 {
-
-    public function __construct($resource)
+    public function resourceData($request): array
     {
-        $this->resource = $resource;
-    }
-    /**
-     * データを配列に変換
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array<string, mixed>
-     */
-    public function toArray($request)
-    {
-        $fromFriendsEntity = $this->resource->getFromFriendsEntity();
-        $nowFriendsEntity = $this->resource->getNowFriendsEntity();
-        $toFriendsEntity = $this->resource->getToFriendsEntity();
-
         return [
-            'data' => [
-                'fromFriends'=> $fromFriendsEntity->map(function ($invitationEntity) {
-                    return (new InvitationResource($invitationEntity));
-                }),
-                'nowFriends'=> $nowFriendsEntity->map(function ($invitationEntity) {
-                    return (new InvitationResource($invitationEntity));
-                }),
-                'toFriends'=> $toFriendsEntity->map(function ($invitationEntity) {
-                    return (new InvitationResource($invitationEntity));
-                }),
-            ],
-            'success' => true,
-            'status' => 200,
+            'fromFriends' => InvitationResource::collection(
+                $this->resource->getFromFriendsEntity()
+            ),
+            'nowFriends' => InvitationResource::collection(
+                $this->resource->getNowFriendsEntity()
+            ),
+            'toFriends' => InvitationResource::collection(
+                $this->resource->getToFriendsEntity()
+            ),
         ];
     }
 }
