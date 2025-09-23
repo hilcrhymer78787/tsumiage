@@ -1,4 +1,4 @@
-import { WorkState } from "@/data/work/useCreateWork";
+// export type 修正
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";

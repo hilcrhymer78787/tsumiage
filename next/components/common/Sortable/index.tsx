@@ -7,7 +7,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { FC, useState } from "react";
+import { useState } from "react";
 import {
   SortableContext,
   arrayMove,
@@ -16,7 +16,7 @@ import {
 } from "@dnd-kit/sortable";
 
 import { SortableItem } from "@/components/common/Sortable/SortableItem";
-import { Task } from "@/data/task/useReadTasks";
+import { Task } from "@/data/types/task";
 
 const Sortable = ({
   initItems,

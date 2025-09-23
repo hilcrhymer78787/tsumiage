@@ -8,10 +8,10 @@ import {
 } from "@mui/material";
 import { TASK_NAME_WIDTH } from "@/components/calendar/CalendarTable";
 
-import { Calendar } from "@/data/work/useReadWorkMonth";
+import { Calendar } from "@/data/types/calendar";
 import CalendarTableCell from "@/components/calendar/CalendarTableCell";
-import { Task } from "@/data/task/useReadTasks";
 import { useState } from "react";
+import { Task } from "@/data/types/task";
 
 const CalendarTableRow = ({
   task,

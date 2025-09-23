@@ -1,3 +1,4 @@
+// TODO: フォーマッター導入
 import {
   Box,
   Table,
@@ -12,12 +13,12 @@ import Pagination, {
 } from "@/components/calendar/Pagination";
 
 import { BOTTOM_NAV_HEIGHT } from "@/plugins/theme";
-import { Calendar } from "@/data/work/useReadWorkMonth";
 import CalendarTableRow from "@/components/calendar/CalendarTableRow";
 import { NAV_WIDTH } from "@/layouts/default";
 import dayjs from "dayjs";
 import { useMedia } from "@/data/media/useMedia";
 import { useCallback, useMemo, useState } from "react";
+import { Calendar } from "@/data/types/calendar";
 
 export const TASK_NAME_WIDTH = 150;
 

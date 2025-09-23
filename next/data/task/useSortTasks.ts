@@ -1,7 +1,8 @@
-import { Task } from "@/data/task/useReadTasks";
+
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
+import { Task } from "../types/task";
 
 export const useSortTasks = () => {
   const [sortTasksLoading, setSortTasksLoading] = useState(false);

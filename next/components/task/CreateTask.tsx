@@ -12,10 +12,10 @@ import ErrTxt from "@/components/common/ErrTxt";
 import { KeyboardEvent } from "react";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
-import { Task } from "@/data/task/useReadTasks";
 import { useCreateTask } from "@/data/task/useCreateTask";
 import { useDeleteTask } from "@/data/task/useDeleteTask";
 import { useState } from "react";
+import { Task } from "@/data/types/task";
 
 const CreateTask = ({
   task,

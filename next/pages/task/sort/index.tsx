@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Task, useReadTasks } from "@/data/task/useReadTasks";
+import { useReadTasks } from "@/data/task/useReadTasks";
 
 import ErrTxt from "@/components/common/ErrTxt";
 import Layout from "@/layouts/default";
@@ -10,10 +10,11 @@ import TaskSortHeader from "@/components/task/TaskSortHeader";
 import dayjs from "dayjs";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { useSortTasks } from "@/data/task/useSortTasks";
+import { Task } from "@/data/types/task";
 
 const TaskSort = () => {
   const { loginInfo } = useLoginInfo();
-  const { tasks, readTasks, readTasksLoading, readTasksError } = useReadTasks();
+  const { tasks, readTasks, isLoading, error } = useReadTasks();
   const { sortTasks } = useSortTasks();
   const [scrollY, setScrollY] = useState(0);
 
@@ -26,15 +27,15 @@ const TaskSort = () => {
   };
 
   const TaskSortContent = useCallback(() => {
-    if (!!readTasksError) return <ErrTxt txt={readTasksError} />;
+    if (!!error) return <ErrTxt txt={error} />;
     if (tasks === null) {
-      if (readTasksLoading) return <Loading />;
+      if (isLoading) return <Loading />;
       return <></>;
     }
     if (!tasks.length) return <NoData txt="登録されているタスクはありません" />;
     return <Sortable initItems={tasks} onChange={apiTaskSort} />;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [readTasksLoading, readTasksError, tasks]);
+  }, [isLoading, error, tasks]);
 
   useEffect(() => {
     apiTaskRead();

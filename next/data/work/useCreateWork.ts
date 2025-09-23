@@ -2,14 +2,7 @@ import { useCallback, useState } from "react";
 
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
-
-export type Work = {
-  id: number;
-  state: WorkState;
-};
-
-const workState = [0 , 1 , 2] as const;
-export type WorkState = (typeof workState)[number]
+import { WorkState } from "@/data/types/work";
 
 export type workCreateData = {
   state: WorkState;

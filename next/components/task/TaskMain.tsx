@@ -29,8 +29,8 @@ const TaskMain = () => {
       date,
       readonly: false,
       apiTaskRead: apiTaskRead,
-      readTasksLoading: isLoading,
-      readTasksError: error,
+      isLoading,
+      error,
       sx: { mb: 5 },
     };
     return (

@@ -1,17 +1,7 @@
-import { WorkState } from "@/data/work/useCreateWork";
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useMemo, useState } from "react";
-
-export type Task = {
-  id: number;
-  name: string;
-  createdAt: string;
-  work: {
-    id: number;
-    state: WorkState;
-  };
-};
+import { Task } from "../types/task";
 
 export const useReadTasks = () => {
   const [isLoading, setIsLoading] = useState(false);

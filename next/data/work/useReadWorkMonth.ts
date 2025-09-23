@@ -1,4 +1,3 @@
-import { Task } from "@/data/task/useReadTasks";
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
@@ -6,17 +5,13 @@ import { atom, useRecoilState, useRecoilValue } from "recoil";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 import dayjs from "dayjs";
+import { Calendar } from "../types/calendar";
 
 export const calendarsAtom = atom<Calendar[] | null>({
   key: "calendar",
   dangerouslyAllowMutability: true,
   default: null,
 });
-
-export type Calendar = {
-  date: string;
-  tasks: Task[];
-};
 
 export const useReadWorkMonth = () => {
   const { loginInfo } = useLoginInfo();

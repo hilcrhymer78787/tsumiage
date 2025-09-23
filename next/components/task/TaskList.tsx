@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, SxProps } from "@mui/material";
-
-import { Task } from "@/data/task/useReadTasks";
 import TaskItem from "@/components/task/TaskItem";
+import { Task } from "@/data/types/task";
 
 const TaskList = ({
   date,

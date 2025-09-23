@@ -1112,8 +1112,8 @@
         "affectsGlobalScope": false
       },
       "./data/common/index.ts": {
-        "version": "815b7cbb1f23408d8efbfb6641db882c4650fb1ab5f7f6143d190648cc8cb7fa",
-        "signature": "ddf1a6b642b8fa7d611e2960236147cd4c842bdd1b87dfb54191891442da5c19",
+        "version": "a6602ac8e2834be1873603094dae0cd6221bec30f710e3ac4f868873fabc01a8",
+        "signature": "15abd8d92600ae476007bf23aa385f4645d80a3a80626626457ba6596b583087",
         "affectsGlobalScope": false
       },
       "./node_modules/recoil/index.d.ts": {
@@ -1124,6 +1124,11 @@
       "./data/common/uselogininfo.ts": {
         "version": "9daafb68ce63a00c016cdf3e261cb22fe115dfce8d5f7387801d82f90fad37cf",
         "signature": "0dd4b4d69938796fed05c29a35644a8d3f6c957c883f054d8db1fa62503f42f9",
+        "affectsGlobalScope": false
+      },
+      "./data/common/usesnackbar.ts": {
+        "version": "06c60e04dab1c2cd6d574054efce2b0f6827973bcbad54fe7c69bc677409c302",
+        "signature": "a746960df3e07f43d53d644d179589208d7ff40798f1f940fb7e9dd666d1c0ae",
         "affectsGlobalScope": false
       },
       "./plugins/axios.ts": {
@@ -1141,13 +1146,8 @@
         "signature": "5ff137e5d6afe5ffedc5641af43d4458bd64da10290f419864d3a862e84c0f33",
         "affectsGlobalScope": false
       },
-      "./data/work/usecreatework.ts": {
-        "version": "83d0144fc12fc75dc0e51a958836d4507f07cd8aeedcca2e8d5f3a05a4e5857f",
-        "signature": "2cf3e4273bf422d4322a1eae8e12227e1533ccbf618938620c0b9eb4bd8d11dd",
-        "affectsGlobalScope": false
-      },
       "./data/invitation/usereadinvitation.ts": {
-        "version": "2c8ddf18883cf0a937999e7f626e8fb9c7c96d2be6f5acd0ba3d72ee45a4b215",
+        "version": "d644030829c154cea247260e178b37653f617947e5bd7f37a13f961e47e922ca",
         "signature": "37bc780e43b7cba9d55e01b8f684aebb24ceff388a2e5c8415af348dc02d2b7f",
         "affectsGlobalScope": false
       },
@@ -5512,7 +5512,7 @@
         "affectsGlobalScope": false
       },
       "./plugins/theme.ts": {
-        "version": "27c3e39dab8c7e88b2d50a321869340841a0d60dbb3295d6ef70f45709e02c4d",
+        "version": "57436a477de3393d266daa98f1a08bb5ec48f254a8b74090a9f0085e13b9520a",
         "signature": "aab3b5f1fd95b0e6f4eb331c34758c5c452c0a689af97b361e2105af00e12116",
         "affectsGlobalScope": false
       },
@@ -5522,7 +5522,7 @@
         "affectsGlobalScope": false
       },
       "./data/task/usecreatetask.ts": {
-        "version": "19b31a2b58f537e76f5e6ac9351afc030eab4654e9c60db11ffdae8237675bf5",
+        "version": "ba698ddcedab7d8f695494df09be149d948d28b5249fb93879f805fd96894f2f",
         "signature": "81593ffd9feaa5859155335283cdc66e73d4218470d1fc4720a78c7ede1f6fa3",
         "affectsGlobalScope": false
       },
@@ -5531,39 +5531,64 @@
         "signature": "9b3d646a8ff1a101f8ff02e0ff82bf82ff417aced5884919c8bb3f561a0ad7d2",
         "affectsGlobalScope": false
       },
+      "./data/types/work.ts": {
+        "version": "7a986ba8409aae86b737631d3e48e1070e0eb306e5e7253d7ea898ab91670596",
+        "signature": "ca40c07b209262cb7777ad8c66b0029239df2088e9f9d5e33f54deb6fb152718",
+        "affectsGlobalScope": false
+      },
+      "./data/types/task.ts": {
+        "version": "c2e5120bc6ae1c921c9bdb53c9bec3e54a879506dc01b8e5afa01325aa6cbb50",
+        "signature": "dbaa06d6dd4bc92fffb21db3adf7d8aeba66ab3c3fe768357a8e6e7feb3cc4e8",
+        "affectsGlobalScope": false
+      },
       "./data/task/usereadtasks.ts": {
-        "version": "bc545b414fd0b57e835b38b1bed5b308c54d8ffb7b0f79b0fddc5ff5e22749fc",
-        "signature": "2ab3e21b04600f6fcea70217a0a2a603e8297079edf9665fe96e7c99aa321f92",
+        "version": "8aa9683cfa60f3b34f903bed4a2304f6997861382ce43bcec829060eb0644183",
+        "signature": "cbddc6e9f38cc45f59f11b078aafa0cf7600f41e9d6cf773596629b315833f43",
         "affectsGlobalScope": false
       },
       "./data/task/usesorttasks.ts": {
-        "version": "ab81d046105effe8a05ce5dfc62a849173776d8248252950ac8ce730e3e8a387",
-        "signature": "35d2f7535c4447182eded1302f1885d35034153fcb9990bc78ea0bc53a1ee3d7",
+        "version": "4a421da3fad8a4cb90b94e0a6e87b0ce9c8a5548fec3cc299c92fd402b5d2311",
+        "signature": "225bba6de510438971f8972e42a1be6e2e8e5882885e5c5f29696133c836e152",
+        "affectsGlobalScope": false
+      },
+      "./data/types/calendar.ts": {
+        "version": "7721fe1654b81e07e698c085b2c9c18ec11047a0ab1b672369591fcaac675e89",
+        "signature": "a44477d77374c6da7f938c7c2d446148cffb0a4418c71e8b5438cc380f34bc98",
+        "affectsGlobalScope": false
+      },
+      "./data/types/error.ts": {
+        "version": "1756ca79b00ec4494a60803404ca3e4189a18bb36fad78c7e4131b48ee14fdf8",
+        "signature": "eb6f268418a1ffe81062b71698a60a9f99c5c3f27fd1523e8700543d5a844d30",
         "affectsGlobalScope": false
       },
       "./data/user/usebasicauth.ts": {
-        "version": "5ee4a1468226cabf9641d275fb1fdc6c014cf85b9ba9e74ab969f83be37a6813",
-        "signature": "3a66b7283fe6a3d01d6b3b64863030f7fb7700507ff0553397ad775918858694",
+        "version": "cf453ab1fb885abd2318a25adcbe822291c2f88c77c52b3a7aa4ee7e43cc63a5",
+        "signature": "c67385db83d688c2f01ef4f8bc570140fb67ed06ffc3ead63936418864218034",
         "affectsGlobalScope": false
       },
       "./data/user/usebearerauth.ts": {
-        "version": "0dd34719fd7339332ddfc1e153f924be87a4b4db34b7fbc46b7180429b82a79b",
+        "version": "847cb6b2ce0cb1649b724849473df7741d1ef66e5206fecc817b108404a7cd46",
         "signature": "8707d1ed4dda4de7d3060aecde9be5e28aabed25a8f5a375548385d28ed7fcba",
         "affectsGlobalScope": false
       },
       "./data/user/usecreateuser.ts": {
-        "version": "8b9735d0f473aa6461e4baba3eadda5eff4f057ecf942e55541a014790e0c04e",
+        "version": "e7523c7394ba7a495ac76367f54d9d14f2f4b386b536ff24e4b5b001e337989f",
         "signature": "9a677950a9787dbb64020597877b6dc90994122643637459e23e393054d1eb51",
         "affectsGlobalScope": false
       },
       "./data/user/usedeleteuser.ts": {
-        "version": "ff0065eb3dc935d648f5034df601672aa3f2d01fd563a4516f1105d1321746e5",
-        "signature": "0bbb4632a18f8aee7bdb8ff0fae76112cbef24be09b827e72ca0ce39b4fdcb6d",
+        "version": "c720ed6e61997ea61c3dd1e387d2ec6dab037bf802e1fa54b6599e69fe6b1b59",
+        "signature": "0c1f77606f5cd9f7769830bb88151f849717ad91695e2363bdffcfd8a7fc6182",
         "affectsGlobalScope": false
       },
       "./data/user/usetestauth.ts": {
-        "version": "076789e757c3f6fdb3d0297dc7bf93389c965104fc8ffb158de3fdf904b06ed7",
+        "version": "1ea32017201dd4549a371618eb437f925ee35d58e343094a47255021aad8f076",
         "signature": "2fb7b6911df3169f4c9da115d28c87668fe3d943b82e9923dea8cedbeb5fa6d4",
+        "affectsGlobalScope": false
+      },
+      "./data/work/usecreatework.ts": {
+        "version": "bc42b344473cfb094c7da628e91248c19fab81fb6e05dbdbe6c3ac3c429a66a5",
+        "signature": "9fb4cf70637ed5bdeb7b25c1edc193d5371a305dd5fedde7d843128a09c32168",
         "affectsGlobalScope": false
       },
       "./data/work/usedeletework.ts": {
@@ -5587,8 +5612,8 @@
         "affectsGlobalScope": false
       },
       "./data/work/usereadworkmonth.ts": {
-        "version": "a528a2f5eb8752edb9a09e4b506a22dcc9b13e04baa59df8829a5601f59fd040",
-        "signature": "25d57e75e2dd050464e28680e7d0a84126f61ff249496e97fcc303e7953cb015",
+        "version": "9a934481fc4303ef9f05e738ac5ef624b68609ec8886331669973fe8f13e32c6",
+        "signature": "87fbe7ae162877ef80a970bcaee3271c645e4c96cb93d4cb2f9c631699e94285",
         "affectsGlobalScope": false
       },
       "./data/work/useresetwork.ts": {
@@ -5607,8 +5632,8 @@
         "affectsGlobalScope": false
       },
       "./components/test.tsx": {
-        "version": "0998afe502a6ac8b0baf44dda51c90a7810a338e5d0e1f8ee49a80463bc90375",
-        "signature": "b7d8bac6e807d003026ca62b6fe841ff877b13b2e1899bba4f0bbff5eeb1e959",
+        "version": "00ecf27b5db5100255e62eac44088046123bdfacb317c31e7f813f049e2c03f2",
+        "signature": "a02d433966897bf5ccc08acadd85aaebe0804d170d853af2c4fbf3c708b3db96",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/navigatebefore.d.ts": {
@@ -6207,7 +6232,7 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/pagination.tsx": {
-        "version": "c6ac2f03b7b2def23fc46bb3e2bb004668dfe56f33eee749b0e1abd88985f6e7",
+        "version": "d49d88182164d54976d2f2c37e86479a5b64d375810cb91f9f9a451f7f68285d",
         "signature": "d8c89ec316b503c8302a03f80795205483ab7bc260747e9466a3a9daff367bea",
         "affectsGlobalScope": false
       },
@@ -6222,18 +6247,18 @@
         "affectsGlobalScope": false
       },
       "./components/calendar/workstateicon.tsx": {
-        "version": "f0281503adf3a98702b7780e4fff107a2ef3a3cb8078fbc7a164881c17a35a65",
-        "signature": "cae6375d6bfe4cdfed19033b2e9cefe2be0a8488f6ff09f8bfde3405968ac0b8",
+        "version": "89ec78e20656585c173c131984dcf85e97743ce7d153141ec8e23a90f0c02439",
+        "signature": "7d99526e3d154f56d678040f527b061a675e66778c27462c713eb09cb7935d00",
         "affectsGlobalScope": false
       },
       "./components/calendar/calendartablecell.tsx": {
-        "version": "75ccf0183b8b3c906947fe195c4d8fccddf5136bb7877af3b276d6a8061a605e",
-        "signature": "1b5cd405fce2cab2fba9625525031019d016e6ab9952a607378601e6d7de758f",
+        "version": "aa4b32f61301330cc0461522da913f2c2bbd597e673db7e1988ea905fdb34ca9",
+        "signature": "0ea70711163ad68f5de7f5fad165be3046a7b90a883b0c0b7a2fc4430ef1e31c",
         "affectsGlobalScope": false
       },
       "./components/calendar/calendartablerow.tsx": {
-        "version": "47eb31d6dc594ebd197143c2663a2909fb5d25bc6e75e4d595e92b1ca747e81b",
-        "signature": "929cd13a003f8c7144e54dda9d15439372e4c81bff51be18712bf2af4b28e277",
+        "version": "b5370a0bb6a9c4805c96ea307b542290d0e058c535c1a0160bac334b2d19b313",
+        "signature": "0be7b6e26d45662065e48c198cc12e2816f43edaee10d5ecb6c49901117006db",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/group.d.ts": {
@@ -6261,14 +6286,19 @@
         "signature": "8b6824a01148a5f0b9bac41612d43495cb082b3a8cc2b1f14ea33298d6ac00b8",
         "affectsGlobalScope": false
       },
+      "./components/common/rstack.tsx": {
+        "version": "08abb2af2e27056e071c23cb6335cdfe66998c20aa306ce9da207306d1b3da76",
+        "signature": "08de3fa0be04da7c3cadbc70785d50f708712c6fc50fb45ef36ffcd3529f4d6b",
+        "affectsGlobalScope": false
+      },
       "./components/common/auth.tsx": {
-        "version": "8697935844236b4b91bd72a489c422b4d5f79c356281e78794c9a8bd1cfb4f8f",
+        "version": "a2f266ed7fe5cc017fbc223eff2b924606762f598ea9979e024f3efda56aab51",
         "signature": "b62606cca1dd7fffa3e2efa88e38657ee156bac2d2c5138fc1e7e725266f8d5b",
         "affectsGlobalScope": false
       },
       "./components/common/errtxt/index.tsx": {
-        "version": "017b8db8ef9a8f523f80cecec98af32f25f62b1d64ee402e345687ce2baf870c",
-        "signature": "931e7832f80b5c48af2200984368a00fa24b1a09a0753941dc348f750b2eb218",
+        "version": "a5ed1130adc18fb498d3e84f664a12960fcf8d8926b28452a8cc42d21c399051",
+        "signature": "f642725bb63991729334b54a836bb1d47210ae53a1e564419ec8a0d036cfda99",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/fileupload.d.ts": {
@@ -6277,27 +6307,37 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "09be76c978598e49ec5079ef40b716f4896c20fb5ba39662a73117594bc89df5",
-        "signature": "35edbc5ce72bb882695cb30cdd3ec7490286a377ca73c71e3ca0633a4baad127",
+        "version": "ef576cbf60e07091795ad7defe27ddfd8f7e83277e68e16c2ee2ae047a327ea1",
+        "signature": "00f2fdeec3fc878e22498ab1cb974d4e4fbec9435e445fded44780690ce82287",
         "affectsGlobalScope": false
       },
       "./components/common/authnew.tsx": {
-        "version": "be844c2bfb86661e365b76dc647f76bca8a85821dd0f35fbbcfb54eb2ae4568a",
-        "signature": "c6fb34d55d8b01830869a9d326ec518a8b6c77b3c69ba541d047b3a4f216b17a",
+        "version": "29143425e06abd617f7a893add180cecd41339f83a407ca6ee978f97ec58e6c0",
+        "signature": "6d4f49346d71209606bd6ec4ee644239dbd2b1aefa584351288c09095f806a75",
         "affectsGlobalScope": false
       },
       "./layouts/default.tsx": {
-        "version": "012117d19b1424879f777944a6502d1236594de7ed20b05375c32ef0afd468ab",
+        "version": "b2227797d4b111d7400a30f1e405efca3fd4d1c47ebf7654e4831f35cf2aa042",
         "signature": "20d1de7fe6cd4ebf5b9c935738a6fa314ea3df45aef4e2f0c7c0c8081a86e4e7",
         "affectsGlobalScope": false
       },
       "./components/calendar/calendartable.tsx": {
-        "version": "c3e2d05c68ae4f6e6683ff46bd735125cb5c598d6b4d6b559d0fe3340dcc73a2",
-        "signature": "448e0a690a3474a63a4c4785c1f1a4a351169f35b6639669fba97c82e6d9f1b0",
+        "version": "f3ae48aed1f30209a4f9d7dc19a956d4a69b3df20f0041f26027a44fb5b0391c",
+        "signature": "0d98672998f15d1311144c0aa585495cdc445508678b9873667f8ff43ebed011",
+        "affectsGlobalScope": false
+      },
+      "./components/common/loading/index.tsx": {
+        "version": "4ffa49e1754069dba519a7035f30d074628c061fec1d6446fd79a98996340ec3",
+        "signature": "a2acf968123db2fe244da9f11c61c30c75ccb42ac5b5a6d7057fc7dc19a0d8cd",
+        "affectsGlobalScope": false
+      },
+      "./components/calendar/calendarmain.tsx": {
+        "version": "7acb566d90787ba942501537a71faa2d42b299de830e44b5c365d6f634129f56",
+        "signature": "ff9227653c15fd73b017108107851f86a08f910bc25525dd35cc8c925420aa4c",
         "affectsGlobalScope": false
       },
       "./components/common/apihandle.tsx": {
-        "version": "c24f748924908847f02dcf01acf0e44774bf13f1cb623cb83f9780557127129a",
+        "version": "6b2031a1863435a200a67e3ace01c4fba6110e90e8a73ce2913e2e76b046975f",
         "signature": "4ff99b53ee8924acac5b39bab4d73f2af2a9311b15d18b40ba19e9252a21035c",
         "affectsGlobalScope": false
       },
@@ -6381,9 +6421,9 @@
         "signature": "9a7cb8f907c9587e6e4be81e449df37398dcd864bb32d75143e286c887922686",
         "affectsGlobalScope": false
       },
-      "./components/common/rstack.tsx": {
-        "version": "08abb2af2e27056e071c23cb6335cdfe66998c20aa306ce9da207306d1b3da76",
-        "signature": "08de3fa0be04da7c3cadbc70785d50f708712c6fc50fb45ef36ffcd3529f4d6b",
+      "./components/common/mysnackbar.tsx": {
+        "version": "00fada1f2abe7a4190e806e484a366c912c1c88aa24faca8ba1fe2aed5ef7611",
+        "signature": "5cbb8e745e95e42cba4e0effda806286954d1c2d010ad105d6b9ec1718b7de08",
         "affectsGlobalScope": false
       },
       "./components/common/ripple.tsx": {
@@ -6394,11 +6434,6 @@
       "./components/common/simpletable.tsx": {
         "version": "2ff0238dbdc7e65415dddebcd48ae27fc6ee17fc160dcf43ed8cb12662c3c2be",
         "signature": "7e96409c4e443fe62b4d9e5b44acd4bdda974266f330b1cf507e0930b47c5e75",
-        "affectsGlobalScope": false
-      },
-      "./components/common/loading/index.tsx": {
-        "version": "4ffa49e1754069dba519a7035f30d074628c061fec1d6446fd79a98996340ec3",
-        "signature": "a2acf968123db2fe244da9f11c61c30c75ccb42ac5b5a6d7057fc7dc19a0d8cd",
         "affectsGlobalScope": false
       },
       "./components/common/nodata/index.tsx": {
@@ -7277,12 +7312,12 @@
         "affectsGlobalScope": false
       },
       "./components/common/sortable/index.tsx": {
-        "version": "47f5d0acb90b8a0438d9c65f92701ae03bbbc05ca417a1370d5352edcd6f399f",
-        "signature": "c452593e2e97fea96b35de4ee39a3ea467da09d374879259abff2977b2caaf5d",
+        "version": "c067fc88515ae4eb6b7d290a2c56f37382d1d50e38a0d8e5cb39e0f128552506",
+        "signature": "49d1526dbc5c724db792c60f6ab64ee72f5a130560cbdced786b1d92b0983d97",
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "adc537d126ff806ee4509c4a84b71ddf08321ce038cea7ece1d424227a72e2df",
+        "version": "adc879fb2e1c6138f0730189f9661602c3dd9301040d392d0802e3dd60bb795e",
         "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
@@ -7292,7 +7327,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemfrom.tsx": {
-        "version": "416ef8156d326d36c9f662262dd85b1f10a8d876ae67d62444cf95e1f64839a3",
+        "version": "5754b3a3a88f614d4a18b04f77897989fe5ed3db32fab7b98996ae6f665e6057",
         "signature": "94c1bbed506922fd319047cf4d066836ddfaa05e14316010be5b76c51448f68d",
         "affectsGlobalScope": false
       },
@@ -7322,13 +7357,18 @@
         "affectsGlobalScope": false
       },
       "./components/friend/friendlist.tsx": {
-        "version": "1b6afb6fbdbbe4d4e8681c99e99eca8ee1cce2e969ac79c6e958375bd66d4a28",
+        "version": "477ddb86c089d5a0a049f9dfd85c80de7f0ab2321f58228262139ff8947c2775",
         "signature": "516f77218300bcec5c437dc0b89394540f84e72807a3370ea5a257fdecb0c184",
         "affectsGlobalScope": false
       },
+      "./components/friend/detail/frienddetailmain.tsx": {
+        "version": "bf10ec51832a7b6797648bdcd8e2c51d187fa8d48f361794b794b9d909c4fa5b",
+        "signature": "852383e449c6c777a0c6e96da2189973ab7f2d8239c27d4293191afc2925bdf3",
+        "affectsGlobalScope": false
+      },
       "./components/task/createtask.tsx": {
-        "version": "17c2da51d210ed1de2c4f2234e2dbd2e5a6b15a92cfe0e2adf8778d87c196323",
-        "signature": "7dadb1c08c9fa44d39d9b3c73c608e8698b08ebfdd559f9629fd68e9a519ebd7",
+        "version": "9333b48c3d9f48ca749dfd86afe633306d0ce3d91e102afb6f4dcb68b59b457c",
+        "signature": "17137aa5a4da5c973a717011bb2e1f0cfd133af8cb63edd65b82809d1b5255f0",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/swapvert.d.ts": {
@@ -7337,7 +7377,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskheader.tsx": {
-        "version": "7d04f83072a10758645d23cd725391dd97143c2decf6d21d4f2ad725ff7919d2",
+        "version": "dd98ebc928ac3ee88d5199b29433447a54200626cb3a4406d3bc6296c4d488f0",
         "signature": "edf7bd64cf6945f72221bede3bf68260a8400fc1b6f4462b04cb5bceb000a933",
         "affectsGlobalScope": false
       },
@@ -7352,13 +7392,18 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskitem.tsx": {
-        "version": "dfed19f6ce6006f2e9b58368ed028bc0074fbfcac14689d7ca37273f20ce44ed",
-        "signature": "19431d8a4de544b0452b3d675e26e640312b786b6574a5a8a0e2cca4ba517bee",
+        "version": "a6df1757e38cb50cc809363bed91757ff679ca3f57d4d0654a2fe0e4b6d60066",
+        "signature": "596ab6527d6715962b5ecb886787e55121d31945b938afb1f05fff4c4ddc875d",
         "affectsGlobalScope": false
       },
       "./components/task/tasklist.tsx": {
-        "version": "8e9532bf63100fe488813a8bb128481d11859c88e02c361c10d3db8c4c90859c",
-        "signature": "794c535d261a06bdfa7f03bc438d2495ccca7010e72056ed4e927e7b4011b27b",
+        "version": "9d78de13ad1b6bf3d91a7f2e7111e20f796f30df73901b0269933e5c6781f0eb",
+        "signature": "c3a77452a235163c61a407148728c283dd7d3d696079691f24ede1bef68438b9",
+        "affectsGlobalScope": false
+      },
+      "./components/task/taskmain.tsx": {
+        "version": "fc30baab8859538b53ab5b4d1121a34f99ec87d5ad17b9333f1627646a38f372",
+        "signature": "bcb05437fa1fd45db3c78b922ef28a410a331c11062ab4e67bcd43efc2454de3",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/arrowback.d.ts": {
@@ -7369,11 +7414,6 @@
       "./components/task/tasksortheader.tsx": {
         "version": "b89fdedeea5dfee5e9a640df7b13e66b2fa719528dbd0a381ed65114f432da98",
         "signature": "74f45dc6ce40d631cb53c2040ffa0e3b06dfabd5236a804c2d46fffa724533e5",
-        "affectsGlobalScope": false
-      },
-      "./layouts/login.tsx": {
-        "version": "e9db65a87f8fd52cc438b1e54809b922c6bf26b47c554107dbc7b2f1c7c82eeb",
-        "signature": "33008cd003c4b9a986135e6d41131eedaace369d4bf19fbce69873deacc6e007",
         "affectsGlobalScope": false
       },
       "./node_modules/@date-io/date-fns/type/index.d.ts": {
@@ -8142,7 +8182,7 @@
         "affectsGlobalScope": false
       },
       "./pages/_app.tsx": {
-        "version": "79dc20bd4f7d193b1c5d83fa7420a66fa2255fc191830af4a0f3576edd6d6b21",
+        "version": "300dc162372eb1932c8c12130cf4c8058b351178c1b7e9100ffd4f6b2ec9db25",
         "signature": "10ce7e5fdf65e35ece92d0551d43eb07d7cf8473ac51caa25b01286321b01efe",
         "affectsGlobalScope": false
       },
@@ -8157,18 +8197,18 @@
         "affectsGlobalScope": false
       },
       "./pages/testpage.tsx": {
-        "version": "4f0516b46c6feaba90cfe737aba0454b9b16209d687e04d82b11e78b0130345c",
-        "signature": "999c07764d4450883d5fa9f96e1932801108e72ed1f847659b2537b4db7e92e3",
+        "version": "c1a9d0b7407c40051faa2641e851dbca39e87e9f5e2d6db177e64433f799483f",
+        "signature": "1c99219111de969155c01638a345232c4fc11b870486ddc464300878b8d54163",
         "affectsGlobalScope": false
       },
       "./pages/calendar/index.tsx": {
-        "version": "743f42d6686b4e228f6965d239469f1a20e4af0fbe8ae8939b3e490ed6ae1383",
+        "version": "f01816677a3bd1560509fe08dd1f2603ada5d757101779e9ce83b25bd3582696",
         "signature": "7ddcda96197483a33d9cabc1b29862875748f7d9a803a4e0a8364cf56c212c26",
         "affectsGlobalScope": false
       },
       "./pages/friend/detail.tsx": {
-        "version": "f7eafe7bf98b0cdc4684739e4d34167c3bc1f175633b0192e32b4bd7d9345b04",
-        "signature": "a92e720e56bddeabc17d6c81910212a2927a4bdbbd77c232bbe1202c70cdb88a",
+        "version": "3fda8ef86a338dd9c8a5c462464a27867d59677215d2bf2296a7be665583563f",
+        "signature": "4b61f75f6762f25aa0e3d3ae37152cd6652b08f000fa14abcea8a76d0c4f6b16",
         "affectsGlobalScope": false
       },
       "./pages/friend/index.tsx": {
@@ -8182,17 +8222,17 @@
         "affectsGlobalScope": false
       },
       "./pages/mypage/index.tsx": {
-        "version": "85a7099ff0f7eced24bfc835ce013565329e6211a4de27c7237ff47fea2e63ef",
+        "version": "0f41e5777e03658dd8bcd1c950ad225071a91507ae4402d750c5c1fd3de38a89",
         "signature": "2905cddf1aa33ffbc83605227b7bc120fa8bd5779f1228874d7bed5e285e0d96",
         "affectsGlobalScope": false
       },
       "./pages/task/index.tsx": {
-        "version": "0e207b26b611b7aa022dabd351524c9c170374d376ded7e1111eb7351de7d985",
+        "version": "a4e0d8379a641231cdd077d637c97ae00f0973d8f95b2174baa7dbf27bef8af4",
         "signature": "fd053655be22077a93b33dd71c1f47b3f01b4d5351cb6e63b67cae0b555fb174",
         "affectsGlobalScope": false
       },
       "./pages/task/sort/index.tsx": {
-        "version": "7917b604c37df98bd6dc3e10274d43f7f82c8ea7c840d481789828dbe4cc6bce",
+        "version": "47b51794383502a9182eb075ed1691015da9c2f11fa3995459d23e8d3c6fbccb",
         "signature": "0d43bfa0b61722c78b084cbcace1f8f4b1d2690f15c39c2efc1e61a8cac8cf7c",
         "affectsGlobalScope": false
       },
@@ -8482,11 +8522,24 @@
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
+      "./components/calendar/calendarmain.tsx": [
+        "./components/calendar/calendartable.tsx",
+        "./components/common/errtxt/index.tsx",
+        "./components/common/loading/index.tsx",
+        "./data/common/uselogininfo.ts",
+        "./data/work/usereadworkmonth.ts",
+        "./data/work/useresetwork.ts",
+        "./node_modules/@mui/material/index.d.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/index.d.ts",
+        "./node_modules/next/router.d.ts"
+      ],
       "./components/calendar/calendartable.tsx": [
         "./components/calendar/calendartablerow.tsx",
         "./components/calendar/pagination.tsx",
         "./data/media/usemedia.ts",
-        "./data/work/usereadworkmonth.ts",
+        "./data/types/calendar.ts",
         "./layouts/default.tsx",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8496,8 +8549,8 @@
       ],
       "./components/calendar/calendartablecell.tsx": [
         "./components/calendar/workstateicon.tsx",
+        "./data/types/calendar.ts",
         "./data/work/usecreatework.ts",
-        "./data/work/usereadworkmonth.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
@@ -8506,8 +8559,8 @@
       "./components/calendar/calendartablerow.tsx": [
         "./components/calendar/calendartable.tsx",
         "./components/calendar/calendartablecell.tsx",
-        "./data/task/usereadtasks.ts",
-        "./data/work/usereadworkmonth.ts",
+        "./data/types/calendar.ts",
+        "./data/types/task.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -8522,7 +8575,7 @@
         "./node_modules/next/router.d.ts"
       ],
       "./components/calendar/workstateicon.tsx": [
-        "./data/work/usecreatework.ts",
+        "./data/types/work.ts",
         "./node_modules/@mui/icons-material/check.d.ts",
         "./node_modules/@mui/icons-material/remove.d.ts",
         "./node_modules/@mui/material/index.d.ts",
@@ -8535,6 +8588,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/common/auth.tsx": [
+        "./components/common/rstack.tsx",
         "./data/user/usebasicauth.ts",
         "./data/user/usetestauth.ts",
         "./node_modules/@mui/icons-material/send.d.ts",
@@ -8567,6 +8621,12 @@
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
+      "./components/common/mysnackbar.tsx": [
+        "./data/common/usesnackbar.ts",
+        "./node_modules/@mui/material/index.d.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./components/common/nodata/index.tsx": [
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -8585,7 +8645,7 @@
       ],
       "./components/common/sortable/index.tsx": [
         "./components/common/sortable/sortableitem.tsx",
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
         "./node_modules/@dnd-kit/core/dist/index.d.ts",
         "./node_modules/@dnd-kit/sortable/dist/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8609,6 +8669,15 @@
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./components/friend/detail/frienddetailmain.tsx": [
+        "./components/calendar/calendartable.tsx",
+        "./components/common/errtxt/index.tsx",
+        "./components/common/loading/index.tsx",
+        "./data/work/usereadworkmonth.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/next/router.d.ts"
       ],
       "./components/friend/frienditemfrom.tsx": [
         "./components/common/userimg.tsx",
@@ -8656,7 +8725,7 @@
         "./components/common/errtxt/index.tsx",
         "./data/task/usecreatetask.ts",
         "./data/task/usedeletetask.ts",
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
         "./node_modules/@mui/icons-material/delete.d.ts",
         "./node_modules/@mui/icons-material/send.d.ts",
         "./node_modules/@mui/lab/index.d.ts",
@@ -8677,7 +8746,8 @@
       ],
       "./components/task/taskitem.tsx": [
         "./components/task/createtask.tsx",
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
+        "./data/types/work.ts",
         "./data/work/usecreatework.ts",
         "./data/work/usedeletework.ts",
         "./node_modules/@mui/icons-material/add.d.ts",
@@ -8690,9 +8760,19 @@
       ],
       "./components/task/tasklist.tsx": [
         "./components/task/taskitem.tsx",
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./components/task/taskmain.tsx": [
+        "./components/common/apihandle.tsx",
+        "./components/task/taskheader.tsx",
+        "./components/task/tasklist.tsx",
+        "./data/common/uselogininfo.ts",
+        "./data/task/usereadtasks.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/dayjs/index.d.ts"
       ],
       "./components/task/tasksortheader.tsx": [
         "./data/media/usemedia.ts",
@@ -8708,8 +8788,10 @@
       ],
       "./components/user/createuser.tsx": [
         "./components/common/errtxt/index.tsx",
+        "./components/common/rstack.tsx",
         "./components/common/userimg.tsx",
         "./data/common/uselogininfo.ts",
+        "./data/user/usebearerauth.ts",
         "./data/user/usecreateuser.ts",
         "./data/user/usedeleteuser.ts",
         "./node_modules/@mui/icons-material/fileupload.d.ts",
@@ -8718,8 +8800,7 @@
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/dayjs/index.d.ts",
-        "./node_modules/next/router.d.ts"
+        "./node_modules/dayjs/index.d.ts"
       ],
       "./data/common/index.ts": [
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8727,6 +8808,11 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./data/common/uselogininfo.ts": [
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/recoil/index.d.ts"
+      ],
+      "./data/common/usesnackbar.ts": [
+        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/recoil/index.d.ts"
       ],
@@ -8744,7 +8830,6 @@
       ],
       "./data/invitation/usereadinvitation.ts": [
         "./data/common/index.ts",
-        "./data/work/usecreatework.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8762,6 +8847,7 @@
       ],
       "./data/task/usecreatetask.ts": [
         "./data/common/index.ts",
+        "./data/common/usesnackbar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8774,21 +8860,36 @@
       ],
       "./data/task/usereadtasks.ts": [
         "./data/common/index.ts",
-        "./data/work/usecreatework.ts",
+        "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/task/usesorttasks.ts": [
         "./data/common/index.ts",
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
+      "./data/types/calendar.ts": [
+        "./data/types/task.ts",
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./data/types/error.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./data/types/task.ts": [
+        "./data/types/work.ts",
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./data/types/work.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./data/user/usebasicauth.ts": [
         "./data/common/index.ts",
         "./data/common/uselogininfo.ts",
+        "./data/common/usesnackbar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8817,12 +8918,14 @@
       "./data/user/usetestauth.ts": [
         "./data/common/index.ts",
         "./data/common/uselogininfo.ts",
+        "./data/common/usesnackbar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/work/usecreatework.ts": [
         "./data/common/index.ts",
+        "./data/types/work.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8836,7 +8939,7 @@
       "./data/work/usereadworkmonth.ts": [
         "./data/common/index.ts",
         "./data/common/uselogininfo.ts",
-        "./data/task/usereadtasks.ts",
+        "./data/types/calendar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/dayjs/index.d.ts",
@@ -8853,8 +8956,8 @@
         "./components/common/auth.tsx",
         "./components/common/authnew.tsx",
         "./components/common/userimg.tsx",
+        "./data/common/uselogininfo.ts",
         "./data/media/usemedia.ts",
-        "./data/user/usebearerauth.ts",
         "./node_modules/@mui/icons-material/group.d.ts",
         "./node_modules/@mui/icons-material/task.d.ts",
         "./node_modules/@mui/icons-material/today.d.ts",
@@ -8864,13 +8967,6 @@
         "./node_modules/dayjs/index.d.ts",
         "./node_modules/next/router.d.ts",
         "./plugins/theme.ts"
-      ],
-      "./layouts/login.tsx": [
-        "./data/common/uselogininfo.ts",
-        "./node_modules/@mui/material/container/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/next/router.d.ts"
       ],
       "./next-env.d.ts": [
         "./node_modules/date-fns/typings.d.ts",
@@ -17719,6 +17815,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./pages/_app.tsx": [
+        "./components/common/mysnackbar.tsx",
         "./data/common/uselogininfo.ts",
         "./data/user/usebearerauth.ts",
         "./data/work/usereadworkmonth.ts",
@@ -17738,28 +17835,14 @@
         "./node_modules/next/document.d.ts"
       ],
       "./pages/calendar/index.tsx": [
-        "./components/calendar/calendartable.tsx",
-        "./components/common/errtxt/index.tsx",
-        "./components/common/loading/index.tsx",
-        "./data/common/uselogininfo.ts",
-        "./data/work/usereadworkmonth.ts",
-        "./data/work/useresetwork.ts",
+        "./components/calendar/calendarmain.tsx",
         "./layouts/default.tsx",
-        "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/dayjs/index.d.ts",
-        "./node_modules/next/router.d.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./pages/friend/detail.tsx": [
-        "./components/calendar/calendartable.tsx",
-        "./components/common/errtxt/index.tsx",
-        "./components/common/loading/index.tsx",
-        "./data/work/usereadworkmonth.ts",
+        "./components/friend/detail/frienddetailmain.tsx",
         "./layouts/default.tsx",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/next/router.d.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./pages/friend/index.tsx": [
         "./components/friend/friendlist.tsx",
@@ -17787,17 +17870,9 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./pages/task/index.tsx": [
-        "./components/common/errtxt/index.tsx",
-        "./components/common/loading/index.tsx",
-        "./components/common/nodata/index.tsx",
-        "./components/task/taskheader.tsx",
-        "./components/task/tasklist.tsx",
-        "./data/common/uselogininfo.ts",
-        "./data/task/usereadtasks.ts",
+        "./components/task/taskmain.tsx",
         "./layouts/default.tsx",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/dayjs/index.d.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./pages/task/sort/index.tsx": [
         "./components/common/errtxt/index.tsx",
@@ -17808,6 +17883,7 @@
         "./data/common/uselogininfo.ts",
         "./data/task/usereadtasks.ts",
         "./data/task/usesorttasks.ts",
+        "./data/types/task.ts",
         "./layouts/default.tsx",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
@@ -17966,17 +18042,20 @@
       ]
     },
     "exportedModulesMap": {
+      "./components/calendar/calendarmain.tsx": [
+        "./node_modules/@types/react/ts5.0/index.d.ts"
+      ],
       "./components/calendar/calendartable.tsx": [
-        "./data/work/usereadworkmonth.ts",
+        "./data/types/calendar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/calendar/calendartablecell.tsx": [
-        "./data/work/usereadworkmonth.ts",
+        "./data/types/calendar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/calendar/calendartablerow.tsx": [
-        "./data/task/usereadtasks.ts",
-        "./data/work/usereadworkmonth.ts",
+        "./data/types/calendar.ts",
+        "./data/types/task.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
@@ -17984,7 +18063,7 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/calendar/workstateicon.tsx": [
-        "./data/work/usecreatework.ts",
+        "./data/types/work.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/common/apihandle.tsx": [
@@ -18009,6 +18088,9 @@
       "./components/common/loading/index.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
+      "./components/common/mysnackbar.tsx": [
+        "./node_modules/@types/react/ts5.0/index.d.ts"
+      ],
       "./components/common/nodata/index.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
@@ -18024,7 +18106,7 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/common/sortable/index.tsx": [
-        "./data/task/usereadtasks/index.ts",
+        "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/common/sortable/sortableitem.tsx": [
@@ -18034,6 +18116,9 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/friend/createfriend.tsx": [
+        "./node_modules/@types/react/ts5.0/index.d.ts"
+      ],
+      "./components/friend/detail/frienddetailmain.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/friend/frienditemfrom.tsx": [
@@ -18052,19 +18137,22 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/task/createtask.tsx": [
-        "./data/task/usereadtasks/index.ts",
+        "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/task/taskheader.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/task/taskitem.tsx": [
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/task/tasklist.tsx": [
-        "./data/task/usereadtasks/index.ts",
+        "./data/types/task.ts",
         "./node_modules/@mui/material/index.d.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts"
+      ],
+      "./components/task/taskmain.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./components/task/tasksortheader.tsx": [
@@ -18082,6 +18170,10 @@
         "./node_modules/axios/index.d.ts"
       ],
       "./data/common/uselogininfo.ts": [
+        "./node_modules/recoil/index.d.ts"
+      ],
+      "./data/common/usesnackbar.ts": [
+        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/recoil/index.d.ts"
       ],
       "./data/invitation/usecreateinvitation.ts": [
@@ -18103,12 +18195,18 @@
         "./node_modules/axios/index.d.ts"
       ],
       "./data/task/usereadtasks.ts": [
-        "./data/work/usecreatework/index.ts",
+        "./data/types/task.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/task/usesorttasks.ts": [
-        "./data/task/usereadtasks.ts",
+        "./data/types/task.ts",
         "./node_modules/axios/index.d.ts"
+      ],
+      "./data/types/calendar.ts": [
+        "./data/types/task.ts"
+      ],
+      "./data/types/task.ts": [
+        "./data/types/work.ts"
       ],
       "./data/user/usebasicauth.ts": [
         "./data/common/uselogininfo.ts",
@@ -18130,13 +18228,14 @@
         "./node_modules/axios/index.d.ts"
       ],
       "./data/work/usecreatework.ts": [
+        "./data/types/work.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/work/usedeletework.ts": [
         "./node_modules/axios/index.d.ts"
       ],
       "./data/work/usereadworkmonth.ts": [
-        "./data/task/usereadtasks.ts",
+        "./data/types/calendar.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/recoil/index.d.ts"
       ],
@@ -18145,9 +18244,6 @@
       ],
       "./layouts/default.tsx": [
         "./node_modules/@mui/material/index.d.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts"
-      ],
-      "./layouts/login.tsx": [
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./next-env.d.ts": [
@@ -27168,6 +27264,7 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./components/calendar/calendarmain.tsx",
       "./components/calendar/calendartable.tsx",
       "./components/calendar/calendartablecell.tsx",
       "./components/calendar/calendartablerow.tsx",
@@ -27180,6 +27277,7 @@
       "./components/common/errtxt/index.tsx",
       "./components/common/lineplot.tsx",
       "./components/common/loading/index.tsx",
+      "./components/common/mysnackbar.tsx",
       "./components/common/nodata/index.tsx",
       "./components/common/ripple.tsx",
       "./components/common/rstack.tsx",
@@ -27188,6 +27286,7 @@
       "./components/common/sortable/sortableitem.tsx",
       "./components/common/userimg.tsx",
       "./components/friend/createfriend.tsx",
+      "./components/friend/detail/frienddetailmain.tsx",
       "./components/friend/frienditemfrom.tsx",
       "./components/friend/frienditemnow.tsx",
       "./components/friend/frienditemto.tsx",
@@ -27196,11 +27295,13 @@
       "./components/task/taskheader.tsx",
       "./components/task/taskitem.tsx",
       "./components/task/tasklist.tsx",
+      "./components/task/taskmain.tsx",
       "./components/task/tasksortheader.tsx",
       "./components/test.tsx",
       "./components/user/createuser.tsx",
       "./data/common/index.ts",
       "./data/common/uselogininfo.ts",
+      "./data/common/usesnackbar.ts",
       "./data/invitation/usecreateinvitation.ts",
       "./data/invitation/usedeleteinvitation.ts",
       "./data/invitation/usereadinvitation.ts",
@@ -27210,6 +27311,10 @@
       "./data/task/usedeletetask.ts",
       "./data/task/usereadtasks.ts",
       "./data/task/usesorttasks.ts",
+      "./data/types/calendar.ts",
+      "./data/types/error.ts",
+      "./data/types/task.ts",
+      "./data/types/work.ts",
       "./data/user/usebasicauth.ts",
       "./data/user/usebearerauth.ts",
       "./data/user/usecreateuser.ts",
@@ -27220,7 +27325,6 @@
       "./data/work/usereadworkmonth.ts",
       "./data/work/useresetwork.ts",
       "./layouts/default.tsx",
-      "./layouts/login.tsx",
       "./next-env.d.ts",
       "./node_modules/@babel/parser/typings/babel-parser.d.ts",
       "./node_modules/@babel/types/lib/index.d.ts",
@@ -28861,6 +28965,10 @@
     ],
     "affectedFilesPendingEmit": [
       [
+        "./components/calendar/calendarmain.tsx",
+        1
+      ],
+      [
         "./components/calendar/calendartable.tsx",
         1
       ],
@@ -28917,6 +29025,10 @@
         1
       ],
       [
+        "./components/common/mysnackbar.tsx",
+        1
+      ],
+      [
         "./components/common/nodata/index.tsx",
         1
       ],
@@ -28946,6 +29058,10 @@
       ],
       [
         "./components/friend/createfriend.tsx",
+        1
+      ],
+      [
+        "./components/friend/detail/frienddetailmain.tsx",
         1
       ],
       [
@@ -28981,6 +29097,10 @@
         1
       ],
       [
+        "./components/task/taskmain.tsx",
+        1
+      ],
+      [
         "./components/task/tasksortheader.tsx",
         1
       ],
@@ -28998,6 +29118,10 @@
       ],
       [
         "./data/common/uselogininfo.ts",
+        1
+      ],
+      [
+        "./data/common/usesnackbar.ts",
         1
       ],
       [
@@ -29090,6 +29214,22 @@
       ],
       [
         "./data/task/usesorttasks/usesorttasks.ts",
+        1
+      ],
+      [
+        "./data/types/calendar.ts",
+        1
+      ],
+      [
+        "./data/types/error.ts",
+        1
+      ],
+      [
+        "./data/types/task.ts",
+        1
+      ],
+      [
+        "./data/types/work.ts",
         1
       ],
       [

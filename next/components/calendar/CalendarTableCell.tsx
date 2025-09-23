@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress } from "@mui/material";
 import { useState } from "react";
 
-import { Calendar } from "@/data/work/useReadWorkMonth";
+import { Calendar } from "@/data/types/calendar";
 import WorkStateIcon from "@/components/calendar/WorkStateIcon";
 import dayjs from "dayjs";
 import { useCreateWork } from "@/data/work/useCreateWork";

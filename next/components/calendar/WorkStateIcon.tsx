@@ -1,6 +1,6 @@
+import { WorkState } from "@/data/types/work";
 import CheckIcon from "@mui/icons-material/Check";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { WorkState } from "@/data/work/useCreateWork";
 import { SvgIconProps } from "@mui/material";
 import { ElementType } from "react";
 

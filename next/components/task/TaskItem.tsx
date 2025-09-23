@@ -7,16 +7,17 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { WorkState, useCreateWork } from "@/data/work/useCreateWork";
+import { useCreateWork } from "@/data/work/useCreateWork";
 
 import AddIcon from "@mui/icons-material/Add";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CreateTask from "@/components/task/CreateTask";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { Task } from "@/data/task/useReadTasks";
 import { useDeleteWork } from "@/data/work/useDeleteWork";
 import { useState } from "react";
+import { Task } from "@/data/types/task";
+import { WorkState } from "@/data/types/work";
 
 const TaskItem = ({
   task,
