@@ -21,7 +21,7 @@ const TaskMain = () => {
   } = useReadTasks();
   const [scrollY, setScrollY] = useState(0);
   const apiTaskRead = useCallback(() => {
-    readTasks(date, loginInfo?.id ?? 0);
+    readTasks({ date, user_id: loginInfo?.id ?? 0 });
   }, [loginInfo?.id, readTasks, date]);
 
   const TaskContent = useMemo(() => {

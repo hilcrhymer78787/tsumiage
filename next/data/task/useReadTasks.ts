@@ -3,6 +3,7 @@ import { errHandler } from "@/data/common";
 import { useMemo, useState } from "react";
 import { Task } from "../types/task";
 
+type Request = { date: string; user_id: number }
 export const useReadTasks = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -22,13 +23,13 @@ export const useReadTasks = () => {
 
   const isFirstLoading = !tasks?.length && isLoading;
 
-  const readTasks = async (date: string, userId: number) => {
+  const readTasks = async (params: Request) => {
     setError("");
     setIsLoading(true);
     return api({
       url: "/api/task/read",
       method: "GET",
-      params: { date, user_id: userId },
+      params,
     })
       .then((res) => {
         setTasks(res.data.data.tasks);

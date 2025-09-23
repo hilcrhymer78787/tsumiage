@@ -5557,13 +5557,13 @@
         "affectsGlobalScope": false
       },
       "./data/task/usereadtasks.ts": {
-        "version": "8aa9683cfa60f3b34f903bed4a2304f6997861382ce43bcec829060eb0644183",
-        "signature": "cbddc6e9f38cc45f59f11b078aafa0cf7600f41e9d6cf773596629b315833f43",
+        "version": "2eee5f26a878f61cd5fe308ee7f90452cb75ab5c1c8d6edc0ef5b000d0c06d82",
+        "signature": "8d0dd8c3fad2473d05c3b7176da9e47185fc303600e6934a653a690272593b42",
         "affectsGlobalScope": false
       },
       "./data/task/usesorttasks.ts": {
-        "version": "4a421da3fad8a4cb90b94e0a6e87b0ce9c8a5548fec3cc299c92fd402b5d2311",
-        "signature": "225bba6de510438971f8972e42a1be6e2e8e5882885e5c5f29696133c836e152",
+        "version": "e4441717185bf18015bb3ed906549a087d933889cd4d0d4a83a64413d2f482c1",
+        "signature": "f8d18de59b7bfd767c8114ece96aba86db50f62fc809d2c7e6d40642b62b01d0",
         "affectsGlobalScope": false
       },
       "./data/types/calendar.ts": {
@@ -7417,7 +7417,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskmain.tsx": {
-        "version": "fc30baab8859538b53ab5b4d1121a34f99ec87d5ad17b9333f1627646a38f372",
+        "version": "c6b7c485ca0463c7bce9b8acb8e518c5eae826074017324c81230f7b0a8c86ad",
         "signature": "bcb05437fa1fd45db3c78b922ef28a410a331c11062ab4e67bcd43efc2454de3",
         "affectsGlobalScope": false
       },
@@ -8247,7 +8247,7 @@
         "affectsGlobalScope": false
       },
       "./pages/task/sort/index.tsx": {
-        "version": "47b51794383502a9182eb075ed1691015da9c2f11fa3995459d23e8d3c6fbccb",
+        "version": "266460738aea5f0151f8d0e55e1d81d5413abdf560df13d86226dc7c71eaafe4",
         "signature": "0d43bfa0b61722c78b084cbcace1f8f4b1d2690f15c39c2efc1e61a8cac8cf7c",
         "affectsGlobalScope": false
       },
@@ -8890,8 +8890,10 @@
       ],
       "./data/task/usesorttasks.ts": [
         "./data/common/index.ts",
-        "./data/types/task.ts",
+        "./data/common/usesnackbar.ts",
+        "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
@@ -18235,7 +18237,7 @@
         "./node_modules/axios/index.d.ts"
       ],
       "./data/task/usesorttasks.ts": [
-        "./data/types/task.ts",
+        "./data/types/success.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/types/calendar.ts": [

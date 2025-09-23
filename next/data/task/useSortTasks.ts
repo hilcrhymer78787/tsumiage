@@ -1,37 +1,40 @@
-
 import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { useState } from "react";
-import { Task } from "../types/task";
-
+import { useSnackbar } from "../common/useSnackbar";
+import { AxiosResponse } from "axios";
+import { Success } from "../types/Success";
+type Request = {
+  ids: number[];
+};
 export const useSortTasks = () => {
-  const [sortTasksLoading, setSortTasksLoading] = useState(false);
-  const [sortTasksError, setSortTasksError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const sortTasks = async (tasks: Task[]) => {
-    setSortTasksError("");
-    setNameError("");
-    setSortTasksLoading(true);
+  const { setSnackbar } = useSnackbar();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const sortTasks = async (data: Request) => {
+    setError("");
+    setIsLoading(true);
     return api({
       url: "/api/task/sort",
       method: "POST",
-      data: { tasks },
+      data,
     })
-      .then((res) => {
+      .then((res: AxiosResponse<Success>) => {
+        setSnackbar(res.data.data.message);
         return res;
       })
       .catch((err) => {
-        errHandler(err, setSortTasksError);
+        setSnackbar("タスクの順番変更に失敗しました", "error");
+        errHandler(err, setError);
       })
       .finally(() => {
-        setSortTasksLoading(false);
+        setIsLoading(false);
       });
   };
 
   return {
     sortTasks,
-    sortTasksError,
-    sortTasksLoading,
-    nameError,
+    error,
+    isLoading,
   };
 };

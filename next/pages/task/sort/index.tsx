@@ -19,11 +19,15 @@ const TaskSort = () => {
   const [scrollY, setScrollY] = useState(0);
 
   const apiTaskRead = async () => {
-    await readTasks(dayjs().format("YYYY-MM-DD"), loginInfo?.id ?? 0);
+    await readTasks({
+      date: dayjs().format("YYYY-MM-DD"),
+      user_id: loginInfo?.id ?? 0,
+    });
   };
 
   const apiTaskSort = async (tasks: Task[]) => {
-    sortTasks(tasks);
+    const ids = tasks.map(({ id }) => id);
+    sortTasks({ ids });
   };
 
   const TaskSortContent = useCallback(() => {
@@ -53,7 +57,7 @@ const TaskSort = () => {
 
   return (
     <Layout pcP="80px 0" spP="70px 10px 180px">
-      <TaskSortHeader isGray={!!scrollY}/>
+      <TaskSortHeader isGray={!!scrollY} />
       <TaskSortContent />
       {process.env.NODE_ENV === "development" && (
         <pre>{JSON.stringify(tasks, null, 4)}</pre>
