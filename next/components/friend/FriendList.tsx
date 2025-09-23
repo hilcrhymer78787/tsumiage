@@ -21,7 +21,7 @@ const FriendList = () => {
     nowFriends,
     toFriends,
     readInvitation,
-    readInvitationError,
+    error,
     isFirstLoading,
   } = useReadInvitation();
 
@@ -46,7 +46,7 @@ const FriendList = () => {
         />
         <ApiHandle
           isLoading={isFirstLoading}
-          isError={!!readInvitationError}
+          isError={!!error}
           isNoData={nowFriends?.length === 0}
           errorTxt="データの取得に失敗しました。"
           noDataTxt="登録されている友達はいません"

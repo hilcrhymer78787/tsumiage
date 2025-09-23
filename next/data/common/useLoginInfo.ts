@@ -1,12 +1,5 @@
 import { atom, useRecoilState } from "recoil";
-
-export type LoginInfo = {
-  id: number;
-  email: string;
-  name: string;
-  token: string;
-  user_img: string;
-};
+import { LoginInfo } from "@/data/types/loginInfo";
 
 export const loginInfoAtom = atom<LoginInfo | null>({
   key: "loginInfo",

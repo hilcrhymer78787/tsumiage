@@ -16,7 +16,7 @@ import UserImg from "@/components/common/UserImg";
 import dayjs from "dayjs";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { useRouter } from "next/router";
-import { Friend } from "@/data/invitation/useReadInvitation";
+import { Friend } from "@/data/types/friend";
 
 const FriendItemNow = (props: {
   friend: Friend;

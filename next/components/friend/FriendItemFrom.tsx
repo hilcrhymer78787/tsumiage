@@ -11,7 +11,7 @@ import {
   Box,
 } from "@mui/material";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
-import { Friend } from "@/data/invitation/useReadInvitation";
+import { Friend } from "@/data/types/friend";
 import { useUpdateInvitation } from "@/data/invitation/useUpdateInvitation";
 
 const FriendItemFrom = ({

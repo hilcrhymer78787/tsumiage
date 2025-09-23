@@ -25,7 +25,7 @@ import UserImg from "@/components/common/UserImg";
 import { useCreateUser } from "@/data/user/useCreateUser";
 import dayjs from "dayjs";
 import { useDeleteUser } from "@/data/user/useDeleteUser";
-import { LoginInfo } from "@/data/common/useLoginInfo";
+import { LoginInfo } from "@/data/types/loginInfo";
 import RStack from "@/components/common/RStack";
 import { useBearerAuth } from "@/data/user/useBearerAuth";
 

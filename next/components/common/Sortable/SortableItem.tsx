@@ -1,11 +1,14 @@
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 
-export type Item = {
-  id: number;
-  name: string;
-};
-export const SortableItem = ({ item }: { item: Item }) => {
+export const SortableItem = ({
+  item,
+}: {
+  item: {
+    id: number;
+    name: string;
+  };
+}) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.id });
 

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import UserImg from "@/components/common/UserImg";
-import { Friend } from "@/data/invitation/useReadInvitation";
+import { Friend } from "@/data/types/friend";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 
 const FriendItemTo = ({

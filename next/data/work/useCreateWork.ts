@@ -4,12 +4,11 @@ import { api } from "@/plugins/axios";
 import { errHandler } from "@/data/common";
 import { WorkState } from "@/data/types/work";
 
-export type workCreateData = {
+type workCreateData = {
   state: WorkState;
   date: string;
   task_id: number;
 };
-
 export const useCreateWork = () => {
   const [createWorkLoading, setCreateWorkLoading] = useState(false);
   const [createWorkError, setCreateWorkError] = useState("");

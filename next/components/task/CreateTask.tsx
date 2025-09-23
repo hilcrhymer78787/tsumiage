@@ -38,7 +38,7 @@ const CreateTask = ({
   };
 
   const submit = async () => {
-    const res = await createTask(task?.id ?? 0, name);
+    const res = await createTask({ id: task?.id, name });
     if (res) onCloseMyself();
   };
 
@@ -49,7 +49,7 @@ const CreateTask = ({
 
   return (
     <Card>
-      <CardHeader title={task ? task.name : "新規タスク登録"} />
+      <CardHeader title={task?.name ?? "新規タスク登録"} />
       <CardContent>
         <TextField
           error={!!nameError}
