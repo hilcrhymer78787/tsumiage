@@ -5531,14 +5531,19 @@
         "signature": "0a9d72ec2abb5b7f1664a0357f462878b3c67d675aa28c88d03c92d1e7d21e72",
         "affectsGlobalScope": false
       },
+      "./data/types/success.ts": {
+        "version": "e9928a498ea06a99b337e88bb699984185928efeda2975754786527cc6155c8b",
+        "signature": "0d11d04c5f95e9aab6b73a95fc4c83eec39696b83d8fa6229004f27d04dfb472",
+        "affectsGlobalScope": false
+      },
       "./data/task/usecreatetask.ts": {
-        "version": "333de694b9520a47cbc7e604befa04a4906637b083913aeec1a6664311992d9a",
-        "signature": "ddc948ea019a26cf7177b32f47adc20a243abd5cf65ea5aee43daf99ab29dd20",
+        "version": "4c1595a6ad96a07792a5b8b4abbe86e98820e9a4eaa348b5c3b193a2de0fe387",
+        "signature": "82fc0bcace21848453f513231d7691ec7007b4a3226c47d21873183dda75104b",
         "affectsGlobalScope": false
       },
       "./data/task/usedeletetask.ts": {
-        "version": "1ab9b0aaaf5655de16f5eed6347b2055501a26f0a4f3339e8a3ff6ec27b64784",
-        "signature": "9b3d646a8ff1a101f8ff02e0ff82bf82ff417aced5884919c8bb3f561a0ad7d2",
+        "version": "ba99b2cf72334376bd34e99a063c4e63402a64f64ba46f41b4957d6dbfe688ff",
+        "signature": "9deb41a5d57c40e21695db5e6287264b41462a87ebd81477bfa9421bd7e8c492",
         "affectsGlobalScope": false
       },
       "./data/types/work.ts": {
@@ -5559,11 +5564,6 @@
       "./data/task/usesorttasks.ts": {
         "version": "4a421da3fad8a4cb90b94e0a6e87b0ce9c8a5548fec3cc299c92fd402b5d2311",
         "signature": "225bba6de510438971f8972e42a1be6e2e8e5882885e5c5f29696133c836e152",
-        "affectsGlobalScope": false
-      },
-      "./data/types/success.ts": {
-        "version": "e9928a498ea06a99b337e88bb699984185928efeda2975754786527cc6155c8b",
-        "signature": "0d11d04c5f95e9aab6b73a95fc4c83eec39696b83d8fa6229004f27d04dfb472",
         "affectsGlobalScope": false
       },
       "./data/types/calendar.ts": {
@@ -8866,6 +8866,7 @@
       "./data/task/usecreatetask.ts": [
         "./data/common/index.ts",
         "./data/common/usesnackbar.ts",
+        "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
@@ -8873,7 +8874,10 @@
       ],
       "./data/task/usedeletetask.ts": [
         "./data/common/index.ts",
+        "./data/common/usesnackbar.ts",
+        "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
@@ -18219,9 +18223,11 @@
         "./node_modules/axios/index.d.ts"
       ],
       "./data/task/usecreatetask.ts": [
+        "./data/types/success.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/task/usedeletetask.ts": [
+        "./data/types/success.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/task/usereadtasks.ts": [

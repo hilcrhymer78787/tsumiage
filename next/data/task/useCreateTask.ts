@@ -3,16 +3,10 @@ import { errHandler } from "@/data/common";
 import { useState } from "react";
 import { useSnackbar } from "@/data/common/useSnackbar";
 import { AxiosResponse } from "axios";
+import { Success } from "../types/Success";
 type Request = {
   id?: number;
   name: string;
-};
-type Response = {
-  data: {
-    message: string;
-    success: boolean;
-    status: number;
-  };
 };
 export const useCreateTask = () => {
   const [createTaskLoading, setCreateTaskLoading] = useState(false);
@@ -34,7 +28,7 @@ export const useCreateTask = () => {
       method: "POST",
       data,
     })
-      .then((res: AxiosResponse<Response>) => {
+      .then((res: AxiosResponse<Success>) => {
         setSnackbar(res.data.data.message);
         return res;
       })
