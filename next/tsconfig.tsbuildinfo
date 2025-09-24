@@ -1127,8 +1127,8 @@
         "affectsGlobalScope": false
       },
       "./data/common/useerrhandler.ts": {
-        "version": "e77028385c021e197aa7b187912e6e920ba6db72ee44784d25ab2c891528bb23",
-        "signature": "d756235f7ed4033ea5f93c28fc8b983612fb0108e5e158770f52627d197a9639",
+        "version": "b1183410cf8e09a6c1cdfb3a7009c88bd4483863edf4bec95118d69ca7215666",
+        "signature": "07029fc0d500b05fb79df6db6a2973d06b19b3ea8cd14e552c0d5aa060b84c25",
         "affectsGlobalScope": false
       },
       "./data/types/logininfo.ts": {
@@ -1147,7 +1147,7 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usecreateinvitation.ts": {
-        "version": "74b6bdf29a26499d59e3583246d601d018cb4948d6ced08d14c57338434d8938",
+        "version": "4399e9d5d4ea1922be4130b3277605dc5593ae1db81f29221db3e1e7fd05ec85",
         "signature": "7f66c5cc717b0f40070bd15ab1ece11a6d1419afb8b7dfad5a5f4659f7d5070e",
         "affectsGlobalScope": false
       },
@@ -7332,7 +7332,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "15758e21efc41aaf9b23e3dd6a3bebcb366d9d59ba4db92cde04244227a14f6a",
+        "version": "f4e53bcb61b6f3d959363082812333ad0bd0334473c3d89cbe107345abcfb596",
         "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
@@ -8677,6 +8677,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/friend/createfriend.tsx": [
+        "./components/common/errtxt/index.tsx",
         "./data/invitation/usecreateinvitation.ts",
         "./node_modules/@mui/icons-material/send.d.ts",
         "./node_modules/@mui/lab/index.d.ts",

@@ -12,14 +12,26 @@ import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import { useCreateInvitation } from "@/data/invitation/useCreateInvitation";
+import ErrTxt from "../common/ErrTxt";
 
 const CreateFriend = () => {
-  const { createInvitation, isLoading, emailError, message, setMessage } =
-    useCreateInvitation();
+  const {
+    createInvitation,
+    isLoading,
+    emailError,
+    message,
+    setMessage,
+    error,
+  } = useCreateInvitation();
   const [email, setEmail] = useState("");
 
   const onClickCreate = () => {
     createInvitation({ email });
+  };
+
+  const onClickReset = () => {
+    setEmail("");
+    setMessage("");
   };
 
   return (
@@ -42,11 +54,21 @@ const CreateFriend = () => {
             label="メールアドレス"
           />
         )}
+        <ErrTxt txt={error} p="10px 5px 0" />
       </CardContent>
 
       <CardActions disableSpacing>
         <Box></Box>
-        {!message && (
+        {!!message ? (
+          <LoadingButton
+            onClick={onClickReset}
+            color="inherit"
+            variant="contained"
+            loading={isLoading}
+          >
+            続けて申請
+          </LoadingButton>
+        ) : (
           <LoadingButton
             onClick={onClickCreate}
             variant="contained"
@@ -54,19 +76,6 @@ const CreateFriend = () => {
           >
             申請
             <SendIcon />
-          </LoadingButton>
-        )}
-        {!!message && (
-          <LoadingButton
-            onClick={() => {
-              setEmail("");
-              setMessage("");
-            }}
-            color="inherit"
-            variant="contained"
-            loading={isLoading}
-          >
-            続けて申請
           </LoadingButton>
         )}
       </CardActions>

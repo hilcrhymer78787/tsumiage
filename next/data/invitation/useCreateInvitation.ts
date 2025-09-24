@@ -35,7 +35,7 @@ export const useCreateInvitation = () => {
         return res;
       })
       .catch((err) => {
-        errHandler(err, setError);
+        errHandler(err, setError, true);
       })
       .finally(() => {
         setIsLoading(false);
