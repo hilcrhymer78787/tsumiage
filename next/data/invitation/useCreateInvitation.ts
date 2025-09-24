@@ -8,7 +8,21 @@ export const useCreateInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [message, setMessage] = useState("");
+    
+  const validation = (data: Request) => {
+    let isError = false;
+    setEmailError("");
+    if (!/.+@.+\..+/.test(data.email)) {
+      setEmailError("正しい形式で入力してください");
+      isError = true;
+    }
+    return isError;
+  };
+
   const createInvitation = async (data: Request) => {
+    if (validation(data)) return;
     setError("");
     setIsLoading(true);
     return api({
@@ -17,6 +31,7 @@ export const useCreateInvitation = () => {
       data,
     })
       .then((res) => {
+        setMessage(res.data.data.message);
         return res;
       })
       .catch((err) => {
@@ -29,6 +44,10 @@ export const useCreateInvitation = () => {
   return {
     createInvitation,
     error,
+    emailError,
+    setEmailError,
+    message,
+    setMessage,
     isLoading,
   };
 };

@@ -10,31 +10,16 @@ import {
 import { CardContent } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
-import axios from "axios";
 import { useState } from "react";
 import { useCreateInvitation } from "@/data/invitation/useCreateInvitation";
 
 const CreateFriend = () => {
-  const { createInvitation, isLoading } = useCreateInvitation();
-  const [message, setMessage] = useState("");
+  const { createInvitation, isLoading, emailError, message, setMessage } =
+    useCreateInvitation();
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
 
-  const apiInvitationCreate = async () => {
-    if (validation()) return;
-    const res = await createInvitation({ email });
-    if (!res) return;
-    setMessage(res.data.data.message);
-  };
-
-  const validation = () => {
-    let isError = false;
-    setEmailError("");
-    if (!/.+@.+\..+/.test(email)) {
-      setEmailError("正しい形式で入力してください");
-      isError = true;
-    }
-    return isError;
+  const onClickCreate = () => {
+    createInvitation({ email });
   };
 
   return (
@@ -48,7 +33,7 @@ const CreateFriend = () => {
         ) : (
           <TextField
             onKeyPress={(e) => {
-              if (e.key === "Enter") apiInvitationCreate();
+              if (e.key === "Enter") onClickCreate();
             }}
             error={!!emailError}
             helperText={emailError}
@@ -63,7 +48,7 @@ const CreateFriend = () => {
         <Box></Box>
         {!message && (
           <LoadingButton
-            onClick={apiInvitationCreate}
+            onClick={onClickCreate}
             variant="contained"
             loading={isLoading}
           >

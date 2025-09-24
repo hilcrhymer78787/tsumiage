@@ -1147,8 +1147,8 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usecreateinvitation.ts": {
-        "version": "3da624f638ccec4a079de367c83d445046b51a5280a89e12cc6f01e292cc8898",
-        "signature": "593294bf2a5cdc52a9661ca3c36816e609c9af782b189d9f041c7b09cb622e6a",
+        "version": "74b6bdf29a26499d59e3583246d601d018cb4948d6ced08d14c57338434d8938",
+        "signature": "7f66c5cc717b0f40070bd15ab1ece11a6d1419afb8b7dfad5a5f4659f7d5070e",
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
@@ -7332,7 +7332,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "a915a3413ce317398cc16415ac905c89c2d8fc88f473554be595102b988358ee",
+        "version": "15758e21efc41aaf9b23e3dd6a3bebcb366d9d59ba4db92cde04244227a14f6a",
         "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
@@ -8682,7 +8682,6 @@
         "./node_modules/@mui/lab/index.d.ts",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/friend/detail/frienddetailmain.tsx": [
@@ -18220,6 +18219,7 @@
         "./node_modules/recoil/index.d.ts"
       ],
       "./data/invitation/usecreateinvitation.ts": [
+        "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/invitation/usedeleteinvitation.ts": [

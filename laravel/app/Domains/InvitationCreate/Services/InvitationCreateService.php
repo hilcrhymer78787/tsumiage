@@ -10,7 +10,6 @@ use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\InvitationCreateRequest;
 use App\Models\Invitation;
 use App\Models\User;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class InvitationCreateService
 {
@@ -21,53 +20,51 @@ class InvitationCreateService
 
     public function updateOrCreateInvitation(InvitationCreateParameter $params, InvitationCreateRequest $request): string
     {
-        $loginInfo = $this->loginInfoService->getLoginInfo($request);
-
+        $myId = $this->loginInfoService->getLoginInfo($request)->id;
 
         // メールアドレスが存在するか確認
-        $toUserData = User::where('email', $request['email'])->first();
-        if (!$toUserData) abort(500, 'このメールアドレスは登録されていません');
+        $toUser = User::where('email', $params->email)->first();
+        if (!$toUser) abort(404, 'このメールアドレスは登録されていません');
+
+        $toUserId = $toUser->id;
+        $toUserName = $toUser->name;
 
         // 自分自身でないか確認
-        if ($toUserData['id'] == $loginInfo['id']) abort(500, '自分自身に友達申請することはできません');
+        $isMyself = $toUserId == $myId;
+        if ($isMyself) abort(400, '自分自身に友達申請することはできません');
 
         // 重複判定
-        $nowJudgment = Invitation::where('invitation_from_user_id', $loginInfo['id'])
-            ->where('invitation_to_user_id', $toUserData['id'])
+        $nowJudgment = Invitation::where('invitation_from_user_id', $myId)
+            ->where('invitation_to_user_id', $toUserId)
             ->where('invitation_status', 2)
             ->first();
-        if ($nowJudgment) abort(500, $toUserData['name'] . 'さんにはすでに友達です');
+        if ($nowJudgment) abort(409, $toUserName . 'さんにはすでに友達です');
 
-
-        // 重複判定
-        $nowJudgment = Invitation::where('invitation_to_user_id', $loginInfo['id'])
-            ->where('invitation_from_user_id', $toUserData['id'])
+        $nowJudgment = Invitation::where('invitation_to_user_id', $myId)
+            ->where('invitation_from_user_id', $toUserId)
             ->where('invitation_status', 2)
             ->first();
-        if ($nowJudgment) abort(500, $toUserData['name'] . 'さんにはすでに友達です');
+        if ($nowJudgment) abort(409, $toUserName . 'さんにはすでに友達です');
 
-
-        // 重複判定
-        $toJudgment = Invitation::where('invitation_from_user_id', $loginInfo['id'])
-            ->where('invitation_to_user_id', $toUserData['id'])
+        $toJudgment = Invitation::where('invitation_from_user_id', $myId)
+            ->where('invitation_to_user_id', $toUserId)
             ->where('invitation_status', 1)
             ->first();
-        if ($toJudgment) abort(500, $toUserData['name'] . 'さんにはすでに友達申請をしています');
+        if ($toJudgment) abort(409, $toUserName . 'さんにはすでに友達申請をしています');
 
-        // 重複判定
-        $fromJudgment = Invitation::where('invitation_to_user_id', $loginInfo['id'])
-            ->where('invitation_from_user_id', $toUserData['id'])
+        $fromJudgment = Invitation::where('invitation_to_user_id', $myId)
+            ->where('invitation_from_user_id', $toUserId)
             ->where('invitation_status', 1)
             ->first();
-        if ($fromJudgment) abort(500, $toUserData['name'] . 'さんからの友達申請が来ているため許可してください');
+        if ($fromJudgment) abort(409, $toUserName . 'さんからの友達申請が来ているため許可してください');
 
         Invitation::create([
-            'invitation_from_user_id' => $loginInfo['id'],
-            'invitation_to_user_id' => $toUserData['id'],
+            'invitation_from_user_id' => $myId,
+            'invitation_to_user_id' => $toUserId,
             'invitation_status' => 1,
         ]);
 
-        return $toUserData['name'] . 'さんに友達申請しました';
+        return $toUserName . 'さんに友達申請しました';
 
 
         // $taskId = $params->id;
