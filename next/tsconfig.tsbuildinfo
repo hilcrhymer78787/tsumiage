@@ -1147,8 +1147,8 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usecreateinvitation.ts": {
-        "version": "9e21c944ff68f2c0237a9ee758eebd6071180843fe43538acd4985c3a7d45c7e",
-        "signature": "a2a70b5a6e132c5cc4cc3a53777084855c2325affa5e9e95014ead174ac0a934",
+        "version": "3da624f638ccec4a079de367c83d445046b51a5280a89e12cc6f01e292cc8898",
+        "signature": "593294bf2a5cdc52a9661ca3c36816e609c9af782b189d9f041c7b09cb622e6a",
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
@@ -7332,7 +7332,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/createfriend.tsx": {
-        "version": "adc879fb2e1c6138f0730189f9661602c3dd9301040d392d0802e3dd60bb795e",
+        "version": "a915a3413ce317398cc16415ac905c89c2d8fc88f473554be595102b988358ee",
         "signature": "5e6f1b03a559b12701b47083e294603bb594b16833a4d472fe7ae8c5e7d0239f",
         "affectsGlobalScope": false
       },
