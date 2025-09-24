@@ -20,51 +20,53 @@ class InvitationCreateService
 
     public function updateOrCreateInvitation(InvitationCreateParameter $params, InvitationCreateRequest $request): string
     {
-        $myId = $this->loginInfoService->getLoginInfo($request)->id;
+        $myUserId = $this->loginInfoService->getLoginInfo($request)->id;
 
         // メールアドレスが存在するか確認
-        $toUser = User::where('email', $params->email)->first();
-        if (!$toUser) abort(404, 'このメールアドレスは登録されていません');
+        $targetUser = User::where('email', $params->email)->first();
+        if (!$targetUser) abort(404, 'このメールアドレスは登録されていません');
 
-        $toUserId = $toUser->id;
-        $toUserName = $toUser->name;
+        $targetUserId = $targetUser->id;
+        $targetUserName = $targetUser->name;
 
         // 自分自身でないか確認
-        $isMyself = $toUserId == $myId;
-        if ($isMyself) abort(400, '自分自身に友達申請することはできません');
+        if ($targetUserId === $myUserId) abort(400, '自分自身に友達申請することはできません');
 
-        // 重複判定
-        $nowJudgment = Invitation::where('invitation_from_user_id', $myId)
-            ->where('invitation_to_user_id', $toUserId)
+        // すでに友達か確認（自分→相手）
+        $existingFriend1 = Invitation::where('invitation_from_user_id', $myUserId)
+            ->where('invitation_to_user_id', $targetUserId)
             ->where('invitation_status', 2)
             ->first();
-        if ($nowJudgment) abort(409, $toUserName . 'さんにはすでに友達です');
+        if ($existingFriend1) abort(409, $targetUserName . 'さんにはすでに友達です');
 
-        $nowJudgment = Invitation::where('invitation_to_user_id', $myId)
-            ->where('invitation_from_user_id', $toUserId)
+        // すでに友達か確認（相手→自分）
+        $existingFriend2 = Invitation::where('invitation_to_user_id', $myUserId)
+            ->where('invitation_from_user_id', $targetUserId)
             ->where('invitation_status', 2)
             ->first();
-        if ($nowJudgment) abort(409, $toUserName . 'さんにはすでに友達です');
+        if ($existingFriend2) abort(409, $targetUserName . 'さんにはすでに友達です');
 
-        $toJudgment = Invitation::where('invitation_from_user_id', $myId)
-            ->where('invitation_to_user_id', $toUserId)
+        // すでに申請済みか確認（自分→相手）
+        $existingRequest1 = Invitation::where('invitation_from_user_id', $myUserId)
+            ->where('invitation_to_user_id', $targetUserId)
             ->where('invitation_status', 1)
             ->first();
-        if ($toJudgment) abort(409, $toUserName . 'さんにはすでに友達申請をしています');
+        if ($existingRequest1) abort(409, $targetUserName . 'さんにはすでに友達申請をしています');
 
-        $fromJudgment = Invitation::where('invitation_to_user_id', $myId)
-            ->where('invitation_from_user_id', $toUserId)
+        // すでに相手から申請が来ているか確認
+        $existingRequest2 = Invitation::where('invitation_to_user_id', $myUserId)
+            ->where('invitation_from_user_id', $targetUserId)
             ->where('invitation_status', 1)
             ->first();
-        if ($fromJudgment) abort(409, $toUserName . 'さんからの友達申請が来ているため許可してください');
+        if ($existingRequest2) abort(409, $targetUserName . 'さんからの友達申請が来ているため許可してください');
 
         Invitation::create([
-            'invitation_from_user_id' => $myId,
-            'invitation_to_user_id' => $toUserId,
+            'invitation_from_user_id' => $myUserId,
+            'invitation_to_user_id' => $targetUserId,
             'invitation_status' => 1,
         ]);
 
-        return $toUserName . 'さんに友達申請しました';
+        return $targetUserName . 'さんに友達申請しました';
 
 
         // $taskId = $params->id;
