@@ -11,7 +11,6 @@ use App\Domains\UserDelete\Queries\UserDeleteQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Domains\Shared\Task\Queries\TaskQuery;
 use App\Domains\Shared\Work\Queries\WorkQuery;
-use App\Services\UserService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserDeleteService
@@ -19,7 +18,6 @@ class UserDeleteService
     public function __construct(
         private readonly LoginInfoService $loginInfoService,
         private readonly CheckIsExistEmailService $checkIsExistEmailService,
-        private readonly UserService $userService,
         private readonly UserDeleteQuery $query,
         private readonly TaskQuery $taskQuery,
         private readonly WorkQuery $workQuery,

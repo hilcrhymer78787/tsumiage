@@ -11,16 +11,13 @@ use App\Domains\UserCreate\Queries\UserCreateQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\UserCreateRequest;
 use App\Models\User;
-use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserCreateService
 {
     public function __construct(
         private readonly LoginInfoService $loginInfoService,
         private readonly CheckIsExistEmailService $checkIsExistEmailService,
-        private readonly UserService $userService,
         private readonly UserCreateQuery $query,
     ) {}
 
