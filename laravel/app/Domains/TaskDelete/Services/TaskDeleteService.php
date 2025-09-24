@@ -8,7 +8,6 @@ use App\Domains\TaskDelete\Parameters\TaskDeleteParameter;
 use App\Domains\TaskDelete\Queries\TaskDeleteQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\TaskDeleteRequest;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TaskDeleteService
 {
@@ -22,7 +21,9 @@ class TaskDeleteService
         $userId = $this->loginInfoService->getLoginInfo($request)->id;
         $taskId = $params->id;
 
-        $this->query->deleteTask($taskId, $userId);
+        $num = $this->query->deleteTask($taskId, $userId);
+        if (!$num) abort(404, 'タスクが存在しません');
+
         $this->query->deleteWork($taskId, $userId);
         
         return "タスクを削除しました";
