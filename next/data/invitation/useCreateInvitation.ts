@@ -1,8 +1,9 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
 import { useState } from "react";
+import { useErrHandler } from "@/data/common/useErrHandler";
 
 export const useCreateInvitation = () => {
+  const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const createInvitation = async (params: { email: string }) => {

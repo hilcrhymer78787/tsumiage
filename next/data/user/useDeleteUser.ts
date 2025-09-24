@@ -1,8 +1,9 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 
 export const useDeleteUser = () => {
+  const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const deleteUser = async () => {

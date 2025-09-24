@@ -1,6 +1,5 @@
-// export type 修正
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { Friend } from "@/data/types/friend";
 import { AxiosResponse } from "axios";
@@ -12,6 +11,7 @@ type Response = {
   };
 };
 export const useReadInvitation = () => {
+  const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [fromFriends, setFromFriends] = useState<Friend[] | null>(null);

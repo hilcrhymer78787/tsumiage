@@ -1,5 +1,5 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import axios, { Canceler } from "axios";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
@@ -8,6 +8,7 @@ const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;
 
 export const useBearerAuth = () => {
+  const { errHandler } = useErrHandler();
   const { loginInfo, setLoginInfo } = useLoginInfo();
   const [bearerAuthLoading, setBearerAuthLoading] = useState(false);
   const [bearerAuthError, setBearerAuthError] = useState("");

@@ -39,7 +39,7 @@ Route::post('/user/create', [UserCreateController::class, 'index']); //✅
 
 Route::middleware([CheckToken::class])->group(function () {
 
-    Route::get('/task/read', [TaskReadController::class, 'index']); //✅⭐️
+    Route::get('/task/read', [TaskReadController::class, 'index']); //✅
     Route::post('/task/create', [TaskCreateController::class, 'index']); //✅
     Route::post('/task/sort', [TaskSortController::class, 'index']); //✅
     Route::delete('/task/delete', [TaskDeleteController::class, 'index']); //✅
@@ -49,7 +49,7 @@ Route::middleware([CheckToken::class])->group(function () {
     // WorkController のルート
     Route::get('/work/read/month', [WorkReadMonthController::class, 'index']); //✅
     Route::post('/work/create', [WorkCreateController::class, 'index']); //✅
-    Route::delete('/work/delete', [WorkDeleteController::class, 'index']);
+    Route::delete('/work/delete', [WorkDeleteController::class, 'index']); //✅
     Route::delete('/work/reset', [WorkController::class, 'reset']);
 
     // InvitationController のルート

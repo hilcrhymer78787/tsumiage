@@ -1,7 +1,8 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 export const useResetWork = () => {
+  const { errHandler } = useErrHandler();
   const [resetWorkLoading, setResetWorkLoading] = useState(false);
   const [resetWorkError, setResetWorkError] = useState("");
   const resetWork = async () => {

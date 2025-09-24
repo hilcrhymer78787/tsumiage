@@ -1116,14 +1116,19 @@
         "signature": "e56247f97e6b637d1963a85fc77d6f08521b6c41bbbe3f3a1d7d087dc83985a2",
         "affectsGlobalScope": false
       },
-      "./data/common/index.ts": {
-        "version": "69d17e9005b7222cb2c278b109b164b6a446d116afc1fa5c745370842804591f",
-        "signature": "508e31aa1874a279049132f182062033a45e46ef214f4e953e77dc60122f1693",
-        "affectsGlobalScope": false
-      },
       "./node_modules/recoil/index.d.ts": {
         "version": "5afe15da9773876a76bbae4b33aff03c51345ea27cf258b6fc2748df433cf0bb",
         "signature": "5afe15da9773876a76bbae4b33aff03c51345ea27cf258b6fc2748df433cf0bb",
+        "affectsGlobalScope": false
+      },
+      "./data/common/usesnackbar.ts": {
+        "version": "06c60e04dab1c2cd6d574054efce2b0f6827973bcbad54fe7c69bc677409c302",
+        "signature": "a746960df3e07f43d53d644d179589208d7ff40798f1f940fb7e9dd666d1c0ae",
+        "affectsGlobalScope": false
+      },
+      "./data/common/useerrhandler.ts": {
+        "version": "e77028385c021e197aa7b187912e6e920ba6db72ee44784d25ab2c891528bb23",
+        "signature": "d756235f7ed4033ea5f93c28fc8b983612fb0108e5e158770f52627d197a9639",
         "affectsGlobalScope": false
       },
       "./data/types/logininfo.ts": {
@@ -1136,23 +1141,18 @@
         "signature": "662451b4b00602bff64398e8b3c81015dbc903dd4502220cde575bbfae545ecf",
         "affectsGlobalScope": false
       },
-      "./data/common/usesnackbar.ts": {
-        "version": "06c60e04dab1c2cd6d574054efce2b0f6827973bcbad54fe7c69bc677409c302",
-        "signature": "a746960df3e07f43d53d644d179589208d7ff40798f1f940fb7e9dd666d1c0ae",
-        "affectsGlobalScope": false
-      },
       "./plugins/axios.ts": {
         "version": "1ecedebfca3f9c3d420db87805e46079044e891c4304fe0b38bd2ba929740710",
         "signature": "619d51c855144261584ae428724b5880a816e3054e6e579a48390ecac3b93fa9",
         "affectsGlobalScope": false
       },
       "./data/invitation/usecreateinvitation.ts": {
-        "version": "557e26703a19c2514f17c8b943132f3e5d6128128c4b660b7bc9ea659c75db9e",
+        "version": "9e21c944ff68f2c0237a9ee758eebd6071180843fe43538acd4985c3a7d45c7e",
         "signature": "a2a70b5a6e132c5cc4cc3a53777084855c2325affa5e9e95014ead174ac0a934",
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
-        "version": "b4a86cf9c07ec305fcda9397e9cf9b6589939d69d6feac4c1ff21b3b36d38780",
+        "version": "e84f12ab025d3018d2f1b910ab037035b363cc8a4e0269944c508af504cdd55a",
         "signature": "5ff137e5d6afe5ffedc5641af43d4458bd64da10290f419864d3a862e84c0f33",
         "affectsGlobalScope": false
       },
@@ -1162,12 +1162,12 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usereadinvitation.ts": {
-        "version": "cbbf2eaef4696da5baef9c0e73557831e890aae46f4933925e1261c0c87b4e4b",
+        "version": "56b73c4114d2e74ec1f43d478f28a5fa5603d4588bb8925b578320f1dcd66f1f",
         "signature": "663076e3eed94fd1abc9108368379c53b69eb7d48e2e75525c419904208d21b9",
         "affectsGlobalScope": false
       },
       "./data/invitation/useupdateinvitation.ts": {
-        "version": "e31621afda126853049461a29b68afbd0afc9f1f68edc6fa1401e8f095dbd048",
+        "version": "0d13ee960eb9952b7ebb6ccd71173db2371f020e55334bfe4eb50539fdc8b4cd",
         "signature": "00834144457bfa8511225f6483ba22d7205cfbc94bf441f10c58fc444a5dad61",
         "affectsGlobalScope": false
       },
@@ -5542,12 +5542,12 @@
         "affectsGlobalScope": false
       },
       "./data/task/usecreatetask.ts": {
-        "version": "cf539329c1482430a7e13c81c04716075ea1338f9af9db4fe1de59ca03b8d971",
+        "version": "ef3c7593be6a370b44193ee34f9762a28f635b8674e50b08d8fe2c917d9664cf",
         "signature": "6c965f9053003b4a3fe0e5271389e487392df8276cb477d30e81168fd592d8a9",
         "affectsGlobalScope": false
       },
       "./data/task/usedeletetask.ts": {
-        "version": "6d46d6916f7928eb7066855ac9733795d087195278857f342ac3d9b02d6277a6",
+        "version": "cc4a2b128c10f06d3a9acf77785b99bb7648bfb7b7ac2a276c29f065f2d3f8d8",
         "signature": "6c5a69d283b4f9ad72fcdec9b078ee287844a63bed948f81bb51e4bb4919c6d2",
         "affectsGlobalScope": false
       },
@@ -5562,12 +5562,12 @@
         "affectsGlobalScope": false
       },
       "./data/task/usereadtasks.ts": {
-        "version": "8c632b2f28b558b4978e95634b355b5fbd33db5bbe8055252e3ee0115a65fa4a",
+        "version": "fd25a4142f3be424cc83f8697a7888f91958978b3f4701ceec5a72c5a6110da8",
         "signature": "a2773d85c73a3bc920dac5b1ea854c4645dfe1593c6178b66138e201cb8df2b3",
         "affectsGlobalScope": false
       },
       "./data/task/usesorttasks.ts": {
-        "version": "fc331713862dec859fdb8bb1ed910dca02de762ae2b5de177af787ba5e85b2e7",
+        "version": "f2e56e5fd8a7d2c4362132e64772d3fe732616e7c52c574894a3fa59b956e9d3",
         "signature": "682ed406902c9dbc907f77ab63d7cc8da840b0d4390c2a7f3bbaeb78b0c6e9e9",
         "affectsGlobalScope": false
       },
@@ -5577,38 +5577,38 @@
         "affectsGlobalScope": false
       },
       "./data/user/usebasicauth.ts": {
-        "version": "cf453ab1fb885abd2318a25adcbe822291c2f88c77c52b3a7aa4ee7e43cc63a5",
+        "version": "fc1888230f615db4736e6ad8e39103f1ad321fa957a20d1c5f5564e6e4eb643d",
         "signature": "be5896daf6d97d47c5f03b24ec8b9b7cf193e146d0f675ed6b0df800d3b70269",
         "affectsGlobalScope": false
       },
       "./data/user/usebearerauth.ts": {
-        "version": "847cb6b2ce0cb1649b724849473df7741d1ef66e5206fecc817b108404a7cd46",
+        "version": "0f8d8b79b935dfaeaf3e65bae64bcb3d339b006246cb15943537421be9f2e341",
         "signature": "33972eee4f988995f2b2ed64efe22a8f235cd8c8b67ef0f324b21a84f2e2a9a4",
         "affectsGlobalScope": false
       },
       "./data/user/usecreateuser.ts": {
-        "version": "e7523c7394ba7a495ac76367f54d9d14f2f4b386b536ff24e4b5b001e337989f",
+        "version": "877c74dc4c53e7d5fb9a9b56b25fd7f8bf56b0e9cbf89ae418e5b2beccc0be82",
         "signature": "a686dec6743f5e146a0a39bab95a1f77b25a995117e72185f486ce994b10d9b9",
         "affectsGlobalScope": false
       },
       "./data/user/usedeleteuser.ts": {
-        "version": "c720ed6e61997ea61c3dd1e387d2ec6dab037bf802e1fa54b6599e69fe6b1b59",
+        "version": "ac1516a239c003994285cc62277f5153ae8430153ecdbe7b27a9377fe8de2d58",
         "signature": "0c1f77606f5cd9f7769830bb88151f849717ad91695e2363bdffcfd8a7fc6182",
         "affectsGlobalScope": false
       },
       "./data/user/usetestauth.ts": {
-        "version": "1ea32017201dd4549a371618eb437f925ee35d58e343094a47255021aad8f076",
+        "version": "ed57a9c08d5319bcecb20314c47a31431d52722babf668bb22fcb0df2a7f1172",
         "signature": "114934bb966e3b83683897f7a393a832b7e0e79ef464c5edd4c3a2d8c42efc92",
         "affectsGlobalScope": false
       },
       "./data/work/usecreatework.ts": {
-        "version": "d5d0e6a22f784735f21a13a3d17e7d6e399b91c8dbc70cc52dda67343564f833",
-        "signature": "3b12d5225e431f528faac91279fe26e00ca8393916e01f1cef2f761d86755d45",
+        "version": "1a7c4cb34f704076cab7d1fc4357c9f3bc6062d9fcffebbcf3e6b7f1bf39d06f",
+        "signature": "e11524b531b4974d295c8492d2c21eebeccfe8d0edeaf085e2953e1516982705",
         "affectsGlobalScope": false
       },
       "./data/work/usedeletework.ts": {
-        "version": "d340759538b87e1be0bcb74649033f2a915da4be89a6bf032acb5d265905b871",
-        "signature": "9c1369f235eee9f4899aad2d7f81f56d23eb3a7f179712d63d048d684ecf901f",
+        "version": "d8e2d3be048558ff890b0d2430e1c3d2501b1d45db4b949313107a1f631ecf5a",
+        "signature": "25d7ec480f76dbf77d32c4815b5d8f9df3c50a52589ea7fd251dc528fc43306f",
         "affectsGlobalScope": false
       },
       "./node_modules/dayjs/locale/types.d.ts": {
@@ -5627,12 +5627,12 @@
         "affectsGlobalScope": false
       },
       "./data/work/usereadworkmonth.ts": {
-        "version": "75fa64bd2218180eee11d6de1acd69fcc6317818d00262f66e06ef92504907a5",
+        "version": "18e1db3acf2381c258ed687ad75dbc5a9111b0d53187b25bb5c4196d8fe17058",
         "signature": "0b58953eea7b2733a28ea912c11cb2525bb18b833f9432075bd0d85764b835d1",
         "affectsGlobalScope": false
       },
       "./data/work/useresetwork.ts": {
-        "version": "115dc7376c9abf734e4c78b6f8f0d59805943eb2887a0ecadb5d05328499b070",
+        "version": "82528d03421fd45f508a5aaaf32aa78f5410a97ed5dbae780d5f13e57826ba2e",
         "signature": "d25560f28e04d0419a1489bbcaa520fd4e9087e707e4d2766afbe393e9a82607",
         "affectsGlobalScope": false
       },
@@ -7407,7 +7407,7 @@
         "affectsGlobalScope": false
       },
       "./components/task/taskitem.tsx": {
-        "version": "a6df1757e38cb50cc809363bed91757ff679ca3f57d4d0654a2fe0e4b6d60066",
+        "version": "47af1ee78f6f52dddd476444656648c369d75934f4f5a1096a8db71fc406681e",
         "signature": "596ab6527d6715962b5ecb886787e55121d31945b938afb1f05fff4c4ddc875d",
         "affectsGlobalScope": false
       },
@@ -8760,6 +8760,7 @@
         "./node_modules/next/router.d.ts"
       ],
       "./components/task/taskitem.tsx": [
+        "./components/common/rstack.tsx",
         "./components/task/createtask.tsx",
         "./data/types/task.ts",
         "./data/types/work.ts",
@@ -8817,7 +8818,8 @@
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/dayjs/index.d.ts"
       ],
-      "./data/common/index.ts": [
+      "./data/common/useerrhandler.ts": [
+        "./data/common/usesnackbar.ts",
         "./data/types/error.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8834,19 +8836,19 @@
         "./node_modules/recoil/index.d.ts"
       ],
       "./data/invitation/usecreateinvitation.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/invitation/usedeleteinvitation.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/invitation/usereadinvitation.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/types/friend.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8854,7 +8856,7 @@
         "./plugins/axios.ts"
       ],
       "./data/invitation/useupdateinvitation.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8865,7 +8867,7 @@
         "./plugins/theme.ts"
       ],
       "./data/task/usecreatetask.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8874,7 +8876,7 @@
         "./plugins/axios.ts"
       ],
       "./data/task/usedeletetask.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8883,14 +8885,14 @@
         "./plugins/axios.ts"
       ],
       "./data/task/usereadtasks.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/task/usesorttasks.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8922,15 +8924,14 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./data/user/usebasicauth.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
-        "./data/common/usesnackbar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/user/usebearerauth.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8938,20 +8939,20 @@
         "./plugins/axios.ts"
       ],
       "./data/user/usecreateuser.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/user/usedeleteuser.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/user/usetestauth.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
         "./data/common/usesnackbar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8959,20 +8960,25 @@
         "./plugins/axios.ts"
       ],
       "./data/work/usecreatework.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
+        "./data/common/usesnackbar.ts",
+        "./data/types/success.ts",
         "./data/types/work.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/work/usedeletework.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
+        "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
+        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/work/usereadworkmonth.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
         "./data/types/calendar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8982,7 +8988,7 @@
         "./plugins/axios.ts"
       ],
       "./data/work/useresetwork.ts": [
-        "./data/common/index.ts",
+        "./data/common/useerrhandler.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -18200,7 +18206,7 @@
         "./data/types/logininfo.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
-      "./data/common/index.ts": [
+      "./data/common/useerrhandler.ts": [
         "./data/types/error.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts"
@@ -18268,10 +18274,12 @@
         "./node_modules/axios/index.d.ts"
       ],
       "./data/work/usecreatework.ts": [
+        "./data/types/success.ts",
         "./data/types/work.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/work/usedeletework.ts": [
+        "./data/types/success.ts",
         "./node_modules/axios/index.d.ts"
       ],
       "./data/work/usereadworkmonth.ts": [
@@ -27339,7 +27347,7 @@
       "./components/task/tasksortheader.tsx",
       "./components/test.tsx",
       "./components/user/createuser.tsx",
-      "./data/common/index.ts",
+      "./data/common/useerrhandler.ts",
       "./data/common/uselogininfo.ts",
       "./data/common/usesnackbar.ts",
       "./data/invitation/usecreateinvitation.ts",
@@ -29157,6 +29165,14 @@
       ],
       [
         "./data/common/index.ts",
+        1
+      ],
+      [
+        "./data/common/useerrhandler.ts",
+        1
+      ],
+      [
+        "./data/common/useerrorhandle.ts",
         1
       ],
       [

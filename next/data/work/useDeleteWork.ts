@@ -1,38 +1,39 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { AxiosResponse } from "axios";
 import { Success } from "../types/success";
-import { useSnackbar } from "../common/useSnackbar";
 
+type Request = {
+  id: number;
+};
 export const useDeleteWork = () => {
-  const { setSnackbar } = useSnackbar();
-  const [deleteWorkLoading, setDeleteWorkLoading] = useState(false);
-  const [deleteWorkError, setDeleteWorkError] = useState("");
-  const deleteWork = async (id: number) => {
-    setDeleteWorkError("");
-    setDeleteWorkLoading(true);
+  const { errHandler } = useErrHandler();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const deleteWork = async (data: Request) => {
+    setError("");
+    setIsLoading(true);
     return api({
       url: "/api/work/delete",
       method: "DELETE",
-      data: { id },
+      data,
     })
       .then((res: AxiosResponse<Success>) => {
         // setSnackbar(res.data.data.message);
         return res;
       })
       .catch((err) => {
-        setSnackbar("活動情報の削除に失敗しました", "error");
-        errHandler(err, setDeleteWorkError);
+        errHandler(err, setError);
       })
       .finally(() => {
-        setDeleteWorkLoading(false);
+        setIsLoading(false);
       });
   };
 
   return {
     deleteWork,
-    deleteWorkError,
-    deleteWorkLoading,
+    error,
+    isLoading,
   };
 };

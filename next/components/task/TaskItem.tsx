@@ -18,6 +18,7 @@ import { useDeleteWork } from "@/data/work/useDeleteWork";
 import { useState } from "react";
 import { Task } from "@/data/types/task";
 import { WorkState } from "@/data/types/work";
+import RStack from "../common/RStack";
 
 const TaskItem = ({
   task,
@@ -31,13 +32,13 @@ const TaskItem = ({
   readonly: boolean;
 }) => {
   const [isLoadingRight, setIsLoadingRight] = useState(false);
-  const { deleteWork, deleteWorkLoading } = useDeleteWork();
+  const { deleteWork, isLoading } = useDeleteWork();
   const [createTaskkDialog, setCreateTaskDialog] = useState(false);
   const { createWork, createWorkLoading } = useCreateWork();
 
   const apiWorkDelete = async (isRight: boolean) => {
     if (isRight) setIsLoadingRight(true);
-    const res = await deleteWork(task.work.id);
+    const res = await deleteWork({ id: task.work.id });
     if (res) apiTaskRead();
     if (isRight) setIsLoadingRight(false);
   };
@@ -54,7 +55,7 @@ const TaskItem = ({
   };
 
   const IsDoneIcon = () => {
-    if (deleteWorkLoading || createWorkLoading) {
+    if (isLoading || createWorkLoading) {
       if (isLoadingRight) return <></>;
       return <CircularProgress size={25} />;
     } else if (task.work.state === 1) {
@@ -72,7 +73,7 @@ const TaskItem = ({
     }
   };
   const IsNecessaryIcon = () => {
-    if (deleteWorkLoading || createWorkLoading) {
+    if (isLoading || createWorkLoading) {
       if (!isLoadingRight) return <></>;
       return <CircularProgress size={25} />;
     } else if (task.work.state === 2) {
@@ -94,14 +95,10 @@ const TaskItem = ({
       sx={{ p: 0 }}
       secondaryAction={
         !readonly && (
-          <Box className="flexStart">
-            <Box className="flexCenter" width="40px" height="40px">
-              <IsNecessaryIcon />
-            </Box>
-            <Box className="flexCenter" width="40px" height="40px">
-              <IsDoneIcon />
-            </Box>
-          </Box>
+          <RStack>
+            <IsNecessaryIcon />
+            <IsDoneIcon />
+          </RStack>
         )
       }
     >

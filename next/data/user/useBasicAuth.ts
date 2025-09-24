@@ -1,11 +1,10 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { useSnackbar } from "@/data/common/useSnackbar";
 
 export const useBasicAuth = () => {
-  const { setSnackbar } = useSnackbar();
+  const { errHandler } = useErrHandler();
   const { loginInfo, setLoginInfo } = useLoginInfo();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -42,16 +41,14 @@ export const useBasicAuth = () => {
         return res;
       })
       .catch((err) => {
-        const error = errHandler(err, setError);
-        if (error === "このメールアドレスは登録されていません") {
-          setEmailError("このメールアドレスは登録されていません");
-          return;
+        errHandler(err, setError);
+        const message = err.response?.data?.data?.message;
+        if (message === "このメールアドレスは登録されていません") {
+          setEmailError(message);
         }
-        if (error === "パスワードが間違っています") {
-          setPasswordError("パスワードが間違っています");
-          return;
+        if (message === "パスワードが間違っています") {
+          setPasswordError(message);
         }
-        setSnackbar(error, "error");
       })
       .finally(() => {
         setIsLoading(false);

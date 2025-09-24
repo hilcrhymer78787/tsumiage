@@ -1,5 +1,5 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useSnackbar } from "../common/useSnackbar";
 import { AxiosResponse } from "axios";
@@ -8,6 +8,7 @@ type Request = {
   ids: number[];
 };
 export const useSortTasks = () => {
+  const { errHandler } = useErrHandler();
   const { setSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -24,7 +25,6 @@ export const useSortTasks = () => {
         return res;
       })
       .catch((err) => {
-        setSnackbar("タスクの順番変更に失敗しました", "error");
         errHandler(err, setError);
       })
       .finally(() => {

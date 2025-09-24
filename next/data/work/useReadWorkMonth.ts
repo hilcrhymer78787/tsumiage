@@ -1,7 +1,7 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
-import { atom, useRecoilState, useRecoilValue } from "recoil";
+import { atom, useRecoilState } from "recoil";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 import dayjs from "dayjs";
@@ -14,6 +14,7 @@ export const calendarsAtom = atom<Calendar[] | null>({
 });
 
 export const useReadWorkMonth = () => {
+  const { errHandler } = useErrHandler();
   const { loginInfo } = useLoginInfo();
   const [readWorkMonthLoading, setReadWorkMonthLoading] = useState(false);
   const [readWorkMonthError, setReadWorkMonthError] = useState("");

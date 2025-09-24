@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { WorkState } from "@/data/types/work";
 import { useSnackbar } from "../common/useSnackbar";
 import { AxiosResponse } from "axios";
@@ -13,6 +13,7 @@ type workCreateData = {
   task_id: number;
 };
 export const useCreateWork = () => {
+  const { errHandler } = useErrHandler();
   const { setSnackbar } = useSnackbar();
   const [createWorkLoading, setCreateWorkLoading] = useState(false);
   const [createWorkError, setCreateWorkError] = useState("");
@@ -29,7 +30,6 @@ export const useCreateWork = () => {
         return res;
       })
       .catch((err) => {
-        setSnackbar("活動情報の更新に失敗しました", "error");
         errHandler(err, setCreateWorkError);
       })
       .finally(() => {

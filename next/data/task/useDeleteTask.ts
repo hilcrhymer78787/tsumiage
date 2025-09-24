@@ -1,5 +1,5 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { AxiosResponse } from "axios";
 import { useSnackbar } from "../common/useSnackbar";
@@ -9,6 +9,7 @@ type Request = {
   id: number;
 };
 export const useDeleteTask = () => {
+  const { errHandler } = useErrHandler();
   const { setSnackbar } = useSnackbar();
   const [deleteTaskLoading, setDeleteTaskLoading] = useState(false);
   const [deleteTaskError, setDeleteTaskError] = useState("");
@@ -25,7 +26,6 @@ export const useDeleteTask = () => {
         return res;
       })
       .catch((err) => {
-        setSnackbar("タスクの削除に失敗しました", "error");
         errHandler(err, setDeleteTaskError);
       })
       .finally(() => {

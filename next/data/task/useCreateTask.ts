@@ -1,5 +1,5 @@
 import { api } from "@/plugins/axios";
-import { errHandler } from "@/data/common";
+import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useSnackbar } from "@/data/common/useSnackbar";
 import { AxiosResponse } from "axios";
@@ -9,6 +9,7 @@ type Request = {
   name: string;
 };
 export const useCreateTask = () => {
+  const { errHandler } = useErrHandler();
   const [createTaskLoading, setCreateTaskLoading] = useState(false);
   const { setSnackbar } = useSnackbar();
   const [createTaskError, setCreateTaskError] = useState("");
@@ -33,7 +34,6 @@ export const useCreateTask = () => {
         return res;
       })
       .catch((err) => {
-        setSnackbar(`タスクの${!!data.id ? "更新" : "作成"}に失敗しました`, "error");
         errHandler(err, setCreateTaskError);
       })
       .finally(() => {
