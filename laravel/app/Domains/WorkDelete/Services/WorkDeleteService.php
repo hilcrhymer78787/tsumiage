@@ -23,8 +23,6 @@ class WorkDeleteService
 
         $num = $this->query->deleteWork($workId, $userId);
         if (!$num) abort(404, '活動情報が存在しません');
-
-        $this->query->deleteWork($workId, $userId);
         
         return "活動情報を削除しました";
     }

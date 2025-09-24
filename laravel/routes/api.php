@@ -19,6 +19,7 @@ use App\Http\Controllers\UserDeleteController;
 use App\Http\Controllers\WorkReadMonthController;
 use App\Http\Controllers\WorkCreateController;
 use App\Http\Controllers\WorkDeleteController;
+use App\Http\Controllers\WorkResetController;
 use App\Http\Controllers\InvitationReadController;
 
 // テストルート
@@ -39,20 +40,22 @@ Route::post('/user/create', [UserCreateController::class, 'index']); //✅
 
 Route::middleware([CheckToken::class])->group(function () {
 
+    // task
     Route::get('/task/read', [TaskReadController::class, 'index']); //✅
     Route::post('/task/create', [TaskCreateController::class, 'index']); //✅
     Route::post('/task/sort', [TaskSortController::class, 'index']); //✅
     Route::delete('/task/delete', [TaskDeleteController::class, 'index']); //✅
 
+    // user
     Route::delete('/user/delete', [UserDeleteController::class, 'index']); //✅
 
-    // WorkController のルート
+    // work
     Route::get('/work/read/month', [WorkReadMonthController::class, 'index']); //✅
     Route::post('/work/create', [WorkCreateController::class, 'index']); //✅
     Route::delete('/work/delete', [WorkDeleteController::class, 'index']); //✅
-    Route::delete('/work/reset', [WorkController::class, 'reset']);
+    Route::delete('/work/reset', [WorkResetController::class, 'index']); //✅
 
-    // InvitationController のルート
+    // invitation
     Route::get('/invitation/read', [InvitationReadController::class, 'index']); //✅
     Route::post('/invitation/create', [InvitationController::class, 'create']);
     Route::put('/invitation/update', [InvitationController::class, 'update']);

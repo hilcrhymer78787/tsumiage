@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
 // TODO: もっと綺麗に書けそう
+// TODO: 情報漏洩対策
 class ErrorResource extends JsonResource
 {
     public function __construct(Throwable $resource)
