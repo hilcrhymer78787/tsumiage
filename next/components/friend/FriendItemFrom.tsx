@@ -29,7 +29,7 @@ const FriendItemFrom = ({
     friendRead();
   };
   const onClickUpdate = async () => {
-    await updateInvitation(friend.invitation_id);
+    await updateInvitation({ invitation_id: friend.invitation_id });
     friendRead();
   };
   return (

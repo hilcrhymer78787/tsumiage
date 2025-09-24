@@ -22,6 +22,7 @@ use App\Http\Controllers\WorkDeleteController;
 use App\Http\Controllers\WorkResetController;
 use App\Http\Controllers\InvitationReadController;
 use App\Http\Controllers\InvitationCreateController;
+use App\Http\Controllers\InvitationUpdateController;
 
 // テストルート
 Route::get('/test', function () {
@@ -58,7 +59,7 @@ Route::middleware([CheckToken::class])->group(function () {
 
     // invitation
     Route::get('/invitation/read', [InvitationReadController::class, 'index']); //✅
-    Route::post('/invitation/create', [InvitationCreateController::class, 'index']);
-    Route::put('/invitation/update', [InvitationController::class, 'update']);
+    Route::post('/invitation/create', [InvitationCreateController::class, 'index']); //✅
+    Route::put('/invitation/update', [InvitationUpdateController::class, 'index']); //✅
     Route::delete('/invitation/delete', [InvitationController::class, 'delete']);
 });
