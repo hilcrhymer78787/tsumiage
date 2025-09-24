@@ -10,6 +10,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import UserImg from "@/components/common/UserImg";
 import { Friend } from "@/data/types/friend";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
+import { useSnackbar } from "@/data/common/useSnackbar";
 
 const FriendItemTo = ({
   friend,
@@ -18,11 +19,14 @@ const FriendItemTo = ({
   friend: Friend;
   friendRead: () => void;
 }) => {
+  const { setSnackbar } = useSnackbar();
   const { deleteInvitation, isLoading } = useDeleteInvitation();
   const apiInvitationDelete = async () => {
     if (!confirm(`「${friend.name}」さんの招待を中止しますか？`)) return;
-    await deleteInvitation(friend.invitation_id);
+    const res = await deleteInvitation({ invitation_id: friend.invitation_id });
+    if (!res) return;
     friendRead();
+    setSnackbar(`「${friend.name}」さんの招待を中止しました`);
   };
   return (
     <ListItem

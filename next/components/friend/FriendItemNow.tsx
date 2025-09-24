@@ -17,23 +17,40 @@ import dayjs from "dayjs";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { useRouter } from "next/router";
 import { Friend } from "@/data/types/friend";
+import { useSnackbar } from "@/data/common/useSnackbar";
 
-const FriendItemNow = (props: {
+const FriendItemNow = ({
+  friend,
+  friendRead,
+}: {
   friend: Friend;
   friendRead: () => void;
 }) => {
+  const { setSnackbar } = useSnackbar();
   const router = useRouter();
   const { deleteInvitation, isLoading } = useDeleteInvitation();
+
   const onClickDelete = async () => {
-    if (!confirm(`「${props.friend.name}」さんを友達から削除しますか？`))
-      return;
-    const res = await deleteInvitation(props.friend.invitation_id);
-    if (res) {
-      props.friendRead();
-    } else {
-      alert("削除に失敗しました");
-    }
+    const { name, invitation_id } = friend;
+    if (!confirm(`「${name}」さんを友達から削除しますか？`)) return;
+    const res = await deleteInvitation({ invitation_id });
+    if (!res) return;
+    friendRead();
+    setSnackbar(`「${name}」さんを友達から削除しました`);
   };
+
+  const onClickList = () => {
+    router.push({
+      pathname: "/friend/detail",
+      query: {
+        year: dayjs().format("YYYY"),
+        month: dayjs().format("M"),
+        id: friend.id,
+        name: friend.name,
+      },
+    });
+  };
+
   return (
     <ListItem sx={{ p: 0 }}>
       <Swiper
@@ -41,26 +58,11 @@ const FriendItemNow = (props: {
         style={{ width: "100%", alignItems: "stretch" }}
       >
         <SwiperSlide style={{ width: "100%", height: "auto" }}>
-          <ListItemButton
-            onClick={() => {
-              router.push({
-                pathname: "/friend/detail",
-                query: {
-                  year: dayjs().format("YYYY"),
-                  month: dayjs().format("M"),
-                  id: props.friend.id,
-                  name: props.friend.name,
-                },
-              });
-            }}
-          >
+          <ListItemButton onClick={onClickList}>
             <ListItemAvatar>
-              <UserImg fileName={props.friend.user_img} size="40" />
+              <UserImg fileName={friend.user_img} size="40" />
             </ListItemAvatar>
-            <ListItemText
-              primary={props.friend.name}
-              secondary={props.friend.email}
-            />
+            <ListItemText primary={friend.name} secondary={friend.email} />
           </ListItemButton>
         </SwiperSlide>
         <SwiperSlide style={{ height: "auto", width: "150px" }}>

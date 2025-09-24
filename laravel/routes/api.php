@@ -5,8 +5,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckToken;
-use App\Http\Controllers\WorkController;
-use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TaskReadController;
 use App\Http\Controllers\TaskCreateController;
 use App\Http\Controllers\TaskSortController;
@@ -23,6 +21,7 @@ use App\Http\Controllers\WorkResetController;
 use App\Http\Controllers\InvitationReadController;
 use App\Http\Controllers\InvitationCreateController;
 use App\Http\Controllers\InvitationUpdateController;
+use App\Http\Controllers\InvitationDeleteController;
 
 // テストルート
 Route::get('/test', function () {
@@ -61,5 +60,5 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::get('/invitation/read', [InvitationReadController::class, 'index']); //✅
     Route::post('/invitation/create', [InvitationCreateController::class, 'index']); //✅
     Route::put('/invitation/update', [InvitationUpdateController::class, 'index']); //✅
-    Route::delete('/invitation/delete', [InvitationController::class, 'delete']);
+    Route::delete('/invitation/delete', [InvitationDeleteController::class, 'index']); //✅
 });

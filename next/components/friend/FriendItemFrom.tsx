@@ -13,6 +13,7 @@ import {
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { Friend } from "@/data/types/friend";
 import { useUpdateInvitation } from "@/data/invitation/useUpdateInvitation";
+import { useSnackbar } from "@/data/common/useSnackbar";
 
 const FriendItemFrom = ({
   friend,
@@ -21,24 +22,29 @@ const FriendItemFrom = ({
   friend: Friend;
   friendRead: () => void;
 }) => {
+  const { setSnackbar } = useSnackbar();
+  const { invitation_id, name, user_img, email } = friend;
   const { deleteInvitation, isLoading: deleteLoading } = useDeleteInvitation();
   const { updateInvitation, isLoading: updateLoading } = useUpdateInvitation();
   const onClickDelete = async () => {
-    if (!confirm(`「${friend.name}」さんからの招待を拒否しますか？`)) return;
-    await deleteInvitation(friend.invitation_id);
+    if (!confirm(`「${name}」さんからの招待を拒否しますか？`)) return;
+    const res = await deleteInvitation({ invitation_id });
+    if (!res) return;
     friendRead();
+    setSnackbar(`「${name}」さんからの招待を拒否しました`);
   };
   const onClickUpdate = async () => {
-    await updateInvitation({ invitation_id: friend.invitation_id });
+    const res = await updateInvitation({ invitation_id });
+    if (!res) return;
     friendRead();
   };
   return (
     <Card sx={{ m: "15px" }}>
       <ListItem sx={{ border: "none !important" }}>
         <ListItemAvatar>
-          <UserImg fileName={friend.user_img} size="40" />
+          <UserImg fileName={user_img} size="40" />
         </ListItemAvatar>
-        <ListItemText primary={friend.name} secondary={friend.email} />
+        <ListItemText primary={name} secondary={email} />
       </ListItem>
       <CardActions disableSpacing>
         <LoadingButton

@@ -1152,8 +1152,8 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
-        "version": "e84f12ab025d3018d2f1b910ab037035b363cc8a4e0269944c508af504cdd55a",
-        "signature": "5ff137e5d6afe5ffedc5641af43d4458bd64da10290f419864d3a862e84c0f33",
+        "version": "a756b33679d2b5fb5c727c0bb4cc1b13b356a89bd7e5401000b074d7ce02d2e1",
+        "signature": "cfe51eb78874c618c8ea73d9c4a450bad9bc8e4695f6df5e7232bc3c341d714e",
         "affectsGlobalScope": false
       },
       "./data/types/friend.ts": {
@@ -7342,7 +7342,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemfrom.tsx": {
-        "version": "023ccd5cbbc98669eaee99c2af7903348b61f5cab88d6c931f993400333eef9a",
+        "version": "5901403fc71ad95699e4932edb9b493c6d2c12e76aeb9cf7ed59a6c232f2e9e5",
         "signature": "43818e6c1257faf692715f28bed110948e65cbcf2ae9d7523d9547681a13cd71",
         "affectsGlobalScope": false
       },
@@ -7352,8 +7352,8 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemnow.tsx": {
-        "version": "77f5bcb61bcb0248be6a333d0bf51215e2b29fd33009d26c2fa7aa1be10fdee8",
-        "signature": "c500db5a4821504e7c8c3b2da438883d82929a43c777e1f4cd601d1e87d7b4b5",
+        "version": "193f6309e81089171ffeb091fe882df9f950632040d0e64d36b1649e97581347",
+        "signature": "9d939dae591f1445899a0fee472ed8f94a84f56d6154e11b9c0f1fae9bd7558b",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/cancel.d.ts": {
@@ -7362,7 +7362,7 @@
         "affectsGlobalScope": false
       },
       "./components/friend/frienditemto.tsx": {
-        "version": "cdfd7bfb0d36e625d98a15dc878f4c6b435387b20e0a0372584461f847681178",
+        "version": "48dd69afd65bc6e5a5acc69652153c3d940f3102ea638d5f35ee905c87520e10",
         "signature": "b71d038605db26c171c7d0ff73dce1b861c7fd9ce1254a30f855892eb179c58c",
         "affectsGlobalScope": false
       },
@@ -8696,6 +8696,7 @@
       ],
       "./components/friend/frienditemfrom.tsx": [
         "./components/common/userimg.tsx",
+        "./data/common/usesnackbar.ts",
         "./data/invitation/usedeleteinvitation.ts",
         "./data/invitation/useupdateinvitation.ts",
         "./data/types/friend.ts",
@@ -8707,6 +8708,7 @@
       ],
       "./components/friend/frienditemnow.tsx": [
         "./components/common/userimg.tsx",
+        "./data/common/usesnackbar.ts",
         "./data/invitation/usedeleteinvitation.ts",
         "./data/types/friend.ts",
         "./node_modules/@mui/lab/index.d.ts",
@@ -8718,6 +8720,7 @@
       ],
       "./components/friend/frienditemto.tsx": [
         "./components/common/userimg.tsx",
+        "./data/common/usesnackbar.ts",
         "./data/invitation/usedeleteinvitation.ts",
         "./data/types/friend.ts",
         "./node_modules/@mui/icons-material/cancel.d.ts",
