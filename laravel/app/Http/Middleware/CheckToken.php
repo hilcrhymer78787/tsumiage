@@ -22,7 +22,7 @@ class CheckToken
   public function handle(Request $request, Closure $next)
   {
     $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-    if (!$loginInfoModel) throw new AuthenticationException('トークンが有効期限切れです');
+    if (!$loginInfoModel) abort(401, 'トークンが有効期限切れです');
     return $next($request);
   }
 }

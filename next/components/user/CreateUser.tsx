@@ -27,7 +27,7 @@ import dayjs from "dayjs";
 import { useDeleteUser } from "@/data/user/useDeleteUser";
 import { LoginInfo } from "@/data/types/loginInfo";
 import RStack from "@/components/common/RStack";
-import { useBearerAuth } from "@/data/user/useBearerAuth";
+import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 let inputRef: HTMLInputElement | null = null;
 let file: File;
@@ -58,7 +58,7 @@ const CreateUser = ({
   const [passwordError, setPasswordError] = useState<string>("");
   const [user_img, setUserImg] = useState<string>("");
   const [passwordAgain, setPasswordAgain] = useState<string>("");
-  const { logout } = useBearerAuth();
+  const { logout } = useLoginInfo();
 
   const apiCreateUser = async () => {
     if (validation()) return;

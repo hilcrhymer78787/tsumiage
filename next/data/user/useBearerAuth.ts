@@ -13,11 +13,6 @@ export const useBearerAuth = () => {
   const [bearerAuthLoading, setBearerAuthLoading] = useState(false);
   const [bearerAuthError, setBearerAuthError] = useState("");
 
-  const logout = () => {
-    setLoginInfo(null);
-    localStorage.removeItem("token");
-  };
-
   const bearerAuth = async () => {
     setBearerAuthError("");
     setBearerAuthLoading(true);
@@ -33,7 +28,7 @@ export const useBearerAuth = () => {
         return res;
       })
       .catch((err) => {
-        errHandler(err, setBearerAuthError);
+        errHandler(err, setBearerAuthError, true);
       })
       .finally(() => {
         setBearerAuthLoading(false);
@@ -42,7 +37,6 @@ export const useBearerAuth = () => {
 
   return {
     loginInfo,
-    logout,
     bearerAuth,
     bearerAuthError,
     bearerAuthLoading,

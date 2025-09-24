@@ -1126,19 +1126,19 @@
         "signature": "a746960df3e07f43d53d644d179589208d7ff40798f1f940fb7e9dd666d1c0ae",
         "affectsGlobalScope": false
       },
-      "./data/common/useerrhandler.ts": {
-        "version": "b1183410cf8e09a6c1cdfb3a7009c88bd4483863edf4bec95118d69ca7215666",
-        "signature": "07029fc0d500b05fb79df6db6a2973d06b19b3ea8cd14e552c0d5aa060b84c25",
-        "affectsGlobalScope": false
-      },
       "./data/types/logininfo.ts": {
         "version": "3092a8286378f3c9d1d589e2f648c6f880086fd71e63cbe33f27d8a0c64f4991",
         "signature": "285c907452ee1488d9e91b47c527b072cdffa20744505c26c257a954e7c735ff",
         "affectsGlobalScope": false
       },
       "./data/common/uselogininfo.ts": {
-        "version": "1fa2f2ac8f7a0c52cbe2452cfde6aada68afa58828dde552bcc437c5a97ddaec",
-        "signature": "662451b4b00602bff64398e8b3c81015dbc903dd4502220cde575bbfae545ecf",
+        "version": "13a52e0672748d11347e0e4582beb504b1dbca19784c8a045e82231c4caf662b",
+        "signature": "77ce1391bff2649e8e7efbf1997cfeb1de2151c23c538aa2ebee19b717bf70b1",
+        "affectsGlobalScope": false
+      },
+      "./data/common/useerrhandler.ts": {
+        "version": "acaf4b5309c54f90b9ff96cded6b4d3fe90c947475be5f20408900edec6faf44",
+        "signature": "07029fc0d500b05fb79df6db6a2973d06b19b3ea8cd14e552c0d5aa060b84c25",
         "affectsGlobalScope": false
       },
       "./plugins/axios.ts": {
@@ -5537,7 +5537,7 @@
         "affectsGlobalScope": false
       },
       "./data/media/usemedia.ts": {
-        "version": "c212fb518e350d416065f68dfe7d50f7d6dee0f500225bca995dabfd0fd93c18",
+        "version": "df018c70efdf9ad70b57ea5c19616fbe27b91e007588cf5765f91a755ce9f490",
         "signature": "0a9d72ec2abb5b7f1664a0357f462878b3c67d675aa28c88d03c92d1e7d21e72",
         "affectsGlobalScope": false
       },
@@ -5582,8 +5582,8 @@
         "affectsGlobalScope": false
       },
       "./data/user/usebearerauth.ts": {
-        "version": "0f8d8b79b935dfaeaf3e65bae64bcb3d339b006246cb15943537421be9f2e341",
-        "signature": "33972eee4f988995f2b2ed64efe22a8f235cd8c8b67ef0f324b21a84f2e2a9a4",
+        "version": "343188eaa6918d527b7c4f3f8c3f118b9793e5da4459e5a12d6888c95dc75e28",
+        "signature": "88afbd70fad632d27367a8867976fe75f57f6f12499f50bbb0913e1918c3c420",
         "affectsGlobalScope": false
       },
       "./data/user/usecreateuser.ts": {
@@ -6327,7 +6327,7 @@
         "affectsGlobalScope": false
       },
       "./components/user/createuser.tsx": {
-        "version": "dd0a54365b60809f4fd3fbe289bd4120cd9b64c9e6c2aa8ac19ba828af4e7355",
+        "version": "caae1866a721e602cd6f6b661eea3fd8e6ae25369b50eaadacd802087e1bd159",
         "signature": "a1ee4b9a3242c065c4d2cef92814380acdc6d23069c815f99904b1aead7e6f45",
         "affectsGlobalScope": false
       },
@@ -6337,7 +6337,7 @@
         "affectsGlobalScope": false
       },
       "./layouts/default.tsx": {
-        "version": "cb129c106b36cb8158b84584c56ee6c4f9bd97e4ddb0298ed65c6cd020797552",
+        "version": "be80d0581ee8167ef85916e88943050a2ece89b5ceb67d9bbca9d4089c0faabe",
         "signature": "20d1de7fe6cd4ebf5b9c935738a6fa314ea3df45aef4e2f0c7c0c8081a86e4e7",
         "affectsGlobalScope": false
       },
@@ -8237,7 +8237,7 @@
         "affectsGlobalScope": false
       },
       "./pages/mypage/index.tsx": {
-        "version": "0f41e5777e03658dd8bcd1c950ad225071a91507ae4402d750c5c1fd3de38a89",
+        "version": "dc8c5166a4ca998cb01a420ad1592098480aef0fa5d42d18c6993323971c1f0e",
         "signature": "2905cddf1aa33ffbc83605227b7bc120fa8bd5779f1228874d7bed5e285e0d96",
         "affectsGlobalScope": false
       },
@@ -8811,8 +8811,8 @@
         "./components/common/errtxt/index.tsx",
         "./components/common/rstack.tsx",
         "./components/common/userimg.tsx",
+        "./data/common/uselogininfo.ts",
         "./data/types/logininfo.ts",
-        "./data/user/usebearerauth.ts",
         "./data/user/usecreateuser.ts",
         "./data/user/usedeleteuser.ts",
         "./node_modules/@mui/icons-material/fileupload.d.ts",
@@ -8824,6 +8824,7 @@
         "./node_modules/dayjs/index.d.ts"
       ],
       "./data/common/useerrhandler.ts": [
+        "./data/common/uselogininfo.ts",
         "./data/common/usesnackbar.ts",
         "./data/types/error.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -17911,7 +17912,6 @@
         "./components/common/userimg.tsx",
         "./components/user/createuser.tsx",
         "./data/common/uselogininfo.ts",
-        "./data/user/usebearerauth.ts",
         "./layouts/default.tsx",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",

@@ -9,8 +9,13 @@ export const loginInfoAtom = atom<LoginInfo | null>({
 
 export const useLoginInfo = () => {
   const [loginInfo, setLoginInfo] = useRecoilState(loginInfoAtom);
+  const logout = () => {
+    setLoginInfo(null);
+    localStorage.removeItem("token");
+  };
   return {
     loginInfo,
     setLoginInfo,
+    logout,
   };
 };

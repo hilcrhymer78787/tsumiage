@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Domains\AuthBearer\Services;
 
 use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
-use App\Domains\AuthBearer\Queries\AuthBearerQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use Illuminate\Foundation\Http\FormRequest;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AuthBearerService
 {
@@ -19,8 +17,6 @@ class AuthBearerService
     public function getLoginInfoEntity(FormRequest $request): LoginInfoEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-
-        if (!$loginInfoModel) abort(403, 'トークンが有効期限切れです');
 
         return new LoginInfoEntity(
             id: $loginInfoModel->id,

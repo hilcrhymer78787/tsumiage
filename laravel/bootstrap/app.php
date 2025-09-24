@@ -5,7 +5,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\HandleCors;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -19,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(HandleCors::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->render(function (Throwable $e, Request $request) {
+        $exceptions->render(function (Throwable $e) {
             return (new ErrorResource($e))
                 ->response()
                 ->setStatusCode($e instanceof HttpExceptionInterface ? $e->getStatusCode() : 500);

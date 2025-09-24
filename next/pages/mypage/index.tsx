@@ -15,12 +15,10 @@ import CreateUser from "@/components/user/CreateUser";
 import Layout from "@/layouts/default";
 import UserImg from "@/components/common/UserImg";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { useBearerAuth } from "@/data/user/useBearerAuth";
 
 const Mypage = () => {
-  const { loginInfo } = useLoginInfo();
+  const { loginInfo, logout } = useLoginInfo();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { logout } = useBearerAuth();
 
   const onClickLogout = () => {
     if (!confirm("ログアウトしますか？")) return;
