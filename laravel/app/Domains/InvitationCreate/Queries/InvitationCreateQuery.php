@@ -11,13 +11,15 @@ class InvitationCreateQuery
     public function getIsAlreadyFriend(int $myUserId, int $targetUserId): bool
     {
         return Invitation::where(function ($query) use ($myUserId, $targetUserId) {
-            $query->where('invitation_from_user_id', $myUserId)
-                ->where('invitation_to_user_id', $targetUserId);
-        })
-            ->orWhere(function ($query) use ($myUserId, $targetUserId) {
-                $query->where('invitation_from_user_id', $targetUserId)
-                    ->where('invitation_to_user_id', $myUserId);
+            $query->where(function ($q) use ($myUserId, $targetUserId) {
+                $q->where('invitation_from_user_id', $myUserId)
+                    ->where('invitation_to_user_id', $targetUserId);
             })
+                ->orWhere(function ($q) use ($myUserId, $targetUserId) {
+                    $q->where('invitation_from_user_id', $targetUserId)
+                        ->where('invitation_to_user_id', $myUserId);
+                });
+        })
             ->where('invitation_status', 2)
             ->exists();
     }
