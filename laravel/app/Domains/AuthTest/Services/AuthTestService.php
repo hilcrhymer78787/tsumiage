@@ -18,7 +18,7 @@ class AuthTestService
     {
         $loginInfoModel = $this->query->getLoginInfoModel();
 
-        if (!$loginInfoModel) throw new HttpException(403, 'テストユーザーが見つかりませんでした');
+        if (!$loginInfoModel) abort(403, 'テストユーザーが見つかりませんでした');
 
         return new LoginInfoEntity(
             id: $loginInfoModel->id,

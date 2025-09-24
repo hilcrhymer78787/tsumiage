@@ -31,7 +31,7 @@ class TaskReadService
 
         if ($loginInfoId !== $paramsUserId) {
             $isFriends = $this->checkIsFriendsService->checkIsFriends($loginInfoId, $paramsUserId);
-            if (!$isFriends) throw new HttpException(403, 'このユーザは友達ではありません');
+            if (!$isFriends) abort(403, 'このユーザは友達ではありません');
         }
 
         $taskModels = $this->query->getTasksBuilder($params)->get();

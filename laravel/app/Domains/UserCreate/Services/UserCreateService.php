@@ -50,7 +50,7 @@ class UserCreateService
     private function updateUser(UserCreateParameter $params, UserCreateRequest $request): LoginInfoEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-        if (!$loginInfoModel) throw new HttpException(401, 'トークンが有効期限切れです');
+        if (!$loginInfoModel) abort(401, 'トークンが有効期限切れです');
 
         $this->assertEmailUnique($params->email, $loginInfoModel->email);
 
@@ -80,7 +80,7 @@ class UserCreateService
         $existEmail = $this->checkIsExistEmailService->checkIsExistEmail($email);
 
         if ($existEmail && $email !== $currentEmail) {
-            throw new HttpException(500, 'このメールアドレスは既に登録されています');
+            abort(500, 'このメールアドレスは既に登録されています');
         }
     }
 

@@ -34,7 +34,7 @@ class TaskCreateService
     public function updateTask(TaskCreateParameter $params, int $userId): string
     {
         $num = $this->query->updateTask($params, $userId);
-        if (!$num) throw new HttpException(403, '更新するタスクが存在しません');
+        if (!$num) abort(403, '更新するタスクが存在しません');
         return "タスクを更新しました";
     }
 }
