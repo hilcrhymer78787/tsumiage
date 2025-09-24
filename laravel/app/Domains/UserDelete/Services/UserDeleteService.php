@@ -37,7 +37,7 @@ class UserDeleteService
         $this->invitationQuery->deleteInvitationByUserId($userId);
 
         return new LoginInfoEntity(
-            id: $loginInfoModel->id,
+            id: $userId,
             email: $loginInfoModel->email,
             name: $loginInfoModel->name,
             token: $loginInfoModel->token,

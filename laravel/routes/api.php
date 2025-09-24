@@ -17,6 +17,7 @@ use App\Http\Controllers\AuthBasicController;
 use App\Http\Controllers\UserCreateController;
 use App\Http\Controllers\UserDeleteController;
 use App\Http\Controllers\WorkReadMonthController;
+use App\Http\Controllers\WorkCreateController;
 use App\Http\Controllers\InvitationReadController;
 
 // テストルート
@@ -46,7 +47,7 @@ Route::middleware([CheckToken::class])->group(function () {
 
     // WorkController のルート
     Route::get('/work/read/month', [WorkReadMonthController::class, 'index']); //✅
-    Route::post('/work/create', [WorkController::class, 'create']);
+    Route::post('/work/create', [WorkCreateController::class, 'index']);
     Route::delete('/work/delete', [WorkController::class, 'delete']);
     Route::delete('/work/reset', [WorkController::class, 'reset']);
 

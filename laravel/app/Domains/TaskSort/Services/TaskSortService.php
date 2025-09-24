@@ -19,10 +19,7 @@ class TaskSortService
 
     public function sortTask(TaskSortParameter $params, TaskSortRequest $request): string
     {
-        $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-        if (!$loginInfoModel) throw new HttpException(401, 'トークンが有効期限切れです');
-
-        $userId = $loginInfoModel->id;
+        $userId = $this->loginInfoService->getLoginInfo($request)->id;
         $taskIds = $params->ids;
 
         $this->query->sortTask($taskIds, $userId);

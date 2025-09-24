@@ -19,10 +19,7 @@ class TaskDeleteService
 
     public function deleteTask(TaskDeleteParameter $params, TaskDeleteRequest $request): string
     {
-        $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-        if (!$loginInfoModel) throw new HttpException(401, 'トークンが有効期限切れです');
-
-        $userId = $loginInfoModel->id;
+        $userId = $this->loginInfoService->getLoginInfo($request)->id;
         $taskId = $params->id;
 
         $this->query->deleteTask($taskId, $userId);

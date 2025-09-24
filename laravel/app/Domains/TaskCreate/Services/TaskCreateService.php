@@ -19,10 +19,7 @@ class TaskCreateService
 
     public function upsertTask(TaskCreateParameter $params, TaskCreateRequest $request): string
     {
-        $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-        if (!$loginInfoModel) throw new HttpException(401, 'トークンが有効期限切れです');
-
-        $userId = $loginInfoModel->id;
+        $userId = $this->loginInfoService->getLoginInfo($request)->id;
         return empty($params->id)
             ? $this->createTask($params, $userId)
             : $this->updateTask($params, $userId);
