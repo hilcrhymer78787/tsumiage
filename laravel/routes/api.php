@@ -34,7 +34,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user/auth/test', [AuthTestController::class, 'index']); //✅
+Route::get('/user/auth/test', [AuthTestController::class, 'index']); //✅⭕️
 Route::get('/user/auth/bearer', [AuthBearerController::class, 'index']); //✅
 Route::post('/user/auth/basic', [AuthBasicController::class, 'index']); //✅
 Route::post('/user/create', [UserCreateController::class, 'index']); //✅

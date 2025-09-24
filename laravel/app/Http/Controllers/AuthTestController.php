@@ -9,12 +9,9 @@ use Throwable;
 
 class AuthTestController extends Controller
 {
-    private AuthTestService $service;
-
-    public function __construct(AuthTestService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(
+        private readonly AuthTestService $service,
+    ) {}
 
     public function index(): LoginInfoResource | ErrorResource
     {

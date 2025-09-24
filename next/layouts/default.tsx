@@ -122,10 +122,7 @@ const Layout = ({
         </Drawer>
         <Box
           component="main"
-          sx={{
-            flexGrow: 1,
-            paddingLeft: `${NAV_WIDTH}px`,
-          }}
+          sx={{ flexGrow: 1, paddingLeft: `${NAV_WIDTH}px` }}
         >
           <Container maxWidth={pcMaxWidth} sx={{ my: 0, p: pcP }}>
             {children}

@@ -5597,7 +5597,7 @@
         "affectsGlobalScope": false
       },
       "./data/user/usetestauth.ts": {
-        "version": "ed57a9c08d5319bcecb20314c47a31431d52722babf668bb22fcb0df2a7f1172",
+        "version": "34b86fd8510f0c36c059473f3f1a13c0c08d177029d8b70fe2b4798915adb35d",
         "signature": "114934bb966e3b83683897f7a393a832b7e0e79ef464c5edd4c3a2d8c42efc92",
         "affectsGlobalScope": false
       },
@@ -6306,8 +6306,13 @@
         "signature": "08de3fa0be04da7c3cadbc70785d50f708712c6fc50fb45ef36ffcd3529f4d6b",
         "affectsGlobalScope": false
       },
+      "./components/common/center.tsx": {
+        "version": "ac8a42dd9cdb6e901cf056f62c1eb20d79e80d19683cb4a1b43cdcdef5e5db44",
+        "signature": "74c21e08062dcc41f541e8d7fa0fb8ae7ff0ced9c12081a77311846ac4f9ec27",
+        "affectsGlobalScope": false
+      },
       "./components/common/auth.tsx": {
-        "version": "a2f266ed7fe5cc017fbc223eff2b924606762f598ea9979e024f3efda56aab51",
+        "version": "2a52a1e944f5f088fd7f95d7ffea86e9e469f6d8ea0b69d858107c7adc6e43fd",
         "signature": "b62606cca1dd7fffa3e2efa88e38657ee156bac2d2c5138fc1e7e725266f8d5b",
         "affectsGlobalScope": false
       },
@@ -6327,12 +6332,12 @@
         "affectsGlobalScope": false
       },
       "./components/common/authnew.tsx": {
-        "version": "29143425e06abd617f7a893add180cecd41339f83a407ca6ee978f97ec58e6c0",
+        "version": "7d7e4a225c731dfe936d8d26021d85895a55921eee73fbb338b2f34715282c1e",
         "signature": "6d4f49346d71209606bd6ec4ee644239dbd2b1aefa584351288c09095f806a75",
         "affectsGlobalScope": false
       },
       "./layouts/default.tsx": {
-        "version": "b2227797d4b111d7400a30f1e405efca3fd4d1c47ebf7654e4831f35cf2aa042",
+        "version": "cb129c106b36cb8158b84584c56ee6c4f9bd97e4ddb0298ed65c6cd020797552",
         "signature": "20d1de7fe6cd4ebf5b9c935738a6fa314ea3df45aef4e2f0c7c0c8081a86e4e7",
         "affectsGlobalScope": false
       },
@@ -6354,11 +6359,6 @@
       "./components/common/apihandle.tsx": {
         "version": "6b2031a1863435a200a67e3ace01c4fba6110e90e8a73ce2913e2e76b046975f",
         "signature": "4ff99b53ee8924acac5b39bab4d73f2af2a9311b15d18b40ba19e9252a21035c",
-        "affectsGlobalScope": false
-      },
-      "./components/common/center.tsx": {
-        "version": "ac8a42dd9cdb6e901cf056f62c1eb20d79e80d19683cb4a1b43cdcdef5e5db44",
-        "signature": "74c21e08062dcc41f541e8d7fa0fb8ae7ff0ced9c12081a77311846ac4f9ec27",
         "affectsGlobalScope": false
       },
       "./node_modules/chart.js/types/utils.d.ts": {
@@ -8603,6 +8603,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/common/auth.tsx": [
+        "./components/common/center.tsx",
         "./components/common/rstack.tsx",
         "./data/user/usebasicauth.ts",
         "./data/user/usetestauth.ts",
@@ -8613,6 +8614,7 @@
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./components/common/authnew.tsx": [
+        "./components/common/center.tsx",
         "./components/user/createuser.tsx",
         "./node_modules/@mui/material/index.d.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
@@ -8960,7 +8962,6 @@
       "./data/user/usetestauth.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
-        "./data/common/usesnackbar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"

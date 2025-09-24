@@ -2,12 +2,10 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { useSnackbar } from "@/data/common/useSnackbar";
 
 export const useTestAuth = () => {
   const { errHandler } = useErrHandler();
   const { loginInfo, setLoginInfo } = useLoginInfo();
-  const { setSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const testAuth = async () => {
