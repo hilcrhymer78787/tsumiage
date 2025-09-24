@@ -17,24 +17,17 @@ class TaskCreateService
         private readonly TaskCreateQuery $query,
     ) {}
 
-    public function upsertTask(TaskCreateParameter $params, TaskCreateRequest $request): string
+    public function updateOrCreateTask(TaskCreateParameter $params, TaskCreateRequest $request): string
     {
         $userId = $this->loginInfoService->getLoginInfo($request)->id;
-        return empty($params->id)
-            ? $this->createTask($params, $userId)
-            : $this->updateTask($params, $userId);
-    }
+        $taskId = $params->id;
 
-    public function createTask(TaskCreateParameter $params, int $userId): string
-    {
-        $this->query->createTask($params, $userId);
-        return "タスクを作成しました";
-    }
-
-    public function updateTask(TaskCreateParameter $params, int $userId): string
-    {
-        $num = $this->query->updateTask($params, $userId);
-        if (!$num) abort(403, '更新するタスクが存在しません');
-        return "タスクを更新しました";
+        if($taskId){
+            $isExistMyTask = $this->query->getIsExistMyTask($taskId, $userId);
+            if (!$isExistMyTask) abort(404, '更新するタスクが存在しません');
+        }
+        $this->query->updateOrCreateTask($params, $userId);
+        
+        return "タスクを" . ($taskId ? "更新" : "作成") . "しました";
     }
 }

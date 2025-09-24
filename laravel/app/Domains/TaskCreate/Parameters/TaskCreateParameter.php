@@ -5,7 +5,7 @@ namespace App\Domains\TaskCreate\Parameters;
 readonly class TaskCreateParameter
 {
     public function __construct(
-        public ?string $id,
+        public ?int $id,
         public string $name,
     ) {}
 

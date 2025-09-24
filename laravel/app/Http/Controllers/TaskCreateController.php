@@ -22,7 +22,7 @@ class TaskCreateController extends Controller
     {
         try {
             $params = TaskCreateParameter::makeParams($request->validated());
-            $message = $this->service->upsertTask($params, $request);
+            $message = $this->service->updateOrCreateTask($params, $request);
             return new SuccessResource($message);
         } catch (Throwable $error) {
             debugError($error);
