@@ -5,9 +5,9 @@ import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 import { LoginInfo } from "../types/loginInfo";
-type ApiReq = {};
-type ApiRes = CmnRes<LoginInfo>
-type ApiErr = CmnErr
+type ApiReq = FormData;
+type ApiRes = CmnRes<LoginInfo>;
+type ApiErr = CmnErr;
 
 export const useCreateUser = () => {
   const { errHandler } = useErrHandler();
@@ -15,7 +15,7 @@ export const useCreateUser = () => {
   const [error, setError] = useState("");
   const { loginInfo, setLoginInfo } = useLoginInfo();
 
-  const createUser = async (params: FormData) => {
+  const createUser = async (params: ApiReq) => {
     setError("");
     setIsLoading(true);
     return api({
