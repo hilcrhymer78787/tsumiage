@@ -1,18 +1,19 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
-import { AxiosResponse } from "axios";
-import { Success } from "../types/success";
-
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
   id: number;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useDeleteWork = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const deleteWork = async (data: Request) => {
+  const deleteWork = async (data: ApiReq) => {
     setError("");
     setIsLoading(true);
     return api({
@@ -20,7 +21,7 @@ export const useDeleteWork = () => {
       method: "DELETE",
       data,
     })
-      .then((res: AxiosResponse<Success>) => {
+      .then((res: ApiRes) => {
         // setSnackbar(res.data.data.message);
         return res;
       })

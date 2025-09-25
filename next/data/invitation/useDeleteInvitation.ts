@@ -1,15 +1,19 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
-  invitation_id: number;
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
+  invitation_id: string;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useDeleteInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const deleteInvitation = async (data:Request) => {
+  const deleteInvitation = async (data:ApiReq) => {
     setError("");
     setIsLoading(true);
     return api({
@@ -17,7 +21,7 @@ export const useDeleteInvitation = () => {
       method: "DELETE",
       data,
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         return res;
       })
       .catch((err: ApiErr) => {

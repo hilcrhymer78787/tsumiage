@@ -1,15 +1,15 @@
 import { AxiosError } from "axios";
 import { SetStateAction } from "react";
-import { ApiErr } from "../types/apiErr";
 import { useSnackbar } from "./useSnackbar";
 import { useLoginInfo } from "./useLoginInfo";
+import { CmnErr } from "../types/cmnErr";
 
 export const useErrHandler = () => {
   const { setSnackbar } = useSnackbar();
   const { logout } = useLoginInfo();
 
   const errHandler = (
-    err: ApiErr<any>,
+    err: CmnErr<any>,
     setter: (value: SetStateAction<string>) => void,
     isHiddenSnackbar?: boolean
   ) => {

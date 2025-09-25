@@ -2,20 +2,22 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useSnackbar } from "@/data/common/useSnackbar";
-import { AxiosResponse } from "axios";
 import { Success } from "@/data/types/success";
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
   id?: number;
   name: string;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useCreateTask = () => {
   const { errHandler } = useErrHandler();
   const [createTaskLoading, setCreateTaskLoading] = useState(false);
   const { setSnackbar } = useSnackbar();
   const [createTaskError, setCreateTaskError] = useState("");
   const [nameError, setNameError] = useState("");
-  const createTask = async (data: Request) => {
+  const createTask = async (data: ApiReq) => {
     setCreateTaskError("");
     setNameError("");
     let isError = false;
@@ -30,7 +32,7 @@ export const useCreateTask = () => {
       method: "POST",
       data,
     })
-      .then((res: AxiosResponse<Success>) => {
+      .then((res: ApiRes) => {
         setSnackbar(res.data.data.message);
         return res;
       })

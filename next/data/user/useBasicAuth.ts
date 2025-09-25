@@ -2,11 +2,20 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+import { LoginInfo } from "../types/loginInfo";
+type ApiReq = {
   email: string;
   password: string;
 };
+type ApiRes = CmnRes<LoginInfo>
+type ApiErr = CmnErr<{
+  emailError?: string;
+  passwordError?: string;
+}>
+type Response = Success
 export const useBasicAuth = () => {
   const { errHandler } = useErrHandler();
   const { loginInfo, setLoginInfo } = useLoginInfo();
@@ -16,7 +25,7 @@ export const useBasicAuth = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const validation = (data: Request) => {
+  const validation = (data: ApiReq) => {
     let isError = false;
     setEmailError("");
     setPasswordError("");
@@ -31,7 +40,7 @@ export const useBasicAuth = () => {
     return isError;
   };
 
-  const basicAuth = async (data: Request) => {
+  const basicAuth = async (data: ApiReq) => {
     if (validation(data)) return;
     setError("");
     setIsLoading(true);
@@ -40,12 +49,12 @@ export const useBasicAuth = () => {
       method: "POST",
       data,
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         localStorage.setItem("token", res.data.data.token);
         setLoginInfo(res.data.data);
         return res;
       })
-      .catch((err: ApiErr<{ emailError?: string; passwordError?: string }>) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError, true);
         const message = err.response?.data?.message ?? "";
         const emailErr = err.response?.data?.data?.emailError ?? "";

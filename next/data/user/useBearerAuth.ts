@@ -3,7 +3,13 @@ import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import axios, { Canceler } from "axios";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { ApiErr } from "@/data/types/apiErr";
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+import { LoginInfo } from "../types/loginInfo";
+type ApiReq = {};
+type ApiRes = CmnRes<LoginInfo>
+type ApiErr = CmnErr
 
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;
@@ -24,7 +30,7 @@ export const useBearerAuth = () => {
         setLoginInfoByTokenCancel = c;
       }),
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         setLoginInfo(res.data.data);
         return res;
       })

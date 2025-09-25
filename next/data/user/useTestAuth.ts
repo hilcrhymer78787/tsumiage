@@ -2,7 +2,12 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { ApiErr } from "@/data/types/apiErr";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+import { LoginInfo } from "../types/loginInfo";
+type ApiReq = {};
+type ApiRes = CmnRes<LoginInfo>
+type ApiErr = CmnErr
 
 export const useTestAuth = () => {
   const { errHandler } = useErrHandler();
@@ -16,7 +21,7 @@ export const useTestAuth = () => {
       url: "/api/user/auth/test",
       method: "GET",
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         localStorage.setItem("token", res.data.data.token);
         setLoginInfo(res.data.data);
         return res;

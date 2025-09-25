@@ -2,9 +2,18 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useMemo, useState } from "react";
 import { Task } from "@/data/types/task";
-
-import { ApiErr } from "@/data/types/apiErr";
-type Request = { date: string; user_id: number }
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
+  date: string;
+  user_id: number;
+};
+type ApiRes = CmnRes<{
+  date: string;
+  tasks: Task[];
+}>;
+type ApiErr = CmnErr;
 export const useReadTasks = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +34,7 @@ export const useReadTasks = () => {
 
   const isFirstLoading = !tasks?.length && isLoading;
 
-  const readTasks = async (params: Request) => {
+  const readTasks = async (params: ApiReq) => {
     setError("");
     setIsLoading(true);
     return api({
@@ -33,7 +42,7 @@ export const useReadTasks = () => {
       method: "GET",
       params,
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         setTasks(res.data.data.tasks);
         return res;
       })

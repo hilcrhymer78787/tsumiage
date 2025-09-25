@@ -1,19 +1,21 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
-import { AxiosResponse } from "axios";
-import { Success } from "../types/success";
 import { useSnackbar } from "../common/useSnackbar";
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
   invitation_id: number;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useUpdateInvitation = () => {
   const { setSnackbar } = useSnackbar();
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const updateInvitation = async (data: Request) => {
+  const updateInvitation = async (data: ApiReq) => {
     setError("");
     setIsLoading(true);
     return api({
@@ -21,7 +23,7 @@ export const useUpdateInvitation = () => {
       method: "PUT",
       data,
     })
-      .then((res: AxiosResponse<Success>) => {
+      .then((res: ApiRes) => {
         setSnackbar(res.data.data.message);
         return res;
       })

@@ -1,7 +1,12 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
-import { ApiErr } from "@/data/types/apiErr";
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {};
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 
 export const useDeleteUser = () => {
   const { errHandler } = useErrHandler();
@@ -14,7 +19,7 @@ export const useDeleteUser = () => {
       url: "/api/user/delete",
       method: "DELETE",
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         return res;
       })
       .catch((err: ApiErr) => {

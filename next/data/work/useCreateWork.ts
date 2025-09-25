@@ -3,21 +3,21 @@ import { useCallback, useState } from "react";
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { WorkState } from "@/data/types/work";
-import { useSnackbar } from "../common/useSnackbar";
-import { AxiosResponse } from "axios";
-import { Success } from "../types/success";
-
-type workCreateData = {
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
   state: WorkState;
   date: string;
   task_id: number;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useCreateWork = () => {
   const { errHandler } = useErrHandler();
-  const { setSnackbar } = useSnackbar();
   const [createWorkLoading, setCreateWorkLoading] = useState(false);
   const [createWorkError, setCreateWorkError] = useState("");
-  const createWork = async (data: workCreateData) => {
+  const createWork = async (data: ApiReq) => {
     setCreateWorkError("");
     setCreateWorkLoading(true);
     return api({
@@ -25,8 +25,7 @@ export const useCreateWork = () => {
       method: "POST",
       data,
     })
-      .then((res: AxiosResponse<Success>) => {
-        setSnackbar(res.data.data.message);
+      .then((res: ApiRes) => {
         return res;
       })
       .catch((err: ApiErr) => {

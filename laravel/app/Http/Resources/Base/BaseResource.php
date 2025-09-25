@@ -13,7 +13,6 @@ abstract class BaseResource extends JsonResource
     {
         return [
             'data'    => $this->resourceData($request),
-            'success' => true,
             'status'  => 200,
         ];
     }

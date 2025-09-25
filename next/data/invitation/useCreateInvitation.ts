@@ -1,10 +1,14 @@
 import { api } from "@/plugins/axios";
 import { useState } from "react";
 import { useErrHandler } from "@/data/common/useErrHandler";
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
+import { Success } from "@/data/types/success";
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
   email: string;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useCreateInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +16,7 @@ export const useCreateInvitation = () => {
   const [emailError, setEmailError] = useState("");
   const [message, setMessage] = useState("");
 
-  const validation = (data: Request) => {
+  const validation = (data: ApiReq) => {
     let isError = false;
     setEmailError("");
     if (!/.+@.+\..+/.test(data.email)) {
@@ -22,7 +26,7 @@ export const useCreateInvitation = () => {
     return isError;
   };
 
-  const createInvitation = async (data: Request) => {
+  const createInvitation = async (data: ApiReq) => {
     if (validation(data)) return;
     setError("");
     setIsLoading(true);
@@ -31,7 +35,7 @@ export const useCreateInvitation = () => {
       method: "POST",
       data,
     })
-      .then((res) => {
+      .then((res: ApiRes) => {
         setMessage(res.data.data.message);
         return res;
       })

@@ -2,15 +2,15 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { Friend } from "@/data/types/friend";
-import { AxiosResponse } from "axios";
-import { ApiErr } from "@/data/types/apiErr";
-type Response = {
-  data: {
-    fromFriends: Friend[];
-    nowFriends: Friend[];
-    toFriends: Friend[];
-  };
-};
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {};
+type ApiRes = CmnRes<{
+  fromFriends: Friend[];
+  nowFriends: Friend[];
+  toFriends: Friend[];
+}>
+type ApiErr = CmnErr
 export const useReadInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,7 @@ export const useReadInvitation = () => {
       url: "/api/invitation/read",
       method: "GET",
     })
-      .then((res: AxiosResponse<Response>) => {
+      .then((res: ApiRes) => {
         setFromFriends(res.data.data.fromFriends);
         setNowFriends(res.data.data.nowFriends);
         setToFriends(res.data.data.toFriends);

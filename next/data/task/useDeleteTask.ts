@@ -1,20 +1,21 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
-import { AxiosResponse } from "axios";
 import { useSnackbar } from "../common/useSnackbar";
 import { Success } from "@/data/types/success";
-
-import { ApiErr } from "@/data/types/apiErr";
-type Request = {
+import { CmnErr } from "@/data/types/cmnErr";
+import { CmnRes } from "@/data/types/cmnRes";
+type ApiReq = {
   id: number;
 };
+type ApiRes = CmnRes<Success>
+type ApiErr = CmnErr
 export const useDeleteTask = () => {
   const { errHandler } = useErrHandler();
   const { setSnackbar } = useSnackbar();
   const [deleteTaskLoading, setDeleteTaskLoading] = useState(false);
   const [deleteTaskError, setDeleteTaskError] = useState("");
-  const deleteTask = async (data: Request) => {
+  const deleteTask = async (data: ApiReq) => {
     setDeleteTaskError("");
     setDeleteTaskLoading(true);
     return api({
@@ -22,7 +23,7 @@ export const useDeleteTask = () => {
       method: "DELETE",
       data,
     })
-      .then((res: AxiosResponse<Success>) => {
+      .then((res: ApiRes) => {
         setSnackbar(res.data.data.message);
         return res;
       })
