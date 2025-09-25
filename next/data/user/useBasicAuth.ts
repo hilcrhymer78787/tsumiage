@@ -6,18 +6,19 @@ import { Success } from "@/data/types/success";
 import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 import { LoginInfo } from "../types/loginInfo";
+import { useSnackbar } from "../common/useSnackbar";
 type ApiReq = {
   email: string;
   password: string;
 };
-type ApiRes = CmnRes<LoginInfo>
+type ApiRes = CmnRes<LoginInfo>;
 type ApiErr = CmnErr<{
   emailError?: string;
   passwordError?: string;
-}>
-type Response = Success
+}>;
 export const useBasicAuth = () => {
   const { errHandler } = useErrHandler();
+  const { setSnackbar } = useSnackbar();
   const { loginInfo, setLoginInfo } = useLoginInfo();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -50,8 +51,10 @@ export const useBasicAuth = () => {
       data,
     })
       .then((res: ApiRes) => {
-        localStorage.setItem("token", res.data.data.token);
-        setLoginInfo(res.data.data);
+        const user = res.data.data;
+        localStorage.setItem("token", user.token);
+        setLoginInfo(user);
+        setSnackbar(`${user.name}さんこんにちは`);
         return res;
       })
       .catch((err: ApiErr) => {

@@ -5,12 +5,14 @@ import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 import { LoginInfo } from "../types/loginInfo";
+import { useSnackbar } from "../common/useSnackbar";
 type ApiReq = {};
-type ApiRes = CmnRes<LoginInfo>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<LoginInfo>;
+type ApiErr = CmnErr;
 
 export const useTestAuth = () => {
   const { errHandler } = useErrHandler();
+  const { setSnackbar } = useSnackbar();
   const { loginInfo, setLoginInfo } = useLoginInfo();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -22,8 +24,10 @@ export const useTestAuth = () => {
       method: "GET",
     })
       .then((res: ApiRes) => {
-        localStorage.setItem("token", res.data.data.token);
-        setLoginInfo(res.data.data);
+        const user = res.data.data;
+        localStorage.setItem("token", user.token);
+        setLoginInfo(user);
+        setSnackbar("テストユーザーでログインしました");
         return res;
       })
       .catch((err: ApiErr) => {
