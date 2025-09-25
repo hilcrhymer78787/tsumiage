@@ -20,14 +20,11 @@ class AuthBasicService
     public function getLoginInfoEntity(AuthBasicParameter $params): LoginInfoEntity
     {
         $loginInfoModel = $this->query->getLoginInfoBuilder($params)->first();
-        if (!$loginInfoModel)
-            throw new AppHttpException(422, 'バリデーションエラー', [
-                'emailError' => 'このメールアドレスは登録されていません'
-            ]);
+        if (!$loginInfoModel) throw new AppHttpException(404, "", ['emailError' => 'このメールアドレスは登録されていません']);
 
         // TODO hash
         $isCorrect = $loginInfoModel->password === $params->password;
-        if (!$isCorrect) abort(401, 'パスワードが間違っています');
+        if (!$isCorrect) throw new AppHttpException(401, "", ['passwordError' => 'パスワードが間違っています']);
 
         return new LoginInfoEntity(
             id: $loginInfoModel->id,

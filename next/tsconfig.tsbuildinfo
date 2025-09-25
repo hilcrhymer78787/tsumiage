@@ -1111,9 +1111,9 @@
         "signature": "644c59289eb29590d65062c5b64dda9ef2797ce120071265a9099436f0d41a16",
         "affectsGlobalScope": false
       },
-      "./data/types/error.ts": {
-        "version": "24cfa664f9f66228afb8793da9323cacbad40571b35c55c5ee4d7785773bd231",
-        "signature": "e56247f97e6b637d1963a85fc77d6f08521b6c41bbbe3f3a1d7d087dc83985a2",
+      "./data/types/apierr.ts": {
+        "version": "ab3c153179d31c0df522a66b3eae449b889b28204208de5abf6d7aa70b049762",
+        "signature": "bc51ba767491624be0deb2035e83ad6ab46954e153ae35eb5f4bfb80a7f6fca6",
         "affectsGlobalScope": false
       },
       "./node_modules/recoil/index.d.ts": {
@@ -1137,8 +1137,8 @@
         "affectsGlobalScope": false
       },
       "./data/common/useerrhandler.ts": {
-        "version": "acaf4b5309c54f90b9ff96cded6b4d3fe90c947475be5f20408900edec6faf44",
-        "signature": "07029fc0d500b05fb79df6db6a2973d06b19b3ea8cd14e552c0d5aa060b84c25",
+        "version": "078f05f52fec09322646f06281214d0aebfd6d5c74876b7c55859b16352270d0",
+        "signature": "ee9994932eb8ab4b3a54903bf1ae49b1eec568b6d8140bc3b5f18bc8d1de9492",
         "affectsGlobalScope": false
       },
       "./plugins/axios.ts": {
@@ -5577,8 +5577,8 @@
         "affectsGlobalScope": false
       },
       "./data/user/usebasicauth.ts": {
-        "version": "fc1888230f615db4736e6ad8e39103f1ad321fa957a20d1c5f5564e6e4eb643d",
-        "signature": "be5896daf6d97d47c5f03b24ec8b9b7cf193e146d0f675ed6b0df800d3b70269",
+        "version": "31d5e3205edd895d57d08132ee7a85336bae5de42aba7f401b299134f073f6d5",
+        "signature": "cbdb18b9da03296af1b5eadbba063edd113623929936c859cba5d58c2fddf4e3",
         "affectsGlobalScope": false
       },
       "./data/user/usebearerauth.ts": {
@@ -6311,14 +6311,14 @@
         "signature": "74c21e08062dcc41f541e8d7fa0fb8ae7ff0ced9c12081a77311846ac4f9ec27",
         "affectsGlobalScope": false
       },
-      "./components/common/auth.tsx": {
-        "version": "2a52a1e944f5f088fd7f95d7ffea86e9e469f6d8ea0b69d858107c7adc6e43fd",
-        "signature": "b62606cca1dd7fffa3e2efa88e38657ee156bac2d2c5138fc1e7e725266f8d5b",
-        "affectsGlobalScope": false
-      },
       "./components/common/errtxt/index.tsx": {
         "version": "a5ed1130adc18fb498d3e84f664a12960fcf8d8926b28452a8cc42d21c399051",
         "signature": "f642725bb63991729334b54a836bb1d47210ae53a1e564419ec8a0d036cfda99",
+        "affectsGlobalScope": false
+      },
+      "./components/common/auth.tsx": {
+        "version": "294e9e312ec9dc5ae78198d95feea1e8444ec9cff09d8a2a67dc717fb7ea7ab3",
+        "signature": "b62606cca1dd7fffa3e2efa88e38657ee156bac2d2c5138fc1e7e725266f8d5b",
         "affectsGlobalScope": false
       },
       "./node_modules/@mui/icons-material/fileupload.d.ts": {
@@ -8604,6 +8604,7 @@
       ],
       "./components/common/auth.tsx": [
         "./components/common/center.tsx",
+        "./components/common/errtxt/index.tsx",
         "./components/common/rstack.tsx",
         "./data/user/usebasicauth.ts",
         "./data/user/usetestauth.ts",
@@ -8826,7 +8827,7 @@
       "./data/common/useerrhandler.ts": [
         "./data/common/uselogininfo.ts",
         "./data/common/usesnackbar.ts",
-        "./data/types/error.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -8909,11 +8910,12 @@
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
-      "./data/types/calendar.ts": [
-        "./data/types/task.ts",
+      "./data/types/apierr.ts": [
+        "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
-      "./data/types/error.ts": [
+      "./data/types/calendar.ts": [
+        "./data/types/task.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
       "./data/types/friend.ts": [
@@ -8935,6 +8937,7 @@
       "./data/user/usebasicauth.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -18214,9 +18217,8 @@
         "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./data/common/useerrhandler.ts": [
-        "./data/types/error.ts",
-        "./node_modules/@types/react/ts5.0/index.d.ts",
-        "./node_modules/axios/index.d.ts"
+        "./data/types/apierr.ts",
+        "./node_modules/@types/react/ts5.0/index.d.ts"
       ],
       "./data/common/uselogininfo.ts": [
         "./data/types/logininfo.ts",
@@ -18255,6 +18257,9 @@
       ],
       "./data/task/usesorttasks.ts": [
         "./data/types/success.ts",
+        "./node_modules/axios/index.d.ts"
+      ],
+      "./data/types/apierr.ts": [
         "./node_modules/axios/index.d.ts"
       ],
       "./data/types/calendar.ts": [
@@ -27368,8 +27373,8 @@
       "./data/task/usedeletetask.ts",
       "./data/task/usereadtasks.ts",
       "./data/task/usesorttasks.ts",
+      "./data/types/apierr.ts",
       "./data/types/calendar.ts",
-      "./data/types/error.ts",
       "./data/types/friend.ts",
       "./data/types/logininfo.ts",
       "./data/types/success.ts",
@@ -29282,6 +29287,10 @@
       ],
       [
         "./data/task/usesorttasks/usesorttasks.ts",
+        1
+      ],
+      [
+        "./data/types/apierr.ts",
         1
       ],
       [

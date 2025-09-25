@@ -14,11 +14,11 @@ abstract class BaseFormRequest extends FormRequest
         throw new HttpResponseException(
             response()->json([
                 'data' => [
-                    'status'  => 400,
+                    'status'  => 422,
                     'message'    => 'バリデーションエラーが発生しました。',
                     'errors'  => $validator->errors(),
                 ]
-            ], 400)
+            ], 422)
         );
     }
 }

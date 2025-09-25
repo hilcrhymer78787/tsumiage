@@ -7,7 +7,7 @@ use Throwable;
 
 class AppHttpException extends HttpException
 {
-    private array $data;
+    private ?array $data;
 
     /**
      * @param int $statusCode HTTPステータスコード
@@ -32,7 +32,7 @@ class AppHttpException extends HttpException
     /**
      * 追加データを取得
      */
-    public function getData(): array
+    public function getData(): array | null
     {
         return $this->data;
     }
