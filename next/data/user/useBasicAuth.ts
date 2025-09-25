@@ -3,6 +3,10 @@ import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 
+type Request = {
+  email: string;
+  password: string;
+};
 export const useBasicAuth = () => {
   const { errHandler } = useErrHandler();
   const { loginInfo, setLoginInfo } = useLoginInfo();
@@ -11,29 +15,29 @@ export const useBasicAuth = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const validation = (params: { email: string; password: string }) => {
+  const validation = (data: Request) => {
     let isError = false;
     setEmailError("");
     setPasswordError("");
-    if (!/.+@.+\..+/.test(params.email)) {
+    if (!/.+@.+\..+/.test(data.email)) {
       setEmailError("正しい形式で入力してください");
       isError = true;
     }
-    if (params.password.length < 8) {
+    if (data.password.length < 8) {
       setPasswordError("パスワードは8桁以上で設定してください");
       isError = true;
     }
     return isError;
   };
 
-  const basicAuth = async (params: { email: string; password: string }) => {
-    if (validation(params)) return;
+  const basicAuth = async (data: Request) => {
+    if (validation(data)) return;
     setError("");
     setIsLoading(true);
     return api({
       url: "/api/user/auth/basic",
       method: "POST",
-      data: params,
+      data,
     })
       .then((res) => {
         localStorage.setItem("token", res.data.data.token);
@@ -43,6 +47,7 @@ export const useBasicAuth = () => {
       .catch((err) => {
         errHandler(err, setError);
         const message = err.response?.data?.data?.message;
+        // TODO
         if (message === "このメールアドレスは登録されていません") {
           setEmailError(message);
         }

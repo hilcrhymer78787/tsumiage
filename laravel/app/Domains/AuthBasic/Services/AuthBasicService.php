@@ -1,5 +1,5 @@
 <?php
-
+// TODO abort→HttpException
 declare(strict_types=1);
 
 namespace App\Domains\AuthBasic\Services;
@@ -20,10 +20,11 @@ class AuthBasicService
     public function getLoginInfoEntity(AuthBasicParameter $params): LoginInfoEntity
     {
         $loginInfoModel = $this->query->getLoginInfoBuilder($params)->first();
-        if (!$loginInfoModel) abort(500, 'このメールアドレスは登録されていません');
+        if (!$loginInfoModel) abort(401, 'このメールアドレスは登録されていません');
 
+        // TODO hash
         $isCorrect = $loginInfoModel->password === $params->password;
-        if (!$isCorrect) abort(500, 'パスワードが間違っています');
+        if (!$isCorrect) abort(401, 'パスワードが間違っています');
 
         return new LoginInfoEntity(
             id: $loginInfoModel->id,
