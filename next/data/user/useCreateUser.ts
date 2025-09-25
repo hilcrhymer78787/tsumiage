@@ -5,12 +5,14 @@ import { useLoginInfo } from "@/data/common/useLoginInfo";
 import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 import { LoginInfo } from "../types/loginInfo";
+import { useSnackbar } from "../common/useSnackbar";
 type ApiReq = FormData;
 type ApiRes = CmnRes<LoginInfo>;
 type ApiErr = CmnErr;
 
 export const useCreateUser = () => {
   const { errHandler } = useErrHandler();
+  const { setSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const { loginInfo, setLoginInfo } = useLoginInfo();
@@ -26,6 +28,7 @@ export const useCreateUser = () => {
       .then((res: ApiRes) => {
         localStorage.setItem("token", res.data.data.token);
         setLoginInfo(res.data.data);
+        setSnackbar("ユーザーを作成しました");
         return res;
       })
       .catch((err: ApiErr) => {

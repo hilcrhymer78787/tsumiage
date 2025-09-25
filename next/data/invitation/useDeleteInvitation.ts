@@ -5,15 +5,15 @@ import { Success } from "@/data/types/success";
 import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 type ApiReq = {
-  invitation_id: string;
+  invitation_id: number;
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useDeleteInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const deleteInvitation = async (data:ApiReq) => {
+  const deleteInvitation = async (data: ApiReq) => {
     setError("");
     setIsLoading(true);
     return api({
