@@ -9,6 +9,7 @@ use App\Domains\UserCreate\Parameters\UserCreateParameter;
 use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
 use App\Domains\UserCreate\Queries\UserCreateQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
+use App\Http\Exceptions\AppHttpException;
 use App\Http\Requests\UserCreateRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -76,8 +77,9 @@ class UserCreateService
     {
         $existEmail = $this->checkIsExistEmailService->checkIsExistEmail($email);
 
+        // メールアドレスが存在する && 自分のではない
         if ($existEmail && $email !== $currentEmail) {
-            abort(500, 'このメールアドレスは既に登録されています');
+            throw new AppHttpException(409, "", ['emailError' => 'このメールアドレスは既に登録されています']);
         }
     }
 

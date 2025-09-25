@@ -41,63 +41,42 @@ const CreateUser = ({
   loginInfo: LoginInfo | null;
   setIsNew?: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { createUser, isLoading: createLoading } = useCreateUser();
+  const {
+    message,
+    emailError,
+    nameError,
+    passwordError,
+    createUser,
+    error,
+    isLoading: createLoading,
+  } = useCreateUser();
   const {
     deleteUser,
     error: deleteError,
     isLoading: deleteLoading,
   } = useDeleteUser();
   const [uploadedImage, setUploadedImage] = useState<any>("");
-  const [passwordEditMode, setPasswordEditMode] = useState<boolean>(true);
-  const [id, setId] = useState<number>(0);
-  const [name, setName] = useState<string>("");
-  const [nameError, setNameError] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [passwordError, setPasswordError] = useState<string>("");
-  const [user_img, setUserImg] = useState<string>("");
-  const [passwordAgain, setPasswordAgain] = useState<string>("");
+  const [passwordEditMode, setPasswordEditMode] = useState(true);
+  const [id, setId] = useState(0);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user_img, setUserImg] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
   const { logout } = useLoginInfo();
 
   const apiCreateUser = async () => {
-    if (validation()) return;
-    const postData: FormData = new FormData();
-    if (file) postData.append("file", file);
-    postData.append("id", id.toString());
-    postData.append("name", name);
-    postData.append("email", email);
-    postData.append("password", password);
-    postData.append("user_img", user_img);
-    postData.append("img_oldname", loginInfo?.user_img ?? "");
-    const res = await createUser(postData);
+    const res = await createUser({
+      id,
+      name,
+      email,
+      password,
+      user_img,
+      passwordAgain,
+      file,
+      passwordEditMode,
+    });
     if (res) onCloseMyself();
-  };
-
-  const validation = (): boolean => {
-    let isError: boolean = false;
-    setEmailError("");
-    setPasswordError("");
-    setNameError("");
-    if (name == "") {
-      setNameError("名前は必須です");
-      isError = true;
-    }
-    if (!/.+@.+\..+/.test(email)) {
-      setEmailError("正しい形式で入力してください");
-      isError = true;
-    }
-    if (passwordEditMode) {
-      if (password != passwordAgain) {
-        setPasswordError("パスワードが一致しません");
-        isError = true;
-      }
-      if (password.length < 8) {
-        setPasswordError("パスワードは8桁以上で設定してください");
-        isError = true;
-      }
-    }
-    return isError;
   };
 
   const fileSelected = (e: ChangeEvent<HTMLInputElement>) => {
@@ -205,6 +184,7 @@ const CreateUser = ({
               </Button>
             </RStack>
           )}
+          <ErrTxt txt={message} p={0}/>
           <ErrTxt txt={deleteError} />
         </Stack>
       </DialogContent>
