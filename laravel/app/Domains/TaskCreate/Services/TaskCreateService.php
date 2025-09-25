@@ -8,7 +8,7 @@ use App\Domains\TaskCreate\Parameters\TaskCreateParameter;
 use App\Domains\TaskCreate\Queries\TaskCreateQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\TaskCreateRequest;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Exceptions\AppHttpException;
 
 class TaskCreateService
 {
@@ -24,7 +24,7 @@ class TaskCreateService
 
         if($taskId){
             $isExistMyTask = $this->query->getIsExistMyTask($taskId, $userId);
-            if (!$isExistMyTask) abort(404, '更新するタスクが存在しません');
+            if (!$isExistMyTask) throw new AppHttpException(404, '更新するタスクが存在しません');
         }
         $this->query->updateOrCreateTask($params, $userId);
         

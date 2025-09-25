@@ -8,7 +8,7 @@ use App\Domains\InvitationCreate\Parameters\InvitationCreateParameter;
 use App\Domains\InvitationCreate\Queries\InvitationCreateQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\InvitationCreateRequest;
-use App\Models\Invitation;
+use App\Http\Exceptions\AppHttpException;
 use App\Models\User;
 
 class InvitationCreateService
@@ -24,25 +24,25 @@ class InvitationCreateService
 
         // メールアドレスが存在するか確認
         $targetUser = User::where('email', $params->email)->first();
-        if (!$targetUser) abort(404, 'このメールアドレスは登録されていません');
+        if (!$targetUser) throw new AppHttpException(404, 'このメールアドレスは登録されていません');
 
         $targetUserId = $targetUser->id;
         $targetUserName = $targetUser->name;
 
         // 自分自身でないか確認
-        if ($targetUserId === $myUserId) abort(400, '自分自身に友達申請することはできません');
+        if ($targetUserId === $myUserId) throw new AppHttpException(400, '自分自身に友達申請することはできません');
 
         // すでに友達か確認
         $isAlreadyFriend = $this->query->getIsAlreadyFriend($myUserId, $targetUserId);
-        if ($isAlreadyFriend) abort(409, $targetUserName . 'さんにはすでに友達です');
+        if ($isAlreadyFriend) throw new AppHttpException(409, $targetUserName . 'さんにはすでに友達です');
 
         // すでに申請済みか確認（自分→相手）
         $isAlreadySentRequest = $this->query->getIsAlreadySentRequest($myUserId, $targetUserId);
-        if ($isAlreadySentRequest) abort(409, $targetUserName . 'さんにはすでに友達申請をしています');
+        if ($isAlreadySentRequest) throw new AppHttpException(409, $targetUserName . 'さんにはすでに友達申請をしています');
 
         // すでに相手から申請が来ているか確認
         $isAlreadyReceivedRequest = $this->query->getIsAlreadyReceivedRequest($myUserId, $targetUserId);
-        if ($isAlreadyReceivedRequest) abort(409, $targetUserName . 'さんからの友達申請が来ているため許可してください');
+        if ($isAlreadyReceivedRequest) throw new AppHttpException(409, $targetUserName . 'さんからの友達申請が来ているため許可してください');
 
         $this->query->createInvitation($myUserId, $targetUserId);
 

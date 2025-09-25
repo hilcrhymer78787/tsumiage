@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Auth\AuthenticationException;
+use App\Http\Exceptions\AppHttpException;
 
 class CheckToken
 {
@@ -22,7 +22,7 @@ class CheckToken
   public function handle(Request $request, Closure $next)
   {
     $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-    if (!$loginInfoModel) abort(401, 'トークンが有効期限切れです');
+    if (!$loginInfoModel) throw new AppHttpException(401, 'トークンが有効期限切れです');
     return $next($request);
   }
 }

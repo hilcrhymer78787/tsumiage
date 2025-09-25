@@ -8,7 +8,7 @@ use App\Domains\WorkCreate\Parameters\WorkCreateParameter;
 use App\Domains\WorkCreate\Queries\WorkCreateQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\WorkCreateRequest;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Exceptions\AppHttpException;
 
 class WorkCreateService
 {
@@ -22,7 +22,7 @@ class WorkCreateService
         $userId = $this->loginInfoService->getLoginInfo($request)->id;
 
         $isExistMyTask = $this->query->getIsExistMyTask($params->taskId, $userId);
-        if (!$isExistMyTask) abort(403, '自分のタスク以外は更新できません');
+        if (!$isExistMyTask) throw new AppHttpException(403, '自分のタスク以外は更新できません');
 
         $this->query->updateOrCreateWork($params, $userId);
 

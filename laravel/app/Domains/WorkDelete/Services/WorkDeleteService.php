@@ -8,6 +8,7 @@ use App\Domains\WorkDelete\Parameters\WorkDeleteParameter;
 use App\Domains\WorkDelete\Queries\WorkDeleteQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\WorkDeleteRequest;
+use App\Http\Exceptions\AppHttpException;
 
 class WorkDeleteService
 {
@@ -22,7 +23,7 @@ class WorkDeleteService
         $workId = $params->id;
 
         $num = $this->query->deleteWork($workId, $userId);
-        if (!$num) abort(404, '活動情報が存在しません');
+        if (!$num) throw new AppHttpException(404, '活動情報が存在しません');
         
         return "活動情報を削除しました";
     }

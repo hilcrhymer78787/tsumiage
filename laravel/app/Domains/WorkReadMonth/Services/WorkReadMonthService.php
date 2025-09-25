@@ -9,7 +9,7 @@ use App\Domains\WorkReadMonth\Parameters\WorkReadMonthParameter;
 use App\Http\Requests\WorkReadMonthRequest;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Domains\Shared\CheckIsFriends\Services\CheckIsFriendsService;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Exceptions\AppHttpException;
 use App\Domains\Shared\Task\Queries\TaskQuery;
 use App\Domains\Shared\Work\Queries\WorkQuery;
 use App\Domains\WorkReadMonth\Entities\WorkReadMonthEntity;
@@ -35,7 +35,7 @@ class WorkReadMonthService
 
         if ($loginInfoId !== $paramsUserId) {
             $isFriends = $this->checkIsFriendsService->checkIsFriends($loginInfoId, $paramsUserId);
-            if (!$isFriends) abort(403, 'このユーザは友達ではありません');
+            if (!$isFriends) throw new AppHttpException(403, 'このユーザは友達ではありません');
         }
 
         $taskModels = $this->taskQuery->getTasksBuilder($paramsUserId)->get();

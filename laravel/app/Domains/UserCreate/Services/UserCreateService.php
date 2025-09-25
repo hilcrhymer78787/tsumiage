@@ -48,7 +48,7 @@ class UserCreateService
     private function updateUser(UserCreateParameter $params, UserCreateRequest $request): LoginInfoEntity
     {
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
-        if (!$loginInfoModel) abort(401, 'トークンが有効期限切れです');
+        if (!$loginInfoModel) throw new AppHttpException(401, 'トークンが有効期限切れです');
 
         $this->assertEmailUnique($params->email, $loginInfoModel->email);
 

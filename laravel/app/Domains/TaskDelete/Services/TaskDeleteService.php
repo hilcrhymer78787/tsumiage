@@ -8,6 +8,7 @@ use App\Domains\TaskDelete\Parameters\TaskDeleteParameter;
 use App\Domains\TaskDelete\Queries\TaskDeleteQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\TaskDeleteRequest;
+use App\Http\Exceptions\AppHttpException;
 
 class TaskDeleteService
 {
@@ -22,7 +23,7 @@ class TaskDeleteService
         $taskId = $params->id;
 
         $num = $this->query->deleteTask($taskId, $userId);
-        if (!$num) abort(404, 'タスクが存在しません');
+        if (!$num) throw new AppHttpException(404, 'タスクが存在しません');
 
         $this->query->deleteWork($taskId, $userId);
         
