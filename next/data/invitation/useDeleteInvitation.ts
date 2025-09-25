@@ -1,6 +1,7 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   invitation_id: number;
 };
@@ -19,7 +20,7 @@ export const useDeleteInvitation = () => {
       .then((res) => {
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

@@ -2,6 +2,7 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
+import { ApiErr } from "@/data/types/apiErr";
 
 export const useCreateUser = () => {
   const { errHandler } = useErrHandler();
@@ -22,7 +23,7 @@ export const useCreateUser = () => {
         setLoginInfo(res.data.data);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSnackbar } from "@/data/common/useSnackbar";
 import { AxiosResponse } from "axios";
 import { Success } from "@/data/types/success";
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   id?: number;
   name: string;
@@ -33,7 +34,7 @@ export const useCreateTask = () => {
         setSnackbar(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setCreateTaskError);
       })
       .finally(() => {

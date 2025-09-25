@@ -1,6 +1,7 @@
 import { api } from "@/plugins/axios";
 import { useState } from "react";
 import { useErrHandler } from "@/data/common/useErrHandler";
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   email: string;
 };
@@ -10,7 +11,7 @@ export const useCreateInvitation = () => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [message, setMessage] = useState("");
-    
+
   const validation = (data: Request) => {
     let isError = false;
     setEmailError("");
@@ -34,7 +35,7 @@ export const useCreateInvitation = () => {
         setMessage(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError, true);
       })
       .finally(() => {

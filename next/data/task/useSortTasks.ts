@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSnackbar } from "../common/useSnackbar";
 import { AxiosResponse } from "axios";
 import { Success } from "@/data/types/success";
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   ids: number[];
 };
@@ -24,7 +25,7 @@ export const useSortTasks = () => {
         setSnackbar(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AxiosResponse } from "axios";
 import { Success } from "../types/success";
 import { useSnackbar } from "../common/useSnackbar";
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   invitation_id: number;
 };
@@ -24,7 +25,7 @@ export const useUpdateInvitation = () => {
         setSnackbar(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

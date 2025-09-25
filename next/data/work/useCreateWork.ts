@@ -29,7 +29,7 @@ export const useCreateWork = () => {
         setSnackbar(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setCreateWorkError);
       })
       .finally(() => {

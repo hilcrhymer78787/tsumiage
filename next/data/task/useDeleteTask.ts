@@ -5,6 +5,7 @@ import { AxiosResponse } from "axios";
 import { useSnackbar } from "../common/useSnackbar";
 import { Success } from "@/data/types/success";
 
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   id: number;
 };
@@ -25,7 +26,7 @@ export const useDeleteTask = () => {
         setSnackbar(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setDeleteTaskError);
       })
       .finally(() => {

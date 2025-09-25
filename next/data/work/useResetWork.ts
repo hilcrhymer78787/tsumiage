@@ -1,6 +1,8 @@
 import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
+import { ApiErr } from "@/data/types/apiErr";
+
 export const useResetWork = () => {
   const { errHandler } = useErrHandler();
   const [resetWorkLoading, setResetWorkLoading] = useState(false);
@@ -15,7 +17,7 @@ export const useResetWork = () => {
       .then((res) => {
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setResetWorkError);
       })
       .finally(() => {

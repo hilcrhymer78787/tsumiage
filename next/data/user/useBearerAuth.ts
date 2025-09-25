@@ -3,6 +3,7 @@ import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import axios, { Canceler } from "axios";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
+import { ApiErr } from "@/data/types/apiErr";
 
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;
@@ -27,7 +28,7 @@ export const useBearerAuth = () => {
         setLoginInfo(res.data.data);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setBearerAuthError, true);
       })
       .finally(() => {

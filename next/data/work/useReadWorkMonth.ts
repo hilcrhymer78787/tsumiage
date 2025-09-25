@@ -3,7 +3,7 @@ import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { atom, useRecoilState } from "recoil";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-
+import { ApiErr } from "@/data/types/apiErr";
 import dayjs from "dayjs";
 import { Calendar } from "@/data/types/calendar";
 
@@ -43,7 +43,7 @@ export const useReadWorkMonth = () => {
         setCalendars(res.data.data.calendars);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setReadWorkMonthError);
       })
       .finally(() => {

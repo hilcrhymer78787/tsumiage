@@ -3,6 +3,7 @@ import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { Friend } from "@/data/types/friend";
 import { AxiosResponse } from "axios";
+import { ApiErr } from "@/data/types/apiErr";
 type Response = {
   data: {
     fromFriends: Friend[];
@@ -30,7 +31,7 @@ export const useReadInvitation = () => {
         setToFriends(res.data.data.toFriends);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

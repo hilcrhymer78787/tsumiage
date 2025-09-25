@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AxiosResponse } from "axios";
 import { Success } from "../types/success";
 
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   id: number;
 };
@@ -23,7 +24,7 @@ export const useDeleteWork = () => {
         // setSnackbar(res.data.data.message);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

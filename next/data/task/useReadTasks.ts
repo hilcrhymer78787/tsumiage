@@ -3,6 +3,7 @@ import { useErrHandler } from "@/data/common/useErrHandler";
 import { useMemo, useState } from "react";
 import { Task } from "@/data/types/task";
 
+import { ApiErr } from "@/data/types/apiErr";
 type Request = { date: string; user_id: number }
 export const useReadTasks = () => {
   const { errHandler } = useErrHandler();
@@ -36,7 +37,7 @@ export const useReadTasks = () => {
         setTasks(res.data.data.tasks);
         return res;
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         errHandler(err, setError);
       })
       .finally(() => {

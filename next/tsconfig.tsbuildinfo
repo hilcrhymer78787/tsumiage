@@ -1147,12 +1147,12 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usecreateinvitation.ts": {
-        "version": "4399e9d5d4ea1922be4130b3277605dc5593ae1db81f29221db3e1e7fd05ec85",
+        "version": "29b1f2a45fd323ee55dc1997f0ccc83b9da224081d819be33b23489afe4f4290",
         "signature": "7f66c5cc717b0f40070bd15ab1ece11a6d1419afb8b7dfad5a5f4659f7d5070e",
         "affectsGlobalScope": false
       },
       "./data/invitation/usedeleteinvitation.ts": {
-        "version": "a756b33679d2b5fb5c727c0bb4cc1b13b356a89bd7e5401000b074d7ce02d2e1",
+        "version": "2fd0d219dc499d43436f7a1892a8930d34c1a0b79c5273d09acc11cf9447ec00",
         "signature": "cfe51eb78874c618c8ea73d9c4a450bad9bc8e4695f6df5e7232bc3c341d714e",
         "affectsGlobalScope": false
       },
@@ -1162,7 +1162,7 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/usereadinvitation.ts": {
-        "version": "56b73c4114d2e74ec1f43d478f28a5fa5603d4588bb8925b578320f1dcd66f1f",
+        "version": "333d341ae4483fb912fde081a63c66e9a371a81d4c00e4cd4cec6aeff8c09306",
         "signature": "663076e3eed94fd1abc9108368379c53b69eb7d48e2e75525c419904208d21b9",
         "affectsGlobalScope": false
       },
@@ -1172,7 +1172,7 @@
         "affectsGlobalScope": false
       },
       "./data/invitation/useupdateinvitation.ts": {
-        "version": "48840600be32879cd5ee405e76f2a4df3729c30d5f28c555783c7b029e0634a5",
+        "version": "07b9015b397f1e58bcfd22eba593b19e6a1b5fd2210157dfc7596e195f48e639",
         "signature": "66d7198c6f4c85a389930504b98e50f8c997dc94b16634818a62bfc7210cce3e",
         "affectsGlobalScope": false
       },
@@ -5542,12 +5542,12 @@
         "affectsGlobalScope": false
       },
       "./data/task/usecreatetask.ts": {
-        "version": "ef3c7593be6a370b44193ee34f9762a28f635b8674e50b08d8fe2c917d9664cf",
+        "version": "716318ec0488cd4405006d1c9a2dde26d35885ea5fc811f10d55b4f06f435411",
         "signature": "6c965f9053003b4a3fe0e5271389e487392df8276cb477d30e81168fd592d8a9",
         "affectsGlobalScope": false
       },
       "./data/task/usedeletetask.ts": {
-        "version": "cc4a2b128c10f06d3a9acf77785b99bb7648bfb7b7ac2a276c29f065f2d3f8d8",
+        "version": "64f39dc2ded3eedf71043eed81d73887d3482d0d65a35fa36776dc822496b7a6",
         "signature": "6c5a69d283b4f9ad72fcdec9b078ee287844a63bed948f81bb51e4bb4919c6d2",
         "affectsGlobalScope": false
       },
@@ -5562,12 +5562,12 @@
         "affectsGlobalScope": false
       },
       "./data/task/usereadtasks.ts": {
-        "version": "fd25a4142f3be424cc83f8697a7888f91958978b3f4701ceec5a72c5a6110da8",
+        "version": "08a1db8ca4cd8e1e743adf765965c3f6e708c98ace27724638f283c7f680b796",
         "signature": "a2773d85c73a3bc920dac5b1ea854c4645dfe1593c6178b66138e201cb8df2b3",
         "affectsGlobalScope": false
       },
       "./data/task/usesorttasks.ts": {
-        "version": "f2e56e5fd8a7d2c4362132e64772d3fe732616e7c52c574894a3fa59b956e9d3",
+        "version": "f97a485b9886df4945ac894db73998c03605f76ce42437af600ff4bbe4db01b5",
         "signature": "682ed406902c9dbc907f77ab63d7cc8da840b0d4390c2a7f3bbaeb78b0c6e9e9",
         "affectsGlobalScope": false
       },
@@ -5577,37 +5577,37 @@
         "affectsGlobalScope": false
       },
       "./data/user/usebasicauth.ts": {
-        "version": "31d5e3205edd895d57d08132ee7a85336bae5de42aba7f401b299134f073f6d5",
+        "version": "0911210449a8832e4d94cda4782cbd02a1c365f98222fb08201006f71843071b",
         "signature": "cbdb18b9da03296af1b5eadbba063edd113623929936c859cba5d58c2fddf4e3",
         "affectsGlobalScope": false
       },
       "./data/user/usebearerauth.ts": {
-        "version": "343188eaa6918d527b7c4f3f8c3f118b9793e5da4459e5a12d6888c95dc75e28",
+        "version": "bb6012545bb4560bb1eb9d0a89518599b3557d090f0fd88db3ee0d8403b8581b",
         "signature": "88afbd70fad632d27367a8867976fe75f57f6f12499f50bbb0913e1918c3c420",
         "affectsGlobalScope": false
       },
       "./data/user/usecreateuser.ts": {
-        "version": "877c74dc4c53e7d5fb9a9b56b25fd7f8bf56b0e9cbf89ae418e5b2beccc0be82",
+        "version": "58c431d3eb492b6a3bbcd0240c530f1ebf842ceb61c1da30405ce1c22047514b",
         "signature": "a686dec6743f5e146a0a39bab95a1f77b25a995117e72185f486ce994b10d9b9",
         "affectsGlobalScope": false
       },
       "./data/user/usedeleteuser.ts": {
-        "version": "ac1516a239c003994285cc62277f5153ae8430153ecdbe7b27a9377fe8de2d58",
+        "version": "373a85cfbdade2d91bbda277d9870e151678635082ec42967b1046624187e13e",
         "signature": "0c1f77606f5cd9f7769830bb88151f849717ad91695e2363bdffcfd8a7fc6182",
         "affectsGlobalScope": false
       },
       "./data/user/usetestauth.ts": {
-        "version": "34b86fd8510f0c36c059473f3f1a13c0c08d177029d8b70fe2b4798915adb35d",
+        "version": "3daf0083f5818788f36b81f6e3ebe46207687411609053a66521e9c84b9e73e1",
         "signature": "114934bb966e3b83683897f7a393a832b7e0e79ef464c5edd4c3a2d8c42efc92",
         "affectsGlobalScope": false
       },
       "./data/work/usecreatework.ts": {
-        "version": "1a7c4cb34f704076cab7d1fc4357c9f3bc6062d9fcffebbcf3e6b7f1bf39d06f",
+        "version": "c5da93c9cb02a8ecf4cbb2e1dbcad02630cc501b18703a3c619ea32492cd77c3",
         "signature": "e11524b531b4974d295c8492d2c21eebeccfe8d0edeaf085e2953e1516982705",
         "affectsGlobalScope": false
       },
       "./data/work/usedeletework.ts": {
-        "version": "d8e2d3be048558ff890b0d2430e1c3d2501b1d45db4b949313107a1f631ecf5a",
+        "version": "53dd754bffcbbab21618d867bc9b884b8e478a37dd2b09eca0bbbf559665fc76",
         "signature": "25d7ec480f76dbf77d32c4815b5d8f9df3c50a52589ea7fd251dc528fc43306f",
         "affectsGlobalScope": false
       },
@@ -5627,12 +5627,12 @@
         "affectsGlobalScope": false
       },
       "./data/work/usereadworkmonth.ts": {
-        "version": "18e1db3acf2381c258ed687ad75dbc5a9111b0d53187b25bb5c4196d8fe17058",
+        "version": "e744fbb0045dc85289ac45fbb06b88a008e191d61f4fd2a53c5c0049a596c944",
         "signature": "0b58953eea7b2733a28ea912c11cb2525bb18b833f9432075bd0d85764b835d1",
         "affectsGlobalScope": false
       },
       "./data/work/useresetwork.ts": {
-        "version": "82528d03421fd45f508a5aaaf32aa78f5410a97ed5dbae780d5f13e57826ba2e",
+        "version": "2ccef5220ad5e2e11601cf797ed11758ad3798d394aa598f3b5513c6522361e9",
         "signature": "d25560f28e04d0419a1489bbcaa520fd4e9087e707e4d2766afbe393e9a82607",
         "affectsGlobalScope": false
       },
@@ -8212,7 +8212,7 @@
         "affectsGlobalScope": false
       },
       "./pages/testpage.tsx": {
-        "version": "c1a9d0b7407c40051faa2641e851dbca39e87e9f5e2d6db177e64433f799483f",
+        "version": "67cbbf37f3854eb1bc8c51bb4b9c0a8b8365c8a8392330750de5458fc8a32bda",
         "signature": "1c99219111de969155c01638a345232c4fc11b870486ddc464300878b8d54163",
         "affectsGlobalScope": false
       },
@@ -8844,18 +8844,21 @@
       ],
       "./data/invitation/usecreateinvitation.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/invitation/usedeleteinvitation.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/invitation/usereadinvitation.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./data/types/friend.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8865,6 +8868,7 @@
       "./data/invitation/useupdateinvitation.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
+        "./data/types/apierr.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8879,6 +8883,7 @@
       "./data/task/usecreatetask.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
+        "./data/types/apierr.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8888,6 +8893,7 @@
       "./data/task/usedeletetask.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
+        "./data/types/apierr.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8896,6 +8902,7 @@
       ],
       "./data/task/usereadtasks.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./data/types/task.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
@@ -8904,6 +8911,7 @@
       "./data/task/usesorttasks.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/usesnackbar.ts",
+        "./data/types/apierr.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8945,6 +8953,7 @@
       "./data/user/usebearerauth.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
@@ -8953,12 +8962,14 @@
       "./data/user/usecreateuser.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
       ],
       "./data/user/usedeleteuser.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8966,6 +8977,7 @@
       "./data/user/usetestauth.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -8982,6 +8994,7 @@
       ],
       "./data/work/usedeletework.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./data/types/success.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/axios/index.d.ts",
@@ -8991,6 +9004,7 @@
       "./data/work/usereadworkmonth.ts": [
         "./data/common/useerrhandler.ts",
         "./data/common/uselogininfo.ts",
+        "./data/types/apierr.ts",
         "./data/types/calendar.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
@@ -9000,6 +9014,7 @@
       ],
       "./data/work/useresetwork.ts": [
         "./data/common/useerrhandler.ts",
+        "./data/types/apierr.ts",
         "./node_modules/@types/react/ts5.0/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./plugins/axios.ts"
@@ -27385,7 +27400,19 @@
       "./data/user/usecreateuser.ts",
       "./data/user/usedeleteuser.ts",
       "./data/user/usetestauth.ts",
-      "./data/work/usecreatework.ts",
+      [
+        "./data/work/usecreatework.ts",
+        [
+          {
+            "file": "./data/work/usecreatework.ts",
+            "start": 1008,
+            "length": 6,
+            "messageText": "Cannot find name 'ApiErr'.",
+            "category": 1,
+            "code": 2304
+          }
+        ]
+      ],
       "./data/work/usedeletework.ts",
       "./data/work/usereadworkmonth.ts",
       "./data/work/useresetwork.ts",
@@ -28979,7 +29006,19 @@
       "./pages/mypage/index.tsx",
       "./pages/task/index.tsx",
       "./pages/task/sort/index.tsx",
-      "./pages/testpage.tsx",
+      [
+        "./pages/testpage.tsx",
+        [
+          {
+            "file": "./pages/testpage.tsx",
+            "start": 596,
+            "length": 6,
+            "messageText": "Cannot find name 'ApiErr'.",
+            "category": 1,
+            "code": 2304
+          }
+        ]
+      ],
       "./plugins/axios.ts",
       "./plugins/theme.ts",
       "./static/const.ts",

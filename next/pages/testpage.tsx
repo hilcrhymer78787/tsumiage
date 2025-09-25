@@ -17,7 +17,7 @@ const TestPage = () => {
       .then((res) => {
         setResData(res.data);
       })
-      .catch((err) => {
+      .catch((err: ApiErr) => {
         setResData(err.response);
       })
       .finally(() => {

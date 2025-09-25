@@ -2,7 +2,7 @@ import { api } from "@/plugins/axios";
 import { useErrHandler } from "@/data/common/useErrHandler";
 import { useState } from "react";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-import { ApiErr } from "../types/apiErr";
+import { ApiErr } from "@/data/types/apiErr";
 type Request = {
   email: string;
   password: string;
