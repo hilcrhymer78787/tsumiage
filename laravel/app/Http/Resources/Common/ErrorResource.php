@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Common;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
 // TODO: もっと綺麗に書けそう
@@ -20,13 +19,15 @@ class ErrorResource extends JsonResource
      */
     public function toArray($request): array
     {
+        $resource = $this->resource;
         return [
             'status' => $this->getStatusCode(),
-            'message' => $this->resource->getMessage(),
+            'message' => $resource->getMessage(),
+            'data' => method_exists($resource, 'getData') ? $resource->getData() : null,
             'detail'  => [
-                'file'  => $this->resource->getFile(),
-                'line'  => $this->resource->getLine(),
-                'trace' => $this->resource->getTraceAsString(),
+                'file'  => $resource->getFile(),
+                'line'  => $resource->getLine(),
+                'trace' => $resource->getTraceAsString(),
             ],
         ];
     }
@@ -44,8 +45,7 @@ class ErrorResource extends JsonResource
      */
     private function getStatusCode(): int
     {
-        return $this->resource instanceof HttpExceptionInterface
-            ? $this->resource->getStatusCode()
-            : 500;
+        $resource = $this->resource;
+        return method_exists($resource, 'getStatusCode') ? $resource->getStatusCode() : 500;
     }
 }

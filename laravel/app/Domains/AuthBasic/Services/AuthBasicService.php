@@ -8,7 +8,7 @@ use App\Domains\AuthBasic\Parameters\AuthBasicParameter;
 use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
 use App\Domains\AuthBasic\Queries\AuthBasicQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Exceptions\AppHttpException;
 
 class AuthBasicService
 {
@@ -20,7 +20,10 @@ class AuthBasicService
     public function getLoginInfoEntity(AuthBasicParameter $params): LoginInfoEntity
     {
         $loginInfoModel = $this->query->getLoginInfoBuilder($params)->first();
-        if (!$loginInfoModel) abort(401, 'このメールアドレスは登録されていません');
+        if (!$loginInfoModel)
+            throw new AppHttpException(422, 'バリデーションエラー', [
+                'emailError' => 'このメールアドレスは登録されていません'
+            ]);
 
         // TODO hash
         $isCorrect = $loginInfoModel->password === $params->password;
