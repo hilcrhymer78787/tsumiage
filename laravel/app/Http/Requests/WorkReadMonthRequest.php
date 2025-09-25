@@ -7,12 +7,7 @@ use App\Http\Requests\Base\BaseFormRequest;
 class WorkReadMonthRequest extends BaseFormRequest
 
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'user_id' => 'required|integer',
@@ -21,7 +16,7 @@ class WorkReadMonthRequest extends BaseFormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'user_id.required' => 'user_id は必須です。',

@@ -6,11 +6,6 @@ use App\Http\Requests\Base\BaseFormRequest;
 
 class TaskSortRequest extends BaseFormRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [

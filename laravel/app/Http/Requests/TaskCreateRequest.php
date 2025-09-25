@@ -6,12 +6,7 @@ use App\Http\Requests\Base\BaseFormRequest;
 
 class TaskCreateRequest extends BaseFormRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'id'          => 'nullable|integer', // 新規登録時は null、編集時は必須なので nullable
@@ -19,7 +14,7 @@ class TaskCreateRequest extends BaseFormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'id.integer'           => 'id は整数でなければなりません。',

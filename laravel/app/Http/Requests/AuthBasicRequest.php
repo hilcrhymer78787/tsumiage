@@ -7,12 +7,7 @@ use App\Http\Requests\Base\BaseFormRequest;
 class AuthBasicRequest extends BaseFormRequest
 
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'email' => 'required|email',
@@ -20,7 +15,7 @@ class AuthBasicRequest extends BaseFormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'email.required' => 'email は必須です。',

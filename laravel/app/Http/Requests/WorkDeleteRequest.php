@@ -6,19 +6,14 @@ use App\Http\Requests\Base\BaseFormRequest;
 
 class WorkDeleteRequest extends BaseFormRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'id' => 'required|integer',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'id.integer' => 'id は整数でなければなりません。',

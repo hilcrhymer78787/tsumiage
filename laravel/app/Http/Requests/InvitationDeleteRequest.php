@@ -6,19 +6,14 @@ use App\Http\Requests\Base\BaseFormRequest;
 
 class InvitationDeleteRequest extends BaseFormRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'invitation_id' => 'required|integer|exists:invitations,invitation_id',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'invitation_id.integer' => 'invitation_id は整数でなければなりません。',
