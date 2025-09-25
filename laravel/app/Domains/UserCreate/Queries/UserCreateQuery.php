@@ -13,6 +13,7 @@ class UserCreateQuery
         return User::create([
             'name'     => $params->name,
             'email'    => $params->email,
+            // TODO hash
             'password' => $params->password,
             'user_img' => $params->userImg,
             'token'    => $params->email . Str::random(100),
@@ -29,6 +30,7 @@ class UserCreateQuery
     public function updatePassword(UserCreateParameter $params, User $loginInfoModel): void
     {
         User::where('id', $loginInfoModel->id)->update([
+            // TODO hash
             'password' => $params->password,
         ]);
     }
