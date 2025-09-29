@@ -35,7 +35,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/user/auth/test', [AuthTestController::class, 'index']); //✅⭕️
-Route::post('/user/auth/basic', [AuthBasicController::class, 'index']); //✅
+Route::post('/user/auth/basic', [AuthBasicController::class, 'index']); //✅⭕️
 Route::post('/user/create', [UserCreateController::class, 'index']); //✅
 
 Route::middleware([CheckToken::class])->group(function () {

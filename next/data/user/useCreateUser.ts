@@ -16,7 +16,6 @@ type ApiReq = {
   file: any;
   passwordEditMode: boolean;
 };
-// type ApiReq = FormData;
 type ApiRes = CmnRes<LoginInfo>;
 type ApiErr = CmnErr<{
   emailError?: string;

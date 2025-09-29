@@ -17,7 +17,7 @@ import RStack from "./RStack";
 import Center from "./Center";
 import ErrTxt from "./ErrTxt";
 
-const Login = ({
+const Auth = ({
   setIsNew,
 }: {
   setIsNew: Dispatch<SetStateAction<boolean>>;
@@ -61,7 +61,7 @@ const Login = ({
               onChange={(e) => setPassword(e.currentTarget.value)}
               label="password"
             />
-            <ErrTxt txt={message} p={0}/>
+            <ErrTxt txt={message} p={0} />
             {process.env.NEXT_PUBLIC_IS_SHOW_TEST_USER == "1" && (
               <RStack justifyContent="flex-end">
                 <LoadingButton
@@ -100,4 +100,4 @@ const Login = ({
     </Container>
   );
 };
-export default Login;
+export default Auth;
