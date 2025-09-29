@@ -28,9 +28,9 @@ class InvitationReadService
         $loginInfoModel = $this->loginInfoService->getLoginInfo($request);
         $loginInfoId = $loginInfoModel->id;
 
-        $fromFriendModels = $this->invitationReadQuery->getFromFriendsBuilder($loginInfoId)->get();
-        $nowFriendModels = $this->invitationReadQuery->getNowFriendsBuilder($loginInfoId)->get();
-        $toFriendModels = $this->invitationReadQuery->getToFriendsBuilder($loginInfoId)->get();
+        $fromFriendModels = $this->invitationReadQuery->getFromFriends($loginInfoId);
+        $nowFriendModels = $this->invitationReadQuery->getNowFriends($loginInfoId);
+        $toFriendModels = $this->invitationReadQuery->getToFriends($loginInfoId);
 
         $invitationReadModel = $this->builder->build($fromFriendModels, $nowFriendModels, $toFriendModels);
 

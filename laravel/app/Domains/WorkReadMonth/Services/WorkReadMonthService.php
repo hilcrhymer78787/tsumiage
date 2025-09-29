@@ -40,7 +40,7 @@ class WorkReadMonthService
 
         $taskModels = $this->taskQuery->getTasks($paramsUserId);
 
-        $workModels = $this->workQuery->getWorksBuilder($paramsUserId, $paramsYear, $paramsMonth)->get();
+        $workModels = $this->workQuery->getWorks($paramsUserId, $paramsYear, $paramsMonth);
 
         $calendarModels = $this->builder->build($paramsYear, $paramsMonth, $taskModels, $workModels);
 

@@ -5,12 +5,13 @@ namespace App\Domains\Shared\Work\Queries;
 
 use App\Models\Work;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class WorkQuery
 {
-    public function getWorksBuilder(int $userId, int $year, int $month): Builder
+    public function getWorks(int $userId, int $year, int $month): Collection
     {
-        $query = Work::where('work_user_id', $userId)
+        return Work::where('work_user_id', $userId)
             ->whereYear('work_date', $year)
             ->whereMonth('work_date', $month)
             ->select(
@@ -20,9 +21,8 @@ class WorkQuery
                 'works.work_user_id',
                 'works.work_state',
                 'works.created_at'
-            );
-
-        return $query;
+            )
+            ->get();
     }
     public function deleteWorkByUserId(int $userId): void
     {
