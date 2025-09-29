@@ -57,7 +57,6 @@ const CreateUser = ({
   const { logout } = useLoginInfo();
 
   const apiCreateUser = async () => {
-    if (!file) return; // ファイル必須ならチェック
     const res = await createUser({
       id: loginInfo?.id ?? 0,
       name,
