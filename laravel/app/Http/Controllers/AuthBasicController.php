@@ -1,5 +1,4 @@
 <?php
-// TODO: Log修正
 
 namespace App\Http\Controllers;
 

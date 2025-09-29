@@ -1,4 +1,3 @@
-// TODO: フォーマッター導入
 import {
   Box,
   Table,
