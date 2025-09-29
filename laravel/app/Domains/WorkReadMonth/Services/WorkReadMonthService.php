@@ -38,7 +38,7 @@ class WorkReadMonthService
             if (!$isFriends) throw new AppHttpException(403, 'このユーザは友達ではありません');
         }
 
-        $taskModels = $this->taskQuery->getTasksBuilder($paramsUserId)->get();
+        $taskModels = $this->taskQuery->getTasks($paramsUserId);
 
         $workModels = $this->workQuery->getWorksBuilder($paramsUserId, $paramsYear, $paramsMonth)->get();
 

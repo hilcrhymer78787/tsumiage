@@ -4,22 +4,21 @@ namespace App\Domains\Shared\Task\Queries;
 
 
 use App\Models\Task;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class TaskQuery
 {
-    public function getTasksBuilder(int $userId): Builder
+    public function getTasks(int $userId): Collection
     {
-        $query = Task::where('task_user_id', $userId)
+        return Task::where('task_user_id', $userId)
             ->select(
                 'tasks.task_id',
                 'tasks.task_name',
                 'tasks.created_at',
                 'tasks.task_sort_key'
             )
-            ->orderBy('task_sort_key');
-
-        return $query;
+            ->orderBy('task_sort_key')
+            ->get();
     }
     public function deleteTaskByUserId(int $userId): void
     {

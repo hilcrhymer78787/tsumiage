@@ -34,7 +34,7 @@ class TaskReadService
             if (!$isFriends) throw new AppHttpException(403, 'このユーザは友達ではありません');
         }
 
-        $taskModels = $this->query->getTasksBuilder($params)->get();
+        $taskModels = $this->query->getTasks($params);
         
         return $this->factory->create($paramsDate, $taskModels);
     }

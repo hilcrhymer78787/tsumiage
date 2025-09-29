@@ -4,15 +4,13 @@ namespace App\Domains\TaskRead\Queries;
 
 use App\Domains\TaskRead\Parameters\TaskReadParameter;
 use App\Models\Task;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class TaskReadQuery
 {
-    public function getTasksBuilder(TaskReadParameter $params): Builder
+    public function getTasks(TaskReadParameter $params): Collection
     {
-        $query =  Task::where('task_user_id', $params->userId)
+        return Task::where('task_user_id', $params->userId)
             ->select(
                 'tasks.task_id',
                 'tasks.task_name',
@@ -30,7 +28,7 @@ class TaskReadQuery
                         'works.work_state',
                     )
                     ->where('work_date', $params->date);
-            }]);
-        return $query;
+            }])
+            ->get();
     }
 }

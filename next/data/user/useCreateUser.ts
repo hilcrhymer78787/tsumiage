@@ -81,7 +81,7 @@ export const useCreateUser = () => {
       .then((res: ApiRes) => {
         localStorage.setItem("token", res.data.data.token);
         setLoginInfo(res.data.data);
-        setSnackbar("ユーザーを作成しました");
+        setSnackbar(`ユーザー情報を${!!data.id ? "更新" : "作成"}しました`);
         return res;
       })
       .catch((err: ApiErr) => {

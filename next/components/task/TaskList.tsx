@@ -1,34 +1,29 @@
-import { Card, CardContent, CardHeader, SxProps } from "@mui/material";
+import { Card, CardContent, CardHeader } from "@mui/material";
 import TaskItem from "@/components/task/TaskItem";
 import { Task } from "@/data/types/task";
 
 const TaskList = ({
   date,
-  readonly,
   tasks,
-  apiTaskRead,
   title,
-  sx,
+  apiTaskRead,
 }: {
   date: string;
-  readonly: boolean;
   tasks: Task[];
-  apiTaskRead: () => void;
   title: string;
-  sx?: SxProps;
+  apiTaskRead: () => void;
 }) => {
   if (!tasks?.length) return <></>;
   return (
-    <Card sx={{ ...sx }}>
+    <Card>
       <CardHeader title={title} />
       <CardContent sx={{ p: "0 !important" }}>
-        {tasks.map((task, index) => (
+        {tasks.map((task) => (
           <TaskItem
             task={task}
             date={date}
             apiTaskRead={apiTaskRead}
-            key={index.toString()}
-            readonly={readonly}
+            key={task.id}
           />
         ))}
       </CardContent>

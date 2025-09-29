@@ -10,7 +10,7 @@ class LoginInfoEntity
         private readonly string $email,
         private readonly string $name,
         private readonly string $token,
-        private readonly string $userImg,
+        private readonly ?string $userImg
     ) {}
 
     public function getId(): int
@@ -33,7 +33,7 @@ class LoginInfoEntity
         return $this->token;
     }
 
-    public function getUserImg(): string
+    public function getUserImg(): ?string
     {
         return $this->userImg;
     }

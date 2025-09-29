@@ -24,12 +24,10 @@ const TaskItem = ({
   task,
   date,
   apiTaskRead,
-  readonly,
 }: {
   task: Task;
   date: string;
   apiTaskRead: () => void;
-  readonly: boolean;
 }) => {
   const [isLoadingRight, setIsLoadingRight] = useState(false);
   const { deleteWork, isLoading } = useDeleteWork();
@@ -94,12 +92,10 @@ const TaskItem = ({
     <ListItem
       sx={{ p: 0 }}
       secondaryAction={
-        !readonly && (
-          <RStack>
-            <IsNecessaryIcon />
-            <IsDoneIcon />
-          </RStack>
-        )
+        <RStack>
+          <IsNecessaryIcon />
+          <IsDoneIcon />
+        </RStack>
       }
     >
       <ListItemButton onClick={() => setCreateTaskDialog(true)}>
