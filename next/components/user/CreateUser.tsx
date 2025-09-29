@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   DialogActions,
@@ -9,24 +8,20 @@ import {
   TextField,
 } from "@mui/material";
 import {
-  ChangeEvent,
   Dispatch,
   KeyboardEvent,
   SetStateAction,
-  useRef,
   useState,
 } from "react";
 
 import ErrTxt from "@/components/common/ErrTxt";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
-import UserImg from "@/components/common/UserImg";
 import { useCreateUser } from "@/data/user/useCreateUser";
-import dayjs from "dayjs";
 import { useDeleteUser } from "@/data/user/useDeleteUser";
 import { LoginInfo } from "@/data/types/loginInfo";
 import RStack from "@/components/common/RStack";
+import FileUploader from "@/components/common/FileUploader";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 const CreateUser = ({
@@ -51,18 +46,15 @@ const CreateUser = ({
     error: deleteError,
     isLoading: deleteLoading,
   } = useDeleteUser();
-  const [uploadedImage, setUploadedImage] = useState<string>("");
   const [passwordEditMode, setPasswordEditMode] = useState(!loginInfo);
   const [name, setName] = useState(loginInfo?.name ?? "");
   const [email, setEmail] = useState(loginInfo?.email ?? "");
-  const [userImg, setUserImg] = useState(loginInfo?.user_img ?? "");
+  const [image, setImage] = useState(loginInfo?.user_img ?? "");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
   const { logout } = useLoginInfo();
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const apiCreateUser = async () => {
     if (!file) return; // ファイル必須ならチェック
@@ -71,26 +63,12 @@ const CreateUser = ({
       name,
       email,
       password,
-      user_img: userImg,
+      user_img: image,
       passwordAgain,
       file,
       passwordEditMode,
     });
     if (res) onCloseMyself();
-  };
-
-  const fileSelected = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (!selectedFile) return;
-
-    setFile(selectedFile);
-    setUserImg(dayjs().format("YYYYMMDDHHmmss") + selectedFile.name);
-
-    const reader = new FileReader();
-    reader.onload = (ev: ProgressEvent<FileReader>) => {
-      setUploadedImage(ev.target?.result as string);
-    };
-    reader.readAsDataURL(selectedFile);
   };
 
   const onClickDeleteUser = async () => {
@@ -112,18 +90,7 @@ const CreateUser = ({
       <DialogTitle>{title}</DialogTitle>
       <DialogContent sx={{ p: 3 }}>
         <Stack gap={3}>
-          <RStack gap={3}>
-            <UserImg
-              src={uploadedImage}
-              fileName={loginInfo?.user_img}
-              size="70"
-            />
-            <Button onClick={() => inputRef.current?.click()}>
-              画像を選択
-              <FileUploadIcon />
-            </Button>
-            <input onChange={fileSelected} type="file" hidden ref={inputRef} />
-          </RStack>
+          <FileUploader image={image} setImage={setImage} setFile={setFile} />
           <TextField
             onKeyDown={onKeyDown}
             error={!!nameError}
@@ -178,7 +145,7 @@ const CreateUser = ({
             ログイン画面へ
           </Button>
         )}
-        {loginInfo && (
+        {!!loginInfo && (
           <LoadingButton
             onClick={onClickDeleteUser}
             loading={deleteLoading}
