@@ -1,5 +1,5 @@
 <?php
-// TODO abort→HttpException
+
 declare(strict_types=1);
 
 namespace App\Domains\AuthBasic\Services;
@@ -9,6 +9,7 @@ use App\Domains\Shared\LoginInfo\Entities\LoginInfoEntity;
 use App\Domains\AuthBasic\Queries\AuthBasicQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Exceptions\AppHttpException;
+use Illuminate\Support\Facades\Hash;
 
 class AuthBasicService
 {
@@ -17,13 +18,15 @@ class AuthBasicService
         private readonly AuthBasicQuery $query,
     ) {}
 
+    /**
+     * メールアドレス・パスワード認証
+     */
     public function getLoginInfoEntity(AuthBasicParameter $params): LoginInfoEntity
     {
         $loginInfoModel = $this->query->getLoginInfoBuilder($params)->first();
         if (!$loginInfoModel) throw new AppHttpException(404, "", ['emailError' => 'このメールアドレスは登録されていません']);
 
-        // TODO hash
-        $isCorrect = $loginInfoModel->password === $params->password;
+        $isCorrect = Hash::check($params->password, $loginInfoModel->password);
         if (!$isCorrect) throw new AppHttpException(401, "", ['passwordError' => 'パスワードが間違っています']);
 
         return new LoginInfoEntity(
@@ -34,4 +37,4 @@ class AuthBasicService
             userImg: $loginInfoModel->user_img,
         );
     }
-};
+}
