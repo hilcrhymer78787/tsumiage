@@ -18,7 +18,7 @@ class TaskFactory
         $work = $taskModel->work;
         !!$workEntity = $work
             ? $this->workFactory->create($work)
-            : $this->workFactory->empty($work);
+            : $this->workFactory->empty();
             
         return new TaskEntity(
             taskId: $taskModel->task_id,

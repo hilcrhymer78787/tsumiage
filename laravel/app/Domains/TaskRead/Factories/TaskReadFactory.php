@@ -6,7 +6,6 @@ use App\Domains\TaskRead\Entities\TaskReadEntity;
 use App\Domains\Shared\Task\Factories\TaskFactory;
 use App\Models\Task;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class TaskReadFactory
 {
