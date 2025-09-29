@@ -14,6 +14,6 @@ class LoginInfoService
 
     public function getLoginInfo(Request $request): ?User
     {
-        return $this->query->getLoginInfoBuilder($request)->first();
+        return $this->query->getLoginInfo($request);
     }
 }

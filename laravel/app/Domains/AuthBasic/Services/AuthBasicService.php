@@ -23,7 +23,7 @@ class AuthBasicService
      */
     public function getLoginInfoEntity(AuthBasicParameter $params): LoginInfoEntity
     {
-        $loginInfoModel = $this->query->getLoginInfoBuilder($params)->first();
+        $loginInfoModel = $this->query->getLoginInfo($params);
         if (!$loginInfoModel) throw new AppHttpException(404, "", ['emailError' => 'このメールアドレスは登録されていません']);
 
         $isCorrect = Hash::check($params->password, $loginInfoModel->password);
