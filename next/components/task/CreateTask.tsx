@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  TextField,
-} from "@mui/material";
+import { Box, Card, CardActions, CardContent, CardHeader, TextField } from "@mui/material";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import ErrTxt from "@/components/common/ErrTxt";
@@ -17,15 +10,8 @@ import { useDeleteTask } from "@/data/task/useDeleteTask";
 import { useState } from "react";
 import { Task } from "@/data/types/task";
 
-const CreateTask = ({
-  task,
-  onCloseMyself,
-}: {
-  task: Task | null;
-  onCloseMyself: () => void;
-}) => {
-  const { nameError, createTaskLoading, createTask, createTaskError } =
-    useCreateTask();
+const CreateTask = ({ task, onCloseMyself }: { task: Task | null; onCloseMyself: () => void }) => {
+  const { nameError, createTaskLoading, createTask, createTaskError } = useCreateTask();
   const { deleteTask, deleteTaskLoading } = useDeleteTask();
   const [name, setName] = useState(task?.name ?? "");
 

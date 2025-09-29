@@ -9,8 +9,8 @@ type ApiRes = CmnRes<{
   fromFriends: Friend[];
   nowFriends: Friend[];
   toFriends: Friend[];
-}>
-type ApiErr = CmnErr
+}>;
+type ApiErr = CmnErr;
 export const useReadInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);
@@ -38,9 +38,7 @@ export const useReadInvitation = () => {
         setIsLoading(false);
       });
   };
-  const isFirstLoading = [fromFriends, nowFriends, toFriends].every(
-    (v) => v === null
-  );
+  const isFirstLoading = [fromFriends, nowFriends, toFriends].every((v) => v === null);
 
   return {
     fromFriends,

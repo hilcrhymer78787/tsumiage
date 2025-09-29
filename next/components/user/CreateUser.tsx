@@ -7,12 +7,7 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import {
-  Dispatch,
-  KeyboardEvent,
-  SetStateAction,
-  useState,
-} from "react";
+import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 
 import ErrTxt from "@/components/common/ErrTxt";
 import { LoadingButton } from "@mui/lab";
@@ -41,11 +36,7 @@ const CreateUser = ({
     createUser,
     isLoading: createLoading,
   } = useCreateUser();
-  const {
-    deleteUser,
-    error: deleteError,
-    isLoading: deleteLoading,
-  } = useDeleteUser();
+  const { deleteUser, error: deleteError, isLoading: deleteLoading } = useDeleteUser();
   const [passwordEditMode, setPasswordEditMode] = useState(!loginInfo);
   const [name, setName] = useState(loginInfo?.name ?? "");
   const [email, setEmail] = useState(loginInfo?.email ?? "");
@@ -125,9 +116,7 @@ const CreateUser = ({
             </>
           ) : (
             <RStack justifyContent="flex-end">
-              <Button onClick={() => setPasswordEditMode(true)}>
-                パスワードを編集
-              </Button>
+              <Button onClick={() => setPasswordEditMode(true)}>パスワードを編集</Button>
             </RStack>
           )}
           <ErrTxt txt={message} p={0} />
@@ -136,11 +125,7 @@ const CreateUser = ({
       </DialogContent>
       <DialogActions>
         {!!setIsNew && (
-          <Button
-            onClick={() => setIsNew(false)}
-            color="inherit"
-            variant="contained"
-          >
+          <Button onClick={() => setIsNew(false)} color="inherit" variant="contained">
             ログイン画面へ
           </Button>
         )}

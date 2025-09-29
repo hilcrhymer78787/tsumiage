@@ -17,21 +17,11 @@ export const snackbarListAtom = atom<SnackbarItem[]>({
 export const useSnackbar = () => {
   const [snackbars, setSnackbars] = useRecoilState(snackbarListAtom);
 
-  const setSnackbar = (
-    msg: string,
-    severity?: "error" | "success" | "info" | "warning"
-  ) => {
-    setSnackbars((prev) => [
-      ...prev,
-      { id: Date.now(), message: msg, severity },
-    ]);
+  const setSnackbar = (msg: string, severity?: "error" | "success" | "info" | "warning") => {
+    setSnackbars((prev) => [...prev, { id: Date.now(), message: msg, severity }]);
   };
 
-  const handleClose = (
-    id: number,
-    _event?: SyntheticEvent | Event,
-    reason?: string
-  ) => {
+  const handleClose = (id: number, _event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") return; // 背景クリックで閉じないように
     setSnackbars((prev) => prev.filter((s) => s.id !== id));
   };

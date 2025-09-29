@@ -8,8 +8,8 @@ import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 import { LoginInfo } from "../types/loginInfo";
 type ApiReq = {};
-type ApiRes = CmnRes<LoginInfo>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<LoginInfo>;
+type ApiErr = CmnErr;
 
 const CancelToken = axios.CancelToken;
 let setLoginInfoByTokenCancel: Canceler;

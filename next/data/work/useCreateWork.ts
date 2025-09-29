@@ -11,8 +11,8 @@ type ApiReq = {
   date: string;
   task_id: number;
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useCreateWork = () => {
   const { errHandler } = useErrHandler();
   const [createWorkLoading, setCreateWorkLoading] = useState(false);

@@ -1,11 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Paper,
-} from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from "@mui/material";
 
 const SimpleTable = ({
   datas,
@@ -20,10 +13,7 @@ const SimpleTable = ({
       <Table>
         <TableBody>
           {datas.map((data) => (
-            <TableRow
-              key={data.key}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
+            <TableRow key={data.key} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell component="th" scope="data">
                 {data.key}
               </TableCell>

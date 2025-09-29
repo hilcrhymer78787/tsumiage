@@ -10,15 +10,8 @@ import { Stack } from "@mui/material";
 const TaskMain = () => {
   const date = dayjs().format("YYYY-MM-DD");
   const { loginInfo } = useLoginInfo();
-  const {
-    tasks,
-    notDoneTasks,
-    doneTasks,
-    notNecessaryTasks,
-    readTasks,
-    isFirstLoading,
-    error,
-  } = useReadTasks();
+  const { tasks, notDoneTasks, doneTasks, notNecessaryTasks, readTasks, isFirstLoading, error } =
+    useReadTasks();
   const [scrollY, setScrollY] = useState(0);
 
   const apiTaskRead = () => readTasks({ date, user_id: loginInfo?.id ?? 0 });
@@ -63,9 +56,7 @@ const TaskMain = () => {
           />
         </Stack>
       </ApiHandle>
-      {process.env.NODE_ENV === "development" && (
-        <pre>{JSON.stringify(tasks, null, 4)}</pre>
-      )}
+      {process.env.NODE_ENV === "development" && <pre>{JSON.stringify(tasks, null, 4)}</pre>}
     </>
   );
 };

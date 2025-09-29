@@ -29,12 +29,7 @@ const ApiHandle = ({
   if (isLoading) {
     return (
       <Box display="flex" justifyContent="center" p={p}>
-        <CircularProgress
-          color="primary"
-          size={40}
-          thickness={4}
-          aria-label="読み込み中"
-        />
+        <CircularProgress color="primary" size={40} thickness={4} aria-label="読み込み中" />
       </Box>
     );
   }

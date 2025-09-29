@@ -1,7 +1,7 @@
 import Layout from "@/layouts/default";
 import FriendList from "@/components/friend/FriendList";
 
-const Friend =() =>{
+const Friend = () => {
   return (
     <Layout>
       <FriendList />

@@ -16,11 +16,7 @@ import { useReadWorkMonth } from "@/data/work/useReadWorkMonth";
 import dayjs from "dayjs";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
 
-const AppInit = ({
-  setIsAuth,
-}: {
-  setIsAuth: Dispatch<SetStateAction<boolean | null>>;
-}) => {
+const AppInit = ({ setIsAuth }: { setIsAuth: Dispatch<SetStateAction<boolean | null>> }) => {
   const { bearerAuth } = useBearerAuth();
   const { readWorkMonth } = useReadWorkMonth();
   const { loginInfo } = useLoginInfo();

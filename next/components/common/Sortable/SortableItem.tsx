@@ -9,8 +9,7 @@ export const SortableItem = ({
     name: string;
   };
 }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: item.id });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
 
   return (
     <div

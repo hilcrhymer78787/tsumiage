@@ -1,12 +1,6 @@
 import { Typography } from "@mui/material";
 
-const NoData = ({
-  txt,
-  testId = "NoData",
-}: {
-  txt?: string;
-  testId?: string;
-}) => {
+const NoData = ({ txt, testId = "NoData" }: { txt?: string; testId?: string }) => {
   if (!txt) return <></>;
   return (
     <Typography data-testid={testId} sx={{ p: 5 }}>

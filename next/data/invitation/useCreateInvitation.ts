@@ -7,8 +7,8 @@ import { CmnRes } from "@/data/types/cmnRes";
 type ApiReq = {
   email: string;
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useCreateInvitation = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);

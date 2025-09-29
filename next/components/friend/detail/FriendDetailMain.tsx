@@ -8,8 +8,7 @@ import { useRouter } from "next/router";
 
 const FriendDetailMain = () => {
   const router = useRouter();
-  const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
-    useReadWorkMonth();
+  const { calendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } = useReadWorkMonth();
 
   const userId = useMemo(() => {
     return Number(router.query.id);

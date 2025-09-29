@@ -15,13 +15,8 @@ const CalendarMain = () => {
   const router = useRouter();
   const { loginInfo } = useLoginInfo();
   const { resetWork, resetWorkLoading } = useResetWork();
-  const {
-    calendars,
-    myTomonthCalendars,
-    readWorkMonthLoading,
-    readWorkMonthError,
-    readWorkMonth,
-  } = useReadWorkMonth();
+  const { calendars, myTomonthCalendars, readWorkMonthLoading, readWorkMonthError, readWorkMonth } =
+    useReadWorkMonth();
 
   const year = useMemo(() => {
     return Number(router.query.year);
@@ -42,8 +37,7 @@ const CalendarMain = () => {
 
   const displayCalendars = useMemo(() => {
     const isTomonth =
-      Number(dayjs().format("YYYY")) === year &&
-      Number(dayjs().format("M")) === month;
+      Number(dayjs().format("YYYY")) === year && Number(dayjs().format("M")) === month;
     return isTomonth ? myTomonthCalendars : calendars;
   }, [calendars, month, myTomonthCalendars, year]);
 

@@ -1,10 +1,4 @@
-import {
-  Button,
-  Card,
-  CardHeader,
-  Dialog,
-  Stack,
-} from "@mui/material";
+import { Button, Card, CardHeader, Dialog, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
@@ -16,14 +10,8 @@ import { useReadInvitation } from "@/data/invitation/useReadInvitation";
 import ApiHandle from "@/components/common/ApiHandle";
 
 const FriendList = () => {
-  const {
-    fromFriends,
-    nowFriends,
-    toFriends,
-    readInvitation,
-    error,
-    isFirstLoading,
-  } = useReadInvitation();
+  const { fromFriends, nowFriends, toFriends, readInvitation, error, isFirstLoading } =
+    useReadInvitation();
 
   const [createInvitationDialog, setCreateInvitationDialog] = useState(false);
 
@@ -38,7 +26,7 @@ const FriendList = () => {
         <CardHeader
           action={
             <Button onClick={() => setCreateInvitationDialog(true)}>
-              <AddIcon  />
+              <AddIcon />
               申請
             </Button>
           }
@@ -53,11 +41,7 @@ const FriendList = () => {
           p={5}
         >
           {nowFriends?.map((friend) => (
-            <FriendItemNow
-              friendRead={readInvitation}
-              friend={friend}
-              key={friend.id}
-            />
+            <FriendItemNow friendRead={readInvitation} friend={friend} key={friend.id} />
           ))}
         </ApiHandle>
       </Card>
@@ -65,11 +49,7 @@ const FriendList = () => {
         <Card>
           <CardHeader title="友達申請が来ています" />
           {fromFriends.map((friend) => (
-            <FriendItemFrom
-              friendRead={readInvitation}
-              friend={friend}
-              key={friend.id}
-            />
+            <FriendItemFrom friendRead={readInvitation} friend={friend} key={friend.id} />
           ))}
         </Card>
       )}
@@ -77,11 +57,7 @@ const FriendList = () => {
         <Card>
           <CardHeader title="友達申請中" />
           {toFriends.map((friend) => (
-            <FriendItemTo
-              friendRead={readInvitation}
-              friend={friend}
-              key={friend.id}
-            />
+            <FriendItemTo friendRead={readInvitation} friend={friend} key={friend.id} />
           ))}
         </Card>
       )}

@@ -49,12 +49,7 @@ const Mypage = () => {
           </Button>
         </CardActions>
         <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-          {isOpen && (
-            <CreateUser
-              loginInfo={loginInfo}
-              onCloseMyself={() => setIsOpen(false)}
-            />
-          )}
+          {isOpen && <CreateUser loginInfo={loginInfo} onCloseMyself={() => setIsOpen(false)} />}
         </Dialog>
       </Card>
     </Layout>

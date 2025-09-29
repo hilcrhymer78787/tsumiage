@@ -1,18 +1,18 @@
 {
-    "extends": "next/core-web-vitals",
-    "rules": {
-        "prefer-const": "error",
-        "no-var": "error",
-        "quotes": "error",
-        "no-multiple-empty-lines": [
-            "error",
-            {
-                "max": 1,
-                "maxEOF": 0
-            }
-        ],
-        "semi": "error",
-        "react/jsx-boolean-value": "error",
-        "react/jsx-curly-brace-presence": "error"
-    }
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "rules": {
+    "prefer-const": "error",
+    "no-var": "error",
+    "quotes": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 0
+      }
+    ],
+    "semi": "error",
+    "react/jsx-boolean-value": "error",
+    "react/jsx-curly-brace-presence": "error"
+  }
 }

@@ -8,8 +8,8 @@ import { CmnRes } from "@/data/types/cmnRes";
 type ApiReq = {
   ids: number[];
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useSortTasks = () => {
   const { errHandler } = useErrHandler();
   const { setSnackbar } = useSnackbar();

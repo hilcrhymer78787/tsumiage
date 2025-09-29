@@ -19,13 +19,7 @@ import { useRouter } from "next/router";
 import { Friend } from "@/data/types/friend";
 import { useSnackbar } from "@/data/common/useSnackbar";
 
-const FriendItemNow = ({
-  friend,
-  friendRead,
-}: {
-  friend: Friend;
-  friendRead: () => void;
-}) => {
+const FriendItemNow = ({ friend, friendRead }: { friend: Friend; friendRead: () => void }) => {
   const { setSnackbar } = useSnackbar();
   const router = useRouter();
   const { deleteInvitation, isLoading } = useDeleteInvitation();
@@ -53,10 +47,7 @@ const FriendItemNow = ({
 
   return (
     <ListItem sx={{ p: 0 }}>
-      <Swiper
-        slidesPerView="auto"
-        style={{ width: "100%", alignItems: "stretch" }}
-      >
+      <Swiper slidesPerView="auto" style={{ width: "100%", alignItems: "stretch" }}>
         <SwiperSlide style={{ width: "100%", height: "auto" }}>
           <ListItemButton onClick={onClickList}>
             <ListItemAvatar>

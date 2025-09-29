@@ -49,11 +49,7 @@ const Pagination = ({
   };
 
   return (
-    <Box
-      className="flexBetween"
-      height={`${PAGINATION_HEIGHT}px`}
-      sx={{ pr: 2 }}
-    >
+    <Box className="flexBetween" height={`${PAGINATION_HEIGHT}px`} sx={{ pr: 2 }}>
       <Box className="flexStart">
         <IconButton onClick={onClickPrevMonth}>
           <NavigateBeforeIcon sx={{ fontSize }} />

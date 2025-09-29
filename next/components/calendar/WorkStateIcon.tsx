@@ -18,12 +18,7 @@ const WORK_STATES: {
 const WorkStateIcon = ({ state }: { state: WorkState }) => {
   const iconData = WORK_STATES.find((e) => e.value === state);
   if (!iconData) return <></>;
-  return (
-    <iconData.icon
-      color={iconData.color}
-      sx={{ opacity: iconData.opacity }}
-    />
-  );
+  return <iconData.icon color={iconData.color} sx={{ opacity: iconData.opacity }} />;
 };
 
 export default WorkStateIcon;

@@ -9,8 +9,8 @@ type ApiReq = {
   id?: number;
   name: string;
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useCreateTask = () => {
   const { errHandler } = useErrHandler();
   const [createTaskLoading, setCreateTaskLoading] = useState(false);

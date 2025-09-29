@@ -1,12 +1,4 @@
-import {
-  AppBar,
-  Button,
-  Container,
-  Dialog,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Button, Container, Dialog, IconButton, Toolbar, Typography } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/Add";
 import CreateTask from "@/components/task/CreateTask";
@@ -16,13 +8,7 @@ import { useMedia } from "@/data/media/useMedia";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const TaskHeader = ({
-  isGray,
-  apiTaskRead,
-}: {
-  isGray: boolean;
-  apiTaskRead: () => void;
-}) => {
+const TaskHeader = ({ isGray, apiTaskRead }: { isGray: boolean; apiTaskRead: () => void }) => {
   const router = useRouter();
   const { isPc } = useMedia();
   const [createTaskDialog, setCreateTaskDialog] = useState(false);
@@ -34,11 +20,7 @@ const TaskHeader = ({
       }
     : {};
   return (
-    <AppBar
-      style={style}
-      position="fixed"
-      sx={{ paddingLeft: isPc ? `${NAV_WIDTH}px` : 0 }}
-    >
+    <AppBar style={style} position="fixed" sx={{ paddingLeft: isPc ? `${NAV_WIDTH}px` : 0 }}>
       <Container sx={{ p: "0 10px" }} maxWidth="lg">
         <Toolbar className="flexBetween" disableGutters>
           <IconButton onClick={() => router.push("/task/sort")}>
@@ -50,10 +32,7 @@ const TaskHeader = ({
           </Button>
         </Toolbar>
       </Container>
-      <Dialog
-        open={createTaskDialog}
-        onClose={() => setCreateTaskDialog(false)}
-      >
+      <Dialog open={createTaskDialog} onClose={() => setCreateTaskDialog(false)}>
         {createTaskDialog && (
           <CreateTask
             onCloseMyself={() => {

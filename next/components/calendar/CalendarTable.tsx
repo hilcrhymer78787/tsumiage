@@ -8,9 +8,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import Pagination, {
-  PAGINATION_HEIGHT,
-} from "@/components/calendar/Pagination";
+import Pagination, { PAGINATION_HEIGHT } from "@/components/calendar/Pagination";
 
 import { BOTTOM_NAV_HEIGHT } from "@/plugins/theme";
 import CalendarTableRow from "@/components/calendar/CalendarTableRow";
@@ -57,10 +55,7 @@ const CalendarTable = ({
 
   return (
     <>
-      <Pagination
-        onClickReset={onClickReset}
-        resetWorkLoading={resetWorkLoading}
-      />
+      <Pagination onClickReset={onClickReset} resetWorkLoading={resetWorkLoading} />
       <TableContainer
         sx={{
           width: `calc(100vw - ${isPc ? NAV_WIDTH : 0}px)`,
@@ -123,14 +118,11 @@ const CalendarTable = ({
                 setHoverColDate={onSetHoverColDate}
                 sx={{
                   "&:hover .MuiTableCell-root": {
-                    backgroundColor: isPc
-                      ? "rgba(60, 60, 60)"
-                      : "myBgColor.main",
+                    backgroundColor: isPc ? "rgba(60, 60, 60)" : "myBgColor.main",
                   },
                   "& .MuiTableCell-root:hover, & .MuiButton-root:hover": {
                     backgroundColor: "rgba(120, 120, 120)",
                     cursor: "pointer",
-                    
                   },
                 }}
               />

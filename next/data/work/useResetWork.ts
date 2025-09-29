@@ -5,8 +5,8 @@ import { Success } from "@/data/types/success";
 import { CmnErr } from "@/data/types/cmnErr";
 import { CmnRes } from "@/data/types/cmnRes";
 type ApiReq = {};
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 
 export const useResetWork = () => {
   const { errHandler } = useErrHandler();

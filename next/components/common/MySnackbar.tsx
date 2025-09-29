@@ -2,9 +2,7 @@ import React from "react";
 import { Alert, Button, Slide, SlideProps, Snackbar } from "@mui/material";
 import { useSnackbar } from "@/data/common/useSnackbar";
 
-const SlideTransition = (props: SlideProps) => (
-  <Slide {...props} direction="left" />
-);
+const SlideTransition = (props: SlideProps) => <Slide {...props} direction="left" />;
 
 const MySnackbar = () => {
   const { snackbars, handleClose } = useSnackbar();

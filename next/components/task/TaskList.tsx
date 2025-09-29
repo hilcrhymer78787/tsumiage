@@ -19,12 +19,7 @@ const TaskList = ({
       <CardHeader title={title} />
       <CardContent sx={{ p: "0 !important" }}>
         {tasks.map((task) => (
-          <TaskItem
-            task={task}
-            date={date}
-            apiTaskRead={apiTaskRead}
-            key={task.id}
-          />
+          <TaskItem task={task} date={date} apiTaskRead={apiTaskRead} key={task.id} />
         ))}
       </CardContent>
     </Card>

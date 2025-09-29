@@ -8,8 +8,8 @@ import { CmnRes } from "@/data/types/cmnRes";
 type ApiReq = {
   invitation_id: number;
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useUpdateInvitation = () => {
   const { setSnackbar } = useSnackbar();
   const { errHandler } = useErrHandler();

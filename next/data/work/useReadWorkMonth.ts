@@ -30,8 +30,7 @@ export const useReadWorkMonth = () => {
   const [readWorkMonthLoading, setReadWorkMonthLoading] = useState(false);
   const [readWorkMonthError, setReadWorkMonthError] = useState("");
   const [calendars, setCalendars] = useState<Calendar[] | null>(null);
-  const [myTomonthCalendars, setMyTomonthCalendars] =
-    useRecoilState(calendarsAtom);
+  const [myTomonthCalendars, setMyTomonthCalendars] = useRecoilState(calendarsAtom);
 
   const readWorkMonth = async (params: ApiReq) => {
     const isMyTomonth =

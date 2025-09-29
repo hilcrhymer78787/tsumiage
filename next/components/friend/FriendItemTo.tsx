@@ -12,13 +12,7 @@ import { Friend } from "@/data/types/friend";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { useSnackbar } from "@/data/common/useSnackbar";
 
-const FriendItemTo = ({
-  friend,
-  friendRead,
-}: {
-  friend: Friend;
-  friendRead: () => void;
-}) => {
+const FriendItemTo = ({ friend, friendRead }: { friend: Friend; friendRead: () => void }) => {
   const { setSnackbar } = useSnackbar();
   const { deleteInvitation, isLoading } = useDeleteInvitation();
   const apiInvitationDelete = async () => {
@@ -33,11 +27,7 @@ const FriendItemTo = ({
       sx={{ p: 0 }}
       secondaryAction={
         <IconButton onClick={apiInvitationDelete}>
-          {isLoading ? (
-            <CircularProgress color="error" size={25} />
-          ) : (
-            <CancelIcon color="error" />
-          )}
+          {isLoading ? <CircularProgress color="error" size={25} /> : <CancelIcon color="error" />}
         </IconButton>
       }
     >

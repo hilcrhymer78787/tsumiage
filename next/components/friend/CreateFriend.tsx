@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  CardActions,
-  CardHeader,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardActions, CardHeader, TextField, Typography } from "@mui/material";
 
 import { CardContent } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
@@ -15,14 +8,8 @@ import { useCreateInvitation } from "@/data/invitation/useCreateInvitation";
 import ErrTxt from "../common/ErrTxt";
 
 const CreateFriend = () => {
-  const {
-    createInvitation,
-    isLoading,
-    emailError,
-    message,
-    setMessage,
-    error,
-  } = useCreateInvitation();
+  const { createInvitation, isLoading, emailError, message, setMessage, error } =
+    useCreateInvitation();
   const [email, setEmail] = useState("");
 
   const onClickCreate = () => {
@@ -69,11 +56,7 @@ const CreateFriend = () => {
             続けて申請
           </LoadingButton>
         ) : (
-          <LoadingButton
-            onClick={onClickCreate}
-            variant="contained"
-            loading={isLoading}
-          >
+          <LoadingButton onClick={onClickCreate} variant="contained" loading={isLoading}>
             申請
             <SendIcon />
           </LoadingButton>

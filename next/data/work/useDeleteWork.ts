@@ -7,8 +7,8 @@ import { CmnRes } from "@/data/types/cmnRes";
 type ApiReq = {
   id: number;
 };
-type ApiRes = CmnRes<Success>
-type ApiErr = CmnErr
+type ApiRes = CmnRes<Success>;
+type ApiErr = CmnErr;
 export const useDeleteWork = () => {
   const { errHandler } = useErrHandler();
   const [isLoading, setIsLoading] = useState(false);

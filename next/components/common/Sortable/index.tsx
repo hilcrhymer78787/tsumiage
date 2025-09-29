@@ -48,11 +48,7 @@ const Sortable = ({
 
   return (
     <>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={items} strategy={verticalListSortingStrategy}>
           <ul style={{ padding: "1rem" }}>
             {items.map((item) => (
@@ -61,9 +57,7 @@ const Sortable = ({
           </ul>
         </SortableContext>
       </DndContext>
-      {process.env.NODE_ENV === "development" && (
-        <pre>{JSON.stringify(items, null, 4)}</pre>
-      )}
+      {process.env.NODE_ENV === "development" && <pre>{JSON.stringify(items, null, 4)}</pre>}
     </>
   );
 };

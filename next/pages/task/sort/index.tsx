@@ -59,9 +59,7 @@ const TaskSort = () => {
     <Layout pcP="80px 0" spP="70px 10px 180px">
       <TaskSortHeader isGray={!!scrollY} />
       <TaskSortContent />
-      {process.env.NODE_ENV === "development" && (
-        <pre>{JSON.stringify(tasks, null, 4)}</pre>
-      )}
+      {process.env.NODE_ENV === "development" && <pre>{JSON.stringify(tasks, null, 4)}</pre>}
     </Layout>
   );
 };

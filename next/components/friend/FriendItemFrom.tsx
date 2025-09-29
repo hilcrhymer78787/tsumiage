@@ -2,26 +2,13 @@ import { LoadingButton } from "@mui/lab";
 import SendIcon from "@mui/icons-material/Send";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UserImg from "@/components/common/UserImg";
-import {
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Card,
-  CardActions,
-  Box,
-} from "@mui/material";
+import { ListItem, ListItemAvatar, ListItemText, Card, CardActions, Box } from "@mui/material";
 import { useDeleteInvitation } from "@/data/invitation/useDeleteInvitation";
 import { Friend } from "@/data/types/friend";
 import { useUpdateInvitation } from "@/data/invitation/useUpdateInvitation";
 import { useSnackbar } from "@/data/common/useSnackbar";
 
-const FriendItemFrom = ({
-  friend,
-  friendRead,
-}: {
-  friend: Friend;
-  friendRead: () => void;
-}) => {
+const FriendItemFrom = ({ friend, friendRead }: { friend: Friend; friendRead: () => void }) => {
   const { setSnackbar } = useSnackbar();
   const { invitation_id, name, user_img, email } = friend;
   const { deleteInvitation, isLoading: deleteLoading } = useDeleteInvitation();

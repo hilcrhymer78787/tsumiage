@@ -1,11 +1,4 @@
-import {
-  Box,
-  Dialog,
-  DialogTitle,
-  SxProps,
-  TableCell,
-  TableRow,
-} from "@mui/material";
+import { Box, Dialog, DialogTitle, SxProps, TableCell, TableRow } from "@mui/material";
 import { TASK_NAME_WIDTH } from "@/components/calendar/CalendarTable";
 
 import { Calendar } from "@/data/types/calendar";
@@ -57,11 +50,7 @@ const CalendarTableRow = ({
           align="center"
           sx={{ backgroundColor: getBgColor(calendar.date) }}
         >
-          <CalendarTableCell
-            taskId={task.id}
-            calendar={calendar}
-            readonly={readonly}
-          />
+          <CalendarTableCell taskId={task.id} calendar={calendar} readonly={readonly} />
         </TableCell>
       ))}
     </TableRow>

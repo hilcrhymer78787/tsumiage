@@ -85,22 +85,11 @@ const Layout = ({
     {
       label: "マイページ",
       value: "/mypage",
-      icon: (
-        <UserImg
-          fileName={loginInfo?.user_img}
-          size="30"
-          borderColor={getColor("/mypage")}
-        />
-      ),
+      icon: <UserImg fileName={loginInfo?.user_img} size="30" borderColor={getColor("/mypage")} />,
     },
   ];
 
-  if (!loginInfo)
-    return isNew ? (
-      <AuthNew setIsNew={setIsNew} />
-    ) : (
-      <Auth setIsNew={setIsNew} />
-    );
+  if (!loginInfo) return isNew ? <AuthNew setIsNew={setIsNew} /> : <Auth setIsNew={setIsNew} />;
 
   if (isPc) {
     return (
@@ -122,10 +111,7 @@ const Layout = ({
             })}
           </List>
         </Drawer>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, paddingLeft: `${NAV_WIDTH}px` }}
-        >
+        <Box component="main" sx={{ flexGrow: 1, paddingLeft: `${NAV_WIDTH}px` }}>
           <Container maxWidth={pcMaxWidth} sx={{ my: 0, p: pcP }}>
             {children}
           </Container>
@@ -136,22 +122,14 @@ const Layout = ({
   return (
     <>
       <Container sx={{ p: spP }}>{children}</Container>
-      <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 2 }}
-        elevation={3}
-      >
+      <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 2 }} elevation={3}>
         <BottomNavigation
           showLabels
           value={router.pathname}
           onChange={(_, value) => onChangeNav(value)}
         >
           {navs.map((nav, i) => (
-            <BottomNavigationAction
-              key={i}
-              label={nav.label}
-              value={nav.value}
-              icon={nav.icon}
-            />
+            <BottomNavigationAction key={i} label={nav.label} value={nav.value} icon={nav.icon} />
           ))}
         </BottomNavigation>
       </Paper>

@@ -101,10 +101,7 @@ const TaskItem = ({
       <ListItemButton onClick={() => setCreateTaskDialog(true)}>
         <ListItemText primary={task.name} />
       </ListItemButton>
-      <Dialog
-        open={createTaskkDialog}
-        onClose={() => setCreateTaskDialog(false)}
-      >
+      <Dialog open={createTaskkDialog} onClose={() => setCreateTaskDialog(false)}>
         {createTaskkDialog && (
           <CreateTask
             onCloseMyself={() => {

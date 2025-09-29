@@ -1,12 +1,4 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardHeader,
-  Container,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Button, Card, CardActions, CardHeader, Container, Stack, TextField } from "@mui/material";
 import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 
 import { LoadingButton } from "@mui/lab";
@@ -17,11 +9,7 @@ import RStack from "./RStack";
 import Center from "./Center";
 import ErrTxt from "./ErrTxt";
 
-const Auth = ({
-  setIsNew,
-}: {
-  setIsNew: Dispatch<SetStateAction<boolean>>;
-}) => {
+const Auth = ({ setIsNew }: { setIsNew: Dispatch<SetStateAction<boolean>> }) => {
   const {
     basicAuth,
     isLoading: basicAuthLoading,
@@ -78,11 +66,7 @@ const Auth = ({
             )}
           </Stack>
           <CardActions>
-            <Button
-              onClick={() => setIsNew(true)}
-              color="inherit"
-              variant="contained"
-            >
+            <Button onClick={() => setIsNew(true)} color="inherit" variant="contained">
               新規登録
             </Button>
             <LoadingButton
