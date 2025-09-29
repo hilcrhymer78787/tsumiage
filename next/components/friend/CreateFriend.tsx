@@ -45,7 +45,7 @@ const CreateFriend = () => {
         ) : (
           <TextField
             onKeyPress={(e) => {
-              if (e.key === "Enter") onClickCreate();
+              if (e?.key === "Enter") onClickCreate();
             }}
             error={!!emailError}
             helperText={emailError}

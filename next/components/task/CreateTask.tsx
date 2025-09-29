@@ -43,7 +43,7 @@ const CreateTask = ({
   };
 
   const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
-    if (e?.keyCode === 13) submit();
+    if (e?.key === "Enter") submit();
   };
 
   return (

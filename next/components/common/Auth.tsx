@@ -36,7 +36,7 @@ const Auth = ({
   const onClickBasicAuth = () => basicAuth({ email, password });
 
   const onKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter") onClickBasicAuth();
+    if (e?.key === "Enter") onClickBasicAuth();
   };
 
   return (
