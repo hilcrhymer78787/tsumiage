@@ -12,6 +12,8 @@ class Task extends Model
 
     protected $table = 'tasks';
 
+    protected $primaryKey = 'task_id';
+
     protected $fillable = [
         'task_id',
         'task_user_id',
