@@ -2,19 +2,22 @@ import { Avatar } from "@mui/material";
 import { useMemo } from "react";
 
 const UserImg = ({
+  src,
   fileName,
   size,
   borderColor,
 }: {
-  fileName: string | undefined;
+  src?: string;
+  fileName?: string;
   size: string;
   borderColor?: string;
 }) => {
   const userImg = useMemo(() => {
+    if (!!src) return src;
     if (!fileName) return "";
     if (fileName.slice(0, 4) == "http") return fileName;
     return process.env.NEXT_PUBLIC_API_BASE_URL + "/storage/" + fileName;
-  }, [fileName]);
+  }, [fileName, src]);
 
   return (
     <Avatar

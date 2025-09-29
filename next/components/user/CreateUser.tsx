@@ -104,34 +104,17 @@ const CreateUser = ({
 
   const title = loginInfo ? "ユーザー編集" : "新規ユーザー登録";
 
-  useEffect(() => {
-    if (loginInfo) {
-      setId(loginInfo.id);
-      setName(loginInfo.name);
-      setEmail(loginInfo.email);
-      setUserImg(loginInfo.user_img);
-      setPasswordEditMode(false);
-    }
-  }, [loginInfo]);
   return (
     <>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent sx={{ p: 3 }}>
         <Stack gap={3}>
           <RStack gap={3}>
-            {!!uploadedImage ? (
-              <Avatar
-                src={uploadedImage}
-                sx={{
-                  width: "70px",
-                  height: "70px",
-                  border: "2px solid",
-                  borderColor: "primary.main",
-                }}
-              />
-            ) : (
-              <UserImg fileName={loginInfo?.user_img} size="70" />
-            )}
+            <UserImg
+              src={uploadedImage}
+              fileName={loginInfo?.user_img}
+              size="70"
+            />
             <Button onClick={() => inputRef?.click()}>
               画像を選択
               <FileUploadIcon />
@@ -184,7 +167,7 @@ const CreateUser = ({
               </Button>
             </RStack>
           )}
-          <ErrTxt txt={message} p={0}/>
+          <ErrTxt txt={message} p={0} />
           <ErrTxt txt={deleteError} />
         </Stack>
       </DialogContent>
