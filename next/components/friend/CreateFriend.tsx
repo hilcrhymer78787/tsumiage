@@ -58,7 +58,7 @@ const CreateFriend = () => {
       </CardContent>
 
       <CardActions disableSpacing>
-        <Box></Box>
+        <Box />
         {!!message ? (
           <LoadingButton
             onClick={onClickReset}

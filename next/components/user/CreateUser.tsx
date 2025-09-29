@@ -13,7 +13,7 @@ import {
   Dispatch,
   KeyboardEvent,
   SetStateAction,
-  useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -28,9 +28,6 @@ import { useDeleteUser } from "@/data/user/useDeleteUser";
 import { LoginInfo } from "@/data/types/loginInfo";
 import RStack from "@/components/common/RStack";
 import { useLoginInfo } from "@/data/common/useLoginInfo";
-
-let inputRef: HTMLInputElement | null = null;
-let file: File;
 
 const CreateUser = ({
   onCloseMyself,
@@ -47,7 +44,6 @@ const CreateUser = ({
     nameError,
     passwordError,
     createUser,
-    error,
     isLoading: createLoading,
   } = useCreateUser();
   const {
@@ -55,23 +51,27 @@ const CreateUser = ({
     error: deleteError,
     isLoading: deleteLoading,
   } = useDeleteUser();
-  const [uploadedImage, setUploadedImage] = useState<any>("");
-  const [passwordEditMode, setPasswordEditMode] = useState(true);
-  const [id, setId] = useState(0);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [uploadedImage, setUploadedImage] = useState<string>("");
+  const [passwordEditMode, setPasswordEditMode] = useState(!loginInfo);
+  const [name, setName] = useState(loginInfo?.name ?? "");
+  const [email, setEmail] = useState(loginInfo?.email ?? "");
+  const [userImg, setUserImg] = useState(loginInfo?.user_img ?? "");
   const [password, setPassword] = useState("");
-  const [user_img, setUserImg] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+
   const { logout } = useLoginInfo();
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const apiCreateUser = async () => {
+    if (!file) return; // ファイル必須ならチェック
     const res = await createUser({
-      id,
+      id: loginInfo?.id ?? 0,
       name,
       email,
       password,
-      user_img,
+      user_img: userImg,
       passwordAgain,
       file,
       passwordEditMode,
@@ -80,14 +80,17 @@ const CreateUser = ({
   };
 
   const fileSelected = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    file = e.target.files[0];
-    setUserImg(dayjs().format("YYYYMMDDHHmmss") + file.name);
-    const reader: FileReader = new FileReader();
-    reader.onload = (e: ProgressEvent<FileReader>) => {
-      setUploadedImage(e.target?.result);
+    const selectedFile = e.target.files?.[0];
+    if (!selectedFile) return;
+
+    setFile(selectedFile);
+    setUserImg(dayjs().format("YYYYMMDDHHmmss") + selectedFile.name);
+
+    const reader = new FileReader();
+    reader.onload = (ev: ProgressEvent<FileReader>) => {
+      setUploadedImage(ev.target?.result as string);
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(selectedFile);
   };
 
   const onClickDeleteUser = async () => {
@@ -99,7 +102,7 @@ const CreateUser = ({
   };
 
   const onKeyDown = (e?: KeyboardEvent<HTMLDivElement>) => {
-    if (e?.keyCode === 13) apiCreateUser();
+    if (e?.key === "Enter") apiCreateUser();
   };
 
   const title = loginInfo ? "ユーザー編集" : "新規ユーザー登録";
@@ -115,16 +118,11 @@ const CreateUser = ({
               fileName={loginInfo?.user_img}
               size="70"
             />
-            <Button onClick={() => inputRef?.click()}>
+            <Button onClick={() => inputRef.current?.click()}>
               画像を選択
               <FileUploadIcon />
             </Button>
-            <input
-              onChange={fileSelected}
-              type="file"
-              hidden
-              ref={(refParam) => (inputRef = refParam)}
-            />
+            <input onChange={fileSelected} type="file" hidden ref={inputRef} />
           </RStack>
           <TextField
             onKeyDown={onKeyDown}
@@ -142,7 +140,7 @@ const CreateUser = ({
             onChange={(e) => setEmail(e.currentTarget.value)}
             label="メールアドレス"
           />
-          {passwordEditMode && (
+          {passwordEditMode ? (
             <>
               <TextField
                 onKeyDown={onKeyDown}
@@ -159,8 +157,7 @@ const CreateUser = ({
                 label="パスワード確認"
               />
             </>
-          )}
-          {!passwordEditMode && (
+          ) : (
             <RStack justifyContent="flex-end">
               <Button onClick={() => setPasswordEditMode(true)}>
                 パスワードを編集
@@ -192,7 +189,7 @@ const CreateUser = ({
             ユーザー削除
           </LoadingButton>
         )}
-        <Box></Box>
+        <Box />
         <LoadingButton
           onClick={apiCreateUser}
           loading={createLoading}

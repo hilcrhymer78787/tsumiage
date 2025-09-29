@@ -57,7 +57,7 @@ const FriendItemFrom = ({
           拒否
           <DeleteIcon />
         </LoadingButton>
-        <Box></Box>
+        <Box />
         <LoadingButton
           onClick={onClickUpdate}
           variant="contained"

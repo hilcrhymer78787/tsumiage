@@ -73,7 +73,7 @@ const CreateTask = ({
             <DeleteIcon />
           </LoadingButton>
         )}
-        <Box></Box>
+        <Box />
         <LoadingButton
           variant="contained"
           onClick={submit}

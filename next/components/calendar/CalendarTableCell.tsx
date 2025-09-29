@@ -37,8 +37,8 @@ const CalendarTableCell = ({
     setIsLoading(false);
   };
 
-  if (dayjs(date).isAfter(dayjs(), "day")) return <Box></Box>;
-  if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <Box></Box>;
+  if (dayjs(date).isAfter(dayjs(), "day")) return <Box />;
+  if (dayjs(createdAt).isAfter(dayjs(date), "day")) return <Box />;
   if (isLoading)
     return (
       <Box className="flexCenter">
