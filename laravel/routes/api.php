@@ -41,7 +41,7 @@ Route::post('/user/create', [UserCreateController::class, 'index']); //✅⭕️
 Route::middleware([CheckToken::class])->group(function () {
 
     // task
-    Route::get('/task/read', [TaskReadController::class, 'index']); //✅
+    Route::get('/task/read', [TaskReadController::class, 'index']); //✅⭕️
     Route::post('/task/create', [TaskCreateController::class, 'index']); //✅
     Route::post('/task/sort', [TaskSortController::class, 'index']); //✅
     Route::delete('/task/delete', [TaskDeleteController::class, 'index']); //✅

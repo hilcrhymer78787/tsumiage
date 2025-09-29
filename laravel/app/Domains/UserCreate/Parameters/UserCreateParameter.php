@@ -19,9 +19,9 @@ readonly class UserCreateParameter
             id: $validated['id'] ?? null,
             name: $validated['name'],
             email: $validated['email'],
-            password: $validated['password'],
-            userImg: $validated['user_img'],
-            imgOldname: $validated['img_oldname'],
+            password: $validated['password'] ?? null,
+            userImg: $validated['user_img'] ?? null,
+            imgOldname: $validated['img_oldname'] ?? null,
         );
     }
 }
