@@ -25,11 +25,7 @@ use App\Http\Controllers\InvitationUpdateController;
 use App\Http\Controllers\InvitationDeleteController;
 
 // テストルート
-Route::get('/test', function () {
-    return response()->json([
-        'message' => 'this is test',
-    ]);
-});
+Route::get('/test', fn() => ['message' => 'this is test']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -44,7 +40,7 @@ Route::middleware([CheckToken::class])->group(function () {
     // task
     Route::get('/task/read', [TaskReadController::class, 'index']); //✅⭕️
     Route::post('/task/create', [TaskCreateController::class, 'index']); //✅⭕️
-    Route::post('/task/sort', [TaskSortController::class, 'index']); //✅
+    Route::post('/task/sort', [TaskSortController::class, 'index']); //✅⭕️
     Route::delete('/task/delete', [TaskDeleteController::class, 'index']); ///✅⭕️
 
     // user
