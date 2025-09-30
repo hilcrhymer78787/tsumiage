@@ -16,7 +16,7 @@ const FileUploader = ({
   setImage: Dispatch<SetStateAction<string>>;
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [uploadedImage, setUploadedImage] = useState<string>("");
+  const [uploadedImage, setUploadedImage] = useState("");
 
   const fileSelected = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];

@@ -17,8 +17,7 @@ import { useLoginInfo } from "@/data/common/useLoginInfo";
 
 const MypageMain = () => {
   const { loginInfo, logout } = useLoginInfo();
-  //   TODO useState<
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onClickLogout = () => {
     if (!confirm("ログアウトしますか？")) return;
