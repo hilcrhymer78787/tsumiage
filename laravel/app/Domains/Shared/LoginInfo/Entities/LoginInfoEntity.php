@@ -1,5 +1,4 @@
 <?php
-// TODO リクエストは全体的にもう少しちゃんと書けそう
 
 namespace App\Domains\Shared\LoginInfo\Entities;
 
