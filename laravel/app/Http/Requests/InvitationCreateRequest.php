@@ -9,7 +9,7 @@ class InvitationCreateRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|email|max:255',
         ];
     }
 
@@ -18,6 +18,7 @@ class InvitationCreateRequest extends BaseFormRequest
         return [
             'email.required' => 'email は必須です。',
             'email.email' => 'email はメールアドレス形式でなければなりません。',
+            'email.max' => 'email は255文字以内で入力してください。',
         ];
     }
 }
