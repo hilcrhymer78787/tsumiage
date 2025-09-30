@@ -48,7 +48,7 @@ Route::middleware([CheckToken::class])->group(function () {
 
     // user
     Route::get('/user/auth/bearer', [AuthBearerController::class, 'index']); //✅⭕️
-    Route::delete('/user/delete', [UserDeleteController::class, 'index']); //✅
+    Route::delete('/user/delete', [UserDeleteController::class, 'index']); //✅⭕️
 
     // work
     Route::get('/work/read/month', [WorkReadMonthController::class, 'index']); //✅
