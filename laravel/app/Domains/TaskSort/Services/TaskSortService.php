@@ -8,7 +8,6 @@ use App\Domains\TaskSort\Parameters\TaskSortParameter;
 use App\Domains\TaskSort\Queries\TaskSortQuery;
 use App\Domains\Shared\LoginInfo\Services\LoginInfoService;
 use App\Http\Requests\TaskSortRequest;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class TaskSortService
 {
