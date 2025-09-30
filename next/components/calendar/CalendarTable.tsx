@@ -61,7 +61,6 @@ const CalendarTable = ({
           height: `calc(100vh - ${PAGINATION_HEIGHT}px - ${
             isPc ? 0 : BOTTOM_NAV_HEIGHT + 50
           }px - env(safe-area-inset-bottom))`,
-          // TODO +50を消したい
         }}
       >
         <Table
