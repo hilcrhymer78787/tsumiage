@@ -2,23 +2,18 @@
 
 namespace App\Http\Requests\Base;
 
+use App\Http\Exceptions\AppHttpException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class BaseFormRequest extends FormRequest
 {
     protected function failedValidation(Validator $validator)
     {
-        // TODO: ErrorResource を使いたい
-        throw new HttpResponseException(
-            response()->json([
-                'data' => [
-                    'status'  => 422,
-                    'message'    => 'バリデーションエラーが発生しました。',
-                    'errors'  => $validator->errors(),
-                ]
-            ], 422)
+        throw new AppHttpException(
+            422,
+            "バリデーションエラーが発生しました。",
+            ['errors'  => $validator->errors()]
         );
     }
 }

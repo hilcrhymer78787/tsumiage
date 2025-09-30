@@ -37,7 +37,7 @@ export const useCreateTask = () => {
         return res;
       })
       .catch((err: ApiErr) => {
-        errHandler(err, setError);
+        errHandler(err, setError, true);
       })
       .finally(() => {
         setCreateTaskLoading(false);
