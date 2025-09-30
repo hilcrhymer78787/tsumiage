@@ -2,7 +2,6 @@
 // TODO: Log修正
 
 use Illuminate\Support\Facades\Log;
-use Throwable;
 
 if (! function_exists('debugError')) {
     function debugError(Throwable $error): void

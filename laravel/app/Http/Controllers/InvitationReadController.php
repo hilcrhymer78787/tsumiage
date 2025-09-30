@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Domains\InvitationRead\Services\InvitationReadService;
-use App\Http\Exceptions\AppHttpException;
 use App\Http\Resources\Common\ErrorResource;
 use App\Http\Resources\InvitationReadResource;
 use Illuminate\Foundation\Http\FormRequest;
@@ -19,12 +18,9 @@ class InvitationReadController extends Controller
     }
 
     // 型のバリデーションを行う
-    public function index(FormRequest $request): InvitationReadResource | ErrorResource
+    public function index(FormRequest $request) : InvitationReadResource | ErrorResource
     {
         try {
-            // TODO 削除
-            throw new AppHttpException(404, 'エラーテスト');
-
             $invitationReadEntity = $this->service->invitationRead($request);
             return new InvitationReadResource($invitationReadEntity);
         } catch (Throwable $error) {
