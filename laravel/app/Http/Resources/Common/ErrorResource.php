@@ -51,7 +51,7 @@ class ErrorResource extends JsonResource
      */
     private function getFormatDetail(): ?array
     {
-        if (app()->isProduction()) return null;
+        if (!app()->environment('local')) return null;
         return [
             'file' => $this->resource->getFile(),
             'line' => $this->resource->getLine(),
