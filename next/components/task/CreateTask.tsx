@@ -11,8 +11,8 @@ import { useState } from "react";
 import { Task } from "@/data/types/task";
 
 const CreateTask = ({ task, onCloseMyself }: { task: Task | null; onCloseMyself: () => void }) => {
-  const { nameError, createTaskLoading, createTask, createTaskError } = useCreateTask();
-  const { deleteTask, deleteTaskLoading } = useDeleteTask();
+  const { nameError, createTaskLoading, createTask, error: createTaskError } = useCreateTask();
+  const { deleteTask, isLoading: deleteTaskLoading } = useDeleteTask();
   const [name, setName] = useState(task?.name ?? "");
 
   const onClickDelete = async () => {

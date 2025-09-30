@@ -45,7 +45,7 @@ Route::middleware([CheckToken::class])->group(function () {
     Route::get('/task/read', [TaskReadController::class, 'index']); //✅⭕️
     Route::post('/task/create', [TaskCreateController::class, 'index']); //✅⭕️
     Route::post('/task/sort', [TaskSortController::class, 'index']); //✅
-    Route::delete('/task/delete', [TaskDeleteController::class, 'index']); //✅
+    Route::delete('/task/delete', [TaskDeleteController::class, 'index']); ///✅⭕️
 
     // user
     Route::get('/user/auth/bearer', [AuthBearerController::class, 'index']); //✅⭕️

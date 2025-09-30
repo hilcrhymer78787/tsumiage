@@ -15,10 +15,10 @@ export const useCreateTask = () => {
   const { errHandler } = useErrHandler();
   const [createTaskLoading, setCreateTaskLoading] = useState(false);
   const { setSnackbar } = useSnackbar();
-  const [createTaskError, setCreateTaskError] = useState("");
+  const [error, setError] = useState("");
   const [nameError, setNameError] = useState("");
   const createTask = async (data: ApiReq) => {
-    setCreateTaskError("");
+    setError("");
     setNameError("");
     let isError = false;
     if (!data.name) {
@@ -37,7 +37,7 @@ export const useCreateTask = () => {
         return res;
       })
       .catch((err: ApiErr) => {
-        errHandler(err, setCreateTaskError);
+        errHandler(err, setError);
       })
       .finally(() => {
         setCreateTaskLoading(false);
@@ -46,7 +46,7 @@ export const useCreateTask = () => {
 
   return {
     createTask,
-    createTaskError,
+    error,
     createTaskLoading,
     nameError,
   };

@@ -24,4 +24,8 @@ class TaskQuery
     {
         Task::where('task_user_id', $userId)->delete();
     }
+    public function getTaskById(int $taskId): ?Task
+    {
+        return Task::where('task_id', $taskId)->first();
+    }
 }

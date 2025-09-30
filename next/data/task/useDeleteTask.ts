@@ -13,11 +13,11 @@ type ApiErr = CmnErr;
 export const useDeleteTask = () => {
   const { errHandler } = useErrHandler();
   const { setSnackbar } = useSnackbar();
-  const [deleteTaskLoading, setDeleteTaskLoading] = useState(false);
-  const [deleteTaskError, setDeleteTaskError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const deleteTask = async (data: ApiReq) => {
-    setDeleteTaskError("");
-    setDeleteTaskLoading(true);
+    setError("");
+    setIsLoading(true);
     return api({
       url: "/api/task/delete",
       method: "DELETE",
@@ -28,16 +28,16 @@ export const useDeleteTask = () => {
         return res;
       })
       .catch((err: ApiErr) => {
-        errHandler(err, setDeleteTaskError);
+        errHandler(err, setError);
       })
       .finally(() => {
-        setDeleteTaskLoading(false);
+        setIsLoading(false);
       });
   };
 
   return {
     deleteTask,
-    deleteTaskError,
-    deleteTaskLoading,
+    error,
+    isLoading,
   };
 };
