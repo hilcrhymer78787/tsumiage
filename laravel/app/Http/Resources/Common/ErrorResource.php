@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\Common;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Throwable;
 
-// TODO: もっと綺麗に書けそう
-// TODO: 情報漏洩対策
 class ErrorResource extends JsonResource
 {
     public function __construct(Throwable $resource)
@@ -24,11 +24,7 @@ class ErrorResource extends JsonResource
             'status' => $this->getStatusCode(),
             'message' => $resource->getMessage(),
             'data' => method_exists($resource, 'getData') ? $resource->getData() : null,
-            'detail'  => [
-                'file'  => $resource->getFile(),
-                'line'  => $resource->getLine(),
-                'trace' => $resource->getTraceAsString(),
-            ],
+            'detail' => $this->getFormatDetail(),
         ];
     }
 
@@ -45,7 +41,21 @@ class ErrorResource extends JsonResource
      */
     private function getStatusCode(): int
     {
-        $resource = $this->resource;
-        return method_exists($resource, 'getStatusCode') ? $resource->getStatusCode() : 500;
+        return method_exists($this->resource, 'getStatusCode')
+            ? $this->resource->getStatusCode()
+            : 500;
+    }
+
+    /**
+     * 詳細情報を整形（本番環境では非表示にする想定）
+     */
+    private function getFormatDetail(): ?array
+    {
+        if (app()->isProduction()) return null;
+        return [
+            'file' => $this->resource->getFile(),
+            'line' => $this->resource->getLine(),
+            'trace' => $this->resource->getTraceAsString(),
+        ];
     }
 }
