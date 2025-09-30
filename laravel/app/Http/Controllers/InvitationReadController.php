@@ -10,12 +10,7 @@ use Throwable;
 
 class InvitationReadController extends Controller
 {
-    private InvitationReadService $service;
-
-    public function __construct(InvitationReadService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private InvitationReadService $service) {}
 
     // 型のバリデーションを行う
     public function index(FormRequest $request) : InvitationReadResource | ErrorResource

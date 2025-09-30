@@ -10,12 +10,7 @@ use Throwable;
 
 class WorkResetController extends Controller
 {
-    private WorkResetService $service;
-
-    public function __construct(WorkResetService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private WorkResetService $service) {}
 
     public function index(FormRequest $request): SuccessResource | ErrorResource
     {

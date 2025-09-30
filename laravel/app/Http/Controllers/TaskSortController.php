@@ -11,12 +11,7 @@ use Throwable;
 
 class TaskSortController extends Controller
 {
-    private TaskSortService $service;
-
-    public function __construct(TaskSortService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private TaskSortService $service) {}
 
     public function index(TaskSortRequest $request): SuccessResource | ErrorResource
     {

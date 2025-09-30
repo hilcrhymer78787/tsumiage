@@ -11,12 +11,7 @@ use Throwable;
 
 class InvitationCreateController extends Controller
 {
-    private InvitationCreateService $service;
-
-    public function __construct(InvitationCreateService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private InvitationCreateService $service) {}
 
     public function index(InvitationCreateRequest $request): SuccessResource | ErrorResource
     {

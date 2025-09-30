@@ -10,12 +10,7 @@ use Throwable;
 
 class UserDeleteController extends Controller
 {
-    private UserDeleteService $service;
-
-    public function __construct(UserDeleteService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private UserDeleteService $service) {}
 
     public function index(FormRequest $request): LoginInfoResource | ErrorResource
     {

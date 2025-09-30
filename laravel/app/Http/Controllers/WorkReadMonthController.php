@@ -11,12 +11,7 @@ use Throwable;
 
 class WorkReadMonthController extends Controller
 {
-    private WorkReadMonthService $service;
-
-    public function __construct(WorkReadMonthService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private WorkReadMonthService $service) {}
 
     // 型のバリデーションを行う
     public function index(WorkReadMonthRequest $request): WorkReadMonthResource | ErrorResource

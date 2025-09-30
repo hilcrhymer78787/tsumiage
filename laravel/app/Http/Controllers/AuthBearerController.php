@@ -10,12 +10,7 @@ use Throwable;
 
 class AuthBearerController extends Controller
 {
-    private AuthBearerService $service;
-
-    public function __construct(AuthBearerService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private AuthBearerService $service) {}
 
     public function index(FormRequest $request): LoginInfoResource | ErrorResource
     {

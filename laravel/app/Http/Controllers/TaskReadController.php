@@ -11,12 +11,7 @@ use Throwable;
 
 class TaskReadController extends Controller
 {
-    private TaskReadService $service;
-
-    public function __construct(TaskReadService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private TaskReadService $service) {}
 
     // 型のバリデーションを行う
     public function index(TaskReadRequest $request): TaskReadResource | ErrorResource

@@ -11,12 +11,7 @@ use Throwable;
 
 class TaskCreateController extends Controller
 {
-    private TaskCreateService $service;
-
-    public function __construct(TaskCreateService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private TaskCreateService $service) {}
 
     public function index(TaskCreateRequest $request): SuccessResource | ErrorResource
     {

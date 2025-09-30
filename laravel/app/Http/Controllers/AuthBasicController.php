@@ -12,12 +12,7 @@ use Throwable;
 
 class AuthBasicController extends Controller
 {
-    private AuthBasicService $service;
-
-    public function __construct(AuthBasicService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private AuthBasicService $service) {}
 
     public function index(AuthBasicRequest $request): LoginInfoResource | ErrorResource
     {

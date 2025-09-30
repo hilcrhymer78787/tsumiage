@@ -12,12 +12,7 @@ use Throwable;
 
 class UserCreateController extends Controller
 {
-    private UserCreateService $service;
-
-    public function __construct(UserCreateService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private UserCreateService $service) {}
 
     public function index(UserCreateRequest $request): LoginInfoResource | ErrorResource
     {

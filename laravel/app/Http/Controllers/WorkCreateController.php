@@ -11,12 +11,7 @@ use Throwable;
 
 class WorkCreateController extends Controller
 {
-    private WorkCreateService $service;
-
-    public function __construct(WorkCreateService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(private WorkCreateService $service) {}
 
     public function index(WorkCreateRequest $request): SuccessResource | ErrorResource
     {
