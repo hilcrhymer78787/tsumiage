@@ -13,7 +13,6 @@ class WorkReadMonthController extends Controller
 {
     public function __construct(private WorkReadMonthService $service) {}
 
-    // 型のバリデーションを行う
     public function index(WorkReadMonthRequest $request): WorkReadMonthResource | ErrorResource
     {
         try {

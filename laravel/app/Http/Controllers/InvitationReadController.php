@@ -12,7 +12,6 @@ class InvitationReadController extends Controller
 {
     public function __construct(private InvitationReadService $service) {}
 
-    // 型のバリデーションを行う
     public function index(FormRequest $request) : InvitationReadResource | ErrorResource
     {
         try {

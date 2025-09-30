@@ -13,7 +13,6 @@ class TaskReadController extends Controller
 {
     public function __construct(private TaskReadService $service) {}
 
-    // 型のバリデーションを行う
     public function index(TaskReadRequest $request): TaskReadResource | ErrorResource
     {
         try {
